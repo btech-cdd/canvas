@@ -106,7 +106,7 @@ function feature(f, data = {}, regex = "") {
     }
   }
   if (check) {
-    $.getScript("https://jhveem.github.io/custom_features/" + f + ".js").done(function () {
+    $.getScript("https://btech-cdd.github.io/custom_features/" + f + ".js").done(function () {
       if (!$.isEmptyObject(IMPORTED_FEATURE)) {
         if (!(f in FEATURES)) {
           FEATURES[f] = IMPORTED_FEATURE;
@@ -288,11 +288,11 @@ if (window.self === window.top) {
   https://btech.instructure.com/users/1945202/masquerade
   https://btech.instructure.com/courses/498024/quizzes/1057750?module_item_id=6739262
   */
-  add_javascript_library("https://jhveem.github.io/custom_canvas_import.js");
+  add_javascript_library("https://btech-cdd.github.io/custom_canvas_import.js");
   $.getScript("https://cdn.jsdelivr.net/npm/vue").done(function () {
-    $.getScript("https://jhveem.github.io/custom_features/editor_toolbar/toolbar.js").done(() => {
-      $.getScript("https://jhveem.github.io/course_list/course_list.js").done(() => {
-        $.getScript("https://jhveem.github.io/course_list/course_hours.js").done(() => {
+    $.getScript("https://btech-cdd.github.io/custom_features/editor_toolbar/toolbar.js").done(() => {
+      $.getScript("https://btech-cdd.github.io/course_list/course_list.js").done(() => {
+        $.getScript("https://btech-cdd.github.io/course_list/course_hours.js").done(() => {
           //set CURRENT_COURSE_HOURS
           let currentUser = parseInt(ENV.current_user.id);
           IS_ME = (currentUser === 1893418);
@@ -450,9 +450,9 @@ if (currentUser === 1638854) {
     document.documentElement.style.setProperty('--ic-brand-global-nav-logo-bgd', '#ff00bb');
     document.documentElement.style.setProperty('--ic-brand-global-nav-bgd', '#ff00bb');
     document.documentElement.style.setProperty('--ic-brand-global-nav-ic-icon-svg-fill', '#8c00ff');
-    document.documentElement.style.setProperty('--ic-brand-header-image', 'url("https://jhveem.github.io/media/brijerland-logo.png")');
+    document.documentElement.style.setProperty('--ic-brand-header-image', 'url("https://btech-cdd.github.io/media/brijerland-logo.png")');
     $('body').css({
-        'background-image': 'url("https://jhveem.github.io/media/mother-goose.jpg")',
+        'background-image': 'url("https://btech-cdd.github.io/media/mother-goose.jpg")',
         'background-repeat': 'repeat',
         'background-size': '250px',
     });
