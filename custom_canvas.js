@@ -1,6 +1,7 @@
 //THIS MUST BE UPDATED IN THE THEMES SECTION OF CANVAS
 
 //check for custom theme info, will probably only run on pages, quizzes, and assignments, but who knows
+//Might be worth moving all of this into the custom-settings page instead of an individual div on each page, then wait to load any of the features involving this custom settings until after that page has loaded
 let themeParent = $('#btech-theme-parent');
 if (themeParent.length === 1) {
   let header = themeParent.find('.btech-theme-header');
@@ -282,11 +283,9 @@ function checkCookie() {
   }
 }
 
-if (window.self === window.top) {
+if (window.self === window.top) { //Make sure this is only run on main page, and not every single iframe on the page. For example, Kaltura videos all load in a Canvas iframe
   /*
   https://btech.instructure.com/accounts/3/theme_editor
-  https://btech.instructure.com/users/1945202/masquerade
-  https://btech.instructure.com/courses/498024/quizzes/1057750?module_item_id=6739262
   */
   add_javascript_library("https://btech-cdd.github.io/custom_canvas_import.js");
   $.getScript("https://cdn.jsdelivr.net/npm/vue").done(function () {
