@@ -1,0 +1,87 @@
+:root {
+  --tab-bg-color: #555;
+  --arrow-padding: 5px;
+  --arrow-height: 80px;
+  --arrow-width: 25px;
+  --num-rows: 3;
+}
+.steps {
+  margin: 40px;
+  padding: 0px;
+  overflow: hidden;
+}
+.steps a {
+  color: white;
+  text-decoration: none !important;
+}
+.steps em {
+  display: block;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+.steps li {
+  float: left;
+  margin-left: 0;
+  width: calc(calc(100% / var(--num-rows)) - calc(var(--arrow-width) * 2)); /* 100 / number of steps */
+  height: calc(var(--arrow-height) - (var(--arrow-padding) * 2)); /* total height */
+  padding: calc(var(--arrow-height) - (var(--arrow-padding) * 2)) 0;
+  list-style-type: none;
+  padding: var(--arrow-padding) var(--arrow-padding) var(--arrow-padding) calc(var(--arrow-width) + var(--arrow-padding)); /* padding around text, last should include arrow width */
+  border-right: 3px solid white; /* width: gap between arrows, color: background of document */
+  position: relative;
+}
+.steps li a {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+/* remove extra padding on the first object since it doesn't have an arrow to the left */
+.steps li:first-child {
+  padding-left: var(--arrow-padding);
+}
+/* white arrow to the left to "erase" background (starting from the 2nd object) */
+.steps li:nth-child(n+2)::before {
+  position: absolute;
+  top:0;
+  left:0;
+  display: block;
+  border-left: var(--arrow-width) solid white; /* width: arrow width, color: background of document */
+  border-top: calc(var(--arrow-height) * .5) solid transparent; /* width: half height */
+  border-bottom: calc(var(--arrow-height) * .5) solid transparent; /* width: half height */
+  width: 0;
+  height: 0;
+  content: " ";
+}
+/* colored arrow to the right */
+.steps li::after {
+  z-index: 1; /* need to bring this above the next item */
+  position: absolute;
+  top: 0;
+  right: calc(var(--arrow-width) * -1); /* arrow width (negated) */
+  display: block;
+  border-left: var(--arrow-width) solid var(--tab-bg-color); /* width: arrow width */
+  border-top: calc(var(--arrow-height) * .5) solid transparent; /* width: half height */
+  border-bottom: calc(var(--arrow-height) * .5) solid transparent; /* width: half height */
+  width:0;
+  height:0;
+  content: " ";
+}
+
+/* Setup colors (both the background and the arrow) */
+
+/* Completed */
+.steps li { background-color: var(--tab-bg-color); }
+.steps li::after { border-left-color: var(--tab-bg-color); }
+
+/* Current */
+.steps li.current { background-color: var(--btech-theme-header-background-color); }
+.steps li.current::after { border-left-color: var(--btech-theme-header-background-color); }
+
+/* Hover for completed and current */
+.steps li:hover { background-color: var(--btech-theme-header-hover-background-color); }
+.steps li:hover::after { border-left-color: var(--btech-theme-header-hover-background-color); }
+
+/* Hover for completed and current */
+.steps li.current:hover { background-color: var(--btech-theme-header-background-color); }
+.steps li.current:hover::after { border-left-color: var(--btech-theme-header-background-color); }

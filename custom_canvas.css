@@ -1,0 +1,190 @@
+@import 'https://btech.evaluationkit.com/CanvasScripts/btech.css?v=2';
+@import 'https://jhveem.github.io/style/ArrowTabs.css';
+@import 'https://jhveem.github.io/style/sections.css';
+@import 'https://jhveem.github.io/style/style.css';
+@import 'https://jhveem.github.io/style/reports.css';
+@import 'https://jhveem.xyz/collaborator/css/style.css';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.6/select2-bootstrap.css';
+/*@import 'https://kit.fontawesome.com/870f83fdd7.js';/*Not sure why this was included since it's a js file*/
+/*INCLUDE CSS FOR CANVAS COMMENTS*/
+
+:root {
+  --btech-theme-header-background-color: #d22232;
+  --btech-theme-header-color: #fff;
+  --btech-theme-header-hover-background-color: #912;
+  --btech-theme-header-hover-color: #fff;
+}
+
+
+
+/*used for question bank organizer*/
+ul.btech-question-banks-sorter {
+  list-style-type: none;
+  display: inline-block;
+  margin: 0px;
+}
+
+ul.btech-question-banks-sorter li {
+  border-radius: 3px;
+  padding: 4px 5px;
+  cursor: pointer;
+  margin: 0 20px;
+  border-bottom: 1px dotted #ccc;
+}
+
+ul.btech-question-banks-sorter li.btech-bank-course:hover {
+  background-color: #e8e8e8;
+}
+
+ul.btech-question-banks-sorter li.btech-bank-course.selected {
+  background-color: #ccc;
+}
+
+/* end question bank organizer */
+
+/* pop up modals */
+.btech-modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 10000;
+  /* Sit on top */
+  padding-top: 10px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content */
+
+/* END pop up modals */
+
+/* makes the course menu stay visible when scrolling. Simply delete the following two changes if anything appears to not be working.
+@media screen and (min-height: 850px) {
+	#left-side {
+		position: fixed;
+		top: 108px;
+		left: 84px;
+	}
+	#right-side-wrapper {
+		position: -webkit-sticky;
+		position: sticky;
+		top: 0;
+	}
+}
+/* end of changes to course menu */
+
+/* collapsible divs */
+.btech-toggler {
+  background: #f8f8f8;
+  border: 1px solid #000000;
+  padding: 3px;
+  border-radius: 8px;
+}
+
+.ui-accordion-header {
+  background: #f8f8f8;
+  border: 1px solid #000000;
+  padding: 3px;
+}
+
+.ui-accordion-header-collapsed {
+  color: #444;
+}
+
+.ui-accordion-header-active {
+  color: #000000;
+}
+
+.ui-accordion-content {
+  padding: 3px;
+}
+
+.btech-example-table {
+  box-shadow: 3px 6px 6px #888;
+}
+
+.btech-example-table td {
+  padding: 2px;
+}
+
+.btech-example-table td p {
+  margin: 4px 0px 4px 0px;
+}
+
+.btech-hover-show {
+  background-color: #000;
+  color: #000;
+}
+
+.btech-hover-show:hover {
+  background-color: #FFF;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 250px;
+  height: auto;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 10000000;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -125px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+#btech-theme-parent {
+ display: none;
+}
+
+#btech-custom-editor-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#btech-services {
+  display: none;
+}
+
+/* end collapsible divs */

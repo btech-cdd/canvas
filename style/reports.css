@@ -1,0 +1,13 @@
+
+.btech-report-column-toggle {
+  padding: 2px;
+}
+.btech-report-table th, td {
+  padding: 2px 8px;
+}
+.btech-report-table th {
+  border-bottom: 2px solid black;
+}
+.btech-report-table tr:nth-child(even) {
+  background-color: #eee;
+}

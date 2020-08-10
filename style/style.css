@@ -1,0 +1,92 @@
+/* use rem instead of pixels because it messes everything up otherwise. 1.5, 1.2, 1 for h2, h3, h4 respectively */
+/* don't forget to change this in tinymce_font_size.js as well so it shows up in the editor */
+#content h2 {
+  font-size: 1.5rem;
+  font-weight: bold;  
+}
+
+#content h3 {
+  font-size: 1.2rem;
+  font-weight: bold;  
+}
+
+#content h4 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+#content .btech-citation {
+  font-size: .66rem;
+}
+
+/*this is for a lot of the placeholder elements put in which are replaced when out of edit mode*/
+.btech-hidden {
+  display: none;
+}
+
+/*For modals used in reports and other pop outs*/
+.btech-modal-content {
+  margin: auto;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  width: 80%;
+}
+.btech-modal-content-inner {
+  padding: 20px;
+}
+
+/* The Close Button */
+.btech-close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.btech-close:hover,
+.btech-close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*the conatiner is currently only used in replacing a table with a tabbed window, but the tabs themselves are used in other places*/
+.btech-tabs-table{
+  display: none;
+}
+
+.btech-dropdown-table{
+  display: none;
+}
+
+.btech-tabs-container {
+  box-shadow: 3px 6px 6px #888;
+  outline:  #CCC solid 1px;
+  margin-bottom: 10px;
+}
+
+.btech-tabs ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--btech-theme-header-background-color);
+}
+
+.btech-tabs ul li {
+  float: left;
+  color: var(--btech-theme-header-color);
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  cursor: pointer;
+}
+
+.btech-tabs ul li:hover {
+  background-color: var(--btech-theme-header-hover-background-color);
+}
+
+.btech-tabs ul li.active {
+  color: #000;
+  background-color: #FFF;
+}

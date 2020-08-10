@@ -1,0 +1,12 @@
+.btech-sections .sections-header {
+  text-align: center;
+}
+.btech-sections .btech-sections-header .btech-sections-header-content{
+  position: relative; 
+  top: -40px; 
+  padding: 5px 15px;
+  background-color: var(--btech-theme-header-background-color);
+  color: var(--btech-theme-header-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 2px -2px #888;
+}
