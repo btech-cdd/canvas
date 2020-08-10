@@ -2,7 +2,7 @@ let main = $("#dashboard");
 main.prepend(`
 <div class="ic-notification">
   <div class="ic-notification__icon" role="presentation" style="background: #FFF;">
-    <img src="https://jhveem.github.io/media/btech_logo.png">
+    <img src="https://btech-cdd.github.io/media/btech_logo.png">
     <span class="screenreader-only">
       information
     </span>

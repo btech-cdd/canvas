@@ -22,7 +22,7 @@
       initiated: false,
       async _init(params = {}) {
         let vueString = '';
-        await $.get('https://jhveem.github.io/custom_features/reports/individual_page/template.vue', null, function (html) {
+        await $.get('https://btech-cdd.github.io/custom_features/reports/individual_page/template.vue', null, function (html) {
           vueString = html.replace("<template>", "").replace("</template>", "");
         }, 'text');
         let canvasbody = $("#application");

@@ -22,7 +22,7 @@ if (window.location.pathname.includes("/grades/") === true) {
 /*add in accordion stuff*/
 /*
 var scriptElement = document.createElement( "script" );
-scriptElement.src = "https://jhveem.github.io/external-libraries/jquery-accordion.js";
+scriptElement.src = "https://btech-cdd.github.io/external-libraries/jquery-accordion.js";
 document.body.appendChild( scriptElement );
 scriptElement.onload = function() {
   $(".btech-accordion").accordion();
