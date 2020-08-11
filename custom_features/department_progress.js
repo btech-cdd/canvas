@@ -169,34 +169,37 @@
       grabElement(e, data) {
         let app = this;
         if (data.editing === false) {
-          let el = $(e.target).parent()[0];
-          app.xOffset = e.pageX - $(el).offset().left;
-          app.yOffset = e.pageY - $(el).offset().top;
-          console.log($(el).offset());
-          console.log(app.xOffset);
-          console.log(app.yOffset);
-          console.log(e.pageX);
-          console.log(e.pageY);
-          if (this.currentEl == null) {
-            this.currentEl = el;
-            this.currentData = data;
-          }
-          if (!this.moving) {
-            if (this.firstClick == el) {
-              if (data.type === 'topic') {
-                data.editing = true;
-                setTimeout(function () {
-                  $(el).find("input").focus();
-                }, 100);
+          let el = e.target;
+          if (e.target !== $("#btech-course-status-vue .btech-modal-content-inner")[0]) {
+
+            app.xOffset = e.pageX - $(el).offset().left;
+            app.yOffset = e.pageY - $(el).offset().top;
+            console.log($(el).offset("#btech-course-status-vue .btech-modal-content-inner"));
+            console.log(app.xOffset);
+            console.log(app.yOffset);
+            console.log(e.pageX);
+            console.log(e.pageY);
+            if (this.currentEl == null) {
+              this.currentEl = el;
+              this.currentData = data;
+            }
+            if (!this.moving) {
+              if (this.firstClick == el) {
+                if (data.type === 'topic') {
+                  data.editing = true;
+                  setTimeout(function () {
+                    $(el).find("input").focus();
+                  }, 100);
+                }
               }
             }
+            this.firstClick = el;
+            setTimeout(function () {
+              if (app.firstClick == el) {
+                app.firstClick = null;
+              }
+            }, 1000);
           }
-          this.firstClick = el;
-          setTimeout(function () {
-            if (app.firstClick == el) {
-              app.firstClick = null;
-            }
-          }, 1000);
         }
       },
       dropElement(e) {
