@@ -128,7 +128,7 @@ v-bind:style='{left: "calc(" + department.elX + "%)", top: "calc(" + department.
     methods: {
       async createDepartmentElement(department) {
         let departmentId = department.data.id;
-        axios.post("https://jhveem.xyz/api/departments", {
+        $.post("https://jhveem.xyz/api/departments", {
           departmentId: departmentId,
           elX: department.elX,
           elY: department.elY
