@@ -45,9 +45,12 @@ style='height: 100%; position: relative;'
 v-for='topic in topics'
 style='position: absolute; user-select: none; cursor: pointer; background-color: #49e; color: #fff; padding: 0px .5rem; font-size: 1.5rem; border-radius: 5px;'
 v-bind:style='{left: "calc(" + topic.elX + "%)", top: "calc(" + topic.elY + "%)"}'
-@mousedown="grabElement($event, topic)"
 >
-<span v-show='topic.editing === false'>{{topic.title}}</span>
+<span v-show='topic.editing === false'
+  @mousedown="grabElement($event, topic)"
+>
+  {{topic.title}}
+</span>
 <input v-show='topic.editing === true' v-model='topic.title' v-on:blur='topic.editing=false; saveTopicElement(topic);'>
 
 </div>
@@ -58,7 +61,11 @@ style='position: absolute; user-select: none; cursor: pointer; border: solid 1px
 v-bind:style='{left: "calc(" + department.elX + "%)", top: "calc(" + department.elY + "%)"}'
 @mousedown="grabElement($event, department)"
 >
-  <span>{{department.data.name}}</span>
+  <span
+    @mousedown="grabElement($event, department)"
+  >
+    {{department.data.name}}
+  </span>
 </div>
 </div>
 </div>
