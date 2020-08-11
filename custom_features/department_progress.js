@@ -44,7 +44,7 @@ style='height: 100%; position: relative;'
 
 <div
 v-for='topic in topics'
-style='position: absolute; user-select: none; cursor: pointer; background-color: #49e; color: #fff; padding: 0px .5rem; font-size: 2rem;'
+style='position: absolute; user-select: none; cursor: pointer; background-color: #49e; color: #fff; padding: 0px .5rem; font-size: 1.5rem;'
 v-bind:style='{left: "calc(" + topic.elX + "%)", top: "calc(" + topic.elY + "%)"}'
 @mousedown="grabElement($event, topic)"
 >
