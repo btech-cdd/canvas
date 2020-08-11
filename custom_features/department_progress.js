@@ -171,8 +171,8 @@
         if (data.editing === false) {
           app.xOffset = e.pageX;
           app.yOffset = e.pageY;
-          console.log($(el).offset());
           let el = $(e.target).parent()[0];
+          console.log($(el).offset());
           console.log(el);
           if (this.currentEl == null) {
             this.currentEl = el;
