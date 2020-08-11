@@ -131,6 +131,8 @@
         show: false,
         moving: false,
         firstClick: null,
+        xOffset: null,
+        yOffset: null,
       }
     },
     methods: {
@@ -165,9 +167,13 @@
         this.show = false;
       },
       grabElement(e, data) {
+        let app = this;
         if (data.editing === false) {
-          let app = this;
+          app.xOffset = e.pageX;
+          app.yOffset = e.pageY;
+          console.log($(el).offset());
           let el = $(e.target).parent()[0];
+          console.log(el);
           if (this.currentEl == null) {
             this.currentEl = el;
             this.currentData = data;
@@ -207,14 +213,13 @@
         app.currentEl = null;
         app.currentData = null;
       },
-      getOffset(e) {},
       onMouseMove(e) {
         if (this.currentEl !== null && this.currentData !== null) {
           this.moving = true;
           var container = $("#btech-course-status-vue .btech-modal-content-inner");
           var containerOffset = container.offset();
-          var relX = e.pageX - containerOffset.left - $(this.currentEl).width() / 2;
-          var relY = e.pageY - containerOffset.top - $(this.currentEl).height() / 2;
+          var relX = e.pageX - containerOffset.left;
+          var relY = e.pageY - containerOffset.top;
           let percX = (relX / container.width() * 100).toFixed(2);
           if (percX > 0 && percX <= 100) this.currentData.elX = percX;
           let percY = (relY / container.height() * 100).toFixed(2);
