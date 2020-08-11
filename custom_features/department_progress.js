@@ -3,25 +3,24 @@
   let vueString = `
 <div>
 <div
-@mouseover="buttonX = 120;"
-@mouseleave="buttonX = 10;"
-@click="show = !show;"
-style='
-width: 110px;
-margin-right: -140px;
-position:fixed;
-bottom: 60px;
-z-index:1000;
-transition: 0.5s;
-background-color: #49e;
-border: 2px solid #5ae;
-padding: 10px 20px;
-color: #FFF;
-border-radius: 5px;
-cursor: pointer;
-user-select: none;
-'
-:style="{'right': buttonX + 'px'}"
+  @mouseover="buttonX = 120;"
+  @mouseleave="buttonX = 10;"
+  @click="show = !show;"
+  style='
+  width: 110px;
+  margin-right: -140px;
+  position:fixed;
+  bottom: 60px;
+  z-index:1000;
+  transition: 0.5s;
+  background-color: #49e;
+  border: 2px solid #5ae;
+  padding: 10px 20px;
+  color: #FFF;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+  :style="{'right': buttonX + 'px'}"
 >
 Dept. Status
 </div>
@@ -30,8 +29,8 @@ Dept. Status
 >
 <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
 <div class='btech-modal-content' style='left: 2.5%; top: 2.5%; height: 95%; width: 95%; position: absolute; box-sizing: border-box;'>
-<div class="btech-tabs">
-<ul>
+<div class="btech-tabs" >
+<ul style='background-color: #2d3b45'>
 <li @click="menu='departments'">Departments</li>
 <li style='float: right;' v-on:click='close()'>X</li>
 </ul>
@@ -59,7 +58,7 @@ style='position: absolute; user-select: none; cursor: pointer;'
 v-bind:style='{left: "calc(" + department.elX + "%)", top: "calc(" + department.elY + "%)"}'
 @mousedown="grabElement($event, department)"
 >
-<div style='border: solid 1px #eee; border-left: solid 1rem #F00; padding: 0px .5rem;'>{{department.data.name}}</div>
+<div style='border: solid 1px #eee; border-left: solid 1rem #49e; padding: 0px .5rem;'>{{department.data.name}}</div>
 </div>
 </div>
 </div>
