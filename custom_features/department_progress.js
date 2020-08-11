@@ -169,11 +169,11 @@
       grabElement(e, data) {
         let app = this;
         if (data.editing === false) {
-          app.xOffset = e.pageX;
-          app.yOffset = e.pageY;
           let el = $(e.target).parent()[0];
-          console.log($(el).offset());
-          console.log(el);
+          app.xOffset = e.pageX - $(el).offset().left;
+          app.yOffset = e.pageY - $(el).offset().top;
+          console.log(app.xOffset);
+          console.log(app.yOffset);
           if (this.currentEl == null) {
             this.currentEl = el;
             this.currentData = data;
