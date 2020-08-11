@@ -7,19 +7,20 @@
   @mouseleave="buttonX = 10;"
   @click="show = !show;"
   style='
-  width: 110px;
-  margin-right: -140px;
-  position:fixed;
-  bottom: 60px;
-  z-index:1000;
-  transition: 0.5s;
-  background-color: #49e;
-  border: 2px solid #5ae;
-  padding: 10px 20px;
-  color: #FFF;
-  border-radius: 5px;
-  cursor: pointer;
-  user-select: none;
+    width: 110px;
+    margin-right: -140px;
+    position:fixed;
+    bottom: 60px;
+    z-index:1000;
+    transition: 0.5s;
+    background-color: #49e;
+    border: 2px solid #5ae;
+    padding: 10px 20px;
+    color: #FFF;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+  '
   :style="{'right': buttonX + 'px'}"
 >
 Dept. Status
