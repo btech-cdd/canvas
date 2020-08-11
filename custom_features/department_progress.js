@@ -90,10 +90,8 @@ v-bind:style='{left: "calc(" + department.elX + "%)", top: "calc(" + department.
           savedData[department.departmentId] = department;
         }
       });
-      console.log(savedData);
 
       await $.get("/api/v1/accounts/3/sub_accounts?per_page=100", function (data) {
-        console.log(data);
         for (let i = 0; i < data.length; i++) {
           let dept = data[i];
           departments[dept.id] = {
