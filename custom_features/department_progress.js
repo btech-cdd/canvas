@@ -32,7 +32,6 @@ Dept. Status
 <div class='btech-modal-content' style='left: 2.5%; top: 2.5%; height: 95%; width: 95%; position: absolute; box-sizing: border-box;'>
 <div class="btech-tabs" >
 <ul style='background-color: #2d3b45'>
-<li @click="menu='departments'">Departments</li>
 <li style='float: right;' v-on:click='close()'>X</li>
 </ul>
 </div>
