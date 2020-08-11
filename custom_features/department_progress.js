@@ -54,11 +54,11 @@ v-bind:style='{left: "calc(" + topic.elX + "%)", top: "calc(" + topic.elY + "%)"
 
 <div
 v-for='department in departments'
-style='position: absolute; user-select: none; cursor: pointer;'
+style='position: absolute; user-select: none; cursor: pointer; border: solid 1px #eee; border-left: solid 1rem #49e; padding: 0px .5rem; background-color: #fff;'
 v-bind:style='{left: "calc(" + department.elX + "%)", top: "calc(" + department.elY + "%)"}'
 @mousedown="grabElement($event, department)"
 >
-<div style='border: solid 1px #eee; border-left: solid 1rem #49e; padding: 0px .5rem;'>{{department.data.name}}</div>
+  <span>{{department.data.name}}</span>
 </div>
 </div>
 </div>
