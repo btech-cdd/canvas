@@ -172,6 +172,7 @@
           let el = $(e.target).parent()[0];
           app.xOffset = e.pageX - $(el).offset().left;
           app.yOffset = e.pageY - $(el).offset().top;
+          console.log($(el).offset());
           console.log(app.xOffset);
           console.log(app.yOffset);
           if (this.currentEl == null) {
