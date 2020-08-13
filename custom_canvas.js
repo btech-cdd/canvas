@@ -249,40 +249,6 @@ $.delete = function (url, data) {
   });
 }
 
-function setCookie(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-  var expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-  var name = cname + "=";
-  var ca = document.cookie.split(';');
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-function checkCookie() {
-  var user = getCookie("username");
-  if (user != "") {
-    alert("Welcome again " + user);
-  } else {
-    user = prompt("Please enter your name:", "");
-    if (user != "" && user != null) {
-      setCookie("username", user, 365);
-    }
-  }
-}
-
 if (window.self === window.top) { //Make sure this is only run on main page, and not every single iframe on the page. For example, Kaltura videos all load in a Canvas iframe
   /*
   https://btech.instructure.com/accounts/3/theme_editor
@@ -370,7 +336,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
               if (IS_TEACHER) {
                 feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
                 if (currentUser === 1225484 || currentUser === 817257 || IS_ME) { //I think Alivia and Wendi
-                  feature("speed_grader/move_rubric_points", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
+                  // feature("speed_grader/move_rubric_points", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
                 }
               }
             }
@@ -378,6 +344,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             if (departmentId === 3833) { //business
               feature("department_specific/business_hs");
               feature("previous-enrollment-data/previous_enrollment_period_grades");
+              feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
             }
             if (departmentId === 3819 || departmentId === 3832) { // AMAR && ELEC
               feature("modules/points_to_hours_header");
@@ -385,6 +352,16 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             }
             if (departmentId === 3847) { //meats
               feature("previous-enrollment-data/previous_enrollment_period_grades", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
+              feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
+            }
+            if (departmentId === 3837) { //auto collision
+              feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
+            }
+            if (departmentId === 3840 || departmentId === 3839) { //media design & drafting
+              feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
+            }
+            if (currentUser === 451596 || currentUser === 1759829) { //Bonnie Campbell and Aaron Liebelt in IT
+              feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
             }
             if (departmentId === 3841 || departmentId === 3947) { //cosmetology && master esthetics
               feature("department_specific/esthetics_cosmetology_services");
@@ -411,7 +388,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           featureCDD('date_display/add_current_year_speed_grader', {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
           featureCDD('date_display/add_current_year', {}, /^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/);
           feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
-          if (IS_ME) feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
           featureCDD('department_progress');
           if (IS_ME) $.getScript("https://jhveem.xyz/collaborator/import.js");
           //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
@@ -434,27 +410,4 @@ window.ALLY_CFG = {
   'clientId': 1164
 };
 $.getScript(ALLY_CFG.baseUrl + '/integration/canvas/ally.js');
-*/
-
-
-/*  NOT CURRENTLY BEING USED  */
-//This may need to be removed/revisited until next COE if other issues pop up.
-//Problem was it was breaking link between quiz and the grade at the end so changes to scores weren't being caught
-
-
-/*
-let currentUser = parseInt(ENV.current_user.id)
-if (currentUser === 1638854) {
-    document.documentElement.style.setProperty('--ic-brand-global-nav-menu-item__text-color', '#00ff9d');
-    document.documentElement.style.setProperty('--ic-brand-global-nav-menu-item__text-color--active', '#00ff9d');
-    document.documentElement.style.setProperty('--ic-brand-global-nav-logo-bgd', '#ff00bb');
-    document.documentElement.style.setProperty('--ic-brand-global-nav-bgd', '#ff00bb');
-    document.documentElement.style.setProperty('--ic-brand-global-nav-ic-icon-svg-fill', '#8c00ff');
-    document.documentElement.style.setProperty('--ic-brand-header-image', 'url("https://btech-cdd.github.io/media/brijerland-logo.png")');
-    $('body').css({
-        'background-image': 'url("https://btech-cdd.github.io/media/mother-goose.jpg")',
-        'background-repeat': 'repeat',
-        'background-size': '250px',
-    });
-}
 */
