@@ -117,8 +117,6 @@
               } else {
                 container = $("div.submission-details-frame");
               }
-              container.wrapInner("<div id='btech-submission-container'");
-              $("#btech-submission-container").hide();
               container.prepend(vueString);
               await getElement("#app-hs-courses");
               new Vue({
