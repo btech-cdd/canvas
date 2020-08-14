@@ -36,10 +36,12 @@
   }
   
   let rPieces = /^\/courses\/([0-9]+)\/assignments\/([0-9]+)\/submissions\/([0-9]+)/;
+  let IS_SPEED_GRADER = false;
   console.log("Regex");
   if (window.location.pathname.includes("speed_grader")) {
     console.log("SPEED GRADER");
     rPieces = /^\/courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/
+    IS_SPEED_GRADER = true;
   }
   
   //GRADING VIEW
@@ -109,8 +111,15 @@
           if (description.includes("btech-hs-courses")) {
             console.log("HS COURSES");
             if (rPieces.test(window.location.pathname + window.location.search)) {
-              $("div.submission-details-frame iframe").hide();
-              $("div.submission-details-frame").append(vueString);
+              let container;
+              if (IS_SPEED_GRADER) {
+                container = $("#submissions_container");
+              } else {
+                container = $("div.submission-details-frame");
+              }
+              container.wrapInner("<div id='btech-submission-container'");
+              $("#btech-submission-container").hide();
+              container.prepend(vueString);
               await getElement("#app-hs-courses");
               new Vue({
                 el: '#app-hs-courses',
