@@ -100,6 +100,7 @@
             description = data.description;
           });
           if (description.includes("btech-hs-courses")) {
+            console.log("HS COURSES");
             if (rPieces.test(window.location.pathname)) {
               $("div.submission-details-frame iframe").hide();
               $("div.submission-details-frame").append(vueString);
