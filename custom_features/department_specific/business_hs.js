@@ -96,7 +96,7 @@
                 </div>
               </div>
             </div>`;
-          let pieces = window.location.pathname.match(rPieces);
+          let pieces = (window.location.pathname + window.location.search).match(rPieces);
           let courseId = parseInt(pieces[1]);
           let studentId = parseInt(pieces[3]);
           let assignmentId = parseInt(pieces[2]);
@@ -108,7 +108,7 @@
           });
           if (description.includes("btech-hs-courses")) {
             console.log("HS COURSES");
-            if (rPieces.test(window.location.pathname)) {
+            if (rPieces.test(window.location.pathname + window.location.search)) {
               $("div.submission-details-frame iframe").hide();
               $("div.submission-details-frame").append(vueString);
               await getElement("#app-hs-courses");
@@ -140,7 +140,7 @@
                 },
                 mounted: async function () {
                   let app = this;
-                  let pieces = window.location.pathname.match(rPieces);
+                  let pieces = (window.location.pathname + window.location.search).match(rPieces);
                   this.courseId = parseInt(pieces[1]);
                   this.studentId = parseInt(pieces[3]);
                   this.assignmentId = parseInt(pieces[2]);
