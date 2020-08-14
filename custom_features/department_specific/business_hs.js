@@ -36,7 +36,7 @@
   }
   
   let rPieces = /^\/courses\/([0-9]+)\/assignments\/([0-9]+)\/submissions\/([0-9]+)/;
-  if (window.location.pathname.includes("speedgrader")) {
+  if (window.location.pathname.includes("speed_grader")) {
     rPieces = /^\/courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/
   }
   //GRADING VIEW
