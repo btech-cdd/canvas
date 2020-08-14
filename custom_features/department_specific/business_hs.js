@@ -44,7 +44,7 @@
   
   //GRADING VIEW
   //This one has to come first so it doesn't have the submission view run on the grading page
-  if (rPieces.test(window.location.pathname)) {
+  if (rPieces.test(window.location.pathname + window.location.search)) {
     if (ENV.current_user_roles.includes("teacher")) {
       console.log("IS TEACHER");
       IMPORTED_FEATURE = {
