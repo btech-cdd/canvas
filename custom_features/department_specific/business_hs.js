@@ -35,9 +35,10 @@
     });
   }
 
+  let rPieces = /^\/courses\/([0-9]+)\/assignments\/([0-9]+)\/submissions\/([0-9]+)/;
   //GRADING VIEW
   //This one has to come first so it doesn't have the submission view run on the grading page
-  if (/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/.test(window.location.pathname)) {
+  if (rPieces.test(window.location.pathname)) {
     if (ENV.current_user_roles.includes("teacher")) {
       IMPORTED_FEATURE = {
         initiated: false,
@@ -87,7 +88,6 @@
                 </div>
               </div>
             </div>`;
-          let rPieces = /^\/courses\/([0-9]+)\/assignments\/([0-9]+)\/submissions\/([0-9]+)/;
           let pieces = window.location.pathname.match(rPieces);
           let courseId = parseInt(pieces[1]);
           let studentId = parseInt(pieces[3]);
@@ -97,8 +97,7 @@
             description = data.description;
           });
           if (description.includes("btech-hs-courses")) {
-            let rURL = /^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/
-            if (rURL.test(window.location.pathname)) {
+            if (rPieces.test(window.location.pathname)) {
               $("div.submission-details-frame iframe").hide();
               $("div.submission-details-frame").append(vueString);
               await getElement("#app-hs-courses");
@@ -130,7 +129,6 @@
                 },
                 mounted: async function () {
                   let app = this;
-                  let rPieces = /^\/courses\/([0-9]+)\/assignments\/([0-9]+)\/submissions\/([0-9]+)/;
                   let pieces = window.location.pathname.match(rPieces);
                   this.courseId = parseInt(pieces[1]);
                   this.studentId = parseInt(pieces[3]);
