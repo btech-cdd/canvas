@@ -46,9 +46,11 @@
   //This one has to come first so it doesn't have the submission view run on the grading page
   if (rPieces.test(window.location.pathname)) {
     if (ENV.current_user_roles.includes("teacher")) {
+      console.log("IS TEACHER");
       IMPORTED_FEATURE = {
         initiated: false,
         async _init(params = {}) {
+          console.log("INIT");
           //NEEDS
           ////TOP PRIORITY: Need to handle pagination for comments since there will be more than 100
           ////Checks on if a student has already submitted their max number of submissions, at least a warning, probably not a hard block
@@ -99,8 +101,10 @@
           let studentId = parseInt(pieces[3]);
           let assignmentId = parseInt(pieces[2]);
           let description = '';
+          console.log("GET");
           await $.get("/api/v1/courses/" + courseId + "/assignments/" + assignmentId, function (data) {
             description = data.description;
+            console.log("GET DESCRIPTION");
           });
           if (description.includes("btech-hs-courses")) {
             console.log("HS COURSES");
