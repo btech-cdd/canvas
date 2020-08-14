@@ -36,9 +36,12 @@
   }
   
   let rPieces = /^\/courses\/([0-9]+)\/assignments\/([0-9]+)\/submissions\/([0-9]+)/;
+  console.log("Regex");
   if (window.location.pathname.includes("speed_grader")) {
+    console.log("SPEED GRADER");
     rPieces = /^\/courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/
   }
+  
   //GRADING VIEW
   //This one has to come first so it doesn't have the submission view run on the grading page
   if (rPieces.test(window.location.pathname)) {
