@@ -34,20 +34,22 @@
       checkButtonColor(btn);
     });
   }
-  
+
   let rPieces = /^\/courses\/([0-9]+)\/assignments\/([0-9]+)\/submissions\/([0-9]+)/;
   let IS_SPEED_GRADER = false;
   if (window.location.pathname.includes("speed_grader")) {
     rPieces = /^\/courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/
     IS_SPEED_GRADER = true;
   }
-  
+
   //GRADING VIEW
   //This one has to come first so it doesn't have the submission view run on the grading page
   if (rPieces.test(window.location.pathname + window.location.search)) {
     if (ENV.current_user_roles.includes("teacher")) {
       IMPORTED_FEATURE = {
         initiated: false,
+        oldHref: "",
+
         async _init(params = {}) {
           //NEEDS
           ////TOP PRIORITY: Need to handle pagination for comments since there will be more than 100
@@ -55,7 +57,30 @@
           ////Allow students to see everything except for the review tab so they can see their summary, submitted, and rejected info too
           ////Option to delete a submission, which will delete that comment and all other comments with the submission id
           ////Allow the color themes to affect the color of the buttons and display in both teacher view and student view
-
+          let feature = this;
+          if (IS_SPEED_GRADER) {
+            feature.oldHref = document.location.href,
+              window.onload = function () {
+                var
+                  bodyList = document.querySelector("#right_side"),
+                  observer = new MutationObserver(function (mutations) {
+                    mutations.forEach(function (mutation) {
+                      if (feature.oldHref !== document.location.href) {
+                        feature.oldHref = document.location.href;
+                        feature.createApp();
+                      }
+                    });
+                  });
+                var config = {
+                  childList: true,
+                  subtree: true
+                };
+                observer.observe(bodyList, config);
+              };
+          }
+          feature.createApp();
+        },
+        createApp() {
           let vueString = `
             <div style="padding:10px;" id='app-hs-courses'>
               <div class="btech-tabs-container">
@@ -175,7 +200,7 @@
                 },
                 computed: {},
                 methods: {
-                  removeCourse: async function(course) {
+                  removeCourse: async function (course) {
                     for (let c = 0; c < this.courseGrades.length; c++) {
                       if (this.courseGrades[c].course === course.course) {
                         await $.delete(window.location.origin + "/submission_comments/" + this.courseGrades[c].comment_id);
@@ -183,11 +208,11 @@
                       }
                     }
                   },
-                  onCourseSelect: function() {
+                  onCourseSelect: function () {
                     let app = this;
                     let course = this.selectedCourse;
-                    let url = "/api/v1/courses/" + course + "/users?user_ids[]="+this.studentId+"&enrollment_state[]=active&enrollment_state[]=completed&enrollment_state[]=inactive&include[]=enrollments";
-                    $.get(url).done(function(data) {
+                    let url = "/api/v1/courses/" + course + "/users?user_ids[]=" + this.studentId + "&enrollment_state[]=active&enrollment_state[]=completed&enrollment_state[]=inactive&include[]=enrollments";
+                    $.get(url).done(function (data) {
                       app.selectedGrade = data[0].enrollments[0].grades.current_score;
                     })
                   },
