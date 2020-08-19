@@ -80,7 +80,7 @@
           }
           feature.createApp();
         },
-        createApp() {
+        async createApp() {
           let vueString = `
             <div style="padding:10px;" id='app-hs-courses'>
               <div class="btech-tabs-container">
