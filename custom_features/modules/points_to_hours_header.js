@@ -14,13 +14,16 @@
                   let headerElement = $($(this).find("div.ig-header span.name")[0]);
                   let header = headerElement.text().trim();
                   if (header !== "") {
-                      let items = $(this).find("ul.ig-list div.ig-row span.item_name span.title");
+                      let items = $(this).find("ul.ig-list div.ig-row");
                       items.each(function () {
-                          let label = $(this).text();
+                          let label = $(this).find("span.item_name span.title").text();
+                          console.log(label);
+                          /*
                           if (label.includes("#HOURSTOTAL#")) {
                               feature.displayHoursElement = this;
                               feature.displayHours = true;
                           }
+                          */
                       });
                   }
               });
