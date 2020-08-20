@@ -17,13 +17,10 @@
                       let items = $(this).find("ul.ig-list div.ig-row");
                       items.each(function () {
                           let label = $(this).find("span.item_name span.title").text();
-                          console.log(label);
-                          /*
                           if (label.includes("#HOURSTOTAL#")) {
                               feature.displayHoursElement = this;
                               feature.displayHours = true;
                           }
-                          */
                       });
                   }
               });
