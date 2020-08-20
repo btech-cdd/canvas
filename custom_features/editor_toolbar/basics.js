@@ -215,9 +215,11 @@
   }
   await TOOLBAR.checkReady();
 
+  //Add in option to change color of exampleBox. IE, you click in it, it figures out he color selected, if you change the color, it changes the box
   TOOLBAR.toolbar.prepend(`<input type="color" id="btech-custom-editor-buttons-color" value="#d22232" style="width: 48px; padding: 4px; padding-right: 0px;" list="default-colors"/>
     <datalist id="default-colors">
       <option>#d22232</option>
+      <option>#2232d2</option>
       <option>#1f89e5</option>
       <option>#32A852</option>
       <option>#E2A208</option>
