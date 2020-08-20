@@ -14,9 +14,10 @@
                   let headerElement = $($(this).find("div.ig-header span.name")[0]);
                   let header = headerElement.text().trim();
                   if (header !== "") {
-                      let items = $(this).find("ul.ig-list div.ig-row");
+                      let items = $(this).find("ul.ig-list div.ig-row span.item_name span.title");
                       items.each(function () {
-                          let label = $(this).find("a").attr("aria-label");
+                          //let label = $(this).find("a").attr("aria-label");
+                          let label = $(this).text();
                           console.log(label);
                           /*
                           if (label.includes("#HOURSTOTAL#")) {
