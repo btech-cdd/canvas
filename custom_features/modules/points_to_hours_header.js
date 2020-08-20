@@ -17,7 +17,6 @@
                       let items = $(this).find("ul.ig-list div.ig-row span.item_name span.title");
                       items.each(function () {
                           let label = $(this).text();
-                          console.log(label);
                           if (label.includes("#HOURSTOTAL#")) {
                               feature.displayHoursElement = this;
                               feature.displayHours = true;
