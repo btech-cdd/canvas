@@ -30,7 +30,6 @@ var CDDIDS = [
   1638854, //Mason
   1922029, //Makenzie
   1807337, //Jon
-  1950359, //Morgan
 ];
 var CURRENT_COURSE_ID = null;
 var CURRENT_DEPARTMENT_ID = null;
@@ -315,9 +314,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             let courseId = CURRENT_COURSE_ID;
             //COURSE SPECIFIC FEATURES
             featurePilot("change_2019_to_2019-2020", courseId, [489538]); //IV Therapy
-            featurePilot("rubrics/attempts_data", courseId, [498455]); //Dental 1010 pilot
-            featurePilot("rubrics/gen_comment", courseId, [498455, 489058, 489702, 489089]); //Dental 1010 pilot, Dental I, Dental III, Micro Controllers I
-            featurePilot("highlight_comments_same_date", courseId, [498455]); //Dental 1010 pilot
+            featurePilot("rubrics/gen_comment", courseId, [489089]); //Micro Controllers I
             featurePilot("previous-enrollment-data/previous_enrollment_period_grades", courseId, [511596]); //Business High School Summer
             //DEPARTMENT SPECIFIC IMPORTS
             let departmentId = 0;
@@ -331,6 +328,9 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             CURRENT_DEPARTMENT_ID = departmentId;
             if (departmentId === 3824) { // DENTAL
               feature("highlighted_grades_page_items", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
+              feature("rubrics/attempts_data", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
+              feature("rubrics/gen_comment", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
+              feature("highlight_comments_same_date", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
               //This is currently disabled because it was decided it might be more confusing for students to see a grade that was only part of their final grade.
               // feature("previous-enrollment-data/previous_enrollment_period_grades", {}, /^\/courses\/[0-9]+\/grades/);
               if (IS_TEACHER) {
@@ -389,7 +389,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           feature('date_display/add_current_year', {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
           feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
           featureCDD('department_progress');
-          if (IS_ME) $.getScript("https://jhveem.xyz/collaborator/import.js");
+          // if (IS_ME) $.getScript("https://jhveem.xyz/collaborator/import.js");
           //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
           feature("welcome_banner", {}, /^\/$/);
 
