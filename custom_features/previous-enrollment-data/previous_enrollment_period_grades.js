@@ -94,8 +94,8 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
       $('#btech-term-hours-warning').hide();
       //if teacher, show teacher stuff, if student AND enrolled for hours, show student stuff, else, hide everything
       if (IS_TEACHER) $('#btech-term-teacher-view').show();
-      if (this.hoursEnrolled !== null) {
-        if (!IS_TEACHER) $('#btech-term-student-view').show();
+      if (!IS_TEACHER) {
+        if (this.hoursEnrolled !== null) $('#btech-term-student-view').show();
       } else {
         $('#btech-submissions-between-dates-module').hide();
       }
