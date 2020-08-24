@@ -95,9 +95,11 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
       //if teacher, show teacher stuff, if student AND enrolled for hours, show student stuff, else, hide everything
       if (IS_TEACHER) $('#btech-term-teacher-view').show();
       if (!IS_TEACHER) {
-        if (this.hoursEnrolled !== null) $('#btech-term-student-view').show();
-      } else {
-        $('#btech-submissions-between-dates-module').hide();
+        if (this.hoursEnrolled !== null) {
+          $('#btech-term-student-view').show();
+        } else {
+          $('#btech-submissions-between-dates-module').hide();
+        }
       }
 
       //set up the buttons
@@ -244,7 +246,7 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
             if (hoursCompleted < minHoursRequired) {
               let warning = $("<i class='icon-warning'></i>");
               $("#btech-term-hours-completed").append(warning);
-              warning.click(function() {
+              warning.click(function () {
                 $("#btech-term-hours-warning").show();
               })
               $("#btech-term-hours-warning").append("<br><div><b>WARNING:</b> If you were to end your course with your current hours completed, your Term Grade would be reduced to the following score: " + weightedGrade + "%</div>");
