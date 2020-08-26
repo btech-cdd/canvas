@@ -90,3 +90,7 @@
   color: #000;
   background-color: #FFF;
 }
+.btech-self-graded-rubric ul.likert li {
+  float: left;
+  list-style-type: none;
+}
