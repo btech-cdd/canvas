@@ -90,7 +90,60 @@
   color: #000;
   background-color: #FFF;
 }
-.btech-self-graded-rubric ul.likert li {
-  float: left;
-  list-style-type: none;
+
+.btech-self-graded-rubric .statement {
+  display:block;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 30px 0 0 4.25%;
+  margin-bottom:10px;
 }
+.btech-self-graded-rubric .likert {
+  list-style:none;
+  width:100%;
+  margin:0;
+  padding:0 0 35px;
+  display:block;
+  border-bottom:2px solid #efefef;
+}
+.btech-self-graded-rubric .likert:last-of-type {border-bottom:0;}
+.btech-self-graded-rubric .likert:before {
+  content: '';
+  position:relative;
+  top:11px;
+  left:9.5%;
+  display:block;
+  background-color:#efefef;
+  height:4px;
+  width:78%;
+}
+.btech-self-graded-rubric .likert li {
+  display:inline-block;
+  width:19%;
+  text-align:center;
+  vertical-align: top;
+}
+.btech-self-graded-rubric .likert li input[type=radio] {
+  display:block;
+  position:relative;
+  top:0;
+  left:50%;
+  margin-left:-6px;
+  
+}
+.btech-self-graded-rubric .likert li label {width:100%;}
+.btech-self-graded-rubric .buttons {
+  margin:30px 0;
+  padding:0 4.25%;
+  text-align:right
+} 
+.btech-self-graded-rubric .buttons button {
+  padding: 5px 10px;
+  background-color: #67ab49;
+  border: 0;
+  border-radius: 3px;
+}
+.btech-self-graded-rubric .buttons .clear {background-color: #e9e9e9;}
+.btech-self-graded-rubric .buttons .submit {background-color: #67ab49;} 
+.btech-self-graded-rubric .buttons .clear:hover {background-color: #ccc;}
+.btech-self-graded-rubric .buttons .submit:hover {background-color: #14892c;} 
