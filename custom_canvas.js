@@ -252,6 +252,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
   /*
   https://btech.instructure.com/accounts/3/theme_editor
   */
+  feature("login_page", {}, /^login/);
   add_javascript_library("https://btech-cdd.github.io/custom_canvas_import.js");
   $.getScript("https://cdn.jsdelivr.net/npm/vue").done(function () {
     $.getScript("https://btech-cdd.github.io/custom_features/editor_toolbar/toolbar.js").done(() => {
