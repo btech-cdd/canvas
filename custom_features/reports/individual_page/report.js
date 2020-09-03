@@ -51,7 +51,7 @@
           el: '#canvas-individual-report-vue',
           mounted: async function () {
             this.IS_TEACHER = IS_TEACHER;
-            if (!IS_TEACHER) this.menu = 'period';
+            // if (!IS_TEACHER) this.menu = 'period';
             let gradesBetweenDates = {};
             if (IS_TEACHER) { //also change this to ref the url and not whether or not is teacher
               let match = window.location.pathname.match(/users\/([0-9]+)/);
@@ -393,7 +393,6 @@
                 let sub = subs[s];
                 let assignment = sub.assignment;
                 if (assignment.name.toLowerCase() === "hours") {
-                  console.log(assignment.id);
                   if (IS_TEACHER) {
                     await $.get("/api/v1/courses/" + courseId + "/gradebook_history/feed?user_id=" + app.userId + "&assignment_id=" + assignment.id).done(function (data) {
                       app.hoursAssignmentData[courseId] = data;
@@ -417,6 +416,8 @@
                 await $.get(url).done(function (data) {
                   let crsCode = data.course_code;
                   hours = COURSE_HOURS[year][crsCode];
+                  //Check to see if a previous year can be found if current year doesn't work
+                  if (hours == undefined) hours = COURSE_HOURS[year - 1][crsCode];
                 })
               }
               course.hours = hours;
@@ -463,16 +464,13 @@
                 let enrollment = enrollments[e];
                 if (enrollment.role == "StudentEnrollment") {
                   let startDate = new Date(enrollment.updated_at);
-                  console.log(startDate);
                   let year = startDate.getFullYear();
-                  console.log(year);
                   let month = startDate.getMonth();
                   if (month < 6) year -= 1;
                   dates[enrollment.course_id] = year;
                 }
               }
               $("#content .student_grades a").each(function () {
-                console.log($(this));
                 let name = $(this).text().trim();
                 let href = $(this).attr('href');
                 let match = href.match(/courses\/([0-9]+)\/grades/);
@@ -523,12 +521,10 @@
                 await $.get(url).done(function (data) {
                   list = app.processCoursePageTeacherView(data);
                 }).fail(function (e) {
-                  console.log(e);
                   app.accessDenied = true;
                 });
               } else {
                 list = app.processCoursePageStudentView();
-                console.log(list);
               }
               return list;
             },
