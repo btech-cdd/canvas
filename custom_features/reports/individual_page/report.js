@@ -50,6 +50,8 @@
         this.APP = new Vue({
           el: '#canvas-individual-report-vue',
           mounted: async function () {
+            this.IS_TEACHER = IS_TEACHER;
+            if (!IS_TEACHER) this.menu = 'period'; 
             let gradesBetweenDates = {};
             if (IS_TEACHER) { //also change this to ref the url and not whether or not is teacher
               let match = window.location.pathname.match(/users\/([0-9]+)/);
@@ -102,7 +104,8 @@
               loadingAssignments: true,
               loadingMessage: "Loading Results...",
               accessDenied: false,
-              menu: 'report'
+              menu: 'report',
+              IS_TEACHER: false
             }
           },
 
