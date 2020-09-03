@@ -51,7 +51,7 @@
           el: '#canvas-individual-report-vue',
           mounted: async function () {
             let gradesBetweenDates = {};
-            if (IS_TEACHER) {
+            if (IS_TEACHER) { //also change this to ref the url and not whether or not is teacher
               let match = window.location.pathname.match(/users\/([0-9]+)/);
               this.userId = match[1];
             } else {
@@ -445,7 +445,7 @@
             },
             async processCoursePage(pageData) {
               let list = [];
-              $(data).find("#content .courses a").each(function () {
+              $(pageData).find("#content .courses a").each(function () {
                 let name = $(this).find('span.name').text().trim();
                 let href = $(this).attr('href');
                 let match = href.match(/courses\/([0-9]+)\/users/);
