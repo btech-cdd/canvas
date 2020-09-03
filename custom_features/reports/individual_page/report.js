@@ -51,7 +51,9 @@
           el: '#canvas-individual-report-vue',
           mounted: async function () {
             let gradesBetweenDates = {};
-            this.courseId = ENV.context_asset_string.replace("course_", "");
+            if (IS_TEACHER) {
+
+            }
             let match = window.location.pathname.match(/users\/([0-9]+)/);
             this.userId = match[1];
             this.courses = await this.getCourseData();
@@ -470,8 +472,8 @@
             async getCourses() {
               let app = this;
               let list = [];
-              let url = window.location.origin + "/users/" + app.userId;
-              if (IS_TEACHER) {
+              if (IS_TEACHER) { //possible change this to just do a check for the .courses class
+                let url = window.location.origin + "/users/" + app.userId;
                 await $.get(url).done(function (data) {
                   list = app.processCoursePage(data);
                 }).fail(function (e) {
