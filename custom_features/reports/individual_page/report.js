@@ -446,6 +446,7 @@
             async processCoursePageStudentView(pageData) {
               let list = [];
               $(pageData).find("#content .courses a").each(function () {
+                console.log($(this));
                 let name = $(this).text().trim();
                 let href = $(this).attr('href');
                 let match = href.match(/courses\/([0-9]+)\/grades/);
