@@ -29,6 +29,8 @@ var CDDIDS = [
   1638854, //Mason
   1922029, //Makenzie
   1807337, //Jon
+  1869288, //Alan
+  2000557, //Charlotte
 ];
 var CURRENT_COURSE_ID = null;
 var CURRENT_DEPARTMENT_ID = null;
@@ -262,6 +264,9 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           IS_ME = (currentUser === 1893418);
           const IS_CDD = (CDDIDS.includes(currentUser))
           //GENERAL FEATURES
+          if (BETA && !IS_TEACHER) {
+            feature("reports/individual_page/report", {}, [/^\/grades$/]);
+          }
           if (IS_TEACHER) {
             feature("reports/grades_page/report", {}, /^\/courses\/[0-9]+\/gradebook$/);
             feature("reports/individual_page/report", {}, [/^\/courses\/[0-9]+\/users\/[0-9]+$/, /^\/accounts\/[0-9]+\/users\/[0-9]+$/, /^\/users\/[0-9]+$/]);

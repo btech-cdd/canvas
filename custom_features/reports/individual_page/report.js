@@ -29,12 +29,17 @@
         canvasbody.after('<div id="canvas-individual-report-vue"></div>');
         $("#canvas-individual-report-vue").append(vueString);
         let gen_report_button;
-        if (/^\/courses\/[0-9]+\/users\/[0-9]+$/.test(window.location.pathname)) {
+        let menu_bar;
+        if (/^\/grades$/.test(window.location.pathname)) {
+          gen_report_button = $('<a class="btn button-sidebar-wide" id="canvas-individual-report-vue-gen"><i class="icon-gradebook"></i>Courses Report</a>');
+          menu_bar = $("#content");
+        } else if (/^\/courses\/[0-9]+\/users\/[0-9]+$/.test(window.location.pathname)) {
           gen_report_button = $('<a style="cursor: pointer;" id="canvas-individual-report-vue-gen"><i class="icon-gradebook"></i> Courses Report</a>');
+          menu_bar = $("#right-side div").first();
         } else {
           gen_report_button = $('<a class="btn button-sidebar-wide" id="canvas-individual-report-vue-gen"><i class="icon-gradebook"></i>Courses Report</a>');
+          menu_bar = $("#right-side div").first();
         }
-        let menu_bar = $("#right-side div").first();
         let modal = $('#canvas-individual-report-vue');
         gen_report_button.appendTo(menu_bar);
         modal.hide();
@@ -175,7 +180,7 @@
               if (grade !== undefined) return (grade + "%");
               return "";
             },
-            
+
             getHoursCompleted(course) {
               let progress = this.progressBetweenDates[course.course_id];
               if (progress !== undefined) return parseFloat((Math.round(progress * course.hours) * .01).toFixed(2));
@@ -563,7 +568,7 @@
                 let diff_days = Math.ceil(diff_time / (1000 * 60 * 60 * 24));
                 let most_recent_time = diff_time;
                 for (let a = 0; a < submissions.length; a++) {
-                  let submission = submissions [a];
+                  let submission = submissions[a];
                   let assignment = submission.assignment;
                   let points_possible = assignment.points_possible;
                   if (submission != undefined) {
