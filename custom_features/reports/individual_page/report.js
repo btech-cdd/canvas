@@ -445,7 +445,7 @@
             },
             async processCoursePageStudentView() {
               let list = [];
-              $("#content .courses a").each(function () {
+              $("#content .student_grades a").each(function () {
                 console.log($(this));
                 let name = $(this).text().trim();
                 let href = $(this).attr('href');
