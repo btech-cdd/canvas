@@ -52,10 +52,11 @@
           mounted: async function () {
             let gradesBetweenDates = {};
             if (IS_TEACHER) {
-
+              let match = window.location.pathname.match(/users\/([0-9]+)/);
+              this.userId = match[1];
+            } else {
+              this.userId = ENV.current_user_id;
             }
-            let match = window.location.pathname.match(/users\/([0-9]+)/);
-            this.userId = match[1];
             this.courses = await this.getCourseData();
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
