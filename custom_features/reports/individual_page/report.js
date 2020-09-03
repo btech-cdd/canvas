@@ -440,39 +440,47 @@
               }
               return courses;
             },
-
+            async processCoursePage(pageData) {
+              let list = [];
+              $(data).find("#content .courses a").each(function () {
+                let name = $(this).find('span.name').text().trim();
+                let href = $(this).attr('href');
+                let match = href.match(/courses\/([0-9]+)\/users/);
+                if (match) {
+                  let text = $(this).text().trim();
+                  let course_id = match[1];
+                  let state = "";
+                  let stateMatch = text.match(/([A-Z|a-z]+),[\s]+?Enrolled as a Student/);
+                  if (stateMatch !== null) {
+                    state = stateMatch[1];
+                    let year = null;
+                    let yearData = $(this).find('span.subtitle').text().trim().match(/(2[0-9]{3}) /);
+                    if (yearData != null) year = yearData[1];
+                    list.push({
+                      name: name,
+                      course_id: course_id,
+                      state: state,
+                      year: year
+                    });
+                  }
+                }
+              });
+              return list;
+            },
             async getCourses() {
               let app = this;
               let list = [];
               let url = window.location.origin + "/users/" + app.userId;
-              await $.get(url).done(function (data) {
-                $(data).find("#content .courses a").each(function () {
-                  let name = $(this).find('span.name').text().trim();
-                  let href = $(this).attr('href');
-                  let match = href.match(/courses\/([0-9]+)\/users/);
-                  if (match) {
-                    let text = $(this).text().trim();
-                    let course_id = match[1];
-                    let state = "";
-                    let stateMatch = text.match(/([A-Z|a-z]+),[\s]+?Enrolled as a Student/);
-                    if (stateMatch !== null) {
-                      state = stateMatch[1];
-                      let year = null;
-                      let yearData = $(this).find('span.subtitle').text().trim().match(/(2[0-9]{3}) /);
-                      if (yearData != null) year = yearData[1];
-                      list.push({
-                        name: name,
-                        course_id: course_id,
-                        state: state,
-                        year: year
-                      });
-                    }
-                  }
+              if (IS_TEACHER) {
+                await $.get(url).done(function (data) {
+                  list = app.processCoursePage(data);
+                }).fail(function (e) {
+                  console.log(e);
+                  app.accessDenied = true;
                 });
-              }).fail(function (e) {
-                console.log(e);
-                app.accessDenied = true;
-              });
+              } else {
+                list = app.processCoursePage('body');
+              }
               return list;
             },
 
