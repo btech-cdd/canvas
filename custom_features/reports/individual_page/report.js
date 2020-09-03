@@ -464,7 +464,7 @@
                     name: name,
                     course_id: course_id,
                     state: "active", //need to fix getting this info
-                    year: 2020 //need to fix getting this info
+                    year: 2019 //need to fix getting this info
                   });
                 }
               });
