@@ -464,7 +464,7 @@
                 if (enrollment.role == "StudentEnrollment") {
                   let startDate = new Date(enrollment.updated_at);
                   console.log(startDate);
-                  let year = startDate.getYear();
+                  let year = startDate.getFullYear();
                   console.log(year);
                   let month = startDate.getMonth();
                   if (month < 6) year -= 1;
