@@ -443,9 +443,9 @@
               }
               return courses;
             },
-            async processCoursePageStudentView(pageData) {
+            async processCoursePageStudentView() {
               let list = [];
-              $(pageData).find("#content .courses a").each(function () {
+              $("#content .courses a").each(function () {
                 console.log($(this));
                 let name = $(this).text().trim();
                 let href = $(this).attr('href');
@@ -501,7 +501,7 @@
                   app.accessDenied = true;
                 });
               } else {
-                list = app.processCoursePageStudentView('body');
+                list = app.processCoursePageStudentView();
                 console.log(list);
               }
               return list;
