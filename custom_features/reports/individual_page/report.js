@@ -455,7 +455,20 @@
               return courses;
             },
             async processCoursePageStudentView() {
+              let app = this;
               let list = [];
+              let dates = {};
+              let enrollments = await canvasGet("/api/v1/users/" + app.userId + "/enrollments");
+              for (let e = 0; e < enrollments.length; e++) {
+                let enrollment = enrollments[e];
+                if (enrollment.role == "StudentEnrollment") {
+                  let startDate = new Date(enrollment.updated_at);
+                  let year = startDate.getYear();
+                  let month = startDate.getMonth();
+                  if (month < 6) year -= 1;
+                  dates[enrollment.course_id] = year;
+                }
+              }
               $("#content .student_grades a").each(function () {
                 console.log($(this));
                 let name = $(this).text().trim();
@@ -467,7 +480,7 @@
                     name: name,
                     course_id: course_id,
                     state: "active", //need to fix getting this info
-                    year: 2019 //need to fix getting this info
+                    year: dates[course_id]//need to fix getting this info
                   });
                 }
               });
