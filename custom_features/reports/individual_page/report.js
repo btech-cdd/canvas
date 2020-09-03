@@ -443,7 +443,25 @@
               }
               return courses;
             },
-            async processCoursePage(pageData) {
+            async processCoursePageStudentView(pageData) {
+              let list = [];
+              $(pageData).find("#content .courses a").each(function () {
+                let name = $(this).text().trim();
+                let href = $(this).attr('href');
+                let match = href.match(/courses\/([0-9]+)\/grades/);
+                if (match) {
+                  let course_id = match[1];
+                  list.push({
+                    name: name,
+                    course_id: course_id,
+                    state: "active",
+                    year: 2020
+                  });
+                }
+              });
+              return list;
+            },
+            async processCoursePageTeacherView(pageData) {
               let list = [];
               $(pageData).find("#content .courses a").each(function () {
                 let name = $(this).find('span.name').text().trim();
@@ -476,13 +494,13 @@
               if (IS_TEACHER) { //possible change this to just do a check for the .courses class
                 let url = window.location.origin + "/users/" + app.userId;
                 await $.get(url).done(function (data) {
-                  list = app.processCoursePage(data);
+                  list = app.processCoursePageTeacherView(data);
                 }).fail(function (e) {
                   console.log(e);
                   app.accessDenied = true;
                 });
               } else {
-                list = app.processCoursePage('body');
+                list = app.processCoursePageStudentView('body');
               }
               return list;
             },
