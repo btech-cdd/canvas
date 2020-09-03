@@ -454,8 +454,8 @@
                   list.push({
                     name: name,
                     course_id: course_id,
-                    state: "active",
-                    year: 2020
+                    state: "active", //need to fix getting this info
+                    year: 2020 //need to fix getting this info
                   });
                 }
               });
@@ -501,6 +501,7 @@
                 });
               } else {
                 list = app.processCoursePageStudentView('body');
+                console.log(list);
               }
               return list;
             },
