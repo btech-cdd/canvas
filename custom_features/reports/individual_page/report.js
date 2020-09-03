@@ -51,7 +51,7 @@
           el: '#canvas-individual-report-vue',
           mounted: async function () {
             this.IS_TEACHER = IS_TEACHER;
-            if (!IS_TEACHER) this.menu = 'period'; 
+            if (!IS_TEACHER) this.menu = 'period';
             let gradesBetweenDates = {};
             if (IS_TEACHER) { //also change this to ref the url and not whether or not is teacher
               let match = window.location.pathname.match(/users\/([0-9]+)/);
@@ -391,9 +391,13 @@
                 let assignment = sub.assignment;
                 if (assignment.name.toLowerCase() === "hours") {
                   console.log(assignment.id);
-                  await $.get("/api/v1/courses/" + courseId + "/gradebook_history/feed?user_id=" + app.userId + "&assignment_id=" + assignment.id).done(function (data) {
-                    app.hoursAssignmentData[courseId] = data;
-                  })
+                  if (IS_TEACHER) {
+                    await $.get("/api/v1/courses/" + courseId + "/gradebook_history/feed?user_id=" + app.userId + "&assignment_id=" + assignment.id).done(function (data) {
+                      app.hoursAssignmentData[courseId] = data;
+                    });
+                  } else {
+                    app.hoursAssignmentData[courseId] = [sub];
+                  }
                 }
               }
               return subs;
