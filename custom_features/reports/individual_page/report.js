@@ -390,6 +390,7 @@
                 let sub = subs[s];
                 let assignment = sub.assignment;
                 if (assignment.name.toLowerCase() === "hours") {
+                  console.log(assignment.id);
                   await $.get("/api/v1/courses/" + courseId + "/gradebook_history/feed?user_id=" + app.userId + "&assignment_id=" + assignment.id).done(function (data) {
                     app.hoursAssignmentData[courseId] = data;
                   })
