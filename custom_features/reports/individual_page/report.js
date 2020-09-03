@@ -463,7 +463,9 @@
                 let enrollment = enrollments[e];
                 if (enrollment.role == "StudentEnrollment") {
                   let startDate = new Date(enrollment.updated_at);
+                  console.log(startDate);
                   let year = startDate.getYear();
+                  console.log(year);
                   let month = startDate.getMonth();
                   if (month < 6) year -= 1;
                   dates[enrollment.course_id] = year;
