@@ -265,7 +265,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           const IS_CDD = (CDDIDS.includes(currentUser))
           //GENERAL FEATURES
           if (BETA && !IS_TEACHER) {
-            feature("reports/individual_page/report", {}, [/^\/grades$/]);
+            feature("reports/individual_page/report", {}, [/^\/$/]);
           }
           if (IS_TEACHER) {
             feature("reports/grades_page/report", {}, /^\/courses\/[0-9]+\/gradebook$/);
