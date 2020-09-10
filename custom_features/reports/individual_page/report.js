@@ -40,7 +40,7 @@
           gen_report_button = $('<a class="btn button-sidebar-wide" id="canvas-individual-report-vue-gen"></a>');
           menu_bar = $("#right-side div").first();
         }
-        gen_report_button.append('<i class="icon-gradebook"></i>Courses Report');
+        gen_report_button.append('<i class="icon-gradebook"></i>Report (Pilot Only)');
         gen_report_button.appendTo(menu_bar);
         let modal = $('#canvas-individual-report-vue');
         modal.hide();
