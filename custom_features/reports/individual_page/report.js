@@ -31,18 +31,17 @@
         let gen_report_button;
         let menu_bar;
         if (/^\/$/.test(window.location.pathname)) {
-          gen_report_button = $('<a class="btn button-sidebar-wide" id="canvas-individual-report-vue-gen"><i class="icon-gradebook"></i>Courses Report</a>');
+          gen_report_button = $('<a class="btn button-sidebar-wide" id="canvas-individual-report-vue-gen"></a>');
           menu_bar = $("#right-side div").last();
-          gen_report_button.appendTo(menu_bar);
         } else if (/^\/courses\/[0-9]+\/users\/[0-9]+$/.test(window.location.pathname)) {
-          gen_report_button = $('<a style="cursor: pointer;" id="canvas-individual-report-vue-gen"><i class="icon-gradebook"></i> Courses Report</a>');
+          gen_report_button = $('<a style="cursor: pointer;" id="canvas-individual-report-vue-gen"></a>');
           menu_bar = $("#right-side div").first();
-          gen_report_button.appendTo(menu_bar);
         } else {
-          gen_report_button = $('<a class="btn button-sidebar-wide" id="canvas-individual-report-vue-gen"><i class="icon-gradebook"></i>Courses Report</a>');
+          gen_report_button = $('<a class="btn button-sidebar-wide" id="canvas-individual-report-vue-gen"></a>');
           menu_bar = $("#right-side div").first();
-          gen_report_button.appendTo(menu_bar);
         }
+        gen_report_button.append('<i class="icon-gradebook"></i>Courses Report');
+        gen_report_button.appendTo(menu_bar);
         let modal = $('#canvas-individual-report-vue');
         modal.hide();
         gen_report_button.click(function () {
