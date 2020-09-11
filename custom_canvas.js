@@ -312,7 +312,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
 
             featureBeta('rubrics/gen_comment');
             feature('modules/course_features', {
-              IS_ME: IS_ME
+              IS_ME: CDDIDS.includes(currentUser)
             });
             let courseId = CURRENT_COURSE_ID;
             //COURSE SPECIFIC FEATURES
