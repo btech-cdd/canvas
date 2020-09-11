@@ -1,8 +1,8 @@
 (async function () {
-  console.log("BLUEPRINT");
   let blueprintIcon = await getElement(".bcs__trigger")
   console.log(blueprintIcon);
   blueprintIcon.click(async function (e) {
+    console.log('click!')
     let button = await getElement(".bcs__row__associations button");
     button.click(async function (e) {
       rows = await getElement(".bca-associations__course-row");
