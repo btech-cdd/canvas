@@ -39,7 +39,7 @@ var IS_BLUEPRINT = null;
 var IS_TEACHER = null;
 var IS_ME = false;
 if (ENV.current_user_roles !== null) {
-  IS_TEACHER = ENV.current_user_roles.includes("teacher");
+  IS_TEACHER = (ENV.current_user_roles.includes("teacher") || ENV.current_user_roles.includes("admin"));
 }
 
 var FEATURES = {};
@@ -307,6 +307,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             feature("page_formatting/tinymce_font_size", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)\/(.+?)\/edit/);
             feature("page_formatting/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
             feature("quizzes/duplicate_bank_item", {}, /\/courses\/([0-9]+)\/question_banks\/([0-9]+)/);
+            feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
             if (IS_BLUEPRINT) feature('blueprint_association_links');
             feature('modules/convert_to_page');
 
@@ -341,7 +342,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             if (departmentId === 3833) { //business
               feature("department_specific/business_hs");
               feature("previous-enrollment-data/previous_enrollment_period_grades");
-              feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
             }
             if (departmentId === 3819 || departmentId === 3832) { // AMAR && ELEC
               feature("modules/points_to_hours_header");
@@ -355,10 +355,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
               feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
             }
             if (departmentId === 3840 || departmentId === 3839) { //media design & drafting
-              feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
-            }
-            if (currentUser === 451596 || currentUser === 1759829) { //Bonnie Campbell and Aaron Liebelt in IT
-              feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
             }
             if (departmentId === 3841 || departmentId === 3947) { //cosmetology && master esthetics
               feature("department_specific/esthetics_cosmetology_services");
@@ -384,7 +380,11 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           featureCDD("editor_toolbar/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
           // featureCDD('date_display/add_current_year_speed_grader', {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
           feature('date_display/add_current_year', {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
-          feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
+          if (IS_ME) {
+            feature('reports/accredidation-beta', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
+          } else {
+            feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
+          }
           featureCDD('department_progress');
           // if (IS_ME) $.getScript("https://jhveem.xyz/collaborator/import.js");
           //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
