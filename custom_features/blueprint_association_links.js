@@ -5,6 +5,7 @@
     console.log('click!')
     let button = await getElement(".bcs__row__associations button");
     button.click(async function (e) {
+      console.log('click!!')
       rows = await getElement(".bca-associations__course-row");
       rows = $(".bca-associations__course-row");
       rows.each(function () {
