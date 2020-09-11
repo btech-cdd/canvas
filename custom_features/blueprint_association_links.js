@@ -7,12 +7,14 @@
     console.log("READY");
     button.click(async function (e) {
       console.log('click!!')
-      rows = await getElement(".bca-associations__course-row");
+      rows = await getElement(".bca-associations-table tr");
       rows = $(".bca-associations__course-row");
       rows.each(function () {
-        let spans = $(this).find("span");
-        let courseId = $(this).attr("id").replace("course_", "");
-        $(spans[0]).wrapInner("<a href='/courses/" + courseId + "' target='#'></a>");
+        let spans = $(this).find("td span");
+        if (spans.length > 0) {
+          let courseId = $(this).attr("id").replace("course_", "");
+          $(spans[0]).wrapInner("<a href='/courses/" + courseId + "' target='#'></a>");
+        }
       });
     });
   });
