@@ -1,4 +1,5 @@
 (async function () {
+  console.log("BLUEPRINT");
   let blueprintIcon = await getElement(".bcs__trigger")
   console.log(blueprintIcon);
   blueprintIcon.click(async function (e) {

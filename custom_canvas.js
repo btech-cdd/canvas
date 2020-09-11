@@ -250,6 +250,9 @@ $.delete = function (url, data) {
 }
 
 if (window.self === window.top) { //Make sure this is only run on main page, and not every single iframe on the page. For example, Kaltura videos all load in a Canvas iframe
+  let currentUser = parseInt(ENV.current_user.id);
+  IS_ME = (currentUser === 1893418);
+  const IS_CDD = (CDDIDS.includes(currentUser))
   /*
   https://btech.instructure.com/accounts/3/theme_editor
   */
@@ -259,10 +262,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
     $.getScript("https://btech-cdd.github.io/custom_features/editor_toolbar/toolbar.js").done(() => {
       $.getScript("https://btech-cdd.github.io/course_list/course_list.js").done(() => {
         $.getScript("https://btech-cdd.github.io/course_list/course_hours.js").done(() => {
-          //set CURRENT_COURSE_HOURS
-          let currentUser = parseInt(ENV.current_user.id);
-          IS_ME = (currentUser === 1893418);
-          const IS_CDD = (CDDIDS.includes(currentUser))
           //GENERAL FEATURES
           if (BETA && !IS_TEACHER) {
             feature("reports/individual_page/report", {}, [/^\/$/]);
@@ -300,6 +299,8 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             })
 
             //AVAILABLE TO EVERYONE
+            feature("editor_toolbar/basics", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)\/(.+?)\/edit/);
+            feature("editor_toolbar/syllabi", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
             feature('page_formatting/dropdown_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
             feature('page_formatting/tabs_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
             feature('page_formatting/google_sheets_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
@@ -307,9 +308,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             feature("page_formatting/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
             feature("quizzes/duplicate_bank_item", {}, /\/courses\/([0-9]+)\/question_banks\/([0-9]+)/);
             if (IS_BLUEPRINT) feature('blueprint_association_links');
-            feature("editor_toolbar/basics", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)\/(.+?)\/edit/);
-
-
             feature('modules/convert_to_page');
 
             featureBeta('rubrics/gen_comment');
@@ -340,12 +338,8 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
               // feature("previous-enrollment-data/previous_enrollment_period_grades", {}, /^\/courses\/[0-9]+\/grades/);
               if (IS_TEACHER) {
                 feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
-                if (currentUser === 1225484 || currentUser === 817257 || IS_ME) { //I think Alivia and Wendi
-                  // feature("speed_grader/move_rubric_points", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
-                }
               }
             }
-            feature("editor_toolbar/syllabi", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
             if (departmentId === 3833) { //business
               feature("department_specific/business_hs");
               feature("previous-enrollment-data/previous_enrollment_period_grades");
