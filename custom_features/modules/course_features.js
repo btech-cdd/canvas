@@ -6,7 +6,6 @@
       initiated: false, //SET TO TRUE WHEN feature() IS RUN FROM THE custom_canvas.js PAGE TO MAKE SURE FEATURE ISN'T INITIATED TWICE
       courseId: '',
       settingsEl: null,
-      IS_ME: false,
       async getSettings() {
         let feature = this;
         $('body').append("<settings id='btech-custom-settings'></settings>");
@@ -57,7 +56,6 @@
         let rPieces = /^\/courses\/([0-9]+)/;
         let pieces = window.location.pathname.match(rPieces);
         feature.courseId = parseInt(pieces[1]);
-        feature.IS_ME = params.IS_ME;
 
         if (!IS_TEACHER) {
           if (window.location.pathname === "/courses/" + feature.courseId + "/pages/btech-custom-settings") {
@@ -101,9 +99,6 @@
             let noPage = $("<option value='#NO PAGE#' selected>-no page-</option>");
             select.append(noPage);
             //This is just a temporary thing. I'm hiding the select dropdown until we officially roll this out
-            if (!feature.IS_ME) {
-              select.hide();
-            }
             moduleHeader.append(select);
             $.get("/api/v1/courses/" + feature.courseId + "/pages").done(function (data) {
               select.append("<option value='#FRONT PAGE#'>Front Page</option>");

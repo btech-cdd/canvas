@@ -311,9 +311,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             feature('modules/convert_to_page');
 
             featureBeta('rubrics/gen_comment');
-            feature('modules/course_features', {
-              IS_ME: CDDIDS.includes(currentUser)
-            });
+            feature('modules/course_features');
             let courseId = CURRENT_COURSE_ID;
             //COURSE SPECIFIC FEATURES
             featurePilot("change_2019_to_2019-2020", courseId, [489538]); //IV Therapy
