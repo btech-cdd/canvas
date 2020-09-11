@@ -8,7 +8,6 @@
     button.click(async function (e) {
       console.log('click!!')
       rows = await getElement(".bca-associations-table tr");
-      rows = $(".bca-associations__course-row");
       rows.each(function () {
         let spans = $(this).find("td span");
         console.log(spans);
