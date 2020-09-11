@@ -263,7 +263,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
       $.getScript("https://btech-cdd.github.io/course_list/course_list.js").done(() => {
         $.getScript("https://btech-cdd.github.io/course_list/course_hours.js").done(() => {
           //GENERAL FEATURES
-          if (BETA && !IS_TEACHER) {
+          if (!IS_TEACHER) {
             feature("reports/individual_page/report", {}, [/^\/$/]);
           }
           if (IS_TEACHER) {
