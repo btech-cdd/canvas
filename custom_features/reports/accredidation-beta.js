@@ -5,7 +5,6 @@
     if (document.title === "BTECH Accredidation") {
       let rCheckInCourse = /^\/courses\/([0-9]+)/;
       if (rCheckInCourse.test(window.location.pathname)) {
-        console.log("IN COURSE");
         //Allows printing of an element, may be obsolete
         add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js");
         //convert html to a canvas which can then be converted to a blob...
@@ -179,7 +178,6 @@
                   let assignment = group[assignmentName];
                   for (let s in assignment.submissions) {
                     let submission = assignment.submissions[s];
-                    console.log(submission);
                     zip.file(groupName + "/" + assignmentName + "/" + submission.user.name + ".png", submission.blob);
                     //await app.addSubmissionToZip(groupName, assignment.data, submission, zip);
                   }
@@ -217,16 +215,16 @@
               }
             },
             async getBlobRubric(assignment, submission) {
+              //html2canvas breaks if there's any content external to the source (images, scripts, etc) so you've got to strip out everything but the minimum of what you need
+              //a potential future fix to this would be to handle all of the file downloading on a server using node and there are more robus libraries for packaging files that way
               let app = this;
               let id = genId();
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
-              console.log(url);
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="'+url+'"></iframe>');
               $("#content").append(iframe);
               let holder = await getElement("#rubric_holder", "#btech-content-" + id);
               holder.show();
               content = holder.find('.rubric_container');
-              console.log(content);
               content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
               content.prepend("<div>Student:" + submission.user.name + "</div>");
               content.prepend("<div>Assignment:" + assignment.name + "</div>");
@@ -237,14 +235,13 @@
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('rubric_holder').getElementsByClassName('rubric_container')[0]);
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
-                console.log(canvas);
                 canvas.toBlob(function (blob) {
                   submission.blob = blob;
                 });
               });
               $("#btech-content-" + id).remove();
               //comment this part out when ready to start messing with formatting and fixing the images missing.
-              // $("#test-export-" + id).remove();
+              $("#test-export-" + id).remove();
             },
             async getBlobQuiz(assignment, submission) {
               let app = this;
@@ -261,7 +258,6 @@
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0]);
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
-                console.log(canvas);
                 canvas.toBlob(function (blob) {
                   submission.blob = blob;
                 });
@@ -305,9 +301,7 @@
                 });
                 assignment.submissions = submissions;
               }
-              console.log(assignment);
               app.submissions = app.submittedAssignments(assignment.submissions);
-              console.log(app.submissions);
             },
             submittedAssignments(submissions) {
               let output = [];
