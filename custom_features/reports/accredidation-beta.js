@@ -224,9 +224,9 @@
               $("#content").append(iframe);
               let content = await getElement("body", "#btech-quiz-" + id);
               content.find("#rubric_holder").show();
-              content.find("#rubric_holder").prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
-              content.find("#rubric_holder").prepend("<div>Student:" + data.submission.user.name + "</div>");
-              content.find("#rubric_holder").prepend("<div>Assignment:" + data.assignment.name + "</div>");
+              content.find("#rubric_holder").prepend("<div>Submitted:" + submission.submitted_at + "</div>");
+              content.find("#rubric_holder").prepend("<div>Student:" + submission.user.name + "</div>");
+              content.find("#rubric_holder").prepend("<div>Assignment:" + assignment.name + "</div>");
               content.find("#rubric_holder").css({
                 'max-height': '',
                 'overflow': 'visible'
