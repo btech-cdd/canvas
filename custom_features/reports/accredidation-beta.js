@@ -260,6 +260,7 @@
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0]);
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
+                console.log(canvas);
                 canvas.toBlob(function (blob) {
                   submission.blob = blob;
                 });
