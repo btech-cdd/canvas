@@ -220,6 +220,7 @@
               let app = this;
               let id = genId();
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
+              console.log(url);
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="'+url+'"></iframe>');
               $("#content").append(iframe);
               let content = await getElement("body", "#btech-content-" + id);
@@ -240,7 +241,7 @@
               });
               $("#btech-content-" + id).remove();
               //comment this part out when ready to start messing with formatting and fixing the images missing.
-              $("#test-export-" + id).remove();
+              // $("#test-export-" + id).remove();
             },
             async getBlobQuiz(group, assignment, submission) {
               let app = this;
