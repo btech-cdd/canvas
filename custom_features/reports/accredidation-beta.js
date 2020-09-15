@@ -43,7 +43,7 @@
   </div>
 
   <div id='accredidation-right'>
-    <div style='cursor: pointer; background-color: #aaa; border-radius: 5px;' @click='downloadReport()'>Download</div>
+    <div v-if='reportReady()' style='cursor: pointer; background-color: #aaa; border-radius: 5px;' @click='downloadReport()'>Download</div>
     <br>
     <div v-for='(group, groupName) in report'>
       <div v-if='Object.keys(group).length > 0'>
@@ -51,9 +51,9 @@
         <div v-for='(assignment, assignmentName) in group' style='padding-left: 10px;'>
           {{assignmentName}}:
           <div v-for='(submission) in assignment.submissions' style='padding-left: 20px;'>
-          <i v-if='submission.blob===null' class='icon-warning' style='color: #e22;'></i>
+          <i title='processing...' v-if='submission.blob===null' class='icon-warning' style='color: #e22;'></i>
           <i v-else class='icon-check' style='color: #2e2;'></i>
-            -{{submission.user.name}}
+            {{submission.user.name}}
           </div>
         </div>
       </div>
@@ -108,6 +108,22 @@
             }
           },
           methods: {
+            reportReady() {
+              let app = this;
+              for (let g in app.report) {
+                let group = app.report[g];
+                for (let a in group) {
+                  let assignment = group[a];
+                  for (let s in assignment.submissions) {
+                    let submission = assignment.submissions[s];
+                    if (submission.blob === null) {
+                      return false;
+                    }
+                  }
+                }
+              }
+              return true;
+            },
             getSubmittedAssignments(assignments) {
               let submittedAssignments = [];
               for (let i = 0; i < assignments.length; i++) {
