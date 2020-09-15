@@ -198,7 +198,7 @@
                 app.getBlobQuiz(group, assignment, submission);
               }
               if (assignment.rubric != undefined) {
-                app.getBlobRubric();
+                app.getBlobRubric(group, assignment, submission);
               }
               if (types.includes("online_upload")) {
                 let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
