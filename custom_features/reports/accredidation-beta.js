@@ -46,11 +46,13 @@
     <div style='cursor: pointer; background-color: #aaa; border-radius: 5px;' @click='downloadReport()'>Download</div>
     <br>
     <div v-for='(group, groupName) in report'>
-      <b>{{groupName}}</b>
-      <div v-for='(assignment, assignmentName) in group' style='padding-left: 10px;'>
-        {{assignmentName}}:
-        <div v-for='(submission) in assignment.submissions' style='padding-left: 20px;'>
-          -{{submission.user.name}}
+      <div v-if='Object.keys(group).length > 0'>
+        <b>{{groupName}}</b>
+        <div v-for='(assignment, assignmentName) in group' style='padding-left: 10px;'>
+          {{assignmentName}}:
+          <div v-for='(submission) in assignment.submissions' style='padding-left: 20px;'>
+            -{{submission.user.name}}
+          </div>
         </div>
       </div>
     </div>
