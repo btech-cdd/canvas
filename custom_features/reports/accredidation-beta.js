@@ -222,7 +222,7 @@
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="'+url+'"></iframe>');
               $("#content").append(iframe);
-              let content = await getElement("body", "#btech-quiz-" + id);
+              let content = await getElement("body", "#btech-content-" + id);
               content.find("#rubric_holder").show();
               content.find("#rubric_holder").prepend("<div>Submitted:" + submission.submitted_at + "</div>");
               content.find("#rubric_holder").prepend("<div>Student:" + submission.user.name + "</div>");
