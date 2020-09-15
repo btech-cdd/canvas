@@ -32,7 +32,7 @@
         <div class='btech-modal-content'>
           <div style='float: right; cursor: pointer;' v-on:click='close()'>X</div>
           <div class='btech-modal-content-inner'>
-            <b><a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id">{{currentAssignment.name}}</a></b>
+            <h2><a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id">{{currentAssignment.name}}</a></h2>
             <div v-for='submission in submissions'>
               <i class='icon-plus' style='cursor: pointer;' @click='addAssignment(currentGroup, currentAssignment, submission)'></i>
               <i class='icon-download' style='cursor: pointer;' @click='downloadSubmission(currentAssignment, submission)'></i>
@@ -47,7 +47,7 @@
     <div style='cursor: pointer; background-color: #aaa; border-radius: 5px;' @click='downloadReport()'>Download</div>
     <br>
     <div v-for='(group, groupName) in report'>
-      <h2>{{groupName}}</h2>
+      <b>{{groupName}}</b>
       <div v-for='(assignment, assignmentName) in group' style='padding-left: 10px;'>
         {{assignmentName}}:
         <div v-for='(submission) in assignment.submissions' style='padding-left: 20px;'>
