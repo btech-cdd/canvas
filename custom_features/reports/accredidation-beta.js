@@ -21,7 +21,7 @@
   <div id='accredidation-left'>
       <div>
         <div v-for='group in assignmentGroups'>
-          <b>{{group.name}}</b>
+          <h2>{{group.name}}</h2>
           <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
             <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a>
           </div>
@@ -32,7 +32,7 @@
         <div class='btech-modal-content'>
           <div style='float: right; cursor: pointer;' v-on:click='close()'>X</div>
           <div class='btech-modal-content-inner'>
-            <h2><a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id">{{currentAssignment.name}}</a></h2>
+            <b><a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id">{{currentAssignment.name}}</a></b>
             <div v-for='submission in submissions'>
               <i class='icon-plus' style='cursor: pointer;' @click='addAssignment(currentGroup, currentAssignment, submission)'></i>
               <i class='icon-download' style='cursor: pointer;' @click='downloadSubmission(currentAssignment, submission)'></i>
