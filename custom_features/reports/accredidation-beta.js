@@ -196,14 +196,9 @@
               let types = assignment.submission_types;
               if (assignment.quiz_id !== undefined) {
                 app.getBlobQuiz(group, assignment, submission);
-                return;
               }
               if (assignment.rubric != undefined) {
-                let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
-                app.createIframe(url, app.downloadRubric, {
-                  'submission': submission,
-                  'assignment': assignment
-                });
+                app.getBlobRubric();
               }
               if (types.includes("online_upload")) {
                 let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
@@ -220,6 +215,23 @@
               if (false) {
                 console.log('assignment type undefined');
               }
+            },
+            async getBlobRubric(group, assignment, submission) {
+              let app = this;
+              let id = genId();
+              let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
+              let iframe = $('<iframe id="btech-quiz-' + id + '" style="display: none;" src="'+url+'"></iframe>');
+              $("#content").append(iframe);
+              let content = await getElement("body", "#btech-quiz-" + id);
+              content.find("#rubric_holder").show();
+              content.find("#rubric_holder").prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
+              content.find("#rubric_holder").prepend("<div>Student:" + data.submission.user.name + "</div>");
+              content.find("#rubric_holder").prepend("<div>Assignment:" + data.assignment.name + "</div>");
+              content.find("#rubric_holder").css({
+                'max-height': '',
+                'overflow': 'visible'
+              });
+              content.find("#rubric_holder").printThis();
             },
             async getBlobQuiz(group, assignment, submission) {
               let app = this;
@@ -241,6 +253,7 @@
                 });
               });
               $("#btech-quiz-" + id).remove();
+              //comment this part out when ready to start messing with formatting and fixing the images missing.
               $("#test-export-" + id).remove();
             },
             async downloadQuiz(assignment, submission) {
