@@ -227,7 +227,6 @@
               holder.show();
               content = holder.find('.rubric_container');
               console.log(content);
-              content.show();
               content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
               content.prepend("<div>Student:" + submission.user.name + "</div>");
               content.prepend("<div>Assignment:" + assignment.name + "</div>");
