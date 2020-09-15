@@ -223,7 +223,9 @@
               console.log(url);
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="'+url+'"></iframe>');
               $("#content").append(iframe);
-              let content = await getElement("#rubric_holder .rubric_container.rubric", "#btech-content-" + id);
+              let holder = await getElement("#rubric_holder", "#btech-content-" + id);
+              holder.show();
+              content = holder.find('.rubric_container');
               console.log(content);
               content.show();
               content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
