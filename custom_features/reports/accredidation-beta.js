@@ -233,7 +233,7 @@
                 'overflow': 'visible'
               });
               $("#content").append("<div id='test-export-" + id + "'></div>");
-              $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0]);
+              $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('rubric_holder')[0]);
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
                 canvas.toBlob(function (blob) {
                   submission.blob = blob;
