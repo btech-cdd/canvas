@@ -220,7 +220,7 @@
               let app = this;
               let id = genId();
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
-              let iframe = $('<iframe id="btech-quiz-' + id + '" style="display: none;" src="'+url+'"></iframe>');
+              let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="'+url+'"></iframe>');
               $("#content").append(iframe);
               let content = await getElement("body", "#btech-quiz-" + id);
               content.find("#rubric_holder").show();
@@ -231,14 +231,23 @@
                 'max-height': '',
                 'overflow': 'visible'
               });
-              content.find("#rubric_holder").printThis();
+              $("#content").append("<div id='test-export-" + id + "'></div>");
+              $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0]);
+              html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
+                canvas.toBlob(function (blob) {
+                  submission.blob = blob;
+                });
+              });
+              $("#btech-content-" + id).remove();
+              //comment this part out when ready to start messing with formatting and fixing the images missing.
+              $("#test-export-" + id).remove();
             },
             async getBlobQuiz(group, assignment, submission) {
               let app = this;
               let id = genId();
-              let iframe = $('<iframe id="btech-quiz-' + id + '" style="display: none;" src="/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1"></iframe>');
+              let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1"></iframe>');
               $("#content").append(iframe);
-              let content = await getElement("body", "#btech-quiz-" + id);
+              let content = await getElement("body", "#btech-content-" + id);
               //update date in the content of the quiz
               content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
               content.prepend("<div>Student:" + submission.user.name + "</div>");
@@ -246,13 +255,13 @@
               //THIS IS A TEST
               //add a div, fill it with contents of iframe, probably clean it up a bit, then use that to save the image
               $("#content").append("<div id='test-export-" + id + "'></div>");
-              $("#test-export-" + id).append(document.getElementById('btech-quiz-' + id).contentWindow.document.getElementsByTagName('body')[0]);
+              $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0]);
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
                 canvas.toBlob(function (blob) {
                   submission.blob = blob;
                 });
               });
-              $("#btech-quiz-" + id).remove();
+              $("#btech-content-" + id).remove();
               //comment this part out when ready to start messing with formatting and fixing the images missing.
               $("#test-export-" + id).remove();
             },
