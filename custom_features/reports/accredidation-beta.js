@@ -1,6 +1,5 @@
 (async function () {
   //https://btech.instructure.com/courses/498455/accredidation
-  console.log("TEST");
   if (document.title === "BTECH Accredidation") {
     let rCheckInCourse = /^\/courses\/([0-9]+)/;
     if (rCheckInCourse.test(window.location.pathname)) {
@@ -14,30 +13,46 @@
       let CURRENT_COURSE_ID = parseInt(window.location.pathname.match(rCheckInCourse)[1]);
       //add in a selector for all students with their grade then only show assignments they've submitted so far???
       $("#content").html(`
-      <div id='accredidation'>
-        <div>
-          <div v-for='group in assignmentGroups'>
-            <h2>{{group.name}}</h2>
-            <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
-              <i class='icon-download' style='cursor: pointer;' @click='openModal(assignment)'></i> <a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+assignment.id">{{assignment.name}}</a>
+  <div id='accredidation' style='display: grid; grid-template-columns: auto 20%;'>
+  <div id='accredidation-left'>
+      <div>
+        <div v-for='group in assignmentGroups'>
+          <h2>{{group.name}}</h2>
+          <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
+            <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a>
+          </div>
+        </div>
+      </div>
+
+      <div v-if='showModal' class='btech-modal' style='display: inline-block;'>
+        <div class='btech-modal-content'>
+          <div style='float: right; cursor: pointer;' v-on:click='close()'>X</div>
+          <div class='btech-modal-content-inner'>
+            <h2><a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id">{{currentAssignment.name}}</a></h2>
+            <div v-for='submission in submissions'>
+              <i class='icon-plus' style='cursor: pointer;' @click='addAssignment(currentGroup, currentAssignment, submission)'></i>
+              <i class='icon-download' style='cursor: pointer;' @click='downloadSubmission(currentAssignment, submission)'></i>
+              <a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id+'/submissions/'+submission.user.id">{{submission.user.name}} ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%)</a>
             </div>
           </div>
         </div>
+      </div>
+  </div>
 
-        <div v-if='showModal' class='btech-modal' style='display: inline-block;'>
-          <div class='btech-modal-content'>
-            <div style='float: right; cursor: pointer;' v-on:click='close()'>X</div>
-            <div class='btech-modal-content-inner'>
-              <h2>{{currentAssignment.name}}</h2>
-              <div v-for='submission in submissions'>
-                <i class='icon-download' style='cursor: pointer;' @click='downloadSubmission(currentAssignment, submission)'></i>
-                <a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id+'/submissions/'+submission.user.id">{{submission.user.name}} ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%)</a>
-              </div>
-            </div>
-          </div>
+  <div id='accredidation-right'>
+    <div style='cursor: pointer; background-color: #aaa; border-radius: 5px;' @click='downloadReport()'>Download</div>
+    <br>
+    <div v-for='(group, groupName) in report'>
+      {{groupName}}:
+      <div v-for='(assignment, assignmentName) in group' style='padding-left: 10px;'>
+        {{assignmentName}}:
+        <div v-for='(submission) in assignment.submissions' style='padding-left: 20px;'>
+          {{submission.user.name}}
         </div>
-
-      </div>`);
+      </div>
+    </div>
+  </div>
+</div>`);
       await $.getScript("https://cdn.jsdelivr.net/npm/vue");
       new Vue({
         el: "#accredidation",
@@ -53,6 +68,13 @@
             }
             app.assignmentGroups = data;
           });
+          let report = {};
+          for (let g in app.assignmentGroups) {
+            let group = app.assignmentGroups[g];
+            report[group.name] = {};
+          }
+          app.report = report;
+          app.getSubmittedAssignments(app.assignmentGroups);
           let enrollments = await canvasGet("/api/v1/courses/" + app.courseId + "/enrollments", {
             type: [
               'StudentEnrollment'
@@ -73,7 +95,9 @@
             currentUser: '',
             showModal: false,
             submissions: [],
-            currentAssignment: {}
+            currentAssignment: {},
+            currentGroup: {},
+            report: {},
           }
         },
         methods: {
@@ -120,6 +144,17 @@
               console.log('assignment type undefined');
             }
           },
+          addAssignment(group, assignment, submission) {
+            let app = this;
+            if (app.report[group.name][assignment.name] == undefined) {
+              app.report[group.name][assignment.name] = {
+                'data': assignment,
+                'submissions': []
+              };
+            }
+            app.getBlob(group, assignment, submission);
+            app.report[group.name][assignment.name].submissions.push(submission);
+          },
           async downloadRubric(iframe, content, data) {
             content.find("#rubric_holder").show();
             content.find("#rubric_holder").prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
@@ -131,6 +166,81 @@
             });
             content.find("#rubric_holder").printThis();
           },
+          async downloadReport() {
+            let app = this;
+            let zip = new JSZip();
+            for (let groupName in app.report) {
+              let group = app.report[groupName];
+              for (let assignmentName in group) {
+                let assignment = group[assignmentName];
+                for (let s in assignment.submissions) {
+                  let submission = assignment.submissions[s];
+                  console.log(submission);
+                  zip.file(groupName + "/" + assignmentName + "/" + submission.user.name + ".png", submission.blob);
+                  //await app.addSubmissionToZip(groupName, assignment.data, submission, zip);
+                }
+              }
+            }
+            zip.generateAsync({
+              type: "base64"
+            }).then(function (content) {
+              window.location.href = "data:application/zip;base64," + content;
+            })
+          },
+          async getBlob(group, assignment, submission) {
+            let app = this;
+            let types = assignment.submission_types;
+            if (assignment.quiz_id !== undefined) {
+              app.getBlobQuiz(group, assignment, submission);
+            }
+            if (assignment.rubric != undefined) {
+              let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
+              app.createIframe(url, app.downloadRubric, {
+                'submission': submission,
+                'assignment': assignment
+              });
+            }
+            if (types.includes("online_upload")) {
+              console.log("SUBMISSION");
+              console.log(submission);
+              let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
+              let assignmentsData = null;
+              await $.get(url, function (data) {
+                assignmentsData = data;
+              });
+              for (let i = 0; i < assignmentsData.attachments.length; i++) {
+                let attachment = assignmentsData.attachments[i];
+                console.log(attachment.url);
+                await app.createIframe(attachment.url);
+              }
+            }
+            //check if nothing has been gotten
+            if (false) {
+              console.log('assignment type undefined');
+            }
+          },
+          async getBlobQuiz(group, assignment, submission) {
+            console.log(group.name + ": " + assignment.name + ": " + submission.user.name);
+            let app = this;
+            let id = genId();
+            let iframe = $('<iframe id="btech-quiz-' + id + '" style="display: none;" src="/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1"></iframe>');
+            $("#content").append(iframe);
+            let content = await getElement("body", "#btech-quiz-" + id);
+            //update date in the content of the quiz
+            content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
+            content.prepend("<div>Student:" + submission.user.name + "</div>");
+            content.prepend("<div>Assignment:" + assignment.name + "</div>");
+            //THIS IS A TEST
+            //add a div, fill it with contents of iframe, probably clean it up a bit, then use that to save the image
+            $("#content").append("<div id='test-export-" + id + "'></div>");
+            $("#test-export-" + id).append(document.getElementById('btech-quiz-' + id).contentWindow.document.getElementsByTagName('body')[0]);
+            html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
+              canvas.toBlob(function (blob) {
+                submission.blob = blob;
+              });
+            });
+            $("#btech-quiz-" + id).remove();
+          },
           async downloadQuiz(assignment, submission) {
             let app = this;
             let iframe = $('<iframe id="btech-quiz" style="display: none;" src="/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1"></iframe>');
@@ -140,24 +250,6 @@
             content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + assignment.name + "</div>");
-            //THIS IS A TEST
-            //add a div, fill it with contents of iframe, probably clean it up a bit, then use that to save the image
-            /*
-            $("#content").append("<div id='test-export'></div>");
-            $("#test-export").append(document.getElementById('btech-quiz').contentWindow.document.getElementsByTagName('body')[0]);
-            let zip = new JSZip();
-            html2canvas(document.querySelector('#test-export')).then(canvas => {
-              canvas.toBlob(function (blob) {
-                console.log(blob);
-                zip.file("test.png", blob);
-                zip.generateAsync({
-                  type: "base64"
-                }).then(function (content) {
-                  window.location.href = "data:application/zip;base64," + content;
-                });
-              });
-            });
-            */
             content.printThis();
             $("#btech-quiz").remove();
           },
