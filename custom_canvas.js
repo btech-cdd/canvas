@@ -381,7 +381,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           // featureCDD('date_display/add_current_year_speed_grader', {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
           feature('date_display/add_current_year', {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
           if (IS_ME) {
-            feature('reports/accredidation-beta', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
+            // feature('reports/accredidation-beta', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
           } else {
             feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
           }
