@@ -223,7 +223,7 @@
               console.log(url);
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="'+url+'"></iframe>');
               $("#content").append(iframe);
-              let content = await getElement("#rubric_holder", "#btech-content-" + id);
+              let content = await getElement("#rubric_holder .rubric_container.rubric", "#btech-content-" + id);
               console.log(content);
               content.show();
               content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
@@ -235,9 +235,6 @@
               });
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('rubric_holder'));
-              console.log("wait...");
-              await getElement("#test-export-" + id + " #rubric_holder");
-              console.log("found");
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
                 console.log(canvas);
                 canvas.toBlob(function (blob) {
