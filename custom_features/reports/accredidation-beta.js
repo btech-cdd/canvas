@@ -186,7 +186,7 @@
                 }
               }
               zip.generateAsync({
-                type: "base64"
+                type: "blob"
               }).then(function (content) {
                 saveAs(content, "report.zip");
               })
