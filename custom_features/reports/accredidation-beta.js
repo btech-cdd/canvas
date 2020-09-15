@@ -51,8 +51,9 @@
         <div v-for='(assignment, assignmentName) in group' style='padding-left: 10px;'>
           {{assignmentName}}:
           <div v-for='(submission) in assignment.submissions' style='padding-left: 20px;'>
+          <i v-if='submission.blob===null' class='icon-warning' style='color: #e22;'></i>
+          <i v-else class='icon-check' style='color: #2e2;'></i>
             -{{submission.user.name}}
-            {{submission.blob}}
           </div>
         </div>
       </div>
