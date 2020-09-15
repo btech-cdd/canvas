@@ -52,6 +52,7 @@
           {{assignmentName}}:
           <div v-for='(submission) in assignment.submissions' style='padding-left: 20px;'>
             -{{submission.user.name}}
+            {{submission.blob}}
           </div>
         </div>
       </div>
