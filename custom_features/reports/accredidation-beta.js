@@ -191,14 +191,14 @@
                 saveAs(content, "report.zip");
               })
             },
-            async getBlob(group, assignment, submission) {
+            async getBlob(assignment, submission) {
               let app = this;
               let types = assignment.submission_types;
               if (assignment.quiz_id !== undefined) {
-                app.getBlobQuiz(group, assignment, submission);
+                app.getBlobQuiz(assignment, submission);
               }
               if (assignment.rubric != undefined) {
-                app.getBlobRubric(group, assignment, submission);
+                app.getBlobRubric(assignment, submission);
               }
               if (types.includes("online_upload")) {
                 let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
@@ -216,7 +216,7 @@
                 console.log('assignment type undefined');
               }
             },
-            async getBlobRubric(group, assignment, submission) {
+            async getBlobRubric(assignment, submission) {
               let app = this;
               let id = genId();
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
@@ -236,6 +236,7 @@
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('rubric_holder'));
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
                 canvas.toBlob(function (blob) {
+                  console.log(blob);
                   submission.blob = blob;
                 });
               });
@@ -243,7 +244,7 @@
               //comment this part out when ready to start messing with formatting and fixing the images missing.
               // $("#test-export-" + id).remove();
             },
-            async getBlobQuiz(group, assignment, submission) {
+            async getBlobQuiz(assignment, submission) {
               let app = this;
               let id = genId();
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1"></iframe>');
