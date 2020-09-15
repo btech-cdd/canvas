@@ -225,11 +225,11 @@
               $("#content").append(iframe);
               let content = await getElement("#rubric_holder", "#btech-content-" + id);
               console.log(content);
-              content.find("#rubric_holder").show();
-              content.find("#rubric_holder").prepend("<div>Submitted:" + submission.submitted_at + "</div>");
-              content.find("#rubric_holder").prepend("<div>Student:" + submission.user.name + "</div>");
-              content.find("#rubric_holder").prepend("<div>Assignment:" + assignment.name + "</div>");
-              content.find("#rubric_holder").css({
+              content.show();
+              content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
+              content.prepend("<div>Student:" + submission.user.name + "</div>");
+              content.prepend("<div>Assignment:" + assignment.name + "</div>");
+              content.css({
                 'max-height': '',
                 'overflow': 'visible'
               });
