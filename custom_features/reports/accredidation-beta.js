@@ -235,6 +235,9 @@
               });
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('rubric_holder'));
+              console.log("wait...");
+              await getElement("#test-export-" + id + " #rubric_holder");
+              console.log("found");
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
                 console.log(canvas);
                 canvas.toBlob(function (blob) {
