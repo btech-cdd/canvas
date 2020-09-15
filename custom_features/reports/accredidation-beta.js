@@ -47,11 +47,11 @@
     <div style='cursor: pointer; background-color: #aaa; border-radius: 5px;' @click='downloadReport()'>Download</div>
     <br>
     <div v-for='(group, groupName) in report'>
-      {{groupName}}:
+      <h2>{{groupName}}</h2>
       <div v-for='(assignment, assignmentName) in group' style='padding-left: 10px;'>
         {{assignmentName}}:
         <div v-for='(submission) in assignment.submissions' style='padding-left: 20px;'>
-          {{submission.user.name}}
+          -{{submission.user.name}}
         </div>
       </div>
     </div>
