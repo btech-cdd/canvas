@@ -226,6 +226,7 @@
               let holder = await getElement("#rubric_holder", "#btech-content-" + id);
               holder.show();
               content = holder.find('.rubric_container');
+              content.attr('id', 'btech-content-id-' + id + '-content');
               console.log(content);
               content.show();
               content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
@@ -236,7 +237,7 @@
                 'overflow': 'visible'
               });
               $("#content").append("<div id='test-export-" + id + "'></div>");
-              $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('rubric_holder'));
+              $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('btech-content-' + id + '-content'));
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
                 console.log(canvas);
                 canvas.toBlob(function (blob) {
