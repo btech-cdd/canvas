@@ -302,6 +302,9 @@
                 let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
                   'include': ['user']
                 });
+                for (let s in submissions) {
+                  submissions[s].blob = null;
+                }
                 assignment.submissions = submissions;
               }
               app.submissions = app.submittedAssignments(assignment.submissions);
