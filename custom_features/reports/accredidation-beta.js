@@ -186,7 +186,7 @@
               zip.generateAsync({
                 type: "base64"
               }).then(function (content) {
-                window.location.href = "data:application/zip;base64," + content;
+                saveAs(blob, "report.zip");
               })
             },
             async getBlob(group, assignment, submission) {
