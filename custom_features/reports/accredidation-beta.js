@@ -220,6 +220,7 @@
               let app = this;
               let id = genId();
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
+              console.log(url);
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="'+url+'"></iframe>');
               $("#content").append(iframe);
               let content = await getElement("#rubric_holder", "#btech-content-" + id);
