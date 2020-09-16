@@ -42,8 +42,10 @@
       </div>
   </div>
 
-  <div id='accredidation-right'>
-    <div v-if='reportReady()' style='cursor: pointer; background-color: #aaa; border-radius: 5px;' @click='downloadReport()'>Download</div>
+  <div id='accredidation-right' style='width: 100%;'>
+    <div style='width: 100%; text-align: center;'>
+      <div v-if='reportReady()' style='cursor: pointer; background-color: #aaa; border-radius: 5px; display: inline-block; margin: 0 auto;' @click='downloadReport()'>Download</div>
+    </div>
     <br>
     <div v-for='(group, groupName) in report'>
       <div v-if='Object.keys(group).length > 0'>
