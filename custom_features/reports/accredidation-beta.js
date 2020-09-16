@@ -44,7 +44,7 @@
 
   <div id='accredidation-right' style='width: 100%;'>
     <div style='width: 100%; text-align: center;'>
-      <div v-if='reportReady()' style='cursor: pointer; background-color: #aaa; border-radius: 5px; display: inline-block; margin: 0 auto;' @click='downloadReport()'>Download</div>
+      <div class='btn' v-if='reportReady()' style='cursor: pointer; display: inline-block; margin: 0 auto;' @click='downloadReport()'>Download</div>
     </div>
     <br>
     <div v-for='(group, groupName) in report'>
