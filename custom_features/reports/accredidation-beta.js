@@ -296,7 +296,7 @@
                 var pageWidth = doc.internal.pageSize.getWidth();
                 var imgWidth = pageWidth - (padding * 2);
                 var pageHeight = doc.internal.pageSize.getHeight();
-                var imgHeight = (canvas.height * (imgWidth) / canvas.width);
+                var imgHeight = (canvas.height * (pageWidth) / canvas.width);
                 var heightLeft = imgHeight;
                 var position = padding; // give some top padding to first page
 
