@@ -307,8 +307,6 @@
                   heightLeft -= pageHeight;
                 }
                 cropperDoc.save('cropper-file.pdf');
-                var imgData = canvas.toDataURL(
-                  'image/png');
                 var doc = new jspdf.jsPDF('p', 'mm');
                 doc.addImage(canvas, 'JPEG', 10, 10);
                 submission.pdf = doc.output('blob');
