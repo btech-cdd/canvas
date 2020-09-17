@@ -289,17 +289,23 @@
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0].innerHTML);
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
+                var imgData = canvas.toDataURL('image/png');
+                var imgWidth = 210;
+                var pageHeight = 295;
+                var imgHeight = canvas.height * imgWidth / canvas.width;
+                var heightLeft = imgHeight;
                 var cropperDoc = new jspdf.jsPDF('p', 'mm', 'a4');
-                let width = cropperDoc.internal.pageSize.getWidth();
-                let height = cropperDoc.internal.pageSize.getHeight();
-                console.log(width);
-                console.log(canvas.width);
-                console.log(height);
-                console.log(canvas.height);
-                cropper.canvas.width = width;
-                cropper.canvas.height = height;
-                cropper.drawImage(canvas, 0, 0);
-                cropperDoc.addImage(cropper.canvas, 'JPEG', 0, 0);
+                var position = 10; // give some top padding to first page
+
+                cropperDoc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+
+                while (heightLeft >= 0) {
+                  position = heightLeft - imgHeight; // top padding for other pages
+                  cropperDoc.addPage();
+                  cropperDoc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                  heightLeft -= pageHeight;
+                }
                 cropperDoc.save('cropper-file.pdf');
                 var imgData = canvas.toDataURL(
                   'image/png');
