@@ -309,8 +309,8 @@
                   doc.addPage();
                   doc.addImage(imgData, 'PNG', padding, position + padding * 2, pageWidth - (padding * 2), canvasHeight);
                   doc.setDrawColor(255, 255, 255);
-                  doc.rectangle(0, 0, pageWidth, padding);
-                  doc.rectangle(0, pageHeight - padding, pageWidth, padding);
+                  doc.rect(0, 0, pageWidth, padding, 'F');
+                  doc.rect(0, pageHeight - padding, pageWidth, padding, 'F');
                   heightLeft -= imgHeight;
                 }
                 doc.save('cropper-file.pdf');
