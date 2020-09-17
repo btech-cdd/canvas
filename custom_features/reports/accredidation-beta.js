@@ -291,7 +291,7 @@
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0].innerHTML);
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
                 var doc = new jspdf.jsPDF('p', 'mm', 'a4');
-                var padding = 10;
+                var padding = 50;
                 var imgData = canvas.toDataURL('image/png');
                 var imgWidth = doc.internal.pageSize.getWidth() - (padding * 2);
                 var pageHeight = doc.internal.pageSize.getHeight();
