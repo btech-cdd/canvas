@@ -306,7 +306,7 @@
                   doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
                   heightLeft -= pageHeight;
                 }
-                submission.pdf = doc.output('blob');
+                submission.blob = doc.output('blob');
                 $("#btech-content-" + id).remove();
                 $("#test-export-" + id).remove();
               });
