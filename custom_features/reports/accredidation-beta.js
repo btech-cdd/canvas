@@ -291,7 +291,7 @@
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
                 cropper.drawImage(canvas, 0, 0);
                 var cropperDoc = new jspdf.jsPDF('p', 'mm');
-                cropperDoc.addImage(cropper, 'JPEG', 10, 10);
+                cropperDoc.addImage(cropper.canvas, 'JPEG', 10, 10);
                 cropperDoc.save('cropper-file.pdf');
                 var imgData = canvas.toDataURL(
                   'image/png');
