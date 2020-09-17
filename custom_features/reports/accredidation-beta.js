@@ -203,8 +203,9 @@
                   let assignment = group[assignmentName];
                   for (let s in assignment.submissions) {
                     let submission = assignment.submissions[s];
-                    zip.file(groupName + "/" + assignmentName + "/" + submission.user.name + ".png", submission.blob);
-                    zip.file(groupName + "/" + assignmentName + "/" + submission.user.name + ".pdf", submission.pdf);
+                    if (submission.blob !== null) {
+                      zip.file(groupName + "/" + assignmentName + "/" + submission.user.name + ".pdf", submission.blob);
+                    }
                     //await app.addSubmissionToZip(groupName, assignment.data, submission, zip);
                   }
                 }
