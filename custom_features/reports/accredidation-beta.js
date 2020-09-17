@@ -272,7 +272,7 @@
             async getBlobQuiz(assignment, submission) {
               let app = this;
               let id = genId();
-              winndow.currentID = id;
+              window.currentID = id;
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1"></iframe>');
               $("#content").append("<canvas id='btech-canvas-crop-" + id + "'></canvas>");
               $("#content").append(iframe);
