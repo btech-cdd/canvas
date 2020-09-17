@@ -270,9 +270,10 @@
               $("#test-export-" + id).remove();
             },
             async getBlobQuiz(assignment, submission) {
+              window.currentAssignment = assignment;
+              window.currentSubmission = submission;
               let app = this;
               let id = genId();
-              window.currentID = id;
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1"></iframe>');
               $("#content").append("<canvas id='btech-canvas-crop-" + id + "'></canvas>");
               $("#content").append(iframe);
