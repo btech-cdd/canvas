@@ -290,7 +290,7 @@
                   'image/png');
                 var doc = new jspdf.jsPDF('p', 'mm');
                 doc.addImage(canvas, 'JPEG', 10, 10);
-                submission.pdf = doc;
+                submission.pdf = doc.output('blob');
                 doc.save('sample-file.pdf');
                 $("#btech-content-" + id).remove();
                 //comment this part out when ready to start messing with formatting and fixing the images missing.
