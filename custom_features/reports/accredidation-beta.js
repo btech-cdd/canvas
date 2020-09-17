@@ -289,13 +289,13 @@
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0].innerHTML);
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
-                cropper.drawImage(canvas, 0, 0);
-                var cropperDoc = new jspdf.jsPDF('p', 'mm');
-                let width = cropperDoc.internal.pageSize.getWidth();
                 console.log(width);
                 console.log(canvas.width);
                 cropper.canvas.width = width;
                 cropper.canvas.height = 500;
+                cropper.drawImage(canvas, 0, 0);
+                var cropperDoc = new jspdf.jsPDF('p', 'mm');
+                let width = cropperDoc.internal.pageSize.getWidth();
                 cropperDoc.addImage(cropper.canvas, 'JPEG', 10, 10);
                 cropperDoc.save('cropper-file.pdf');
                 var imgData = canvas.toDataURL(
