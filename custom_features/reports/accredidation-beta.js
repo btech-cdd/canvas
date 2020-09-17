@@ -289,7 +289,7 @@
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0].innerHTML);
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
-                var cropperDoc = new jspdf.jsPDF('p', 'mm');
+                var cropperDoc = new jspdf.jsPDF('p', 'mm', 'a4');
                 let width = cropperDoc.internal.pageSize.getWidth();
                 let height = cropperDoc.internal.pageSize.getHeight();
                 console.log(width);
