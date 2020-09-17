@@ -294,30 +294,21 @@
                 var pageHeight = 295;
                 var imgHeight = canvas.height * imgWidth / canvas.width;
                 var heightLeft = imgHeight;
-                var cropperDoc = new jspdf.jsPDF('p', 'mm', 'a4');
+                var doc = new jspdf.jsPDF('p', 'mm', 'a4');
                 var position = 10; // give some top padding to first page
 
-                cropperDoc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
                 heightLeft -= pageHeight;
 
                 while (heightLeft >= 0) {
                   position = heightLeft - imgHeight; // top padding for other pages
-                  cropperDoc.addPage();
-                  cropperDoc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                  doc.addPage();
+                  doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
                   heightLeft -= pageHeight;
                 }
-                cropperDoc.save('cropper-file.pdf');
-                var doc = new jspdf.jsPDF('p', 'mm');
-                doc.addImage(canvas, 'JPEG', 10, 10);
                 submission.pdf = doc.output('blob');
-                doc.save('sample-file.pdf');
-                // $("#btech-content-" + id).remove();
-                //comment this part out when ready to start messing with formatting and fixing the images missing.
-                // $("#test-export-" + id).remove();
-                canvas.toBlob(function (blob) {
-                  window.testBlob = blob;
-                  submission.blob = blob;
-                });
+                $("#btech-content-" + id).remove();
+                $("#test-export-" + id).remove();
               });
             },
             async downloadQuiz(assignment, submission) {
