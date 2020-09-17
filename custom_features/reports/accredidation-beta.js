@@ -288,8 +288,6 @@
               html2canvas(document.querySelector('#test-export-' + id), {
                 onrendered: function (canvas) {}
               }).then(canvas => {
-                canvas.width = 200;
-                canvas.height = 200;
                 var imgData = canvas.toDataURL(
                   'image/png');
                 var doc = new jspdf.jsPDF('p', 'mm');
