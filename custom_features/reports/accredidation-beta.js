@@ -277,7 +277,7 @@
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1"></iframe>');
               let cropperCanvas = $("<canvas id='btech-canvas-crop-" + id + "'></canvas>");
               $("#content").append(cropperCanvas);
-              let cropper = croppterCanvas.getContext('2d');
+              let cropper = cropperCanvas.getContext('2d');
               $("#content").append(iframe);
               let content = await getElement("body", "#btech-content-" + id);
               //update date in the content of the quiz
