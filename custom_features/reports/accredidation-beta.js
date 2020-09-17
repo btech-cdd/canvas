@@ -274,6 +274,7 @@
               let id = genId();
               winndow.currentID = id;
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1"></iframe>');
+              $("#content").append("<canvas id='btech-canvas-crop-" + id + "'></canvas>");
               $("#content").append(iframe);
               let content = await getElement("body", "#btech-content-" + id);
               //update date in the content of the quiz
