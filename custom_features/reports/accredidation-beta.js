@@ -306,6 +306,7 @@
                   doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
                   heightLeft -= pageHeight;
                 }
+                doc.save('cropper-file.pdf');
                 submission.blob = doc.output('blob');
                 $("#btech-content-" + id).remove();
                 $("#test-export-" + id).remove();
