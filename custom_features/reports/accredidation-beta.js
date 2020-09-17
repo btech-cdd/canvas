@@ -284,18 +284,17 @@
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0]);
               html2canvas(document.querySelector('#test-export-' + id), {
-                onrendered: function (canvas) {
-                  var imgData = canvas.toDataURL(
-                    'image/png');
-                  var doc = new jspdf.jsPDF('p', 'mm');
-                  doc.addImage(canvas, 'JPEG', 10, 10);
-                  submission.pdf = doc;
-                  doc.save('sample-file.pdf');
-                  $("#btech-content-" + id).remove();
-                  //comment this part out when ready to start messing with formatting and fixing the images missing.
-                  $("#test-export-" + id).remove();
-                }
+                onrendered: function (canvas) {}
               }).then(canvas => {
+                var imgData = canvas.toDataURL(
+                  'image/png');
+                var doc = new jspdf.jsPDF('p', 'mm');
+                doc.addImage(canvas, 'JPEG', 10, 10);
+                submission.pdf = doc;
+                doc.save('sample-file.pdf');
+                $("#btech-content-" + id).remove();
+                //comment this part out when ready to start messing with formatting and fixing the images missing.
+                $("#test-export-" + id).remove();
                 canvas.toBlob(function (blob) {
                   window.testBlob = blob;
                   submission.blob = blob;
