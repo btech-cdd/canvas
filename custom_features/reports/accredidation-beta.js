@@ -291,12 +291,15 @@
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
                 var cropperDoc = new jspdf.jsPDF('p', 'mm');
                 let width = cropperDoc.internal.pageSize.getWidth();
+                let height = cropperDoc.internal.pageSize.getHeight();
                 console.log(width);
                 console.log(canvas.width);
+                console.log(height);
+                console.log(canvas.height);
                 cropper.canvas.width = width;
-                cropper.canvas.height = 500;
+                cropper.canvas.height = height;
                 cropper.drawImage(canvas, 0, 0);
-                cropperDoc.addImage(cropper.canvas, 'JPEG', 10, 10);
+                cropperDoc.addImage(cropper.canvas, 'JPEG', 0, 0);
                 cropperDoc.save('cropper-file.pdf');
                 var imgData = canvas.toDataURL(
                   'image/png');
