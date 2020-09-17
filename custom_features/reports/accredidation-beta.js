@@ -11,9 +11,9 @@
         //convert html to a canvas which can then be converted to a blob...
         add_javascript_library("https://html2canvas.hertzen.com/dist/html2canvas.min.js");
         //and converted to a pdf
-        add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.1.1/jspdf.umd.min.js");
-        //which can then be zipped into a file using this library
         add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.1.1/jspdf.umd.js");
+        //which can then be zipped into a file using this library
+        add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js");
         //and then saved
         add_javascript_library("https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js");
         let CURRENT_COURSE_ID = parseInt(window.location.pathname.match(rCheckInCourse)[1]);
@@ -284,17 +284,18 @@
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0]);
               html2canvas(document.querySelector('#test-export-' + id), {
-                onrendered: function (canvas) {}
+                onrendered: function (canvas) {
+                  var imgData = canvas.toDataURL(
+                    'image/png');
+                  var doc = new jsPDF('p', 'mm');
+                  doc.addImage(canvas, 'JPEG', 10, 10);
+                  submission.pdf = doc;
+                  doc.save('sample-file.pdf');
+                  $("#btech-content-" + id).remove();
+                  //comment this part out when ready to start messing with formatting and fixing the images missing.
+                  $("#test-export-" + id).remove();
+                }
               }).then(canvas => {
-                var imgData = canvas.toDataURL(
-                  'image/png');
-                var doc = new jsPDF('p', 'mm');
-                doc.addImage(canvas, 'JPEG', 10, 10);
-                submission.pdf = doc;
-                doc.save('sample-file.pdf');
-                $("#btech-content-" + id).remove();
-                //comment this part out when ready to start messing with formatting and fixing the images missing.
-                $("#test-export-" + id).remove();
                 canvas.toBlob(function (blob) {
                   window.testBlob = blob;
                   submission.blob = blob;
