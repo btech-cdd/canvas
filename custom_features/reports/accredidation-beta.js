@@ -289,6 +289,8 @@
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0].innerHTML);
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
+                cropper.canvas.width = 100;
+                cropper.canvas.height = 500;
                 cropper.drawImage(canvas, 0, 0);
                 var cropperDoc = new jspdf.jsPDF('p', 'mm');
                 cropperDoc.addImage(cropper.canvas, 'JPEG', 10, 10);
