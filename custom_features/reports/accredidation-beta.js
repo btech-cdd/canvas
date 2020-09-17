@@ -275,7 +275,9 @@
               let app = this;
               let id = genId();
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1"></iframe>');
-              $("#content").append("<canvas id='btech-canvas-crop-" + id + "'></canvas>");
+              let cropperCanvas = $("<canvas id='btech-canvas-crop-" + id + "'></canvas>");
+              $("#content").append(cropperCanvas);
+              let cropper = croppterCanvas.getContext('2d');
               $("#content").append(iframe);
               let content = await getElement("body", "#btech-content-" + id);
               //update date in the content of the quiz
@@ -286,9 +288,11 @@
               //add a div, fill it with contents of iframe, probably clean it up a bit, then use that to save the image
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0].innerHTML);
-              html2canvas(document.querySelector('#test-export-' + id), {
-                onrendered: function (canvas) {}
-              }).then(canvas => {
+              html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
+                cropper.drawImage(c, 0, 0);
+                var cropperDoc = new jspdf.jsPDF('p', 'mm');
+                cropperDoc.addImage(cropper, 'JPEG', 10, 10);
+                cropperDoc.save('cropper-file.pdf');
                 var imgData = canvas.toDataURL(
                   'image/png');
                 var doc = new jspdf.jsPDF('p', 'mm');
