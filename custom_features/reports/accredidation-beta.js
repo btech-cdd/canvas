@@ -1,4 +1,5 @@
 (async function () {
+  window.testBlob = null;
   //https://btech.instructure.com/courses/498455/accredidation
   if (window.accredidationLoaded === undefined) {
     window.accredidationLoaded = true;
@@ -9,6 +10,8 @@
         add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js");
         //convert html to a canvas which can then be converted to a blob...
         add_javascript_library("https://html2canvas.hertzen.com/dist/html2canvas.min.js");
+        //and converted to a pdf
+        add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.1.1/jspdf.umd.min.js");
         //which can then be zipped into a file using this library
         add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js");
         //and then saved
@@ -201,6 +204,7 @@
                   for (let s in assignment.submissions) {
                     let submission = assignment.submissions[s];
                     zip.file(groupName + "/" + assignmentName + "/" + submission.user.name + ".png", submission.blob);
+                    zip.file(groupName + "/" + assignmentName + "/" + submission.user.name + ".pdf", submission.pdf);
                     //await app.addSubmissionToZip(groupName, assignment.data, submission, zip);
                   }
                 }
@@ -242,7 +246,7 @@
               let app = this;
               let id = genId();
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
-              let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="'+url+'"></iframe>');
+              let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="' + url + '"></iframe>');
               $("#content").append(iframe);
               let holder = await getElement("#rubric_holder", "#btech-content-" + id);
               holder.show();
@@ -279,8 +283,18 @@
               //add a div, fill it with contents of iframe, probably clean it up a bit, then use that to save the image
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0]);
-              html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
+              html2canvas(document.querySelector('#test-export-' + id), {
+                onrendered: function (canvas) {
+                  var imgData = canvas.toDataURL(
+                    'image/png');
+                  var doc = new jsPDF('p', 'mm');
+                  doc.addImage(imgData, 'PNG', 10, 10);
+                  submission.pdf = doc;
+                  doc.save('sample-file.pdf');
+                }
+              }).then(canvas => {
                 canvas.toBlob(function (blob) {
+                  window.testBlob = blob;
                   submission.blob = blob;
                 });
               });
