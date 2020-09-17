@@ -293,19 +293,20 @@
                 var doc = new jspdf.jsPDF('p', 'mm', 'a4');
                 var padding = 50;
                 var imgData = canvas.toDataURL('image/png');
-                var imgWidth = doc.internal.pageSize.getWidth() - (padding * 2);
+                var pageWidth = doc.internal.pageSize.getWidth();
+                var imgWidth = pageWidth - (padding * 2);
                 var pageHeight = doc.internal.pageSize.getHeight();
-                var imgHeight = (canvas.height * (imgWidth + padding) / canvas.width) - (padding * 2);
+                var imgHeight = (canvas.height * (imgWidth) / canvas.width);
                 var heightLeft = imgHeight;
                 var position = padding; // give some top padding to first page
 
-                doc.addImage(imgData, 'PNG', padding, position, imgWidth, imgHeight);
+                doc.addImage(imgData, 'PNG', padding, position, pageWidth - (padding * 2), pageHeight - (padding * 2));
                 heightLeft -= pageHeight;
 
                 while (heightLeft >= 0) {
                   position = heightLeft - imgHeight; // top padding for other pages
                   doc.addPage();
-                  doc.addImage(imgData, 'PNG', padding, position, imgWidth, imgHeight);
+                  doc.addImage(imgData, 'PNG', padding, position, pageWidth - (padding * 2), pageHeight - (padding * 2));
                   heightLeft -= pageHeight;
                 }
                 doc.save('cropper-file.pdf');
