@@ -288,7 +288,7 @@
                   var imgData = canvas.toDataURL(
                     'image/png');
                   var doc = new jsPDF('p', 'mm');
-                  doc.addImage(imgData, 'PNG', 10, 10);
+                  doc.addImage(canvas, 'JPEG', 10, 10);
                   submission.pdf = doc;
                   doc.save('sample-file.pdf');
                   $("#btech-content-" + id).remove();
