@@ -308,6 +308,8 @@
                   position = heightLeft - canvasHeight; // top padding for other pages
                   doc.addPage();
                   doc.addImage(imgData, 'PNG', padding, position + padding * 2, pageWidth - (padding * 2), canvasHeight);
+                  doc.rectangle(0, 0, pageWidth, padding);
+                  doc.rectangle(0, pageHeight - padding, pageWidth, padding);
                   heightLeft -= imgHeight;
                 }
                 doc.save('cropper-file.pdf');
