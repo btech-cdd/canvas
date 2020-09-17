@@ -13,7 +13,7 @@
         //and converted to a pdf
         add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.1.1/jspdf.umd.min.js");
         //which can then be zipped into a file using this library
-        add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js");
+        add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.1.1/jspdf.es.js");
         //and then saved
         add_javascript_library("https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js");
         let CURRENT_COURSE_ID = parseInt(window.location.pathname.match(rCheckInCourse)[1]);
