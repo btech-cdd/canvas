@@ -291,6 +291,9 @@
                   doc.addImage(imgData, 'PNG', 10, 10);
                   submission.pdf = doc;
                   doc.save('sample-file.pdf');
+                  $("#btech-content-" + id).remove();
+                  //comment this part out when ready to start messing with formatting and fixing the images missing.
+                  $("#test-export-" + id).remove();
                 }
               }).then(canvas => {
                 canvas.toBlob(function (blob) {
@@ -298,9 +301,6 @@
                   submission.blob = blob;
                 });
               });
-              $("#btech-content-" + id).remove();
-              //comment this part out when ready to start messing with formatting and fixing the images missing.
-              $("#test-export-" + id).remove();
             },
             async downloadQuiz(assignment, submission) {
               let app = this;
