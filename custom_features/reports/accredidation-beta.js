@@ -282,7 +282,7 @@
               //THIS IS A TEST
               //add a div, fill it with contents of iframe, probably clean it up a bit, then use that to save the image
               $("#content").append("<div id='test-export-" + id + "'></div>");
-              $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0]);
+              $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0].innerHTML);
               html2canvas(document.querySelector('#test-export-' + id), {
                 onrendered: function (canvas) {}
               }).then(canvas => {
