@@ -299,13 +299,13 @@
                 var heightLeft = imgHeight;
                 var position = padding; // give some top padding to first page
 
-                doc.addImage(imgData, 'PNG', 5, position, imgWidth, imgHeight);
+                doc.addImage(imgData, 'PNG', padding, position, imgWidth, imgHeight);
                 heightLeft -= pageHeight;
 
                 while (heightLeft >= 0) {
                   position = heightLeft - imgHeight; // top padding for other pages
                   doc.addPage();
-                  doc.addImage(imgData, 'PNG', 5, position, imgWidth, imgHeight);
+                  doc.addImage(imgData, 'PNG', padding, position, imgWidth, imgHeight);
                   heightLeft -= pageHeight;
                 }
                 doc.save('cropper-file.pdf');
