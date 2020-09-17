@@ -290,13 +290,14 @@
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0].innerHTML);
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
-                var imgData = canvas.toDataURL('image/png');
-                var imgWidth = 200;
-                var pageHeight = 295;
-                var imgHeight = canvas.height * imgWidth / canvas.width - 20;
-                var heightLeft = imgHeight;
                 var doc = new jspdf.jsPDF('p', 'mm', 'a4');
-                var position = 10; // give some top padding to first page
+                var padding = 10;
+                var imgData = canvas.toDataURL('image/png');
+                var imgWidth = doc.internal.pageSize.getWidth() - (padding * 2);
+                var pageHeight = doc.internal.pageSize.getHeight();
+                var imgHeight = (canvas.height * (imgWidth + padding) / canvas.width) - (padding * 2);
+                var heightLeft = imgHeight;
+                var position = padding; // give some top padding to first page
 
                 doc.addImage(imgData, 'PNG', 5, position, imgWidth, imgHeight);
                 heightLeft -= pageHeight;
