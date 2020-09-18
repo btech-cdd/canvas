@@ -284,7 +284,7 @@
               doc.setDrawColor(255, 255, 255);
               doc.setFillColor(255, 255, 255);
               doc.rect(0, pageHeight - padding, pageWidth, padding, 'F');
-              heightLeft -= pageHeight;
+              heightLeft -= imgHeight;
 
               while (heightLeft >= 0) {
                 position = heightLeft - canvasHeight; // top padding for other pages
