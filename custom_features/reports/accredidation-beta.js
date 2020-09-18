@@ -302,13 +302,15 @@
                 var position = 0; // give some top padding to first page
 
                 doc.addImage(imgData, 'PNG', padding, position + padding, pageWidth - (padding * 2), canvasHeight);
+                doc.setDrawColor(255, 255, 255);
+                doc.setFillColor(255, 255, 255);
+                doc.rect(0, pageHeight - padding, pageWidth, padding, 'F');
                 heightLeft -= pageHeight;
 
                 while (heightLeft >= 0) {
                   position = heightLeft - canvasHeight; // top padding for other pages
                   doc.addPage();
                   doc.addImage(imgData, 'PNG', padding, position + padding * 2, pageWidth - (padding * 2), canvasHeight);
-                  doc.setDrawColor(255, 255, 255);
                   doc.rect(0, 0, pageWidth, padding, 'F');
                   doc.rect(0, pageHeight - padding, pageWidth, padding, 'F');
                   heightLeft -= imgHeight;
