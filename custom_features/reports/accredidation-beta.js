@@ -317,7 +317,9 @@
               //offset isn't perfect here, there's a little duplication from the first page to the second  but nothing is lost which is what counts
               heightLeft -= imgHeight;
 
+              console.log(heightLeft);
               while (heightLeft >= 0) {
+                console.log('again...');
                 position = heightLeft - canvasHeight; // top padding for other pages
                 doc.addPage();
                 doc.addImage(imgData, 'PNG', padding, position + padding * 2, pageWidth - (padding * 2), canvasHeight);
