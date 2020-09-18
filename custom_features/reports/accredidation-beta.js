@@ -223,7 +223,7 @@
               if (assignment.quiz_id !== undefined) {
                 app.getBlobQuiz(assignment, submission);
               }
-              if (assignment.submission_type === 'basic_lti_launch') {
+              if (assignment.is_quiz_lti_assignment) {
                 console.log("LTI");
                 app.getBlobLTI(assignment, submission);
               }
