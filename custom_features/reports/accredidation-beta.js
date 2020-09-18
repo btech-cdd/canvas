@@ -262,13 +262,39 @@
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('rubric_holder').getElementsByClassName('rubric_container')[0]);
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
-                canvas.toBlob(function (blob) {
-                  submission.blob = blob;
-                });
+                submission.blob = canvasToPDFBlob(canvas);
+                $("#btech-content-" + id).remove();
+                $("#test-export-" + id).remove();
               });
-              $("#btech-content-" + id).remove();
               //comment this part out when ready to start messing with formatting and fixing the images missing.
-              $("#test-export-" + id).remove();
+            },
+            canvasToPDFBlob(canvas) {
+              var doc = new jspdf.jsPDF('p', 'mm', 'a4');
+              var padding = 10;
+              var imgData = canvas.toDataURL('image/png');
+              var pageWidth = doc.internal.pageSize.getWidth();
+              var imgWidth = pageWidth - (padding * 2);
+              var pageHeight = doc.internal.pageSize.getHeight();
+              var imgHeight = pageHeight - (padding * 2);
+              var canvasHeight = (canvas.height * (imgWidth) / canvas.width);
+              var heightLeft = canvasHeight;
+              var position = 0; // give some top padding to first page
+
+              doc.addImage(imgData, 'PNG', padding, position + padding, pageWidth - (padding * 2), canvasHeight);
+              doc.setDrawColor(255, 255, 255);
+              doc.setFillColor(255, 255, 255);
+              doc.rect(0, pageHeight - padding, pageWidth, padding, 'F');
+              heightLeft -= pageHeight;
+
+              while (heightLeft >= 0) {
+                position = heightLeft - canvasHeight; // top padding for other pages
+                doc.addPage();
+                doc.addImage(imgData, 'PNG', padding, position + padding * 2, pageWidth - (padding * 2), canvasHeight);
+                doc.rect(0, 0, pageWidth, padding, 'F');
+                doc.rect(0, pageHeight - padding, pageWidth, padding, 'F');
+                heightLeft -= imgHeight;
+              }
+              return doc.output('blob');
             },
             async getBlobQuiz(assignment, submission) {
               window.currentAssignment = assignment;
@@ -290,33 +316,7 @@
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0].innerHTML);
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
-                var doc = new jspdf.jsPDF('p', 'mm', 'a4');
-                var padding = 10;
-                var imgData = canvas.toDataURL('image/png');
-                var pageWidth = doc.internal.pageSize.getWidth();
-                var imgWidth = pageWidth - (padding * 2);
-                var pageHeight = doc.internal.pageSize.getHeight();
-                var imgHeight = pageHeight - (padding * 2);
-                var canvasHeight = (canvas.height * (imgWidth) / canvas.width);
-                var heightLeft = canvasHeight;
-                var position = 0; // give some top padding to first page
-
-                doc.addImage(imgData, 'PNG', padding, position + padding, pageWidth - (padding * 2), canvasHeight);
-                doc.setDrawColor(255, 255, 255);
-                doc.setFillColor(255, 255, 255);
-                doc.rect(0, pageHeight - padding, pageWidth, padding, 'F');
-                heightLeft -= pageHeight;
-
-                while (heightLeft >= 0) {
-                  position = heightLeft - canvasHeight; // top padding for other pages
-                  doc.addPage();
-                  doc.addImage(imgData, 'PNG', padding, position + padding * 2, pageWidth - (padding * 2), canvasHeight);
-                  doc.rect(0, 0, pageWidth, padding, 'F');
-                  doc.rect(0, pageHeight - padding, pageWidth, padding, 'F');
-                  heightLeft -= imgHeight;
-                }
-                doc.save('cropper-file.pdf');
-                submission.blob = doc.output('blob');
+                submission.blob = app.canvasToPDFBlob(canvas);
                 $("#btech-content-" + id).remove();
                 $("#test-export-" + id).remove();
               });
