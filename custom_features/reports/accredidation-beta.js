@@ -340,7 +340,10 @@
               $("#content").append(cropperCanvas);
               let cropper = $(cropperCanvas)[0].getContext('2d');
               $("#content").append(iframe);
-              let content = await getElement("body", "#btech-content-" + id);
+              let content = await getElement("#questions", "#btech-content-" + id);
+              content.find('img').each(function() {
+                $(this).remove();
+              })
               //update date in the content of the quiz
               content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
               content.prepend("<div>Student:" + submission.user.name + "</div>");
