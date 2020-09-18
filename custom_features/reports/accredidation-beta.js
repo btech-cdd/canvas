@@ -217,15 +217,10 @@
               })
             },
             async getBlob(assignment, submission) {
-              console.log(assignment);
               let app = this;
               let types = assignment.submission_types;
               if (assignment.quiz_id !== undefined) {
                 app.getBlobQuiz(assignment, submission);
-              }
-              if (assignment.is_quiz_lti_assignment) {
-                console.log("LTI");
-                app.getBlobLTI(assignment, submission);
               }
               if (assignment.rubric != undefined) {
                 app.getBlobRubric(assignment, submission);
