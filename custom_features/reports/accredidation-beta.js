@@ -248,13 +248,6 @@
               let app = this;
               let id = genId();
               let url = assignment.preview_url;
-            },
-            async getBlobRubric(assignment, submission) {
-              //html2canvas breaks if there's any content external to the source (images, scripts, etc) so you've got to strip out everything but the minimum of what you need
-              //a potential future fix to this would be to handle all of the file downloading on a server using node and there are more robus libraries for packaging files that way
-              let app = this;
-              let id = genId();
-              let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="' + url + '"></iframe>');
               $("#content").append(iframe);
               let holder = await getElement("#rubric_holder", "#btech-content-" + id);
@@ -273,6 +266,32 @@
                 submission.blob = canvasToPDFBlob(canvas);
                 // $("#btech-content-" + id).remove();
                 // $("#test-export-" + id).remove();
+              });
+            },
+            async getBlobRubric(assignment, submission) {
+              //html2canvas breaks if there's any content external to the source (images, scripts, etc) so you've got to strip out everything but the minimum of what you need
+              //a potential future fix to this would be to handle all of the file downloading on a server using node and there are more robus libraries for packaging files that way
+              let app = this;
+              let id = genId();
+              let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
+              let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="' + url + '"></iframe>');
+              $("#content").append(iframe);
+              let holder = await getElement("#rubric_holder", "#btech-content-" + id);
+              holder.show();
+              content = holder.find('.rubric_container');
+              content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
+              content.prepend("<div>Student:" + submission.user.name + "</div>");
+              content.prepend("<div>Assignment:" + assignment.name + "</div>");
+              content.css({
+                'max-height': '',
+                'overflow': 'visible'
+              });
+              $("#content").append("<div id='test-export-" + id + "'></div>");
+              $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('rubric_holder').getElementsByClassName('rubric_container')[0]);
+              html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
+                submission.blob = canvasToPDFBlob(canvas);
+                $("#btech-content-" + id).remove();
+                $("#test-export-" + id).remove();
               });
               //comment this part out when ready to start messing with formatting and fixing the images missing.
             },
