@@ -295,6 +295,7 @@
               //comment this part out when ready to start messing with formatting and fixing the images missing.
             },
             canvasToPDFBlob(canvas) {
+              console.log("TO PDF");
               var doc = new jspdf.jsPDF('p', 'mm', 'a4');
               var padding = 10;
               var imgData = canvas.toDataURL('image/png');
@@ -302,7 +303,9 @@
               var imgWidth = pageWidth - (padding * 2);
               var pageHeight = doc.internal.pageSize.getHeight();
               var imgHeight = pageHeight - (padding * 2);
+              console.log(imgHeight);
               var canvasHeight = (canvas.height * (imgWidth) / canvas.width);
+              console.log(canvasHeight);
               var heightLeft = canvasHeight;
               var position = 0; // give some top padding to first page
 
