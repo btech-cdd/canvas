@@ -1,6 +1,12 @@
 //THIS MUST BE UPDATED IN THE THEMES SECTION OF CANVAS
 //check for custom theme info, will probably only run on pages, quizzes, and assignments, but who knows
 //Might be worth moving all of this into the custom-settings page instead of an individual div on each page, then wait to load any of the features involving this custom settings until after that page has loaded
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "/api/v1/canvadoc_session?blob=%7B%22moderated_grading_whitelist%22:null,%22enable_annotations%22:true,%22enrollment_type%22:%22admin%22,%22anonymous_instructor_annotations%22:false,%22submission_id%22:105590020,%22user_id%22:140000001893418,%22attachment_id%22:94131138,%22type%22:%22canvadoc%22%7D&hmac=c1dfcdf079c5d16d7c73b731bdc3d0e0c571553a", true);
+xhr.onload = function () {
+  console.log(xhr); // http://example.com/test
+};
+xhr.send();
 var themeParent = $('#btech-theme-parent');
 if (themeParent.length === 1) {
   let header = themeParent.find('.btech-theme-header');

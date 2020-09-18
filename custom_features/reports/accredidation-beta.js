@@ -222,6 +222,9 @@
               if (assignment.quiz_id !== undefined) {
                 app.getBlobQuiz(assignment, submission);
               }
+              if (assignment.submission_type === 'basic_lti_launch') {
+                app.getBlobLTI(assignment, submission);
+              }
               if (assignment.rubric != undefined) {
                 app.getBlobRubric(assignment, submission);
               }
@@ -241,6 +244,11 @@
                 console.log('assignment type undefined');
               }
             },
+            async getBlobLTI(assignment, submission) {
+              let app = this;
+              let id = genId();
+              let url = assignment.preview_url;
+            },
             async getBlobRubric(assignment, submission) {
               //html2canvas breaks if there's any content external to the source (images, scripts, etc) so you've got to strip out everything but the minimum of what you need
               //a potential future fix to this would be to handle all of the file downloading on a server using node and there are more robus libraries for packaging files that way
@@ -251,7 +259,7 @@
               $("#content").append(iframe);
               let holder = await getElement("#rubric_holder", "#btech-content-" + id);
               holder.show();
-              content = holder.find('.rubric_container');
+              content = holder.find('#content');
               content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
               content.prepend("<div>Student:" + submission.user.name + "</div>");
               content.prepend("<div>Assignment:" + assignment.name + "</div>");
@@ -263,8 +271,8 @@
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('rubric_holder').getElementsByClassName('rubric_container')[0]);
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
                 submission.blob = canvasToPDFBlob(canvas);
-                $("#btech-content-" + id).remove();
-                $("#test-export-" + id).remove();
+                // $("#btech-content-" + id).remove();
+                // $("#test-export-" + id).remove();
               });
               //comment this part out when ready to start messing with formatting and fixing the images missing.
             },
@@ -284,6 +292,7 @@
               doc.setDrawColor(255, 255, 255);
               doc.setFillColor(255, 255, 255);
               doc.rect(0, pageHeight - padding, pageWidth, padding, 'F');
+              //offset isn't perfect here, there's a little duplication from the first page to the second  but nothing is lost which is what counts
               heightLeft -= imgHeight;
 
               while (heightLeft >= 0) {
