@@ -302,6 +302,7 @@
               var pageWidth = doc.internal.pageSize.getWidth();
               var imgWidth = pageWidth - (padding * 2);
               var pageHeight = doc.internal.pageSize.getHeight();
+              console.log(pageHeight);
               var imgHeight = pageHeight - (padding * 2);
               console.log(imgHeight);
               var canvasHeight = (canvas.height * (imgWidth) / canvas.width);
