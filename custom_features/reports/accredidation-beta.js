@@ -354,8 +354,8 @@
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
                 submission.blob = app.canvasToPDFBlob(canvas);
-                $("#btech-content-" + id).remove();
-                $("#test-export-" + id).remove();
+                // $("#btech-content-" + id).remove();
+                // $("#test-export-" + id).remove();
               });
             },
             async downloadQuiz(assignment, submission) {
