@@ -66,7 +66,7 @@
   </div>
 </div>`);
         await $.getScript("https://cdn.jsdelivr.net/npm/vue");
-        new Vue({
+        window.btechAccredidationApp = new Vue({
           el: "#accredidation",
           mounted: async function () {
             let app = this;
@@ -204,7 +204,9 @@
                   for (let s in assignment.submissions) {
                     let submission = assignment.submissions[s];
                     if (submission.blob !== null) {
-                      zip.file(groupName + "/" + assignmentName + "/" + submission.user.name + ".pdf", submission.blob);
+                      let path = groupName + "/" + assignmentName + "/" + submission.user.name + ".pdf";
+                      path = path.replace(":", "-");
+                      zip.file(path, submission.blob);
                     }
                     //await app.addSubmissionToZip(groupName, assignment.data, submission, zip);
                   }
