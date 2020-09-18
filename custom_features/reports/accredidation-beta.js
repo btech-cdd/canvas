@@ -249,7 +249,7 @@
             async getBlobLTI(assignment, submission) {
               let app = this;
               let id = genId();
-              let url = assignment.preview_url;
+              let url = submission.preview_url;
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="' + url + '"></iframe>');
               $("#content").append(iframe);
               let holder = await getElement("#rubric_holder", "#btech-content-" + id);
