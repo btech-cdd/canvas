@@ -55,7 +55,7 @@
             // if (!IS_TEACHER) this.menu = 'period';
             let gradesBetweenDates = {};
             if (IS_TEACHER) { //also change this to ref the url and not whether or not is teacher
-              let match = window.location.pathname.match(/users\/([0-9]+)/);
+              let match = window.location.pathname.match(/[users|grades]\/([0-9]+)/);
               this.userId = match[1];
             } else {
               this.userId = ENV.current_user_id;
