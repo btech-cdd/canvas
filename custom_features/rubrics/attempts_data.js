@@ -31,7 +31,7 @@ console.log("ATTEMPTS");
           details = await getElement("#grade_container");
         }
         if (rWindowVanilla.test(window.location.pathname)) {
-          details = await getElement(".grade-values");
+          details = await getElement(".submission-details-header__grade-summary");
         }
         details.after(
           `<tr id="btech-attempts-data" class="content_box">
