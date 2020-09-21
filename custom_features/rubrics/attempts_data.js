@@ -1,3 +1,4 @@
+console.log("ATTEMPTS");
 (function() {
   IMPORTED_FEATURE = {};
   let rWindowSpeedGrader = /^\/courses\/[0-9]+\/gradebook\/speed_grader/;
@@ -17,11 +18,13 @@
         }
         feature.insertAttemptsData();
         $(".save_rubric_button").on("click", function() {
+          console.log("save data");
           feature.calcAttemptsData();
           feature.attempts += 1;
         });
       },
       async insertAttemptsData() {
+        console.log("Add Div");
         let feature = this;
         let details = await getElement("#rubric_holder tbody.criterions");
         details.after(
