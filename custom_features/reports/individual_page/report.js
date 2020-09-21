@@ -57,6 +57,7 @@
             if (IS_TEACHER) { //also change this to ref the url and not whether or not is teacher
               let match = window.location.pathname.match(/[users|grades]\/([0-9]+)/);
               this.userId = match[1];
+              console.log(this.userId);
             } else {
               this.userId = ENV.current_user_id;
             }
@@ -519,6 +520,7 @@
               let list = [];
               if (IS_TEACHER) { //possible change this to just do a check for the .courses class
                 let url = window.location.origin + "/users/" + app.userId;
+                console.log(app.userId);
                 await $.get(url).done(function (data) {
                   list = app.processCoursePageTeacherView(data);
                 }).fail(function (e) {
