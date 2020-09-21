@@ -258,7 +258,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
   https://btech.instructure.com/accounts/3/theme_editor
   */
   feature("login_page", {}, /^\/login/);
-  add_javascript_library("https://btech-cdd.github.io/custom_canvas_import.js");
+  // add_javascript_library("https://btech-cdd.github.io/custom_canvas_import.js");
   $.getScript("https://cdn.jsdelivr.net/npm/vue").done(function () {
     $.getScript("https://btech-cdd.github.io/custom_features/editor_toolbar/toolbar.js").done(() => {
       $.getScript("https://btech-cdd.github.io/course_data/course_list.js").done(() => {
@@ -275,10 +275,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
               /^\/users\/[0-9]+$/,
               /^\/courses\/[0-9]+\/grades\/[0-9]+/
             ]);
-          } else { //Is not a teacher
-            featureBeta("reports/individual_page/report", {}, [/^\/courses\/[0-9]+\/users\/[0-9]+$/, /^\/users\/[0-9]+$/]);
           }
-          //COURSE FEATURES
           let rCheckInCourse = /^\/courses\/([0-9]+)/;
           if (rCheckInCourse.test(window.location.pathname)) {
             IS_BLUEPRINT = !(ENV.BLUEPRINT_COURSES_DATA === undefined)
