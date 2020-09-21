@@ -1,18 +1,3 @@
-async function getElement(selectorText, iframe = "") {
-  let element;
-  if (iframe === "") {
-    element = $(selectorText);
-  } else {
-    element = $(iframe).contents().find(selectorText);
-  }
-  if (element.length > 0 && element.html().trim() !== "") {
-    return element;
-  } else {
-    await delay(1000);
-    return getElement(selectorText, iframe);
-  }
-}
-
 var s = document.createElement("script");
 s.type = "text/javascript";
 s.src = "https://btech-cdd.github.io/external-libraries/sorttable.js";
