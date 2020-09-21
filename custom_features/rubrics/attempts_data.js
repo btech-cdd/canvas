@@ -58,7 +58,7 @@ console.log("ATTEMPTS");
           console.log(rubricTotalText);
           let match = rubricTotalText.match(/([0-9]+)/g);
           rubricTotal = parseInt(match[0]);
-          rubricMax = parseInt(match[1]);
+          rubricMax = ENV.rubric.points_possible;
           let suggestedScore = Math.round(rubricTotal * ((11 - feature.attempts) / 10));
           $("#btech-recorded-attempts-value").text(feature.attempts);
           $("#btech-rubric-score-value").text(rubricTotal + " (" + (Math.round((rubricTotal / rubricMax) * 1000) / 10) + "%)");
