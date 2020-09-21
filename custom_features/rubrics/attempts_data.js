@@ -26,7 +26,7 @@ console.log("ATTEMPTS");
       async insertAttemptsData() {
         console.log("Add Div");
         let feature = this;
-        let details = await getElement("#rubric_holder tbody");
+        let details = await getElement("#grade_container");
         details.after(
           `<tr id="btech-attempts-data" class="content_box">
           <td colspan="3">
