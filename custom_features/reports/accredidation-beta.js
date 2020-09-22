@@ -353,7 +353,7 @@
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
                 var doc = new jspdf.jsPDF('p', 'mm', 'a4');
-                doc.addImage(canvas);
+                doc.addImage(canvas, 0, 0);
                 doc.save('test.pdf');
                 submission.blob = app.canvasToPDFBlob(canvas);
                 // $("#btech-content-" + id).remove();
