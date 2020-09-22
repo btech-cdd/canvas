@@ -297,7 +297,7 @@
             canvasToPDFBlob(canvas) {
               var doc = new jspdf.jsPDF('p', 'mm', 'a4');
               var padding = 10;
-              // var imgData = canvas.toDataURL('image/png');
+              var imgData = canvas.toDataURL('image/png');
               var pageWidth = doc.internal.pageSize.getWidth();
               var imgWidth = pageWidth - (padding * 2);
               var pageHeight = doc.internal.pageSize.getHeight();
@@ -346,7 +346,7 @@
               $("#content").append(iframe);
               let content = await getElement("#questions", "#btech-content-" + id);
               content.find('img').each(function() {
-                $(this).remove();
+                // $(this).remove();
               })
               //update date in the content of the quiz
               content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
@@ -356,10 +356,16 @@
               //add a div, fill it with contents of iframe, probably clean it up a bit, then use that to save the image
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
-              html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
+              html2canvas(document.querySelector('#test-export-' + id),
+              {
+                allowTaint: true,
+                useCORS: true,
+                foreignObjectRendering: true
+              }
+              ).then(canvas => {
                 submission.blob = app.canvasToPDFBlob(canvas);
-                // $("#btech-content-" + id).remove();
-                // $("#test-export-" + id).remove();
+                $("#btech-content-" + id).remove();
+                $("#test-export-" + id).remove();
               });
             },
             async downloadQuiz(assignment, submission) {
