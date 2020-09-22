@@ -62,6 +62,7 @@
               this.userId = ENV.current_user_id;
             }
             this.courses = await this.getCourseData();
+            console.log(this.courses);
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
               let courseId = this.courses[i].course_id;
@@ -443,6 +444,8 @@
               let app = this;
               let courses = [];
               let courseList = await this.getCourses();
+              console.log("COURSE LIST");
+              console.log(courseList);
               for (let c = 0; c < courseList.length; c++) {
                 let course = await app.newCourse(courseList[c].course_id, courseList[c].state, courseList[c].name, courseList[c].year);
                 let state = course.state.toLowerCase();
@@ -462,6 +465,8 @@
               let list = [];
               let dates = {};
               let enrollments = await canvasGet("/api/v1/users/" + app.userId + "/enrollments");
+              console.log("ENROLLMENTS");
+              console.log(enrollments);
               for (let e = 0; e < enrollments.length; e++) {
                 let enrollment = enrollments[e];
                 if (enrollment.role == "StudentEnrollment") {
