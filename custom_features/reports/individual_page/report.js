@@ -57,12 +57,10 @@
             if (IS_TEACHER) { //also change this to ref the url and not whether or not is teacher
               let match = window.location.pathname.match(/(users|grades)\/([0-9]+)/);
               this.userId = match[2];
-              console.log(this.userId);
             } else {
               this.userId = ENV.current_user_id;
             }
             this.courses = await this.getCourseData();
-            console.log(this.courses);
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
               let courseId = this.courses[i].course_id;
@@ -444,8 +442,6 @@
               let app = this;
               let courses = [];
               let courseList = await this.getCourses();
-              console.log("COURSE LIST");
-              console.log(courseList);
               if (app.IS_TEACHER) {
                 for (let c = 0; c < courseList.length; c++) {
                   let course = await app.newCourse(courseList[c].course_id, courseList[c].state, courseList[c].name, courseList[c].year);
@@ -479,8 +475,6 @@
               let list = [];
               let dates = {};
               let enrollments = await canvasGet("/api/v1/users/" + app.userId + "/enrollments?state[]=current_and_concluded");
-              console.log("ENROLLMENTS");
-              console.log(enrollments);
               let enrollment_data = {};
               for (let e = 0; e < enrollments.length; e++) {
                 let enrollment = enrollments[e];
@@ -494,17 +488,14 @@
                 }
               }
               await $.get("/courses", function (data) {
-                console.log(data);
                 let page = $(data);
                 let courseTables = {};
                 courseTables['active'] = page.find('#my_courses_table');
                 courseTables['completed'] = page.find('#past_enrollments_table');
                 for (let state in courseTables) {
-                  console.log(state);
                   let table = courseTables[state];
                   table.find("tr.course-list-table-row a").each(function () {
                     let name = $(this).text().trim();
-                    console.log(name);
                     let href = $(this).attr('href');
                     let match = href.match(/courses\/([0-9]+)/);
                     if (match) {
@@ -520,8 +511,6 @@
                   });
                 }
               })
-              console.log("LIST");
-              console.log(list);
               return list;
             },
             async processCoursePageTeacherView(pageData) {
@@ -556,7 +545,6 @@
               let list = [];
               if (IS_TEACHER) { //possible change this to just do a check for the .courses class
                 let url = window.location.origin + "/users/" + app.userId;
-                console.log(app.userId);
                 await $.get(url).done(function (data) {
                   list = app.processCoursePageTeacherView(data);
                 }).fail(function (e) {
