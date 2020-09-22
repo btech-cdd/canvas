@@ -464,7 +464,7 @@
               let app = this;
               let list = [];
               let dates = {};
-              let enrollments = await canvasGet("/api/v1/users/" + app.userId + "/enrollments");
+              let enrollments = await canvasGet("/api/v1/users/" + app.userId + "/enrollments?state[]=current_and_concluded");
               console.log("ENROLLMENTS");
               console.log(enrollments);
               for (let e = 0; e < enrollments.length; e++) {
