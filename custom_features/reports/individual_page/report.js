@@ -480,7 +480,7 @@
                     name: course.name,
                     course_id: course.id,
                     state: "active",
-                    year: dates[course_id]
+                    year: dates[course.id]
                   })
                 }
               }
