@@ -339,9 +339,6 @@
               let app = this;
               let id = genId();
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1"></iframe>');
-              let cropperCanvas = $("<canvas id='btech-canvas-crop-" + id + "'></canvas>");
-              $("#content").append(cropperCanvas);
-              let cropper = $(cropperCanvas)[0].getContext('2d');
               $("#content").append(iframe);
               let content = await getElement("#questions", "#btech-content-" + id);
               content.find('img').each(function() {
@@ -357,8 +354,8 @@
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
                 submission.blob = app.canvasToPDFBlob(canvas);
-                // $("#btech-content-" + id).remove();
-                // $("#test-export-" + id).remove();
+                $("#btech-content-" + id).remove();
+                $("#test-export-" + id).remove();
               });
             },
             async downloadQuiz(assignment, submission) {
