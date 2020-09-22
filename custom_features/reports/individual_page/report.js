@@ -557,6 +557,8 @@
             },
             calcPointsProgress(grade, final_grade) {
               let points = "N/A";
+              console.log(grade);
+              console.log(final_grade);
               if (!isNaN(parseInt(grade)) && !isNaN(parseInt(final_grade))) {
                 points = Math.round(final_grade / grade * 100);
                 if (isNaN(points)) points = 0;
