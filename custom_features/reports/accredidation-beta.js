@@ -332,7 +332,7 @@
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1"></iframe>');
               $("#content").append(iframe);
               let content = await getElement("#questions", "#btech-content-" + id);
-              content.find('img').each(function() {
+              content.find('img').each(function () {
                 $(this).attr('crossorigin', 'anonymous');
                 $(this).attr('src', $(this.attr('src').replace('https', 'http')));
                 console.log($(this).html());
@@ -347,8 +347,9 @@
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
               html2canvas(document.querySelector('#test-export-' + id), {
-                useCORS: true
-
+                useCORS: true,
+                allowTaint: true,
+                foreignObjectRendering: true
               }).then(canvas => {
                 submission.blob = app.canvasToPDFBlob(canvas);
                 $("#btech-content-" + id).remove();
