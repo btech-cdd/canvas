@@ -335,6 +335,7 @@
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1"></iframe>');
               $("#content").append(iframe);
               let content = await getElement("#questions", "#btech-content-" + id);
+              console.log($(content));
               content.find('img').each(function() {
                 $(this).attr('crossorigin', 'anonymous');
                 console.log($(this).html());
