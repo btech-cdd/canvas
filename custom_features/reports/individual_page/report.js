@@ -568,12 +568,12 @@
               return list;
             },
             calcPointsProgress(grade, final_grade) {
-              let pointsProgress = "N/A";
+              let points = "N/A";
               if (!isNaN(parseInt(grade)) && !isNaN(parseInt(final_grade))) {
                 points = Math.round(final_grade / grade * 100);
                 if (isNaN(points)) points = 0;
               }
-              return pointsProgress;
+              return points;
             },
             async getCourseGrades(course_id, state) {
               let output = {
