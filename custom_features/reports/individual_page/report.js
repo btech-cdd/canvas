@@ -488,6 +488,7 @@
                   let table = courseTables[state];
                   table.find("tr.course-list-table-row a").each(function () {
                     let name = $(this).text().trim();
+                    console.log(name);
                     let href = $(this).attr('href');
                     let match = href.match(/courses\/([0-9]+)/);
                     if (match) {
@@ -502,6 +503,8 @@
                   });
                 }
               })
+              console.log("LIST");
+              console.log(list);
               return list;
             },
             async processCoursePageTeacherView(pageData) {
