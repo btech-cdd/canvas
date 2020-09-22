@@ -475,22 +475,15 @@
                   let month = startDate.getMonth();
                   if (month < 6) year -= 1;
                   dates[enrollment.course_id] = year;
+                  let course = await canvasGet("/api/v1/courses/" + enrollment.course_id);
+                  list.push({
+                    name: course.name,
+                    course_id: course.id,
+                    state: "active",
+                    year: dates[course_id]
+                  })
                 }
               }
-              $("#content .student_grades a").each(function () {
-                let name = $(this).text().trim();
-                let href = $(this).attr('href');
-                let match = href.match(/courses\/([0-9]+)\/grades/);
-                if (match) {
-                  let course_id = match[1];
-                  list.push({
-                    name: name,
-                    course_id: course_id,
-                    state: "active", //need to fix getting this info
-                    year: dates[course_id]//need to fix getting this info
-                  });
-                }
-              });
               return list;
             },
             async processCoursePageTeacherView(pageData) {
