@@ -334,7 +334,7 @@
               let content = await getElement("#questions", "#btech-content-" + id);
               content.find('img').each(function () {
                 $(this).attr('crossorigin', 'anonymous');
-                $(this).attr('src', $(this.attr('src').replace('https', 'http')));
+                $(this).attr('src', $(this).attr('src').replace('https', 'http'));
                 console.log($(this).html());
                 // $(this).remove();
               })
