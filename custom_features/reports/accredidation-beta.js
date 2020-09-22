@@ -345,7 +345,7 @@
               $("#content").append(iframe);
               let content = await getElement("#questions", "#btech-content-" + id);
               content.find('img').each(function() {
-                $(this).remove();
+                // $(this).remove();
               })
               //update date in the content of the quiz
               content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
