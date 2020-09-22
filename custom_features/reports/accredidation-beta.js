@@ -285,7 +285,9 @@
               });
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('rubric_holder').getElementsByClassName('rubric_container')[0]);
-              html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
+              html2canvas(document.querySelector('#test-export-' + id), {
+                useCORS: true
+              }).then(canvas => {
                 submission.blob = canvasToPDFBlob(canvas);
                 $("#btech-content-" + id).remove();
                 $("#test-export-" + id).remove();
