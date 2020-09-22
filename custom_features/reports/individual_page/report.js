@@ -463,9 +463,9 @@
                 for (let c = 0; c < courseList.length; c++) {
                   let courseData = courseList[c];
                   let course = await app.newCourse(courseList[c].course_id, courseList[c].state, courseList[c].name, courseList[c].year);
-                  course.grade_to_date = courseData.enrollment.current_score;
-                  course.final_grade = courseData.enrollment.final_score;
-                  console.log(courseData.enrollment);
+                  course.grade_to_date = courseData.enrollment.grades.current_score;
+                  course.final_grade = courseData.enrollment.grades.final_score;
+                  course.points = app.calcPointsProgress(course.grade_to_date, course.final_grade);
                   await app.getAssignmentData(course, courseData.enrollment);
                   courses.push(course);
                 }
@@ -567,7 +567,14 @@
               }
               return list;
             },
-
+            calcPointsProgress(grade, final_grade) {
+              let pointsProgress = "N/A";
+              if (!isNaN(parseInt(grade)) && !isNaN(parseInt(final_grade))) {
+                points = Math.round(final_grade / grade * 100);
+                if (isNaN(points)) points = 0;
+              }
+              return pointsProgress;
+            },
             async getCourseGrades(course_id, state) {
               let output = {
                 found: false
@@ -594,11 +601,8 @@
                     if (grade == "N/A" && final_grade == 0) final_grade = "N/A";
                     output.final_grade = final_grade;
 
-                    let points = "N/A";
-                    if (!isNaN(parseInt(final_grade)) && !isNaN(parseInt(final_grade))) {
-                      points = Math.round(final_grade / grade * 100);
-                      if (isNaN(points)) points = 0;
-                    }
+                    let points = app.calcPointsProgress(grade, final_grade);
+
                     output.points = points;
                   }
                 }
