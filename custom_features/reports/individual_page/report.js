@@ -482,7 +482,7 @@
                 let page = $(data);
                 let courseTables = {};
                 courseTables['active'] = page.find('#my_courses_table');
-                courseTables['concluded'] = page.find('#past_enrollments_table');
+                courseTables['completed'] = page.find('#past_enrollments_table');
                 for (let state in courseTables) {
                   console.log(state);
                   let table = courseTables[state];
