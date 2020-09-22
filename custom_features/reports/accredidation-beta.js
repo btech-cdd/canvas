@@ -159,6 +159,7 @@
                 });
                 for (let i = 0; i < assignmentsData.attachments.length; i++) {
                   let attachment = assignmentsData.attachments[i];
+                  console.log(attachment.url);
                   await app.createIframe(attachment.url);
                 }
               }
@@ -292,6 +293,7 @@
               //comment this part out when ready to start messing with formatting and fixing the images missing.
             },
             canvasToPDFBlob(canvas) {
+              console.log("TO PDF");
               var doc = new jspdf.jsPDF('p', 'mm', 'a4');
               var padding = 10;
               var imgData = canvas.toDataURL('image/png');
@@ -322,7 +324,6 @@
                 doc.rect(0, pageHeight - padding, pageWidth, padding, 'F');
                 heightLeft -= imgHeight;
               }
-              doc.save('test.pdf');
               return doc.output('blob');
             },
             async getBlobQuiz(assignment, submission) {
@@ -333,10 +334,9 @@
               let iframe = $('<iframe id="btech-content-' + id + '" style="display: none;" src="/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1"></iframe>');
               $("#content").append(iframe);
               let content = await getElement("#questions", "#btech-content-" + id);
-              content.find('img').each(function () {
-                // $(this).attr('crossorigin', 'anonymous');
-                // $(this).attr('src', $(this).attr('src').replace('https', 'http'));
-                // console.log($(this).html());
+              content.find('img').each(function() {
+                $(this).attr('crossorigin', 'anonymous');
+                console.log($(this).html());
                 // $(this).remove();
               })
               //update date in the content of the quiz
@@ -348,9 +348,7 @@
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
               html2canvas(document.querySelector('#test-export-' + id), {
-                useCORS: true,
-                allowTaint: true,
-                foreignObjectRendering: true
+                useCORS: true
               }).then(canvas => {
                 submission.blob = app.canvasToPDFBlob(canvas);
                 $("#btech-content-" + id).remove();
