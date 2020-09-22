@@ -343,6 +343,7 @@
               let content = await getElement("#questions", "#btech-content-" + id);
               content.find('img').each(function() {
                 $(this).attr('crossorigin', 'anonymous');
+                console.log($(this).html());
                 // $(this).remove();
               })
               //update date in the content of the quiz
