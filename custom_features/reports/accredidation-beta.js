@@ -334,6 +334,7 @@
               let content = await getElement("#questions", "#btech-content-" + id);
               content.find('img').each(function() {
                 $(this).attr('crossorigin', 'anonymous');
+                $(this).attr('src', $(this.attr('src').replace('https', 'http')));
                 console.log($(this).html());
                 // $(this).remove();
               })
@@ -347,6 +348,7 @@
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
               html2canvas(document.querySelector('#test-export-' + id), {
                 useCORS: true
+
               }).then(canvas => {
                 submission.blob = app.canvasToPDFBlob(canvas);
                 $("#btech-content-" + id).remove();
