@@ -563,6 +563,7 @@
                 points = Math.round(final_grade / grade * 100);
                 if (isNaN(points)) points = 0;
               }
+              console.log(points);
               return points;
             },
             async getCourseGrades(course_id, state) {
