@@ -29,7 +29,6 @@
           </div>
         </div>
       </div>
-
       <div v-if='showModal' class='btech-modal' style='display: inline-block;'>
         <div class='btech-modal-content'>
           <div style='float: right; cursor: pointer;' v-on:click='close()'>X</div>
@@ -44,7 +43,6 @@
         </div>
       </div>
   </div>
-
   <div id='accredidation-right' style='width: 100%;'>
     <div style='width: 100%; text-align: center;'>
       <div class='btn' v-if='reportReady()' style='cursor: pointer; display: inline-block; margin: 0 auto;' @click='downloadReport()'>Download</div>
@@ -295,6 +293,7 @@
               //comment this part out when ready to start messing with formatting and fixing the images missing.
             },
             canvasToPDFBlob(canvas) {
+              console.log("TO PDF");
               var doc = new jspdf.jsPDF('p', 'mm', 'a4');
               var padding = 10;
               var imgData = canvas.toDataURL('image/png');
@@ -317,7 +316,6 @@
               heightLeft -= imgHeight;
 
               console.log(heightLeft);
-              // /*
               while (heightLeft >= 0) {
                 console.log('again...');
                 position = heightLeft - canvasHeight; // top padding for other pages
@@ -331,7 +329,6 @@
                 doc.rect(0, pageHeight - padding, pageWidth, padding, 'F');
                 heightLeft -= imgHeight;
               }
-              // */
               return doc.output('blob');
             },
             async getBlobQuiz(assignment, submission) {
@@ -346,7 +343,7 @@
               $("#content").append(iframe);
               let content = await getElement("#questions", "#btech-content-" + id);
               content.find('img').each(function() {
-                // $(this).remove();
+                $(this).remove();
               })
               //update date in the content of the quiz
               content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
@@ -356,16 +353,10 @@
               //add a div, fill it with contents of iframe, probably clean it up a bit, then use that to save the image
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
-              html2canvas(document.querySelector('#test-export-' + id),
-              {
-                allowTaint: true,
-                useCORS: true,
-                foreignObjectRendering: true
-              }
-              ).then(canvas => {
+              html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
                 submission.blob = app.canvasToPDFBlob(canvas);
-                $("#btech-content-" + id).remove();
-                $("#test-export-" + id).remove();
+                // $("#btech-content-" + id).remove();
+                // $("#test-export-" + id).remove();
               });
             },
             async downloadQuiz(assignment, submission) {
