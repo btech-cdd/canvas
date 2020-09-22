@@ -152,8 +152,6 @@
                 });
               }
               if (types.includes("online_upload")) {
-                console.log("SUBMISSION");
-                console.log(submission);
                 let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
                 let assignmentsData = null;
                 await $.get(url, function (data) {
@@ -161,7 +159,6 @@
                 });
                 for (let i = 0; i < assignmentsData.attachments.length; i++) {
                   let attachment = assignmentsData.attachments[i];
-                  console.log(attachment.url);
                   await app.createIframe(attachment.url);
                 }
               }
@@ -295,18 +292,14 @@
               //comment this part out when ready to start messing with formatting and fixing the images missing.
             },
             canvasToPDFBlob(canvas) {
-              console.log("TO PDF");
               var doc = new jspdf.jsPDF('p', 'mm', 'a4');
               var padding = 10;
               var imgData = canvas.toDataURL('image/png');
               var pageWidth = doc.internal.pageSize.getWidth();
               var imgWidth = pageWidth - (padding * 2);
               var pageHeight = doc.internal.pageSize.getHeight();
-              console.log(pageHeight);
               var imgHeight = pageHeight - (padding * 2);
-              console.log(imgHeight);
               var canvasHeight = (canvas.height * (imgWidth) / canvas.width);
-              console.log(canvasHeight);
               var heightLeft = canvasHeight;
               var position = 0; // give some top padding to first page
 
@@ -317,9 +310,7 @@
               //offset isn't perfect here, there's a little duplication from the first page to the second  but nothing is lost which is what counts
               heightLeft -= imgHeight;
 
-              console.log(heightLeft);
               while (heightLeft >= 0) {
-                console.log('again...');
                 position = heightLeft - canvasHeight; // top padding for other pages
                 doc.addPage();
                 doc.addImage(imgData, 'PNG', padding, position + padding * 2, pageWidth - (padding * 2), canvasHeight);
