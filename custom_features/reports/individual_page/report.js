@@ -446,17 +446,28 @@
               let courseList = await this.getCourses();
               console.log("COURSE LIST");
               console.log(courseList);
-              for (let c = 0; c < courseList.length; c++) {
-                let course = await app.newCourse(courseList[c].course_id, courseList[c].state, courseList[c].name, courseList[c].year);
-                let state = course.state.toLowerCase();
-                if (state === "completed") state = "active";
-                let gradesData = await app.getCourseGrades(course.course_id, course.state);
-                course.grade_to_date = gradesData.grade;
-                course.final_grade = gradesData.final_grade;
-                course.points = gradesData.points;
+              if (app.IS_TEACHER) {
+                for (let c = 0; c < courseList.length; c++) {
+                  let course = await app.newCourse(courseList[c].course_id, courseList[c].state, courseList[c].name, courseList[c].year);
+                  let state = course.state.toLowerCase();
+                  if (state === "completed") state = "active";
+                  let gradesData = await app.getCourseGrades(course.course_id, course.state);
+                  course.grade_to_date = gradesData.grade;
+                  course.final_grade = gradesData.final_grade;
+                  course.points = gradesData.points;
 
-                await app.getAssignmentData(course, gradesData.enrollment);
-                courses.push(course);
+                  await app.getAssignmentData(course, gradesData.enrollment);
+                  courses.push(course);
+                }
+              } else {
+                for (let c = 0; c < courseList.length; c++) {
+                  let course = await app.newCourse(courseList[c].course_id, courseList[c].state, courseList[c].name, courseList[c].year);
+                  console.log(courseList[c].enrollment);
+                  await app.getAssignmentData(course, gradesData.enrollment);
+                  courses.push(course);
+                }
+
+
               }
               return courses;
             },
@@ -467,6 +478,7 @@
               let enrollments = await canvasGet("/api/v1/users/" + app.userId + "/enrollments?state[]=current_and_concluded");
               console.log("ENROLLMENTS");
               console.log(enrollments);
+              let enrollment_data = {};
               for (let e = 0; e < enrollments.length; e++) {
                 let enrollment = enrollments[e];
                 if (enrollment.role == "StudentEnrollment") {
@@ -475,6 +487,7 @@
                   let month = startDate.getMonth();
                   if (month < 6) year -= 1;
                   dates[enrollment.course_id] = year;
+                  enrollment_data[enrollment.course_id] = enrollment;
                 }
               }
               await $.get("/courses", function (data) {
@@ -497,7 +510,8 @@
                         name: name,
                         course_id: course_id,
                         state: state, //need to fix getting this info
-                        year: dates[course_id] //need to fix getting this info
+                        year: dates[course_id], //need to fix getting this info
+                        enrollment: enrollment_data[course_id]
                       });
                     }
                   });
