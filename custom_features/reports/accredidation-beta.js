@@ -324,6 +324,7 @@
                 doc.rect(0, pageHeight - padding, pageWidth, padding, 'F');
                 heightLeft -= imgHeight;
               }
+              doc.save('test.pdf');
               return doc.output('blob');
             },
             async getBlobQuiz(assignment, submission) {
