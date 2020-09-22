@@ -460,9 +460,9 @@
                   let courseData = courseList[c];
                   let course = await app.newCourse(courseList[c].course_id, courseList[c].state, courseList[c].name, courseList[c].year);
                   course.grade_to_date = courseData.enrollment.grades.current_score;
-                  if (course.grade_to_date == null) course.grade_to_date = 0;
+                  if (course.grade_to_date == null) course.grade_to_date = "N/A";
                   course.final_grade = courseData.enrollment.grades.final_score;
-                  if (course.final_grade == null) course.final_grade = 0;
+                  if (course.final_grade == null) course.final_grade = "N/A";
                   course.points = app.calcPointsProgress(course.grade_to_date, course.final_grade);
                   await app.getAssignmentData(course, courseData.enrollment);
                   courses.push(course);
