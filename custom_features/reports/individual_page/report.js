@@ -479,20 +479,28 @@
               }
               await $.get("/courses", function (data) {
                 console.log(data);
-                $(data).find("tr.course-list-table-row a").each(function () {
-                  let name = $(this).text().trim();
-                  let href = $(this).attr('href');
-                  let match = href.match(/courses\/([0-9]+)/);
-                  if (match) {
-                    let course_id = match[1];
-                    list.push({
-                      name: name,
-                      course_id: course_id,
-                      state: "active", //need to fix getting this info
-                      year: dates[course_id] //need to fix getting this info
-                    });
-                  }
-                });
+                let page = $(data);
+                let courseTables = {};
+                courseTables['active'] = page.find('#my_courses_table');
+                courseTables['concluded'] = page.find('#my_courses_table');
+                for (let state in courseTables) {
+                  console.log(state);
+                  let table = courseTables[state];
+                  table.find("tr.course-list-table-row a").each(function () {
+                    let name = $(this).text().trim();
+                    let href = $(this).attr('href');
+                    let match = href.match(/courses\/([0-9]+)/);
+                    if (match) {
+                      let course_id = match[1];
+                      list.push({
+                        name: name,
+                        course_id: course_id,
+                        state: state, //need to fix getting this info
+                        year: dates[course_id] //need to fix getting this info
+                      });
+                    }
+                  });
+                }
               })
               return list;
             },
