@@ -337,7 +337,7 @@
                 // $(this).attr('crossorigin', 'anonymous');
                 // $(this).attr('src', $(this).attr('src').replace('https', 'http'));
                 // console.log($(this).html());
-                $(this).remove();
+                // $(this).remove();
               })
               //update date in the content of the quiz
               content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
