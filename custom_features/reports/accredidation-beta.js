@@ -301,13 +301,15 @@
               var pageWidth = doc.internal.pageSize.getWidth();
               var imgWidth = pageWidth - (padding * 2);
               var pageHeight = doc.internal.pageSize.getHeight();
+              console.log(pageHeight);
               var imgHeight = pageHeight - (padding * 2);
+              console.log(imgHeight);
               var canvasHeight = (canvas.height * (imgWidth) / canvas.width);
+              console.log(canvasHeight);
               var heightLeft = canvasHeight;
               var position = 0; // give some top padding to first page
 
-              // doc.addImage(imgData, 'PNG', padding, position + padding, pageWidth - (padding * 2), canvasHeight);
-              doc.addImage(canvas, 'PNG', padding, position + padding, pageWidth - (padding * 2), canvasHeight);
+              doc.addImage(imgData, 'PNG', padding, position + padding, pageWidth - (padding * 2), canvasHeight);
               doc.setDrawColor(255, 255, 255);
               doc.setFillColor(255, 255, 255);
               doc.rect(0, pageHeight - padding, pageWidth, padding, 'F');
@@ -315,7 +317,7 @@
               heightLeft -= imgHeight;
 
               console.log(heightLeft);
-              /*
+              // /*
               while (heightLeft >= 0) {
                 console.log('again...');
                 position = heightLeft - canvasHeight; // top padding for other pages
@@ -329,7 +331,7 @@
                 doc.rect(0, pageHeight - padding, pageWidth, padding, 'F');
                 heightLeft -= imgHeight;
               }
-              */
+              // */
               return doc.output('blob');
             },
             async getBlobQuiz(assignment, submission) {
@@ -343,6 +345,9 @@
               let cropper = $(cropperCanvas)[0].getContext('2d');
               $("#content").append(iframe);
               let content = await getElement("#questions", "#btech-content-" + id);
+              content.find('img').each(function() {
+                $(this).remove();
+              })
               //update date in the content of the quiz
               content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
               content.prepend("<div>Student:" + submission.user.name + "</div>");
@@ -352,9 +357,6 @@
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
               html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
-                var doc = new jspdf.jsPDF('p', 'mm', 'a4');
-                doc.addImage(canvas, 0, 0);
-                doc.save('test.pdf');
                 submission.blob = app.canvasToPDFBlob(canvas);
                 // $("#btech-content-" + id).remove();
                 // $("#test-export-" + id).remove();
