@@ -352,7 +352,9 @@
               //add a div, fill it with contents of iframe, probably clean it up a bit, then use that to save the image
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
-              html2canvas(document.querySelector('#test-export-' + id)).then(canvas => {
+              html2canvas(document.querySelector('#test-export-' + id), {
+                useCORS: true
+              }).then(canvas => {
                 submission.blob = app.canvasToPDFBlob(canvas);
                 $("#btech-content-" + id).remove();
                 $("#test-export-" + id).remove();
