@@ -461,9 +461,12 @@
                 }
               } else {
                 for (let c = 0; c < courseList.length; c++) {
+                  let courseData = courseList[c];
                   let course = await app.newCourse(courseList[c].course_id, courseList[c].state, courseList[c].name, courseList[c].year);
-                  console.log(courseList[c].enrollment);
-                  await app.getAssignmentData(course, gradesData.enrollment);
+                  course.grade_to_date = courseData.enrollment.current_score;
+                  course.final_grade = courseData.enrollment.final_score;
+                  console.log(courseData.enrollment);
+                  await app.getAssignmentData(course, courseData.enrollment);
                   courses.push(course);
                 }
 
