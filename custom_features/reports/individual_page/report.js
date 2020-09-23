@@ -234,7 +234,6 @@
               let currentDate = new Date();
               if (currentDate < endDate) {
                 midtermPercentCompleted = (currentDate - startDate) / (endDate - startDate);
-                console.log(midtermPercentCompleted);
               }
               //break if a date is undefined
               if (startDate === undefined || endDate === undefined) return;
