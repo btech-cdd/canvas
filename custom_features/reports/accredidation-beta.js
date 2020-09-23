@@ -354,7 +354,7 @@
               }).then(canvas => {
                 submission.blob = app.canvasToPDFBlob(canvas);
                 $("#btech-content-" + id).remove();
-                $("#test-export-" + id).remove();
+                // $("#test-export-" + id).remove();
               });
             },
             async downloadQuiz(assignment, submission) {
