@@ -336,11 +336,6 @@
               $("#content").append(iframe);
               let content = await getElement("#questions", "#btech-content-" + id);
               console.log($(content)[0]);
-              content.find('#questions img').each(function() {
-                // $(this).attr('crossorigin', 'anonymous');
-                console.log($(this).html());
-                $(this).remove();
-              })
               //update date in the content of the quiz
               content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
               content.prepend("<div>Student:" + submission.user.name + "</div>");
@@ -349,6 +344,10 @@
               //add a div, fill it with contents of iframe, probably clean it up a bit, then use that to save the image
               $("#content").append("<div id='test-export-" + id + "'></div>");
               $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
+              let exportCanvas = $("#test-export-" + id);
+              exportCanvas.find('img').each(function() {
+                console.log($(this).html());
+              })
               html2canvas(document.querySelector('#test-export-' + id), {
                 useCORS: true
               }).then(canvas => {
