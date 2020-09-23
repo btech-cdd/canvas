@@ -164,8 +164,8 @@
             let elId = 'temp-iframe-' + id
             let iframe = $('<iframe id="' + elId + '" style="display: none;" src="' + url + '"></iframe>');
             iframe.on('load', async function () {
-              console.log(document.getElementById('btech-content-' + id).contentWindow.document);
-              let content = document.getElementById('btech-content-' + id).contentWindow.document.getElementsByTagName('body')[0];
+              console.log(document.getElementById(elId).contentWindow.document);
+              let content = document.getElementById(elId).contentWindow.document.getElementsByTagName('body')[0];
               console.log(content);
               if (func !== null) {
                 func(iframe, content, data);
