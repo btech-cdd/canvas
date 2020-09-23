@@ -108,6 +108,10 @@
                     <td><input style="padding: 0px 4px; margin: 0px;" v-model="estimatedHoursEnrolled" type="text"></td>
                   </tr>
                   <tr>
+                    <td><b>Estimated Hours Required</b></td>
+                    <td><input style="padding: 0px 4px; margin: 0px;" v-model="estimatedHoursRequired" type="text"></td>
+                  </tr>
+                  <tr>
                     <td><b>Weighted Final Grade</b></td>
                     <td>{{weightedFinalGradeForTerm()}}%</td>
                   </tr>

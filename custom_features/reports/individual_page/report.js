@@ -87,6 +87,7 @@
               submissionDatesEnd: undefined,
               courseAssignmentGroups: {},
               estimatedHoursEnrolled: 0,
+              estimatedHoursRequired: 0,
               columns: [
                 new Column('Name', '', false, 'string', false, false),
                 new Column('State', '', false, 'string', false),
@@ -154,26 +155,13 @@
 
             weightedFinalGradeForTerm() {
               let hoursEnrolled = this.estimatedHoursEnrolled; //might change how this is calculated because this doesn't really make sense. Maybe user has to select one? Consult on this.
-              let requiredHours = hoursEnrolled * .67;
+              let requiredHours = this.estimatedHoursRequired * .67;
               let hoursCompleted = this.sumHoursCompleted();
               let grade = this.weightedGradeForTerm();
               if (hoursCompleted < requiredHours) {
                 grade *= (hoursCompleted / requiredHours);
               }
               return parseFloat(grade.toFixed(2));
-            },
-
-            async weightedGradeWithRequiredHours() {
-              //This needs to be created
-              //will take the weighted grade and then if the student does not complete at least 66% of the hours enrolled, they will have a reduction in their score based on ammount below that 66%
-              let hoursEnrolled = undefined; //needs to be grabbed from the course, wherever it ends up being stored
-              let hoursCompleted = this.sumHoursCompleted();
-              let weightedGrade = weightedGradeForTerm();
-              let minHoursRequired = hoursEnrolled * .66;
-              if (hoursCompleted < minHoursRequired) {
-                weightedGrade *= (hoursCompleted / minHoursRequired);
-              }
-              return weightedGrade;
             },
 
             getProgressBetweenDates(courseId) {
@@ -376,7 +364,8 @@
                   hoursTotal += hours;
                 }
               }
-              this.estimatedHoursEnrolled = Math.floor(parseFloat((hoursTotal / count).toFixed(2)) * midtermPercentCompleted);
+              this.estimatedHoursEnrolled = Math.floor(parseFloat((hoursTotal / count).toFixed(2)));
+              this.estimatedHoursRequired = Math.floor(parseFloat((hoursTotal / count).toFixed(2)) * midtermPercentCompleted);
             },
 
             parseDate(dateString) {
