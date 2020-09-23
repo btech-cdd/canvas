@@ -107,7 +107,7 @@
                     <td><b>Estimated Hours Enrolled</b></td>
                     <td>{{estimatedHoursEnrolled}}</td>
                   </tr>
-                  <tr v-if='showGradeDetails'>
+                  <tr>
                     <td><b>Estimated Hours Required</b></td>
                     <td><input style="padding: 0px 4px; margin: 0px;" v-model="estimatedHoursRequired" type="text"></td>
                   </tr>
