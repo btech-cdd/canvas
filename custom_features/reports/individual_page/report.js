@@ -325,30 +325,28 @@
                     hoursBetweenDates[courseId] = null;
                     for (let h = 0; h < hoursData.length; h++) {
                       let hoursDatum = hoursData[h];
-                      if (hoursDatum.score > 0) {
-                        let hoursDateString = hoursDatum.graded_at;
-                        let hoursDate = new Date(hoursDateString);
-                        //see if it's between the period dates, then make sure a date hasn't been found. if it's more recent or there's no previous data, update.
-                        if (hoursDate >= startDate && hoursDate <= endDate) {
-                          if (foundDate === null) {
-                            hoursBetweenDates[courseId] = hoursDatum.score;
-                            foundDate = hoursDate;
-                          } else if (hoursDate > foundDate) {
-                            //might be worth putting some kind of warning saying there's more than one date
-                            hoursBetweenDates[courseId] = hoursDatum.score;
-                            foundDate = hoursDate;
-                          }
+                      let hoursDateString = hoursDatum.graded_at;
+                      let hoursDate = new Date(hoursDateString);
+                      //see if it's between the period dates, then make sure a date hasn't been found. if it's more recent or there's no previous data, update.
+                      if (hoursDate >= startDate && hoursDate <= endDate) {
+                        if (foundDate === null) {
+                          hoursBetweenDates[courseId] = hoursDatum.score;
+                          foundDate = hoursDate;
+                        } else if (hoursDate > foundDate) {
+                          //might be worth putting some kind of warning saying there's more than one date
+                          hoursBetweenDates[courseId] = hoursDatum.score;
+                          foundDate = hoursDate;
                         }
-                        //If you couldn't find anything, start fresh and just find the most recent score
-                        if (hoursBetweenDates[courseId] === null) {
-                          if (foundDate === null) {
-                            hoursBetweenDates[courseId] = hoursDatum.score;
-                            foundDate = hoursDate;
-                          } else if (hoursDate > foundDate) {
-                            //might be worth putting some kind of warning saying there's more than one date
-                            hoursBetweenDates[courseId] = hoursDatum.score;
-                            foundDate = hoursDate;
-                          }
+                      }
+                      //If you couldn't find anything, start fresh and just find the most recent score
+                      if (hoursBetweenDates[courseId] === null) {
+                        if (foundDate === null) {
+                          hoursBetweenDates[courseId] = hoursDatum.score;
+                          foundDate = hoursDate;
+                        } else if (hoursDate > foundDate) {
+                          //might be worth putting some kind of warning saying there's more than one date
+                          hoursBetweenDates[courseId] = hoursDatum.score;
+                          foundDate = hoursDate;
                         }
                       }
                     }
@@ -367,7 +365,7 @@
                 let course = this.courses[c];
                 let courseId = course.course_id;
                 let hours = this.hoursBetweenDates[courseId];
-                if (hours !== undefined) {
+                if (hours !== undefined && hours > 0) {
                   count += 1;
                   hoursTotal += hours;
                 }
