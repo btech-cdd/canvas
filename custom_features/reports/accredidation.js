@@ -171,7 +171,7 @@
               let finished = 0;
               imgs.each(function () {
                 console.log("TEST?");
-                $(this).load(function () {
+                $(this).on("load", function () {
                   console.log("HELLO!");
                   finished += 1;
                   if (finished === count) {
