@@ -20,7 +20,7 @@
           <div v-for='group in assignmentGroups'>
             <h2>{{group.name}}</h2>
             <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
-              <a href="javascript:void(0);" style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a>
+              <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a>
             </div>
           </div>
         </div>
@@ -138,24 +138,6 @@
             content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + assignment.name + "</div>");
-            //THIS IS A TEST
-            //add a div, fill it with contents of iframe, probably clean it up a bit, then use that to save the image
-            /*
-            $("#content").append("<div id='test-export'></div>");
-            $("#test-export").append(document.getElementById('btech-quiz').contentWindow.document.getElementsByTagName('body')[0]);
-            let zip = new JSZip();
-            html2canvas(document.querySelector('#test-export')).then(canvas => {
-              canvas.toBlob(function (blob) {
-                console.log(blob);
-                zip.file("test.png", blob);
-                zip.generateAsync({
-                  type: "base64"
-                }).then(function (content) {
-                  window.location.href = "data:application/zip;base64," + content;
-                });
-              });
-            });
-            */
             let ogTitle = $('title').text();
             $('title').text(title);
             content.printThis({

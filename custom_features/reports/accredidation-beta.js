@@ -368,7 +368,7 @@
               content.prepend("<div>Student:" + submission.user.name + "</div>");
               content.prepend("<div>Assignment:" + assignment.name + "</div>");
               content.printThis();
-              $("#btech-quiz").remove();
+              // $("#btech-quiz").remove();
             },
             async createIframe(url, func = null, data = {}) {
               let app = this;
