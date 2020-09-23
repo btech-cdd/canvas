@@ -163,7 +163,7 @@
             let id = genId();
             let elId = 'temp-iframe-' + id
             let iframe = $('<iframe id="' + elId + '" style="display: none;" src="' + url + '"></iframe>');
-            iframe.on('load', function () {
+            iframe.on('load', async function () {
               let content = await getElement("body", "#" + elId);
               if (func !== null) {
                 func(iframe, content, data);
