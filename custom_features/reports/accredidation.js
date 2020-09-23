@@ -165,12 +165,20 @@
             let iframe = $('<iframe id="' + elId + '" style="display: none;" src="' + url + '"></iframe>');
             iframe.on('load', function () {
               let content = $(document.getElementById(elId).contentWindow.document.getElementsByTagName('body')[0]);
-              content.load(function () {
-                console.log("DONE!");
-                if (func !== null) {
-                  func(iframe, content, data);
-                }
-                $("#" + elId).remove();
+              let imgs = content.find('img');
+              let count = imgs.length;
+              console.log(count);
+              let finished = 0;
+              imgs.each(function () {
+                $(this).load(function () {
+                  finished += 1;
+                  if (finished === count) {
+                    if (func !== null) {
+                      func(iframe, content, data);
+                    }
+                    $("#" + elId).remove();
+                  }
+                })
               })
             });
             $("#content").append(iframe);
