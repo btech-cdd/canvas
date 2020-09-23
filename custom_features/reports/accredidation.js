@@ -163,35 +163,15 @@
             let id = genId();
             let elId = 'temp-iframe-' + id
             let iframe = $('<iframe id="' + elId + '" style="display: none;" src="' + url + '"></iframe>');
-            iframe.on('load', function () {
-              let window = $(document.getElementById(elId).contentWindow);
-              let content = $(document.getElementById(elId).contentWindow.document.getElementsByTagName('body')[0]);
-              window.on('load', function () {
-                console.log('loaded');
-                if (func !== null) {
-                  func(iframe, content, data);
-                }
-                $("#" + elId).remove();
-              })
-              let imgs = content.find('img');
-              let count = imgs.length;
-              console.log(count);
-              let finished = 0;
-              imgs.each(function () {
-                console.log("TEST?");
-                $(this).on("load", function () {
-                  console.log("HELLO!");
-                  finished += 1;
-                  if (finished === count) {
-                    if (func !== null) {
-                      func(iframe, content, data);
-                    }
-                    $("#" + elId).remove();
-                  }
-                })
-              })
-            });
             $("#content").append(iframe);
+            let window = document.getElementById(elId).contentWindow;
+            window.onload = function () {
+              let content = $(document.getElementById(elId).contentWindow.document.getElementsByTagName('body')[0]);
+              if (func !== null) {
+                func(iframe, content, data);
+              }
+              $("#" + elId).remove();
+            }
             return;
           },
           async openModal(assignment) {
