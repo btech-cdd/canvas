@@ -325,28 +325,30 @@
                     hoursBetweenDates[courseId] = null;
                     for (let h = 0; h < hoursData.length; h++) {
                       let hoursDatum = hoursData[h];
-                      let hoursDateString = hoursDatum.graded_at;
-                      let hoursDate = new Date(hoursDateString);
-                      //see if it's between the period dates, then make sure a date hasn't been found. if it's more recent or there's no previous data, update.
-                      if (hoursDate >= startDate && hoursDate <= endDate) {
-                        if (foundDate === null) {
-                          hoursBetweenDates[courseId] = hoursDatum.score;
-                          foundDate = hoursDate;
-                        } else if (hoursDate > foundDate) {
-                          //might be worth putting some kind of warning saying there's more than one date
-                          hoursBetweenDates[courseId] = hoursDatum.score;
-                          foundDate = hoursDate;
+                      if (hoursDatum.score > 0) {
+                        let hoursDateString = hoursDatum.graded_at;
+                        let hoursDate = new Date(hoursDateString);
+                        //see if it's between the period dates, then make sure a date hasn't been found. if it's more recent or there's no previous data, update.
+                        if (hoursDate >= startDate && hoursDate <= endDate) {
+                          if (foundDate === null) {
+                            hoursBetweenDates[courseId] = hoursDatum.score;
+                            foundDate = hoursDate;
+                          } else if (hoursDate > foundDate) {
+                            //might be worth putting some kind of warning saying there's more than one date
+                            hoursBetweenDates[courseId] = hoursDatum.score;
+                            foundDate = hoursDate;
+                          }
                         }
-                      }
-                      //If you couldn't find anything, start fresh and just find the most recent score
-                      if (hoursBetweenDates[courseId] === null) {
-                        if (foundDate === null) {
-                          hoursBetweenDates[courseId] = hoursDatum.score;
-                          foundDate = hoursDate;
-                        } else if (hoursDate > foundDate) {
-                          //might be worth putting some kind of warning saying there's more than one date
-                          hoursBetweenDates[courseId] = hoursDatum.score;
-                          foundDate = hoursDate;
+                        //If you couldn't find anything, start fresh and just find the most recent score
+                        if (hoursBetweenDates[courseId] === null) {
+                          if (foundDate === null) {
+                            hoursBetweenDates[courseId] = hoursDatum.score;
+                            foundDate = hoursDate;
+                          } else if (hoursDate > foundDate) {
+                            //might be worth putting some kind of warning saying there's more than one date
+                            hoursBetweenDates[courseId] = hoursDatum.score;
+                            foundDate = hoursDate;
+                          }
                         }
                       }
                     }
@@ -643,7 +645,6 @@
                 let submissions = await canvasGet(url);
                 course.assignments = submissions;
                 let total_points_possible = 0;
-                let current_points_earned = 0;
                 let current_points_possible = 0;
                 let most_recent = {};
                 let submitted = 0;
@@ -664,7 +665,6 @@
                     if (assignment.points_possible > 0) {
                       max_submissions += 1;
                       if (submission.score !== null) {
-                        current_points_earned += submission.score;
                         current_points_possible += points_possible;
                         submitted += 1;
                       }
