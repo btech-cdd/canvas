@@ -20,7 +20,7 @@
           <div v-for='group in assignmentGroups'>
             <h2>{{group.name}}</h2>
             <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
-              <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a>
+              <a href="javascript:void(0);" style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a>
             </div>
           </div>
         </div>
