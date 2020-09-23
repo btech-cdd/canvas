@@ -91,7 +91,7 @@
             let app = this;
             let types = assignment.submission_types;
             if (assignment.quiz_id !== undefined) {
-              let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '';
+              let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
               await app.createIframe(url, app.downloadQuiz, {
                 'submission': submission,
                 'assignment': assignment
@@ -168,7 +168,7 @@
               if (func !== null) {
                 func(iframe, content, data);
               }
-              // $("#" + elId).remove();
+              $("#" + elId).remove();
             });
             $("#content").append(iframe);
             return;
