@@ -170,6 +170,7 @@
               console.log(count);
               let finished = 0;
               imgs.each(function () {
+                console.log("TEST?");
                 $(this).load(function () {
                   console.log("HELLO!");
                   finished += 1;
