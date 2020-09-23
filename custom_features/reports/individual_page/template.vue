@@ -114,8 +114,8 @@
                   <tr>
                     <td><b>Weighted Final Grade</b>
                       <div style='float: right;'>
-                        <i v-if='showGradeDetails' class='icon-question' @click='showGradeDetails = true;'></i>
-                        <i v-if='!showGradeDetails' class='icon-minimize' @click='showGradeDetails = false;'></i>
+                        <i v-if='showGradeDetails' class='icon-minimize' @click='showGradeDetails = false;'></i>
+                        <i v-if='!showGradeDetails' class='icon-question' @click='showGradeDetails = true;'></i>
                       </div>
                     </td>
                     <td>{{weightedFinalGradeForTerm()}}%</td>
