@@ -168,7 +168,7 @@
               if (func !== null) {
                 func(iframe, content, data);
               }
-              $("#" + elId).remove();
+              // $("#" + elId).remove();
             });
             $("#content").append(iframe);
             return;
