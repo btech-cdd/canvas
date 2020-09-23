@@ -95,8 +95,7 @@
               await app.createIframe(url, app.downloadQuiz, {
                 'submission': submission,
                 'assignment': assignment
-              })
-              await app.downloadQuiz(assignment, submission);
+              });
             }
             if (assignment.rubric != undefined) {
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
@@ -141,7 +140,6 @@
                 $('title').text(ogTitle);
               }
             });
-            content.find("#rubric_holder").printThis();
             return;
           },
           async downloadQuiz(iframe, content, data) {
