@@ -20,24 +20,23 @@
           <div v-for='group in assignmentGroups'>
             <h2>{{group.name}}</h2>
             <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
-              <i class='icon-download' style='cursor: pointer;' @click='openModal(assignment)'></i> <a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+assignment.id">{{assignment.name}}</a>
+              <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a>
             </div>
           </div>
         </div>
-
         <div v-if='showModal' class='btech-modal' style='display: inline-block;'>
           <div class='btech-modal-content'>
             <div style='float: right; cursor: pointer;' v-on:click='close()'>X</div>
             <div class='btech-modal-content-inner'>
-              <h2>{{currentAssignment.name}}</h2>
+              <h2><a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id">{{currentAssignment.name}}</a></h2>
               <div v-for='submission in submissions'>
+                <i class='icon-plus' style='cursor: pointer;' @click='addAssignment(currentGroup, currentAssignment, submission)'></i>
                 <i class='icon-download' style='cursor: pointer;' @click='downloadSubmission(currentAssignment, submission)'></i>
                 <a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id+'/submissions/'+submission.user.id">{{submission.user.name}} ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%)</a>
               </div>
             </div>
           </div>
         </div>
-
       </div>`);
       await $.getScript("https://cdn.jsdelivr.net/npm/vue");
       new Vue({

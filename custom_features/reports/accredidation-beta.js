@@ -21,27 +21,27 @@
         $("#content").html(`
   <div id='accredidation' style='display: grid; grid-template-columns: auto 20%;'>
   <div id='accredidation-left'>
-      <div>
-        <div v-for='group in assignmentGroups'>
-          <h2>{{group.name}}</h2>
-          <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
-            <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a>
+    <div>
+      <div v-for='group in assignmentGroups'>
+        <h2>{{group.name}}</h2>
+        <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
+          <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a>
+        </div>
+      </div>
+    </div>
+    <div v-if='showModal' class='btech-modal' style='display: inline-block;'>
+      <div class='btech-modal-content'>
+        <div style='float: right; cursor: pointer;' v-on:click='close()'>X</div>
+        <div class='btech-modal-content-inner'>
+          <h2><a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id">{{currentAssignment.name}}</a></h2>
+          <div v-for='submission in submissions'>
+            <i class='icon-plus' style='cursor: pointer;' @click='addAssignment(currentGroup, currentAssignment, submission)'></i>
+            <i class='icon-download' style='cursor: pointer;' @click='downloadSubmission(currentAssignment, submission)'></i>
+            <a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id+'/submissions/'+submission.user.id">{{submission.user.name}} ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%)</a>
           </div>
         </div>
       </div>
-      <div v-if='showModal' class='btech-modal' style='display: inline-block;'>
-        <div class='btech-modal-content'>
-          <div style='float: right; cursor: pointer;' v-on:click='close()'>X</div>
-          <div class='btech-modal-content-inner'>
-            <h2><a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id">{{currentAssignment.name}}</a></h2>
-            <div v-for='submission in submissions'>
-              <i class='icon-plus' style='cursor: pointer;' @click='addAssignment(currentGroup, currentAssignment, submission)'></i>
-              <i class='icon-download' style='cursor: pointer;' @click='downloadSubmission(currentAssignment, submission)'></i>
-              <a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id+'/submissions/'+submission.user.id">{{submission.user.name}} ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%)</a>
-            </div>
-          </div>
-        </div>
-      </div>
+    </div>
   </div>
   <div id='accredidation-right' style='width: 100%;'>
     <div style='width: 100%; text-align: center;'>
