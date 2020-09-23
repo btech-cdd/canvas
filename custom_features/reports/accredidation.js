@@ -93,11 +93,11 @@
             let app = this;
             let types = assignment.submission_types;
             if (assignment.quiz_id !== undefined) {
-              app.downloadQuiz(assignment, submission);
+              await app.downloadQuiz(assignment, submission);
             }
             if (assignment.rubric != undefined) {
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
-              app.createIframe(url, app.downloadRubric, {
+              await app.createIframe(url, app.downloadRubric, {
                 'submission': submission,
                 'assignment': assignment
               });
@@ -160,6 +160,7 @@
             */
             content.printThis();
             $("#btech-quiz").remove();
+            return;
           },
           async createIframe(url, func = null, data = {}) {
             let app = this;
@@ -172,6 +173,7 @@
               func(iframe, content, data);
             }
             $("#" + elId).remove();
+            return;
           },
           async openModal(assignment) {
             let app = this;
