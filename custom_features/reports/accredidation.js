@@ -164,7 +164,14 @@
             let elId = 'temp-iframe-' + id
             let iframe = $('<iframe id="' + elId + '" style="display: none;" src="' + url + '"></iframe>');
             iframe.on('load', function () {
+              let window = $(document.getElementById(elId).contentWindow);
               let content = $(document.getElementById(elId).contentWindow.document.getElementsByTagName('body')[0]);
+              window.on('load', function () {
+                if (func !== null) {
+                  func(iframe, content, data);
+                }
+                $("#" + elId).remove();
+              })
               let imgs = content.find('img');
               let count = imgs.length;
               console.log(count);
