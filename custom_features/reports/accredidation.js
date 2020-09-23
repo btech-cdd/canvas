@@ -156,7 +156,7 @@
               });
             });
             */
-            content.prepend("<title>Filename</title>")
+            $('title').html('TEST')
             content.printThis({
               pageTitle: title,
             });
