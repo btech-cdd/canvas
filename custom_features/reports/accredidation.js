@@ -91,6 +91,11 @@
             let app = this;
             let types = assignment.submission_types;
             if (assignment.quiz_id !== undefined) {
+              let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
+              await app.createIframe(url, app.downloadQuiz, {
+                'submission': submission,
+                'assignment': assignment
+              })
               await app.downloadQuiz(assignment, submission);
             }
             if (assignment.rubric != undefined) {
@@ -127,17 +132,14 @@
               'overflow': 'visible'
             });
             content.find("#rubric_holder").printThis();
+            return;
           },
-          async downloadQuiz(assignment, submission) {
-            let title = assignment.name + "-" + submission.user.name + " submission"
+          async downloadQuiz(iframe, content, data) {
             let app = this;
-            let iframe = $('<iframe id="btech-quiz" style="display: none;" src="/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1"></iframe>');
-            $("#content").append(iframe);
-            let content = await getElement("body", "#btech-quiz");
-            //update date in the content of the quiz
-            content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
-            content.prepend("<div>Student:" + submission.user.name + "</div>");
-            content.prepend("<div>Assignment:" + assignment.name + "</div>");
+            let title = data.assignment.name + "-" + data.submission.user.name + " submission"
+            content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
+            content.prepend("<div>Student:" + data.submission.user.name + "</div>");
+            content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
             let ogTitle = $('title').text();
             $('title').text(title);
             content.printThis({
@@ -146,7 +148,6 @@
                 $('title').text(ogTitle);
               }
             });
-            $("#btech-quiz").remove();
             return;
           },
           async createIframe(url, func = null, data = {}) {
