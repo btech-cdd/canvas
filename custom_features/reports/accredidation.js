@@ -163,13 +163,15 @@
             let id = genId();
             let elId = 'temp-iframe-' + id
             let iframe = $('<iframe id="' + elId + '" style="display: none;" src="' + url + '"></iframe>');
-            iframe.on('load', async function () {
+            iframe.on('load', function () {
               let content = $(document.getElementById(elId).contentWindow.document.getElementsByTagName('body')[0]);
-              console.log(content.html());
-              if (func !== null) {
-                func(iframe, content, data);
-              }
-              $("#" + elId).remove();
+              content.load(function () {
+                console.log("DONE!");
+                if (func !== null) {
+                  func(iframe, content, data);
+                }
+                $("#" + elId).remove();
+              })
             });
             $("#content").append(iframe);
             return;
