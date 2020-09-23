@@ -305,7 +305,7 @@
                   //if there are any points possible in this course, put out some summary grades data
                   if (totalWeights > 0) {
                     let output;
-                    let weightedGrade = Math.round(currentWeighted / totalWeights * 10000) / 100;
+                    let weightedGrade = Math.round(currentWeighted / totalWeightsSubmitted * 10000) / 100;
                     output = "";
                     if (!isNaN(weightedGrade)) {
                       output = weightedGrade;
@@ -643,6 +643,7 @@
                 let submissions = await canvasGet(url);
                 course.assignments = submissions;
                 let total_points_possible = 0;
+                let current_points_earned = 0;
                 let current_points_possible = 0;
                 let most_recent = {};
                 let submitted = 0;
@@ -663,6 +664,7 @@
                     if (assignment.points_possible > 0) {
                       max_submissions += 1;
                       if (submission.score !== null) {
+                        current_points_earned += submission.score;
                         current_points_possible += points_possible;
                         submitted += 1;
                       }
