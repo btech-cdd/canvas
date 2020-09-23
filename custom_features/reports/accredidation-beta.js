@@ -139,6 +139,8 @@
               return submittedAssignments;
             },
             async downloadSubmission(assignment, submission) {
+              console.log(assignment);
+              console.log(submission);
               let app = this;
               let types = assignment.submission_types;
               if (assignment.quiz_id !== undefined) {

@@ -88,6 +88,8 @@
             return submittedAssignments;
           },
           async downloadSubmission(assignment, submission) {
+            let ogTitle = document.title;
+            document.title = assignment.name + "-" + submission.user.name + " submission"
             let app = this;
             let types = assignment.submission_types;
             if (assignment.quiz_id !== undefined) {
@@ -101,8 +103,6 @@
               });
             }
             if (types.includes("online_upload")) {
-              console.log("SUBMISSION");
-              console.log(submission);
               let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               let assignmentsData = null;
               await $.get(url, function (data) {
@@ -118,6 +118,7 @@
             if (false) {
               console.log('assignment type undefined');
             }
+            document.title = ogTitle;
           },
           async downloadRubric(iframe, content, data) {
             content.find("#rubric_holder").show();
