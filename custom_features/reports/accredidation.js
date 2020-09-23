@@ -123,6 +123,8 @@
             }
           },
           async downloadRubric(iframe, content, data) {
+            let app = this;
+            let title = data.assignment.name + "-" + data.submission.user.name + " submission"
             content.find("#rubric_holder").show();
             content.find("#rubric_holder").prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.find("#rubric_holder").prepend("<div>Student:" + data.submission.user.name + "</div>");
@@ -130,6 +132,14 @@
             content.find("#rubric_holder").css({
               'max-height': '',
               'overflow': 'visible'
+            });
+            let ogTitle = $('title').text();
+            $('title').text(title);
+            content.find("#rubric_holder").printThis({
+              pageTitle: title,
+              afterPrint: function () {
+                $('title').text(ogTitle);
+              }
             });
             content.find("#rubric_holder").printThis();
             return;
