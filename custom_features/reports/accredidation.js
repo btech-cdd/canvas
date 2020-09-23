@@ -156,9 +156,13 @@
               });
             });
             */
-            $('title').html('TEST')
+            let ogTitle = $('title').text();
+            $('title').text('TEST')
             content.printThis({
               pageTitle: title,
+              afterPrint: function () {
+                $('title').text(ogTitle);
+              }
             });
             $("#btech-quiz").remove();
             return;
