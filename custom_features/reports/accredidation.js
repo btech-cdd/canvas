@@ -171,6 +171,7 @@
               let finished = 0;
               imgs.each(function () {
                 $(this).load(function () {
+                  console.log("HELLO!");
                   finished += 1;
                   if (finished === count) {
                     if (func !== null) {
