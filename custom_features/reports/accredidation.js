@@ -157,7 +157,7 @@
             });
             */
             let ogTitle = $('title').text();
-            $('title').text('TEST')
+            $('title').text(title);
             content.printThis({
               pageTitle: title,
               afterPrint: function () {
