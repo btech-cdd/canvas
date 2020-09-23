@@ -244,7 +244,7 @@
               let midtermPercentCompleted = 1;
               let currentDate = new Date();
               if (currentDate < endDate) {
-                midtermPercentCompleted = (endDate - currentDate) / (endDate - startDate);
+                midtermPercentCompleted = (currentDate - startDate) / (endDate - startDate);
                 console.log(midtermPercentCompleted);
               }
               //break if a date is undefined
@@ -376,7 +376,7 @@
                   hoursTotal += hours;
                 }
               }
-              this.estimatedHoursEnrolled = parseFloat((hoursTotal / count).toFixed(2)) * midtermPercentCompleted;
+              this.estimatedHoursEnrolled = Math.floor(parseFloat((hoursTotal / count).toFixed(2)) * midtermPercentCompleted);
             },
 
             parseDate(dateString) {
