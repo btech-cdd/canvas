@@ -165,7 +165,7 @@
             let iframe = $('<iframe id="' + elId + '" style="display: none;" src="' + url + '"></iframe>');
             iframe.on('load', async function () {
               let content = $(document.getElementById(elId).contentWindow.document.getElementsByTagName('body')[0]);
-              console.log(content);
+              console.log(content.html());
               if (func !== null) {
                 func(iframe, content, data);
               }
