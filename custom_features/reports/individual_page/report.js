@@ -241,6 +241,12 @@
               let hoursBetweenDates = {};
               let startDate = this.parseDate(this.submissionDatesStart);
               let endDate = this.parseDate(this.submissionDatesEnd);
+              let midtermPercentCompleted = 1;
+              let currentDate = new Date();
+              if (currentDate < endDate) {
+                midtermPercentCompleted = (endDate - startDate) / (endDate - currentDate);
+                console.log(midtermPercentCompleted);
+              }
               //break if a date is undefined
               if (startDate === undefined || endDate === undefined) return;
 
@@ -370,7 +376,7 @@
                   hoursTotal += hours;
                 }
               }
-              this.estimatedHoursEnrolled = parseFloat((hoursTotal / count).toFixed(2));
+              this.estimatedHoursEnrolled = parseFloat((hoursTotal / count).toFixed(2)) * midtermPercentCompleted;
             },
 
             parseDate(dateString) {
