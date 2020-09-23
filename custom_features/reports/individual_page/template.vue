@@ -95,24 +95,29 @@
                   <tr height="10px"></tr>
                 </tbody>
                 <tfoot border='1'>
-                  <tr>
+                  <tr v-if='showGradeDetails'>
                     <td><b>Weighted Grade To Date</b></td>
                     <td>{{weightedGradeForTerm()}}%</td>
                   </tr>
-                  <tr>
+                  <tr v-if='showGradeDetails'>
                     <td><b>Hours Completed</b></td>
                     <td>{{sumHoursCompleted()}}</td>
                   </tr>
-                  <tr>
+                  <tr v-if='showGradeDetails'>
                     <td><b>Estimated Hours Enrolled</b></td>
-                    <td><input style="padding: 0px 4px; margin: 0px;" v-model="estimatedHoursEnrolled" type="text"></td>
+                    <td>{{estimatedHoursEnrolled}}</td>
                   </tr>
-                  <tr>
+                  <tr v-if='showGradeDetails'>
                     <td><b>Estimated Hours Required</b></td>
                     <td><input style="padding: 0px 4px; margin: 0px;" v-model="estimatedHoursRequired" type="text"></td>
                   </tr>
                   <tr>
-                    <td><b>Weighted Final Grade</b></td>
+                    <td><b>Weighted Final Grade</b>
+                      <div style='float: right;'>
+                        <i v-if='showGradeDetails' class='icon-question' @click='showGradeDetails = true;'></i>
+                        <i v-if='!showGradeDetails' class='icon-minimize' @click='showGradeDetails = false;'></i>
+                      </div>
+                    </td>
                     <td>{{weightedFinalGradeForTerm()}}%</td>
                   </tr>
                 </tfoot>

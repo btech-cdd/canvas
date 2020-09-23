@@ -107,7 +107,8 @@
               loadingMessage: "Loading Results...",
               accessDenied: false,
               menu: 'report',
-              IS_TEACHER: false
+              IS_TEACHER: false,
+              showGradeDetails: false,
             }
           },
 
