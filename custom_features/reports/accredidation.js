@@ -163,12 +163,14 @@
             let id = genId();
             let elId = 'temp-iframe-' + id
             let iframe = $('<iframe id="' + elId + '" style="display: none;" src="' + url + '"></iframe>');
+            iframe.on('load', function () {
+              let content = await getElement("body", "#" + elId);
+              if (func !== null) {
+                func(iframe, content, data);
+              }
+              $("#" + elId).remove();
+            });
             $("#content").append(iframe);
-            let content = await getElement("body", "#" + elId);
-            if (func !== null) {
-              func(iframe, content, data);
-            }
-            $("#" + elId).remove();
             return;
           },
           async openModal(assignment) {
