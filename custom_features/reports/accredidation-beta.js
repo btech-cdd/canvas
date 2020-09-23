@@ -339,7 +339,7 @@
               content.find('img').each(function() {
                 $(this).attr('crossorigin', 'anonymous');
                 console.log($(this).html());
-                // $(this).remove();
+                $(this).remove();
               })
               //update date in the content of the quiz
               content.prepend("<div>Submitted:" + submission.submitted_at + "</div>");
