@@ -167,6 +167,7 @@
               let window = $(document.getElementById(elId).contentWindow);
               let content = $(document.getElementById(elId).contentWindow.document.getElementsByTagName('body')[0]);
               window.on('load', function () {
+                console.log('loaded');
                 if (func !== null) {
                   func(iframe, content, data);
                 }
