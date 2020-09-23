@@ -88,8 +88,6 @@
             return submittedAssignments;
           },
           async downloadSubmission(assignment, submission) {
-            let ogTitle = document.title;
-            document.title = assignment.name + "-" + submission.user.name + " submission"
             let app = this;
             let types = assignment.submission_types;
             if (assignment.quiz_id !== undefined) {
@@ -118,7 +116,6 @@
             if (false) {
               console.log('assignment type undefined');
             }
-            document.title = ogTitle;
           },
           async downloadRubric(iframe, content, data) {
             content.find("#rubric_holder").show();
@@ -132,6 +129,7 @@
             content.find("#rubric_holder").printThis();
           },
           async downloadQuiz(assignment, submission) {
+            let title = assignment.name + "-" + submission.user.name + " submission"
             let app = this;
             let iframe = $('<iframe id="btech-quiz" style="display: none;" src="/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1"></iframe>');
             $("#content").append(iframe);
@@ -158,7 +156,9 @@
               });
             });
             */
-            content.printThis();
+            content.printThis({
+              pageTitle: title,
+            });
             $("#btech-quiz").remove();
             return;
           },
