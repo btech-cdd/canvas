@@ -44,7 +44,6 @@ console.log("ATTEMPTS");
               'submission_comments'
             ]
           });
-          let data = canvasGet("/api/v1/courses/")
           console.log(data);
           comments = data[0].submission_comments;
           for (let c = 0; c < comments.length; c++) {
