@@ -52,6 +52,7 @@ console.log("ATTEMPTS");
         comments = data[0].submission_comments;
         console.log(comments);
         for (let c = 0; c < comments.length; c++) {
+          console.log(c);
           let comment = comments[c];
           console.log(comment);
           if (comment.comment.includes("RUBRIC")) {
