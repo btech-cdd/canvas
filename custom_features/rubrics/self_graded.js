@@ -108,7 +108,8 @@
     let studentId = urlData[3];
     let btn = await getElement('button.toggle_full_rubric');
     console.log('found');
-    btn.click(function () {
+    btn.click(async function () {
+      await getComment(courseId, assignmentId, studentId);
       console.log("CLICK");
       let rubric = ENV.rubric.criteria;
       $(".for_grading table tr").each(function () {
@@ -122,7 +123,6 @@
           }
         }
       });
-      getComment(courseId, assignmentId, studentId);
     });
   }
 })()
