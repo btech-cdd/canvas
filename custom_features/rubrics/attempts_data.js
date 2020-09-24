@@ -46,7 +46,8 @@ console.log("ATTEMPTS");
         let comments = [];
         let data = await canvasGet(url, {
           include: [
-            'submission_comments'
+            'submission_comments',
+            'rubric_assessment'
           ]
         });
         console.log(data);
@@ -57,7 +58,7 @@ console.log("ATTEMPTS");
             feature.attempts += 1;
           }
           if (feature.attempts > 0) {
-            rubricTotal = 0;
+            rubricTotal = data[0].score;
             rubricMax = ENV.rubric.points_possible;
             let suggestedScore = Math.round(rubricTotal * ((11 - feature.attempts) / 10));
             $("#btech-recorded-attempts-value").text(feature.attempts);
