@@ -8,7 +8,7 @@ console.log("ATTEMPTS");
       initiated: false,
       courseId: ENV.course_id,
       assignmentId: ENV.assignment_id,
-      studentId: ENV.RUBRIC_ASSESSMENT.assessment_user_id,
+      studentId: "",
       _init(params = {}) {
         let feature = this;
         feature.insertAttemptsData();
@@ -36,6 +36,7 @@ console.log("ATTEMPTS");
       },
       async calcAttemptsData() {
         let feature = this;
+        feature.studentId = ENV.RUBRIC_ASSESSMENT.assessment_user_id;
         feature.attempts = 0;
         let url = "/api/v1/courses/" + feature.courseId + "/assignments/" + feature.assignmentId + "/submissions/" + feature.studentId;
         let comments = [];
