@@ -58,7 +58,7 @@ console.log("ATTEMPTS");
             feature.attempts += 1;
           }
           if (feature.attempts > 0) {
-            rubricTotal = data[0].score;
+            rubricTotal = data[0].rubric_assessment.score;
             rubricMax = ENV.rubric.points_possible;
             let suggestedScore = Math.round(rubricTotal * ((11 - feature.attempts) / 10));
             $("#btech-recorded-attempts-value").text(feature.attempts);
