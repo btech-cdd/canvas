@@ -7,13 +7,16 @@
         'submission_comments'
       ]
     });
-    if (rSpeedgrader.test(window.location.pathname + window.location.search)) {
-      let stars = $('table .rating-tier .icon-star');
-      stars.each(function () {
-        let star = $(this);
-        star.remove();
-      });
+    let stars;
+    if (rAssignment.test(window.location.pathname)) {
+      stars = $('table .ratings .rating .icon-star');
+    } else if (rSpeedgrader.test(window.location.pathname + window.location.search)) {
+      stars = $('table .rating-tier .icon-star');
     }
+    stars.each(function () {
+      let star = $(this);
+      star.remove();
+    });
     comments = data[0].submission_comments;
     for (let c = 0; c < comments.length; c++) {
       let comment = comments[c];
