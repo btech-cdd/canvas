@@ -111,6 +111,7 @@
     let courseId = urlData[1];
     let assignmentId = urlData[2];
     let studentId = urlData[3];
+    console.log(studentId);
     let btn = await getElement('button.toggle_full_rubric');
     console.log('found');
     btn.click(function () {
@@ -127,6 +128,7 @@
           }
         }
       });
+      console.log("GET");
       getComment(courseId, assignmentId, studentId);
     });
   }
