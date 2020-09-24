@@ -9,6 +9,7 @@ console.log("ATTEMPTS");
       courseId: ENV.course_id,
       assignmentId: ENV.assignment_id,
       studentId: "",
+      rSpeedgrader: /courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/,
       _init(params = {}) {
         let feature = this;
         feature.insertAttemptsData();
@@ -36,7 +37,10 @@ console.log("ATTEMPTS");
       },
       async calcAttemptsData() {
         let feature = this;
-        feature.studentId = ENV.RUBRIC_ASSESSMENT.assessment_user_id;
+        let urlData = (window.location.pathname + window.location.search).match(feature.rSpeedgrader);
+        feature.courseId = urlData[1];
+        feature.assignmentId = urlData[2];
+        feature.studentId = urlData[3];
         feature.attempts = 0;
         let url = "/api/v1/courses/" + feature.courseId + "/assignments/" + feature.assignmentId + "/submissions/" + feature.studentId;
         let comments = [];
