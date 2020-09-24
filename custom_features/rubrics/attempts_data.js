@@ -34,7 +34,7 @@ console.log("ATTEMPTS");
           </tr>`);
         feature.calcAttemptsData();
       },
-      async calcAttemptsData(setTime=null) {
+      async calcAttemptsData(setTime = null) {
         let feature = this;
         let urlData = (window.location.pathname + window.location.search).match(feature.rSpeedgrader);
         feature.courseId = urlData[1];
@@ -51,6 +51,7 @@ console.log("ATTEMPTS");
         });
         comments = data[0].submission_comments;
         console.log(comments);
+        let checkTimeDif = (setTime !== null);
         for (let c = 0; c < comments.length; c++) {
           console.log(c);
           let comment = comments[c];
@@ -59,20 +60,28 @@ console.log("ATTEMPTS");
             feature.attempts += 1;
           }
           if (setTime !== null) {
-            console.log(setTime - new Date(comment.created_at));
+            let timeDif = setTime - new Date(comment.created_at);
+            console.log(timeDif);
+            if (timeDif < 10000) {
+              checkTimeDif = true;
+            }
           }
         }
-        if (feature.attempts > 0) {
-          rubricTotal = 0;
-          for (c in data[0].rubric_assessment) {
-            let criterion = data[0].rubric_assessment[c];
-            rubricTotal += criterion.points;
+        if (checkTimeDif === false) {
+          calcAttemptsData(setTime);
+        } else {
+          if (feature.attempts > 0) {
+            rubricTotal = 0;
+            for (c in data[0].rubric_assessment) {
+              let criterion = data[0].rubric_assessment[c];
+              rubricTotal += criterion.points;
+            }
+            rubricMax = ENV.rubric.points_possible;
+            let suggestedScore = Math.round(rubricTotal * ((11 - feature.attempts) / 10));
+            $("#btech-recorded-attempts-value").text(feature.attempts);
+            $("#btech-rubric-score-value").text(rubricTotal + " (" + (Math.round((rubricTotal / rubricMax) * 1000) / 10) + "%)");
+            $("#btech-suggested-score-value").text(suggestedScore);
           }
-          rubricMax = ENV.rubric.points_possible;
-          let suggestedScore = Math.round(rubricTotal * ((11 - feature.attempts) / 10));
-          $("#btech-recorded-attempts-value").text(feature.attempts);
-          $("#btech-rubric-score-value").text(rubricTotal + " (" + (Math.round((rubricTotal / rubricMax) * 1000) / 10) + "%)");
-          $("#btech-suggested-score-value").text(suggestedScore);
         }
       }
     }
