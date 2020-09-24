@@ -1,4 +1,3 @@
-console.log("ATTEMPTS");
 (function () {
   IMPORTED_FEATURE = {};
   let rWindowSpeedGrader = /^\/courses\/[0-9]+\/gradebook\/speed_grader/;
@@ -14,7 +13,6 @@ console.log("ATTEMPTS");
         let feature = this;
         feature.insertAttemptsData();
         $(".save_rubric_button").on("click", function () {
-          console.log("save data");
           feature.calcAttemptsData(new Date());
         });
       },
@@ -51,7 +49,7 @@ console.log("ATTEMPTS");
         });
         comments = data[0].submission_comments;
         console.log(comments);
-        let checkTimeDif = (setTime !== null);
+        let checkTimeDif = (setTime == null);
         for (let c = 0; c < comments.length; c++) {
           console.log(c);
           let comment = comments[c];
