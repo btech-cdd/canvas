@@ -7,6 +7,13 @@
         'submission_comments'
       ]
     });
+    if (rSpeedgrader.test(window.location.pathname + window.location.search)) {
+      let stars = $('table .rating-tier .icon-star');
+      stars.each(function () {
+        let star = $(this);
+        star.remove();
+      });
+    }
     comments = data[0].submission_comments;
     for (let c = 0; c < comments.length; c++) {
       let comment = comments[c];
@@ -37,11 +44,6 @@
               } else if (rSpeedgrader.test(window.location.pathname + window.location.search)) {
                 description = rating.find('.rating-description').text();
               }
-              let star = $(this).find('.icon-star');
-              star.each(function () {
-                let starEl = $(this);
-                starEl.remove();
-              });
               if (description == val) {
                 rating.append(`<i class="icon-star" style="position:absolute; right: 0.5em; bottom: 0.5em;"></i>`);
               }
