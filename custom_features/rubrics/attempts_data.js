@@ -58,18 +58,18 @@ console.log("ATTEMPTS");
           if (comment.comment.includes("RUBRIC")) {
             feature.attempts += 1;
           }
-          if (feature.attempts > 0) {
-            rubricTotal = 0; 
-            for (c in data[0].rubric_assessment) {
-              let criterion = data[0].rubric_assessment[c];
-              rubricTotal += criterion.points;
-            }
-            rubricMax = ENV.rubric.points_possible;
-            let suggestedScore = Math.round(rubricTotal * ((11 - feature.attempts) / 10));
-            $("#btech-recorded-attempts-value").text(feature.attempts);
-            $("#btech-rubric-score-value").text(rubricTotal + " (" + (Math.round((rubricTotal / rubricMax) * 1000) / 10) + "%)");
-            $("#btech-suggested-score-value").text(suggestedScore);
+        }
+        if (feature.attempts > 0) {
+          rubricTotal = 0;
+          for (c in data[0].rubric_assessment) {
+            let criterion = data[0].rubric_assessment[c];
+            rubricTotal += criterion.points;
           }
+          rubricMax = ENV.rubric.points_possible;
+          let suggestedScore = Math.round(rubricTotal * ((11 - feature.attempts) / 10));
+          $("#btech-recorded-attempts-value").text(feature.attempts);
+          $("#btech-rubric-score-value").text(rubricTotal + " (" + (Math.round((rubricTotal / rubricMax) * 1000) / 10) + "%)");
+          $("#btech-suggested-score-value").text(suggestedScore);
         }
       }
     }
