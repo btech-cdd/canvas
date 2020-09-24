@@ -109,9 +109,10 @@
           text_comment: comment
         }
       });
-      feature.selfEvaluation = await getComment(courseId, assignmentId, studentId);
+      feature.selfEvaluation = await feature.getComment(courseId, assignmentId, studentId);
       return;
     },
+
     async resetPage() {
       let feature = this;
       feature.savedCriteria = {};
@@ -121,7 +122,7 @@
         let courseId = urlData[1];
         let assignmentId = urlData[2];
         let studentId = ENV.current_user_id;
-        feature.selfEvaluation = await getComment(courseId, assignmentId, studentId);
+        feature.selfEvaluation = await feature.getComment(courseId, assignmentId, studentId);
         let criteria = $('.rubric_table tr.criterion');
         criteria.each(function () {
           let id = $(this).attr('id').replace('criterion_', '');
@@ -134,7 +135,7 @@
             });
             let description = rating.find('.rating_description_value').text();
             rating.click(function () {
-              updateComment(id, description, courseId, assignmentId, studentId);
+              featuer.updateComment(id, description, courseId, assignmentId, studentId);
             });
           });
         });
@@ -161,7 +162,7 @@
             }
           });
           console.log("GET");
-          getComment(courseId, assignmentId, studentId);
+          feature.getComment(courseId, assignmentId, studentId);
         });
       }
     }
