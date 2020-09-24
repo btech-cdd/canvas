@@ -118,6 +118,7 @@
       let feature = this;
       feature.savedCriteria = {};
       feature.selfEvaluation = {};
+      console.log(window.location.search);
       if (feature.rAssignment.test(window.location.pathname)) {
         let urlData = window.location.pathname.match(feature.rAssignment);
         let courseId = urlData[1];
