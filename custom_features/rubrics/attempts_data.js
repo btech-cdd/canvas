@@ -61,8 +61,7 @@ console.log("ATTEMPTS");
             rubricTotal = 0; 
             for (c in data[0].rubric_assessment) {
               let criterion = data[0].rubric_assessment[c];
-              console.log(criterion);
-              console.log(criterion.points);
+              rubricTotal += criterion.points;
             }
             rubricMax = ENV.rubric.points_possible;
             let suggestedScore = Math.round(rubricTotal * ((11 - feature.attempts) / 10));
