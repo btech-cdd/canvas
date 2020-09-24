@@ -68,7 +68,7 @@ console.log("ATTEMPTS");
           }
         }
         if (checkTimeDif === false) {
-          calcAttemptsData(setTime);
+          feature.calcAttemptsData(setTime);
         } else {
           if (feature.attempts > 0) {
             rubricTotal = 0;
