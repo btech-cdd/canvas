@@ -59,7 +59,8 @@ console.log("ATTEMPTS");
           }
           if (feature.attempts > 0) {
             rubricTotal = 0; 
-            for (criterion in data[0].rubric_assessment) {
+            for (c in data[0].rubric_assessment) {
+              let criterion = data[0].rubric_assessment[c];
               console.log(criterion);
               console.log(criterion.points);
             }
