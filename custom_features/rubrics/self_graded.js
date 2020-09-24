@@ -14,6 +14,7 @@
               bodyList = document.querySelector("#right_side"),
               observer = new MutationObserver(function (mutations) {
                 mutations.forEach(function (mutation) {
+                  console.log('mutation...')
                   if (feature.oldHref !== document.location.href) {
                     feature.oldHref = document.location.href;
                     feature.resetPage();
