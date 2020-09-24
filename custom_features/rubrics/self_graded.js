@@ -59,7 +59,7 @@
               let parts = line.match(/(_[0-9]+): (.+?)$/);
               let id = parts[1];
               let val = parts[2];
-              savedCriteria[id] = val;
+              feature.savedCriteria[id] = val;
               let row = $('#criterion_' + id);
               let ratings;
               if (feature.rAssignment.test(window.location.pathname)) {
@@ -93,14 +93,14 @@
 
     async updateComment(criterionId, criterionValue, courseId, assignmentId, studentId) {
       let feature = this;
-      savedCriteria[criterionId] = criterionValue;
+      feature.savedCriteria[criterionId] = criterionValue;
       //Add in a try on the delete, if it fails break, wait, and then rerun the function a second later, rinse repeat
       if (feature.selfEvaluation !== null) {
         await $.delete(window.location.origin + "/submission_comments/" + feature.selfEvaluation.id);
       }
       let comment = "#SELF EVALUATION#\n";
-      for (let id in savedCriteria) {
-        let value = savedCriteria[id];
+      for (let id in feature.savedCriteria) {
+        let value = feature.savedCriteria[id];
         comment += (id + ": " + value + "\n");
       }
       let url = "/api/v1/courses/" + courseId + "/assignments/" + assignmentId + "/submissions/" + studentId;
