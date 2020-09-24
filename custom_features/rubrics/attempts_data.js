@@ -16,7 +16,6 @@ console.log("ATTEMPTS");
         $(".save_rubric_button").on("click", function () {
           console.log("save data");
           feature.calcAttemptsData();
-          feature.attempts += 1;
         });
       },
       async insertAttemptsData() {
@@ -54,6 +53,7 @@ console.log("ATTEMPTS");
         comments = data[0].submission_comments;
         for (let c = 0; c < comments.length; c++) {
           let comment = comments[c];
+          console.log(comment);
           if (comment.comment.includes("RUBRIC")) {
             feature.attempts += 1;
           }
