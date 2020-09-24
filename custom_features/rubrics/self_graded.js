@@ -3,26 +3,30 @@
   IMPORTED_FEATURE = {
     initiated: false,
     savedCriteria: {},
+    rAssignment: /courses\/([0-9]+)\/assignments\/([0-9]+)/,
+    rSpeedgrader: /courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/,
     async _init() {
       let feature = this;
-      feature.oldHref = document.location.href,
-        window.onload = function () {
-          var
-            bodyList = document.querySelector("#right_side"),
-            observer = new MutationObserver(function (mutations) {
-              mutations.forEach(function (mutation) {
-                if (feature.oldHref !== document.location.href) {
-                  feature.oldHref = document.location.href;
-                  feature.resetPage();
-                }
+      if (feature.rSpeedgrader.test(window.location.pathname + window.location.search)) {
+        feature.oldHref = document.location.href,
+          window.onload = function () {
+            var
+              bodyList = document.querySelector("#right_side"),
+              observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
+                  if (feature.oldHref !== document.location.href) {
+                    feature.oldHref = document.location.href;
+                    feature.resetPage();
+                  }
+                });
               });
-            });
-          var config = {
-            childList: true,
-            subtree: true
+            var config = {
+              childList: true,
+              subtree: true
+            };
+            observer.observe(bodyList, config);
           };
-          observer.observe(bodyList, config);
-        };
+      }
       feature.resetPage();
     },
     async getComment(courseId, assignmentId, studentId) {
@@ -112,8 +116,6 @@
       let feature = this;
       feature.savedCriteria = {};
       feature.selfEvaluation = {};
-      feature.rAssignment = /courses\/([0-9]+)\/assignments\/([0-9]+)/;
-      feature.rSpeedgrader = /courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/;
       if (feature.rAssignment.test(window.location.pathname)) {
         let urlData = window.location.pathname.match(feature.rAssignment);
         let courseId = urlData[1];
