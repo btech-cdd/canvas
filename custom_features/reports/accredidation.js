@@ -166,7 +166,9 @@
             $("#content").append(iframe);
             let window = document.getElementById(elId).contentWindow;
             window.onload = function () {
-              let content = $(document.getElementById(elId).contentWindow.document.getElementsByTagName('body')[0]);
+              let content = $(window.document.getElementsByTagName('body')[0]);
+              let imgs = content.find('img');
+              console.log(imgs);
               if (func !== null) {
                 func(iframe, content, data);
               }
