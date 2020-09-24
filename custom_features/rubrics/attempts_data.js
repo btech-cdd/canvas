@@ -15,7 +15,7 @@ console.log("ATTEMPTS");
         feature.insertAttemptsData();
         $(".save_rubric_button").on("click", function () {
           console.log("save data");
-          feature.calcAttemptsData();
+          feature.calcAttemptsData(new Date());
         });
       },
       async insertAttemptsData() {
@@ -34,7 +34,7 @@ console.log("ATTEMPTS");
           </tr>`);
         feature.calcAttemptsData();
       },
-      async calcAttemptsData() {
+      async calcAttemptsData(setTime=null) {
         let feature = this;
         let urlData = (window.location.pathname + window.location.search).match(feature.rSpeedgrader);
         feature.courseId = urlData[1];
@@ -57,6 +57,9 @@ console.log("ATTEMPTS");
           console.log(comment);
           if (comment.comment.includes("RUBRIC")) {
             feature.attempts += 1;
+          }
+          if (setTime !== null) {
+            console.log(setTime - new Date(comment.created_at));
           }
         }
         if (feature.attempts > 0) {
