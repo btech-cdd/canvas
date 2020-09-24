@@ -105,7 +105,7 @@
     let urlData = (window.location.pathname + window.location.search).match(rSpeedgrader);
     let courseId = urlData[1];
     let assignmentId = urlData[2];
-    let studentId = ENV.current_user_id;
+    let studentId = urlData[3];
     let btn = await getElement('button.toggle_full_rubric');
     console.log('found');
     btn.click(function () {
