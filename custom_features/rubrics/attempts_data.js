@@ -48,18 +48,14 @@
           ]
         });
         comments = data[0].submission_comments;
-        console.log(comments);
         let checkTimeDif = (setTime == null);
         for (let c = 0; c < comments.length; c++) {
-          console.log(c);
           let comment = comments[c];
-          console.log(comment);
           if (comment.comment.includes("RUBRIC")) {
             feature.attempts += 1;
           }
           if (setTime !== null) {
             let timeDif = setTime - new Date(comment.created_at);
-            console.log(timeDif);
             if (timeDif < 10000) {
               checkTimeDif = true;
             }
