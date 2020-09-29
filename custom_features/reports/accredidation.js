@@ -162,8 +162,6 @@
             let window = document.getElementById(elId).contentWindow;
             window.onafterprint = (event) => {
               $('title').text(ogTitle);
-              $("#btech-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
-              let exportCanvas = $("#btech-export-" + id);
             }
             window.focus();
             window.print();
@@ -173,9 +171,10 @@
             let app = this;
             let id = genId();
             let elId = 'btech-content-' + id
-            let iframe = $('<iframe id="' + elId + '" style="" src="' + url + '"></iframe>');
+            let iframe = $('<iframe id="' + elId + '" style="display: none;" src="' + url + '"></iframe>');
             $("#content").append(iframe);
-            $("#content").append("<div id='btech-export-" + id + "'></div>");
+            //This is unused. was for trying to convert an html element to a canvas then to a data url then to image then to pdf, but ran into cors issues.
+            // $("#content").append("<div id='btech-export-" + id + "'></div>");
             let window = document.getElementById(elId).contentWindow;
             window.onload = function () {
               let content = $(window.document.getElementsByTagName('body')[0]);
