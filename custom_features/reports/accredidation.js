@@ -164,7 +164,7 @@
             let app = this;
             let id = genId();
             let elId = 'temp-iframe-' + id
-            let iframe = $('<iframe id="' + elId + '" style="display: none;" src="' + url + '"></iframe>');
+            let iframe = $('<iframe id="' + elId + '" style="" src="' + url + '"></iframe>');
             $("#content").append(iframe);
             let window = document.getElementById(elId).contentWindow;
             window.onload = function () {
