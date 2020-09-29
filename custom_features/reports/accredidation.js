@@ -172,7 +172,7 @@
               if (func !== null) {
                 func(iframe, content, data);
               }
-              $("#" + elId).remove();
+              // $("#" + elId).remove();
             }
             return;
           },
