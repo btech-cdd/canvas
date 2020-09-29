@@ -1,8 +1,10 @@
 (async function () {
   //https://btech.instructure.com/courses/498455/accredidation
   //https://jhveem.xyz/accredidation/lti.xml
-  console.log("TEST");
   if (document.title === "BTECH Accredidation") {
+    //abort if this has already been run on the page
+    if ($('#accredidation').length > 0) return;
+
     let rCheckInCourse = /^\/courses\/([0-9]+)/;
     if (rCheckInCourse.test(window.location.pathname)) {
       console.log("IN COURSE");
