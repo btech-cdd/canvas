@@ -137,7 +137,7 @@
             });
             let description = rating.find('.rating_description_value').text();
             rating.click(function () {
-              featuer.updateComment(id, description, courseId, assignmentId, studentId);
+              feature.updateComment(id, description, courseId, assignmentId, studentId);
             });
           });
         });
