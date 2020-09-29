@@ -140,6 +140,7 @@
               pageTitle: title,
               afterPrint: function () {
                 $('title').text(ogTitle);
+                $("#" + elId).remove();
               }
             });
             return;
@@ -175,7 +176,6 @@
               if (func !== null) {
                 func(iframe, content, data);
               }
-              $("#" + elId).remove();
             }
             return;
           },
