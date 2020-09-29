@@ -152,10 +152,10 @@
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
             let elId = iframe.attr('id');
-            let id = elId.replace('temp-iframe-', '');
+            let id = elId.replace('btech-content-', '');
             let ogTitle = $('title').text();
-            $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
-            let exportCanvas = $("#test-export-" + id);
+            $("#btech-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
+            let exportCanvas = $("#btech-export-" + id);
             $('title').text(title);
             window.onafterprint = (event) => {
               $('title').text(ogTitle);
@@ -167,10 +167,10 @@
           async createIframe(url, func = null, data = {}) {
             let app = this;
             let id = genId();
-            let elId = 'temp-iframe-' + id
+            let elId = 'btech-content-' + id
             let iframe = $('<iframe id="' + elId + '" style="" src="' + url + '"></iframe>');
             $("#content").append(iframe);
-            $("#content").append("<div id='test-export-" + id + "'></div>");
+            $("#content").append("<div id='btech-export-" + id + "'></div>");
             let window = document.getElementById(elId).contentWindow;
             window.onload = function () {
               let content = $(window.document.getElementsByTagName('body')[0]);
