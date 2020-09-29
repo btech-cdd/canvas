@@ -107,6 +107,7 @@
             let types = assignment.submission_types;
             app.preparingDocument = true;
             console.log(submission);
+            //print submission.submission_comments
             if (assignment.quiz_id !== undefined) {
               let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
               await app.createIframe(url, app.downloadQuiz, {
