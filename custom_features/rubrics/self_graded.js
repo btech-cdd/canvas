@@ -1,4 +1,9 @@
 (async function () {
+  //TO DO:
+  //Add in a box in the assignment with settings that is hidden.
+  ////Submit on -> various options like complete, full points (when they selec the top option), no submit, other?
+  ////embed rubric in assignment so it looks like a survey?
+  ////
   IMPORTED_FEATURE = {};
   IMPORTED_FEATURE = {
     initiated: false,
