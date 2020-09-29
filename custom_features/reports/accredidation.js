@@ -7,7 +7,6 @@
 
     let rCheckInCourse = /^\/courses\/([0-9]+)/;
     if (rCheckInCourse.test(window.location.pathname)) {
-      console.log("IN COURSE");
       //Allows printing of an element, may be obsolete
       add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js");
       //convert html to a canvas which can then be converted to a blob...
@@ -95,16 +94,19 @@
             for (let i = 0; i < assignments.length; i++) {
               let assignment = assignments[i];
               if (assignment.has_submitted_submissions) {
-
                 submittedAssignments.push(assignment);
               }
             }
             return submittedAssignments;
           },
+          async generateComments(submission) {
+
+          },
           async downloadSubmission(assignment, submission) {
             let app = this;
             let types = assignment.submission_types;
             app.preparingDocument = true;
+            console.log(submission);
             if (assignment.quiz_id !== undefined) {
               let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
               await app.createIframe(url, app.downloadQuiz, {
@@ -127,7 +129,6 @@
               });
               for (let i = 0; i < assignmentsData.attachments.length; i++) {
                 let attachment = assignmentsData.attachments[i];
-                console.log(attachment.url);
                 await app.createIframe(attachment.url);
               }
             }
@@ -190,7 +191,6 @@
             window.onload = function () {
               let content = $(window.document.getElementsByTagName('body')[0]);
               let imgs = content.find('img');
-              console.log(imgs);
               if (func !== null) {
                 func(iframe, content, data);
               }
@@ -204,13 +204,14 @@
             app.submissions = [];
             if (assignment.submissions.length == 0) {
               let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
-                'include': ['user']
+                'include': [
+                  'user',
+                  'submission_comments'
+                ]
               });
               assignment.submissions = submissions;
             }
-            console.log(assignment);
             app.submissions = app.submittedAssignments(assignment.submissions);
-            console.log(app.submissions);
           },
           submittedAssignments(submissions) {
             let output = [];
