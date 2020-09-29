@@ -157,6 +157,7 @@
             $("#btech-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
             let exportCanvas = $("#btech-export-" + id);
             $('title').text(title);
+            let window = document.getElementById(elId).contentWindow;
             window.onafterprint = (event) => {
               $('title').text(ogTitle);
             }
