@@ -14,7 +14,6 @@
               bodyList = document.querySelector("#right_side"),
               observer = new MutationObserver(function (mutations) {
                 mutations.forEach(function (mutation) {
-                  console.log('mutation...')
                   if (feature.oldHref !== document.location.href) {
                     feature.oldHref = document.location.href;
                     feature.resetPage();
@@ -118,8 +117,8 @@
       let feature = this;
       feature.savedCriteria = {};
       feature.selfEvaluation = {};
-      console.log(window.location.search);
       if (feature.rAssignment.test(window.location.pathname)) {
+        //this is the student view
         let urlData = window.location.pathname.match(feature.rAssignment);
         let courseId = urlData[1];
         let assignmentId = urlData[2];
@@ -142,20 +141,18 @@
           });
         });
       } else if (feature.rSpeedgrader.test(window.location.pathname + window.location.search)) {
+        //speedgrader stuff. This is essentially the teacher view
         let urlData = (window.location.pathname + window.location.search).match(feature.rSpeedgrader);
         let courseId = urlData[1];
         let assignmentId = urlData[2];
         let studentId = urlData[3];
-        console.log(studentId);
         let btn = await getElement('button.toggle_full_rubric');
-        console.log('found');
+        //rubric is generated on first click of this button. Could optimize by having a check to see if this has every been clicked because it only needs to be run once.
         btn.click(function () {
-          console.log("CLICK");
           let rubric = ENV.rubric.criteria;
           $(".for_grading table tr").each(function () {
             let row = $(this);
             let description = $(row.find('th')[0]).text();
-            console.log(description);
             for (let r = 0; r < rubric.length; r++) {
               let criterion = rubric[r];
               if (criterion.description == description) {
@@ -163,10 +160,10 @@
               }
             }
           });
-          console.log("GET");
           feature.getComment(courseId, assignmentId, studentId);
         });
-        console.log("AND GET!")
+
+        //called here in case the rubric is already open on page load. If only run click once, this will also cover already loaded unopened rubrics
         feature.getComment(courseId, assignmentId, studentId);
       }
     }
