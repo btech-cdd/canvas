@@ -150,14 +150,15 @@
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
+            let elId = iframe.attr('id');
+            let window = document.getElementById(elId).contentWindow;
             let ogTitle = $('title').text();
             $('title').text(title);
-            content.printThis({
-              pageTitle: title,
-              afterPrint: function () {
-                $('title').text(ogTitle);
-              }
-            });
+            window.onafterprint = (event) => {
+              $('title').text(ogTitle);
+            }
+            window.focus();
+            window.print();
             return;
           },
           async createIframe(url, func = null, data = {}) {
