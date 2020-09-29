@@ -153,9 +153,7 @@
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
             let elId = iframe.attr('id');
             let id = elId.replace('temp-iframe-', '');
-            let window = document.getElementById(elId).contentWindow;
             let ogTitle = $('title').text();
-            $("#content").append("<div id='test-export-" + id + "'></div>");
             $("#test-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
             let exportCanvas = $("#test-export-" + id);
             $('title').text(title);
@@ -172,6 +170,7 @@
             let elId = 'temp-iframe-' + id
             let iframe = $('<iframe id="' + elId + '" style="" src="' + url + '"></iframe>');
             $("#content").append(iframe);
+            $("#content").append("<div id='test-export-" + id + "'></div>");
             let window = document.getElementById(elId).contentWindow;
             window.onload = function () {
               let content = $(window.document.getElementsByTagName('body')[0]);
