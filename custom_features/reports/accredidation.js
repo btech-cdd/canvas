@@ -84,7 +84,7 @@
             courseId: null,
             currentUser: '',
             showModal: false,
-            preparingDocumentation: false,
+            preparingDocument: false,
             submissions: [],
             currentAssignment: {}
           }
@@ -104,7 +104,7 @@
           async downloadSubmission(assignment, submission) {
             let app = this;
             let types = assignment.submission_types;
-            app.preparingDocumentation = true;
+            app.preparingDocument = true;
             if (assignment.quiz_id !== undefined) {
               let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
               await app.createIframe(url, app.downloadQuiz, {
@@ -171,7 +171,7 @@
             let window = document.getElementById(elId).contentWindow;
             window.onafterprint = (event) => {
               $('title').text(ogTitle);
-              app.preparingDocumentation = false;
+              app.preparingDocument = false;
             }
             window.focus();
             window.print();
