@@ -166,6 +166,8 @@
           console.log("GET");
           feature.getComment(courseId, assignmentId, studentId);
         });
+        console.log("AND GET!")
+        feature.getComment(courseId, assignmentId, studentId);
       }
     }
   }
