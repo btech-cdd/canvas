@@ -12,8 +12,12 @@
       add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js");
       //convert html to a canvas which can then be converted to a blob...
       add_javascript_library("https://html2canvas.hertzen.com/dist/html2canvas.min.js");
+      //and converted to a pdf
+      add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.1.1/jspdf.umd.js");
       //which can then be zipped into a file using this library
       add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js");
+      //and then saved
+      add_javascript_library("https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js");
       let CURRENT_COURSE_ID = parseInt(window.location.pathname.match(rCheckInCourse)[1]);
       //add in a selector for all students with their grade then only show assignments they've submitted so far???
       $("#content").html(`
@@ -158,6 +162,8 @@
             let window = document.getElementById(elId).contentWindow;
             window.onafterprint = (event) => {
               $('title').text(ogTitle);
+              $("#btech-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
+              let exportCanvas = $("#btech-export-" + id);
             }
             window.focus();
             window.print();
