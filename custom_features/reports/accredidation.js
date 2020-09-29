@@ -147,15 +147,13 @@
           },
           async downloadQuiz(iframe, content, data) {
             let app = this;
+            let elId = iframe.attr('id');
+            let id = elId.replace('btech-content-', '');
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
-            let elId = iframe.attr('id');
-            let id = elId.replace('btech-content-', '');
             let ogTitle = $('title').text();
-            $("#btech-export-" + id).append(document.getElementById('btech-content-' + id).contentWindow.document.getElementById('questions'));
-            let exportCanvas = $("#btech-export-" + id);
             $('title').text(title);
             let window = document.getElementById(elId).contentWindow;
             window.onafterprint = (event) => {
