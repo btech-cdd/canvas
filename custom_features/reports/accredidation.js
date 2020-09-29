@@ -30,7 +30,14 @@
             </div>
           </div>
         </div>
-        <div v-if='showModal' class='btech-modal' style='display: inline-block;'>
+        div v-if='preparingDocument' class='btech-modal' style='display: inline-block;'>
+          <div class='btech-modal-content'>
+            <div class='btech-modal-content-inner'>
+              <p>Please wait while content is prepared to print.</p>
+            </div>
+          </div>
+        </div>
+        <div v-if='showModal && !preparingDocument' class='btech-modal' style='display: inline-block;'>
           <div class='btech-modal-content'>
             <div style='float: right; cursor: pointer;' v-on:click='close()'>X</div>
             <div class='btech-modal-content-inner'>
@@ -77,6 +84,7 @@
             courseId: null,
             currentUser: '',
             showModal: false,
+            preparingDocumentation: false,
             submissions: [],
             currentAssignment: {}
           }
@@ -96,6 +104,7 @@
           async downloadSubmission(assignment, submission) {
             let app = this;
             let types = assignment.submission_types;
+            app.preparingDocumentation = true;
             if (assignment.quiz_id !== undefined) {
               let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
               await app.createIframe(url, app.downloadQuiz, {
@@ -162,6 +171,7 @@
             let window = document.getElementById(elId).contentWindow;
             window.onafterprint = (event) => {
               $('title').text(ogTitle);
+              app.preparingDocumentation = false;
             }
             window.focus();
             window.print();
@@ -172,6 +182,7 @@
             let id = genId();
             let elId = 'btech-content-' + id
             let iframe = $('<iframe id="' + elId + '" style="display: none;" src="' + url + '"></iframe>');
+            
             $("#content").append(iframe);
             //This is unused. was for trying to convert an html element to a canvas then to a data url then to image then to pdf, but ran into cors issues.
             // $("#content").append("<div id='btech-export-" + id + "'></div>");
