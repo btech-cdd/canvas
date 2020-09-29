@@ -30,7 +30,7 @@
             </div>
           </div>
         </div>
-        div v-if='preparingDocument' class='btech-modal' style='display: inline-block;'>
+        <div v-if='preparingDocument' class='btech-modal' style='display: inline-block;'>
           <div class='btech-modal-content'>
             <div class='btech-modal-content-inner'>
               <p>Please wait while content is prepared to print.</p>
