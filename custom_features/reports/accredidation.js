@@ -108,7 +108,7 @@
               for (let i = 0; i < comments.length; i++) {
                 let comment = comments[i];
                 console.log(comment);
-                let commentEl = $(`<div class='btech-accredidation-comment' style='border-bottom: 1px solid #000'>
+                let commentEl = $(`<div class='btech-accredidation-comment' style='border-bottom: 1px solid #000;'>
                   <p>` + comment.comment + `</p>
                   <p style='float: right;'><i>-` + comment.author_name + `, ` + comment.created_at + `</i></p>
                 </div>`);
@@ -182,11 +182,10 @@
             let id = elId.replace('btech-content-', '');
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
             let commentEl = app.getComments(data.submission);
-            console.log(commentEl.html());
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
-            content.append(commentEl);
+            // content.append(commentEl);
             let ogTitle = $('title').text();
             $('title').text(title);
             let window = document.getElementById(elId).contentWindow;
