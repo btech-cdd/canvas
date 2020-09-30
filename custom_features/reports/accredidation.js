@@ -99,7 +99,7 @@
             }
             return submittedAssignments;
           },
-          async getComments(submission) {
+          getComments(submission) {
             let comments = submission.submission_comments;
             let el = $("<div class='btech-accredidation-comments'></div>")
             console.log(comments);
