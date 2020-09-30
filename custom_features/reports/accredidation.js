@@ -122,6 +122,7 @@
             let app = this;
             let types = assignment.submission_types;
             app.preparingDocument = true;
+            console.log(assignment);
             console.log(submission);
             if (assignment.quiz_id !== undefined) {
               let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
