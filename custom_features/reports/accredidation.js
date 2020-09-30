@@ -101,7 +101,18 @@
           },
           async getComments(submission) {
             let comments = submission.submission_comments;
+            let el = $("<div class='btech-accredidation-comments'></div>")
             console.log(comments);
+            if (comments.length > 0) {
+              for (let i = 0; i < comments.length; i++) {
+                let comment = comments[i];
+                let commentEl = $("<div class='btech-accredidation-comment' style='border-bottom: 1px solid #000'></div>");
+                commentEl.append("<p>" + comment.comment + "</p>");
+                commentEl.append("<p style='float: right'><i>-" + comment.author_name + ", " + comment.created_at + "</i></p>");
+                el.append(commentEl);
+              }
+            }
+            return el;
           },
           async downloadSubmission(assignment, submission) {
             let app = this;
@@ -141,6 +152,7 @@
           async downloadRubric(iframe, content, data) {
             let app = this;
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
+            let commentEl = app.getComments(data.submission);
             content.find("#rubric_holder").show();
             content.find("#rubric_holder").prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.find("#rubric_holder").prepend("<div>Student:" + data.submission.user.name + "</div>");
@@ -165,10 +177,11 @@
             let elId = iframe.attr('id');
             let id = elId.replace('btech-content-', '');
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
-            let commentData = app.getComments(data.submission);
+            let commentEl = app.getComments(data.submission);
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
+            content.append(commentEl);
             let ogTitle = $('title').text();
             $('title').text(title);
             let window = document.getElementById(elId).contentWindow;
@@ -185,7 +198,7 @@
             let id = genId();
             let elId = 'btech-content-' + id
             let iframe = $('<iframe id="' + elId + '" style="display: none;" src="' + url + '"></iframe>');
-            
+
             $("#content").append(iframe);
             //This is unused. was for trying to convert an html element to a canvas then to a data url then to image then to pdf, but ran into cors issues.
             // $("#content").append("<div id='btech-export-" + id + "'></div>");
