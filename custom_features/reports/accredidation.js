@@ -101,7 +101,7 @@
           },
           getComments(submission) {
             let comments = submission.submission_comments;
-            let el = $("<div style='page-break-before: always;' class='btech-accredidation-comments; display: inline-block; width: 100%; padding: 10px;'></div>")
+            let el = $("<div style='page-break-before: always; display: inline-block; width: 100%; padding: 10px;' class='btech-accredidation-comments'></div>")
             el.append("<h2>Comments</h2>")
             console.log(comments);
             if (comments.length > 0) {
