@@ -101,7 +101,7 @@
           },
           getComments(submission) {
             let comments = submission.submission_comments;
-            let el = $("<div style='page-break-before: always; display: inline-block; width: 100%; padding: 10px;' class='btech-accredidation-comments'></div>")
+            let el = $("<div style='page-break-before: always;' class='btech-accredidation-comments'></div>")
             el.append("<h2>Comments</h2>")
             console.log(comments);
             if (comments.length > 0) {
@@ -110,7 +110,7 @@
                 console.log(comment);
                 let commentEl = $(`<div class='btech-accredidation-comment' style='border-bottom: 1px solid #000;'>
                   <p>` + comment.comment + `</p>
-                  <p style='float: right;'><i>-` + comment.author_name + `, ` + comment.created_at + `</i></p>
+                  <p style='text-align: right;'><i>-` + comment.author_name + `, ` + comment.created_at + `</i></p>
                 </div>`);
                 el.append(commentEl);
               }
