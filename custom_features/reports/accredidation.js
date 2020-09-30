@@ -101,10 +101,11 @@
           },
           getComments(submission) {
             let comments = submission.submission_comments;
-            let el = $("<div style='page-break-before: always;' class='btech-accredidation-comments'></div>")
-            el.append("<h2>Comments</h2>")
+            let el = "";
             console.log(comments);
             if (comments.length > 0) {
+              el = $("<div style='page-break-before: always;' class='btech-accredidation-comments'></div>")
+              el.append("<h2>Comments</h2>")
               for (let i = 0; i < comments.length; i++) {
                 let comment = comments[i];
                 console.log(comment);
