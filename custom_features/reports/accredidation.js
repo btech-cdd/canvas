@@ -170,7 +170,8 @@
               pageTitle: title,
               afterPrint: function () {
                 $('title').text(ogTitle);
-                $("#" + elId).remove();
+                app.preparingDocument = false;
+                iframe.remove();
               }
             });
             return;
@@ -192,6 +193,7 @@
             window.onafterprint = (event) => {
               $('title').text(ogTitle);
               app.preparingDocument = false;
+              iframe.remove();
             }
             window.focus();
             window.print();
