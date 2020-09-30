@@ -108,9 +108,10 @@
               for (let i = 0; i < comments.length; i++) {
                 let comment = comments[i];
                 console.log(comment);
-                let commentEl = $("<div class='btech-accredidation-comment' style='border-bottom: 1px solid #000'></div>");
-                commentEl.append("<p>" + comment.comment + "</p>");
-                commentEl.append("<p style='float: right'><i>-" + comment.author_name + ", " + comment.created_at + "</i></p>");
+                let commentEl = $(`<div class='btech-accredidation-comment' style='border-bottom: 1px solid #000'>
+                  <p>` + comment.comment + `</p>
+                  <p style='float: right'><i>-` + comment.author_name + `, ` + comment.created_at + `</i></p>
+                </div>`);
                 el.append(commentEl);
               }
             }
