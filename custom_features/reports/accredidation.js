@@ -99,15 +99,15 @@
             }
             return submittedAssignments;
           },
-          async generateComments(submission) {
-
+          async getComments(submission) {
+            let comments = submission.submission_comments;
+            console.log(comments);
           },
           async downloadSubmission(assignment, submission) {
             let app = this;
             let types = assignment.submission_types;
             app.preparingDocument = true;
             console.log(submission);
-            //print submission.submission_comments
             if (assignment.quiz_id !== undefined) {
               let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
               await app.createIframe(url, app.downloadQuiz, {
@@ -165,6 +165,7 @@
             let elId = iframe.attr('id');
             let id = elId.replace('btech-content-', '');
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
+            let commentData = app.getComments(data.submission);
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
