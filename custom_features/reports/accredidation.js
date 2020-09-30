@@ -110,7 +110,7 @@
                 console.log(comment);
                 let commentEl = $(`<div class='btech-accredidation-comment' style='border-bottom: 1px solid #000'>
                   <p>` + comment.comment + `</p>
-                  <p style='float: right'><i>-` + comment.author_name + `, ` + comment.created_at + `</i></p>
+                  <p style='float: right;'><i>-` + comment.author_name + `, ` + comment.created_at + `</i></p>
                 </div>`);
                 el.append(commentEl);
               }
