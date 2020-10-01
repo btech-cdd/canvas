@@ -30,6 +30,7 @@
               console.log('update');
               if (feature.oldHref !== document.location.href) {
                 feature.oldHref = document.location.href;
+                console.log(feature.rAssignment);
                 func();
               }
             });
