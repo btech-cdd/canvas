@@ -16,7 +16,7 @@
       if (feature.rSpeedgrader.test(window.location.pathname + window.location.search)) {
         feature.checkUpdateSpeedgrader(feature.resetPage);
       }
-      feature.resetPage();
+      feature.resetPage(feature);
     },
     checkUpdateSpeedgrader(func) {
       let feature = this;
@@ -32,7 +32,7 @@
                 feature.oldHref = document.location.href;
                 console.log(feature.rAssignment);
                 console.log(feature);
-                func();
+                func(feature);
               }
             });
           });
@@ -127,8 +127,7 @@
       return;
     },
 
-    async resetPage() {
-      let feature = this;
+    async resetPage(feature) {
       console.log(feature);
       feature.savedCriteria = {};
       feature.selfEvaluation = {};
