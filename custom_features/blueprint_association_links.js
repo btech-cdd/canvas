@@ -3,10 +3,8 @@
   let blueprintIcon = await getElement(".bcs__trigger")
   blueprintIcon.click(async function (e) {
     console.log("BUTTON CLICK")
-    let button = await getElement(".bcs__row__associations button");
-    button = $(button[0]); 
-    console.log(button);
-    button.click(async function (e) {
+    let sideBar = await getElement(".bcs__row__associations");
+    sideBar.on('click', 'button', async function(e) {
       console.log("BUTTON 2 CLICK")
       rows = await getElement(".bca-associations-table tr");
       rows.each(function () {
