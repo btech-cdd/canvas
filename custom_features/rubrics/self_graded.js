@@ -126,6 +126,7 @@
       let feature = this;
       feature.savedCriteria = {};
       feature.selfEvaluation = {};
+      console.log(feature.rAssignment);
       if (feature.rAssignment.test(window.location.pathname)) {
         //this is the student view
         let urlData = window.location.pathname.match(feature.rAssignment);
