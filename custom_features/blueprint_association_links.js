@@ -4,6 +4,8 @@
   blueprintIcon.click(async function (e) {
     console.log("BUTTON CLICK")
     let button = await getElement(".bcs__row__associations button");
+    console.log("BUTOTN FOUND");
+    console.log(button);
     button.click(async function (e) {
       console.log("BUTTON 2 CLICK")
       rows = await getElement(".bca-associations-table tr");
