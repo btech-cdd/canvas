@@ -9,12 +9,13 @@
       assignmentId: ENV.assignment_id,
       studentId: "",
       rSpeedgrader: /courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/,
+      setTime: null,
       _init(params = {}) {
         let feature = this;
 
         feature.insertAttemptsData();
         $(".save_rubric_button").on("click", function () {
-          feature.calcAttemptsData(feature, new Date());
+          feature.calcAttemptsData(feature);
         });
       },
       async insertAttemptsData() {
@@ -31,10 +32,9 @@
           <div id="btech-suggested-score"><b>Suggested Score:</b> <span id="btech-suggested-score-value"></span></div>
           </td>
           </tr>`);
-        feature.checkUpdateSpeedgrader(function (feature) {
-          feature.calcAttemptsData(feature, null);
-        });
+        feature.checkUpdateSpeedgrader(feature.calcAttemptsData);
         feature.calcAttemptsData(feature);
+        feature.setTime = new Date();
       },
       checkUpdateSpeedgrader(func) {
         let feature = this;
@@ -58,7 +58,7 @@
           observer.observe(bodyList, config);
         };
       },
-      async calcAttemptsData(feature, setTime = null) {
+      async calcAttemptsData(feature) {
         console.log("RECALC");
         //GET URL DATA
         //this is done here because the url changes in speedgrader, so a one time set won't work
@@ -79,14 +79,14 @@
           ]
         });
         comments = data[0].submission_comments;
-        let checkTimeDif = (setTime == null);
+        let checkTimeDif = (feature.setTime == null);
         for (let c = 0; c < comments.length; c++) {
           let comment = comments[c];
           if (comment.comment.includes("RUBRIC")) {
             feature.attempts += 1;
           }
           if (setTime !== null) {
-            let timeDif = setTime - new Date(comment.created_at);
+            let timeDif = feature.setTime - new Date(comment.created_at);
             if (timeDif < 10000) {
               checkTimeDif = true;
             }
@@ -95,6 +95,7 @@
         if (checkTimeDif === false) {
           feature.calcAttemptsData(feature, setTime);
         } else {
+          console.log()
           if (feature.attempts > 0) {
             rubricTotal = 0;
             for (c in data[0].rubric_assessment) {
