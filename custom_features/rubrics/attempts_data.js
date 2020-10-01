@@ -41,7 +41,6 @@
         let feature = this;
         feature.oldHref = document.location.href;
         window.onload = function () {
-          console.log(feature.rAssignment);
           var
             bodyList = document.querySelector("#right_side"),
             observer = new MutationObserver(function (mutations) {
@@ -61,6 +60,7 @@
         };
       },
       async calcAttemptsData(feature, setTime = null) {
+        console.log("RECALC");
         //GET URL DATA
         //this is done here because the url changes in speedgrader, so a one time set won't work
         let pageurl = (window.location.pathname + window.location.search);
