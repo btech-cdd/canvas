@@ -47,7 +47,7 @@
                 console.log('update');
                 if (feature.oldHref !== document.location.href) {
                   feature.oldHref = document.location.href;
-                  func(feature, new Date());
+                  func(feature);
                 }
               });
             });
@@ -92,6 +92,7 @@
             }
           }
         }
+              checkTimeDif = true;
         if (checkTimeDif === false) {
           feature.calcAttemptsData(feature, setTime);
         } else {
