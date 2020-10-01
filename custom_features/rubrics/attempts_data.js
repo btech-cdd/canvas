@@ -34,6 +34,8 @@
       },
       async calcAttemptsData(setTime = null) {
         let feature = this;
+        //GET URL DATA
+        //this is done here because the url changes in speedgrader, so a one time set won't work
         let pageurl = (window.location.pathname + window.location.search);
         console.log(pageurl);
         let urlData = pageurl.match(feature.rSpeedgrader);
@@ -41,6 +43,8 @@
         feature.courseId = urlData[1];
         feature.assignmentId = urlData[2];
         feature.studentId = urlData[3];
+
+        //Get submission data to calculate previous attempts and currents core
         feature.attempts = 0;
         let url = "/api/v1/courses/" + feature.courseId + "/assignments/" + feature.assignmentId + "/submissions/" + feature.studentId;
         let comments = [];
@@ -50,6 +54,7 @@
             'rubric_assessment'
           ]
         });
+        console.log(data);
         comments = data[0].submission_comments;
         let checkTimeDif = (setTime == null);
         for (let c = 0; c < comments.length; c++) {
