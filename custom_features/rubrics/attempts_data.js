@@ -92,7 +92,6 @@
             }
           }
         }
-              checkTimeDif = true;
         if (checkTimeDif === false) {
           feature.calcAttemptsData(feature, setTime);
         } else {
