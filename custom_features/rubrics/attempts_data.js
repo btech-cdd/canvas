@@ -15,6 +15,7 @@
 
         feature.insertAttemptsData();
         $(".save_rubric_button").on("click", function () {
+          feature.setTime = new Date();
           feature.calcAttemptsData(feature);
         });
       },
@@ -34,7 +35,6 @@
           </tr>`);
         feature.checkUpdateSpeedgrader(feature.calcAttemptsData);
         feature.calcAttemptsData(feature);
-        feature.setTime = new Date();
       },
       checkUpdateSpeedgrader(func) {
         let feature = this;
@@ -47,6 +47,8 @@
                 console.log('update');
                 if (feature.oldHref !== document.location.href) {
                   feature.oldHref = document.location.href;
+                  //This line is specific to this feature and should be delted if copied to another
+                  feature.setTime = null;
                   func(feature);
                 }
               });
@@ -78,6 +80,7 @@
             'rubric_assessment'
           ]
         });
+        //See if the newest comment has been posted. If not, run this again.
         comments = data[0].submission_comments;
         let checkTimeDif = (feature.setTime == null);
         for (let c = 0; c < comments.length; c++) {
