@@ -34,7 +34,10 @@
       },
       async calcAttemptsData(setTime = null) {
         let feature = this;
-        let urlData = (window.location.pathname + window.location.search).match(feature.rSpeedgrader);
+        let url = (window.location.pathname + window.location.search);
+        console.log(url);
+        let urlData = url.match(feature.rSpeedgrader);
+        console.log(urlData);
         feature.courseId = urlData[1];
         feature.assignmentId = urlData[2];
         feature.studentId = urlData[3];
