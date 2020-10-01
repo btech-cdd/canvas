@@ -12,6 +12,7 @@
     rSpeedgrader: /courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/,
     async _init() {
       let feature = this;
+      console.log(feature.rAssignment);
       if (feature.rSpeedgrader.test(window.location.pathname + window.location.search)) {
         feature.checkUpdateSpeedgrader(feature.resetPage);
       }
