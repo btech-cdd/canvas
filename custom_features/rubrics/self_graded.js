@@ -31,6 +31,7 @@
               if (feature.oldHref !== document.location.href) {
                 feature.oldHref = document.location.href;
                 console.log(feature.rAssignment);
+                console.log(feature);
                 func();
               }
             });
@@ -128,6 +129,7 @@
 
     async resetPage() {
       let feature = this;
+      console.log(feature);
       feature.savedCriteria = {};
       feature.selfEvaluation = {};
       console.log(feature.rAssignment);
