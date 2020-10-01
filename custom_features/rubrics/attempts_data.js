@@ -42,7 +42,7 @@
         feature.oldHref = document.location.href;
         window.onload = function () {
           var
-            bodyList = document.querySelector("#right_side"),
+            bodyList = document.querySelector("#rubric_full"),
             observer = new MutationObserver(function (mutations) {
               mutations.forEach(function (mutation) {
                 console.log('update');
