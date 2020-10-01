@@ -32,7 +32,7 @@
           </td>
           </tr>`);
         feature.checkUpdateSpeedgrader(function (feature) {
-          feature.calcAttemptsData(feature, new Date());
+          feature.calcAttemptsData(feature, null);
         });
         feature.calcAttemptsData(feature);
       },
