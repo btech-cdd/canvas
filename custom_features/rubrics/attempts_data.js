@@ -76,7 +76,10 @@
             rubricTotal = 0;
             for (c in data[0].rubric_assessment) {
               let criterion = data[0].rubric_assessment[c];
-              rubricTotal += criterion.points;
+              console.log(criterion);
+              if (!isNaN(criterion.points)) {
+                rubricTotal += criterion.points;
+              }
             }
             rubricMax = ENV.rubric.points_possible;
             let suggestedScore = Math.round(rubricTotal * ((11 - feature.attempts) / 10));
