@@ -37,9 +37,7 @@
         //GET URL DATA
         //this is done here because the url changes in speedgrader, so a one time set won't work
         let pageurl = (window.location.pathname + window.location.search);
-        console.log(pageurl);
         let urlData = pageurl.match(feature.rSpeedgrader);
-        console.log(urlData);
         feature.courseId = urlData[1];
         feature.assignmentId = urlData[2];
         feature.studentId = urlData[3];
@@ -54,7 +52,6 @@
             'rubric_assessment'
           ]
         });
-        console.log(data);
         comments = data[0].submission_comments;
         let checkTimeDif = (setTime == null);
         for (let c = 0; c < comments.length; c++) {
@@ -76,7 +73,6 @@
             rubricTotal = 0;
             for (c in data[0].rubric_assessment) {
               let criterion = data[0].rubric_assessment[c];
-              console.log(criterion);
               if (!isNaN(criterion.points)) {
                 rubricTotal += criterion.points;
               }

@@ -13,26 +13,29 @@
     async _init() {
       let feature = this;
       if (feature.rSpeedgrader.test(window.location.pathname + window.location.search)) {
-        feature.oldHref = document.location.href,
-          window.onload = function () {
-            var
-              bodyList = document.querySelector("#right_side"),
-              observer = new MutationObserver(function (mutations) {
-                mutations.forEach(function (mutation) {
-                  if (feature.oldHref !== document.location.href) {
-                    feature.oldHref = document.location.href;
-                    feature.resetPage();
-                  }
-                });
-              });
-            var config = {
-              childList: true,
-              subtree: true
-            };
-            observer.observe(bodyList, config);
-          };
+        feature.checkUpdateSpeedgrader(feature.resetPage);
       }
       feature.resetPage();
+    },
+    checkUpdateSpeedgrader(func) {
+      feature.oldHref = document.location.href;
+      window.onload = function () {
+        var
+          bodyList = document.querySelector("#right_side"),
+          observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+              if (feature.oldHref !== document.location.href) {
+                feature.oldHref = document.location.href;
+                func();
+              }
+            });
+          });
+        var config = {
+          childList: true,
+          subtree: true
+        };
+        observer.observe(bodyList, config);
+      };
     },
     async getComment(courseId, assignmentId, studentId) {
       let feature = this;
