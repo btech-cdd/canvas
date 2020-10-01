@@ -11,9 +11,10 @@
       rSpeedgrader: /courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/,
       _init(params = {}) {
         let feature = this;
+
         feature.insertAttemptsData();
         $(".save_rubric_button").on("click", function () {
-          feature.calcAttemptsData(new Date());
+          feature.calcAttemptsData(feature, new Date());
         });
       },
       async insertAttemptsData() {
@@ -30,10 +31,37 @@
           <div id="btech-suggested-score"><b>Suggested Score:</b> <span id="btech-suggested-score-value"></span></div>
           </td>
           </tr>`);
-        feature.calcAttemptsData();
+        feature.checkUpdateSpeedgrader(function (feature) {
+          feature.calcAttemptsData(feature, new Date());
+        });
+        feature.calcAttemptsData(feature);
       },
-      async calcAttemptsData(setTime = null) {
+      checkUpdateSpeedgrader(func) {
         let feature = this;
+        feature.oldHref = document.location.href;
+        window.onload = function () {
+          console.log(feature.rAssignment);
+          var
+            bodyList = document.querySelector("#right_side"),
+            observer = new MutationObserver(function (mutations) {
+              mutations.forEach(function (mutation) {
+                console.log('update');
+                if (feature.oldHref !== document.location.href) {
+                  feature.oldHref = document.location.href;
+                  console.log(feature.rAssignment);
+                  console.log(feature);
+                  func(feature);
+                }
+              });
+            });
+          var config = {
+            childList: true,
+            subtree: true
+          };
+          observer.observe(bodyList, config);
+        };
+      },
+      async calcAttemptsData(feature, setTime = null) {
         //GET URL DATA
         //this is done here because the url changes in speedgrader, so a one time set won't work
         let pageurl = (window.location.pathname + window.location.search);
@@ -67,7 +95,7 @@
           }
         }
         if (checkTimeDif === false) {
-          feature.calcAttemptsData(setTime);
+          feature.calcAttemptsData(feature, setTime);
         } else {
           if (feature.attempts > 0) {
             rubricTotal = 0;
