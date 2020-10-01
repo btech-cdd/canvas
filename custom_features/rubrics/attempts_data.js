@@ -32,7 +32,6 @@
           </td>
           </tr>`);
         feature.checkUpdateSpeedgrader(function (feature) {
-          console.log(feature);
           feature.calcAttemptsData(feature, new Date());
         });
         feature.calcAttemptsData(feature);
@@ -48,7 +47,7 @@
                 console.log('update');
                 if (feature.oldHref !== document.location.href) {
                   feature.oldHref = document.location.href;
-                  func(feature);
+                  func(feature, new Date());
                 }
               });
             });
