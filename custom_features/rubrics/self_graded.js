@@ -18,6 +18,7 @@
       feature.resetPage();
     },
     checkUpdateSpeedgrader(func) {
+      let feature = this;
       feature.oldHref = document.location.href;
       window.onload = function () {
         var
