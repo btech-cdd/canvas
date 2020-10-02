@@ -1,4 +1,9 @@
 (async function () {
+  //TO DO:
+  //Add in a box in the assignment with settings that is hidden.
+  ////Submit on -> various options like complete, full points (when they selec the top option), no submit, other?
+  ////embed rubric in assignment so it looks like a survey?
+  ////
   IMPORTED_FEATURE = {};
   IMPORTED_FEATURE = {
     initiated: false,
@@ -7,28 +12,36 @@
     rSpeedgrader: /courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/,
     async _init() {
       let feature = this;
+      console.log(feature.rAssignment);
       if (feature.rSpeedgrader.test(window.location.pathname + window.location.search)) {
-        feature.oldHref = document.location.href,
-          window.onload = function () {
-            var
-              bodyList = document.querySelector("#right_side"),
-              observer = new MutationObserver(function (mutations) {
-                mutations.forEach(function (mutation) {
-                  console.log('mutation...')
-                  if (feature.oldHref !== document.location.href) {
-                    feature.oldHref = document.location.href;
-                    feature.resetPage();
-                  }
-                });
-              });
-            var config = {
-              childList: true,
-              subtree: true
-            };
-            observer.observe(bodyList, config);
-          };
+        feature.checkUpdateSpeedgrader(feature.resetPage);
       }
-      feature.resetPage();
+      feature.resetPage(feature);
+    },
+    checkUpdateSpeedgrader(func) {
+      let feature = this;
+      feature.oldHref = document.location.href;
+      window.onload = function () {
+        console.log(feature.rAssignment);
+        var
+          bodyList = document.querySelector("#right_side"),
+          observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+              console.log('update');
+              if (feature.oldHref !== document.location.href) {
+                feature.oldHref = document.location.href;
+                console.log(feature.rAssignment);
+                console.log(feature);
+                func(feature);
+              }
+            });
+          });
+        var config = {
+          childList: true,
+          subtree: true
+        };
+        observer.observe(bodyList, config);
+      };
     },
     async getComment(courseId, assignmentId, studentId) {
       let feature = this;
@@ -114,12 +127,13 @@
       return;
     },
 
-    async resetPage() {
-      let feature = this;
+    async resetPage(feature) {
+      console.log(feature);
       feature.savedCriteria = {};
       feature.selfEvaluation = {};
-      console.log(window.location.search);
+      console.log(feature.rAssignment);
       if (feature.rAssignment.test(window.location.pathname)) {
+        //this is the student view
         let urlData = window.location.pathname.match(feature.rAssignment);
         let courseId = urlData[1];
         let assignmentId = urlData[2];
@@ -137,25 +151,23 @@
             });
             let description = rating.find('.rating_description_value').text();
             rating.click(function () {
-              featuer.updateComment(id, description, courseId, assignmentId, studentId);
+              feature.updateComment(id, description, courseId, assignmentId, studentId);
             });
           });
         });
       } else if (feature.rSpeedgrader.test(window.location.pathname + window.location.search)) {
+        //speedgrader stuff. This is essentially the teacher view
         let urlData = (window.location.pathname + window.location.search).match(feature.rSpeedgrader);
         let courseId = urlData[1];
         let assignmentId = urlData[2];
         let studentId = urlData[3];
-        console.log(studentId);
         let btn = await getElement('button.toggle_full_rubric');
-        console.log('found');
+        //rubric is generated on first click of this button. Could optimize by having a check to see if this has every been clicked because it only needs to be run once.
         btn.click(function () {
-          console.log("CLICK");
           let rubric = ENV.rubric.criteria;
           $(".for_grading table tr").each(function () {
             let row = $(this);
             let description = $(row.find('th')[0]).text();
-            console.log(description);
             for (let r = 0; r < rubric.length; r++) {
               let criterion = rubric[r];
               if (criterion.description == description) {
@@ -163,9 +175,11 @@
               }
             }
           });
-          console.log("GET");
           feature.getComment(courseId, assignmentId, studentId);
         });
+
+        //called here in case the rubric is already open on page load. If only run click once, this will also cover already loaded unopened rubrics
+        feature.getComment(courseId, assignmentId, studentId);
       }
     }
   }

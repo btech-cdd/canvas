@@ -10,11 +10,14 @@
       assignmentId: ENV.assignment_id,
       studentId: "",
       rSpeedgrader: /courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/,
+      setTime: null,
       _init(params = {}) {
         let feature = this;
+
         feature.insertAttemptsData();
         $(".save_rubric_button").on("click", function () {
-          feature.calcAttemptsData(new Date());
+          feature.setTime = new Date();
+          feature.calcAttemptsData(feature);
         });
       },
       async insertAttemptsData() {
@@ -31,14 +34,44 @@
           <div id="btech-suggested-score"><b>Suggested Score:</b> <span id="btech-suggested-score-value"></span></div>
           </td>
           </tr>`);
-        feature.calcAttemptsData();
+        feature.checkUpdateSpeedgrader(feature.calcAttemptsData);
+        feature.calcAttemptsData(feature);
       },
-      async calcAttemptsData(setTime = null) {
+      checkUpdateSpeedgrader(func) {
         let feature = this;
-        let urlData = (window.location.pathname + window.location.search).match(feature.rSpeedgrader);
+        feature.oldHref = document.location.href;
+        window.onload = function () {
+          var
+            bodyList = document.querySelector("#right_side"),
+            observer = new MutationObserver(function (mutations) {
+              mutations.forEach(function (mutation) {
+                console.log('update');
+                if (feature.oldHref !== document.location.href) {
+                  feature.oldHref = document.location.href;
+                  //This line is specific to this feature and should be delted if copied to another
+                  feature.setTime = null;
+                  func(feature);
+                }
+              });
+            });
+          var config = {
+            childList: true,
+            subtree: true
+          };
+          observer.observe(bodyList, config);
+        };
+      },
+      async calcAttemptsData(feature) {
+        console.log("RECALC");
+        //GET URL DATA
+        //this is done here because the url changes in speedgrader, so a one time set won't work
+        let pageurl = (window.location.pathname + window.location.search);
+        let urlData = pageurl.match(feature.rSpeedgrader);
         feature.courseId = urlData[1];
         feature.assignmentId = urlData[2];
         feature.studentId = urlData[3];
+
+        //Get submission data to calculate previous attempts and currents core
         feature.attempts = 0;
         let url = "/api/v1/courses/" + feature.courseId + "/assignments/" + feature.assignmentId + "/submissions/" + feature.studentId;
         let comments = [];
@@ -48,28 +81,32 @@
             'rubric_assessment'
           ]
         });
+        //See if the newest comment has been posted. If not, run this again.
         comments = data[0].submission_comments;
-        let checkTimeDif = (setTime == null);
+        let checkTimeDif = (feature.setTime == null);
         for (let c = 0; c < comments.length; c++) {
           let comment = comments[c];
           if (comment.comment.includes("RUBRIC")) {
             feature.attempts += 1;
           }
           if (setTime !== null) {
-            let timeDif = setTime - new Date(comment.created_at);
+            let timeDif = feature.setTime - new Date(comment.created_at);
             if (timeDif < 10000) {
               checkTimeDif = true;
             }
           }
         }
         if (checkTimeDif === false) {
-          feature.calcAttemptsData(setTime);
+          feature.calcAttemptsData(feature, setTime);
         } else {
+          console.log()
           if (feature.attempts > 0) {
             rubricTotal = 0;
             for (c in data[0].rubric_assessment) {
               let criterion = data[0].rubric_assessment[c];
-              rubricTotal += criterion.points;
+              if (!isNaN(criterion.points)) {
+                rubricTotal += criterion.points;
+              }
             }
             rubricMax = ENV.rubric.points_possible;
             let suggestedScore = Math.round(rubricTotal * ((11 - feature.attempts) / 10));

@@ -1,17 +1,22 @@
 (async function () {
   //https://btech.instructure.com/courses/498455/accredidation
   //https://jhveem.xyz/accredidation/lti.xml
-  console.log("TEST");
   if (document.title === "BTECH Accredidation") {
+    //abort if this has already been run on the page
+    if ($('#accredidation').length > 0) return;
+
     let rCheckInCourse = /^\/courses\/([0-9]+)/;
     if (rCheckInCourse.test(window.location.pathname)) {
-      console.log("IN COURSE");
       //Allows printing of an element, may be obsolete
       add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js");
       //convert html to a canvas which can then be converted to a blob...
       add_javascript_library("https://html2canvas.hertzen.com/dist/html2canvas.min.js");
+      //and converted to a pdf
+      add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.1.1/jspdf.umd.js");
       //which can then be zipped into a file using this library
       add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js");
+      //and then saved
+      add_javascript_library("https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js");
       let CURRENT_COURSE_ID = parseInt(window.location.pathname.match(rCheckInCourse)[1]);
       //add in a selector for all students with their grade then only show assignments they've submitted so far???
       $("#content").html(`
@@ -24,7 +29,14 @@
             </div>
           </div>
         </div>
-        <div v-if='showModal' class='btech-modal' style='display: inline-block;'>
+        <div v-if='preparingDocument' class='btech-modal' style='display: inline-block;'>
+          <div class='btech-modal-content'>
+            <div class='btech-modal-content-inner'>
+              <p>Please wait while content is prepared to print.</p>
+            </div>
+          </div>
+        </div>
+        <div v-if='showModal && !preparingDocument' class='btech-modal' style='display: inline-block;'>
           <div class='btech-modal-content'>
             <div style='float: right; cursor: pointer;' v-on:click='close()'>X</div>
             <div class='btech-modal-content-inner'>
@@ -71,6 +83,7 @@
             courseId: null,
             currentUser: '',
             showModal: false,
+            preparingDocument: false,
             submissions: [],
             currentAssignment: {}
           }
@@ -81,15 +94,36 @@
             for (let i = 0; i < assignments.length; i++) {
               let assignment = assignments[i];
               if (assignment.has_submitted_submissions) {
-
                 submittedAssignments.push(assignment);
               }
             }
             return submittedAssignments;
           },
+          getComments(submission) {
+            let comments = submission.submission_comments;
+            let el = "";
+            console.log(comments);
+            if (comments.length > 0) {
+              el = $("<div style='page-break-before: always;' class='btech-accredidation-comments'></div>")
+              el.append("<h2>Comments</h2>")
+              for (let i = 0; i < comments.length; i++) {
+                let comment = comments[i];
+                console.log(comment);
+                let commentEl = $(`<div class='btech-accredidation-comment' style='border-bottom: 1px solid #000;'>
+                  <p>` + comment.comment + `</p>
+                  <p style='text-align: right;'><i>-` + comment.author_name + `, ` + comment.created_at + `</i></p>
+                </div>`);
+                el.append(commentEl);
+              }
+            }
+            return el;
+          },
           async downloadSubmission(assignment, submission) {
             let app = this;
             let types = assignment.submission_types;
+            app.preparingDocument = true;
+            console.log(assignment);
+            console.log(submission);
             if (assignment.quiz_id !== undefined) {
               let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
               await app.createIframe(url, app.downloadQuiz, {
@@ -112,7 +146,6 @@
               });
               for (let i = 0; i < assignmentsData.attachments.length; i++) {
                 let attachment = assignmentsData.attachments[i];
-                console.log(attachment.url);
                 await app.createIframe(attachment.url);
               }
             }
@@ -124,6 +157,7 @@
           async downloadRubric(iframe, content, data) {
             let app = this;
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
+            let commentEl = app.getComments(data.submission);
             content.find("#rubric_holder").show();
             content.find("#rubric_holder").prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.find("#rubric_holder").prepend("<div>Student:" + data.submission.user.name + "</div>");
@@ -138,41 +172,50 @@
               pageTitle: title,
               afterPrint: function () {
                 $('title').text(ogTitle);
+                app.preparingDocument = false;
+                iframe.remove();
               }
             });
             return;
           },
           async downloadQuiz(iframe, content, data) {
             let app = this;
+            let elId = iframe.attr('id');
+            let id = elId.replace('btech-content-', '');
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
+            let commentEl = app.getComments(data.submission);
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
+            content.append(commentEl);
             let ogTitle = $('title').text();
             $('title').text(title);
-            content.printThis({
-              pageTitle: title,
-              afterPrint: function () {
-                $('title').text(ogTitle);
-              }
-            });
+            let window = document.getElementById(elId).contentWindow;
+            window.onafterprint = (event) => {
+              $('title').text(ogTitle);
+              app.preparingDocument = false;
+              iframe.remove();
+            }
+            window.focus();
+            window.print();
             return;
           },
           async createIframe(url, func = null, data = {}) {
             let app = this;
             let id = genId();
-            let elId = 'temp-iframe-' + id
+            let elId = 'btech-content-' + id
             let iframe = $('<iframe id="' + elId + '" style="display: none;" src="' + url + '"></iframe>');
+
             $("#content").append(iframe);
+            //This is unused. was for trying to convert an html element to a canvas then to a data url then to image then to pdf, but ran into cors issues.
+            // $("#content").append("<div id='btech-export-" + id + "'></div>");
             let window = document.getElementById(elId).contentWindow;
             window.onload = function () {
               let content = $(window.document.getElementsByTagName('body')[0]);
               let imgs = content.find('img');
-              console.log(imgs);
               if (func !== null) {
                 func(iframe, content, data);
               }
-              $("#" + elId).remove();
             }
             return;
           },
@@ -183,13 +226,14 @@
             app.submissions = [];
             if (assignment.submissions.length == 0) {
               let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
-                'include': ['user']
+                'include': [
+                  'user',
+                  'submission_comments'
+                ]
               });
               assignment.submissions = submissions;
             }
-            console.log(assignment);
             app.submissions = app.submittedAssignments(assignment.submissions);
-            console.log(app.submissions);
           },
           submittedAssignments(submissions) {
             let output = [];
