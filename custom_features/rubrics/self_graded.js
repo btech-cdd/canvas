@@ -30,6 +30,7 @@
               console.log('update');
               if (feature.oldHref !== document.location.href || feature.studentId !== ENV.RUBRIC_ASSESSMENT.assessment_user_id) {
                 feature.oldHref = document.location.href;
+                feature.studentId = ENV.RUBRIC_ASSESSMENT.assessment_user_id;
                 console.log(feature.rAssignment);
                 console.log(feature);
                 func(feature);
