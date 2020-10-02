@@ -357,9 +357,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             }
             if (departmentId === 3837) { //auto collision
               feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
-              if (IS_ME) {
-                feature("rubrics/self_graded", {}, [/^\/courses\/[0-9]+\/gradebook\/speed_grader/, /courses\/([0-9]+)\/assignments\/([0-9]+)/]);
-              }
+              feature("rubrics/self_graded", {}, [/^\/courses\/[0-9]+\/gradebook\/speed_grader/, /courses\/([0-9]+)\/assignments\/([0-9]+)/]);
             }
             if (departmentId === 3840 || departmentId === 3839) { //media design & drafting
             }

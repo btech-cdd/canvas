@@ -160,7 +160,7 @@
         let urlData = (window.location.pathname + window.location.search).match(feature.rSpeedgrader);
         let courseId = urlData[1];
         let assignmentId = urlData[2];
-        let studentId = urlData[3];
+        let studentId = ENV.RUBRIC_ASSESSMENT.assessment_user_id;
         let btn = await getElement('button.toggle_full_rubric');
         //rubric is generated on first click of this button. Could optimize by having a check to see if this has every been clicked because it only needs to be run once.
         btn.click(function () {
