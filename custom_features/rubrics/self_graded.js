@@ -28,7 +28,7 @@
           observer = new MutationObserver(function (mutations) {
             mutations.forEach(function (mutation) {
               console.log('update');
-              if (feature.oldHref !== document.location.href) {
+              if (feature.oldHref !== document.location.href || feature.studentId !== ENV.RUBRIC_ASSESSMENT.assessment_user_id) {
                 feature.oldHref = document.location.href;
                 console.log(feature.rAssignment);
                 console.log(feature);
