@@ -15,7 +15,6 @@
     studentId: null,
     async _init() {
       let feature = this;
-      console.log(feature.rAssignment);
       if (feature.rSpeedgrader.test(window.location.pathname + window.location.search)) {
         feature.checkUpdateSpeedgrader(feature.resetPage);
       }
@@ -25,17 +24,13 @@
       let feature = this;
       feature.oldHref = document.location.href;
       window.onload = function () {
-        console.log(feature.rAssignment);
         var
           bodyList = document.querySelector("#right_side"),
           observer = new MutationObserver(function (mutations) {
             mutations.forEach(function (mutation) {
-              console.log('update');
               if (feature.oldHref !== document.location.href || feature.studentId !== ENV.RUBRIC_ASSESSMENT.assessment_user_id) {
                 feature.oldHref = document.location.href;
                 feature.studentId = ENV.RUBRIC_ASSESSMENT.assessment_user_id;
-                console.log(feature.rAssignment);
-                console.log(feature);
                 func(feature);
               }
             });
@@ -132,10 +127,8 @@
     },
 
     async resetPage(feature) {
-      console.log(feature);
       feature.savedCriteria = {};
       feature.selfEvaluation = {};
-      console.log(feature.rAssignment);
       if (feature.rAssignment.test(window.location.pathname)) {
         //this is the student view
         let urlData = window.location.pathname.match(feature.rAssignment);
