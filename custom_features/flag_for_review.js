@@ -3,7 +3,7 @@
   let vueString = `
 <div>
   <div
-    @mouseover="buttonX = 120;"
+    @mouseover="buttonX = 50;"
     @mouseleave="buttonX = 10;"
     @click="show = !show;"
     style='
