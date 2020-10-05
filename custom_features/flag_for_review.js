@@ -50,7 +50,7 @@
           <option v-for='option in flagOptions' :value='option'>{{option}}</option>
         </select>
         <br>
-        <div style='width: 100%; float: left;'>
+        <div style='width: 100%; float: left; box-sizing: border-box;'>
           <textarea rows='6' style='width: 100%; max-width: 100%;'></textarea>
         </div>
         <br>
