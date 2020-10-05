@@ -3,6 +3,7 @@
   let vueString = `
 <div>
   <div
+    v-if='pageType=="item"'
     @mouseover="buttonX = 40;"
     @mouseleave="buttonX = 0;"
     @click="show = !show;"
@@ -69,7 +70,10 @@
       let url = window.location.pathname;
       let rItem = /^\/courses\/([0-9]+)\/(pages|assignments|quizzes)\/(.*)$/;
       let rModules = /^\/courses\/([0-9]+)(\/modules){0,1}$/;
+
+      //in a page/quiz/assignment
       if (rItem.test(url)) {
+        app.pageType = 'item';
         let match = url.match(rItem);
         app.courseId = match[1];
         app.itemType = match[2];
@@ -80,7 +84,10 @@
           }
         });
       }
+
+      //For modules page
       if (rModules.test(url)) {
+        app.pageType = 'modules';
         let flags = [];
         let match = url.match(rModules);
         app.courseId = match[1];
@@ -138,7 +145,8 @@
         itemId: null,
         flagType: '',
         flagComment: '',
-        flagTags: []
+        flagTags: [],
+        pageType: ''
       }
     },
     methods: {
