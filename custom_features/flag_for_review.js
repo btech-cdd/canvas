@@ -100,7 +100,7 @@
           for (let m = 0; m < data.length; m++) {
             let module = data[m];
             console.log(module);
-            for (let i = 0; i < module.items; i++) {
+            for (let i = 0; i < module.items.length; i++) {
               let item = module.items[i];
               console.log(item.html_url);
               for (let f = 0; f < flags.length; f++) {
