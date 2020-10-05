@@ -77,13 +77,10 @@
         await $.get("https://jhveem.xyz/api/flags/courses/" + app.courseId + "/" + app.itemType + "/" + app.itemId, function (data) {
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
-            console.log(flag);
           }
         });
-        console.log(match);
       }
       if (rModules.test(url)) {
-        console.log("MODULES");
         let flags = [];
         let match = url.match(rModules);
         app.courseId = match[1];
@@ -91,7 +88,6 @@
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
             let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
-            console.log(flagUrl);
             flag.item_url = flagUrl;
             flags.push(flag);
           }
@@ -101,16 +97,16 @@
             let module = data[m];
             for (let i = 0; i < module.items.length; i++) {
               let item = module.items[i];
-              console.log(item.url);
-              let item_url = item.url.replace('/api/v1', '');
-              console.log(item_url);
-              for (let f = 0; f < flags.length; f++) {
-                let flag = flags[f];
-                if (item_url === flag.item_url) {
-                  let li = $('li#context_module_item_' + item.id);
-                  li.find('div.ig-row div.ig-info').after('<div class="ig-flag"><i class="fas fa-flag" aria-hidden="true"></i></div>');
-                  console.log(li);
-                } 
+              if (item.url !== undefined) {
+                let item_url = item.url.replace('/api/v1', '');
+                for (let f = 0; f < flags.length; f++) {
+                  let flag = flags[f];
+                  if (item_url === flag.item_url) {
+                    let li = $('li#context_module_item_' + item.id);
+                    //Clicking on this icon should do something and/or hovering should give info about the flag.
+                    li.find('div.ig-row div.ig-info').after('<div class="ig-flag"><i class="fas fa-flag" aria-hidden="true"></i></div>');
+                  }
+                }
               }
             }
           }
@@ -156,6 +152,7 @@
           'tags': app.flagTags,
           'comment': app.flagComment
         }, function (data) {
+          //need to append this flag to list of flags
           console.log(data);
         });
         app.flagType = '';
@@ -201,11 +198,6 @@
 
             app.xOffset = e.pageX - $(el).offset().left;
             app.yOffset = e.pageY - $(el).offset().top;
-            console.log($(el).offset());
-            console.log(app.xOffset);
-            console.log(app.yOffset);
-            console.log(e.pageX);
-            console.log(e.pageY);
             if (this.currentEl == null) {
               this.currentEl = el;
               this.currentData = data;
