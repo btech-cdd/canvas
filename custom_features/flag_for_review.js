@@ -42,7 +42,10 @@
     >
       <i class='fas fa-flag'></i>New
     </div>
-    <div v-for='flag in flags'>
+    <div 
+      class='btech-flags-item'
+      v-for='flag in flags'
+    >
       <p>{{flag.comment}}</p>
     </div>
   </div>
