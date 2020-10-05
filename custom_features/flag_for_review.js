@@ -195,6 +195,7 @@
         }, function (data) {
           //need to append this flag to list of flags
           console.log(data);
+          app.flags.append(data);
         });
         app.flagType = '';
         app.flagComment = '';
