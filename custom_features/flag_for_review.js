@@ -4,7 +4,7 @@
 <div>
   <div
     @mouseover="buttonX = 50;"
-    @mouseleave="buttonX = 10;"
+    @mouseleave="buttonX = 5;"
     @click="show = !show;"
     style='
       width: 40px;
