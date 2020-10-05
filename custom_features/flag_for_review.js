@@ -67,8 +67,12 @@
     mounted: async function () {
       let app = this;
       let topics = [];
+      let url = windlow.location.pathname;
+      let regex = /courses\/([0-9]+)\/(pages|assignments|quizzes)\/(.*)/
+      let match = url.match(regex);
+      console.log(match);
 
-      await $.get("https://jhveem.xyz/api/topics", function (data) {
+      await $.get("https://jhveem.xyz/api/flags", function (data) {
         for (let i = 0; i < data.length; i++) {
           let topic = data[i];
           topic.type = 'topic';
