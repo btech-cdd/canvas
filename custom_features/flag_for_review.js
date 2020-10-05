@@ -97,9 +97,9 @@
           }
         });
         await $.get('/api/v1/courses/' + app.courseId + '/modules?include[]=items&include[]=content_details', function (data) {
-          console.log(data);
           for (let m = 0; m < data.length; m++) {
             let module = data[m];
+            console.log(module);
             for (let i = 0; i < module.items; i++) {
               let item = module.items[i];
               console.log(item.html_url);
