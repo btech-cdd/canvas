@@ -67,7 +67,7 @@
     mounted: async function () {
       let app = this;
       let topics = [];
-      let url = windlow.location.pathname;
+      let url = window.location.pathname;
       let regex = /courses\/([0-9]+)\/(pages|assignments|quizzes)\/(.*)/
       let match = url.match(regex);
       console.log(match);
