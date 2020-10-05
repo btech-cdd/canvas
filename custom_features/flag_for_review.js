@@ -1,3 +1,7 @@
+import {
+  ENODEV
+} from "constants";
+
 (async function () {
   let canvasbody = $("#application");
   //two things, first, instead of a hard coded left, just have it be the left of the menu it's going in.
@@ -46,7 +50,9 @@
       class='btech-flags-item'
       v-for='flag in flags'
     >
-      <p>{{flag.comment}}</p>
+      <span><strong>{{flag.flagType}}</strong></span>
+      <span>{{flag.comment}}</span>
+      <span style='text-align: right;'>{{flag.created_by}}</span>
     </div>
   </div>
 
@@ -190,6 +196,8 @@
         let app = this;
         $.post('https://jhveem.xyz/api/flags', {
           'courseId': app.courseId,
+          'createdBy': ENV.current_user_id,
+          'assignedTo': [],
           'itemType': app.itemType,
           'itemId': app.itemId,
           'flagType': app.flagType,
@@ -204,6 +212,15 @@
         app.flagComment = '';
         app.flagTags = [];
         app.close();
+      },
+      async deleteFlag(flag) {
+        let app = this;
+        await $.delete('https://jhveem.xyz/api/flags/' + flag._id);
+        let ind = app.flags.indexOf(flag);
+        console.log(ind);
+        if (ind > -1) {
+          app.flags.splice(ind, 1);
+        }
       },
       async createDepartmentElement(department) {
         let departmentId = department.data.id;
