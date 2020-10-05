@@ -1,16 +1,16 @@
 (async function () {
   let canvasbody = $("#application");
+  //two things, first, instead of a hard coded left, just have it be the left of the menu it's going in.
+  //Second, add a little number in red or something that says how many unresolved flags are there so you don't have to click to see if there are any
   let vueString = `
 <div>
   <div
     v-if='pageType=="item"'
-    @mouseover="buttonX = 40;"
-    @mouseleave="buttonX = 0;"
     @click="showFlags = !showFlags;"
     style='
       position:fixed;
       bottom: 30px;
-      left: 1200px;
+      left: 120px;
       z-index:1000;
       background-color: #49e;
       border: 2px solid #5ae;
