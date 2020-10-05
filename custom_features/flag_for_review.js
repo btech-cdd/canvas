@@ -8,10 +8,9 @@
     @mouseleave="buttonX = 0;"
     @click="showFlags = !showFlags;"
     style='
-      width: 40px;
       position:fixed;
-      bottom: 60px;
-      left: 60px;
+      bottom: 30px;
+      left: 1200px;
       z-index:1000;
       background-color: #49e;
       border: 2px solid #5ae;
