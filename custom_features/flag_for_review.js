@@ -46,12 +46,9 @@
       class='btech-flags-item'
       v-for='flag in flags'
     >
-      <span><strong>{{flag.flagType}}</strong></span>
-      <br>
-      <span>{{flag.comment}}</span>
-      <br>
-      <span style='text-align: right;'>{{flag.createdBy}}</span>
-      <br>
+      <div><strong>{{flag.flagType}}</strong></div>
+      <div>{{flag.comment}}</div>
+      <div style='text-align: right;'>{{flag.createdBy}}</div>
       <div style='width: 100%;'>
       <i @click='deleteFlag(flag);' class='icon-trash'></i>
       <i @click='editFlag(flag);' class='icon-edit'></i>
