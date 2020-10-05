@@ -91,6 +91,7 @@
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
             let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
+            console.log(flagUrl);
             flag.item_url = flagUrl;
             flags.push(flag);
             console.log(flag);
@@ -99,14 +100,12 @@
         await $.get('/api/v1/courses/' + app.courseId + '/modules?include[]=items&include[]=content_details', function (data) {
           for (let m = 0; m < data.length; m++) {
             let module = data[m];
-            console.log(module);
             for (let i = 0; i < module.items.length; i++) {
               let item = module.items[i];
-              console.log(item.html_url);
+              console.log(item);
               for (let f = 0; f < flags.length; f++) {
                 let flag = flags[f];
                 if (item.html_url === flag.item_url) {
-                  console.log(item.html_url);
                   let li = $('li#context_module_item_' + item.id);
                   console.log(li);
                 } 
