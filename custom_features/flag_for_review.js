@@ -37,7 +37,7 @@
       style='left: 25%; top: 10%; height: 80%; width: 50%; position: absolute; box-sizing: border-box;'
     >
       <div class="btech-tabs" >
-        <ul style='background-color: #2d3b45'>
+        <ul>
           <li style='float: right;' v-on:click='close()'>X</li>
         </ul>
       </div>
