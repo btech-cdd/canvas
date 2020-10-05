@@ -53,6 +53,7 @@ import {
       <span><strong>{{flag.flagType}}</strong></span>
       <span>{{flag.comment}}</span>
       <span style='text-align: right;'>{{flag.created_by}}</span>
+      <span style='float: bottom;' @click='deleteFlag(flag);'>Delete</span>
     </div>
   </div>
 
