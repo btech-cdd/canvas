@@ -7,6 +7,7 @@
     @mouseleave="buttonX = 10;"
     @click="show = !show;"
     style='
+      background-color: #000;
       width: 110px;
       margin-right: -140px;
       position:fixed;
