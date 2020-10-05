@@ -70,7 +70,8 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: var(--btech-theme-header-background-color);
+  /* background-color: var(--btech-theme-header-background-color); */
+  background-color: var(--ic-brand-font-color-dark);
 }
 
 .btech-tabs ul li {
