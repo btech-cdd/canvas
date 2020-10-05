@@ -123,6 +123,7 @@
         app.flagType = '';
         app.flagComment = '';
         app.flagTags = [];
+        app.close();
       },
       async createDepartmentElement(department) {
         let departmentId = department.data.id;
