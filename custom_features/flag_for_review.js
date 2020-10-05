@@ -1,7 +1,3 @@
-import {
-  ENODEV
-} from "constants";
-
 (async function () {
   let canvasbody = $("#application");
   //two things, first, instead of a hard coded left, just have it be the left of the menu it's going in.
