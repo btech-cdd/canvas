@@ -50,7 +50,7 @@
       <br>
       <span>{{flag.comment}}</span>
       <br>
-      <span style='text-align: right;'>{{flag.created_by}}</span>
+      <span style='text-align: right;'>{{flag.createdBy}}</span>
       <br>
       <div style='width: 100%;'>
       <i @click='deleteFlag(flag);' class='icon-trash'></i>
