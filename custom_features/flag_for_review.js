@@ -47,9 +47,12 @@
       v-for='flag in flags'
     >
       <span><strong>{{flag.flagType}}</strong></span>
+      <br>
       <span>{{flag.comment}}</span>
+      <br>
       <span style='text-align: right;'>{{flag.created_by}}</span>
-      <span style='bottom: 0; position: absolute;' @click='deleteFlag(flag);'>Delete</span>
+      <br>
+      <div style='width: 100%;' @click='deleteFlag(flag);'>Delete</span>
     </div>
   </div>
 
