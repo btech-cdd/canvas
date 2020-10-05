@@ -34,7 +34,7 @@
   >
     <div 
       class='btech-modal-content' 
-      style='left: 2.5%; top: 2.5%; height: 95%; width: 95%; position: absolute; box-sizing: border-box;'
+      style='left: 25%; top: 10%; height: 80%; width: 50%; position: absolute; box-sizing: border-box;'
     >
       <div class='btech-modal-content-inner'
         style='height: 100%; position: relative;'
@@ -44,7 +44,9 @@
         <select>
           <option value='test'>TEST</option>
         </select>
+        <br>
         <textarea rows='6' width='100%'></textarea>
+        <br>
         <button>Submit</button>
       </div>
     </div>
