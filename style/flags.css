@@ -17,3 +17,6 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
+#btech-flags-vue .betch-modal {
+  z-index: 1000001;
+}
