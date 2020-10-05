@@ -7,29 +7,23 @@
     @mouseleave="buttonX = 10;"
     @click="show = !show;"
     style='
-      background-color: #000;
       width: 110px;
       margin-right: -140px;
       position:fixed;
       bottom: 60px;
       z-index:1000;
       transition: 0.5s;
+      background-color: #49e;
+      border: 2px solid #5ae;
+      padding: 10px 20px;
+      color: #FFF;
+      border-radius: 5px;
       cursor: pointer;
       user-select: none;
     '
     :style="{'right': buttonX + 'px'}"
   >
-    <div
-      style='
-        background-color: #49e;
-        border: 2px solid #5ae;
-        padding: 10px 20px;
-        color: #FFF;
-        border-radius: 5px;
-      '
-    >
     <i class='fas fa-flag'></i>
-    </div>
   </div>
   <div 
     v-if='show' 
@@ -122,7 +116,7 @@
           'itemId': app.itemId,
           'flagType': app.flagType,
           'tags': app.flagTags,
-          'comment': app.flagComment
+          'comment': app.flagComment 
         }, function (data) {
           console.log(data);
         });
