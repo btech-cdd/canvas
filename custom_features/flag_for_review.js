@@ -1,4 +1,3 @@
-
 (async function () {
   let canvasbody = $("#application");
   let vueString = `
@@ -46,15 +45,15 @@
         @mousemove="onMouseMove($event)"
       >
         <h2 style='text-align: center;'>Flag Submission Form</h2>
-        <select>
+        <select v-model='flagType'>
           <option v-for='option in flagOptions' :value='option'>{{option}}</option>
         </select>
         <br>
         <div style='width: 100%; float: left; box-sizing: border-box;'>
-          <textarea rows='6' style='width: 100%; max-width: 100%; box-sizing: border-box;'></textarea>
+          <textarea v-model='flagComment' rows='6' style='width: 100%; max-width: 100%; box-sizing: border-box;'></textarea>
         </div>
         <br>
-        <button>Submit</button>
+        <button @click='submitFlag();'>Submit</button>
       </div>
     </div>
   </div>
@@ -66,50 +65,21 @@
     el: '#btech-course-status-vue',
     mounted: async function () {
       let app = this;
-      let topics = [];
+      let flags = [];
       let url = window.location.pathname;
       let regex = /courses\/([0-9]+)\/(pages|assignments|quizzes)\/(.*)/
       let match = url.match(regex);
+      app.courseId = match[1];
+      app.itemType = match[2];
+      app.itemId = match[3];
       console.log(match);
 
-      await $.get("https://jhveem.xyz/api/flags", function (data) {
+      await $.get("https://jhveem.xyz/api/flags/courses/" + app.courseId + "/" + app.itemType + "/" + app.itemId, function (data) {
         for (let i = 0; i < data.length; i++) {
-          let topic = data[i];
-          topic.type = 'topic';
-          topic.editing = false;
-          topics.push(topic);
+          let flag = data[i];
+          console.log(flag);
         }
       });
-      app.topics = topics;
-      let departments = {};
-      let savedData = {};
-      await $.get("https://jhveem.xyz/api/departments", function (data) {
-        for (let i = 0; i < data.length; i++) {
-          let department = data[i];
-          savedData[department.departmentId] = department;
-        }
-      });
-
-      await $.get("/api/v1/accounts/3/sub_accounts?per_page=100", function (data) {
-        for (let i = 0; i < data.length; i++) {
-          let dept = data[i];
-          departments[dept.id] = {
-            elX: 0,
-            elY: 0,
-            data: dept,
-            editing: false,
-            type: 'department'
-          }
-          let savedDepartmentData = savedData[dept.id];
-          if (savedDepartmentData !== undefined) {
-            departments[dept.id].elX = savedDepartmentData.elX;
-            departments[dept.id].elY = savedDepartmentData.elY;
-          } else {
-            app.createDepartmentElement(departments[dept.id]);
-          }
-        }
-      });
-      app.departments = departments;
     },
     data: function () {
       return {
@@ -128,10 +98,32 @@
           'Copyright',
           'Spelling/Grammar',
           'Missing Content'
-        ]
+        ],
+        courseId: null,
+        itemType: null,
+        itemId: null,
+        flagType: '',
+        flagComment: '',
+        flagTags: []
       }
     },
     methods: {
+      async submitFlag() {
+        let app = this;
+        $.post('https://jhveem.xyz/api/flags', {
+          'courseId': app.courseId,
+          'itemType': app.itemType,
+          'itemId': app.itemId,
+          'flagType': app.flagType,
+          'tags': app.flagTags,
+          'comment': app.flagComment 
+        }, function (data) {
+          console.log(data);
+        });
+        app.flagType = '';
+        app.flagComment = '';
+        app.flagTags = [];
+      },
       async createDepartmentElement(department) {
         let departmentId = department.data.id;
         $.post("https://jhveem.xyz/api/departments", {
