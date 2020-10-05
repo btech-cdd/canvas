@@ -29,7 +29,9 @@
     v-if='showFlags' 
     id='btech-flags-container'
   >
-    <p>TEST</p>
+    <div v-for='flag in flags'>
+      <p>{{flag.comment}}</p>
+    </div>
   </div>
 
   <!--THIS IS THE MODAL TO SUBMIT FLAGS-->
@@ -73,7 +75,10 @@
     el: '#btech-flags-vue',
     mounted: async function () {
       let app = this;
-      let flags = [];
+
+      //get CDD Data
+      console.log(CDDIDS);
+
       let url = window.location.pathname;
       let rItem = /^\/courses\/([0-9]+)\/(pages|assignments|quizzes)\/(.*)$/;
       let rModules = /^\/courses\/([0-9]+)(\/modules){0,1}$/;
@@ -81,6 +86,7 @@
       //in a page/quiz/assignment
       if (rItem.test(url)) {
         app.pageType = 'item';
+        let flags = [];
         let match = url.match(rItem);
         app.courseId = match[1];
         app.itemType = match[2];
@@ -88,8 +94,11 @@
         await $.get("https://jhveem.xyz/api/flags/courses/" + app.courseId + "/" + app.itemType + "/" + app.itemId, function (data) {
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
+            console.log(flag);
+            flags.push(flag);
           }
         });
+        app.flags = flags;
       }
 
       //For modules page
@@ -106,6 +115,8 @@
             flags.push(flag);
           }
         });
+        app.flags = flags;
+
         await $.get('/api/v1/courses/' + app.courseId + '/modules?include[]=items&include[]=content_details', function (data) {
           for (let m = 0; m < data.length; m++) {
             let module = data[m];
@@ -142,6 +153,7 @@
         firstClick: null,
         xOffset: null,
         yOffset: null,
+        flags: [],
         flagOptions: [
           'Video',
           'Copyright',
@@ -154,7 +166,8 @@
         flagType: '',
         flagComment: '',
         flagTags: [],
-        pageType: ''
+        pageType: '',
+        cddInfo: []
       }
     },
     methods: {
