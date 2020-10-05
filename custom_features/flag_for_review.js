@@ -101,11 +101,15 @@
             let module = data[m];
             for (let i = 0; i < module.items; i++) {
               let item = module.items[i];
+              console.log(item.html_url);
               for (let f = 0; f < flags.length; f++) {
                 let flag = flags[f];
                 let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
+                console.log(flagUrl);
                 if (item.html_url === flagUrl) {
                   console.log(item.html_url);
+                  let li = $('li#context_module_item_' + item.id);
+                  console.log(li);
                 } 
               }
             }
