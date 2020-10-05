@@ -102,10 +102,11 @@
             let module = data[m];
             for (let i = 0; i < module.items.length; i++) {
               let item = module.items[i];
-              console.log(item);
+              let item_url = item.url.replace('/api/v1', '');
+              console.log(item_url);
               for (let f = 0; f < flags.length; f++) {
                 let flag = flags[f];
-                if (item.html_url === flag.item_url) {
+                if (item_url === flag.item_url) {
                   let li = $('li#context_module_item_' + item.id);
                   console.log(li);
                 } 
