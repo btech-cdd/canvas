@@ -48,11 +48,11 @@
     >
       <div><strong>{{flag.flagType}}</strong></div>
       <div>{{flag.comment}}</div>
-      <div style='text-align: right;'>{{flag.createdBy}}</div>
+      <div style='text-align: right;'><i>-{{flag.createdBy}}</i></div>
       <div style='width: 100%;'>
-      <i @click='deleteFlag(flag);' class='icon-trash'></i>
-      <i @click='editFlag(flag);' class='icon-edit'></i>
-      <i @click='resolveFlag(flag);' class='icon-publish'></i>
+        <i @click='deleteFlag(flag);' class='icon-trash'></i>
+        <i @click='editFlag(flag);' class='icon-edit'></i>
+        <i @click='resolveFlag(flag);' class='icon-publish'></i>
       </div>
     </div>
   </div>
