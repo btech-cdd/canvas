@@ -29,7 +29,7 @@
 
   <!--THIS IS THE MENU TO REVIEW FLAGS-->
   <div
-    id='btech-flag-container'
+    id='btech-flags-container'
   >
     <p>TEST</p>
   </div>
@@ -69,10 +69,10 @@
   </div>
 </div>
 `;
-  canvasbody.after('<div id="btech-flag-vue"></div>');
-  $("#btech-flag-vue").append(vueString);
+  canvasbody.after('<div id="btech-flags-vue"></div>');
+  $("#btech-flags-vue").append(vueString);
   this.APP = new Vue({
-    el: '#btech-flag-vue',
+    el: '#btech-flags-vue',
     mounted: async function () {
       let app = this;
       let flags = [];

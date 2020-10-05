@@ -1,4 +1,4 @@
-#btech-flag-container {
+#btech-flags-container {
   z-index: 1000000;
   background-color: #EEE;
   border-left: 2px solid #AAA;
@@ -11,7 +11,7 @@
   right: 0; 
   width: 300px;
 }
-#btech-flag-vue {
+#btech-flags-vue {
   z-index: 1000000;
   height: 100vh;
   overflow-y: scroll;
