@@ -47,7 +47,7 @@
       >
         <h2 style='text-align: center;'>Flag Submission Form</h2>
         <select>
-          <option value='test'>TEST</option>
+          <option v-for='option in flagOptions' :value='option'>{{option}}</option>
         </select>
         <br>
         <div style='width: 100%; float: left;'>
@@ -119,6 +119,12 @@
         firstClick: null,
         xOffset: null,
         yOffset: null,
+        flagOptions: [
+          'Video',
+          'Copyright',
+          'Spelling/Grammar',
+          'Missing Content'
+        ]
       }
     },
     methods: {
