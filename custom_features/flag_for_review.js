@@ -26,7 +26,9 @@
         color: #FFF;
         border-radius: 5px;
       '
+    >
     <i class='fas fa-flag'></i>
+    </div>
   </div>
   <div 
     v-if='show' 
@@ -62,10 +64,10 @@
   </div>
 </div>
 `;
-  canvasbody.after('<div id="btech-course-status-vue"></div>');
-  $("#btech-course-status-vue").append(vueString);
+  canvasbody.after('<div id="btech-flag-vue"></div>');
+  $("#btech-flag-vue").append(vueString);
   this.APP = new Vue({
-    el: '#btech-course-status-vue',
+    el: '#btech-flag-vue',
     mounted: async function () {
       let app = this;
       let flags = [];
@@ -119,7 +121,7 @@
           'itemId': app.itemId,
           'flagType': app.flagType,
           'tags': app.flagTags,
-          'comment': app.flagComment 
+          'comment': app.flagComment
         }, function (data) {
           console.log(data);
         });
