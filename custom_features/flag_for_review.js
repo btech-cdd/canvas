@@ -82,14 +82,19 @@
         });
         console.log(match);
       } else if (url.test(rModules)) {
+        let flags = [];
         let match = url.match(rModules);
         app.courseId = match[1];
         await $.get("https://jhveem.xyz/api/flags/courses/" + app.courseId, function (data) {
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
+            flags.push(flag);
             console.log(flag);
           }
         });
+        await $.get('/api/v1/courses/' + app.courseId + '/modules', function(data) {
+          console.log(data);
+        })
         console.log(match);
       }
 
