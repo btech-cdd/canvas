@@ -51,7 +51,7 @@
   <div 
     v-if='showSubmit' 
     class='btech-modal' 
-    style='display: inline-block;'
+    style='display: inline-block; z-index: 1000001;'
   >
     <div 
       class='btech-modal-content' 
