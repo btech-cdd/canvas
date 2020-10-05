@@ -138,7 +138,7 @@
         currentData: null,
         buttonX: 0,
         showFlags: false,
-        showSugmit: false,
+        showSubmit: false,
         moving: false,
         firstClick: null,
         xOffset: null,
