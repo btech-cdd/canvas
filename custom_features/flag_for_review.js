@@ -45,12 +45,14 @@
         style='height: 100%; position: relative;'
         @mousemove="onMouseMove($event)"
       >
-        <h2>Flag Submission Form</h2>
+        <h2 style='text-align: center;'>Flag Submission Form</h2>
         <select>
           <option value='test'>TEST</option>
         </select>
         <br>
-        <textarea rows='6' width='100%'></textarea>
+        <div style='width: 100%; float: left;'>
+          <textarea rows='6' style='width: 100%; max-width: 100%;'></textarea>
+        </div>
         <br>
         <button>Submit</button>
       </div>
