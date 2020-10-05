@@ -90,12 +90,26 @@
         await $.get("https://jhveem.xyz/api/flags/courses/" + app.courseId, function (data) {
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
+            let flagurl
             flags.push(flag);
             console.log(flag);
           }
         });
         await $.get('/api/v1/courses/' + app.courseId + '/modules?include[]=items&include[]=content_details', function (data) {
           console.log(data);
+          for (let m = 0; m < data.length; m++) {
+            let module = data[m];
+            for (let i = 0; i < module.items; i++) {
+              let item = module.items[i];
+              for (let f = 0; f < flags.length; f++) {
+                let flag = flags[f];
+                let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
+                if (item.html_url === flagUrl) {
+                  console.log(item.html_url);
+                } 
+              }
+            }
+          }
         })
         console.log(match);
       }
