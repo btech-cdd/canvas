@@ -52,7 +52,10 @@
       <br>
       <span style='text-align: right;'>{{flag.created_by}}</span>
       <br>
-      <div style='width: 100%;' @click='deleteFlag(flag);'>Delete</span>
+      <div style='width: 100%;'>
+      <div style='width: 50%; background-color: #d23; text-align: center;' @click='deleteFlag(flag);'><i class='icon-trash'></i></div>
+      <div style='width: 50%; background-color: #ddd; text-align: center;' @click='resolveFlag(flag);'><i class='icon-publish'></i></div>
+      </div>
     </div>
   </div>
 
@@ -221,6 +224,9 @@
         if (ind > -1) {
           app.flags.splice(ind, 1);
         }
+      },
+      async resolveFlag(flag) {
+
       },
       async createDepartmentElement(department) {
         let departmentId = department.data.id;
