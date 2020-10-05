@@ -51,7 +51,7 @@
         </select>
         <br>
         <div style='width: 100%; float: left; box-sizing: border-box;'>
-          <textarea rows='6' style='width: 100%; max-width: 100%;'></textarea>
+          <textarea rows='6' style='width: 100%; max-width: 100%; box-sizing: border-box;'></textarea>
         </div>
         <br>
         <button>Submit</button>
