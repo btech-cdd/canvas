@@ -3,8 +3,8 @@
   let vueString = `
 <div>
   <div
-    @mouseover="buttonX = 50;"
-    @mouseleave="buttonX = 5;"
+    @mouseover="buttonX = 40;"
+    @mouseleave="buttonX = 0;"
     @click="show = !show;"
     style='
       width: 40px;
@@ -87,7 +87,7 @@
         topics: [],
         currentEl: null,
         currentData: null,
-        buttonX: 10,
+        buttonX: 0,
         show: false,
         moving: false,
         firstClick: null,
