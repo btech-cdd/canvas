@@ -6,14 +6,13 @@
     v-if='pageType=="item"'
     @mouseover="buttonX = 40;"
     @mouseleave="buttonX = 0;"
-    @click="show = !show;"
+    @click="showFlags = !showFlags;"
     style='
       width: 40px;
-      margin-right: -70px;
       position:fixed;
       bottom: 60px;
+      left: 60px;
       z-index:1000;
-      transition: 0.5s;
       background-color: #49e;
       border: 2px solid #5ae;
       padding: 10px 20px;
@@ -22,13 +21,13 @@
       cursor: pointer;
       user-select: none;
     '
-    :style="{'right': buttonX + 'px'}"
   >
     <i class='fas fa-flag'></i>
   </div>
 
   <!--THIS IS THE MENU TO REVIEW FLAGS-->
   <div
+    v-if='showFlags' 
     id='btech-flags-container'
   >
     <p>TEST</p>
@@ -36,7 +35,7 @@
 
   <!--THIS IS THE MODAL TO SUBMIT FLAGS-->
   <div 
-    v-if='show' 
+    v-if='showSubmit' 
     class='btech-modal' 
     style='display: inline-block;'
     @mouseup="dropElement"
