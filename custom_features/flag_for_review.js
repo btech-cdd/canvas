@@ -67,19 +67,32 @@
       let app = this;
       let flags = [];
       let url = window.location.pathname;
-      let regex = /courses\/([0-9]+)\/(pages|assignments|quizzes)\/(.*)/
-      let match = url.match(regex);
-      app.courseId = match[1];
-      app.itemType = match[2];
-      app.itemId = match[3];
-      console.log(match);
+      let rItem = /^\/courses\/([0-9]+)\/(pages|assignments|quizzes)\/(.*)$/
+      let rModules = /^\/courses\/([0-9]+)(\/modules){0,1}$/
+      if (url.test(rItem)) {
+        let match = url.match(rItem);
+        app.courseId = match[1];
+        app.itemType = match[2];
+        app.itemId = match[3];
+        await $.get("https://jhveem.xyz/api/flags/courses/" + app.courseId + "/" + app.itemType + "/" + app.itemId, function (data) {
+          for (let i = 0; i < data.length; i++) {
+            let flag = data[i];
+            console.log(flag);
+          }
+        });
+        console.log(match);
+      } else if (url.test(rModules)) {
+        let match = url.match(rModules);
+        app.courseId = match[1];
+        await $.get("https://jhveem.xyz/api/flags/courses/" + app.courseId, function (data) {
+          for (let i = 0; i < data.length; i++) {
+            let flag = data[i];
+            console.log(flag);
+          }
+        });
+        console.log(match);
+      }
 
-      await $.get("https://jhveem.xyz/api/flags/courses/" + app.courseId + "/" + app.itemType + "/" + app.itemId, function (data) {
-        for (let i = 0; i < data.length; i++) {
-          let flag = data[i];
-          console.log(flag);
-        }
-      });
     },
     data: function () {
       return {
@@ -116,7 +129,7 @@
           'itemId': app.itemId,
           'flagType': app.flagType,
           'tags': app.flagTags,
-          'comment': app.flagComment 
+          'comment': app.flagComment
         }, function (data) {
           console.log(data);
         });
