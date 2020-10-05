@@ -26,6 +26,15 @@
   >
     <i class='fas fa-flag'></i>
   </div>
+
+  <!--THIS IS THE MENU TO REVIEW FLAGS-->
+  <div
+    id='btech-flag-container'
+  >
+    <p>TEST</p>
+  </div>
+
+  <!--THIS IS THE MODAL TO SUBMIT FLAGS-->
   <div 
     v-if='show' 
     class='btech-modal' 
