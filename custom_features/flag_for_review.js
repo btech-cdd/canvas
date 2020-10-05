@@ -7,7 +7,7 @@
     @mouseleave="buttonX = 10;"
     @click="show = !show;"
     style='
-      width: 110px;
+      width: 50px;
       margin-right: -140px;
       position:fixed;
       bottom: 60px;
@@ -23,7 +23,7 @@
     '
     :style="{'right': buttonX + 'px'}"
   >
-  <i class='fas fa-flag'></i> Flag Page
+    <i class='fas fa-flag'></i>
   </div>
   <div 
     v-if='show' 
