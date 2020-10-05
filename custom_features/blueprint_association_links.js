@@ -6,7 +6,7 @@
       let spans = $(this).find("td span");
       if (spans.length > 0) {
         let courseId = $(this).attr("id").replace("course_", "");
-        $(spans[0]).wrapInner("<a href='/courses/" + courseId + "' target='#'></a>");
+        $(spans[0]).wrapInner("<a href='/courses/" + courseId + "/settings' target='#'></a>");
       }
     });
   });
