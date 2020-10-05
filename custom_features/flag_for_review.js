@@ -90,7 +90,8 @@
         await $.get("https://jhveem.xyz/api/flags/courses/" + app.courseId, function (data) {
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
-            let flagurl
+            let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
+            flag.item_url = flagUrl;
             flags.push(flag);
             console.log(flag);
           }
@@ -104,9 +105,7 @@
               console.log(item.html_url);
               for (let f = 0; f < flags.length; f++) {
                 let flag = flags[f];
-                let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
-                console.log(flagUrl);
-                if (item.html_url === flagUrl) {
+                if (item.html_url === flag.item_url) {
                   console.log(item.html_url);
                   let li = $('li#context_module_item_' + item.id);
                   console.log(li);
