@@ -94,7 +94,6 @@
             console.log(flagUrl);
             flag.item_url = flagUrl;
             flags.push(flag);
-            console.log(flag);
           }
         });
         await $.get('/api/v1/courses/' + app.courseId + '/modules?include[]=items&include[]=content_details', function (data) {
@@ -102,12 +101,14 @@
             let module = data[m];
             for (let i = 0; i < module.items.length; i++) {
               let item = module.items[i];
+              console.log(item.url);
               let item_url = item.url.replace('/api/v1', '');
               console.log(item_url);
               for (let f = 0; f < flags.length; f++) {
                 let flag = flags[f];
                 if (item_url === flag.item_url) {
                   let li = $('li#context_module_item_' + item.id);
+                  li.find('div.ig-row div.ig-info').after('<div class="ig-flag"><i class="fas fa-flag" aria-hidden="true"></i></div>');
                   console.log(li);
                 } 
               }
