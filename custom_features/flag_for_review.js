@@ -81,6 +81,7 @@
           }
         });
         console.log(match);
+      }
       if (rModules.test(url)) {
         console.log("MODULES");
         let flags = [];
@@ -93,7 +94,7 @@
             console.log(flag);
           }
         });
-        await $.get('/api/v1/courses/' + app.courseId + '/modules?include[]=items&include[]=content_details', function(data) {
+        await $.get('/api/v1/courses/' + app.courseId + '/modules?include[]=items&include[]=content_details', function (data) {
           console.log(data);
         })
         console.log(match);
