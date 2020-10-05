@@ -36,6 +36,11 @@
       class='btech-modal-content' 
       style='left: 25%; top: 10%; height: 80%; width: 50%; position: absolute; box-sizing: border-box;'
     >
+      <div class="btech-tabs" >
+        <ul style='background-color: #2d3b45'>
+          <li style='float: right;' v-on:click='close()'>X</li>
+        </ul>
+      </div>
       <div class='btech-modal-content-inner'
         style='height: 100%; position: relative;'
         @mousemove="onMouseMove($event)"
