@@ -49,7 +49,7 @@
       <span><strong>{{flag.flagType}}</strong></span>
       <span>{{flag.comment}}</span>
       <span style='text-align: right;'>{{flag.created_by}}</span>
-      <span style='float: bottom;' @click='deleteFlag(flag);'>Delete</span>
+      <span style='bottom: 0; position: absolute;' @click='deleteFlag(flag);'>Delete</span>
     </div>
   </div>
 
