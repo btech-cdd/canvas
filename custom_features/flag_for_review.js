@@ -81,7 +81,7 @@
           }
         });
         console.log(match);
-      } else if (rModules.test(url)) {
+      if (rModules.test(url)) {
         console.log("MODULES");
         let flags = [];
         let match = url.match(rModules);
