@@ -53,8 +53,9 @@
       <span style='text-align: right;'>{{flag.created_by}}</span>
       <br>
       <div style='width: 100%;'>
-      <div style='width: 50%; background-color: #d23; text-align: center;' @click='deleteFlag(flag);'><i class='icon-trash'></i></div>
-      <div style='width: 50%; background-color: #ddd; text-align: center;' @click='resolveFlag(flag);'><i class='icon-publish'></i></div>
+      <i @click='deleteFlag(flag);' class='icon-trash'></i>
+      <i @click='editFlag(flag);' class='icon-edit'></i>
+      <i @click='resolveFlag(flag);' class='icon-publish'></i>
       </div>
     </div>
   </div>
@@ -224,6 +225,9 @@
         if (ind > -1) {
           app.flags.splice(ind, 1);
         }
+      },
+      async editFlag(flag) {
+
       },
       async resolveFlag(flag) {
 
