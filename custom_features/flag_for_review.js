@@ -8,7 +8,7 @@
     @click="show = !show;"
     style='
       width: 50px;
-      margin-right: -140px;
+      margin-right: -60px;
       position:fixed;
       bottom: 60px;
       z-index:1000;
