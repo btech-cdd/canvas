@@ -67,9 +67,9 @@
       let app = this;
       let flags = [];
       let url = window.location.pathname;
-      let rItem = /^\/courses\/([0-9]+)\/(pages|assignments|quizzes)\/(.*)$/
-      let rModules = /^\/courses\/([0-9]+)(\/modules){0,1}$/
-      if (url.test(rItem)) {
+      let rItem = /^\/courses\/([0-9]+)\/(pages|assignments|quizzes)\/(.*)$/;
+      let rModules = /^\/courses\/([0-9]+)(\/modules){0,1}$/;
+      if (rItem.test(url)) {
         let match = url.match(rItem);
         app.courseId = match[1];
         app.itemType = match[2];
@@ -81,7 +81,8 @@
           }
         });
         console.log(match);
-      } else if (url.test(rModules)) {
+      } else if (rModules.test(url)) {
+        console.log("MODULES");
         let flags = [];
         let match = url.match(rModules);
         app.courseId = match[1];
