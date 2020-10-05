@@ -36,7 +36,9 @@
         color: #fff;
         padding: 2px;
         text-align: center;
+        cursor: pointer;
       '
+      @click='showSubmit = true'
     >
       <i class='fas fa-flag'></i>New
     </div>
