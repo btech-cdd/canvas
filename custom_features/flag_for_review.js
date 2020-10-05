@@ -29,6 +29,17 @@
     v-if='showFlags' 
     id='btech-flags-container'
   >
+    <div
+      style='
+        width: 100%;
+        background-color: #49e;
+        color: #fff;
+        padding: 2px;
+        text-align: center;
+      '
+    >
+      <i class='fas fa-flag'></i>New
+    </div>
     <div v-for='flag in flags'>
       <p>{{flag.comment}}</p>
     </div>
@@ -39,7 +50,6 @@
     v-if='showSubmit' 
     class='btech-modal' 
     style='display: inline-block;'
-    @mouseup="dropElement"
   >
     <div 
       class='btech-modal-content' 
@@ -217,7 +227,7 @@
         return str.replace(/\n/g, " ");
       },
       close() {
-        this.show = false;
+        this.showSubmit = false;
       },
       grabElement(e, data) {
         let app = this;
