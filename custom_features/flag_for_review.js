@@ -13,8 +13,8 @@
     class="btech-flags-number-circle" 
     :style="{
       position: 'fixed',
-      top: button.position.top,
-      left: button.position.left 
+      top: (button.offset()).top,
+      left: (button.offset()).left 
     }"
   >
     {{flags.length}}
