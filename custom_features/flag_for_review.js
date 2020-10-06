@@ -110,7 +110,7 @@
             <div class="menu-item__text">
                 Flag
             </div>
-            <div class="btech-flags-number-circle" style="position: absolute; bottom: -.5em; right: -.5em;">0</div>
+            <div class="btech-flags-number-circle" style="position: absolute; bottom: .5em; right: .5em;">0</div>
           </a>
         </li>
       `)
