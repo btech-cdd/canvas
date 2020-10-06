@@ -41,7 +41,7 @@
         text-align: center;
         cursor: pointer;
       '
-      @click='showSubmit = true'
+      @click='openSubmit()'
     >
       <i class='fas fa-flag'></i>New
     </div>
@@ -140,6 +140,9 @@
       //in a page/quiz/assignment
       if (rItem.test(url)) {
         app.pageType = 'item';
+        $(document).bind('keydown', 'ctrl+shift+f', function() {
+          app.openSubmit();
+        });
         let flags = [];
         let match = url.match(rItem);
         app.courseId = match[1];
@@ -287,6 +290,13 @@
       },
       async resolveFlag(flag) {
 
+      },
+      openSubmit() {
+        let app = this;
+        app.flagType = '';
+        app.flagComment = '';
+        app.flagTags = [];
+        app.showSubmit = true
       },
       async createDepartmentElement(department) {
         let departmentId = department.data.id;
