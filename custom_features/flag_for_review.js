@@ -1,7 +1,10 @@
 (async function () {
   let canvasbody = $("#application");
-  //two things, first, instead of a hard coded left, just have it be the left of the menu it's going in.
-  //Second, add a little number in red or something that says how many unresolved flags are there so you don't have to click to see if there are any
+  //instead of a hard coded left, just have it be the left of the menu it's going in.
+  //ability to assign
+  //ability to edit
+  //lots of options for sorting / filtering flags
+  //to do list on the front page organized by department or course?
   let vueString = `
 <div>
   <!--THIS IS THE BUTTON FOR OPENING THE FLAGS INTERFACE-->
@@ -99,6 +102,19 @@
     el: '#btech-flags-vue',
     mounted: async function () {
       let app = this;
+      app.button = $(`
+        <li class="ic-app-header__menu-list-item">
+          <a id="global_nav_help_link" role="button" class="ic-app-header__menu-list-link" data-track-category="flag system" data-track-label="flag button" href="javascript:void(0);">
+            <div class="menu-item-icon-container" role="presentation">
+              <i style="font-size: 1.5em;" class="fal fa-flag" aria-hidden="true"></i>
+            </div>
+            <div class="menu-item__text">
+                Flag
+            </div>
+          </a>
+        </li>
+      `)
+      $("#menu").append(app.button);
 
       //get CDD Data
       console.log(CDDIDS);
