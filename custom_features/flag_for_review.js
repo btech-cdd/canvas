@@ -23,7 +23,7 @@
     '
   >
     <i class='fas fa-flag'></i>
-    <div class="btech-flags-number-circle" style="position: absolute; bottom: -.5em; right: -.5em;">{{flags.length}}</div>
+    <div v-if='flags.length > 0' class="btech-flags-number-circle" style="position: absolute; bottom: -.5em; right: -.5em;">{{flags.length}}</div>
   </div>
 
   <!--THIS IS THE MENU TO REVIEW FLAGS-->
