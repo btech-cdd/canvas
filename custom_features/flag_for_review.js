@@ -12,7 +12,7 @@
     v-if='flags.length > 0' 
     class="btech-flags-number-circle" 
     :style="{
-      position: fixed,
+      position: 'fixed',
       top: button.position.top,
       left: button.position.left 
     }"
