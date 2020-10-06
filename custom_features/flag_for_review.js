@@ -27,6 +27,9 @@
   <div
     v-if='showFlags' 
     id='btech-flags-container'
+    :style="{
+      'margin-left': ($('#menu').width()) + 'px'
+    }"
   >
     <div
       v-if='pageType=="item"'
