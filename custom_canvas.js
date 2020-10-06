@@ -437,6 +437,13 @@ $.getScript(ALLY_CFG.baseUrl + '/integration/canvas/ally.js');
  * Might be useful, when you want to pass some other data to your handler
  */
 
+
+ /*
+  * CURRENTLY IN USE
+  * ctrl+shift+f : opens the create new flag modal in the flags feature
+  * 
+  */
+
 (function(jQuery) {
 
   jQuery.hotkeys = {
