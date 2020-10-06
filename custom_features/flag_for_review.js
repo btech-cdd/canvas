@@ -4,6 +4,7 @@
   //Second, add a little number in red or something that says how many unresolved flags are there so you don't have to click to see if there are any
   let vueString = `
 <div>
+  <!--THIS IS THE BUTTON FOR OPENING THE FLAGS INTERFACE-->
   <div
     v-if='pageType=="item"'
     @click="showFlags = !showFlags;"
@@ -22,6 +23,7 @@
     '
   >
     <i class='fas fa-flag'></i>
+    <div class="btech-flags-number-circle" style="position: absolute; bottom: -.5em; right: -.5em;">{{flags.length}}</div>
   </div>
 
   <!--THIS IS THE MENU TO REVIEW FLAGS-->
