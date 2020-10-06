@@ -11,10 +11,13 @@
   <div 
     v-if='flags.length > 0' 
     class="btech-flags-number-circle" 
+    style='
+      z-index: 1000001;
+    '
     :style="{
       position: 'fixed',
       top: (Math.round((button.offset()).top) + 'px'),
-      left: (Math.round((button.offset()).left) + 'px')
+      left: (Math.round((button.offset()).left + Math.round(button.height())) + 'px')
     }"
   >
     {{flags.length}}
