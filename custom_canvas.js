@@ -390,10 +390,9 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           } else {
             feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
           }
-          if (IS_ME) {
-            // featureCDD('department_progress');
-            featureCDD('flag_for_review');
-          }
+          // featureCDD('department_progress');
+          featureCDD('flag_for_review');
+
           // if (IS_ME) $.getScript("https://jhveem.xyz/collaborator/import.js");
           //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
           feature("welcome_banner", {}, /^\/$/);
