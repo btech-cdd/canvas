@@ -1,5 +1,7 @@
 (async function () {
   let canvasbody = $("#application");
+  //hide the flags thing whenever one of the other main menu buttons are clicked
+  //checkbox to only show flags assigned to me (especially if not in a course)
   //instead of a hard coded left, just have it be the left of the menu it's going in.
   //ability to assign
   //ability to edit
@@ -100,6 +102,11 @@
     el: '#btech-flags-vue',
     mounted: async function () {
       let app = this;
+      $('.menu-item ic-app-header__menu-list-item ').each(function () {
+        $(this).click(function () {
+          app.showFlags = false;
+        });
+      });
       app.button = $(`
         <li class="ic-app-header__menu-list-item">
           <a id="global_nav_flag_link" role="button" class="ic-app-header__menu-list-link" data-track-category="flag system" data-track-label="flag button" href="javascript:void(0);">
