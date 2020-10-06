@@ -46,7 +46,7 @@
       class='btech-flags-item'
       v-for='flag in flags'
     >
-      <div><strong>{{flag.flagType}}</strong></div>
+      <div><strong><a href='{{flag.item_url}}'>{{flag.flagType}}</a></strong></div>
       <div>{{flag.comment}}</div>
       <div style='text-align: right;'><i>-{{flag.createdBy}}</i></div>
       <div style='width: 100%;'>
@@ -140,6 +140,8 @@
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
             console.log(flag);
+            let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
+            flag.item_url = flagUrl;
             flags.push(flag);
           }
         });
