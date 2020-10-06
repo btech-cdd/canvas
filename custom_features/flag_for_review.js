@@ -152,7 +152,7 @@
       else if (rInCourse.test(url)) {
         app.pageType = 'course';
         let flags = [];
-        let match = url.match(rModules);
+        let match = url.match(rInCourse);
         app.courseId = match[1];
         await $.get("https://jhveem.xyz/api/flags/courses/" + app.courseId, function (data) {
           for (let i = 0; i < data.length; i++) {
