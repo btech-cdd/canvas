@@ -106,7 +106,7 @@
         </li>
       `)
       app.button.click(function() {
-        let button = this;
+        let button = $(this);
         app.showFlags = !app.showFlags;
         if (app.showFlags === false) {
           button.removeClass('ic-app-header__menu-list-item--active');
