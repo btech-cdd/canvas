@@ -46,7 +46,7 @@
       class='btech-flags-item'
       v-for='flag in flags'
     >
-      <div><strong><a href='{{flag.item_url}}'>{{flag.flagType}}</a></strong></div>
+      <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
       <div>{{flag.comment}}</div>
       <div style='text-align: right;'><i>-{{flag.createdBy}}</i></div>
       <div style='width: 100%;'>
