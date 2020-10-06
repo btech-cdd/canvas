@@ -16,7 +16,7 @@
     '
     :style="{
       position: 'fixed',
-      top: (Math.round((button.offset()).top +  - ($('#menu').offset()).top + (button.height() * .75)) + 'px'),
+      top: (Math.round((button.offset()).top +  - ($('#header').offset()).top + (button.height() * .75)) + 'px'),
       left: (Math.round((button.offset()).left + (button.width() * .75)) + 'px')
     }"
   >
