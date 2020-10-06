@@ -16,8 +16,8 @@
     '
     :style="{
       position: 'fixed',
-      top: (Math.round((button.offset()).top) + 'px'),
-      left: (Math.round((button.offset()).left + Math.round(button.height())) + 'px')
+      top: (Math.round((button.offset()).top + Math.round(button.height())) + 'px'),
+      left: (Math.round((button.offset()).left) + 'px')
     }"
   >
     {{flags.length}}
