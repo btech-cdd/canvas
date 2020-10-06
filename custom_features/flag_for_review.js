@@ -102,8 +102,8 @@
     el: '#btech-flags-vue',
     mounted: async function () {
       let app = this;
-      console.log("v1");
-      $('.menu-item ic-app-header__menu-list-item ').each(function () {
+      console.log("v2");
+      $('.ic-app-header__menu-list-item ').each(function () {
         $(this).click(function () {
           app.showFlags = false;
         });
