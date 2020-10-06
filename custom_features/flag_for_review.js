@@ -12,8 +12,8 @@
     v-if='flags.length > 0' 
     class="btech-flags-number-circle" 
     :style="{
-      top: (button.offset()).top,
-      left: (button.offset()).left 
+      top: Math.round((button.offset()).top) + "px",
+      left: Math.round((button.offset()).left) + "px" 
     }"
   >
     {{flags.length}}
