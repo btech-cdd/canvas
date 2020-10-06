@@ -28,7 +28,7 @@
   color: #000;
   position: relative;
 }
-#btech-flags-vue .btech-flags-number-circle {
+.btech-flags-number-circle {
     width: 1.5em;
     line-height: 1.5em;
     border-radius: 50%;

@@ -392,7 +392,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           }
           if (IS_ME) {
             // featureCDD('department_progress');
-            featureCDD('flag_for_review', {}, /^\/courses/);
+            featureCDD('flag_for_review');
           }
           // if (IS_ME) $.getScript("https://jhveem.xyz/collaborator/import.js");
           //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);

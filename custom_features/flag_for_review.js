@@ -26,7 +26,6 @@
     '
   >
     <i class='fas fa-flag'></i>
-    <div v-if='flags.length > 0' class="btech-flags-number-circle" style="position: absolute; bottom: -.5em; right: -.5em;">{{flags.length}}</div>
   </div>
 
   <!--THIS IS THE MENU TO REVIEW FLAGS-->
@@ -111,9 +110,19 @@
             <div class="menu-item__text">
                 Flag
             </div>
+            <div class="btech-flags-number-circle" style="position: absolute; bottom: -.5em; right: -.5em;">0</div>
           </a>
         </li>
       `)
+      app.button.click(function () {
+        let button = this;
+        app.showFlags = !app.showFlags;
+        if (app.showFlags === false) {
+          button.removeClass('ic-app-header__menu-list-item--active');
+        } else {
+          button.addClass('ic-app-header__menu-list-item--active');
+        }
+      })
       $("#menu").append(app.button);
 
       //get CDD Data
@@ -121,6 +130,7 @@
 
       let url = window.location.pathname;
       let rItem = /^\/courses\/([0-9]+)\/(pages|assignments|quizzes)\/(.*)$/;
+      let rInCoures = /^\/courses\/[0-9]+/;
       let rModules = /^\/courses\/([0-9]+)(\/modules){0,1}$/;
 
       //in a page/quiz/assignment
@@ -142,7 +152,7 @@
       }
 
       //For modules page
-      if (rModules.test(url)) {
+      else if (rModules.test(url)) {
         app.pageType = 'modules';
         let flags = [];
         let match = url.match(rModules);
@@ -177,6 +187,21 @@
           }
         })
         console.log(match);
+      }
+
+      //any other page, not in a specific course
+      else {
+        app.pageType = 'other';
+        let flags = [];
+        await $.get("https://jhveem.xyz/api/flags", function (data) {
+          for (let i = 0; i < data.length; i++) {
+            let flag = data[i];
+            let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
+            flag.item_url = flagUrl;
+            flags.push(flag);
+          }
+        });
+        app.flags = flags;
       }
 
     },
