@@ -1,8 +1,6 @@
 (async function () {
   let canvasbody = $("#application");
-  //hide the flags thing whenever one of the other main menu buttons are clicked
   //checkbox to only show flags assigned to me (especially if not in a course)
-  //instead of a hard coded left, just have it be the left of the menu it's going in.
   //ability to assign
   //ability to edit
   //lots of options for sorting / filtering flags
@@ -11,7 +9,7 @@
 <div>
   <!--THIS IS THE BUTTON FOR OPENING THE FLAGS INTERFACE-->
   <div 
-    v-if='flags.length > 0' 
+    v-if='filteredFlags.length > 0' 
     class="btech-flags-number-circle" 
     style='
       z-index: 1000001;
@@ -22,7 +20,7 @@
       left: (Math.round((button.offset()).left + (button.width() * .75)) + 'px')
     }"
   >
-    {{flags.length}}
+    {{filteredFlags.length}}
   </div>
 
   <!--THIS IS THE MENU TO REVIEW FLAGS-->
@@ -49,7 +47,7 @@
     </div>
     <div 
       class='btech-flags-item'
-      v-for='flag in flags'
+      v-for='flag in filteredFlags'
     >
       <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
       <div>{{flag.comment}}</div>
@@ -244,6 +242,12 @@
         flagTags: [],
         pageType: '',
         cddInfo: []
+      }
+    },
+    computed: {
+      filteredFlags: function() {
+        let app = this;
+        return app.flags;
       }
     },
     methods: {
