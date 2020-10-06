@@ -29,6 +29,7 @@
     id='btech-flags-container'
   >
     <div
+      v-if='pageType=="item"'
       style='
         width: 100%;
         background-color: #49e;
