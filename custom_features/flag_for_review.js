@@ -8,24 +8,16 @@
   let vueString = `
 <div>
   <!--THIS IS THE BUTTON FOR OPENING THE FLAGS INTERFACE-->
-  <div
-    v-if='pageType=="item"'
-    @click="showFlags = !showFlags;"
-    style='
-      position:fixed;
-      bottom: 30px;
-      left: 120px;
-      z-index:1000;
-      background-color: #49e;
-      border: 2px solid #5ae;
-      padding: 10px 20px;
-      color: #FFF;
-      border-radius: 5px;
-      cursor: pointer;
-      user-select: none;
-    '
+  <div 
+    v-if='flags.length > 0' 
+    class="btech-flags-number-circle" 
+    :style="{
+      position: fixed,
+      top: button.position.top,
+      left: button.position.left 
+    }"
   >
-    <i class='fas fa-flag'></i>
+    {{flags.length}}
   </div>
 
   <!--THIS IS THE MENU TO REVIEW FLAGS-->
@@ -110,11 +102,10 @@
             <div class="menu-item__text">
                 Flag
             </div>
-            <div class="btech-flags-number-circle" style="position: absolute; bottom: .5em; right: .5em;">0</div>
           </a>
         </li>
       `)
-      app.button.click(function () {
+      app.button.click(function() {
         let button = this;
         app.showFlags = !app.showFlags;
         if (app.showFlags === false) {
@@ -207,6 +198,7 @@
     },
     data: function () {
       return {
+        button: null,
         departments: {},
         topics: [],
         currentEl: null,
