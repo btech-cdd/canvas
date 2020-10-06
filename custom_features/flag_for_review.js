@@ -95,7 +95,7 @@
       let app = this;
       app.button = $(`
         <li class="ic-app-header__menu-list-item">
-          <a id="global_nav_help_link" role="button" class="ic-app-header__menu-list-link" data-track-category="flag system" data-track-label="flag button" href="javascript:void(0);">
+          <a id="global_nav_flag_link" role="button" class="ic-app-header__menu-list-link" data-track-category="flag system" data-track-label="flag button" href="javascript:void(0);">
             <div class="menu-item-icon-container" role="presentation">
               <i style="font-size: 1.5em;" class="fal fa-flag" aria-hidden="true"></i>
             </div>
