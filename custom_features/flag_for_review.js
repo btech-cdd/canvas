@@ -247,10 +247,11 @@
           'flagType': app.flagType,
           'tags': app.flagTags,
           'comment': app.flagComment
-        }, function (data) {
+        }, function (flag) {
           //need to append this flag to list of flags
-          console.log(data);
-          app.flags.push(data);
+          let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
+          flag.item_url = flagUrl;
+          app.flags.push(flag);
         });
         app.flagType = '';
         app.flagComment = '';
