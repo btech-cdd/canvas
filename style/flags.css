@@ -22,9 +22,20 @@
 }
 
 #btech-flags-container .btech-flags-item {
-  margin: 5px 10px;
+  margin: 20px 10px;
   padding: 10px;
   background-color: #fff;
   color: #000;
   position: relative;
+}
+#btech-flags-container .btech-flags-number-circle {
+    width: 1.5em;
+    line-height: 1.5em;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 1em;
+    border: 2px solid #812;
+    background-color: #d23;
+    color: #fff;
+    font-weight: bold;
 }
