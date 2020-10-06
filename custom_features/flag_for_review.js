@@ -108,7 +108,7 @@
           </a>
         </li>
       `)
-      app.button.click(function() {
+      app.button.click(function () {
         let button = $(this);
         app.showFlags = !app.showFlags;
         if (app.showFlags === false) {
@@ -124,7 +124,7 @@
 
       let url = window.location.pathname;
       let rItem = /^\/courses\/([0-9]+)\/(pages|assignments|quizzes)\/(.*)$/;
-      let rInCoures = /^\/courses\/[0-9]+/;
+      let rInCourse = /^\/courses\/([0-9]+)/;
       let rModules = /^\/courses\/([0-9]+)(\/modules){0,1}$/;
 
       //in a page/quiz/assignment
@@ -146,8 +146,8 @@
       }
 
       //For modules page
-      else if (rModules.test(url)) {
-        app.pageType = 'modules';
+      else if (rInCourse.test(url)) {
+        app.pageType = 'course';
         let flags = [];
         let match = url.match(rModules);
         app.courseId = match[1];
@@ -161,26 +161,27 @@
         });
         app.flags = flags;
 
-        await $.get('/api/v1/courses/' + app.courseId + '/modules?include[]=items&include[]=content_details', function (data) {
-          for (let m = 0; m < data.length; m++) {
-            let module = data[m];
-            for (let i = 0; i < module.items.length; i++) {
-              let item = module.items[i];
-              if (item.url !== undefined) {
-                let item_url = item.url.replace('/api/v1', '');
-                for (let f = 0; f < flags.length; f++) {
-                  let flag = flags[f];
-                  if (item_url === flag.item_url) {
-                    let li = $('li#context_module_item_' + item.id);
-                    //Clicking on this icon should do something and/or hovering should give info about the flag.
-                    li.find('div.ig-row div.ig-info').after('<div class="ig-flag"><i class="fas fa-flag" aria-hidden="true"></i></div>');
+        if (rModules.test(url)) {
+          await $.get('/api/v1/courses/' + app.courseId + '/modules?include[]=items&include[]=content_details', function (data) {
+            for (let m = 0; m < data.length; m++) {
+              let module = data[m];
+              for (let i = 0; i < module.items.length; i++) {
+                let item = module.items[i];
+                if (item.url !== undefined) {
+                  let item_url = item.url.replace('/api/v1', '');
+                  for (let f = 0; f < flags.length; f++) {
+                    let flag = flags[f];
+                    if (item_url === flag.item_url) {
+                      let li = $('li#context_module_item_' + item.id);
+                      //Clicking on this icon should do something and/or hovering should give info about the flag.
+                      li.find('div.ig-row div.ig-info').after('<div class="ig-flag"><i class="fas fa-flag" aria-hidden="true"></i></div>');
+                    }
                   }
                 }
               }
             }
-          }
-        })
-        console.log(match);
+          })
+        }
       }
 
       //any other page, not in a specific course
