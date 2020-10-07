@@ -94,7 +94,8 @@
   </div>
 </div>
 `;
-  canvasbody.after('<div id="btech-flags-vue"></div>');
+//height is set to 0 so it doesn't make a giant empty div at the bottom of the page. There's probably a better way to do this.
+  canvasbody.after('<div id="btech-flags-vue" style="height: 0px;"></div>');
   $("#btech-flags-vue").append(vueString);
   this.APP = new Vue({
     el: '#btech-flags-vue',
