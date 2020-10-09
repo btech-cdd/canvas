@@ -48,7 +48,7 @@
                 console.log('update');
                 if (feature.oldHref !== document.location.href) {
                   feature.oldHref = document.location.href;
-                  //This line is specific to this feature and should be delted if copied to another
+                  //This line is specific to this feature and should be deleted if copied to another
                   feature.setTime = null;
                   func(feature);
                 }
@@ -89,7 +89,7 @@
           if (comment.comment.includes("RUBRIC")) {
             feature.attempts += 1;
           }
-          if (setTime !== null) {
+          if (feature.setTime !== null) {
             let timeDif = feature.setTime - new Date(comment.created_at);
             if (timeDif < 10000) {
               checkTimeDif = true;
@@ -97,7 +97,7 @@
           }
         }
         if (checkTimeDif === false) {
-          feature.calcAttemptsData(feature, setTime);
+          feature.calcAttemptsData(feature, feature.setTime);
         } else {
           console.log()
           if (feature.attempts > 0) {
