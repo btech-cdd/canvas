@@ -122,14 +122,17 @@
             let app = this;
             let types = assignment.submission_types;
             app.preparingDocument = true;
-            console.log(assignment);
-            console.log(submission);
+
+            //this needs to be set or it will flip preparing Document to false at the end, IE if it will be pulling up a print screen, set this to true
+            needsToWait = false;
+
             if (assignment.quiz_id !== undefined) {
               let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
               await app.createIframe(url, app.downloadQuiz, {
                 'submission': submission,
                 'assignment': assignment
               });
+              needsToWait = true;
             }
             if (assignment.rubric != undefined) {
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
@@ -137,6 +140,7 @@
                 'submission': submission,
                 'assignment': assignment
               });
+              needsToWait = true;
             }
             if (types.includes("online_upload")) {
               let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
@@ -152,6 +156,9 @@
             //check if nothing has been gotten
             if (false) {
               console.log('assignment type undefined');
+            }
+            if (needsToWait == false) {
+              app.preparingDocument = false;
             }
           },
           async downloadRubric(iframe, content, data) {
