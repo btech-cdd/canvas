@@ -236,7 +236,8 @@
           'Video',
           'Copyright',
           'Spelling/Grammar',
-          'Missing Content'
+          'Missing Content',
+          'Other'
         ],
         courseId: null,
         itemType: null,

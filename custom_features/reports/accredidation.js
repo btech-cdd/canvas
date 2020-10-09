@@ -1,4 +1,5 @@
 (async function () {
+  //FILTER BY SECTION
   //https://btech.instructure.com/courses/498455/accredidation
   //https://jhveem.xyz/accredidation/lti.xml
   if (document.title === "BTECH Accredidation") {
@@ -102,13 +103,11 @@
           getComments(submission) {
             let comments = submission.submission_comments;
             let el = "";
-            console.log(comments);
             if (comments.length > 0) {
               el = $("<div style='page-break-before: always;' class='btech-accredidation-comments'></div>")
               el.append("<h2>Comments</h2>")
               for (let i = 0; i < comments.length; i++) {
                 let comment = comments[i];
-                console.log(comment);
                 let commentEl = $(`<div class='btech-accredidation-comment' style='border-bottom: 1px solid #000;'>
                   <p>` + comment.comment + `</p>
                   <p style='text-align: right;'><i>-` + comment.author_name + `, ` + comment.created_at + `</i></p>
@@ -143,6 +142,7 @@
               needsToWait = true;
             }
             if (types.includes("online_upload")) {
+              //CHECK IF THERE ARE COMMENTS AND CREATE A FILE WITH THOSE COMMENTS AND DOWNLOAD
               let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               let assignmentsData = null;
               await $.get(url, function (data) {
