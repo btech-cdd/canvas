@@ -81,6 +81,7 @@
             'rubric_assessment'
           ]
         });
+        console.log(data);
         //See if the newest comment has been posted. If not, run this again.
         comments = data[0].submission_comments;
         let checkTimeDif = (feature.setTime == null);
@@ -99,7 +100,6 @@
         if (checkTimeDif === false) {
           feature.calcAttemptsData(feature, feature.setTime);
         } else {
-          console.log()
           if (feature.attempts > 0) {
             rubricTotal = 0;
             for (c in data[0].rubric_assessment) {
