@@ -94,7 +94,7 @@
   </div>
 </div>
 `;
-//height is set to 0 so it doesn't make a giant empty div at the bottom of the page. There's probably a better way to do this.
+  //height is set to 0 so it doesn't make a giant empty div at the bottom of the page. There's probably a better way to do this.
   canvasbody.after('<div id="btech-flags-vue" style="height: 0px;"></div>');
   $("#btech-flags-vue").append(vueString);
   this.APP = new Vue({
@@ -141,7 +141,7 @@
       //in a page/quiz/assignment
       if (rItem.test(url)) {
         app.pageType = 'item';
-        $(document).bind('keydown', 'ctrl+shift+f', function() {
+        $(document).bind('keydown', 'ctrl+shift+f', function () {
           app.openSubmit();
         });
         let flags = [];
@@ -239,6 +239,17 @@
           'Missing Content',
           'Other'
         ],
+        cddNames: {
+
+          '1893418': 'Josh',
+          '1864953': 'Danni',
+          '1891741': 'Katie',
+          '1638854': 'Mason',
+          '1922029': 'Makenzie',
+          '1807337': 'Jon',
+          '1869288': 'Alan',
+          '2000557': 'Charlotte'
+        },
         courseId: null,
         itemType: null,
         itemId: null,
@@ -250,7 +261,7 @@
       }
     },
     computed: {
-      filteredFlags: function() {
+      filteredFlags: function () {
         let app = this;
         return app.flags;
       }

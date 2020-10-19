@@ -1,5 +1,6 @@
 (async function () {
   //FILTER BY SECTION
+  //NEW QUIZZES???
   //https://btech.instructure.com/courses/498455/accredidation
   //https://jhveem.xyz/accredidation/lti.xml
   if (document.title === "BTECH Accredidation") {
@@ -23,7 +24,7 @@
       $("#content").html(`
       <div id='accredidation'>
         <div>
-          <div v-for='group in assignmentGroups'>
+          <div v-for='group in assignmentGroups'>:wq
             <h2>{{group.name}}</h2>
             <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
               <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a>

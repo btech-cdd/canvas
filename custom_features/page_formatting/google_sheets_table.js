@@ -98,6 +98,8 @@ async function _init() {
               }
             }
           });
+        }).fail(function() {
+          console.log("FAILED");
         });
       }
     })

@@ -32,6 +32,7 @@ var CDDIDS = [
   1869288, //Alan
   2000557, //Charlotte
 ];
+
 var CURRENT_COURSE_ID = null;
 var CURRENT_DEPARTMENT_ID = null;
 var CURRENT_COURSE_HOURS = null;
