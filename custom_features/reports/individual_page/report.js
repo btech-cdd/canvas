@@ -735,6 +735,38 @@
               }
             },
 
+            checkIncludeCourse(course) {
+              let app = this;
+              for (let g in course.groups) {
+                let group = course.groups[g];
+                if (group.assignments.length > 0) {
+                  if (app.checkIncludeGroup(group)) {
+                    return true;
+                  }
+                }
+              }
+              return false;
+            },
+
+            checkIncludeGroup(group) {
+              let app = this;
+              for (let a in group.assignments) {
+                let assignment = group.assignments[a];
+                if (app.checkIncludeAssignment(assignment)) {
+                  return true;
+                }
+              }
+              return false;
+            },
+
+            checkIncludeAssignment(assignment) {
+              let app = this;
+              if (assignment.include === true) {
+                return true;
+              }
+              return false;
+            }
+
             close() {
               $(this.$el).hide();
             }

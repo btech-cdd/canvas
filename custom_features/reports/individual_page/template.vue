@@ -139,13 +139,15 @@
                 -->
                 <div v-if='showGradeDetails'>
                   <div v-for='course in includedAssignments' :key='course.name'>
-                    <h3>{{course.name}}</h3>
-                    <div v-for='group in course.groups' :key='group.name'>
-                      <div v-if='group.assignments.length > 0'>
-                        {{group.name}}
-                        <div v-for='assignment in group.assignments' :key='assignment.id'>
-                          <div v-if='assignment.include'>
-                            -{{assignment.name}} ({{assignment.score}} / {{assignment.points_possible}})
+                    <div v-if='checkIncludeCourse(course)'>
+                      <h3>{{course.name}}</h3>
+                      <div v-for='group in course.groups' :key='group.name'>
+                        <div v-if='checkIncludeGroup(group)'>
+                          {{group.name}}
+                          <div v-for='assignment in group.assignments' :key='assignment.id'>
+                            <div v-if='checkIncludeAssignment(assignment)'>
+                              -{{assignment.name}} ({{assignment.score}} / {{assignment.points_possible}})
+                            </div>
                           </div>
                         </div>
                       </div>
