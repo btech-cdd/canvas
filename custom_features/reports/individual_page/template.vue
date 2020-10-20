@@ -122,13 +122,17 @@
                           <i style='cursor: pointer;' v-if='showGradeDetails' class='icon-minimize'
                             @click='showGradeDetails = false;' title='Hide additional information.'></i>
                           <i style='cursor: pointer;' v-if='!showGradeDetails' class='icon-question'
-                            @click='showGradeDetails = true;' title='Click here for more details about how this grade was calculated.'></i>
+                            @click='showGradeDetails = true;'
+                            title='Click here for more details about how this grade was calculated.'></i>
                         </div>
                       </td>
                       <td>{{weightedFinalGradeForTerm()}}%</td>
                     </tr>
                   </tfoot>
                 </table>
+                <div v-if='IS_ME' style="text-align: right;">
+                  TEST
+                </div>
                 <div v-if='showGradeDetails'>
                   <div v-for='course in includedAssignments' :key='course.name'>
                     {{course.name}}
