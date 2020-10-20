@@ -283,16 +283,17 @@
                           totalPoints += assignment.points_possible;
                           if (assignment.id in subData) {
                             let sub = subData[assignment.id];
+                            let subDateString = sub.submitted_at;
+                            if (subDateString === null) subDateString = sub.graded_at;
                             includedAssignments[courseId].groups[g].assignments[assignment.id] = {
                               include: false,
                               id: assignment.id,
                               name: assignment.name,
                               score: sub.score,
                               points_possible: assignment.points_possible,
-                              sub: sub.id
+                              sub: sub.id,
+                              date: subDateString
                             };
-                            let subDateString = sub.submitted_at;
-                            if (subDateString === null) subDateString = sub.graded_at;
                             let subDate = new Date(subDateString);
                             if (subDate >= startDate && subDate <= endDate) {
                               includedAssignments[courseId].groups[g].assignments[assignment.id].include = true;
