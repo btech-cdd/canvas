@@ -295,6 +295,7 @@
                             if (subDateString === null) subDateString = sub.graded_at;
                             let subDate = new Date(subDateString);
                             if (subDate >= startDate && subDate <= endDate) {
+                              console.log("INCLUDE!");
                               includedAssignments[courseId].groups[g].assignments.include = true;
                               currentPoints += sub.score;
                               possiblePoints += assignment.points_possible;
