@@ -226,6 +226,7 @@
             },
 
             async calcGradesBetweenDates() {
+              console.log("CALC");
               let app = this;
               let includedAssignments = {};
               let gradesBetweenDates = {};
