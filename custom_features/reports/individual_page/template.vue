@@ -139,7 +139,7 @@
                 <div v-if='showGradeDetails'>
                   <div v-for='course in includedAssignments' :key='course.name'>
                     <div v-if='checkIncludeCourse(course)'>
-                      <h3>{{course.name}}</h3>
+                      <h3><a :href="'/courses/' + course.id + '/grades/' + userId">{{course.name}}</a></h3>
                       <div v-for='group in course.groups' :key='group.name'>
                         <div v-if='checkIncludeGroup(group)'>
                           {{group.name}}
