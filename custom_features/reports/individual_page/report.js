@@ -286,7 +286,8 @@
                             let sub = subData[assignment.id];
                             includedAssignments[courseId].groups[g].assignments.push({
                               include: false,
-                              assignment_id: assignment.id,
+                              id: assignment.id,
+                              name: assignment.name,
                               score: sub.score,
                               points_possible: assignment.points_possible,
                             })

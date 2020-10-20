@@ -132,6 +132,12 @@
                 <div v-if='showGradeDetails'>
                   <div v-for='course in includedAssignments' :key='course.name'>
                     {{course.name}}
+                    <div v-for='group in course.groups' :key='group.name'>
+                      {{group.name}}
+                      <div v-for='assignment in group.assignments' :key='assignment.id'>
+                        {{assignment.name}}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
