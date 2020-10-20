@@ -290,6 +290,7 @@
                               name: assignment.name,
                               score: sub.score,
                               points_possible: assignment.points_possible,
+                              sub: sub.id
                             };
                             let subDateString = sub.submitted_at;
                             if (subDateString === null) subDateString = sub.graded_at;
