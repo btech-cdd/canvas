@@ -765,7 +765,7 @@
                 return true;
               }
               return false;
-            }
+            },
 
             close() {
               $(this.$el).hide();
