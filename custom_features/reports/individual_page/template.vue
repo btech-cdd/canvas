@@ -24,6 +24,7 @@
               Reach out to your Canvas Administrator if you have received this message in error
             </p>
           </div>
+
           <div v-else>
             <div v-if="menu=='report'">
               <h5 style='text-align: center;'>Click on column headers to sort by that column.</h5>
@@ -61,6 +62,7 @@
                 </tfoot>
               </table>
             </div>
+
             <div v-if="menu=='period'">
               <div v-if='loadingAssignments'>{{loadingMessage}}</div>
               <div v-else>

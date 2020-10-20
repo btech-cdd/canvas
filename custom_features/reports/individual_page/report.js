@@ -109,6 +109,7 @@
               menu: 'report',
               IS_TEACHER: false,
               showGradeDetails: false,
+              includedAssignments: {},
             }
           },
 
@@ -225,6 +226,8 @@
             },
 
             async calcGradesBetweenDates() {
+              let app = this;
+              let includedAssignments = {};
               let gradesBetweenDates = {};
               let progressBetweenDates = {};
               let hoursBetweenDates = {};
@@ -241,6 +244,7 @@
               //otherwise fill in all the progress / grades data for those dates
               for (let i = 0; i < this.courses.length; i++) {
                 let courseId = this.courses[i].course_id;
+                includedAssignments[courseId] = {};
                 let subs = this.submissionData[courseId];
                 if (subs !== undefined) {
                   //get the data for all submissions
@@ -260,6 +264,10 @@
                   let totalProgress = 0;
                   for (let g = 0; g < assignmentGroups.length; g++) {
                     let group = assignmentGroups[g]
+                    includedAssignments[courseId][group.name] = {
+                      id: g,
+                      assignments: []
+                    };
                     if (group.group_weight > 0) {
                       let currentPoints = 0;
                       let possiblePoints = 0;
@@ -271,10 +279,17 @@
                           totalPoints += assignment.points_possible;
                           if (assignment.id in subData) {
                             let sub = subData[assignment.id];
+                            includedAssignments[courseId][group.name].assignments.push({
+                              include: false,
+                              assignment_id: assignment.id,
+                              score: sub.score,
+                              points_possible: assignment.points_possible,
+                            })
                             let subDateString = sub.submitted_at;
                             if (subDateString === null) subDateString = sub.graded_at;
                             let subDate = new Date(subDateString);
                             if (subDate >= startDate && subDate <= endDate) {
+                              includedAssignments[courseId][group.name].assignments.include = true;
                               currentPoints += sub.score;
                               possiblePoints += assignment.points_possible;
                             }
@@ -348,9 +363,11 @@
 
                 }
               }
-              this.gradesBetweenDates = JSON.parse(JSON.stringify(gradesBetweenDates));
-              this.progressBetweenDates = JSON.parse(JSON.stringify(progressBetweenDates));
-              this.hoursBetweenDates = JSON.parse(JSON.stringify(hoursBetweenDates));
+              app.gradesBetweenDates = JSON.parse(JSON.stringify(gradesBetweenDates));
+              app.progressBetweenDates = JSON.parse(JSON.stringify(progressBetweenDates));
+              app.hoursBetweenDates = JSON.parse(JSON.stringify(hoursBetweenDates));
+              console.log(includedAssignments);
+              app.includedAssignments = JSON.parse(JSON.stringify(includedAssignments));
               //estimate the hours enrolled from the hours between dates data collected
               //this value can be edited by the instructor
               let count = 0;
