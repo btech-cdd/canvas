@@ -737,8 +737,8 @@
 
             checkIncludeCourse(course) {
               let app = this;
-              console.log(course);
               for (let g in course.groups) {
+                console.log(g);
                 let group = course.groups[g];
                 if (group.assignments.length > 0) {
                   if (app.checkIncludeGroup(group)) {
@@ -751,8 +751,8 @@
 
             checkIncludeGroup(group) {
               let app = this;
-              console.log(group);
               for (let a in group.assignments) {
+                console.log(a);
                 let assignment = group.assignments[a];
                 if (app.checkIncludeAssignment(assignment)) {
                   return true;
@@ -763,7 +763,6 @@
 
             checkIncludeAssignment(assignment) {
               let app = this;
-              console.log(assignment);
               if (assignment.include === true) {
                 return true;
               }
