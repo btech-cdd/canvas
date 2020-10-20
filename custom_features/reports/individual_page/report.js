@@ -738,7 +738,6 @@
               let app = this;
               for (let g in course.groups) {
                 let group = course.groups[g];
-                console.log(group);
                 if (app.checkIncludeGroup(group)) {
                   return true;
                 }
@@ -750,7 +749,6 @@
               let app = this;
               for (let a in group.assignments) {
                 let assignment = group.assignments[a];
-                console.log(assignment);
                 if (app.checkIncludeAssignment(assignment)) {
                   return true;
                 }

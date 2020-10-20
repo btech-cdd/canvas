@@ -142,7 +142,7 @@
                       <h3><a :href="'/courses/' + course.id + '/grades/' + userId">{{course.name}}</a></h3>
                       <div v-for='group in course.groups' :key='group.name'>
                         <div v-if='checkIncludeGroup(group)'>
-                          {{group.name}}
+                          <h4><b>{{group.name}}</b></h4>
                           <div v-for='assignment in group.assignments' :key='assignment.id'>
                             <div v-if='checkIncludeAssignment(assignment)'>
                               -<a :href="'/courses/' + course.id + '/assignments/' + assignment.id + '/submissions/' + assignment.sub">{{assignment.name}}</a> ({{assignment.score}} / {{assignment.points_possible}})
