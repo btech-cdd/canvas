@@ -242,9 +242,13 @@
               if (startDate === undefined || endDate === undefined) return;
 
               //otherwise fill in all the progress / grades data for those dates
-              for (let i = 0; i < this.courses.length; i++) {
-                let courseId = this.courses[i].course_id;
-                includedAssignments[courseId] = {};
+              for (let i = 0; i < app.courses.length; i++) {
+                let course = app.courses[i];
+                let courseId = course.course_id;
+                includedAssignments[courseId] = {
+                  name: course.name,
+                  groups: {}
+                };
                 let subs = this.submissionData[courseId];
                 if (subs !== undefined) {
                   //get the data for all submissions
@@ -264,8 +268,8 @@
                   let totalProgress = 0;
                   for (let g = 0; g < assignmentGroups.length; g++) {
                     let group = assignmentGroups[g]
-                    includedAssignments[courseId][group.name] = {
-                      id: g,
+                    includedAssignments[courseId].groups[g] = {
+                      name: group.name,
                       assignments: []
                     };
                     if (group.group_weight > 0) {
@@ -279,7 +283,7 @@
                           totalPoints += assignment.points_possible;
                           if (assignment.id in subData) {
                             let sub = subData[assignment.id];
-                            includedAssignments[courseId][group.name].assignments.push({
+                            includedAssignments[courseId].groups[g].assignments.push({
                               include: false,
                               assignment_id: assignment.id,
                               score: sub.score,
@@ -289,7 +293,7 @@
                             if (subDateString === null) subDateString = sub.graded_at;
                             let subDate = new Date(subDateString);
                             if (subDate >= startDate && subDate <= endDate) {
-                              includedAssignments[courseId][group.name].assignments.include = true;
+                              includedAssignments[courseId].groups[g].assignments.include = true;
                               currentPoints += sub.score;
                               possiblePoints += assignment.points_possible;
                             }
