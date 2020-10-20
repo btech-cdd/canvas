@@ -226,7 +226,6 @@
             },
 
             async calcGradesBetweenDates() {
-              console.log("CALC");
               let app = this;
               let includedAssignments = {};
               let gradesBetweenDates = {};
@@ -296,7 +295,6 @@
                             if (subDateString === null) subDateString = sub.graded_at;
                             let subDate = new Date(subDateString);
                             if (subDate >= startDate && subDate <= endDate) {
-                              console.log("INCLUDE!");
                               includedAssignments[courseId].groups[g].assignments[assignment.id].include = true;
                               currentPoints += sub.score;
                               possiblePoints += assignment.points_possible;
@@ -738,10 +736,8 @@
 
             checkIncludeCourse(course) {
               let app = this;
-              console.log(course);
               for (let g in course.groups) {
                 let group = course.groups[g];
-                console.log(group);
                 if (app.checkIncludeGroup(group)) {
                   return true;
                 }
@@ -752,9 +748,7 @@
             checkIncludeGroup(group) {
               let app = this;
               for (let a in group.assignments) {
-                console.log(a);
                 let assignment = group.assignments[a];
-                console.log(assignment);
                 if (app.checkIncludeAssignment(assignment)) {
                   return true;
                 }
