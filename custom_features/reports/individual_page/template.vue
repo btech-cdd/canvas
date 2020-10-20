@@ -129,6 +129,11 @@
                     </tr>
                   </tfoot>
                 </table>
+                <div v-if='showGradeDetails'>
+                  <div v-for='course in includedAssignments' :key='course.name'>
+                    {{key}}
+                    </div>
+                </div>
               </div>
             </div>
           </div>
