@@ -738,12 +738,10 @@
             checkIncludeCourse(course) {
               let app = this;
               for (let g in course.groups) {
-                console.log(g);
                 let group = course.groups[g];
-                if (group.assignments.length > 0) {
-                  if (app.checkIncludeGroup(group)) {
-                    return true;
-                  }
+                console.log(group);
+                if (app.checkIncludeGroup(group)) {
+                  return true;
                 }
               }
               return false;
@@ -754,6 +752,7 @@
               for (let a in group.assignments) {
                 console.log(a);
                 let assignment = group.assignments[a];
+                console.log(assignment);
                 if (app.checkIncludeAssignment(assignment)) {
                   return true;
                 }
