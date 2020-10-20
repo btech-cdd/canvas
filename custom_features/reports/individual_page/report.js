@@ -737,6 +737,7 @@
 
             checkIncludeCourse(course) {
               let app = this;
+              console.log(course);
               for (let g in course.groups) {
                 let group = course.groups[g];
                 console.log(group);
