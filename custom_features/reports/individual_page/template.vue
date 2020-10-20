@@ -131,8 +131,8 @@
                 </table>
                 <div v-if='showGradeDetails'>
                   <div v-for='course in includedAssignments' :key='course.name'>
-                    {{key}}
-                    </div>
+                    {{course.name}}
+                  </div>
                 </div>
               </div>
             </div>
