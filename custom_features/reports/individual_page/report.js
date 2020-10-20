@@ -271,7 +271,7 @@
                     let group = assignmentGroups[g]
                     includedAssignments[courseId].groups[g] = {
                       name: group.name,
-                      assignments: []
+                      assignments: {}
                     };
                     if (group.group_weight > 0) {
                       let currentPoints = 0;
@@ -284,19 +284,19 @@
                           totalPoints += assignment.points_possible;
                           if (assignment.id in subData) {
                             let sub = subData[assignment.id];
-                            includedAssignments[courseId].groups[g].assignments.push({
+                            includedAssignments[courseId].groups[g].assignments[assignment.id] = {
                               include: false,
                               id: assignment.id,
                               name: assignment.name,
                               score: sub.score,
                               points_possible: assignment.points_possible,
-                            })
+                            };
                             let subDateString = sub.submitted_at;
                             if (subDateString === null) subDateString = sub.graded_at;
                             let subDate = new Date(subDateString);
                             if (subDate >= startDate && subDate <= endDate) {
                               console.log("INCLUDE!");
-                              includedAssignments[courseId].groups[g].assignments.include = true;
+                              includedAssignments[courseId].groups[g].assignments[assignment.id].include = true;
                               currentPoints += sub.score;
                               possiblePoints += assignment.points_possible;
                             }
