@@ -130,9 +130,13 @@
                     </tr>
                   </tfoot>
                 </table>
-                <div v-if='IS_ME' style="text-align: right;">
-                  TEST
-                </div>
+                <!--WAIT DON'PUBLISH THIS YET
+                  <div v-if='IS_ME' style="text-align: right;">
+                    <img style="zoom: 2; image-rendering: pixelated;"
+                      src="https://btech-cdd.github.io/media/it-will-all-be-fine.png"
+                    >
+                  </div>
+                -->
                 <div v-if='showGradeDetails'>
                   <div v-for='course in includedAssignments' :key='course.name'>
                     {{course.name}}
