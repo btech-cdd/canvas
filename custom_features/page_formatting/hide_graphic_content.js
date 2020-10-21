@@ -1,5 +1,5 @@
-
 (function () {
+  console.log("HIDE");
   let imgs = $(".btech-graphic-image");
   imgs.each(function () {
     let img = $(this);

@@ -316,6 +316,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             feature('page_formatting/google_sheets_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
             feature("page_formatting/tinymce_font_size", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)\/(.+?)\/edit/);
             feature("page_formatting/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
+            feature("page_formatting/hide_graphic_content", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
             feature("quizzes/duplicate_bank_item", {}, /\/courses\/([0-9]+)\/question_banks\/([0-9]+)/);
             feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
             if (IS_BLUEPRINT) feature('blueprint_association_links');
