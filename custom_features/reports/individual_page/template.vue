@@ -140,6 +140,7 @@
                   </div>
                 -->
                 <div v-if='showGradeDetails'>
+                  <!--include a reset button to go back to the default. Probably just rerun the code from on change of date-->
                   <div v-for='course in includedAssignments' :key='course.name'>
                     <div v-if='checkIncludeCourse(course)'>
                       <h3><a :href="'/courses/' + course.id + '/grades/' + userId">{{course.name}}</a></h3>
@@ -149,7 +150,7 @@
                           <div v-for='assignment in group.assignments' :key='assignment.id'>
                             <div v-if='checkIncludeAssignment(assignment)'>
                               <div>
-                                <input type="checkbox" :id="course.id + '-' + group.id + '-' + assignment.id" v-bind="assignment.include">
+                                <input type="checkbox" :id="course.id + '-' + group.id + '-' + assignment.id" v-model="assignment.include">
                                 <a style='padding-left: 1em;'
                                   :href="'/courses/' + course.id + '/assignments/' + assignment.id + '/submissions/' + assignment.sub">
                                   {{assignment.name}}
