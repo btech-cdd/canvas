@@ -67,9 +67,9 @@
               <div v-else>
                 <div class='btech-report-submission-dates'>
                   <span>Start Date:</span>
-                  <input type="date" v-model="submissionDatesStart" @change='calcGradesBetweenDates()'>
+                  <input type="date" v-model="submissionDatesStart" @change='getIncludedAssignmentsBetweenDates()'>
                   <span>End Date:</span>
-                  <input type="date" v-model="submissionDatesEnd" @change='calcGradesBetweenDates()'>
+                  <input type="date" v-model="submissionDatesEnd" @change='getIncludedAssignmentsBetweenDates()'>
                 </div>
                 <table class='btech-report-table' border='1'>
                   <thead border='1'>

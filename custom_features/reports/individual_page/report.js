@@ -225,6 +225,208 @@
               })
             },
 
+            async getIncludedAssignmentsBetweenDates() {
+              let app = this;
+              let includedAssignments = {};
+              let startDate = this.parseDate(this.submissionDatesStart);
+              let endDate = this.parseDate(this.submissionDatesEnd);
+              //break if a date is undefined
+              if (startDate === undefined || endDate === undefined) return;
+
+              //otherwise fill in all the progress / grades data for those dates
+              for (let i = 0; i < app.courses.length; i++) {
+                let course = app.courses[i];
+                let courseId = course.course_id;
+                includedAssignments[courseId] = {
+                  name: course.name,
+                  groups: {}
+                };
+                let subs = this.submissionData[courseId];
+                if (subs !== undefined) {
+                  //get the data for all submissions
+                  let subData = {};
+                  for (let s = 0; s < subs.length; s++) {
+                    let sub = subs[s];
+                    if (sub.posted_at != null) {
+                      subData[sub.assignment_id] = sub;
+                    }
+                  }
+
+                  //weight grades based on assignment group weighting and hours completed in the course
+                  let assignmentGroups = this.courseAssignmentGroups[courseId];
+                  for (let g = 0; g < assignmentGroups.length; g++) {
+                    let group = assignmentGroups[g]
+                    includedAssignments[courseId].groups[g] = {
+                      name: group.name,
+                      group_weight: group.group_weight,
+                      assignments: {}
+                    };
+                    if (group.group_weight > 0) {
+                      //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
+                      for (let a = 0; a < group.assignments.length; a++) {
+                        let assignment = group.assignments[a];
+                        if (assignment.published) {
+                          if (assignment.id in subData) {
+                            let sub = subData[assignment.id];
+                            let subDateString = sub.submitted_at;
+                            if (subDateString === null) subDateString = sub.graded_at;
+                            includedAssignments[courseId].groups[g].assignments[assignment.id] = {
+                              include: false,
+                              id: assignment.id,
+                              name: assignment.name,
+                              score: sub.score,
+                              points_possible: assignment.points_possible,
+                              sub: sub.id,
+                              date: subDateString
+                            };
+                            let subDate = new Date(subDateString);
+                            if (subDate >= startDate && subDate <= endDate) {
+                              includedAssignments[courseId].groups[g].assignments[assignment.id].include = true;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              app.includedAssignments = JSON.parse(JSON.stringify(includedAssignments));
+              app.calcGradesFromIncludedAssignments();
+            },
+
+            calcGradesFromIncludedAssignments() {
+              let app = this;
+              let gradesBetweenDates = {};
+              let progressBetweenDates = {};
+              let hoursBetweenDates = {};
+              let startDate = this.parseDate(this.submissionDatesStart);
+              let endDate = this.parseDate(this.submissionDatesEnd);
+              let midtermPercentCompleted = 1;
+              let currentDate = new Date();
+              if (currentDate < endDate) {
+                midtermPercentCompleted = (currentDate - startDate) / (endDate - startDate);
+              }
+              //break if a date is undefined
+              if (startDate === undefined || endDate === undefined) return;
+
+              for (let courseId in app.includedAssignments) {
+                let course = app.includedAssignments[courseId];
+                let subs = this.submissionData[courseId];
+                if (subs !== undefined) {
+                  //get the data for all submissions
+                  let subData = {};
+                  for (let s = 0; s < subs.length; s++) {
+                    let sub = subs[s];
+                    if (sub.posted_at != null) {
+                      subData[sub.assignment_id] = sub;
+                    }
+                  }
+                }
+                for (let groupId in course.assignments) {
+                  let group = course.groups[groupId];
+                  let currentWeighted = 0;
+                  let totalWeights = 0; //sum of all weight values for assignment groups
+                  let totalWeightsSubmitted = 0; //sum of all weight values for assignment groups if at least one submitted assignment
+                  let totalProgress = 0;
+                  if (group.group_weight > 0) {
+                    let currentPoints = 0;
+                    let possiblePoints = 0;
+                    let totalPoints = 0;
+                    //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
+                    for (let assignmentId in group.assignments) {
+                      let assignment = group.assignments[assignmentId];
+                      if (assignment.included) {
+                        totalPoints += assignment.points_possible;
+                        currentPoints += assignment.score;
+                        possiblePoints += assignment.points_possible;
+
+                      }
+                    }
+                    //update info for the submission/earned points values
+                    if (possiblePoints > 0) {
+                      let groupScore = currentPoints / possiblePoints;
+                      currentWeighted += groupScore * group.group_weight;
+                      totalWeightsSubmitted += group.group_weight;
+                    }
+                    //update info for total possible points values 
+                    if (totalPoints > 0) {
+                      let progress = possiblePoints / totalPoints;
+                      totalProgress += progress * group.group_weight;
+                      totalWeights += group.group_weight;
+                    }
+                  }
+                }
+
+                //if there are any points possible in this course, put out some summary grades data
+                if (totalWeights > 0) {
+                  let output;
+                  let weightedGrade = Math.round(currentWeighted / totalWeightsSubmitted * 10000) / 100;
+                  output = "";
+                  if (!isNaN(weightedGrade)) {
+                    output = weightedGrade;
+                  }
+                  gradesBetweenDates[courseId] = output;
+
+                  let progress = Math.round((totalProgress / totalWeights) * 10000) / 100;
+                  output = "";
+                  if (!isNaN(progress)) {
+                    output = progress;
+                  }
+                  progressBetweenDates[courseId] = output;
+                }
+                if (this.hoursAssignmentData[courseId] != null) {
+                  let hoursData = this.hoursAssignmentData[courseId];
+                  let foundDate = null;
+                  hoursBetweenDates[courseId] = null;
+                  for (let h = 0; h < hoursData.length; h++) {
+                    let hoursDatum = hoursData[h];
+                    let hoursDateString = hoursDatum.graded_at;
+                    let hoursDate = new Date(hoursDateString);
+                    //see if it's between the period dates, then make sure a date hasn't been found. if it's more recent or there's no previous data, update.
+                    if (hoursDate >= startDate && hoursDate <= endDate) {
+                      if (foundDate === null) {
+                        hoursBetweenDates[courseId] = hoursDatum.score;
+                        foundDate = hoursDate;
+                      } else if (hoursDate > foundDate) {
+                        //might be worth putting some kind of warning saying there's more than one date
+                        hoursBetweenDates[courseId] = hoursDatum.score;
+                        foundDate = hoursDate;
+                      }
+                    }
+                    //If you couldn't find anything, start fresh and just find the most recent score
+                    if (hoursBetweenDates[courseId] === null) {
+                      if (foundDate === null) {
+                        hoursBetweenDates[courseId] = hoursDatum.score;
+                        foundDate = hoursDate;
+                      } else if (hoursDate > foundDate) {
+                        //might be worth putting some kind of warning saying there's more than one date
+                        hoursBetweenDates[courseId] = hoursDatum.score;
+                        foundDate = hoursDate;
+                      }
+                    }
+                  }
+                }
+              }
+              app.gradesBetweenDates = JSON.parse(JSON.stringify(gradesBetweenDates));
+              app.progressBetweenDates = JSON.parse(JSON.stringify(progressBetweenDates));
+              app.hoursBetweenDates = JSON.parse(JSON.stringify(hoursBetweenDates));
+              //estimate the hours enrolled from the hours between dates data collected
+              //this value can be edited by the instructor
+              let count = 0;
+              let hoursTotal = 0;
+              for (let c = 0; c < this.courses.length; c++) {
+                let course = this.courses[c];
+                let courseId = course.course_id;
+                let hours = this.hoursBetweenDates[courseId];
+                if (hours !== undefined && hours > 0) {
+                  count += 1;
+                  hoursTotal += hours;
+                }
+              }
+              this.estimatedHoursEnrolled = Math.floor(parseFloat((hoursTotal / count).toFixed(2)));
+              this.estimatedHoursRequired = Math.floor(parseFloat((hoursTotal / count).toFixed(2)) * midtermPercentCompleted);
+            },
+
             async calcGradesBetweenDates() {
               let app = this;
               let includedAssignments = {};
