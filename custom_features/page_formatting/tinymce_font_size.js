@@ -18,7 +18,7 @@ async function _init() {
     font-size: .66rem;
   }
   .btech-graphic-image {
-    filter: blur(32px);
+    filter: blur(4px);
   }
   `;
   if (tinymce.majorVersion === "4") {
