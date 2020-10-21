@@ -57,6 +57,7 @@
       <div 
         class='btech-flags-item'
         v-if='(displayResolved || !flag.resolved) && (loadedNames[flag.createdBy] !== undefined && loadedNames[flag.createdBy] !== null)'>
+        <div style='text-align: center;' v-if='loadedCourses[flag.courseId] !== undefined && loadedCourses[flag.courseId] !== null'>{{loadedCourses[flag.courseId]}}</div>
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
         <div>{{flag.comment}}</div>
         <div style='text-align: right;'><i>-{{loadedNames[flag.createdBy]}}</i></div>
@@ -111,7 +112,6 @@
     el: '#btech-flags-vue',
     mounted: async function () {
       let app = this;
-      console.log("v2");
       $('.ic-app-header__menu-list-item ').each(function () {
         $(this).click(function () {
           app.showFlags = false;
@@ -139,9 +139,6 @@
         }
       })
       $("#menu").append(app.button);
-
-      //get CDD Data
-      console.log(CDDIDS);
 
       let url = window.location.pathname;
       let rItem = /^\/courses\/([0-9]+)\/(pages|assignments|quizzes|discussion_topics)\/(.*)$/;
@@ -218,8 +215,6 @@
             if (app.loadedCourses[flag.courseId] === undefined) {
               app.loadedCourses[flag.courseId] = null;
               $.get('/api/v1/courses/' + flag.courseId, function (data) {
-                console.log(flag);
-                console.log(data);
                 app.loadedCourses[flag.courseId] = data.name;
               });
             }
@@ -285,11 +280,9 @@
         let app = this;
         let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
         flag.item_url = flagUrl;
-        console.log(app.loadedNames[flag.createdBy]);
         if (app.loadedNames[flag.createdBy] === undefined) {
           app.loadedNames[flag.createdBy] = null;
           $.get('/api/v1/users/' + flag.createdBy, function (data) {
-            console.log(data);
             app.loadedNames[flag.createdBy] = data.name;
           });
         }
@@ -320,7 +313,6 @@
         let app = this;
         await $.delete('https://jhveem.xyz/api/flags/' + flag._id);
         let ind = app.flags.indexOf(flag);
-        console.log(ind);
         if (ind > -1) {
           app.flags.splice(ind, 1);
         }
@@ -334,7 +326,6 @@
       },
       async resolveFlag(flag) {
         let app = this;
-        console.log(flag);
         flag.resolved = !flag.resolved
         app.updateFlag(flag, {
           'resolved': flag.resolved
