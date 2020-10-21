@@ -301,7 +301,7 @@
           'comment': app.flagComment
         }, function (flag) {
           //need to append this flag to list of flags
-          flag = initFlag(flag);
+          flag = app.initFlag(flag);
           app.flags.push(flag);
         });
         app.flagType = '';
