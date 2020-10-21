@@ -3,6 +3,7 @@
 @import 'https://jhveem.xyz/canvas/style/style.css';
 @import 'https://jhveem.xyz/canvas/style/flags.css';
 @import 'https://jhveem.xyz/canvas/style/reports.css';
+@import 'https://jhveem.xyz/canvas/style/graphic-content.css';
 @import 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css';
 @import 'https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.6/select2-bootstrap.css';
 /*@import 'https://kit.fontawesome.com/870f83fdd7.js';/*Not sure why this was included since it's a js file*/
