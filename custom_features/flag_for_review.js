@@ -56,10 +56,10 @@
     >
       <div 
         class='btech-flags-item'
-        v-if='displayResolved || !flag.resolved'>
+        v-if='(displayResolved || !flag.resolved) && (loadedNames[flag.createdBy] !== undefined && loadedNames[flag.createdBy] !== null)'>
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
         <div>{{flag.comment}}</div>
-        <div style='text-align: right;'><i>-{{flag.createdBy}}</i></div>
+        <div style='text-align: right;'><i>-{{loadedNames[flag.createdBy]}}</i></div>
         <div style='width: 100%;'>
           <i @click='deleteFlag(flag);' class='icon-trash'></i>
           <i @click='editFlag(flag);' class='icon-edit'></i>
@@ -270,9 +270,10 @@
         flag.item_url = flagUrl;
         console.log(app.loadedNames[flag.createdBy]);
         if (app.loadedNames[flag.createdBy] === undefined) {
-          app.loadedNames[flag.createdBy] = 'loading';
+          app.loadedNames[flag.createdBy] = null;
           $.get('/api/v1/users/' + flag.createdBy, function (data) {
             console.log(data);
+            app.loadedNames[flag.createdBy] = data.name;
           });
         }
         return flag;
