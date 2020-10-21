@@ -58,7 +58,8 @@
       <div style='width: 100%;'>
         <i @click='deleteFlag(flag);' class='icon-trash'></i>
         <i @click='editFlag(flag);' class='icon-edit'></i>
-        <i @click='resolveFlag(flag);' class='icon-publish'></i>
+        <i v-if='flag.published' @click='resolveFlag(flag);' class='icon-publish icon-Solid' style='color: #0f0;'></i>
+        <i v-else @click='resolveFlag(flag);' class='icon-publish' style='color: #f00;'></i>
       </div>
     </div>
   </div>
@@ -310,8 +311,8 @@
       },
       async resolveFlag(flag) {
         let app = this;
-        console.log(flag);
-        app.updateFlag(flag, {'resolved': !flag.resolved});
+        flag.resolved = !flag.resolved
+        app.updateFlag(flag, {'resolved': flag.resolved});
       },
       openSubmit() {
         let app = this;
