@@ -239,6 +239,7 @@
                 let courseId = course.course_id;
                 includedAssignments[courseId] = {
                   name: course.name,
+                  include: true,
                   groups: {}
                 };
                 let subs = this.submissionData[courseId];
@@ -259,6 +260,7 @@
                     includedAssignments[courseId].groups[g] = {
                       name: group.name,
                       group_weight: group.group_weight,
+                      include: true,
                       assignments: {}
                     };
                     if (group.group_weight > 0) {
