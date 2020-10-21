@@ -311,6 +311,7 @@
       },
       async resolveFlag(flag) {
         let app = this;
+        console.log(flag);
         flag.resolved = !flag.resolved
         app.updateFlag(flag, {'resolved': flag.resolved});
       },
