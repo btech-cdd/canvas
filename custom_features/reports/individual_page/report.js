@@ -228,8 +228,8 @@
             async getIncludedAssignmentsBetweenDates() {
               let app = this;
               let includedAssignments = {};
-              let startDate = this.parseDate(this.submissionDatesStart);
-              let endDate = this.parseDate(this.submissionDatesEnd);
+              let startDate = app.parseDate(app.submissionDatesStart);
+              let endDate = app.parseDate(app.submissionDatesEnd);
               //break if a date is undefined
               if (startDate === undefined || endDate === undefined) return;
 
