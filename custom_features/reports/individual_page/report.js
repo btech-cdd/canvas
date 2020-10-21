@@ -319,7 +319,7 @@
                   let totalWeights = 0; //sum of all weight values for assignment groups
                   let totalWeightsSubmitted = 0; //sum of all weight values for assignment groups if at least one submitted assignment
                   let totalProgress = 0;
-                  for (let groupId in course.assignments) {
+                  for (let groupId in course.groups) {
                     let group = course.groups[groupId];
                     if (app.checkIncludeGroup(group)) {
                       console.log(group)
