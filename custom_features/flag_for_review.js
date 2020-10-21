@@ -162,10 +162,7 @@
         await $.get("https://jhveem.xyz/api/flags/courses/" + app.courseId + "/" + app.itemType + "/" + app.itemId, function (data) {
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
-            console.log(flag);
-            let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
-            flag.item_url = flagUrl;
-            flag.
+            flag = app.initFlag(flag);
             flags.push(flag);
           }
         });
@@ -181,9 +178,7 @@
         await $.get("https://jhveem.xyz/api/flags/courses/" + app.courseId, function (data) {
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
-            console.log(flag);
-            let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
-            flag.item_url = flagUrl;
+            flag = app.initFlag(flag);
             flags.push(flag);
           }
         });
@@ -219,8 +214,7 @@
         await $.get("https://jhveem.xyz/api/flags", function (data) {
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
-            let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
-            flag.item_url = flagUrl;
+            flag = app.initFlag(flag);
             flags.push(flag);
           }
         });
@@ -259,8 +253,7 @@
         pageType: '',
         cddInfo: [],
         displayResolved: false,
-        loadedNames: {
-        },
+        loadedNames: {},
         loadedCourses: {},
       }
     },
@@ -271,6 +264,18 @@
       }
     },
     methods: {
+      initFlag(flag) {
+        let app = this;
+        let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
+        flag.item_url = flagUrl;
+        console.log(app.loadedNames[flag.createdBy]);
+        if (app.loadedNames[flag.createdBy] === undefined) {
+          app.loadedNames[flag.createdBy] = 'loading';
+          $.get('/api/v1/users/' + flag.createdBy, function (data) {
+            console.log(data);
+          });
+        }
+      },
       async submitFlag() {
         let app = this;
         $.post('https://jhveem.xyz/api/flags', {
@@ -284,15 +289,7 @@
           'comment': app.flagComment
         }, function (flag) {
           //need to append this flag to list of flags
-          let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
-          flag.item_url = flagUrl;
-          console.log(app.loadedNames[flag.createdBy]);
-          if (app.loadedNames[flag.createdBy] === undefined) {
-            app.loadedNames[flag.createdBy] = 'loading';
-            $.get('/api/v1/users/' + flag.createdBy, function(data) {
-              console.log(data);
-            });
-          }
+          flag = initFlag(flag);
           app.flags.push(flag);
         });
         app.flagType = '';
