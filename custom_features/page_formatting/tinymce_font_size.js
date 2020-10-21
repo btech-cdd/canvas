@@ -20,6 +20,9 @@ async function _init() {
   .btech-graphic-image {
     filter: blur(4px);
   }
+  .btech-graphic-image::after {
+    content: "THIS IMAGE HAS BEEN MARKED AS POTENTIALLY GRAPHIC";
+  }
   `;
   if (tinymce.majorVersion === "4") {
     tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[1].innerHTML = tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[1].innerHTML + additionalCSS;
