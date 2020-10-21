@@ -330,7 +330,7 @@
                         //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
                         for (let assignmentId in group.assignments) {
                           let assignment = group.assignments[assignmentId];
-                          if (assignment.included) {
+                          if (assignment.include) {
                             totalPoints += assignment.points_possible;
                             currentPoints += assignment.score;
                             possiblePoints += assignment.points_possible;
