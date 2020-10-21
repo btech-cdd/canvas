@@ -313,97 +313,92 @@
 
               for (let courseId in app.includedAssignments) {
                 let course = app.includedAssignments[courseId];
-                let subs = this.submissionData[courseId];
-                if (subs !== undefined) {
-                  //get the data for all submissions
-                  let subData = {};
-                  for (let s = 0; s < subs.length; s++) {
-                    let sub = subs[s];
-                    if (sub.posted_at != null) {
-                      subData[sub.assignment_id] = sub;
-                    }
-                  }
-                }
-                let currentWeighted = 0;
-                let totalWeights = 0; //sum of all weight values for assignment groups
-                let totalWeightsSubmitted = 0; //sum of all weight values for assignment groups if at least one submitted assignment
-                let totalProgress = 0;
-                for (let groupId in course.assignments) {
-                  let group = course.groups[groupId];
-                  if (group.group_weight > 0) {
-                    let currentPoints = 0;
-                    let possiblePoints = 0;
-                    let totalPoints = 0;
-                    //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
-                    for (let assignmentId in group.assignments) {
-                      let assignment = group.assignments[assignmentId];
-                      if (assignment.included) {
-                        totalPoints += assignment.points_possible;
-                        currentPoints += assignment.score;
-                        possiblePoints += assignment.points_possible;
+                if (app.checkIncludeCourse(course)) {
+                  console.log(course);
+                  let currentWeighted = 0;
+                  let totalWeights = 0; //sum of all weight values for assignment groups
+                  let totalWeightsSubmitted = 0; //sum of all weight values for assignment groups if at least one submitted assignment
+                  let totalProgress = 0;
+                  for (let groupId in course.assignments) {
+                    let group = course.groups[groupId];
+                    if (app.checkIncludeGroup(group)) {
+                      console.log(group)
+                      if (group.group_weight > 0) {
+                        let currentPoints = 0;
+                        let possiblePoints = 0;
+                        let totalPoints = 0;
+                        //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
+                        for (let assignmentId in group.assignments) {
+                          let assignment = group.assignments[assignmentId];
+                          if (assignment.included) {
+                            totalPoints += assignment.points_possible;
+                            currentPoints += assignment.score;
+                            possiblePoints += assignment.points_possible;
 
+                          }
+                        }
+                        //update info for the submission/earned points values
+                        if (possiblePoints > 0) {
+                          let groupScore = currentPoints / possiblePoints;
+                          currentWeighted += groupScore * group.group_weight;
+                          totalWeightsSubmitted += group.group_weight;
+                        }
+                        //update info for total possible points values 
+                        if (totalPoints > 0) {
+                          let progress = possiblePoints / totalPoints;
+                          totalProgress += progress * group.group_weight;
+                          totalWeights += group.group_weight;
+                        }
                       }
                     }
-                    //update info for the submission/earned points values
-                    if (possiblePoints > 0) {
-                      let groupScore = currentPoints / possiblePoints;
-                      currentWeighted += groupScore * group.group_weight;
-                      totalWeightsSubmitted += group.group_weight;
-                    }
-                    //update info for total possible points values 
-                    if (totalPoints > 0) {
-                      let progress = possiblePoints / totalPoints;
-                      totalProgress += progress * group.group_weight;
-                      totalWeights += group.group_weight;
-                    }
                   }
-                }
 
-                //if there are any points possible in this course, put out some summary grades data
-                if (totalWeights > 0) {
-                  let output;
-                  let weightedGrade = Math.round(currentWeighted / totalWeightsSubmitted * 10000) / 100;
-                  output = "";
-                  if (!isNaN(weightedGrade)) {
-                    output = weightedGrade;
-                  }
-                  gradesBetweenDates[courseId] = output;
+                  //if there are any points possible in this course, put out some summary grades data
+                  if (totalWeights > 0) {
+                    let output;
+                    let weightedGrade = Math.round(currentWeighted / totalWeightsSubmitted * 10000) / 100;
+                    output = "";
+                    if (!isNaN(weightedGrade)) {
+                      output = weightedGrade;
+                    }
+                    gradesBetweenDates[courseId] = output;
 
-                  let progress = Math.round((totalProgress / totalWeights) * 10000) / 100;
-                  output = "";
-                  if (!isNaN(progress)) {
-                    output = progress;
+                    let progress = Math.round((totalProgress / totalWeights) * 10000) / 100;
+                    output = "";
+                    if (!isNaN(progress)) {
+                      output = progress;
+                    }
+                    progressBetweenDates[courseId] = output;
                   }
-                  progressBetweenDates[courseId] = output;
-                }
-                if (this.hoursAssignmentData[courseId] != null) {
-                  let hoursData = this.hoursAssignmentData[courseId];
-                  let foundDate = null;
-                  hoursBetweenDates[courseId] = null;
-                  for (let h = 0; h < hoursData.length; h++) {
-                    let hoursDatum = hoursData[h];
-                    let hoursDateString = hoursDatum.graded_at;
-                    let hoursDate = new Date(hoursDateString);
-                    //see if it's between the period dates, then make sure a date hasn't been found. if it's more recent or there's no previous data, update.
-                    if (hoursDate >= startDate && hoursDate <= endDate) {
-                      if (foundDate === null) {
-                        hoursBetweenDates[courseId] = hoursDatum.score;
-                        foundDate = hoursDate;
-                      } else if (hoursDate > foundDate) {
-                        //might be worth putting some kind of warning saying there's more than one date
-                        hoursBetweenDates[courseId] = hoursDatum.score;
-                        foundDate = hoursDate;
+                  if (this.hoursAssignmentData[courseId] != null) {
+                    let hoursData = this.hoursAssignmentData[courseId];
+                    let foundDate = null;
+                    hoursBetweenDates[courseId] = null;
+                    for (let h = 0; h < hoursData.length; h++) {
+                      let hoursDatum = hoursData[h];
+                      let hoursDateString = hoursDatum.graded_at;
+                      let hoursDate = new Date(hoursDateString);
+                      //see if it's between the period dates, then make sure a date hasn't been found. if it's more recent or there's no previous data, update.
+                      if (hoursDate >= startDate && hoursDate <= endDate) {
+                        if (foundDate === null) {
+                          hoursBetweenDates[courseId] = hoursDatum.score;
+                          foundDate = hoursDate;
+                        } else if (hoursDate > foundDate) {
+                          //might be worth putting some kind of warning saying there's more than one date
+                          hoursBetweenDates[courseId] = hoursDatum.score;
+                          foundDate = hoursDate;
+                        }
                       }
-                    }
-                    //If you couldn't find anything, start fresh and just find the most recent score
-                    if (hoursBetweenDates[courseId] === null) {
-                      if (foundDate === null) {
-                        hoursBetweenDates[courseId] = hoursDatum.score;
-                        foundDate = hoursDate;
-                      } else if (hoursDate > foundDate) {
-                        //might be worth putting some kind of warning saying there's more than one date
-                        hoursBetweenDates[courseId] = hoursDatum.score;
-                        foundDate = hoursDate;
+                      //If you couldn't find anything, start fresh and just find the most recent score
+                      if (hoursBetweenDates[courseId] === null) {
+                        if (foundDate === null) {
+                          hoursBetweenDates[courseId] = hoursDatum.score;
+                          foundDate = hoursDate;
+                        } else if (hoursDate > foundDate) {
+                          //might be worth putting some kind of warning saying there's more than one date
+                          hoursBetweenDates[courseId] = hoursDatum.score;
+                          foundDate = hoursDate;
+                        }
                       }
                     }
                   }
