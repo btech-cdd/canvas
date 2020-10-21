@@ -145,7 +145,7 @@
                     <div v-if='checkIncludeCourse(course)'>
                       <h3>
                         <input @click="calcGradesFromIncludedAssignments" type="checkbox"
-                          :id="course.id + '-' + group.id + '-' + assignment.id" v-model="course.include">
+                          :id="course.id + '-checkbox'" v-model="course.include">
                         <a :href="'/courses/' + course.id + '/grades/' + userId">{{course.name}}</a></h3>
                       <div v-for='group in course.groups' :key='group.name'>
                         <div v-if='checkIncludeGroup(group)'>
@@ -156,7 +156,7 @@
                             <div v-if='checkIncludeAssignment(assignment)'>
                               <div>
                                 <input @click="calcGradesFromIncludedAssignments" type="checkbox"
-                                  :id="course.id + '-' + group.id + '-' + assignment.id" v-model="assignment.include"
+                                  :id="course.id + '-' + group.id + '-' + assignment.id + '-checkbox'" v-model="assignment.include"
                                   :disabled="!course.include || !group.include">
 
                                 <a style='padding-left: 1em;'
