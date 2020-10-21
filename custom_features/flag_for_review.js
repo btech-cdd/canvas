@@ -215,10 +215,14 @@
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
             flag = app.initFlag(flag);
-            $.get('/api/v1/courses/' + flag.courseId, function(data) {
-              console.log(data);
-              app.loadedCourses[flag.courseId] = data.name;
-            });
+            if (app.loadedCourses[flag.courseId] === undefined) {
+              app.loadedCourses[flag.courseId] = null;
+              $.get('/api/v1/courses/' + flag.courseId, function (data) {
+                console.log(flag);
+                console.log(data);
+                app.loadedCourses[flag.courseId] = data.name;
+              });
+            }
             flags.push(flag);
           }
         });
@@ -266,7 +270,7 @@
         let app = this;
         return app.flags;
       },
-      unresolvedCount: function() {
+      unresolvedCount: function () {
         let app = this;
         let count = 0;
         for (let i = 0; i < app.filteredFlags.length; i++) {
