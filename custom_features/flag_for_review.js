@@ -58,7 +58,7 @@
       <div style='width: 100%;'>
         <i @click='deleteFlag(flag);' class='icon-trash'></i>
         <i @click='editFlag(flag);' class='icon-edit'></i>
-        <i v-if='flag.published' @click='resolveFlag(flag);' class='icon-publish icon-Solid' style='color: #0f0;'></i>
+        <i v-if='flag.resolved' @click='resolveFlag(flag);' class='icon-publish icon-Solid' style='color: #0f0;'></i>
         <i v-else @click='resolveFlag(flag);' class='icon-publish' style='color: #f00;'></i>
       </div>
     </div>
