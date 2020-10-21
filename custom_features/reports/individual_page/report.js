@@ -759,6 +759,7 @@
 
             checkIncludeAssignment(assignment) {
               let app = this;
+              return true; //show every assignment for now so people can toggle them on and off
               if (assignment.include === true) {
                 return true;
               }
