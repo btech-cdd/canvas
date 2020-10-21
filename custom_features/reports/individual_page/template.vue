@@ -101,14 +101,16 @@
                     <tr>
                       <td><b>Weighted Final Grade</b>
                       </td>
-                      <td>{{weightedFinalGradeForTerm()}}%</td>
-                      <div style='float: right;'>
-                        <i style='cursor: pointer;' v-if='showGradeDetails' class='icon-minimize'
-                          @click='showGradeDetails = false;' title='Hide additional information.'></i>
-                        <i style='cursor: pointer;' v-if='!showGradeDetails' class='icon-question'
-                          @click='showGradeDetails = true;'
-                          title='Click here for more details about how this grade was calculated.'></i>
-                      </div>
+                      <td>
+                        {{weightedFinalGradeForTerm()}}%
+                        <div style='float: right;'>
+                          <i style='cursor: pointer;' v-if='showGradeDetails' class='icon-minimize'
+                            @click='showGradeDetails = false;' title='Hide additional information.'></i>
+                          <i style='cursor: pointer;' v-if='!showGradeDetails' class='icon-question'
+                            @click='showGradeDetails = true;'
+                            title='Click here for more details about how this grade was calculated.'></i>
+                        </div>
+                      </td>
                     </tr>
                     <tr height="10px"></tr>
                     <tr v-if='showGradeDetails'>
