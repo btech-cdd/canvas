@@ -48,18 +48,23 @@
     >
       <i class='fas fa-flag'></i>New
     </div>
+    <div>
+      <input type='checkbox' v-model='displayResolved'><label>Display Resolved?</label>
+    </div>
     <div 
       class='btech-flags-item'
       v-for='flag in filteredFlags'
     >
-      <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
-      <div>{{flag.comment}}</div>
-      <div style='text-align: right;'><i>-{{flag.createdBy}}</i></div>
-      <div style='width: 100%;'>
-        <i @click='deleteFlag(flag);' class='icon-trash'></i>
-        <i @click='editFlag(flag);' class='icon-edit'></i>
-        <i v-if='flag.resolved' @click='resolveFlag(flag);' class='icon-publish icon-Solid' style='color: #0f0;'></i>
-        <i v-else @click='resolveFlag(flag);' class='icon-publish' style='color: #f00;'></i>
+      <div v-if='displayResolved || !flag.resolved'>
+        <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
+        <div>{{flag.comment}}</div>
+        <div style='text-align: right;'><i>-{{flag.createdBy}}</i></div>
+        <div style='width: 100%;'>
+          <i @click='deleteFlag(flag);' class='icon-trash'></i>
+          <i @click='editFlag(flag);' class='icon-edit'></i>
+          <i v-if='flag.resolved' @click='resolveFlag(flag);' class='icon-publish icon-Solid' style='color: #0f0;'></i>
+          <i v-else @click='resolveFlag(flag);' class='icon-publish' style='color: #f00;'></i>
+        </div>
       </div>
     </div>
   </div>
@@ -261,7 +266,8 @@
         flagComment: '',
         flagTags: [],
         pageType: '',
-        cddInfo: []
+        cddInfo: [],
+        displayResolved: false,
       }
     },
     computed: {
