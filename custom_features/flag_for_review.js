@@ -301,11 +301,17 @@
           app.flags.splice(ind, 1);
         }
       },
+      async updateFlag(flag, changes) {
+        let app = this;
+        await $.put('https://jhveem.xyz/api/flags/' + flag._id, changes);
+      },
       async editFlag(flag) {
 
       },
       async resolveFlag(flag) {
-
+        let app = this;
+        console.log(flag);
+        app.updateFlag(flag, {'resolved': !flag.resolved});
       },
       openSubmit() {
         let app = this;
