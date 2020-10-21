@@ -40,7 +40,12 @@ var IS_BLUEPRINT = null;
 var IS_TEACHER = null;
 var IS_ME = false;
 var COURSE_HOURS, COURSE_LIST;
+//Now, if testing in beta, will pull from beta instance of all these tools
+//Should start experimenting with branching in github
 var SOURCE_URL = 'https://jhveem.xyz/canvas'
+if (BETA) {
+  SOURCE_URL = 'https://jhveem.xyz/canvas-beta'
+}
 if (ENV.current_user_roles !== null) {
   IS_TEACHER = (ENV.current_user_roles.includes("teacher") || ENV.current_user_roles.includes("admin"));
 }

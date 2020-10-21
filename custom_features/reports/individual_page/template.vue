@@ -145,13 +145,16 @@
                           <h4><b>{{group.name}}</b></h4>
                           <div v-for='assignment in group.assignments' :key='assignment.id'>
                             <div v-if='checkIncludeAssignment(assignment)'>
+                              <div>
                               <a style='padding-left: 1em;'
                                 :href="'/courses/' + course.id + '/assignments/' + assignment.id + '/submissions/' + assignment.sub">
                                 {{assignment.name}}
                               </a>
-                              <span style='padding-left: 1.5em;'>
-                                {{assignment.score}} / {{assignment.points_possible}}:pts ({{Math.round((assignment.score / assignment.points_possible) * 100)}})
-                                <i>-{{assignment.date}}</i></span>
+                              </div>
+                              <div style='padding-left: 1.5em;'>
+                                {{assignment.score}} / {{assignment.points_possible}} pts ({{Math.round((assignment.score / assignment.points_possible) * 100)}})
+                                <i>-{{assignment.date}}</i>
+                              </div>
                             </div>
                           </div>
                         </div>
