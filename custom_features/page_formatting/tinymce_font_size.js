@@ -17,6 +17,9 @@ async function _init() {
   .btech-citation {
     font-size: .66rem;
   }
+  .btech-graphic-image {
+    filter: blur(32px);
+  }
   `;
   if (tinymce.majorVersion === "4") {
     tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[1].innerHTML = tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[1].innerHTML + additionalCSS;

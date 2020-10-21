@@ -13,6 +13,30 @@
     editor.execCommand("mceReplaceContent", false, "<strong class='tooltip'>{$selection}<span class='tooltiptext'>-DEFINITION-</span></strong>");
   }
 
+  async function addClassToImage(className) {
+    //get the currently selected node
+    let node = tinyMCE.activeEditor.selection.getNode();
+    //get the parent
+    let parent = tinyMCE.activeEditor.dom.getParent(node, "img");
+    if (parent !== null) {
+      //see if it's already got the class in question, if so remove it, otherwise remove all other classes and add that one
+      if ($(parent).hasClass(className)) {
+        tinyMCE.activeEditor.dom.removeClass(parent, className);
+      } else {
+        for (let i = 0; i < tableOptions.length; i++) {
+          let _class = tableOptions[i];
+          tinyMCE.activeEditor.dom.removeClass(parent, _class);
+        }
+        tinyMCE.activeEditor.dom.addClass(parent, className);
+      }
+    }
+    return parent;
+  }
+
+  function blurGraphicImage() {
+    addClassToImage('btech-graphic-image');
+  }
+
   async function exampleBox() {
     let editor = TOOLBAR.editor;
     let selection = editor.selection;
@@ -231,6 +255,7 @@
   TOOLBAR.addButtonIcon("far fa-bullhorn", "Insert an information box. Can be used for warnings, examples, etc.", exampleBox);
   TOOLBAR.addButtonIcon("far fa-quote-right", "Insert a citation.", citation);
   TOOLBAR.addButtonIcon("far fa-hand-point-up", "Hide text. Reveal on mouse hover.", hideOnHover);
+  TOOLBAR.addButtonIcon("far fa-exclamation-triangle", "Blur image with graphic content.", blurGraphicImage);
   TOOLBAR.addButtonIcon("far fa-comment-alt-lines", "Insert text which is shown on mouse hover.", hoverDefinition);
   //TOOLBAR.addButtonIcon("far fa-swatchbook", "Create a theme for the page. The template will be inserted at the top of the page. Edit the template to apply changes throughout the page.", addCustomThemeParent);
   TOOLBAR.addButtonIcon("far fa-stream", "Auto format the page to break the page into sections. Sections are determined by the top level heading.", formatPage);
