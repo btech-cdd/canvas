@@ -110,7 +110,7 @@
                           title='Click here for more details about how this grade was calculated.'></i>
                       </div>
                     </tr>
-                    <tr></tr>
+                    <tr height="10px"></tr>
                     <tr v-if='showGradeDetails'>
                       <td><b>Weighted Grade To Date</b></td>
                       <td>{{weightedGradeForTerm()}}%</td>
