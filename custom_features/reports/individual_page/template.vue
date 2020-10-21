@@ -153,7 +153,6 @@
                               </div>
                               <div style='padding-left: 1.5em;'>
                                 {{assignment.score}} / {{assignment.points_possible}} pts ({{Math.round((assignment.score / assignment.points_possible) * 100)}}%)
-                                <i>-{{assignment.date}}</i>
                               </div>
                             </div>
                           </div>
