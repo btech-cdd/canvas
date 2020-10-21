@@ -98,6 +98,19 @@
                     <tr height="10px"></tr>
                   </tbody>
                   <tfoot border='1'>
+                    <tr>
+                      <td><b>Weighted Final Grade</b>
+                      </td>
+                      <td>{{weightedFinalGradeForTerm()}}%</td>
+                      <div style='float: right;'>
+                        <i style='cursor: pointer;' v-if='showGradeDetails' class='icon-minimize'
+                          @click='showGradeDetails = false;' title='Hide additional information.'></i>
+                        <i style='cursor: pointer;' v-if='!showGradeDetails' class='icon-question'
+                          @click='showGradeDetails = true;'
+                          title='Click here for more details about how this grade was calculated.'></i>
+                      </div>
+                    </tr>
+                    <tr></tr>
                     <tr v-if='showGradeDetails'>
                       <td><b>Weighted Grade To Date</b></td>
                       <td>{{weightedGradeForTerm()}}%</td>
@@ -114,18 +127,6 @@
                       <td><b>Estimated Hours Required</b></td>
                       <td><input style="padding: 0px 4px; margin: 0px;" v-model="estimatedHoursRequired" type="text">
                       </td>
-                    </tr>
-                    <tr>
-                      <td><b>Weighted Final Grade</b>
-                        <div style='float: right;'>
-                          <i style='cursor: pointer;' v-if='showGradeDetails' class='icon-minimize'
-                            @click='showGradeDetails = false;' title='Hide additional information.'></i>
-                          <i style='cursor: pointer;' v-if='!showGradeDetails' class='icon-question'
-                            @click='showGradeDetails = true;'
-                            title='Click here for more details about how this grade was calculated.'></i>
-                        </div>
-                      </td>
-                      <td>{{weightedFinalGradeForTerm()}}%</td>
                     </tr>
                   </tfoot>
                 </table>
@@ -146,13 +147,14 @@
                           <div v-for='assignment in group.assignments' :key='assignment.id'>
                             <div v-if='checkIncludeAssignment(assignment)'>
                               <div>
-                              <a style='padding-left: 1em;'
-                                :href="'/courses/' + course.id + '/assignments/' + assignment.id + '/submissions/' + assignment.sub">
-                                {{assignment.name}}
-                              </a>
+                                <a style='padding-left: 1em;'
+                                  :href="'/courses/' + course.id + '/assignments/' + assignment.id + '/submissions/' + assignment.sub">
+                                  {{assignment.name}}
+                                </a>
                               </div>
                               <div style='padding-left: 1.5em;'>
-                                {{assignment.score}} / {{assignment.points_possible}} pts ({{Math.round((assignment.score / assignment.points_possible) * 100)}}%)
+                                {{assignment.score}} / {{assignment.points_possible}} pts
+                                ({{Math.round((assignment.score / assignment.points_possible) * 100)}}%)
                               </div>
                             </div>
                           </div>
