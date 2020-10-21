@@ -292,9 +292,7 @@
                   }
                 }
               }
-              console.log(includedAssignments);
               app.includedAssignments = JSON.parse(JSON.stringify(includedAssignments));
-              console.log(app.includedAssignments);
               app.calcGradesFromIncludedAssignments();
             },
 
@@ -316,7 +314,6 @@
               for (let courseId in app.includedAssignments) {
                 let course = app.includedAssignments[courseId];
                 if (app.checkIncludeCourse(course) && course.include) {
-                  console.log(course);
                   let currentWeighted = 0;
                   let totalWeights = 0; //sum of all weight values for assignment groups
                   let totalWeightsSubmitted = 0; //sum of all weight values for assignment groups if at least one submitted assignment
@@ -324,7 +321,6 @@
                   for (let groupId in course.groups) {
                     let group = course.groups[groupId];
                     if (app.checkIncludeGroup(group) && group.include) {
-                      console.log(group)
                       if (group.group_weight > 0) {
                         let currentPoints = 0;
                         let possiblePoints = 0;
@@ -333,7 +329,6 @@
                         for (let assignmentId in group.assignments) {
                           let assignment = group.assignments[assignmentId];
                           if (assignment.include) {
-                            console.log(assignment);
                             totalPoints += assignment.points_possible;
                             currentPoints += assignment.score;
                             possiblePoints += assignment.points_possible;
@@ -426,7 +421,7 @@
               this.estimatedHoursEnrolled = Math.floor(parseFloat((hoursTotal / count).toFixed(2)));
               this.estimatedHoursRequired = Math.floor(parseFloat((hoursTotal / count).toFixed(2)) * midtermPercentCompleted);
             },
-
+            /*Delete as long as there haven't been any issues and it's after 11/1/2020
             async calcGradesBetweenDates() {
               let app = this;
               let includedAssignments = {};
@@ -575,7 +570,6 @@
               app.gradesBetweenDates = JSON.parse(JSON.stringify(gradesBetweenDates));
               app.progressBetweenDates = JSON.parse(JSON.stringify(progressBetweenDates));
               app.hoursBetweenDates = JSON.parse(JSON.stringify(hoursBetweenDates));
-              console.log(includedAssignments);
               app.includedAssignments = JSON.parse(JSON.stringify(includedAssignments));
               //estimate the hours enrolled from the hours between dates data collected
               //this value can be edited by the instructor
@@ -593,6 +587,7 @@
               this.estimatedHoursEnrolled = Math.floor(parseFloat((hoursTotal / count).toFixed(2)));
               this.estimatedHoursRequired = Math.floor(parseFloat((hoursTotal / count).toFixed(2)) * midtermPercentCompleted);
             },
+            */
 
             parseDate(dateString) {
               if (dateString == undefined) return undefined;
