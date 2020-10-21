@@ -322,12 +322,12 @@
                     }
                   }
                 }
+                let currentWeighted = 0;
+                let totalWeights = 0; //sum of all weight values for assignment groups
+                let totalWeightsSubmitted = 0; //sum of all weight values for assignment groups if at least one submitted assignment
+                let totalProgress = 0;
                 for (let groupId in course.assignments) {
                   let group = course.groups[groupId];
-                  let currentWeighted = 0;
-                  let totalWeights = 0; //sum of all weight values for assignment groups
-                  let totalWeightsSubmitted = 0; //sum of all weight values for assignment groups if at least one submitted assignment
-                  let totalProgress = 0;
                   if (group.group_weight > 0) {
                     let currentPoints = 0;
                     let possiblePoints = 0;
