@@ -149,6 +149,7 @@
                           <div v-for='assignment in group.assignments' :key='assignment.id'>
                             <div v-if='checkIncludeAssignment(assignment)'>
                               <div>
+                                <input type="checkbox" :id="course.id + '-' + group.id + '-' + assignment.id" v-bind="assignment.include">
                                 <a style='padding-left: 1em;'
                                   :href="'/courses/' + course.id + '/assignments/' + assignment.id + '/submissions/' + assignment.sub">
                                   {{assignment.name}}
