@@ -9,7 +9,7 @@
 <div>
   <!--THIS IS THE BUTTON FOR OPENING THE FLAGS INTERFACE-->
   <div 
-    v-if='filteredFlags.length > 0' 
+    v-if='unresolvedCount > 0' 
     class="btech-flags-number-circle" 
     style='
       z-index: 1000001;
@@ -20,7 +20,7 @@
       left: (Math.round((button.offset()).left + (button.width() * .75)) + 'px')
     }"
   >
-    {{filteredFlags.length}}
+    {{unresolvedCount}}
   </div>
 
   <!--THIS IS THE MENU TO REVIEW FLAGS-->
@@ -261,6 +261,15 @@
       filteredFlags: function () {
         let app = this;
         return app.flags;
+      },
+      unresolvedCount: function() {
+        let app = this;
+        let count = 0;
+        for (let i = 0; i < app.filteredFlags.length; i++) {
+          let flag = app.filteredFlags[i];
+          if (flag.resolved === false) count += 1;
+        }
+        return count;
       }
     },
     methods: {
