@@ -275,6 +275,7 @@
             console.log(data);
           });
         }
+        return flag;
       },
       async submitFlag() {
         let app = this;
