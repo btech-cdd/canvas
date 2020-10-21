@@ -194,7 +194,7 @@
                   let item_url = item.url.replace('/api/v1', '');
                   for (let f = 0; f < flags.length; f++) {
                     let flag = flags[f];
-                    if (item_url === flag.item_url) {
+                    if (item_url === flag.item_url && flag.resolved === false) {
                       let li = $('li#context_module_item_' + item.id);
                       //Clicking on this icon should do something and/or hovering should give info about the flag.
                       li.find('div.ig-row div.ig-info').after('<div class="ig-flag"><i class="fas fa-flag" aria-hidden="true"></i></div>');
@@ -215,6 +215,10 @@
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
             flag = app.initFlag(flag);
+            $.get('/api/v1/courses/' + flag.courseId, function(data) {
+              console.log(data);
+              app.loadedCourses[flag.courseId] = data.name;
+            });
             flags.push(flag);
           }
         });
