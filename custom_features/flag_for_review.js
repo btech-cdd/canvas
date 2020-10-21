@@ -52,10 +52,11 @@
       <input type='checkbox' v-model='displayResolved'><label>Display Resolved?</label>
     </div>
     <div 
-      class='btech-flags-item'
       v-for='flag in filteredFlags'
     >
-      <div v-if='displayResolved || !flag.resolved'>
+      <div 
+        class='btech-flags-item'
+        v-if='displayResolved || !flag.resolved'>
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
         <div>{{flag.comment}}</div>
         <div style='text-align: right;'><i>-{{flag.createdBy}}</i></div>
