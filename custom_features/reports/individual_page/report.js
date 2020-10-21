@@ -315,7 +315,7 @@
 
               for (let courseId in app.includedAssignments) {
                 let course = app.includedAssignments[courseId];
-                if (app.checkIncludeCourse(course)) {
+                if (app.checkIncludeCourse(course) && course.include) {
                   console.log(course);
                   let currentWeighted = 0;
                   let totalWeights = 0; //sum of all weight values for assignment groups
@@ -323,7 +323,7 @@
                   let totalProgress = 0;
                   for (let groupId in course.groups) {
                     let group = course.groups[groupId];
-                    if (app.checkIncludeGroup(group)) {
+                    if (app.checkIncludeGroup(group) && group.include) {
                       console.log(group)
                       if (group.group_weight > 0) {
                         let currentPoints = 0;
