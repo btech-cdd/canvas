@@ -286,6 +286,7 @@
           //need to append this flag to list of flags
           let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
           flag.item_url = flagUrl;
+          console.log(app.loadedNames[flag.createdBy]);
           if (app.loadedNames[flag.createdBy] === undefined) {
             app.loadedNames[flag.createdBy] = 'loading';
             $.get('/api/v1/users/' + flag.createdBy, function(data) {
