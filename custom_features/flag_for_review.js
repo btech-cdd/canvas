@@ -27,6 +27,9 @@
   <div
     v-if='showFlags' 
     id='btech-flags-container'
+    style='
+      overflow-y: scroll;
+    '
     :style="{
       'margin-left': ($('#menu').width()) + 'px'
     }"
@@ -45,23 +48,17 @@
     >
       <i class='fas fa-flag'></i>New
     </div>
-    <div
-      style='
-        overflow-y: scroll;
-      '
+    <div 
+      class='btech-flags-item'
+      v-for='flag in filteredFlags'
     >
-      <div 
-        class='btech-flags-item'
-        v-for='flag in filteredFlags'
-      >
-        <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
-        <div>{{flag.comment}}</div>
-        <div style='text-align: right;'><i>-{{flag.createdBy}}</i></div>
-        <div style='width: 100%;'>
-          <i @click='deleteFlag(flag);' class='icon-trash'></i>
-          <i @click='editFlag(flag);' class='icon-edit'></i>
-          <i @click='resolveFlag(flag);' class='icon-publish'></i>
-        </div>
+      <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
+      <div>{{flag.comment}}</div>
+      <div style='text-align: right;'><i>-{{flag.createdBy}}</i></div>
+      <div style='width: 100%;'>
+        <i @click='deleteFlag(flag);' class='icon-trash'></i>
+        <i @click='editFlag(flag);' class='icon-edit'></i>
+        <i @click='resolveFlag(flag);' class='icon-publish'></i>
       </div>
     </div>
   </div>
