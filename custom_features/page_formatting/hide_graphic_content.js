@@ -6,7 +6,7 @@
     let wrapper = $("<div class='btech-graphic-image-wrapper'></div>");
     img.wrap(wrapper);
     let button = $("<div class='btech-graphic-image-button'>Reveal</div>")
-    wrapper.append(button);
+    img.after(button);
     button.click(function() {
       button.remove();
       img.unwrap();
