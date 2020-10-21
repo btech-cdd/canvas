@@ -144,29 +144,33 @@
                   <div v-for='course in includedAssignments' :key='course.name'>
                     <div v-if='checkIncludeCourse(course)'>
                       <h3>
-                        <input @change="calcGradesFromIncludedAssignments" type="checkbox"
-                          :id="course.id + '-checkbox'" v-model="course.include">
-                        <a :href="'/courses/' + course.id + '/grades/' + userId">{{course.name}}</a></h3>
-                      <div v-for='group in course.groups' :key='group.name'>
-                        <div v-if='checkIncludeGroup(group)'>
-                          <h4>
-                            <b>{{group.name}}</b></h4>
+                        <input @change="calcGradesFromIncludedAssignments" type="checkbox" :id="course.id + '-checkbox'"
+                          v-model="course.include">
+                        <a :href="'/courses/' + course.id + '/grades/' + userId">{{course.name}}</a>
+                      </h3>
+                      <div v-if='course.include'>
+                        <div v-for='group in course.groups' :key='group.name'>
+                          <div v-if='checkIncludeGroup(group)'>
+                            <h4>
+                              <b>{{group.name}}</b></h4>
+                            <div v-if='group.include'>
+                              <div v-for='assignment in group.assignments' :key='assignment.id'>
+                                <div v-if='checkIncludeAssignment(assignment)'>
+                                  <div>
+                                    <input @change="calcGradesFromIncludedAssignments" type="checkbox"
+                                      :id="course.id + '-' + group.id + '-' + assignment.id + '-checkbox'"
+                                      v-model="assignment.include" :disabled="!course.include || !group.include">
 
-                          <div v-for='assignment in group.assignments' :key='assignment.id'>
-                            <div v-if='checkIncludeAssignment(assignment)'>
-                              <div>
-                                <input @change="calcGradesFromIncludedAssignments" type="checkbox"
-                                  :id="course.id + '-' + group.id + '-' + assignment.id + '-checkbox'" v-model="assignment.include"
-                                  :disabled="!course.include || !group.include">
-
-                                <a style='padding-left: 1em;'
-                                  :href="'/courses/' + course.id + '/assignments/' + assignment.id + '/submissions/' + assignment.sub">
-                                  {{assignment.name}}
-                                </a>
-                              </div>
-                              <div style='padding-left: 1.5em;'>
-                                {{assignment.score}} / {{assignment.points_possible}} pts
-                                ({{Math.round((assignment.score / assignment.points_possible) * 100)}}%)
+                                    <a style='padding-left: 1em;'
+                                      :href="'/courses/' + course.id + '/assignments/' + assignment.id + '/submissions/' + assignment.sub">
+                                      {{assignment.name}}
+                                    </a>
+                                  </div>
+                                  <div style='padding-left: 1.5em;'>
+                                    {{assignment.score}} / {{assignment.points_possible}} pts
+                                    ({{Math.round((assignment.score / assignment.points_possible) * 100)}}%)
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
