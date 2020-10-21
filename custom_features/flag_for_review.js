@@ -165,6 +165,7 @@
             console.log(flag);
             let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
             flag.item_url = flagUrl;
+            flag.
             flags.push(flag);
           }
         });
@@ -249,17 +250,6 @@
           'Missing Content',
           'Other'
         ],
-        cddNames: {
-
-          '1893418': 'Josh',
-          '1864953': 'Danni',
-          '1891741': 'Katie',
-          '1638854': 'Mason',
-          '1922029': 'Makenzie',
-          '1807337': 'Jon',
-          '1869288': 'Alan',
-          '2000557': 'Charlotte'
-        },
         courseId: null,
         itemType: null,
         itemId: null,
@@ -269,6 +259,9 @@
         pageType: '',
         cddInfo: [],
         displayResolved: false,
+        loadedNames: {
+        },
+        loadedCourses: {},
       }
     },
     computed: {
@@ -293,6 +286,12 @@
           //need to append this flag to list of flags
           let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
           flag.item_url = flagUrl;
+          if (app.loadedNames[flag.createdBy] === undefined) {
+            app.loadedNames[flag.createdBy] = 'loading';
+            $.get('/api/v1/users/' + flag.createdBy, function(data) {
+              console.log(data);
+            });
+          }
           app.flags.push(flag);
         });
         app.flagType = '';
@@ -320,7 +319,9 @@
         let app = this;
         console.log(flag);
         flag.resolved = !flag.resolved
-        app.updateFlag(flag, {'resolved': flag.resolved});
+        app.updateFlag(flag, {
+          'resolved': flag.resolved
+        });
       },
       openSubmit() {
         let app = this;
