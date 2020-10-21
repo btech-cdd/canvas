@@ -47,7 +47,7 @@
     </div>
     <div
       style='
-        overflow-y: auto;
+        overflow-y: scroll;
       '
     >
       <div 
