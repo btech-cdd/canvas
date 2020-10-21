@@ -331,6 +331,7 @@
                         for (let assignmentId in group.assignments) {
                           let assignment = group.assignments[assignmentId];
                           if (assignment.include) {
+                            console.log(assignment);
                             totalPoints += assignment.points_possible;
                             currentPoints += assignment.score;
                             possiblePoints += assignment.points_possible;
