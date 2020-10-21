@@ -295,8 +295,8 @@
             },
 
             calcGradesFromIncludedAssignments() {
-              console.log(app.includedAssignments);
               let app = this;
+              console.log(app.includedAssignments);
               let gradesBetweenDates = {};
               let progressBetweenDates = {};
               let hoursBetweenDates = {};
