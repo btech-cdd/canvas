@@ -27,6 +27,9 @@
   <div
     v-if='showFlags' 
     id='btech-flags-container'
+    style='
+    overflow-y: scroll;
+    '
     :style="{
       'margin-left': ($('#menu').width()) + 'px'
     }"
