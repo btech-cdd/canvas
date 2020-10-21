@@ -134,7 +134,7 @@
       console.log(CDDIDS);
 
       let url = window.location.pathname;
-      let rItem = /^\/courses\/([0-9]+)\/(pages|assignments|quizzes)\/(.*)$/;
+      let rItem = /^\/courses\/([0-9]+)\/(pages|assignments|quizzes|discussion_topics)\/(.*)$/;
       let rInCourse = /^\/courses\/([0-9]+)/;
       let rModules = /^\/courses\/([0-9]+)(\/modules){0,1}$/;
 
