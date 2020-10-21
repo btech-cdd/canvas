@@ -1,6 +1,6 @@
 var s = document.createElement("script");
 s.type = "text/javascript";
-s.src = "https://btech-cdd.github.io/external-libraries/sorttable.js";
+s.src = SOURCE_URL + "/external-libraries/sorttable.js";
 $("head").append(s);
 
 $("head").append('<script src="https://kit.fontawesome.com/870f83fdd7.js" crossorigin="anonymous"></script>');
@@ -72,11 +72,11 @@ $('span.avatar').hover(function() {
 /*gen report on gradebook page*/
 if (window.location.pathname.includes("/gradebook") === true) {
   var scriptElement = document.createElement( "script" );
-  scriptElement.src = "https://btech-cdd.github.io/reports/reports_functions.js";
+  scriptElement.src = SOURCE_URL + "/reports/reports_functions.js";
   document.body.appendChild( scriptElement );
   scriptElement.onload = function() {
     let individualReportElement = document.createElement( "script" );
-    individualReportElement.src = "https://btech-cdd.github.io/reports/grades_report.js";
+    individualReportElement.src = SOURCE_URL + "/reports/grades_report.js";
     document.body.appendChild(individualReportElement);
   }
 }
@@ -85,11 +85,11 @@ if (window.location.pathname.includes("/gradebook") === true) {
 /*gen report on individual page*/
 if (/^\/users\/[0-9]+/.test(window.location.pathname) || /^\/accounts\/[0-9]+\/users\/[0-9]+/.test(window.location.pathname)) {
   var scriptElement = document.createElement( "script" );
-  scriptElement.src = "https://btech-cdd.github.io/reports/reports_functions_test.js";
+  scriptElement.src = SOURCE_URL + "/reports/reports_functions_test.js";
   document.body.appendChild( scriptElement );
   scriptElement.onload = function() {
     let individualReportElement = document.createElement( "script" );
-    individualReportElement.src = "https://btech-cdd.github.io/reports/individual_grades_report_test.js";
+    individualReportElement.src = SOURCE_URL + "/reports/individual_grades_report_test.js";
     document.body.appendChild(individualReportElement);
   }
 }
@@ -136,7 +136,7 @@ if (window.location.pathname.includes("/grades/") === true) {
 /*add in accordion stuff*/
 /*
 var scriptElement = document.createElement( "script" );
-scriptElement.src = "https://btech-cdd.github.io/external-libraries/jquery-accordion.js";
+scriptElement.src = SOURCE_URL + "/external-libraries/jquery-accordion.js";
 document.body.appendChild( scriptElement );
 scriptElement.onload = function() {
   $(".btech-accordion").accordion();

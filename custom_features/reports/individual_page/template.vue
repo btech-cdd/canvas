@@ -132,7 +132,7 @@
                 <!--WAIT DON'PUBLISH THIS YET
                   <div v-if='IS_ME' style="text-align: right;">
                     <img style="zoom: 2; image-rendering: pixelated;"
-                      src="https://btech-cdd.github.io/media/it-will-all-be-fine.png"
+                      src=SOURCE_URL + "/media/it-will-all-be-fine.png"
                     >
                   </div>
                 -->
@@ -145,13 +145,13 @@
                           <h4><b>{{group.name}}</b></h4>
                           <div v-for='assignment in group.assignments' :key='assignment.id'>
                             <div v-if='checkIncludeAssignment(assignment)'>
-                              <a
-                                style='padding-left: 1em;'
-                                :href="'/courses/' + course.id + '/assignments/' + assignment.id + '/submissions/' + assignment.sub"
-                              >
+                              <a style='padding-left: 1em;'
+                                :href="'/courses/' + course.id + '/assignments/' + assignment.id + '/submissions/' + assignment.sub">
                                 {{assignment.name}}
                               </a>
-                             - <span style='padding-left: 1.5em;'>{{assignment.score}} / {{assignment.points_possible}} pts ({{Math.round((assignment.score / assignment.points_possible) * 100)}}) <i>-{{assignment.date}}</i></span>
+                              <span style='padding-left: 1.5em;'>
+                                {{assignment.score}} / {{assignment.points_possible}}:pts ({{Math.round((assignment.score / assignment.points_possible) * 100)}})
+                                <i>-{{assignment.date}}</i></span>
                             </div>
                           </div>
                         </div>

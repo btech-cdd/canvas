@@ -29,7 +29,7 @@ $(window).on("load", function () {
     let content = $(cells[0]).html();
     let x = parseInt($(cells[1]).text());
     let y = parseInt($(cells[2]).text());
-    let imgSrc= "https://btech-cdd.github.io/media/map-marker.jpg";
+    let imgSrc= SOURCE_URL + "/media/map-marker.jpg";
     let icon = $("<div style='height: 64px; width: 64px; position: absolute; left: calc(" + Math.round(x) + "% - 32px); top: calc(" + Math.round(y) + "% - 32px);'></div>");
     let iconImage = $("<img src='"+imgSrc+"' style=' position: absolute;'>");
     icon.append(iconImage);

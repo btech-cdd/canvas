@@ -40,6 +40,7 @@ var IS_BLUEPRINT = null;
 var IS_TEACHER = null;
 var IS_ME = false;
 var COURSE_HOURS, COURSE_LIST;
+var SOURCE_URL = 'https://jhveem.xyz/canvas'
 if (ENV.current_user_roles !== null) {
   IS_TEACHER = (ENV.current_user_roles.includes("teacher") || ENV.current_user_roles.includes("admin"));
 }
@@ -109,7 +110,7 @@ function feature(f, data = {}, regex = "") {
     }
   }
   if (check) {
-    $.getScript("https://btech-cdd.github.io/custom_features/" + f + ".js").done(function () {
+    $.getScript(SOURCE_URL + "/custom_features/" + f + ".js").done(function () {
       if (!$.isEmptyObject(IMPORTED_FEATURE)) {
         if (!(f in FEATURES)) {
           FEATURES[f] = IMPORTED_FEATURE;
@@ -259,11 +260,11 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
   https://btech.instructure.com/accounts/3/theme_editor
   */
   feature("login_page", {}, /^\/login/);
-  add_javascript_library("https://btech-cdd.github.io/custom_canvas_import.js");
+  add_javascript_library(SOURCE_URL + "/custom_canvas_import.js");
   $.getScript("https://cdn.jsdelivr.net/npm/vue").done(function () {
-    $.getScript("https://btech-cdd.github.io/custom_features/editor_toolbar/toolbar.js").done(() => {
-      $.getScript("https://btech-cdd.github.io/course_data/course_list.js").done(() => {
-        $.getScript("https://btech-cdd.github.io/course_data/course_hours.js").done(() => {
+    $.getScript(SOURCE_URL + "/custom_features/editor_toolbar/toolbar.js").done(() => {
+      $.getScript(SOURCE_URL + "/course_data/course_list.js").done(() => {
+        $.getScript(SOURCE_URL + "/course_data/course_hours.js").done(() => {
           //GENERAL FEATURES
           if (!IS_TEACHER) {
             feature("reports/individual_page/report", {}, [/^\/$/]);
