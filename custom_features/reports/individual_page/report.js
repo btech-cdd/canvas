@@ -290,13 +290,14 @@
                   }
                 }
               }
+              console.log(includedAssignments);
               app.includedAssignments = JSON.parse(JSON.stringify(includedAssignments));
+              console.log(app.includedAssignments);
               app.calcGradesFromIncludedAssignments();
             },
 
             calcGradesFromIncludedAssignments() {
               let app = this;
-              console.log(app.includedAssignments);
               let gradesBetweenDates = {};
               let progressBetweenDates = {};
               let hoursBetweenDates = {};
