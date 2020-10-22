@@ -86,6 +86,7 @@ TOOLBAR = {
     let select = $("#" + selectId); 
     let option = $("<option title='"+description+"' class='"+className+"'>" + name + "</option>");
     select.append(option);
+    console.log(func);
     option.click(func);
     return option;
   },
