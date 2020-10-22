@@ -1,9 +1,5 @@
 TOOLBAR = {
-  tableOptions: [
-    'btech-tabs-table',
-    'btech-dropdown-table'
-  ],
-
+  selects: {},
   editor: null,
   toolbar: null,
 
@@ -15,7 +11,7 @@ TOOLBAR = {
       return tinymce.activeEditor;
     }
   },
- 
+
   async checkReady() {
     if (this.editor === null) {
       await delay(500);
@@ -72,22 +68,32 @@ TOOLBAR = {
     let id = "btech-custom-editor-select-" + name.replace(" ", "-");
     return id;
   },
-  
+
   async addSelect(name, description) {
+    let feature = this;
+    feature.selects[name] = {};
     let customButtonsContainer = $("#btech-custom-editor-buttons-container");
     let id = this.selectNameToId(name);
-    let select = "<select title='"+description+"' id='"+id+"'><option selected disabled>-"+name+" options-</option></select>";
+    let select = "<select title='" + description + "' id='" + id + "'><option selected disabled>-" + name + " options-</option></select>";
     customButtonsContainer.append(select);
+    $("#" + id).change(function () {
+      let value = $(this).val();
+      console.log(value);
+      let func = feature.selects[name][value];
+      if (func !== undefined) {
+        func();
+      }
+    })
     return select;
   },
 
   async addSelectOption(name, selectName, description, func, className) {
+    let feature = this;
     let selectId = this.selectNameToId(selectName);
-    let select = $("#" + selectId); 
-    let option = $("<option title='"+description+"' class='"+className+"'>" + name + "</option>");
+    feature[selectName][name] = func;
+    let select = $("#" + selectId);
+    let option = $("<option title='" + description + "' class='" + className + "' value='" + name + "'>" + name + "</option>");
     select.append(option);
-    console.log(func);
-    option.click(func);
     return option;
   },
 
@@ -105,7 +111,7 @@ TOOLBAR = {
     customButtonsContainer.append(button);
     return button;
   },
-  
+
   checkEditorPage() {
     if (window.location.pathname.includes("edit")) return true;
     return false;
