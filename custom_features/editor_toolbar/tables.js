@@ -111,6 +111,7 @@
       addClassToTable(className);
       resetTableButtons();
     }, 'btech-table-edit-option');
+    console.log(optionName);
     option.attr('id', className + '-option');
   }
 
