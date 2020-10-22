@@ -94,7 +94,7 @@ TOOLBAR = {
     let selectId = this.selectNameToId(selectName);
     console.log("SELECT NAME");
     console.log(selectName);
-    feature[selectName][name] = func;
+    feature.selects[selectName][name] = func;
     let select = $("#" + selectId);
     let option = $("<option title='" + description + "' class='" + className + "' value='" + name + "'>" + name + "</option>");
     select.append(option);
