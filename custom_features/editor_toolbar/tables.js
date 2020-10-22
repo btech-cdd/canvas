@@ -45,7 +45,7 @@
           });
           //also set this option to the selected option
           //this isn't working at the moment
-          $(this).select();
+          $(this).prop('selected', true);
           found = true;
         }
       }
