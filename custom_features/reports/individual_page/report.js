@@ -110,6 +110,7 @@
               IS_TEACHER: false,
               showGradeDetails: false,
               includedAssignments: {},
+              courseTotalPoints: {},
             }
           },
 
@@ -268,6 +269,7 @@
                       for (let a = 0; a < group.assignments.length; a++) {
                         let assignment = group.assignments[a];
                         if (assignment.published) {
+
                           if (assignment.id in subData) {
                             let sub = subData[assignment.id];
                             let subDateString = sub.submitted_at;
@@ -324,11 +326,10 @@
                       if (group.group_weight > 0) {
                         let currentPoints = 0; //points earned
                         let possiblePoints = 0; //potential points earned
-                        let totalPoints = 0; //all points in the course
+                        let totalPoints = app.calcCourseGroupPointsPossible(courseId, groupId); //all points in the course
                         //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
                         for (let assignmentId in group.assignments) {
                           let assignment = group.assignments[assignmentId];
-                          totalPoints += assignment.points_possible;
                           if (assignment.include) {
                             currentPoints += assignment.score;
                             possiblePoints += assignment.points_possible;
@@ -419,6 +420,20 @@
               }
               this.estimatedHoursEnrolled = Math.floor(parseFloat((hoursTotal / count).toFixed(2)));
               this.estimatedHoursRequired = Math.floor(parseFloat((hoursTotal / count).toFixed(2)) * midtermPercentCompleted);
+            },
+            calcCourseGroupPointsPossible(courseId, groupId) {
+              let assignmentGroups = this.courseAssignmentGroups[courseId];
+              let group = assignmentGroups[groupId];
+              if (group.group_weight > 0) {
+                let totalPoints = 0;
+                //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
+                for (let a = 0; a < group.assignments.length; a++) {
+                  let assignment = group.assignments[a];
+                  if (assignment.published) {
+                    totalPoints += assignment.points_possible;
+                  }
+                }
+              }
             },
             /*Delete as long as there haven't been any issues and it's after 11/1/2020
             async calcGradesBetweenDates() {
