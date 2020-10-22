@@ -5,6 +5,15 @@
   //ability to edit
   //lots of options for sorting / filtering flags
   //to do list on the front page organized by department or course?
+  /*
+  show course name
+edit (click edit)
+
+-short term
+--default to previous
+-long term
+--replace button with drop down
+*/
   let vueString = `
 <div>
   <!--THIS IS THE BUTTON FOR OPENING THE FLAGS INTERFACE-->

@@ -322,17 +322,16 @@
                     let group = course.groups[groupId];
                     if (app.checkIncludeGroup(group) && group.include) {
                       if (group.group_weight > 0) {
-                        let currentPoints = 0;
-                        let possiblePoints = 0;
-                        let totalPoints = 0;
+                        let currentPoints = 0; //points earned
+                        let possiblePoints = 0; //potential points earned
+                        let totalPoints = 0; //all points in the course
                         //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
                         for (let assignmentId in group.assignments) {
                           let assignment = group.assignments[assignmentId];
+                          totalPoints += assignment.points_possible;
                           if (assignment.include) {
-                            totalPoints += assignment.points_possible;
                             currentPoints += assignment.score;
                             possiblePoints += assignment.points_possible;
-
                           }
                         }
                         //update info for the submission/earned points values
