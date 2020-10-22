@@ -150,6 +150,7 @@ edit (click edit)
       $("#menu").append(app.button);
 
       let url = window.location.pathname;
+      url = url.replace(/edit$/, '');
       let rItem = /^\/courses\/([0-9]+)\/(pages|assignments|quizzes|discussion_topics)\/(.*)$/;
       let rInCourse = /^\/courses\/([0-9]+)/;
       let rModules = /^\/courses\/([0-9]+)(\/modules){0,1}$/;
