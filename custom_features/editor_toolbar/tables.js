@@ -29,6 +29,7 @@
   function resetTableButtons() {
     let node = tinyMCE.activeEditor.selection.getNode();
     let parent = tinyMCE.activeEditor.dom.getParent(node, "table");
+    $('#btech-custom-editor-select-tables :nth-child(1)').prop('selected', true)
     let found = false;
     $('.btech-table-edit-option').each(function () {
       $(this).css({
