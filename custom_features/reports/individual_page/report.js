@@ -422,10 +422,11 @@
               this.estimatedHoursRequired = Math.floor(parseFloat((hoursTotal / count).toFixed(2)) * midtermPercentCompleted);
             },
             calcCourseGroupPointsPossible(courseId, groupId) {
-              let assignmentGroups = this.courseAssignmentGroups[courseId];
+              let app = this;
+              let assignmentGroups = app.courseAssignmentGroups[courseId];
               let group = assignmentGroups[groupId];
+              let totalPoints = 0;
               if (group.group_weight > 0) {
-                let totalPoints = 0;
                 //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
                 for (let a = 0; a < group.assignments.length; a++) {
                   let assignment = group.assignments[a];
@@ -434,6 +435,7 @@
                   }
                 }
               }
+              return totalPoints;
             },
             /*Delete as long as there haven't been any issues and it's after 11/1/2020
             async calcGradesBetweenDates() {
