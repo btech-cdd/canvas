@@ -92,6 +92,8 @@ ul.btech-question-banks-sorter li.btech-bank-course.selected {
   border: 1px solid #000000;
   padding: 3px;
   border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
 }
 
 .ui-accordion-header {

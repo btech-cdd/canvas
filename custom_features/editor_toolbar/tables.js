@@ -1,7 +1,8 @@
 (async function () {
   tableOptions = [
     'btech-tabs-table',
-    'btech-dropdown-table'
+    'btech-dropdown-table',
+    'btech-expandable-table'
   ];
   //escape if not on the editor page
   if (!TOOLBAR.checkEditorPage()) return;
