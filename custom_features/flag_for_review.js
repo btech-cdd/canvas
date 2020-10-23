@@ -369,7 +369,7 @@ Look into quill editor
         $.post('https://jhveem.xyz/api/flags', {
           'courseId': app.courseId,
           'createdBy': ENV.current_user_id,
-          'assignedTo': [app.flagAssigned],
+          'assignedTo': JSON.stringify([app.flagAssigned]),
           'itemType': app.itemType,
           'itemId': app.itemId,
           'flagType': app.flagType,
