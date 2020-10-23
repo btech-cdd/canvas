@@ -269,6 +269,7 @@ Look into quill editor
     data: function () {
       return {
         //Filters
+        showFilters: true,
         settings: {
           displayResolved: {
             set: false,
