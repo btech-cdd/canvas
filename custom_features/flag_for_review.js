@@ -122,6 +122,7 @@ edit (click edit)
     el: '#btech-flags-vue',
     mounted: async function () {
       let app = this;
+      app.loadCDDNames();
       $('.ic-app-header__menu-list-item ').each(function () {
         $(this).click(function () {
           app.showFlags = false;
@@ -297,16 +298,24 @@ edit (click edit)
         let checkFilterCreator = (!app.displayOnlyCreatedByMe || (ENV.current_user_id === flag.createdBy));
         return checkResolved && checkFilterCreator;
       },
+      loadName(userId) {
+        if (app.loadedNames[userId] === undefined) {
+          app.loadedNames[userId] = null;
+          $.get('/api/v1/users/' + userId, function (data) {
+            app.loadedNames[userId] = data.name;
+          });
+        }
+      },
+      loadCDDNames() {
+        for (let id in CDDIDS) {
+          console.log(id);
+        }
+      },
       initFlag(flag) {
         let app = this;
         let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
         flag.item_url = flagUrl;
-        if (app.loadedNames[flag.createdBy] === undefined) {
-          app.loadedNames[flag.createdBy] = null;
-          $.get('/api/v1/users/' + flag.createdBy, function (data) {
-            app.loadedNames[flag.createdBy] = data.name;
-          });
-        }
+        app.loadName(flag.createdBy);
         return flag;
       },
       async submitFlag() {
