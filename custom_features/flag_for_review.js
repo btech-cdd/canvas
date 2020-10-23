@@ -80,8 +80,8 @@ Look into quill editor
       <div 
         class='btech-flags-item'
         v-if='checkDisplayFlag(flag) && (name(flag.createdBy) !== undefined && name(flag.createdBy) !== null)'>
-        <div style='text-align: center;' v-if='loadedCourses[flag.courseId] !== undefined && loadedCourses[flag.courseId] !== null'>{{loadedCourses[flag.courseId]}}</div>
-        <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
+        <div style='text-align: center;' v-if='loadedCourses[flag.courseId] !== undefined && loadedCourses[flag.courseId] !== null'><a :href='flag.item_url'>{{loadedCourses[flag.courseId]}}</a></div>
+        <div><strong>{{flag.flagType}}</strong></div>
         <div>
           <textarea
             :ref='"edit_comment_" + flag._id'
