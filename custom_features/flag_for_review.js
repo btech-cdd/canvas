@@ -71,9 +71,9 @@ Look into quill editor
       <i class='fas fa-flag'></i>New
     </div>
     <div v-if=showFilters>
-      <input type='checkbox' v-model='displayResolved'><label>Include Resolved</label>
-      <input type='checkbox' v-model='displayOnlyCreatedByMe'><label>Created By Me</label>
-      <input type='checkbox' v-model='displayOnlyAssignedToMe'><label>Assigned To Me</label>
+      <div v-for='setting in settings'>
+        <input type='checkbox' v-model='setting.set'><label>{{setting.text}}</label>
+      </div>
     </div>
     <div 
       v-for='flag in filteredFlags'
@@ -268,10 +268,20 @@ Look into quill editor
     data: function () {
       return {
         //Filters
-        showFilters: true,
-        displayResolved: false,
-        displayOnlyCreatedByMe: false,
-        displayOnlyAssignedToMe: true,
+        settings: {
+          displayResolved: {
+            set: false,
+            text: 'Include Resolved'
+          },
+          displayOnlyCreatedByMe: {
+            set: false,
+            text: 'Created By Me'
+          },
+          displayOnlyAssignedToMe: {
+            set: true,
+            text: 'Assigned To Me'
+          }
+        },
 
         button: null,
         departments: {},
@@ -327,11 +337,11 @@ Look into quill editor
       checkDisplayFlag(flag) {
         let app = this;
         //do not include the check on if the name is loaded here because it messes up the flag count displayed before the menu opens
-        let checkResolved = (app.displayResolved || !flag.resolved);
-        let checkFilterCreator = (!app.displayOnlyCreatedByMe || (ENV.current_user_id === flag.createdBy));
+        let checkResolved = (app.settings.displayResolved || !flag.resolved);
+        let checkFilterCreator = (!app.settings.displayOnlyCreatedByMe || (ENV.current_user_id === flag.createdBy));
         //Make this more robust so you have a drop down instead of a checkmark to choose who to see. Can also see all or unassigned.
-        let checkFilterAssigned = (!app.displayOnlyAssignedToMe || (flag.assignedTo.includes(ENV.current_user_id)));
-        return checkResolved && checkFilterCreator && checkFilterAssigned;
+        let checkFilterAssigned = (!app.settings.displayOnlyAssignedToMe || (flag.assignedTo.includes(ENV.current_user_id)));
+        return checkResolved && checkFilterCreator && checkFilterAssigned;s
       },
       loadName(userId) {
         let app = this;
