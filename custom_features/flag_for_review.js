@@ -72,7 +72,7 @@ Look into quill editor
     </div>
     <div v-if=showFilters>
       <div v-for='setting in settings'>
-        <input type='checkbox' v-model='setting.set'><label>{{setting.text}}</label>
+        <input @change='updateSettings();' type='checkbox' v-model='setting.set'><label>{{setting.text}}</label>
       </div>
     </div>
     <div 
@@ -373,7 +373,7 @@ Look into quill editor
             console.log(settings);
             $.post("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, {
               settings: JSON.stringify(settings)
-            }, function(data) {
+            }, function (data) {
               console.log(data);
               console.log("BOOM, Posted.")
             });
@@ -384,11 +384,20 @@ Look into quill editor
             } else {
               let settings = JSON.parse(data[0].settings);
               for (let s in settings) {
-                console.log(s);
+                app.settings[s].set = settings[s];
               }
             }
           }
         })
+      },
+      updateSettings() {
+        let settings = app.prepareSettingsPacket();
+        $.put("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, {
+          settings: JSON.stringify(settings)
+        }, function (data) {
+          console.log(data);
+          console.log("BOOM, Putted.")
+        });
       },
       loadCDDNames() {
         let app = this;
