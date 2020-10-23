@@ -82,8 +82,7 @@ Look into quill editor
         <div style='text-align: center;' v-if='loadedCourses[flag.courseId] !== undefined && loadedCourses[flag.courseId] !== null'>{{loadedCourses[flag.courseId]}}</div>
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
         <div 
-          :ref='"edit-comment-" + flag._id'
-          :contenteditable='flag.editing' 
+          contenteditable='true' 
           @blur='console.log("BLUR");'
           @focus='console.log("FOCUS");'
           @change='
@@ -96,7 +95,6 @@ Look into quill editor
         <div style='text-align: right;'><i>-{{loadedNames[flag.createdBy]}}</i></div>
         <div style='width: 100%;'>
           <i @click='deleteFlag(flag);' class='icon-trash'></i>
-          <i @click='editFlag(flag);' class='icon-edit'></i>
           <i @click='assignFlag(flag);' class='far fa-share-square'></i>
           <i v-if='flag.resolved' @click='resolveFlag(flag);' class='icon-publish icon-Solid' style='color: #0f0;'></i>
           <i v-else @click='resolveFlag(flag);' class='icon-publish' style='color: #f00;'></i>
@@ -390,7 +388,8 @@ Look into quill editor
         //maybe throw in a check that closes any other flags being edited and throw a "save other flag?" prompt
         flag.editing = true;
         console.log(flag);
-        app.$refs['edit-comment-' + flag._id].$el.focus();
+        let refId = 'edit_comment_' + flag._id;
+        app.$refs[refId].$el.focus();
       },
       async resolveFlag(flag) {
         let app = this;
