@@ -280,7 +280,7 @@ Look into quill editor
             text: 'Created By Me'
           },
           displayOnlyAssignedToMe: {
-            set: true,
+            set: false,
             text: 'Assigned To Me'
           }
         },
