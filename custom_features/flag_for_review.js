@@ -391,6 +391,7 @@ Look into quill editor
         })
       },
       updateSettings() {
+        let app = this;
         let settings = app.prepareSettingsPacket();
         $.put("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, {
           settings: JSON.stringify(settings)
