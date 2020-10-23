@@ -1,14 +1,13 @@
 CANVAS_FLAGS = {};
 (async function () {
   let canvasbody = $("#application");
-  //checkbox to only show flags assigned to me (especially if not in a course)
-  //ability to assign
-  //ability to edit
-  //lots of options for sorting / filtering flags
-  //to do list on the front page organized by department or course?
   /*
-  show course name
-edit (click edit)
+    make the assign name a drop down that you can edit whenever and is always there
+
+
+  lots of options for sorting / filtering flags
+  to do list on the front page organized by department or course?
+
 
 -short term
 --default to previous
