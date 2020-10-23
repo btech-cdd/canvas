@@ -367,6 +367,7 @@ Look into quill editor
       loadSettings() {
         let app = this;
         $.get("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, function (data) {
+          console.log(data);
           if (data.length === 0) {
             let settings = app.prepareSettingsPacket();
             console.log(settings);
