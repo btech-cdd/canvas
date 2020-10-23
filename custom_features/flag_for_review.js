@@ -66,7 +66,7 @@ edit (click edit)
     >
       <div 
         class='btech-flags-item'
-        v-if='checkDisplayFlag(flag)'>
+        v-if='checkDisplayFlag(flag) && (checkNameReady = (app.loadedNames[flag.createdBy] !== undefined && app.loadedNames[flag.createdBy] !== null))'>
         <div style='text-align: center;' v-if='loadedCourses[flag.courseId] !== undefined && loadedCourses[flag.courseId] !== null'>{{loadedCourses[flag.courseId]}}</div>
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
         <div>{{flag.comment}}</div>
@@ -292,8 +292,8 @@ edit (click edit)
     methods: {
       checkDisplayFlag(flag) {
         let app = this;
+        //do not include the check on if the name is loaded here because it messes up the flag count displayed before the menu opens
         let checkResolved = (app.displayResolved || !flag.resolved);
-        let checkNameReady = (app.loadedNames[flag.createdBy] !== undefined && app.loadedNames[flag.createdBy] !== null);
         let checkFilterCreator = (!app.displayOnlyCreatedByMe || (ENV.current_user_id === flag.createdBy));
         return checkResolved && checkNameReady && checkFilterCreator;
       },
