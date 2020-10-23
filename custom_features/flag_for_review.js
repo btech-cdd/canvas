@@ -92,7 +92,7 @@ Look into quill editor
           </textarea>
           <div
             v-show='!flag.editing'
-            @click='flag.editing = true; console.log(flag); console.log("edit_comment_" + flag._id); $refs["edit_comment_" + flag.id][0].focus();'
+            @click='flag.editing = true; console.log(flag); console.log("edit_comment_" + flag._id); $refs["edit_comment_" + flag._id][0].focus();'
           >
             {{flag.comment}}
           </div>
