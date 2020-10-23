@@ -373,6 +373,9 @@ Look into quill editor
             console.log(settings);
             $.post("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, {
               settings: JSON.stringify(settings)
+            }, function(data) {
+              console.log(data);
+              console.log("BOOM, Posted.")
             });
           } else {
             if (data[0].settings === undefined) {
