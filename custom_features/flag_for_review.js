@@ -366,17 +366,26 @@ Look into quill editor
       loadSettings() {
         let app = this;
         $.get("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, function (data) {
-          console.log(data);
-          if (Array.isArray(data)) {
-            if (data.length === 0) {
+          if (data.length === 0) {
+            let settings = app.prepareSettingsPacket();
+            console.log(settings);
+            $.post("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, {
+              settings: JSON.stringify(settings)
+            });
+          } else {
+            if (data[0].settings === undefined) {
               let settings = app.prepareSettingsPacket();
               console.log(settings);
               $.post("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, {
-                settings: settings
+                settings: JSON.stringify(settings)
               });
+            } else {
+              let settings = JSON.parse(data[0].settings);
+              for (let s in settings) {
+                console.log(s);
+              }
             }
           }
-          console.log(data);
         })
       },
       loadCDDNames() {
