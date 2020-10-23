@@ -377,13 +377,13 @@ Look into quill editor
       },
       //this is not an api call, but what is called when edits are made in the user interface, will probably also initiate an api call though
       async handleFlagEdits(flag, flagPropName, $event) {
-        let app = this;
         console.log($event);
+        let app = this;
         flag[flagPropName] = $event.text;
       },
       async saveFlagEdits(flag, flagPropName, $event) {
-        let app = this;
         console.log($event);
+        let app = this;
         let saveData = {};
         saveData[flagPropName] = $event.text;
         app.updateFlag(flag, saveData);
