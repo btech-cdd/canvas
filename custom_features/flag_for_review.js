@@ -284,7 +284,7 @@ edit (click edit)
         let count = 0;
         for (let i = 0; i < app.filteredFlags.length; i++) {
           let flag = app.filteredFlags[i];
-          if (flag.resolved === false) count += 1;
+          if (flag.resolved === false && app.checkDisplayFlag(flag)) count += 1;
         }
         return count;
       }
