@@ -13,6 +13,18 @@ edit (click edit)
 --default to previous
 -long term
 --replace button with drop down
+
+
+https://jsfiddle.net/tng9r8j3/
+Look into quill editor
+<script src="https://cdn.quilljs.com/1.3.4/quill.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<!-- Quill JS Vue -->
+<script src="https://cdn.jsdelivr.net/npm/vue-quill-editor@3.0.4/dist/vue-quill-editor.js"></script>
+<!-- Include stylesheet -->
+<link href="https://cdn.quilljs.com/1.3.4/quill.core.css" rel="stylesheet">
+<link href="https://cdn.quilljs.com/1.3.4/quill.snow.css" rel="stylesheet">
+<link href="https://cdn.quilljs.com/1.3.4/quill.bubble.css" rel="stylesheet">
 */
   let vueString = `
 <div>
@@ -69,12 +81,12 @@ edit (click edit)
         v-if='checkDisplayFlag(flag) && (loadedNames[flag.createdBy] !== undefined && loadedNames[flag.createdBy] !== null)'>
         <div style='text-align: center;' v-if='loadedCourses[flag.courseId] !== undefined && loadedCourses[flag.courseId] !== null'>{{loadedCourses[flag.courseId]}}</div>
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
-        <div>{{flag.comment}}</div>
+        <div :contenteditable='flag.editing' @change='handFlagEdits(flag, 'comment', $event);'>{{flag.comment}}</div>
         <div style='text-align: right;'><i>-{{loadedNames[flag.createdBy]}}</i></div>
         <div style='width: 100%;'>
           <i @click='deleteFlag(flag);' class='icon-trash'></i>
           <i @click='editFlag(flag);' class='icon-edit'></i>
-          <i @click='assignFlag(flag);' class='fas fa-share-square'></i>
+          <i @click='assignFlag(flag);' class='far fa-share-square'></i>
           <i v-if='flag.resolved' @click='resolveFlag(flag);' class='icon-publish icon-Solid' style='color: #0f0;'></i>
           <i v-else @click='resolveFlag(flag);' class='icon-publish' style='color: #f00;'></i>
         </div>
@@ -354,12 +366,17 @@ edit (click edit)
           app.flags.splice(ind, 1);
         }
       },
+      //this is not an api call, but what is called when edits are made in the user interface, will probably also initiate an api call though
+      async handleFlagEdits(flag, flagPropName, $event) {
+        flag[flagPropName] = $event.text;
+      },
       async updateFlag(flag, changes) {
         let app = this;
         await $.put('https://jhveem.xyz/api/flags/' + flag._id, changes);
       },
       async editFlag(flag) {
-
+        //maybe throw in a check that closes any other flags being edited and throw a "save other flag?" prompt
+        flag.editing = true;
       },
       async resolveFlag(flag) {
         let app = this;
