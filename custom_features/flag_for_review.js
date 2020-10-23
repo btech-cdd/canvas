@@ -375,6 +375,7 @@ Look into quill editor
             });
           } else {
             if (data[0].settings === undefined) {
+              console.log("DELETE");
               $.delete("https://jhveem.xyz/api/flag_settings/" + data[0]._id)
             } else {
               let settings = JSON.parse(data[0].settings);
