@@ -374,11 +374,7 @@ Look into quill editor
             });
           } else {
             if (data[0].settings === undefined) {
-              let settings = app.prepareSettingsPacket();
-              console.log(settings);
-              $.post("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, {
-                settings: JSON.stringify(settings)
-              });
+              $.delete("https://jhveem.xyz/api/flag_settings/" + data[0]._id)
             } else {
               let settings = JSON.parse(data[0].settings);
               for (let s in settings) {
