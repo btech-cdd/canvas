@@ -85,6 +85,7 @@ Look into quill editor
           <textarea
             :ref='"edit_comment_" + flag.id'
             v-show='flag.editing'
+            @focus="console.log('focus')"
             @blur='saveFlagEdits(flag, "comment");'
             v-model='flag.comment'
           >
