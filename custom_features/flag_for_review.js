@@ -82,11 +82,12 @@ Look into quill editor
         <div style='text-align: center;' v-if='loadedCourses[flag.courseId] !== undefined && loadedCourses[flag.courseId] !== null'>{{loadedCourses[flag.courseId]}}</div>
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
         <div>
-          <input 
+          <textarea
             v-if='flag.editing'
             @blur='saveFlagEdits(flag, "comment");'
             v-model='flag.comment'
           >
+          </textarea>
           <div
             v-else
             @click='flag.editing = true;'
