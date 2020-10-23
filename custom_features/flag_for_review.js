@@ -157,6 +157,7 @@ Look into quill editor
     mounted: async function () {
       let app = this;
       app.loadCDDNames();
+      app.loadSettings();
       $('.ic-app-header__menu-list-item ').each(function () {
         $(this).click(function () {
           app.showFlags = false;
@@ -351,6 +352,11 @@ Look into quill editor
             app.loadedNames[userId] = data.name;
           });
         }
+      },
+      loadSettings() {
+        $.get("https://jhveem.xyz/flag_settings/" + ENV.current_user_id, function(data) {
+          console.log(data);
+        })
       },
       loadCDDNames() {
         let app = this;
