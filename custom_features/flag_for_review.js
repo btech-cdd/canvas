@@ -129,11 +129,11 @@ Look into quill editor
       >
         <h2 style='text-align: center;'>Flag Submission Form</h2>
         <select v-model='flagType'>
-          <option selected disabled>-Flag Topic-</option>
+          <option value='' selected disabled>-Flag Topic-</option>
           <option v-for='option in flagOptions' :value='option'>{{option}}</option>
         </select>
         <select v-model='flagAssigned'>
-          <option selected disabled>-Assign To-</option>
+          <option value='' selected disabled>-Assign To-</option>
           <option v-for='id in CDDIDS' :value='id'>{{loadedNames[id]}}</option>
         </select>
         <br>
