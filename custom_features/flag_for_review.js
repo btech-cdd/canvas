@@ -83,12 +83,12 @@ Look into quill editor
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
         <div 
           contenteditable='true' 
-          @blur='saveFlagEdits(flag, "comment", $event);'
-          @focus='console.log("FOCUS");'
           @change='
             handleFlagEdits(flag, "comment", $event);
             console.log("CHANGE"); 
           '
+          @blur='saveFlagEdits(flag, "comment", $event);'
+          @focus='console.log("FOCUS");'
         >
           {{flag.comment}}
         </div>
