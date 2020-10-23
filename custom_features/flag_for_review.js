@@ -91,7 +91,7 @@ Look into quill editor
           </textarea>
           <div
             v-else
-            @click='flag.editing = true; $refs["edit_comment_" + flag.id'
+            @click='flag.editing = true; $refs["edit_comment_" + flag.id][0].focus();'
           >
             {{flag.comment}}
           </div>
