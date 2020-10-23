@@ -1,3 +1,4 @@
+CANVAS_FLAGS = {};
 (async function () {
   let canvasbody = $("#application");
   //checkbox to only show flags assigned to me (especially if not in a course)
@@ -145,7 +146,7 @@ Look into quill editor
   //height is set to 0 so it doesn't make a giant empty div at the bottom of the page. There's probably a better way to do this.
   canvasbody.after('<div id="btech-flags-vue" style="height: 0px;"></div>');
   $("#btech-flags-vue").append(vueString);
-  this.APP = new Vue({
+  CANVAS_FLAGS = new Vue({
     el: '#btech-flags-vue',
     mounted: async function () {
       let app = this;
