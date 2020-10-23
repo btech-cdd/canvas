@@ -389,7 +389,7 @@ Look into quill editor
         let  app = this;
         //maybe throw in a check that closes any other flags being edited and throw a "save other flag?" prompt
         flag.editing = true;
-        console.log(flat);
+        console.log(flag);
         app.$refs['edit-comment-' + flag._id].$el.focus();
       },
       async resolveFlag(flag) {
