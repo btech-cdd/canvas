@@ -366,6 +366,7 @@ Look into quill editor
         $.get("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, function(data) {
           if (Array.isArray(data)) {
             if (data.length === 0) {
+              app.prepareSettingsPacket();
               //$.post("https://jhveem.xyz/api/flag_settings/")
             }
           }
