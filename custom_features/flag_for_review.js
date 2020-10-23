@@ -308,8 +308,11 @@ edit (click edit)
         }
       },
       loadCDDNames() {
-        for (let id in CDDIDS) {
+        let app = this;
+        for (let i in CDDIDS) {
+          let id = CDDIDS[i];
           console.log(id);
+          app.loadName(id);
         }
       },
       initFlag(flag) {
