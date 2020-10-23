@@ -342,7 +342,8 @@ Look into quill editor
         let checkFilterCreator = (!app.settings.displayOnlyCreatedByMe || (ENV.current_user_id === flag.createdBy));
         //Make this more robust so you have a drop down instead of a checkmark to choose who to see. Can also see all or unassigned.
         let checkFilterAssigned = (!app.settings.displayOnlyAssignedToMe || (flag.assignedTo.includes(ENV.current_user_id)));
-        return checkResolved && checkFilterCreator && checkFilterAssigned;s
+        return checkResolved && checkFilterCreator && checkFilterAssigned;
+        s
       },
       loadName(userId) {
         let app = this;
@@ -358,20 +359,21 @@ Look into quill editor
         let settings = {};
         for (let s in app.settings) {
           let setting = app.settings[s];
-          console.log(s);
-          settings[s] = setting.set; 
+          settings[s] = setting.set;
         }
-        console.log(settings);
         return settings;
       },
       loadSettings() {
         let app = this;
-        console.log(app.settings);
-        $.get("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, function(data) {
+        $.get("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, function (data) {
+          console.log(data);
           if (Array.isArray(data)) {
             if (data.length === 0) {
               let settings = app.prepareSettingsPacket();
-              $.post("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, {settings: settings});
+              console.log(settings);
+              $.post("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, {
+                settings: settings
+              });
             }
           }
           console.log(data);
