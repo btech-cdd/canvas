@@ -81,13 +81,13 @@ Look into quill editor
         v-if='checkDisplayFlag(flag) && (loadedNames[flag.createdBy] !== undefined && loadedNames[flag.createdBy] !== null)'>
         <div style='text-align: center;' v-if='loadedCourses[flag.courseId] !== undefined && loadedCourses[flag.courseId] !== null'>{{loadedCourses[flag.courseId]}}</div>
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
-        <div 
-          contenteditable='true' 
-          v-on:change='function() {handleFlagEdits(flag, "comment", $event);}'
-          @blur='saveFlagEdits(flag, "comment", $event);'
-          @focus='console.log("FOCUS");'
-        >
-          {{flag.comment}}
+        <div>
+          <input 
+            @change='console.log("Change");'
+            @blur='console.log("BLUR");'
+            @focus='console.log("FOCUS");'
+            v-model='flag.comment'
+          >
         </div>
         <div style='text-align: right;'><i>-{{loadedNames[flag.createdBy]}}</i></div>
         <div style='width: 100%;'>
