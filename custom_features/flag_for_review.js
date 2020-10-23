@@ -84,13 +84,13 @@ Look into quill editor
         <div>
           <textarea
             :ref='"edit_comment_" + flag.id'
-            v-if='flag.editing'
+            v-show='flag.editing'
             @blur='saveFlagEdits(flag, "comment");'
             v-model='flag.comment'
           >
           </textarea>
           <div
-            v-else
+            v-show='!flag.editing'
             @click='flag.editing = true; $refs["edit_comment_" + flag.id][0].focus();'
           >
             {{flag.comment}}
