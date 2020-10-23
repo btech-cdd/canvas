@@ -131,6 +131,9 @@ Look into quill editor
         <select v-model='flagType'>
           <option v-for='option in flagOptions' :value='option'>{{option}}</option>
         </select>
+        <select v-model='flagAssigned'>
+          <option v-for='id in CDDIDS' :value='id'>{{id}}</option>
+        </select>
         <br>
         <div style='width: 100%; float: left; box-sizing: border-box;'>
           <textarea v-model='flagComment' rows='6' style='width: 100%; max-width: 100%; box-sizing: border-box;'></textarea>
@@ -294,6 +297,7 @@ Look into quill editor
         itemType: null,
         itemId: null,
         flagType: '',
+        flagAssigned: '',
         flagComment: '',
         flagTags: [],
         pageType: '',
@@ -356,7 +360,7 @@ Look into quill editor
         $.post('https://jhveem.xyz/api/flags', {
           'courseId': app.courseId,
           'createdBy': ENV.current_user_id,
-          'assignedTo': [],
+          'assignedTo': [app.flagAssigned],
           'itemType': app.itemType,
           'itemId': app.itemId,
           'flagType': app.flagType,
