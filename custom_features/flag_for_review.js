@@ -81,8 +81,8 @@ Look into quill editor
         class='btech-flags-item'
         v-if='checkDisplayFlag(flag) && (name(flag.createdBy) !== undefined && name(flag.createdBy) !== null)'>
         <div style='text-align: center;' v-if='loadedCourses[flag.courseId] !== undefined && loadedCourses[flag.courseId] !== null'><a :href='flag.item_url'>{{loadedCourses[flag.courseId]}}</a></div>
-        <div><strong>{{flag.flagType}}</strong></div>
         <div>
+          <strong>{{flag.flagType}}. </strong>
           <textarea
             :ref='"edit_comment_" + flag._id'
             v-show='flag.editing'
@@ -90,12 +90,12 @@ Look into quill editor
             v-model='flag.comment'
           >
           </textarea>
-          <div
+          <span
             v-show='!flag.editing'
             @click='flag.editing = true; $nextTick(() => {$refs["edit_comment_" + flag._id][0].focus();});'
           >
             {{flag.comment}}
-          </div>
+          </span>
         </div>
         <div style='text-align: right;'><i>-{{name(flag.createdBy)}}</i></div>
         <div style='text-align: right;' v-for='assignedToId in flag.assignedTo'><i class='far fa-share-square'></i><i>{{name(assignedToId)}}</i></div>
