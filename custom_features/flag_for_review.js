@@ -207,6 +207,7 @@ Look into quill editor
             flags.push(flag);
           }
         });
+        console.log(flags);
         app.flags = flags;
       }
 
