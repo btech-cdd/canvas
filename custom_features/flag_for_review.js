@@ -357,8 +357,12 @@ Look into quill editor
         let app = this;
         let settings = {};
         for (let s in app.settings) {
+          let setting = app.settings[s];
           console.log(s);
+          settings[s] = setting.set; 
         }
+        console.log(settings);
+        return settings;
       },
       loadSettings() {
         let app = this;
