@@ -81,7 +81,11 @@ Look into quill editor
         v-if='checkDisplayFlag(flag) && (loadedNames[flag.createdBy] !== undefined && loadedNames[flag.createdBy] !== null)'>
         <div style='text-align: center;' v-if='loadedCourses[flag.courseId] !== undefined && loadedCourses[flag.courseId] !== null'>{{loadedCourses[flag.courseId]}}</div>
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
-        <div :contenteditable='flag.editing' 
+        <div 
+          :ref='"edit-comment-" + flag._id'
+          :contenteditable='flag.editing' 
+          @blur='console.log("BLUR");'
+          @focus='console.log("FOCUS");'
           @change='
             console.log("CHANGE"); 
             handFlagEdits(flag, "comment", $event);
@@ -382,8 +386,11 @@ Look into quill editor
         await $.put('https://jhveem.xyz/api/flags/' + flag._id, changes);
       },
       async editFlag(flag) {
+        let  app = this;
         //maybe throw in a check that closes any other flags being edited and throw a "save other flag?" prompt
         flag.editing = true;
+        console.log(flat);
+        app.$refs['edit-comment-' + flag._id].$el.focus();
       },
       async resolveFlag(flag) {
         let app = this;
