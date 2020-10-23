@@ -83,9 +83,7 @@ Look into quill editor
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
         <div>
           <input 
-            @change='console.log("Change");'
-            @blur='console.log("BLUR");'
-            @focus='console.log("FOCUS");'
+            @blur='saveFlagEdits(flag, "comment");'
             v-model='flag.comment'
           >
         </div>
@@ -378,11 +376,10 @@ Look into quill editor
         let app = this;
         flag[flagPropName] = $event.text;
       },
-      async saveFlagEdits(flag, flagPropName, $event) {
-        console.log($event);
+      async saveFlagEdits(flag, flagPropName) {
         let app = this;
         let saveData = {};
-        saveData[flagPropName] = $event.text;
+        saveData[flagPropName] = flag[flagPropName];
         app.updateFlag(flag, saveData);
       },
       async updateFlag(flag, changes) {
