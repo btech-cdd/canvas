@@ -86,14 +86,13 @@ Look into quill editor
           <textarea
             :ref='"edit_comment_" + flag._id'
             v-show='flag.editing'
-            @focus="console.log('focus')"
             @blur='saveFlagEdits(flag, "comment");'
             v-model='flag.comment'
           >
           </textarea>
           <div
             v-show='!flag.editing'
-            @click='flag.editing = true; console.log(flag); console.log("edit_comment_" + flag._id); $nextTick(() => {$refs["edit_comment_" + flag._id][0].focus();});'
+            @click='flag.editing = true; $nextTick(() => {$refs["edit_comment_" + flag._id][0].focus();});'
           >
             {{flag.comment}}
           </div>
@@ -341,7 +340,6 @@ Look into quill editor
         let app = this;
         for (let i in CDDIDS) {
           let id = CDDIDS[i];
-          console.log(id);
           app.loadName(id);
         }
       },
@@ -382,11 +380,6 @@ Look into quill editor
         }
       },
       //this is not an api call, but what is called when edits are made in the user interface, will probably also initiate an api call though
-      async handleFlagEdits(flag, flagPropName, $event) {
-        console.log($event);
-        let app = this;
-        flag[flagPropName] = $event.text;
-      },
       async saveFlagEdits(flag, flagPropName) {
         let app = this;
         let saveData = {};
@@ -402,7 +395,6 @@ Look into quill editor
         let  app = this;
         //maybe throw in a check that closes any other flags being edited and throw a "save other flag?" prompt
         flag.editing = true;
-        console.log(flag);
         let refId = 'edit_comment_' + flag._id;
         app.$refs[refId].$el.focus();
       },
