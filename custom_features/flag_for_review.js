@@ -83,6 +83,7 @@ Look into quill editor
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
         <div>
           <textarea
+            :ref='"edit_comment_" + flag.id'
             v-if='flag.editing'
             @blur='saveFlagEdits(flag, "comment");'
             v-model='flag.comment'
@@ -90,7 +91,7 @@ Look into quill editor
           </textarea>
           <div
             v-else
-            @click='flag.editing = true;'
+            @click='flag.editing = true; $refs["edit_comment_" + flag.id'
           >
             {{flag.comment}}
           </div>
