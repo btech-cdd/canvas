@@ -322,6 +322,7 @@ edit (click edit)
         let app = this;
         let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
         flag.item_url = flagUrl;
+        flag.editing = false;
         app.loadName(flag.createdBy);
         return flag;
       },
@@ -374,7 +375,6 @@ edit (click edit)
 
       openSubmit() {
         let app = this;
-        app.flagType = '';
         app.flagComment = '';
         app.flagTags = [];
         app.showSubmit = true
