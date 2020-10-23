@@ -353,8 +353,22 @@ Look into quill editor
           });
         }
       },
+      prepareSettingsPacket() {
+        let app = this;
+        let settings = {};
+        for (let s in app.settings) {
+          console.log(s);
+        }
+      },
       loadSettings() {
+        let app = this;
+        console.log(app.settings);
         $.get("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, function(data) {
+          if (Array.isArray(data)) {
+            if (data.length === 0) {
+              $.post("https://jhveem.xyz/api/flag_settings/")
+            }
+          }
           console.log(data);
         })
       },
