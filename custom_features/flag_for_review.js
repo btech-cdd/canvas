@@ -83,9 +83,16 @@ Look into quill editor
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
         <div>
           <input 
+            v-if='flag.editing'
             @blur='saveFlagEdits(flag, "comment");'
             v-model='flag.comment'
           >
+          <div
+            v-else
+            @click='flag.editing = true;'
+          >
+            {{flag.comment}}
+          </div>
         </div>
         <div style='text-align: right;'><i>-{{loadedNames[flag.createdBy]}}</i></div>
         <div style='width: 100%;'>
@@ -380,6 +387,7 @@ Look into quill editor
         let app = this;
         let saveData = {};
         saveData[flagPropName] = flag[flagPropName];
+        flag.editing = false;
         app.updateFlag(flag, saveData);
       },
       async updateFlag(flag, changes) {
