@@ -83,7 +83,7 @@ Look into quill editor
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
         <div>
           <textarea
-            :ref='"edit_comment_" + flag.id'
+            :ref='"edit_comment_" + flag._id'
             v-show='flag.editing'
             @focus="console.log('focus')"
             @blur='saveFlagEdits(flag, "comment");'
@@ -92,7 +92,7 @@ Look into quill editor
           </textarea>
           <div
             v-show='!flag.editing'
-            @click='flag.editing = true; console.log("edit_comment_" + flag.id); $refs["edit_comment_" + flag.id][0].focus();'
+            @click='flag.editing = true; console.log(flag); console.log("edit_comment_" + flag._id); $refs["edit_comment_" + flag.id][0].focus();'
           >
             {{flag.comment}}
           </div>
