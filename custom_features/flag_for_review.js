@@ -365,6 +365,7 @@ Look into quill editor
       },
       async submitFlag() {
         let app = this;
+        console.log(app.flagAssigned);
         $.post('https://jhveem.xyz/api/flags', {
           'courseId': app.courseId,
           'createdBy': ENV.current_user_id,
