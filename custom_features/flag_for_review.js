@@ -83,11 +83,10 @@ Look into quill editor
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
         <div 
           contenteditable='true' 
-          @blur='console.log("BLUR");'
+          @blur='saveFlagEdits(flag, 'comment', $event);'
           @focus='console.log("FOCUS");'
           @change='
             console.log("CHANGE"); 
-            handFlagEdits(flag, "comment", $event);
           '
         >
           {{flag.comment}}
@@ -376,8 +375,10 @@ Look into quill editor
         }
       },
       //this is not an api call, but what is called when edits are made in the user interface, will probably also initiate an api call though
-      async handleFlagEdits(flag, flagPropName, $event) {
+      async saveFlagEdits(flag, flagPropName, $event) {
+        console.log($event);
         flag[flagPropName] = $event.text;
+        app.updateFlag(flag, {flagPropName: $event.text});
       },
       async updateFlag(flag, changes) {
         let app = this;
