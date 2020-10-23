@@ -329,7 +329,8 @@ Look into quill editor
         //do not include the check on if the name is loaded here because it messes up the flag count displayed before the menu opens
         let checkResolved = (app.displayResolved || !flag.resolved);
         let checkFilterCreator = (!app.displayOnlyCreatedByMe || (ENV.current_user_id === flag.createdBy));
-        let checkFilterAssigned = (!app.displayOnlyAssignedToMe || (flag.assignedTo.included(ENV.current_user_id)));
+        //Make this more robust so you have a drop down instead of a checkmark to choose who to see. Can also see all or unassigned.
+        let checkFilterAssigned = (!app.displayOnlyAssignedToMe || (flag.assignedTo.includes(ENV.current_user_id)));
         return checkResolved && checkFilterCreator && checkFilterAssigned;
       },
       loadName(userId) {
