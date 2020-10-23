@@ -79,7 +79,7 @@ Look into quill editor
     >
       <div 
         class='btech-flags-item'
-        v-if='checkDisplayFlag(flag) && (loadedNames[flag.createdBy] !== undefined && loadedNames[flag.createdBy] !== null)'>
+        v-if='checkDisplayFlag(flag) && (name(flag.createdBy) !== undefined && name(flag.createdBy) !== null)'>
         <div style='text-align: center;' v-if='loadedCourses[flag.courseId] !== undefined && loadedCourses[flag.courseId] !== null'>{{loadedCourses[flag.courseId]}}</div>
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
         <div>
@@ -97,7 +97,8 @@ Look into quill editor
             {{flag.comment}}
           </div>
         </div>
-        <div style='text-align: right;'><i>-{{loadedNames[flag.createdBy]}}</i></div>
+        <div style='text-align: right;'><i>-{{name(flag.createdBy)}}</i></div>
+        <div style='text-align: right;' v-for='assignedToId in flag.assignedTo'><i class='far fa-share-square'></i><i>{{name(assignedToId)}}</i></div>
         <div style='width: 100%;'>
           <i @click='deleteFlag(flag);' class='icon-trash'></i>
           <i @click='assignFlag(flag);' class='far fa-share-square'></i>
@@ -134,7 +135,7 @@ Look into quill editor
         </select>
         <select v-model='flagAssigned'>
           <option value='' selected disabled>-Assign To-</option>
-          <option v-for='id in CDDIDS' :value='id'>{{loadedNames[id]}}</option>
+          <option v-for='id in CDDIDS' :value='id'>{{name(id)}}</option>
         </select>
         <br>
         <div style='width: 100%; float: left; box-sizing: border-box;'>
@@ -348,6 +349,10 @@ Look into quill editor
           let id = CDDIDS[i];
           app.loadName(id);
         }
+      },
+      name(id) {
+        let app = this;
+        return app.loadedNames[id];
       },
       initFlag(flag) {
         let app = this;
