@@ -339,10 +339,10 @@ Look into quill editor
       checkDisplayFlag(flag) {
         let app = this;
         //do not include the check on if the name is loaded here because it messes up the flag count displayed before the menu opens
-        let checkResolved = (app.settings.displayResolved || !flag.resolved);
-        let checkFilterCreator = (!app.settings.displayOnlyCreatedByMe || (ENV.current_user_id === flag.createdBy));
+        let checkResolved = (app.settings.displayResolved.set || !flag.resolved);
+        let checkFilterCreator = (!app.settings.displayOnlyCreatedByMe.set || (ENV.current_user_id === flag.createdBy));
         //Make this more robust so you have a drop down instead of a checkmark to choose who to see. Can also see all or unassigned.
-        let checkFilterAssigned = (!app.settings.displayOnlyAssignedToMe || (flag.assignedTo.includes(ENV.current_user_id)));
+        let checkFilterAssigned = (!app.settings.displayOnlyAssignedToMe.set || (flag.assignedTo.includes(ENV.current_user_id)));
         return checkResolved && checkFilterCreator && checkFilterAssigned;
         s
       },
@@ -387,7 +387,6 @@ Look into quill editor
                 app.settings[s].set = settings[s];
               }
             }
-            console.log(app.settings);
           }
         })
       },
