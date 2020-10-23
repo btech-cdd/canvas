@@ -354,7 +354,7 @@ Look into quill editor
         }
       },
       loadSettings() {
-        $.get("https://jhveem.xyz/flag_settings/" + ENV.current_user_id, function(data) {
+        $.get("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, function(data) {
           console.log(data);
         })
       },
