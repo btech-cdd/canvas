@@ -387,6 +387,7 @@ Look into quill editor
                 app.settings[s].set = settings[s];
               }
             }
+            console.log(app.settings);
           }
         })
       },
