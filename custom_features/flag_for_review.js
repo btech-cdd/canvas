@@ -73,6 +73,7 @@ Look into quill editor
     <div v-if=showFilters>
       <input type='checkbox' v-model='displayResolved'><label>Include Resolved</label>
       <input type='checkbox' v-model='displayOnlyCreatedByMe'><label>Created By Me</label>
+      <input type='checkbox' v-model='displayOnlyAssignedToMe'><label>Assigned To Me</label>
     </div>
     <div 
       v-for='flag in filteredFlags'
@@ -270,6 +271,7 @@ Look into quill editor
         showFilters: true,
         displayResolved: false,
         displayOnlyCreatedByMe: false,
+        displayOnlyAssignedToMe: true,
 
         button: null,
         departments: {},
