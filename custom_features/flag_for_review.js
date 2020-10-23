@@ -299,6 +299,7 @@ edit (click edit)
         return checkResolved && checkFilterCreator;
       },
       loadName(userId) {
+        let app =  this;
         if (app.loadedNames[userId] === undefined) {
           app.loadedNames[userId] = null;
           $.get('/api/v1/users/' + userId, function (data) {
