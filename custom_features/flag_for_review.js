@@ -257,12 +257,6 @@ Look into quill editor
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
             flag = app.initFlag(flag);
-            if (app.loadedCourses[flag.courseId] === undefined) {
-              app.loadedCourses[flag.courseId] = null;
-              $.get('/api/v1/courses/' + flag.courseId, function (data) {
-                app.loadedCourses[flag.courseId] = data.name;
-              });
-            }
             flags.push(flag);
           }
         });
@@ -336,7 +330,7 @@ Look into quill editor
         return checkResolved && checkFilterCreator;
       },
       loadName(userId) {
-        let app =  this;
+        let app = this;
         if (app.loadedNames[userId] === undefined) {
           app.loadedNames[userId] = null;
           $.get('/api/v1/users/' + userId, function (data) {
@@ -361,6 +355,13 @@ Look into quill editor
         flag.item_url = flagUrl;
         flag.editing = false;
         app.loadName(flag.createdBy);
+        //get the name of the course to which it belongs
+        if (app.loadedCourses[flag.courseId] === undefined) {
+          app.loadedCourses[flag.courseId] = null;
+          $.get('/api/v1/courses/' + flag.courseId, function (data) {
+            app.loadedCourses[flag.courseId] = data.name;
+          });
+        }
         return flag;
       },
       async submitFlag() {
@@ -405,7 +406,7 @@ Look into quill editor
         await $.put('https://jhveem.xyz/api/flags/' + flag._id, changes);
       },
       async editFlag(flag) {
-        let  app = this;
+        let app = this;
         //maybe throw in a check that closes any other flags being edited and throw a "save other flag?" prompt
         flag.editing = true;
         let refId = 'edit_comment_' + flag._id;
