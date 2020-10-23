@@ -57,15 +57,16 @@ edit (click edit)
     >
       <i class='fas fa-flag'></i>New
     </div>
-    <div>
-      <input type='checkbox' v-model='displayResolved'><label>Display Resolved?</label>
+    <div v-if=showFilters>
+      <input type='checkbox' v-model='displayResolved'><label>Include Resolved</label>
+      <input type='checkbox' v-model='displayOnlyCreatedByMe'><label>Created By Me</label>
     </div>
     <div 
       v-for='flag in filteredFlags'
     >
       <div 
         class='btech-flags-item'
-        v-if='(displayResolved || !flag.resolved) && (loadedNames[flag.createdBy] !== undefined && loadedNames[flag.createdBy] !== null)'>
+        v-if='checkDisplayFlag(flag)'>
         <div style='text-align: center;' v-if='loadedCourses[flag.courseId] !== undefined && loadedCourses[flag.courseId] !== null'>{{loadedCourses[flag.courseId]}}</div>
         <div><strong><a :href='flag.item_url'>{{flag.flagType}}</a></strong></div>
         <div>{{flag.comment}}</div>
@@ -236,6 +237,11 @@ edit (click edit)
     },
     data: function () {
       return {
+        //Filters
+        showFilters: true,
+        displayResolved: false,
+        displayOnlyCreatedByMe: false,
+
         button: null,
         departments: {},
         topics: [],
@@ -264,7 +270,6 @@ edit (click edit)
         flagTags: [],
         pageType: '',
         cddInfo: [],
-        displayResolved: false,
         loadedNames: {},
         loadedCourses: {},
       }
@@ -285,6 +290,13 @@ edit (click edit)
       }
     },
     methods: {
+      checkDisplayFlag(flag) {
+        let app = this;
+        let checkResolved = (app.displayResolved || !flag.resolved);
+        let checkNameReady = (app.loadedNames[flag.createdBy] !== undefined && app.loadedNames[flag.createdBy] !== null);
+        let checkFilterCreator = (!app.displayOnlyCreatedByMe || (ENV.current_user_id === flag.createdBy));
+        return checkResolved && checkNameReady && checkFilterCreator;
+      },
       initFlag(flag) {
         let app = this;
         let flagUrl = 'https://btech.instructure.com/courses/' + flag.courseId + '/' + flag.itemType + '/' + flag.itemId;
