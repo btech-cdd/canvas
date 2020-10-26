@@ -4,7 +4,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
   let highlightColor = "#FFC";
   $("tr.student_assignment").each(function() {
       let context = $(this).find("div.context").text();
-      let gradeText = $(this).find("span.grade").text().replace("Click to test a different score", "").trim();
+      let gradeText = $(this).find("span.grade").text().replaceAll("Click to test a different score", "").trim();
       console.log(gradeText);
       let grade = parseFloat(gradeText);
       console.log(grade);
