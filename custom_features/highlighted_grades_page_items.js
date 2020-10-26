@@ -4,7 +4,9 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
   let highlightColor = "#FFC";
   $("tr.student_assignment").each(function() {
       let context = $(this).find("div.context").text();
-      let grade = parseFloat($(this).find("span.grade").text().trim());
+      let gradeText = $(this).find("span.grade").text().trim();
+      console.log(gradeText);
+      let grade = parseFloat(gradeText);
       let total = parseFloat($(this).find("td.points_possible").text().trim());
       if (!isNaN(grade) && !isNaN(total)) {
           let percent = (grade / total);
