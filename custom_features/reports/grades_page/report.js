@@ -87,7 +87,6 @@
             },
             async processStudentsData() {
               let app = this;
-              let studentsData = {};
               for (let s = 0; s < app.studentData.length; s++) {
                 let studentData = app.studentData[s];
                 let userId = studentData.id;
@@ -99,16 +98,14 @@
                   }
                 }
                 if (enrollment !== null) {
-                  studentsData[userId] = app.newStudent(userId, studentData.sortable_name, app.courseId, app);
+                  app.studentsData[userId] = app.newStudent(userId, studentData.sortable_name, app.courseId, app);
                   app.processEnrollment(studentsData[userId], enrollment);
-                  studentsData[userId].section = app.getStudentSection(userId);
+                  app.studentsData[userId].section = app.getStudentSection(userId);
                 }
               }
-              app.studentsData = studentsData;
             },
             async processStudentsAssignmentData() {
               let app = this;
-              let studentsData = {};
               for (let s = 0; s < app.studentData.length; s++) {
                 let studentData = app.studentData[s];
                 let userId = studentData.id;
@@ -120,10 +117,9 @@
                   }
                 }
                 if (enrollment !== null) {
-                  await app.getAssignmentData(studentsData[userId], enrollment);
+                  await app.getAssignmentData(app.studentsData[userId], enrollment);
                 }
               }
-              app.studentsData = studentsData;
             },
             sortColumn(header) {
               let app = this;
