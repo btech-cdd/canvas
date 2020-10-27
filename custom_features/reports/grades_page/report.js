@@ -37,6 +37,7 @@
         this.APP = new Vue({
           el: '#canvas-grades-report-vue',
           mounted: async function () {
+            let app = this;
             this.courseId = ENV.context_asset_string.replace("course_", "");
             await this.createGradesReport();
             app.updateStudents();
