@@ -78,7 +78,7 @@
               let app = this;
               let students = [];
               for (s in app.studentsData) {
-                let student = studentsData[s];
+                let student = app.studentsData[s];
                 students.push(student);
               }
               this.students = students;
