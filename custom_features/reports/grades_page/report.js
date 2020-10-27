@@ -40,6 +40,7 @@
             let app = this;
             this.courseId = ENV.context_asset_string.replace("course_", "");
             await this.createGradesReport();
+            await app.processStudentsData();
             app.updateStudents();
             this.loading = false;
           },
