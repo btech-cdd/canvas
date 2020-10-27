@@ -64,6 +64,7 @@
               ],
               sections: [],
               studentData: [],
+              studentsData: {},
               loading: false, //CHANGE: return this to true if this doesn't work
               menu: ''
             }
