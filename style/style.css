@@ -23,11 +23,11 @@
   font-size: .66rem;
 }
 
-#content .img-row {
+#content div.img-row {
   display: flex;
 }
 
-#content .img-column {
+#content div.img-column {
   padding: 5px;
 }
 
