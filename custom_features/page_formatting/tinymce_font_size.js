@@ -1,3 +1,4 @@
+console.log("tinymce font size");
 async function getEditor() {
   if (window.tinymce === undefined) {
     await delay(500);
