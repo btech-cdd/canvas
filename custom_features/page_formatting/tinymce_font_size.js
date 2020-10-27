@@ -14,9 +14,9 @@ async function _init() {
   h2 {font-size: 1.5rem;}
   h3 {font-size: 1.2rem;}
   h4 {font-size: 1rem;}
-  #content h2, h3, h4 {
+  h2, h3, h4 {
     clear: both;
-    font-weight: bold; !important 
+    font-weight: bold;
   }
   .btech-citation {
     font-size: .66rem;
@@ -25,11 +25,11 @@ async function _init() {
     filter: blur(4px);
   }
 
-  #content img[style*="float: left"] {
+  img[style*="float: left"] {
     margin: 5px 15px 0px 0px;
   }
 
-  #content img[style*="float: right"] {
+  img[style*="float: right"] {
     margin: 5px 0px 0px 15px;
   }
   `;
