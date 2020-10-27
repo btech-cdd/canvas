@@ -1,4 +1,3 @@
-console.log("tinymce font size");
 async function getEditor() {
   if (window.tinymce === undefined) {
     await delay(500);
@@ -25,7 +24,6 @@ async function _init() {
   if (tinymce.majorVersion === "4") {
     tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[1].innerHTML = tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[1].innerHTML + additionalCSS;
   } else if (tinymce.majorVersion === "5") {
-    console.log('Add custom CSS');
     tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[0].innerHTML = tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[0].innerHTML + additionalCSS;
   }
 }

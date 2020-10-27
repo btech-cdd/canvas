@@ -309,15 +309,15 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             })
 
             //AVAILABLE TO EVERYONE
-            feature("editor_toolbar/basics", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)\/(.+?)\/edit/);
-            feature("editor_toolbar/syllabi", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
-            feature('page_formatting/dropdown_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
-            feature('page_formatting/tabs_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
-            feature('page_formatting/expandable_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
-            feature('page_formatting/google_sheets_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
-            feature("page_formatting/tinymce_font_size", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)\/(.+?)\/edit/);
-            feature("page_formatting/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
-            feature("page_formatting/hide_graphic_content", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
+            feature("editor_toolbar/basics", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
+            feature("editor_toolbar/syllabi", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+            feature('page_formatting/dropdown_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+            feature('page_formatting/tabs_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+            feature('page_formatting/expandable_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+            feature('page_formatting/google_sheets_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+            feature("page_formatting/tinymce_font_size", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
+            feature("page_formatting/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+            feature("page_formatting/hide_graphic_content", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             feature("quizzes/duplicate_bank_item", {}, /\/courses\/([0-9]+)\/question_banks\/([0-9]+)/);
             feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
             if (IS_BLUEPRINT) feature('blueprint_association_links');
@@ -377,7 +377,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
               feature("rubrics/sortable");
             }
             if (departmentId === 3820) { //Web & Mobile
-              externalFeature("https://bridgerland-web-dev.github.io/html_practice/html_practice.js", /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/)
+              externalFeature("https://bridgerland-web-dev.github.io/html_practice/html_practice.js", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/)
             }
           }
 
@@ -388,10 +388,10 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           // featureCDD("help_tab");
           featureCDD("rubrics/add_criteria_from_csv", {}, new RegExp('/(rubrics|assignments\/)'));
           featureCDD("rubrics/create_rubric_from_csv", {}, new RegExp('^/(course|account)s/([0-9]+)/rubrics$'));
-          featureCDD("editor_toolbar/tables", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
+          featureCDD("editor_toolbar/tables", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           featureCDD("surveys");
-          featureCDD("survey/survey", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
-          featureCDD("editor_toolbar/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
+          featureCDD("survey/survey", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+          featureCDD("editor_toolbar/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           // featureCDD('date_display/add_current_year_speed_grader', {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
           feature('date_display/add_current_year', {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
           if (IS_ME) {
@@ -408,7 +408,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
 
           //Survey
           if (currentUser === 1507313) { //Lisa Balling
-            feature("survey/survey", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes)/);
+            feature("survey/survey", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           }
         });
       });
