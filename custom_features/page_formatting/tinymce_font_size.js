@@ -11,9 +11,13 @@ async function _init() {
   //use rem instead of pixels because it messes everything up otherwise. 1.5, 1.2, 1 for h2, h3, h4 respectively
   //These should work out to 18, 14, and 12
   let additionalCSS = `
-  h2 {font-size: 1.5rem; font-weight: bold;}
-  h3 {font-size: 1.2rem; font-weight: bold;}
-  h4 {font-size: 1rem; font-weight: bold;}
+  h2 {font-size: 1.5rem;}
+  h3 {font-size: 1.2rem;}
+  h4 {font-size: 1rem;}
+  #content h2, h3, h4 {
+    clear: both;
+    font-weight: bold;  
+  }
   .btech-citation {
     font-size: .66rem;
   }
