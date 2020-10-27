@@ -42,6 +42,8 @@
             await this.createGradesReport();
             await app.processStudentsData();
             app.updateStudents();
+            await app.processStudentsAssignmentData();
+            app.updateStudents();
             this.loading = false;
           },
 
@@ -99,8 +101,26 @@
                 if (enrollment !== null) {
                   studentsData[userId] = app.newStudent(userId, studentData.sortable_name, app.courseId, app);
                   app.processEnrollment(studentsData[userId], enrollment);
-                  await app.getAssignmentData(studentsData[userId], enrollment);
                   studentsData[userId].section = app.getStudentSection(userId);
+                }
+              }
+              app.studentsData = studentsData;
+            },
+            async processStudentsAssignmentData() {
+              let app = this;
+              let studentsData = {};
+              for (let s = 0; s < app.studentData.length; s++) {
+                let studentData = app.studentData[s];
+                let userId = studentData.id;
+                let enrollment = null;
+
+                for (let e = 0; e < studentData.enrollments.length; e++) {
+                  if (studentData.enrollments[e].type === "StudentEnrollment") {
+                    enrollment = studentData.enrollments[e];
+                  }
+                }
+                if (enrollment !== null) {
+                  await app.getAssignmentData(studentsData[userId], enrollment);
                 }
               }
               app.studentsData = studentsData;
