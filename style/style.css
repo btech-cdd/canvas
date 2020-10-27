@@ -19,11 +19,11 @@
 #content .btech-citation {
   font-size: .66rem;
 }
-#content img[style*="float:left"] {
+#content img[style*="float: left"] {
   margin: 5px 15px 0px 0px;
 }
 
-#content img[style*="float:right"] {
+#content img[style*="float: right"] {
   margin: 5px 0px 0px 15px;
 }
 
