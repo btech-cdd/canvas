@@ -24,6 +24,14 @@ async function _init() {
   .btech-graphic-image {
     filter: blur(4px);
   }
+
+  #content img[style*="float: left"] {
+    margin: 5px 15px 0px 0px;
+  }
+
+  #content img[style*="float: right"] {
+    margin: 5px 0px 0px 15px;
+  }
   `;
   if (tinymce.majorVersion === "4") {
     tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[1].innerHTML = tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[1].innerHTML + additionalCSS;
