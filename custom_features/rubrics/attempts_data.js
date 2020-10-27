@@ -109,7 +109,7 @@
               }
             }
             rubricMax = ENV.rubric.points_possible;
-            let suggestedScore = Math.round(rubricTotal * ((11 - feature.attempts) / 10));
+            let suggestedScore = Math.round((rubricTotal) * ((11 - feature.attempts) / 10));
             $("#btech-recorded-attempts-value").text(feature.attempts);
             $("#btech-rubric-score-value").text(rubricTotal + " (" + (Math.round((rubricTotal / rubricMax) * 1000) / 10) + "%)");
             $("#btech-suggested-score-value").text(suggestedScore);

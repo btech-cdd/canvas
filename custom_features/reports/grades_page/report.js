@@ -1,6 +1,6 @@
 (function () {
   class Column {
-    constructor(name, description, average, sort_type, percent, hideable=true) {
+    constructor(name, description, average, sort_type, percent, hideable = true) {
       this.name = name;
       this.description = description;
       this.average = average;
@@ -38,13 +38,8 @@
           el: '#canvas-grades-report-vue',
           mounted: async function () {
             this.courseId = ENV.context_asset_string.replace("course_", "");
-            let studentsData = await this.createGradesReport();
-            let students = [];
-            for (s in studentsData) {
-              let student = studentsData[s];
-              students.push(student);
-            }
-            this.students = students;
+            await this.createGradesReport();
+            app.updateStudents();
             this.loading = false;
           },
 
@@ -65,7 +60,7 @@
               ],
               sections: [],
               studentData: [],
-              loading: true,
+              loading: false, //CHANGE: return this to true if this doesn't work
               menu: ''
             }
           },
@@ -77,6 +72,35 @@
             }
           },
           methods: {
+            updateStudents() {
+              let students = [];
+              for (s in app.studentsData) {
+                let student = studentsData[s];
+                students.push(student);
+              }
+              this.students = students;
+            },
+            async processStudentsData() {
+              let studentsData = {};
+              for (let s = 0; s < app.studentData.length; s++) {
+                let studentData = app.studentData[s];
+                let userId = studentData.id;
+                let enrollment = null;
+
+                for (let e = 0; e < studentData.enrollments.length; e++) {
+                  if (studentData.enrollments[e].type === "StudentEnrollment") {
+                    enrollment = studentData.enrollments[e];
+                  }
+                }
+                if (enrollment !== null) {
+                  studentsData[userId] = app.newStudent(userId, studentData.sortable_name, app.courseId, app);
+                  app.processEnrollment(studentsData[userId], enrollment);
+                  await app.getAssignmentData(studentsData[userId], enrollment);
+                  studentsData[userId].section = app.getStudentSection(userId);
+                }
+              }
+              app.studentsData = studentsData;
+            },
             sortColumn(header) {
               let app = this;
               let name = this.columnNameToCode(header);
@@ -94,17 +118,17 @@
                   sortType = app.columns[c].sort_type;
                 }
               }
-              app.students.sort(function(a, b) {
+              app.students.sort(function (a, b) {
                 let aVal = a[name];
                 let bVal = b[name];
                 //convert strings to upper case to ignore case when sorting
-                if (typeof(aVal) === 'string') aVal = aVal.toUpperCase();
-                if (typeof(bVal) === 'string') bVal = bVal.toUpperCase();
+                if (typeof (aVal) === 'string') aVal = aVal.toUpperCase();
+                if (typeof (bVal) === 'string') bVal = bVal.toUpperCase();
 
                 //see if not the same type and which one isn't the sort type
-                if (typeof(aVal) !== typeof(bVal)) {
-                  if (typeof(aVal) !== sortType) return -1 * sortState;
-                  if (typeof(bVal) !== sortType) return 1 * sortState;
+                if (typeof (aVal) !== typeof (bVal)) {
+                  if (typeof (aVal) !== sortType) return -1 * sortState;
+                  if (typeof (bVal) !== sortType) return 1 * sortState;
                 }
                 //check if it's a string or int
                 let comp = 0;
@@ -136,7 +160,6 @@
             },
             async createGradesReport() {
               let app = this;
-              let studentsData = {};
               await app.getSectionData();
               let url = "/api/v1/courses/" + this.courseId + "/users?enrollment_state%5B%5D=active";
               url += "&enrollment_state%5B%5D=invited"
@@ -150,25 +173,6 @@
               await $.get(url, function (data) {
                 app.studentData = data;
               });
-
-              for (let s = 0; s < app.studentData.length; s++) {
-                let studentData = app.studentData[s];
-                let userId = studentData.id;
-                let enrollment = null;
-
-                for (let e = 0; e < studentData.enrollments.length; e++) {
-                  if (studentData.enrollments[e].type === "StudentEnrollment") {
-                    enrollment = studentData.enrollments[e];
-                  }
-                }
-                if (enrollment !== null) {
-                  studentsData[userId] = app.newStudent(userId, studentData.sortable_name, app.courseId, app);
-                  app.processEnrollment(studentsData[userId], enrollment);
-                  await app.getAssignmentData(studentsData[userId], enrollment);
-                  studentsData[userId].section = app.getStudentSection(userId);
-                }
-              }
-              return studentsData;
             },
             async getSectionData() {
               let app = this;

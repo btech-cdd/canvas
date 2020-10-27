@@ -9,7 +9,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
       let grade = parseFloat(gradeText);
       console.log(grade);
       let total = parseFloat($(this).find("td.points_possible").text().trim());
-      if (isNaN(grade) && gradeText != "-") {
+      if (isNaN(grade) && gradeText != "-" && gradeText != "N/A") {
         $(this).css("background-color", highlightColor);
       } else if (!isNaN(grade) && !isNaN(total)) {
           let percent = (grade / total);
