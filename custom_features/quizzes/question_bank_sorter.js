@@ -27,8 +27,9 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       bankItems.each(function() {
         let courseName = $(this).find("div.sub_content span.cached_context_short_name").text().trim();
         if (courseName !== "") {
-          let courseBankSelectorId = "btech-bank-course-"+courseName.replace(" ", "-");
-          let courseBankListId = "btech-bank-list-"+courseName.replace(" ", "-");
+          console.log(courseName.replaceAll(" ", "-"));
+          let courseBankSelectorId = "btech-bank-course-"+courseName.replaceAll(" ", "-");
+          let courseBankListId = "btech-bank-list-"+courseName.replaceAll(" ", "-");
           if (!courseNames.includes(courseName)) {
             courseNames.push(courseName);
             courseList.append("<li class='btech-bank-course' id='"+courseBankSelectorId+"'>"+courseName+"</li>");
