@@ -54,8 +54,8 @@
   function setImageAlign() {
     addClassToImage('btech-img-align');
   }
-  TOOLBAR.addButtonIcon("far fa-exclamation-triangle", "Blur image with graphic content.", blurGraphicImage, 'btech-img-option btech-graphic-image-option');
-  TOOLBAR.addButtonIcon("far fa-arrows-alt-h", "Set image to appear on same row as images adjacent to it.", setImageAlign, 'btech-img-option btech-img-align-option');
+  TOOLBAR.addButtonIcon("far fa-exclamation-triangle", "Blur image with graphic content.", function() {blurGraphicImage();resetImgButtons();}, 'btech-img-option btech-graphic-image-option');
+  TOOLBAR.addButtonIcon("far fa-arrows-alt-h", "Set image to appear on same row as images adjacent to it.", function() {setImageAlign();resetImgButtons();}, 'btech-img-option btech-img-align-option');
   tinymce.activeEditor.on("click", function () {
     resetImgButtons();
   });
