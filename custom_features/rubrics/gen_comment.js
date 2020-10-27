@@ -80,8 +80,9 @@
         }
       },
 
-      genRubricComment(rubricSelector, offset=1) {
+      async genRubricComment(rubricSelector, offset=1) {
         let feature = this;
+        let submission = await canvasGet('/api/v1/courses/'+feature.courseId+'/assignments/'+feature.assignmentId+'/submissions/'+feature.studentId+'?include[]=rubric_assessment')
         feature.getData();
         let comment = "";
         let header = "<h2><b>RUBRIC</b></h2>";

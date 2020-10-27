@@ -1,5 +1,9 @@
 /* use rem instead of pixels because it messes everything up otherwise. 1.5, 1.2, 1 for h2, h3, h4 respectively */
 /* don't forget to change this in tinymce_font_size.js as well so it shows up in the editor */
+#content h2, h3, h4 {
+  clear: both;
+  font-weight: bold;  
+}
 #content h2 {
   font-size: 1.5rem;
   font-weight: bold;  
