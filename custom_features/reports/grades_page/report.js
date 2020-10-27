@@ -73,6 +73,7 @@
           },
           methods: {
             updateStudents() {
+              let app = this;
               let students = [];
               for (s in app.studentsData) {
                 let student = studentsData[s];
@@ -81,6 +82,7 @@
               this.students = students;
             },
             async processStudentsData() {
+              let app = this;
               let studentsData = {};
               for (let s = 0; s < app.studentData.length; s++) {
                 let studentData = app.studentData[s];
