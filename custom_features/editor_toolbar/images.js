@@ -1,31 +1,11 @@
-
 (async function () {
   if (!TOOLBAR.checkEditorPage()) return;
+
   function resetImgButtons() {
     let node = tinyMCE.activeEditor.selection.getNode();
     let parent = tinyMCE.activeEditor.dom.getParent(node, "img");
-    $('#btech-custom-editor-select-tables :nth-child(1)').prop('selected', true)
-    let found = false;
-    $('.btech-table-edit-option').each(function () {
-      $(this).css({
-        'background-color': '#eee',
-        'color': '#000'
-      });
-      let className = $(this).attr('id').replace("-option", "");
-      if (parent !== null) {
-        if ($(parent).hasClass(className)) {
-          let bgColor = getComputedStyle(document.documentElement, null).getPropertyValue("--ic-brand-button--secondary-bgd-darkened-5");
-          $(this).css({
-            'background-color': bgColor,
-            'color': '#fff'
-          });
-          //also set this option to the selected option
-          //this isn't working at the moment
-          $(this).prop('selected', true);
-          found = true;
-        }
-      }
-    });
+    console.log(parent);
+  }
   async function addClassToImage(className) {
     //get the currently selected node
     let node = tinyMCE.activeEditor.selection.getNode();
@@ -53,15 +33,9 @@
   function setImageAlign() {
     addClassToImage('btech-img-align');
   }
-    //if no options are selected, select the disabled or default option
-    //this isn't working at the moment
-    if (!found) {
-      $('.btech-table-edit-option:disabled').select();
-    }
-  }
   TOOLBAR.addButtonIcon("far fa-exclamation-triangle", "Blur image with graphic content.", blurGraphicImage);
   TOOLBAR.addButtonIcon("far fa-arrows-alt-h", "Set image to appear on same row as images adjacent to it.", setImageAlign);
   tinymce.activeEditor.on("click", function () {
-    resetImageButtons();
+    resetImgButtons();
   });
 })();
