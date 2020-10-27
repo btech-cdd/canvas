@@ -88,6 +88,7 @@
         let totalMax = 0;
         let totalCrit = 0;
         header += ($("#rubric_holder").find("[data-selenium='rubric_total']").text() + "\n");
+        console.log('test');
 
         $(rubricSelector).find("tr.rubric-criterion").each(function() {
           let description = $(this).find("th.description-header").find("div.description").text();
