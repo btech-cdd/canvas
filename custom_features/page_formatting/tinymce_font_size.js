@@ -16,7 +16,7 @@ async function _init() {
   h4 {font-size: 1rem;}
   #content h2, h3, h4 {
     clear: both;
-    font-weight: bold;  
+    font-weight: bold; !important 
   }
   .btech-citation {
     font-size: .66rem;
