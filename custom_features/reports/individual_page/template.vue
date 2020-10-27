@@ -68,8 +68,8 @@
                 <div class='btech-report-submission-dates'>
                   <img 
                     v-if='IS_TEACHER'
-                    style="float: right; transform: scale(2);"
-                    src="https://jhveem.xyz/canvas/media/it-will-all-be-fine.svg">
+                    style="float: right; transform: scale(2); image-rendering: pixelated;"
+                    src="https://jhveem.xyz/canvas/media/it-will-all-be-fine.png">
                   <span>Start Date:</span>
                   <input type="date" v-model="submissionDatesStart" @change='getIncludedAssignmentsBetweenDates()'>
                   <span>End Date:</span>
