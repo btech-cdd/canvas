@@ -1,10 +1,31 @@
 (async function () {
   if (!TOOLBAR.checkEditorPage()) return;
 
+  imgOptions = [
+    'btech-graphic-image',
+    'btech-img-align'
+  ]
+
   function resetImgButtons() {
+    let bgColor = getComputedStyle(document.documentElement, null).getPropertyValue("--ic-brand-button--secondary-bgd-darkened-5");
     let node = tinyMCE.activeEditor.selection.getNode();
     let parent = tinyMCE.activeEditor.dom.getParent(node, "img");
     console.log(parent);
+    if (parent !== null) {
+      for (let c = 0; c < imgOptions.length; c++) {
+        let className = imgOptions[c];
+        let optionClassName = className + '-option';
+        $('.' + optionClassName).css({
+          'color': '#000'
+        });
+        if ($(parent).hasClass(className)) {
+          $('.' + optionClassName).css({
+            'color': bgColor
+          });
+
+        }
+      }
+    }
   }
   async function addClassToImage(className) {
     //get the currently selected node
@@ -33,8 +54,8 @@
   function setImageAlign() {
     addClassToImage('btech-img-align');
   }
-  TOOLBAR.addButtonIcon("far fa-exclamation-triangle", "Blur image with graphic content.", blurGraphicImage);
-  TOOLBAR.addButtonIcon("far fa-arrows-alt-h", "Set image to appear on same row as images adjacent to it.", setImageAlign);
+  TOOLBAR.addButtonIcon("far fa-exclamation-triangle", "Blur image with graphic content.", blurGraphicImage, 'btech-img-option btech-graphic-image-option');
+  TOOLBAR.addButtonIcon("far fa-arrows-alt-h", "Set image to appear on same row as images adjacent to it.", setImageAlign, 'btech-img-option btech-img-align-option');
   tinymce.activeEditor.on("click", function () {
     resetImgButtons();
   });
