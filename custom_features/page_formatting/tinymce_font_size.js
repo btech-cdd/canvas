@@ -20,6 +20,9 @@ async function _init() {
   .btech-graphic-image {
     filter: blur(4px);
   }
+  .btech-img-row {
+    border: 1px solid #000;
+  }
   `;
   if (tinymce.majorVersion === "4") {
     tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[1].innerHTML = tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[1].innerHTML + additionalCSS;

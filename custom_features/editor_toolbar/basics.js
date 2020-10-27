@@ -37,6 +37,10 @@
     addClassToImage('btech-graphic-image');
   }
 
+  function setImageAlign() {
+    addClassToImage('btech-img-align');
+  }
+
   async function exampleBox() {
     let editor = TOOLBAR.editor;
     let selection = editor.selection;
@@ -256,6 +260,7 @@
   TOOLBAR.addButtonIcon("far fa-quote-right", "Insert a citation.", citation);
   TOOLBAR.addButtonIcon("far fa-hand-point-up", "Hide text. Reveal on mouse hover.", hideOnHover);
   TOOLBAR.addButtonIcon("far fa-exclamation-triangle", "Blur image with graphic content.", blurGraphicImage);
+  TOOLBAR.addButtonIcon("far fa-arrows-alt-h", "Set image to appear on same row as images adjacent to it.", setImageAlign);
   TOOLBAR.addButtonIcon("far fa-comment-alt-lines", "Insert text which is shown on mouse hover.", hoverDefinition);
   //TOOLBAR.addButtonIcon("far fa-swatchbook", "Create a theme for the page. The template will be inserted at the top of the page. Edit the template to apply changes throughout the page.", addCustomThemeParent);
   TOOLBAR.addButtonIcon("far fa-stream", "Auto format the page to break the page into sections. Sections are determined by the top level heading.", formatPage);
