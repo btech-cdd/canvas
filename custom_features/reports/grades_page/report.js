@@ -100,7 +100,7 @@
                 }
                 if (enrollment !== null) {
                   app.studentsData[userId] = app.newStudent(userId, studentData.sortable_name, app.courseId, app);
-                  app.processEnrollment(studentsData[userId], enrollment);
+                  app.processEnrollment(app.studentsData[userId], enrollment);
                   app.studentsData[userId].section = app.getStudentSection(userId);
                 }
               }
