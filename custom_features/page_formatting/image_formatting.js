@@ -20,7 +20,7 @@
     let prev = img.prev();
     let prevWrapper = prev.hasClass('btech-img-align-wrapper');
     if (prevWrapper === false) {
-      img.wrap("<div class='btech-img-align-wrapper' style='display: flex;'></div>");
+      img.wrap("<div class='btech-img-align-wrapper' style='display: flex; justify-content: center; align-items: center;'></div>");
     } else {
       prev.append(img);
     }
