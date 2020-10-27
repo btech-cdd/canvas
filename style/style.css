@@ -23,6 +23,14 @@
   font-size: .66rem;
 }
 
+#content .img-row {
+  display: flex;
+}
+
+#content .img-column {
+  padding: 5px;
+}
+
 /*this is for a lot of the placeholder elements put in which are replaced when out of edit mode*/
 .btech-hidden {
   display: none;
