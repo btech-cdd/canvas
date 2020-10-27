@@ -11,13 +11,13 @@
     let node = tinyMCE.activeEditor.selection.getNode();
     let parent = tinyMCE.activeEditor.dom.getParent(node, "img");
     console.log(parent);
-    if (parent !== null) {
-      for (let c = 0; c < imgOptions.length; c++) {
-        let className = imgOptions[c];
-        let optionClassName = className + '-option';
-        $('.' + optionClassName).css({
-          'color': '#000'
-        });
+    for (let c = 0; c < imgOptions.length; c++) {
+      let className = imgOptions[c];
+      let optionClassName = className + '-option';
+      $('.' + optionClassName).css({
+        'color': '#000'
+      });
+      if (parent !== null) {
         if ($(parent).hasClass(className)) {
           $('.' + optionClassName).css({
             'color': bgColor
