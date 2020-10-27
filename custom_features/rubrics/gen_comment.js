@@ -88,8 +88,10 @@
         let totalMax = 0;
         let totalCrit = 0;
         header += ($("#rubric_holder").find("[data-selenium='rubric_total']").text() + "\n");
+
         $(rubricSelector).find("tr.rubric-criterion").each(function() {
           let description = $(this).find("th.description-header").find("div.description").text();
+          console.log(description);
           let points_val = $(this).find("td.criterion_points").find("div.graded-points").find("input").val();
           let points = $(this).find("td.criterion_points").find("div.graded-points").text();
           points = points.replace("/", "").replace(" pts", "").replace("Points", "");
