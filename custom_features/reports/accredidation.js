@@ -66,23 +66,21 @@
             }
             app.assignmentGroups = data;
           });
-          //add in drop down to select which section to show
           let sections = await canvasGet("/api/v1/courses/" + app.courseId + "/sections?include[]=students")
-
-          //create list of enrollments to search
+          console.log(sections);
+          /* unused as far as I can tell
           let enrollments = await canvasGet("/api/v1/courses/" + app.courseId + "/enrollments", {
             type: [
               'StudentEnrollment'
             ],
             state: [
               'active',
+              'completed',
+              'inactive'
             ]
           });
-          for (let e = 0; e < enrollments.length; e++) {
-            let enrollment = enrollments[e];
-            console.log(enrollment);
-            app.studentList.push(enrollments[e].user_id);
-          }
+          app.enrollments = enrollments;
+          */
         },
         data: function () {
           return {
@@ -93,8 +91,7 @@
             showModal: false,
             preparingDocument: false,
             submissions: [],
-            currentAssignment: {},
-            studentList: [],
+            currentAssignment: {}
           }
         },
         methods: {
@@ -241,14 +238,9 @@
             app.submissions = [];
             if (assignment.submissions.length == 0) {
               //let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
-                console.log(app.studentList);
-                console.log(assignment.id)
-              let submissions = await canvasGet("/api/v1/courses/489190/students/submissions", {
-                'student_ids': app.studentList,
-                'assignment_ids': [
-                  assignment.id
-                ],
+              let submissions = await canvasGet("/api/v1/courses/" +app.courseId + "/students/submissions?student_ids[]=all&assignment_ids[]=" + assignment.id, {
                 'include': [
+                  'user',
                   'submission_comments'
                 ]
               });
