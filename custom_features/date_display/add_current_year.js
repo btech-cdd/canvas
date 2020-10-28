@@ -7,7 +7,12 @@ IMPORTED_FEATURE = {
     //this has been commented out because it's breaking the grade updater. Will have to readdress this if we need to add it back in.
     // feature.setAssignmentSubmittedDateHeader("div.quiz-submission.headless", "#preview_frame");
     try {
-      let preEl = await getElement("div.quiz-submission.headless .quiz_score", "#iframe_holder iframe");
+      let iframeId = '#iframe_holder';
+      let rVanilla = /courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/;
+      if (rVanilla.test(window.location.pathname)) {
+        iframeId = '#preview_frame';
+      }
+      let preEl = await getElement("div.quiz-submission.headless .quiz_score", iframeId + " iframe");
       let header = preEl.next();
       console.log(header);
       feature.setAssignmentSubmittedDateHeaderElement(header);
