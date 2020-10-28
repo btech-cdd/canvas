@@ -98,7 +98,14 @@ Look into quill editor
           </span>
         </div>
         <div style='text-align: right;'><i>-{{name(flag.createdBy)}}</i></div>
-        <div style='text-align: right;' v-for='assignedToId in flag.assignedTo'><i class='far fa-share-square'></i><i>{{name(assignedToId)}}</i></div>
+        <div style='text-align: right;'>
+          <i class='far fa-share-square'></i>
+          <select>
+            <option v-for='id, name in loadedNames>
+              {{name(assignedToId)}}
+            </option>
+          </select>
+        </div>
         <div style='width: 100%;'>
           <i @click='deleteFlag(flag);' class='icon-trash'></i>
           <i @click='assignFlag(flag);' class='far fa-share-square'></i>

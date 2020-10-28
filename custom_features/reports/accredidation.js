@@ -77,6 +77,7 @@
             ]
           });
           app.enrollments = enrollments;
+          console.log(app.enrollments);
         },
         data: function () {
           return {
