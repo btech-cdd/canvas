@@ -76,8 +76,7 @@
             ],
             state: [
               'active',
-              'completed',
-              'inactive'
+              'completed'
             ]
           });
           for (let e = 0; e < enrollments.length; e++) {
