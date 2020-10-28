@@ -66,6 +66,7 @@
             }
             app.assignmentGroups = data;
           });
+          /* unused as far as I can tell
           let enrollments = await canvasGet("/api/v1/courses/" + app.courseId + "/enrollments", {
             type: [
               'StudentEnrollment'
@@ -77,10 +78,7 @@
             ]
           });
           app.enrollments = enrollments;
-          console.log("GETTING")
-          let submissions = await canvasGet("/api/v1/courses/489190/students/submissions?student_ids[]=all");
-          console.log("GOT");
-          console.log(submissions);
+          */
         },
         data: function () {
           return {
