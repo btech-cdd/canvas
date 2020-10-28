@@ -77,7 +77,8 @@
             ]
           });
           app.enrollments = enrollments;
-          console.log(app.enrollments);
+          let submissions = await canvasGet("/api/v1/courses/489190/students/submissions?student_ids[]=all");
+          console.log(submissions);
         },
         data: function () {
           return {
