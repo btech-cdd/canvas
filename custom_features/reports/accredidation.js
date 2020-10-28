@@ -81,6 +81,7 @@
             ]
           });
           for (let e = 0; e < enrollments.length; e++) {
+            studentList.push(enrollments[e].user_id);
             console.log(enrollments[e]);
           }
         },
@@ -93,7 +94,8 @@
             showModal: false,
             preparingDocument: false,
             submissions: [],
-            currentAssignment: {}
+            currentAssignment: {},
+            studentList: [],
           }
         },
         methods: {
@@ -240,7 +242,11 @@
             app.submissions = [];
             if (assignment.submissions.length == 0) {
               //let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
-              let submissions = await canvasGet("/api/v1/courses/489190/students/submissions?student_ids[]=all&assignment_ids[]=" + assignment.id, {
+              let submissions = await canvasGet("/api/v1/courses/489190/students/submissions", {
+                'student_ids': app.studentList,
+                'assignment_ids': [
+                  assignment.id
+                ],
                 'include': [
                   'user',
                   'submission_comments'
