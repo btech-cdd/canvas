@@ -66,9 +66,10 @@
             }
             app.assignmentGroups = data;
           });
+          //add in drop down to select which section to show
           let sections = await canvasGet("/api/v1/courses/" + app.courseId + "/sections?include[]=students")
-          console.log(sections);
-          /* unused as far as I can tell
+
+          //create list of enrollments to search
           let enrollments = await canvasGet("/api/v1/courses/" + app.courseId + "/enrollments", {
             type: [
               'StudentEnrollment'
@@ -79,8 +80,9 @@
               'inactive'
             ]
           });
-          app.enrollments = enrollments;
-          */
+          for (let e = 0; e < enrollments.length; e++) {
+            console.log(enrollments[e]);
+          }
         },
         data: function () {
           return {
