@@ -101,6 +101,7 @@ Look into quill editor
         <div style='text-align: right;'>
           <i class='far fa-share-square'></i>
           <select>
+            <option value='' selected disabled>-Assign To-</option>
             <option v-for='(id, name) in loadedNames'>
               {{id}}
             </option>
