@@ -81,8 +81,7 @@
             ]
           });
           for (let e = 0; e < enrollments.length; e++) {
-            studentList.push(enrollments[e].user_id);
-            console.log(enrollments[e]);
+            app.studentList.push(enrollments[e].user_id);
           }
         },
         data: function () {
