@@ -101,7 +101,7 @@ Look into quill editor
         <div style='text-align: right;'>
           <i class='far fa-share-square'></i>
           <select>
-            <option v-for='id, name in loadedNames>
+            <option v-for='(id, name) in loadedNames'>
               {{name(assignedToId)}}
             </option>
           </select>
