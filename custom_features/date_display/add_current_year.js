@@ -9,6 +9,7 @@ IMPORTED_FEATURE = {
     try {
       let preEl = await getElement("div.quiz-submission.headless .quiz_score", "#iframe_holder iframe");
       let header = preEl.next();
+      console.log(header);
       feature.setAssignmentSubmittedDateHeaderElement(header);
       feature.setAssignmentSubmittedDateHeader("div.comment_list span.posted_at");
     } catch(e) {
