@@ -81,6 +81,8 @@
             ]
           });
           for (let e = 0; e < enrollments.length; e++) {
+            let enrollment = enrollments[e];
+            console.log(enrollment);
             app.studentList.push(enrollments[e].user_id);
           }
         },
