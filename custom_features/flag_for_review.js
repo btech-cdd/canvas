@@ -102,7 +102,7 @@ Look into quill editor
           <i class='far fa-share-square'></i>
           <select>
             <option v-for='(id, name) in loadedNames'>
-              {{name(assignedToId)}}
+              {{id}}
             </option>
           </select>
         </div>
