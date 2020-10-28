@@ -77,7 +77,9 @@
             ]
           });
           app.enrollments = enrollments;
+          console.log("GETTING")
           let submissions = await canvasGet("/api/v1/courses/489190/students/submissions?student_ids[]=all");
+          console.log("GOT");
           console.log(submissions);
         },
         data: function () {
@@ -235,7 +237,8 @@
             app.currentAssignment = assignment;
             app.submissions = [];
             if (assignment.submissions.length == 0) {
-              let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
+              //let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
+              let submissions = await canvasGet("/api/v1/courses/489190/students/submissions?student_ids[]=all&assignment_ids[]=" + assignment.id, {
                 'include': [
                   'user',
                   'submission_comments'
