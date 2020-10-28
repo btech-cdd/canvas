@@ -241,6 +241,8 @@
             app.submissions = [];
             if (assignment.submissions.length == 0) {
               //let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
+                console.log(app.studentList);
+                console.log(assignment.id)
               let submissions = await canvasGet("/api/v1/courses/489190/students/submissions", {
                 'student_ids': app.studentList,
                 'assignment_ids': [
