@@ -10,10 +10,10 @@ IMPORTED_FEATURE = {
       let iframeQuery = '#iframe_holder iframe';
       let rVanilla = /courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/;
       if (rVanilla.test(window.location.pathname)) {
-        iframeId = 'iframe#preview_frame';
+        iframeQuery = 'iframe#preview_frame';
       }
       console.log(iframeId);
-      let preEl = await getElement("div.quiz-submission.headless .quiz_score", iframeId + " iframe");
+      let preEl = await getElement("div.quiz-submission.headless .quiz_score", iframeQuery);
       let header = preEl.next();
       console.log(header);
       feature.setAssignmentSubmittedDateHeaderElement(header);
