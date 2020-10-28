@@ -12,6 +12,7 @@ IMPORTED_FEATURE = {
       if (rVanilla.test(window.location.pathname)) {
         iframeId = '#preview_frame';
       }
+      console.log(iframeId);
       let preEl = await getElement("div.quiz-submission.headless .quiz_score", iframeId + " iframe");
       let header = preEl.next();
       console.log(header);
