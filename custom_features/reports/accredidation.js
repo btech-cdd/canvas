@@ -24,7 +24,7 @@
       $("#content").html(`
       <div id='accredidation'>
         <div>
-          <div v-for='group in assignmentGroups'>:wq
+          <div v-for='group in assignmentGroups'>
             <h2>{{group.name}}</h2>
             <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
               <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a>
