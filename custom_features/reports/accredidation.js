@@ -66,6 +66,8 @@
             }
             app.assignmentGroups = data;
           });
+          let sections = await canvasGet("/api/v1/courses/" + app.courseId + "/sections?include[]=students")
+          console.log(sections);
           /* unused as far as I can tell
           let enrollments = await canvasGet("/api/v1/courses/" + app.courseId + "/enrollments", {
             type: [
