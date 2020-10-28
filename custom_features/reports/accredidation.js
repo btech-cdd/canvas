@@ -251,7 +251,6 @@
                   assignment.id
                 ],
                 'include': [
-                  'user',
                   'submission_comments'
                 ]
               });
