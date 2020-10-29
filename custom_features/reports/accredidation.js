@@ -27,7 +27,7 @@
           <div v-for='group in assignmentGroups'>
             <h2>{{group.name}}</h2>
             <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
-              <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a> ({{assignment.submissions.length}})
+              <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a> (<span v-if='assignment.submissions.length > 0'>{{assignment.submissions.length}}</span><span v-else>...</span>)
             </div>
           </div>
         </div>
