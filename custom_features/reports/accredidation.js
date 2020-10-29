@@ -120,11 +120,18 @@
               ]
             });
             for (let s = 0; s < submissions.length; s++) {
-              let submission = s;
-              console.log(submission);
-              break;
+              let submission = submissions[s];
+              if (submissionsByAssignment[submission.id] === undefined) {
+                submissionsByAssignment[submission.id] = [];
+              }
+              submissionsByAssignment[submission.id].push(submission);
             }
-            console.log(submissions);
+            console.log(submissionsByAssignment);
+            let submittedAssignments = app.getSubmittedAssignments(app.assignments);
+            for (let a = 0; a < submittedAssignments; a++) {
+              let assignment = submittedAssignments[a];
+              assignment.submissions = submissionsByAssignment[assignment.id];
+            }
           },
           getComments(submission) {
             let comments = submission.submission_comments;
