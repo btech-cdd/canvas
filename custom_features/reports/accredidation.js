@@ -112,6 +112,7 @@
                 //let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
                 let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/students/submissions", {
                   'student_ids': 'all',
+                  'workflow_state': 'graded',
                   'include': [
                     'user',
                     'submission_comments'
