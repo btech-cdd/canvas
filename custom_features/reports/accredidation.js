@@ -145,11 +145,13 @@
               let submittedAssignments = app.getSubmittedAssignments(assignments);
               for (let a = 0; a < submittedAssignments.length; a++) {
                 let assignment = submittedAssignments[a];
-                let assignmentSubmissions = submissionsByAssignment[assignment.id];
-                if (assignmentSubmissions !== undefined) {
-                  assignment.submissions = assignmentSubmissions;
-                } else {
-                  assignment.no_submissions = true;
+                if (assignment.id === assignmentId || assignmentId === '') {
+                  let assignmentSubmissions = submissionsByAssignment[assignment.id];
+                  if (assignmentSubmissions !== undefined) {
+                    assignment.submissions = assignmentSubmissions;
+                  } else {
+                    assignment.no_submissions = true;
+                  }
                 }
               }
 
@@ -288,7 +290,7 @@
             app.currentAssignment = assignment;
             app.submissions = [];
             if (assignment.submissions.length == 0) {
-                await app.getAllSubmissions(assignment.id);
+              await app.getAllSubmissions(assignment.id);
             }
             app.submissions = assignment.submissions;
           },
