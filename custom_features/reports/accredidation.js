@@ -133,7 +133,7 @@
               let assignments = group.assignments;
               let submittedAssignments = app.getSubmittedAssignments(assignments);
               console.log(submittedAssignments);
-              for (let a = 0; a < submittedAssignments; a++) {
+              for (let a = 0; a < submittedAssignments.length; a++) {
                 let assignment = submittedAssignments[a];
                 console.log(assignment);
                 assignment.submissions = submissionsByAssignment[assignment.id];
