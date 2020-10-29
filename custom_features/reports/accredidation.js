@@ -114,13 +114,14 @@
               if (assignment.has_submitted_submissions) {
                 if (assignment.submissions.length == 0) {
                   //let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
-                  let submission = await canvasGet("/api/v1/courses/" + app.courseId + "/students/submissions?student_ids[]=all&assignment_ids[]=" + assignment.id, {
+                  let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/students/submissions?student_ids[]=all&assignment_ids[]=" + assignment.id, {
                     'include': [
                       'user',
                       'submission_comments'
                     ]
                   });
-                  assignment.submission = submission;
+                  console.log(submissions);
+                  assignment.submissions = submissions;
                 }
               }
             }
