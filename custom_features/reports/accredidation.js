@@ -127,10 +127,15 @@
               submissionsByAssignment[submission.id].push(submission);
             }
             console.log(submissionsByAssignment);
-            let submittedAssignments = app.getSubmittedAssignments(app.assignments);
-            for (let a = 0; a < submittedAssignments; a++) {
-              let assignment = submittedAssignments[a];
-              assignment.submissions = submissionsByAssignment[assignment.id];
+            for (let g = 0; g < app.assignmentGroups.length; g++) {
+              let group = app.assignmentGroups[g];
+              let assignments = group.assignments;
+              let submittedAssignments = app.getSubmittedAssignments(assignments);
+              for (let a = 0; a < submittedAssignments; a++) {
+                let assignment = submittedAssignments[a];
+                assignment.submissions = submissionsByAssignment[assignment.id];
+              }
+
             }
           },
           getComments(submission) {
