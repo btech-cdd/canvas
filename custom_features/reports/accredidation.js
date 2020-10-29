@@ -27,7 +27,9 @@
           <div v-for='group in assignmentGroups'>
             <h2>{{group.name}}</h2>
             <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
-              <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a> (<span v-if='assignment.submissions.length > 0'>{{assignment.submissions.length}}</span><span v-else>...</span>)
+              <div v-if='assignment.no_submissions===false'>
+                <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a> (<span v-if='assignment.submissions.length > 0'>{{assignment.submissions.length}}</span><span v-else>...</span>)
+              </div>
             </div>
           </div>
         </div>
@@ -62,6 +64,7 @@
               let group = data[i];
               for (let j = 0; j < group.assignments.length; j++) {
                 data[i].assignments[j].submissions = [];
+                data[i].assignments[j].no_submissions = false;
               }
             }
             app.assignmentGroups = data;
