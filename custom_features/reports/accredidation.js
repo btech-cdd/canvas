@@ -121,10 +121,10 @@
             });
             for (let s = 0; s < submissions.length; s++) {
               let submission = submissions[s];
-              if (submissionsByAssignment[submission.id] === undefined) {
-                submissionsByAssignment[submission.id] = [];
+              if (submissionsByAssignment[submission.assignment_id] === undefined) {
+                submissionsByAssignment[submission.assignment_id] = [];
               }
-              submissionsByAssignment[submission.id].push(submission);
+              submissionsByAssignment[submission.assignment_id].push(submission);
             }
             console.log(submissionsByAssignment);
             for (let g = 0; g < app.assignmentGroups.length; g++) {
