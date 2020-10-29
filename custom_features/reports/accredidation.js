@@ -130,18 +130,15 @@
               }
               submissionsByAssignment[submission.assignment_id].push(submission);
             }
-            console.log(submissionsByAssignment);
             for (let g = 0; g < app.assignmentGroups.length; g++) {
               let group = app.assignmentGroups[g];
               console.log(group);
               let assignments = group.assignments;
               let submittedAssignments = app.getSubmittedAssignments(assignments);
-              console.log(submittedAssignments);
               for (let a = 0; a < submittedAssignments.length; a++) {
                 let assignment = submittedAssignments[a];
                 let assignmentSubmissions = submissionsByAssignment[assignment.id];
                 if (assignmentSubmissions !== undefined) {
-                  console.log(assignmentSubmissions);
                   assignment.submissions = assignmentSubmissions;
                 }
               }
