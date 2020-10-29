@@ -129,10 +129,12 @@
             console.log(submissionsByAssignment);
             for (let g = 0; g < app.assignmentGroups.length; g++) {
               let group = app.assignmentGroups[g];
+              console.log(group);
               let assignments = group.assignments;
               let submittedAssignments = app.getSubmittedAssignments(assignments);
               for (let a = 0; a < submittedAssignments; a++) {
                 let assignment = submittedAssignments[a];
+                console.log(assignment);
                 assignment.submissions = submissionsByAssignment[assignment.id];
               }
 
