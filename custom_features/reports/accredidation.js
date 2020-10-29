@@ -144,6 +144,7 @@
               }
 
             }
+            return submissions;
           },
           getComments(submission) {
             let comments = submission.submission_comments;
@@ -276,18 +277,9 @@
             app.showModal = true;
             app.currentAssignment = assignment;
             app.submissions = [];
-            /*
             if (assignment.submissions.length == 0) {
-              //let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
-              let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/students/submissions?student_ids[]=all&assignment_ids[]=" + assignment.id, {
-                'include': [
-                  'user',
-                  'submission_comments'
-                ]
-              });
-              assignment.submissions = submissions;
+                await app.getAllSubmissions(assignment.id);
             }
-            */
             app.submissions = assignment.submissions;
           },
           submittedAssignments(submissions) {
