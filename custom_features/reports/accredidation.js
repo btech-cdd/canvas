@@ -27,7 +27,7 @@
           <div v-for='group in assignmentGroups'>
             <h2>{{group.name}}</h2>
             <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
-              <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a>
+              <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a> ({{assignment.submissions.length}})
             </div>
           </div>
         </div>
@@ -100,6 +100,15 @@
             for (let i = 0; i < assignments.length; i++) {
               let assignment = assignments[i];
               if (assignment.has_submitted_submissions) {
+                if (assignment.submissions.length == 0) {
+                  //let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
+                  assignment.submissions = canvasGet("/api/v1/courses/" + app.courseId + "/students/submissions?student_ids[]=all&assignment_ids[]=" + assignment.id, {
+                    'include': [
+                      'user',
+                      'submission_comments'
+                    ]
+                  });
+                }
                 submittedAssignments.push(assignment);
               }
             }
@@ -238,7 +247,7 @@
             app.submissions = [];
             if (assignment.submissions.length == 0) {
               //let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
-              let submissions = await canvasGet("/api/v1/courses/" +app.courseId + "/students/submissions?student_ids[]=all&assignment_ids[]=" + assignment.id, {
+              let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/students/submissions?student_ids[]=all&assignment_ids[]=" + assignment.id, {
                 'include': [
                   'user',
                   'submission_comments'
