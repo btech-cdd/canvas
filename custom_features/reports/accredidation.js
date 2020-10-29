@@ -101,19 +101,29 @@
             for (let i = 0; i < assignments.length; i++) {
               let assignment = assignments[i];
               if (assignment.has_submitted_submissions) {
+                submittedAssignments.push(assignment);
+              }
+            }
+            app.getAllSubmissions(submittedAssignments);
+            return submittedAssignments;
+          },
+          async getAllSubmissions(assignments) {
+            let app = this;
+            for (let i = 0; i < assignments.length; i++) {
+              let assignment = assignments[i];
+              if (assignment.has_submitted_submissions) {
                 if (assignment.submissions.length == 0) {
                   //let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
-                  assignment.submissions = canvasGet("/api/v1/courses/" + app.courseId + "/students/submissions?student_ids[]=all&assignment_ids[]=" + assignment.id, {
+                  let submission = await canvasGet("/api/v1/courses/" + app.courseId + "/students/submissions?student_ids[]=all&assignment_ids[]=" + assignment.id, {
                     'include': [
                       'user',
                       'submission_comments'
                     ]
                   });
+                  assignment.submission = submission;
                 }
-                submittedAssignments.push(assignment);
               }
             }
-            return submittedAssignments;
           },
           getComments(submission) {
             let comments = submission.submission_comments;
