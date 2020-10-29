@@ -147,7 +147,7 @@
                 let assignment = submittedAssignments[a];
                 if (assignment.id === assignmentId || assignmentId === '') {
                   let assignmentSubmissions = submissionsByAssignment[assignment.id];
-                  if (assignmentSubmissions !== undefined) {
+                  if (assignmentSubmissions !== undefined && assignment.submissions.length === 0) {
                     assignment.submissions = assignmentSubmissions;
                   } else {
                     assignment.no_submissions = true;
