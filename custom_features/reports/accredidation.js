@@ -96,6 +96,7 @@
         },
         methods: {
           getSubmittedAssignments(assignments) {
+            let app = this;
             let submittedAssignments = [];
             for (let i = 0; i < assignments.length; i++) {
               let assignment = assignments[i];
