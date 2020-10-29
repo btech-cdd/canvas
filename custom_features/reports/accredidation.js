@@ -136,8 +136,10 @@
               for (let a = 0; a < submittedAssignments.length; a++) {
                 let assignment = submittedAssignments[a];
                 let assignmentSubmissions = submissionsByAssignment[assignment.id];
-                console.log(assignmentSubmissions);
-                assignment.submissions = assignmentSubmissions;
+                if (assignmentSubmissions !== undefined) {
+                  console.log(assignmentSubmissions);
+                  assignment.submissions = assignmentSubmissions;
+                }
               }
 
             }
