@@ -107,18 +107,22 @@
             }
             return submittedAssignments;
           },
-          async getAllSubmissions() {
+          async getAllSubmissions(assignmentId = '') {
             let app = this;
             submissionsByAssignment = {};
             //let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
-            let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/students/submissions", {
+            let packet = {
               'student_ids': 'all',
               'workflow_state': 'graded',
               'include': [
                 'user',
                 'submission_comments'
               ]
-            });
+            };
+            if (assignmentId !== '') {
+              packet['assignment_ids'] = [assignmentId];
+            }
+            let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/students/submissions", packet);
             for (let s = 0; s < submissions.length; s++) {
               let submission = submissions[s];
               if (submissionsByAssignment[submission.assignment_id] === undefined) {
