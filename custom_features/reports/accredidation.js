@@ -135,8 +135,9 @@
               console.log(submittedAssignments);
               for (let a = 0; a < submittedAssignments.length; a++) {
                 let assignment = submittedAssignments[a];
-                console.log(assignment);
-                assignment.submissions = submissionsByAssignment[assignment.id];
+                let assignmentSubmissions = submissionsByAssignment[assignment.id];
+                console.log(assignmentSubmissions);
+                assignment.submissions = assignmentSubmissions;
               }
 
             }
