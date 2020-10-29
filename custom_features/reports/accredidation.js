@@ -67,7 +67,7 @@
             app.assignmentGroups = data;
           });
           let sections = await canvasGet("/api/v1/courses/" + app.courseId + "/sections?include[]=students")
-          app.getAllSubmissions(submittedAssignments);
+          app.getAllSubmissions();
           console.log(sections);
           /* unused as far as I can tell
           let enrollments = await canvasGet("/api/v1/courses/" + app.courseId + "/enrollments", {
@@ -107,8 +107,9 @@
             }
             return submittedAssignments;
           },
-          async getAllSubmissions(assignments) {
+          async getAllSubmissions() {
             let app = this;
+            submissionsByAssignment = {};
             //let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
             let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/students/submissions", {
               'student_ids': 'all',
@@ -118,6 +119,11 @@
                 'submission_comments'
               ]
             });
+            for (let s = 0; s < submissions.length; s++) {
+              let submission = s;
+              console.log(submission);
+              break;
+            }
             console.log(submissions);
           },
           getComments(submission) {
