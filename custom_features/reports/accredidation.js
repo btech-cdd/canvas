@@ -345,7 +345,7 @@
             let commentEl = app.getComments(data.submission);
             iframe.show();
             app.preparingDocument = false;
-            let url = '/courses/' + app.courseId + '/assignments/' + data.assignment.id + '/submissions/' + data.submission.user.id;
+            let url = '/courses/' + app.courseId + '/assignments/' + data.assignment.id + '/submissions/' + data.submission.user.id + '?preview=1';
             console.log(url);
             content.append("<iframe src='"+url+"'></iframe>");
             /*
