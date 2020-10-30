@@ -272,6 +272,7 @@
             }
 
             //new quizzes :(
+            console.log(assignment);
 
             //text entry for assignments
             //append comments here and pull them from rubrics. If no text entry, just grab the comments
