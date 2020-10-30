@@ -351,7 +351,7 @@
                               width='100%' 
                               scrolling='no' 
                               frameborder='0' 
-                              onload="setTimeout(function() {this.style.height = this.contentWindow.document.documentElement.scrollHeight + 'px'; print();}, 5000);"
+                              onload="let obj = this; setTimeout(function() {obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px'; print();}, 5000);"
                             ></iframe>`);
             content.append(commentEl);
             let ogTitle = $('title').text();
