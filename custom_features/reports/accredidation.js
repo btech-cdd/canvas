@@ -345,6 +345,9 @@
             let commentEl = app.getComments(data.submission);
             iframe.show();
             app.preparingDocument = false;
+            let url = '/courses/' + app.courseId + '/assignments/' + data.assignment.id + '/submissions/' + data.submission.user.id;
+            console.log(url);
+            content.append("<iframe src='"+url+"'></iframe>");
             /*
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
