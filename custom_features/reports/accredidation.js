@@ -356,7 +356,7 @@
               iframe.remove();
             }
             window.focus();
-            window.print();
+            setTimeout(function() { window.print(); }, 5000);
             return;
           },
           async downloadQuiz(iframe, content, data) {
