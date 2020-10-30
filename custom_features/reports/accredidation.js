@@ -167,14 +167,11 @@
               }
 
               //section filter
-              let checkSection = false;
+              //begins true for default of include all, but filter if there is a selected section
+              let checkSection = true;
               if (selectedSection !== null) {
-                console.log(includedStudents);
-                console.log(submission);
-                console.log(submission.user_id);
-                console.log(includedStudents.includes(submission.user_id));
+                checkSection = includedStudents.includes(submission.user_id);
               }
-              checkSection = true;
 
               //check all filters
               if (checkDate && checkSection) {
