@@ -32,7 +32,7 @@
             <h2>{{group.name}}</h2>
             <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
               <div v-if='assignment.no_submissions===false'>
-                <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a> (<span v-if='getFilteredSubmissions(assignment.submissions).length > 0'>{{assignment.submissions.length}}</span><span v-else>...</span>)
+                <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a> (<span v-if='getFilteredSubmissions(assignment.submissions).length > 0'>{{getFilteredSubmissions(assignment.submissions).length}}</span><span v-else>...</span>)
               </div>
             </div>
           </div>
