@@ -32,7 +32,7 @@
             <h2>{{group.name}}</h2>
             <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
               <div v-if='assignment.no_submissions===false'>
-                <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a> (<span v-if='assignment.submissions.length > 0'>{{assignment.submissions.length}}</span><span v-else>...</span>)
+                <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a> (<span v-if='getFilteredSubmissions(assignment.submissions).length > 0'>{{assignment.submissions.length}}</span><span v-else>...</span>)
               </div>
             </div>
           </div>
@@ -49,8 +49,8 @@
             <div style='float: right; cursor: pointer;' v-on:click='close()'>X</div>
             <div class='btech-modal-content-inner'>
               <h2><a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id">{{currentAssignment.name}}</a></h2>
-              <div v-if='getSubmissionsBetweenDates(submissions).length > 0'>
-                <div v-for='submission in getSubmissionsBetweenDates(submissions)'>
+              <div v-if='getFilteredSubmissions(submissions).length > 0'>
+                <div v-for='submission in getFilteredSubmissions(submissions)'>
                   <i class='icon-download' style='cursor: pointer;' @click='downloadSubmission(currentAssignment, submission)'></i>
                   <a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id+'/submissions/'+submission.user.id">{{submission.user.name}} ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%)</a>
                 </div>
@@ -110,7 +110,7 @@
           }
         },
         methods: {
-          getSubmissionsBetweenDates(submissions) {
+          getFilteredSubmissions(submissions) {
             let app = this;
             let output = [];
             console.log(app.startDate);
