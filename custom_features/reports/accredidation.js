@@ -170,8 +170,8 @@
               let checkSection = false;
               if (selectedSection !== null) {
                 console.log(submission);
-                print(submission.user_id);
-                print(submission.user_id in includedStudents);
+                console.log(submission.user_id);
+                console.log(submission.user_id in includedStudents);
               }
               checkSection = true;
 
