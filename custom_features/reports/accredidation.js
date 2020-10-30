@@ -154,7 +154,6 @@
             let output = [];
             for (let s = 0; s < submissions.length; s++) {
               let submission = submissions[s];
-              console.log(submission);
               //date filter
               let checkDate = false;
               let date = submission.submitted_at;
@@ -169,6 +168,11 @@
 
               //section filter
               let checkSection = false;
+              if (selectedSection !== null) {
+                console.log(submission);
+                print(submission.user_id);
+                print(submission.user_id in includedStudents);
+              }
               checkSection = true;
 
               //check all filters
