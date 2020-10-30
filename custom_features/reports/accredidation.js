@@ -32,6 +32,14 @@
           <input type='date' v-model='startDate'>
           <input type='date' v-model='endDate'>
         </div>
+        <div class='section-input'>
+          <select v-bind='section'>
+            <option value='' selected disabled>All Sections</option>
+            <option v-for='section in sections' :value='section.id'>
+              {{section.name}}
+            </option>
+          </select>
+        </div>
         <div>
           <div v-for='group in assignmentGroups'>
             <h2>{{group.name}}</h2>
@@ -83,9 +91,12 @@
             }
             app.assignmentGroups = data;
           });
-          let sections = await canvasGet("/api/v1/courses/" + app.courseId + "/sections?include[]=students")
+
           app.getAllSubmissions();
+
+          let sections = await canvasGet("/api/v1/courses/" + app.courseId + "/sections?include[]=students")
           console.log(sections);
+          app.sections = sections;
           /* unused as far as I can tell
           let enrollments = await canvasGet("/api/v1/courses/" + app.courseId + "/enrollments", {
             type: [
@@ -111,7 +122,9 @@
             submissions: [],
             currentAssignment: {},
             startDate: null,
-            endDate: null
+            endDate: null,
+            sections: [],
+            section: '',
           }
         },
         methods: {
@@ -119,6 +132,7 @@
             let app = this;
             let startDate = app.startDate;
             let endDate = app.endDate;
+            let section = app.section;
             let output = [];
             for (let s = 0; s < submissions.length; s++) {
               let submission = submissions[s];
@@ -136,6 +150,7 @@
 
               //section filter
               let checkSection = false;
+              console.log(section);
 
               //check all filters
               if (checkDate) {
