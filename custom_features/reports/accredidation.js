@@ -272,6 +272,7 @@
             }
 
             //new quizzes :(
+            /* Thanks CORS!
             if (assignment.is_quiz_lti_assignment) {
               let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id;
               await app.createIframe(url, app.downloadNewQuiz, {
@@ -280,6 +281,7 @@
               });
               needsToWait = true;
             }
+            */
 
             //text entry for assignments
             //append comments here and pull them from rubrics. If no text entry, just grab the comments
@@ -337,6 +339,7 @@
             });
             return;
           },
+          //Not currently working because of CORS
           async downloadNewQuiz(iframe, content, data) {
             let app = this;
             let elId = iframe.attr('id');
