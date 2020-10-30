@@ -169,9 +169,10 @@
               //section filter
               let checkSection = false;
               if (selectedSection !== null) {
+                console.log(includedStudents);
                 console.log(submission);
                 console.log(submission.user_id);
-                console.log(submission.user_id in includedStudents);
+                console.log(includedStudents.includes[submission.user_id]);
               }
               checkSection = true;
 
