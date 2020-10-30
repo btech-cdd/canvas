@@ -86,7 +86,7 @@
               let group = data[i];
               for (let j = 0; j < group.assignments.length; j++) {
                 data[i].assignments[j].submissions = [];
-                data[i].assignments[j].no_submissions = false;
+                data[i].assignments[j].loaded = false;
               }
             }
             app.assignmentGroups = data;
