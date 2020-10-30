@@ -343,6 +343,9 @@
             let id = elId.replace('btech-content-', '');
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
             let commentEl = app.getComments(data.submission);
+            iframe.show();
+            app.preparingDocument = false;
+            /*
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
@@ -357,6 +360,7 @@
             }
             window.focus();
             setTimeout(function() { window.print(); }, 5000);
+            */
             return;
           },
           async downloadQuiz(iframe, content, data) {
