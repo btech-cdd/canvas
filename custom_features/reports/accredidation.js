@@ -112,6 +112,8 @@
         methods: {
           getFilteredSubmissions(submissions) {
             let app = this;
+            let startDate = app.startDate;
+            let endDate = app.endDate;
             let output = [];
             console.log(app.startDate);
             console.log(app.endDate);
