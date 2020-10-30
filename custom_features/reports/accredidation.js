@@ -49,8 +49,8 @@
             <div style='float: right; cursor: pointer;' v-on:click='close()'>X</div>
             <div class='btech-modal-content-inner'>
               <h2><a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id">{{currentAssignment.name}}</a></h2>
-              <div v-if='submissions.length > 0'>
-                <div v-for='submission in submissions'>
+              <div v-if='getSubmissionsBetweenDates(submissions).length > 0'>
+                <div v-for='submission in getSubmissionsBetweenDates(submissions)'>
                   <i class='icon-download' style='cursor: pointer;' @click='downloadSubmission(currentAssignment, submission)'></i>
                   <a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id+'/submissions/'+submission.user.id">{{submission.user.name}} ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%)</a>
                 </div>
@@ -110,11 +110,23 @@
           }
         },
         methods: {
+          getSubmissionsBetweenDates(submissions) {
+            let app = this;
+            let output = [];
+            console.log(app.startDate);
+            console.log(app.endDate);
+            for (let s = 0; s < submissions.length; s++) {
+              let submission = submissions[s];
+              console.log(submission);
+              if (true) {
+                output.push(submission);
+              }
+            }
+            return output;
+          },
           getSubmittedAssignments(assignments) {
             let app = this;
             let submittedAssignments = [];
-            console.log(app.startDate);
-            console.log(app.endDate);
             for (let i = 0; i < assignments.length; i++) {
               let assignment = assignments[i];
               if (assignment.has_submitted_submissions) {
