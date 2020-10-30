@@ -1,6 +1,11 @@
 (async function () {
   //FILTER BY SECTION
   //NEW QUIZZES???
+  //With assignments make sure to also grab if they did a text submission or other possible submission types
+  //get comments if nothing submitted. Might be easiest to instead of attaching comments to rubric, just grab whatever appears on assignment submission and attach them to that. Then attach comments to quizzes, so the content gets all comments and rubrics is just a side thing like uploads.
+
+  //PUT INSTRUCTIONS FOR ADDING TO A DEPARTMENT HERE
+  //Try adding it to the whole school at some point
   //https://btech.instructure.com/courses/498455/accredidation
   //https://jhveem.xyz/accredidation/lti.xml
   if (document.title === "BTECH Accredidation") {
@@ -115,8 +120,6 @@
             let startDate = app.startDate;
             let endDate = app.endDate;
             let output = [];
-            console.log(app.startDate);
-            console.log(app.endDate);
             for (let s = 0; s < submissions.length; s++) {
               let submission = submissions[s];
               //date filter
@@ -177,7 +180,6 @@
             }
             for (let g = 0; g < app.assignmentGroups.length; g++) {
               let group = app.assignmentGroups[g];
-              console.log(group);
               let assignments = group.assignments;
               let submittedAssignments = app.getSubmittedAssignments(assignments);
               for (let a = 0; a < submittedAssignments.length; a++) {
@@ -212,6 +214,9 @@
             }
             return el;
           },
+
+
+          //THIS IS WHERE EVERYTHING GETS SORTED OUT AND ALL THE DOWNLOADS ARE INITIATED
           async downloadSubmission(assignment, submission) {
             let app = this;
             let types = assignment.submission_types;
@@ -220,6 +225,8 @@
             //this needs to be set or it will flip preparing Document to false at the end, IE if it will be pulling up a print screen, set this to true
             needsToWait = false;
 
+            //vanilla quizzes
+            //need to append comments to this
             if (assignment.quiz_id !== undefined) {
               let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
               await app.createIframe(url, app.downloadQuiz, {
@@ -228,6 +235,13 @@
               });
               needsToWait = true;
             }
+
+            //new quizzes :(
+
+            //text entry for assignments
+            //append comments here and pull them from rubrics. If no text entry, just grab the comments
+
+            //rubrics
             if (assignment.rubric != undefined) {
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               await app.createIframe(url, app.downloadRubric, {
@@ -237,7 +251,6 @@
               needsToWait = true;
             }
             if (types.includes("online_upload")) {
-              //CHECK IF THERE ARE COMMENTS AND CREATE A FILE WITH THOSE COMMENTS AND DOWNLOAD
               let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               let assignmentsData = null;
               await $.get(url, function (data) {
@@ -252,7 +265,7 @@
             if (false) {
               console.log('assignment type undefined');
             }
-            if (needsToWait == false) {
+            if (needsToWait === false) {
               app.preparingDocument = false;
             }
           },
