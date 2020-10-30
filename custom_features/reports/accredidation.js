@@ -44,8 +44,8 @@
           <div v-for='group in assignmentGroups'>
             <h2>{{group.name}}</h2>
             <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
-              <div v-if='assignment.no_submissions===false'>
-                <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a> (<span v-if='getFilteredSubmissions(assignment.submissions).length > 0'>{{getFilteredSubmissions(assignment.submissions).length}}</span><span v-else>...</span>)
+              <div v-if='assignment.loaded===false || getFilteredSubmissions(assignment.submissions).length > 0'>
+                <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a> (<span v-if='assignment.loaded===true'>{{getFilteredSubmissions(assignment.submissions).length}}</span><span v-else>...</span>)
               </div>
             </div>
           </div>
@@ -222,10 +222,9 @@
                 let assignment = submittedAssignments[a];
                 if (assignment.id === assignmentId || assignmentId === '') {
                   let assignmentSubmissions = submissionsByAssignment[assignment.id];
+                  assignment.loaded = true;
                   if (assignmentSubmissions !== undefined && assignment.submissions.length === 0) {
                     assignment.submissions = assignmentSubmissions;
-                  } else {
-                    assignment.no_submissions = true;
                   }
                 }
               }
