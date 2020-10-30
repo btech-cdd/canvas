@@ -33,8 +33,8 @@
           <input type='date' v-model='endDate'>
         </div>
         <div class='section-input'>
-          <select v-bind='section'>
-            <option value='' selected disabled>All Sections</option>
+          <select v-model='section'>
+            <option value='' selected>All Sections</option>
             <option v-for='section in sections' :value='section.id'>
               {{section.name}}
             </option>
