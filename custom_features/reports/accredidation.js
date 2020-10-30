@@ -347,7 +347,7 @@
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
-            content.append("<iframe src='"+url+"'></iframe>");
+            content.append("<iframe src='"+url+"' width='100%' onload='print();'></iframe>");
             content.append(commentEl);
             let ogTitle = $('title').text();
             $('title').text(title);
@@ -358,7 +358,7 @@
               iframe.remove();
             }
             window.focus();
-            setTimeout(function() { window.print(); }, 5000);
+            // setTimeout(function() { window.print(); }, 5000);
             return;
           },
           async downloadQuiz(iframe, content, data) {
