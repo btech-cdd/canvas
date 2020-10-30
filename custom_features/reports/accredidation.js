@@ -347,7 +347,7 @@
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
-            content.append("<iframe src='"+url+"' width='100%' scrolling='no' frameborder='0' onload='this.style.height = this.contentWindow.document.documentElement.scrollHeight + \'px\';'></iframe>");
+            content.append("<iframe src='"+url+"' width='100%' scrolling='no' frameborder='0' onload='this.style.height = this.contentWindow.document.documentElement.scrollHeight + \'px\'; print();'></iframe>");
             content.append(commentEl);
             let ogTitle = $('title').text();
             $('title').text(title);
