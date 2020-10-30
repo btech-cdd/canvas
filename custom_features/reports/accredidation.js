@@ -132,10 +132,29 @@
             let app = this;
             let startDate = app.startDate;
             let endDate = app.endDate;
-            let section = app.section;
+            let sectionId = app.section;
+            let selectedSection = null;
+            if (sectionId !== '') {
+              for (let s = 0; s < app.sections.length; s++) {
+                let section = app.sections[s];
+                if (section.id === sectionId) {
+                  selectedSection = section;
+                  break;
+                }
+              }
+            }
+            let includedStudents = [];
+            if (selectedSection !== null) {
+              let sectionStudents = selectedSection.students;
+              for (let s = 0; s < sectionStudents.length; s++) {
+                includedStudents.push(sectionStudents[s].id);
+              }
+            }
+
             let output = [];
             for (let s = 0; s < submissions.length; s++) {
               let submission = submissions[s];
+              console.log(submission);
               //date filter
               let checkDate = false;
               let date = submission.submitted_at;
@@ -150,10 +169,10 @@
 
               //section filter
               let checkSection = false;
-              console.log(section);
+              checkSection = true;
 
               //check all filters
-              if (checkDate) {
+              if (checkDate && checkSection) {
                 output.push(submission);
               }
             }
