@@ -113,6 +113,8 @@
           getSubmittedAssignments(assignments) {
             let app = this;
             let submittedAssignments = [];
+            console.log(app.startDate);
+            console.log(app.endDate);
             for (let i = 0; i < assignments.length; i++) {
               let assignment = assignments[i];
               if (assignment.has_submitted_submissions) {
