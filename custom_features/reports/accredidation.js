@@ -172,7 +172,7 @@
                 console.log(includedStudents);
                 console.log(submission);
                 console.log(submission.user_id);
-                console.log(includedStudents.includes[submission.user_id]);
+                console.log(includedStudents.includes(submission.user_id));
               }
               checkSection = true;
 
