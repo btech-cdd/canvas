@@ -262,7 +262,7 @@
 
             //vanilla quizzes
             //need to append comments to this
-            if (assignment.quiz_id !== undefined) {
+            if (assignment.is_quiz_assignment) {
               let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
               await app.createIframe(url, app.downloadQuiz, {
                 'submission': submission,
@@ -272,7 +272,14 @@
             }
 
             //new quizzes :(
-            console.log(assignment);
+            if (assignment.is_quiz_lti_assignment) {
+              let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id;
+              await app.createIframe(url, app.downloadNewQuiz, {
+                'submission': submission,
+                'assignment': assignment
+              });
+              needsToWait = true;
+            }
 
             //text entry for assignments
             //append comments here and pull them from rubrics. If no text entry, just grab the comments
@@ -328,6 +335,28 @@
                 iframe.remove();
               }
             });
+            return;
+          },
+          async downloadNewQuiz(iframe, content, data) {
+            let app = this;
+            let elId = iframe.attr('id');
+            let id = elId.replace('btech-content-', '');
+            let title = data.assignment.name + "-" + data.submission.user.name + " submission"
+            let commentEl = app.getComments(data.submission);
+            content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
+            content.prepend("<div>Student:" + data.submission.user.name + "</div>");
+            content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
+            content.append(commentEl);
+            let ogTitle = $('title').text();
+            $('title').text(title);
+            let window = document.getElementById(elId).contentWindow;
+            window.onafterprint = (event) => {
+              $('title').text(ogTitle);
+              app.preparingDocument = false;
+              iframe.remove();
+            }
+            window.focus();
+            window.print();
             return;
           },
           async downloadQuiz(iframe, content, data) {
