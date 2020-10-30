@@ -23,6 +23,10 @@
       //add in a selector for all students with their grade then only show assignments they've submitted so far???
       $("#content").html(`
       <div id='accredidation'>
+        <div class='date-input'>
+          <input type='date' v-model='startDate'>
+          <input type='date' v-model='endDate'>
+        </div>
         <div>
           <div v-for='group in assignmentGroups'>
             <h2>{{group.name}}</h2>
@@ -100,7 +104,9 @@
             showModal: false,
             preparingDocument: false,
             submissions: [],
-            currentAssignment: {}
+            currentAssignment: {},
+            startDate: null,
+            endDate: null
           }
         },
         methods: {
