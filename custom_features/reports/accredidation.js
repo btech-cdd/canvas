@@ -358,7 +358,7 @@
               iframe.remove();
             }
             window.focus();
-            setTimeout(function() { window.print(); }, 5000);
+            // setTimeout(function() { window.print(); }, 5000);
             return;
           },
           async downloadQuiz(iframe, content, data) {
