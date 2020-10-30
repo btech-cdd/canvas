@@ -351,7 +351,7 @@
                               width='100%' 
                               scrolling='no' 
                               frameborder='0' 
-                              onload="let obj = this; setTimeout(function() {obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px'; print();}, 5000);"
+                              onload="let obj = this; setTimeout(function() {obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';}, 5000);"
                             ></iframe>`);
             content.append(commentEl);
             let ogTitle = $('title').text();
@@ -360,10 +360,14 @@
             window.onafterprint = (event) => {
               $('title').text(ogTitle);
               app.preparingDocument = false;
-              iframe.remove();
+              // iframe.remove();
             }
             window.focus();
             // setTimeout(function() { window.print(); }, 5000);
+
+            //DELETE
+            app.preparingDocument = false;
+            iframe.show();
             return;
           },
           async downloadQuiz(iframe, content, data) {
