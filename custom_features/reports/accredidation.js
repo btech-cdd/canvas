@@ -117,8 +117,23 @@
             console.log(app.endDate);
             for (let s = 0; s < submissions.length; s++) {
               let submission = submissions[s];
-              console.log(submission);
-              if (true) {
+              //date filter
+              let checkDate = false;
+              let date = submission.submitted_at;
+              if (date === null) {
+                date = submission.graded_at;
+              }
+              if (date !== null) {
+                if ((date >= startDate || startDate === null) && (date <= endDate || endDate === null)) {
+                  checkDate = true;
+                }
+              }
+
+              //section filter
+              let checkSection = false;
+
+              //check all filters
+              if (checkDate) {
                 output.push(submission);
               }
             }
