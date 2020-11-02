@@ -4,44 +4,73 @@
   clear: both;
 }
 
-#content #wiki_page_show, #assignment_show, #quiz_show h2, h3, h4 {
+#content #wiki_page_show h2,
+#content #wiki_page_show h3,
+#content #wiki_page_show h4,
+#content #assignment_show h2, 
+#content #assignment_show h3, 
+#content #assignment_show h4, 
+#content #quiz_show h2,
+#content #quiz_show h3,
+#content #quiz_show h4 {
   clear: both;
   font-weight: bold;
 }
 
-#content #wiki_page_show, #assignment_show, #quiz_show h2 {
+#content #wiki_page_show h2,
+#content #assignment_show h2,
+#content #quiz_show h2 {
   font-size: 1.5rem;
 }
 
-#content #wiki_page_show, #assignment_show, #quiz_show h3 {
+#content #wiki_page_show h3,
+#content #assignment_show h3,
+#content #quiz_show h3 {
   font-size: 1.2rem;
 }
 
-#content #wiki_page_show, #assignment_show, #quiz_show h4 {
+#content #wiki_page_show h4,
+#content #assignment_show h4,
+#content #quiz_show h4 {
   font-size: 1rem;
 }
 
-#content #wiki_page_show, #assignment_show, #quiz_show .btech-citation {
-  font-size: .66rem;
-}
 
-#content #wiki_page_show, #assignment_show, #quiz_show img[style*="float: left"] {
+#content #wiki_page_show img[style*="float: left"], 
+#content #assignment_show img[style*="float: left"], 
+#content #quiz_show img[style*="float: left"] {
   margin: 5px 15px 0px 0px;
 }
 
-#content #wiki_page_show, #assignment_show, #quiz_show img[style*="float: right"] {
+#content #wiki_page_show img[style*="float: right"], 
+#content #assignment_show img[style*="float: right"], 
+#content #quiz_show img[style*="float: right"] {
   margin: 5px 0px 0px 15px;
 }
 
-#content #wiki_page_show, #assignment_show, #quiz_show ol, ul {
+#content #wiki_page_show ol, 
+#content #wiki_page_show ul, 
+#content #assignment_show ol, 
+#content #assignment_show ul, 
+#content #quiz_show_show ol, 
+#content #quiz_show_show ul {
   overflow: hidden;
   padding-left: 20px;
   margin-left: 0;
 }
 
-#content #wiki_page_show, #assignment_show, #quiz_show ol, ul li {
+#content #wiki_page_show ol li, 
+#content #wiki_page_show ul li, 
+#content #assignment_show ol li, 
+#content #assignment_show ul li, 
+#content #quiz_show_show ol li, 
+#content #quiz_show_show ul li {
   list-style-position: outside;
   padding-left: 0;
+}
+
+.btech-citation {
+  font-size: .66rem;
 }
 
 /*this is for a lot of the placeholder elements put in which are replaced when out of edit mode*/
