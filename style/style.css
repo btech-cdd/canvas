@@ -11,39 +11,37 @@
   font-weight: bold;
 }
 
-#content h2 {
+#content #wiki_page_show, #assignment_show, #quiz_show h2 {
   font-size: 1.5rem;
 }
 
-#content h3 {
+#content #wiki_page_show, #assignment_show, #quiz_show h3 {
   font-size: 1.2rem;
 }
 
-#content h4 {
+#content #wiki_page_show, #assignment_show, #quiz_show h4 {
   font-size: 1rem;
 }
 
-#content .btech-citation {
+#content #wiki_page_show, #assignment_show, #quiz_show .btech-citation {
   font-size: .66rem;
 }
 
-#content img[style*="float: left"] {
+#content #wiki_page_show, #assignment_show, #quiz_show img[style*="float: left"] {
   margin: 5px 15px 0px 0px;
 }
 
-#content img[style*="float: right"] {
+#content #wiki_page_show, #assignment_show, #quiz_show img[style*="float: right"] {
   margin: 5px 0px 0px 15px;
 }
 
-#content ol,
-#content ul {
+#content #wiki_page_show, #assignment_show, #quiz_show ol, ul {
   overflow: hidden;
   padding-left: 20px;
   margin-left: 0;
 }
 
-#content ol li,
-#content ul li {
+#content #wiki_page_show, #assignment_show, #quiz_show ol, ul li {
   list-style-position: outside;
   padding-left: 0;
 }

@@ -1,13 +1,13 @@
-/*
 @import 'https://jhveem.xyz/canvas/style/ArrowTabs.css';
 @import 'https://jhveem.xyz/canvas/style/sections.css';
+/*
 @import 'https://jhveem.xyz/canvas/style/style.css';
+*/
 @import 'https://jhveem.xyz/canvas/style/flags.css';
 @import 'https://jhveem.xyz/canvas/style/reports.css';
 @import 'https://jhveem.xyz/canvas/style/graphic-content.css';
 @import 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css';
 @import 'https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.6/select2-bootstrap.css';
-*/
 /*@import 'https://kit.fontawesome.com/870f83fdd7.js';/*Not sure why this was included since it's a js file*/
 /*INCLUDE CSS FOR CANVAS COMMENTS*/
 
@@ -98,8 +98,6 @@ ul.btech-question-banks-sorter li.btech-bank-course.selected {
   text-align: center;
 }
 
-/*Don't remember what this was for. make a more specific css ref when I find it*/
-/*
 .ui-accordion-header {
   background: #f8f8f8;
   border: 1px solid #000000;
@@ -117,7 +115,6 @@ ul.btech-question-banks-sorter li.btech-bank-course.selected {
 .ui-accordion-content {
   padding: 3px;
 }
-*/
 
 .btech-example-table {
   box-shadow: 3px 6px 6px #888;
@@ -140,8 +137,6 @@ ul.btech-question-banks-sorter li.btech-bank-course.selected {
   background-color: #FFF;
 }
 
-/*Make more specific*/
-/*
 .tooltip {
   position: relative;
   display: inline-block;
@@ -181,7 +176,6 @@ ul.btech-question-banks-sorter li.btech-bank-course.selected {
   visibility: visible;
   opacity: 1;
 }
-*/
 
 
 #btech-theme-parent {
