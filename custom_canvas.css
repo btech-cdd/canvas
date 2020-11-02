@@ -1,7 +1,5 @@
-/*
 @import 'https://jhveem.xyz/canvas/style/ArrowTabs.css';
 @import 'https://jhveem.xyz/canvas/style/sections.css';
-*/
 @import 'https://jhveem.xyz/canvas/style/style.css';
 @import 'https://jhveem.xyz/canvas/style/flags.css';
 @import 'https://jhveem.xyz/canvas/style/reports.css';
@@ -98,6 +96,8 @@ ul.btech-question-banks-sorter li.btech-bank-course.selected {
   text-align: center;
 }
 
+/*Don't remember what this was for. make a more specific css ref when I find it*/
+/*
 .ui-accordion-header {
   background: #f8f8f8;
   border: 1px solid #000000;
@@ -115,6 +115,7 @@ ul.btech-question-banks-sorter li.btech-bank-course.selected {
 .ui-accordion-content {
   padding: 3px;
 }
+*/
 
 .btech-example-table {
   box-shadow: 3px 6px 6px #888;
@@ -137,6 +138,8 @@ ul.btech-question-banks-sorter li.btech-bank-course.selected {
   background-color: #FFF;
 }
 
+/*Make more specific*/
+/*
 .tooltip {
   position: relative;
   display: inline-block;
@@ -176,6 +179,7 @@ ul.btech-question-banks-sorter li.btech-bank-course.selected {
   visibility: visible;
   opacity: 1;
 }
+*/
 
 
 #btech-theme-parent {
