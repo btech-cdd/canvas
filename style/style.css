@@ -4,9 +4,7 @@
   clear: both;
 }
 
-#content h2,
-#content h3,
-#content h4 {
+#content #wiki_page_show, #assignment_show, #quiz_show h2, h3, h4 {
   clear: both;
   font-weight: bold;
 }
