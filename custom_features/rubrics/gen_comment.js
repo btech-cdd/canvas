@@ -164,7 +164,7 @@
           comment = header + '\n<div class="btech-comment-collapse">\n' + comment + '\n</div>';
 
           //Get the comment to delete
-          let comments = submission[0].submission_comments;
+          let comments = submission.submission_comments;
           let pendingCommentId = '';
           for (let i = 0; i < comments.length; i++) {
             let comment = comments[i];
