@@ -13,7 +13,7 @@
       _init() {
         let feature = this;
         feature.getData();
-        $(".save_rubric_button").on("click", await function () {
+        $(".save_rubric_button").on("click", async function () {
           console.log("PLACE HOLDER");
           await feature.genComment("#PENDING ATTEMPT DATA#");
           console.log("POSTED");
