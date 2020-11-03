@@ -131,32 +131,26 @@
         } else {
           let comment = "";
           let header = "<h2><b>RUBRIC</b></h2>";
-          let totalMax = 0;
-          let totalCrit = 0;
+          let earnedPoints = 0; //points earned
+          let maxPoints; //points possible
+          let totalMaxPoints = 0; //number of criterion which were max points
+          let totalCrit = 0; //total number of criterion
           submission = submission[0];
-          console.log('test');
           let criteria = ENV.rubric.criteria;
           let earned = submission.rubric_assessment;
           for (let id in earned) {
-            console.log(id);
+            let critEarnedPoints = earned[id].points;
+            let critMaxPoints = criteria[id].points;
+            totalCrit += 1;
+            if (critEarnedPoints === critMaxPoints) {
+              totalMaxPoints += 1;
+            }
+            earnedPoints += critEarnedPoints 
+            maxPoints += critMaxPoints;
           }
 
-          $(rubricSelector).find("tr.rubric-criterion").each(function () {
-            let description = $(this).find("th.description-header").find("div.description").text();
-            console.log(description);
-            let points_val = $(this).find("td.criterion_points").find("div.graded-points").find("input").val();
-            let points = $(this).find("td.criterion_points").find("div.graded-points").text();
-            points = points.replace("/", "").replace(" pts", "").replace("Points", "");
-            totalCrit += 1;
-            points = ("" + points).trim();
-            points_val = ("" + points_val).trim();
-            if (points === points_val) {
-              totalMax += 1;
-            }
-            description = description.replace("This criterion is linked to a Learning Outcome", "");
-            comment += (description + "\n" + points_val + "/" + points + "\n");
-          });
-          header += ("Total Criteria at Full Points: " + totalMax + "/" + totalCrit);
+          header += ("Points Earned: " + earnedPoints + "/" + maxPoints + " (" + (Math.round((earnedPoints / maxPoints) * 1000) / 10) + ")\n");
+          header += ("Total Criteria at Full Points: " + totalMaxPoints + "/" + totalCrit + "\n");
           comment = header + '\n<div class="btech-comment-collapse">\n' + comment + '\n</div>';
           feature.genComment(comment);
           feature.createObserver();
