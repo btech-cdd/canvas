@@ -138,6 +138,8 @@
           submission = submission[0];
           let criteria = ENV.rubric.criteria;
           let earned = submission.rubric_assessment;
+          console.log(criteria);
+          console.log(earned);
           for (let id in earned) {
             let critEarnedPoints = earned[id].points;
             let critMaxPoints = criteria[id].points;
