@@ -38,6 +38,7 @@
         feature.calcAttemptsData(feature);
       },
       checkUpdateSpeedgrader(func) {
+        console.log("UPDATE SG")
         let feature = this;
         feature.oldHref = document.location.href;
         window.onload = function () {
