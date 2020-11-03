@@ -62,6 +62,7 @@
         };
       },
       checkTimeDif(submissionData) {
+        let feature = this;
         feature.attempts = 0;
         comments = submissionData[0].submission_comments;
         console.log(comments);
@@ -103,9 +104,11 @@
       
         //See if the newest comment has been posted. If not, run this again.
         let checkTimeDif = feature.checkTimeDif(data);
+        console.log(feature.attempts);
         if (checkTimeDif === false) { //if new sub hasn't it, restart
           feature.calcAttemptsData(feature, feature.setTime);
         } else { //do your thing
+          console.log(feature.attempts);
           if (feature.attempts > 0) {
             rubricTotal = 0;
             for (c in data[0].rubric_assessment) {
