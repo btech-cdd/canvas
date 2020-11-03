@@ -159,6 +159,7 @@
             }
             earnedPoints += critEarnedPoints 
             maxPoints += critMaxPoints;
+            comment += critEarnedPoints + "/" + critMaxPoints + " - " + crit.description; 
           }
 
           header += ("Points Earned: " + earnedPoints + "/" + maxPoints + " (" + (Math.round((earnedPoints / maxPoints) * 1000) / 10) + ")\n");
