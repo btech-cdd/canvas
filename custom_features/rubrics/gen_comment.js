@@ -103,6 +103,7 @@
 
       async genComment(comment, overrideId = '') {
         //if there's an override id, delete that comment as well as add the new one
+        feature.getData(); //must come first since it sets the course, student, and assignment ids
         let url = "/api/v1/courses/" + feature.courseId + "/assignments/" + feature.assignmentId + "/submissions/" + feature.studentId;
         await $.put(url, {
           comment: {
