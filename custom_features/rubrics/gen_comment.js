@@ -141,14 +141,17 @@
           console.log(criteria);
           console.log(earned);
           for (let id in earned) {
+            console.log(id);
             let critEarned = earned[id];
             let crit = null;
             for (let i = 0; i < criteria.length; i++) {
               let criterion = criteria[i];
+              console.log(criterion);
               if (criterion._id === id) {
                 crit = criterion;
               }
             }
+            console.log(crit);
             let critEarnedPoints = critEarned.points;
             let critMaxPoints = crit.points;
             totalCrit += 1;
