@@ -62,11 +62,14 @@
         };
       },
       checkTimeDif(submissionData) {
+        feature.attempts = 0;
         comments = submissionData[0].submission_comments;
+        console.log(comments);
         let checkTimeDif = (feature.setTime == null);
         for (let c = 0; c < comments.length; c++) {
           let comment = comments[c];
           if (comment.comment.includes("RUBRIC")) {
+            console.log(comment.comment);
             feature.attempts += 1;
           }
           if (feature.setTime !== null) {
@@ -89,7 +92,6 @@
         feature.studentId = urlData[3];
 
         //Get submission data to calculate previous attempts and currents core
-        feature.attempts = 0;
         let url = "/api/v1/courses/" + feature.courseId + "/assignments/" + feature.assignmentId + "/submissions/" + feature.studentId;
         let comments = [];
         let data = await canvasGet(url, {
