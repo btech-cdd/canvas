@@ -14,7 +14,9 @@
         let feature = this;
         feature.getData();
         $(".save_rubric_button").on("click", function () {
+          console.log("PLACE HOLDER");
           await feature.genComment("#PENDING ATTEMPT DATA#");
+          console.log("POSTED");
           feature.genRubricComment("div#rubric_full", 2);
         });
         feature.parseCommentHTML();
