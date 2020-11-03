@@ -61,6 +61,23 @@
           observer.observe(bodyList, config);
         };
       },
+      checkTimeDif(submissionData) {
+        comments = submissionData[0].submission_comments;
+        let checkTimeDif = (feature.setTime == null);
+        for (let c = 0; c < comments.length; c++) {
+          let comment = comments[c];
+          if (comment.comment.includes("RUBRIC")) {
+            feature.attempts += 1;
+          }
+          if (feature.setTime !== null) {
+            let timeDif = feature.setTime - new Date(comment.created_at);
+            if (timeDif < 10000) {
+              checkTimeDif = true;
+            }
+          }
+        }
+        return checkTimeDif;
+      },
       async calcAttemptsData(feature) {
         console.log("RECALC");
         //GET URL DATA
@@ -81,25 +98,12 @@
             'rubric_assessment'
           ]
         });
-        console.log(data);
+      
         //See if the newest comment has been posted. If not, run this again.
-        comments = data[0].submission_comments;
-        let checkTimeDif = (feature.setTime == null);
-        for (let c = 0; c < comments.length; c++) {
-          let comment = comments[c];
-          if (comment.comment.includes("RUBRIC")) {
-            feature.attempts += 1;
-          }
-          if (feature.setTime !== null) {
-            let timeDif = feature.setTime - new Date(comment.created_at);
-            if (timeDif < 10000) {
-              checkTimeDif = true;
-            }
-          }
-        }
-        if (checkTimeDif === false) {
+        let checkTimeDif = feature.checkTimeDif(data);
+        if (checkTimeDif === false) { //if new sub hasn't it, restart
           feature.calcAttemptsData(feature, feature.setTime);
-        } else {
+        } else { //do your thing
           if (feature.attempts > 0) {
             rubricTotal = 0;
             for (c in data[0].rubric_assessment) {
