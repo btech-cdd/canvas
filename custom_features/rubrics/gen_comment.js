@@ -9,6 +9,7 @@
       assignmentId: null,
       studentId: null,
       initiated: false,
+      setTime: null,
       _init() {
         let feature = this;
         feature.getData();
@@ -82,18 +83,6 @@
       checkTimeDif(submissionData) {
         comments = submissionData[0].submission_comments;
         let checkTimeDif = (feature.setTime == null);
-        for (let c = 0; c < comments.length; c++) {
-          let comment = comments[c];
-          if (comment.comment.includes("RUBRIC")) {
-            feature.attempts += 1;
-          }
-          if (feature.setTime !== null) {
-            let timeDif = feature.setTime - new Date(comment.created_at);
-            if (timeDif < 10000) {
-              checkTimeDif = true;
-            }
-          }
-        }
         return checkTimeDif;
       },
 
@@ -101,17 +90,17 @@
         let feature = this;
         feature.getData(); //must come first since it sets the course, student, and assignment ids
         let url = '/api/v1/courses/' + feature.courseId + '/assignments/' + feature.assignmentId + '/submissions/' + feature.studentId + '?include[]=rubric_assessment';
-        let submissions = await canvasGet(url, {
+        let submission = await canvasGet(url, {
           include: [
             'submission_comments',
             'rubric_assessment'
           ]
         });
+        console.log(submission);
         let checkTimeDif = feature.checkTimeDif(submissions);
         if (checkTimeDif === false) {
           feature.genRubricComment(rubricSelector, offset);
         } else {
-          console.log(submissions);
           let comment = "";
           let header = "<h2><b>RUBRIC</b></h2>";
           let totalMax = 0;
