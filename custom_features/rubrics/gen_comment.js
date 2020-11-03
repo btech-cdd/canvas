@@ -14,9 +14,7 @@
         let feature = this;
         feature.getData();
         $(".save_rubric_button").on("click", async function () {
-          console.log("PLACE HOLDER");
           await feature.genComment("#PENDING ATTEMPT DATA#");
-          console.log("POSTED");
           feature.genRubricComment("div#rubric_full", 2);
         });
         feature.parseCommentHTML();
@@ -102,9 +100,10 @@
       },
 
       async genComment(comment, overrideId = '') {
+        console.log(overrideId);
         //if there's an override id, delete that comment as well as add the new one
         if (overrideId !== '') {
-          $.delete('https://btech.instructure.com/submission_comments/' + overrideId);
+          $.delete('/submission_comments/' + overrideId);
         }
         let feature = this;
         feature.getData(); //must come first since it sets the course, student, and assignment ids
@@ -127,7 +126,6 @@
             'rubric_assessment'
           ]
         });
-        console.log(submission);
         let checkTimeDif = feature.checkTimeDif(submission);
         if (checkTimeDif === false) {
           feature.genRubricComment(rubricSelector, offset);
@@ -141,10 +139,7 @@
           submission = submission[0];
           let criteria = ENV.rubric.criteria;
           let earned = submission.rubric_assessment;
-          console.log(criteria);
-          console.log(earned);
           for (let id in earned) {
-            console.log(id);
             let critEarned = earned[id];
             let crit = null;
             for (let i = 0; i < criteria.length; i++) {
@@ -153,7 +148,6 @@
                 crit = criterion;
               }
             }
-            console.log(crit);
             let critEarnedPoints = critEarned.points;
             let critMaxPoints = crit.points;
             totalCrit += 1;
