@@ -113,6 +113,7 @@
             text_comment: comment
           }
         });
+        location.reload();
         return;
       },
 
