@@ -103,6 +103,9 @@
 
       async genComment(comment, overrideId = '') {
         //if there's an override id, delete that comment as well as add the new one
+        if (overrideId !== '') {
+          $.delete('https://btech.instructure.com/submission_comments/' + overrideId);
+        }
         let feature = this;
         feature.getData(); //must come first since it sets the course, student, and assignment ids
         let url = "/api/v1/courses/" + feature.courseId + "/assignments/" + feature.assignmentId + "/submissions/" + feature.studentId;
@@ -162,12 +165,24 @@
             comment += (critEarnedPoints + "/" + critMaxPoints + " - " + crit.description + "\n"); 
           }
 
-          header += ("Points Earned: " + earnedPoints + "/" + maxPoints + " (" + (Math.round((earnedPoints / maxPoints) * 1000) / 10) + ")\n");
+          header += ("Points Earned: " + earnedPoints + "/" + maxPoints + " (" + (Math.round((earnedPoints / maxPoints) * 1000) / 10) + "%)\n");
           header += ("Total Criteria at Full Points: " + totalMaxPoints + "/" + totalCrit + "\n");
           comment = header + '\n<div class="btech-comment-collapse">\n' + comment + '\n</div>';
-          feature.genComment(comment);
-          feature.createObserver();
+
+          //Get the comment to delete
+          let comments = submission[0].submission_comments;
+          let pendingCommentId = '';
+          for (let i = 0; i < comments.length; i++) {
+            let comment = comments[i];
+            if (comment.comment.includes("#PENDING ATTEMPT DATA#")) {
+              pendingCommentId = comment.id;
+            }
+          }
+
+          //submit everything
+          feature.genComment(comment, pendingCommentId);
         }
+        feature.createObserver();
       }
     }
   }
