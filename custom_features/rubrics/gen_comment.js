@@ -125,7 +125,7 @@
           ]
         });
         console.log(submission);
-        let checkTimeDif = feature.checkTimeDif(submissions);
+        let checkTimeDif = feature.checkTimeDif(submission);
         if (checkTimeDif === false) {
           feature.genRubricComment(rubricSelector, offset);
         } else {
