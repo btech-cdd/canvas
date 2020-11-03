@@ -100,7 +100,13 @@
       async genRubricComment(rubricSelector, offset = 1) {
         let feature = this;
         feature.getData(); //must come first since it sets the course, student, and assignment ids
-        let submissions = await canvasGet('/api/v1/courses/' + feature.courseId + '/assignments/' + feature.assignmentId + '/submissions/' + feature.studentId + '?include[]=rubric_assessment')
+        let url = '/api/v1/courses/' + feature.courseId + '/assignments/' + feature.assignmentId + '/submissions/' + feature.studentId + '?include[]=rubric_assessment';
+        let submissions = await canvasGet(url, {
+          include: [
+            'submission_comments',
+            'rubric_assessment'
+          ]
+        });
         let checkTimeDif = feature.checkTimeDif(submissions);
         if (checkTimeDif === false) {
           feature.genRubricComment(rubricSelector, offset);
