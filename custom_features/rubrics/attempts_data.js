@@ -38,7 +38,6 @@
         feature.calcAttemptsData(feature);
       },
       checkUpdateSpeedgrader(func) {
-        console.log("UPDATE SG")
         let feature = this;
         feature.oldHref = document.location.href;
         window.onload = function () {
@@ -85,6 +84,9 @@
       },
       async calcAttemptsData(feature) {
         console.log("RECALC");
+        $("#btech-recorded-attempts-value").text("");
+        $("#btech-rubric-score-value").text("");
+        $("#btech-suggested-score-value").text("");
         //GET URL DATA
         //this is done here because the url changes in speedgrader, so a one time set won't work
         let pageurl = (window.location.pathname + window.location.search);
