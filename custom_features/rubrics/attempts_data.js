@@ -45,7 +45,6 @@
             bodyList = document.querySelector("#right_side"),
             observer = new MutationObserver(function (mutations) {
               mutations.forEach(function (mutation) {
-                console.log('update');
                 if (feature.oldHref !== document.location.href) {
                   feature.oldHref = document.location.href;
                   //This line is specific to this feature and should be deleted if copied to another
@@ -65,12 +64,10 @@
         let feature = this;
         feature.attempts = 0;
         comments = submissionData[0].submission_comments;
-        console.log(comments);
         let checkTimeDif = (feature.setTime == null);
         for (let c = 0; c < comments.length; c++) {
           let comment = comments[c];
           if (comment.comment.includes("RUBRIC")) {
-            console.log(comment.comment);
             feature.attempts += 1;
           }
           if (feature.setTime !== null) {
@@ -83,7 +80,7 @@
         return checkTimeDif;
       },
       async calcAttemptsData(feature) {
-        console.log("RECALC");
+        //reset data
         $("#btech-recorded-attempts-value").text("");
         $("#btech-rubric-score-value").text("");
         $("#btech-suggested-score-value").text("");
@@ -107,11 +104,9 @@
       
         //See if the newest comment has been posted. If not, run this again.
         let checkTimeDif = feature.checkTimeDif(data);
-        console.log(feature.attempts);
         if (checkTimeDif === false) { //if new sub hasn't it, restart
           feature.calcAttemptsData(feature, feature.setTime);
         } else { //do your thing
-          console.log(feature.attempts);
           if (feature.attempts > 0) {
             rubricTotal = 0;
             for (c in data[0].rubric_assessment) {
