@@ -132,7 +132,7 @@
           let comment = "";
           let header = "<h2><b>RUBRIC</b></h2>";
           let earnedPoints = 0; //points earned
-          let maxPoints; //points possible
+          let maxPoints = 0; //points possible
           let totalMaxPoints = 0; //number of criterion which were max points
           let totalCrit = 0; //total number of criterion
           submission = submission[0];
@@ -146,7 +146,6 @@
             let crit = null;
             for (let i = 0; i < criteria.length; i++) {
               let criterion = criteria[i];
-              console.log(criterion);
               if (criterion.id === id) {
                 crit = criterion;
               }
