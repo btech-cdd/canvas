@@ -82,8 +82,8 @@
 
       async genRubricComment(rubricSelector, offset=1) {
         let feature = this;
+        feature.getData(); //must come first since it sets the course, student, and assignment ids
         let submission = await canvasGet('/api/v1/courses/'+feature.courseId+'/assignments/'+feature.assignmentId+'/submissions/'+feature.studentId+'?include[]=rubric_assessment')
-        feature.getData();
         let comment = "";
         let header = "<h2><b>RUBRIC</b></h2>";
         let totalMax = 0;
