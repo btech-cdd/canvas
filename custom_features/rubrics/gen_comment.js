@@ -147,7 +147,7 @@
             for (let i = 0; i < criteria.length; i++) {
               let criterion = criteria[i];
               console.log(criterion);
-              if (criterion._id === id) {
+              if (criterion.id === id) {
                 crit = criterion;
               }
             }
