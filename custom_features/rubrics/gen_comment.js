@@ -14,6 +14,7 @@
         let feature = this;
         feature.getData();
         $(".save_rubric_button").on("click", function () {
+          await feature.genComment("#PENDING ATTEMPT DATA#");
           feature.genRubricComment("div#rubric_full", 2);
         });
         feature.parseCommentHTML();
@@ -83,7 +84,30 @@
       checkTimeDif(submissionData) {
         comments = submissionData[0].submission_comments;
         let checkTimeDif = (feature.setTime == null);
+        for (let c = 0; c < comments.length; c++) {
+          let comment = comments[c];
+          if (comment.comment.includes("RUBRIC")) {
+            feature.attempts += 1;
+          }
+          if (feature.setTime !== null) {
+            let timeDif = feature.setTime - new Date(comment.created_at);
+            if (timeDif < 10000) {
+              checkTimeDif = true;
+            }
+          }
+        }
         return checkTimeDif;
+      },
+
+      async genComment(comment, overrideId = '') {
+        //if there's an override id, delete that comment as well as add the new one
+        let url = "/api/v1/courses/" + feature.courseId + "/assignments/" + feature.assignmentId + "/submissions/" + feature.studentId;
+        await $.put(url, {
+          comment: {
+            text_comment: comment
+          }
+        });
+        return;
       },
 
       async genRubricComment(rubricSelector, offset = 1) {
@@ -125,12 +149,7 @@
           });
           header += ("Total Criteria at Full Points: " + totalMax + "/" + totalCrit);
           comment = header + '\n<div class="btech-comment-collapse">\n' + comment + '\n</div>';
-          let url = "/api/v1/courses/" + feature.courseId + "/assignments/" + feature.assignmentId + "/submissions/" + feature.studentId;
-          $.put(url, {
-            comment: {
-              text_comment: comment
-            }
-          });
+          feature.genComment(comment);
           feature.createObserver();
         }
       }
