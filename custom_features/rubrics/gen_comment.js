@@ -133,8 +133,13 @@
           let header = "<h2><b>RUBRIC</b></h2>";
           let totalMax = 0;
           let totalCrit = 0;
-          header += ($("#rubric_holder").find("[data-selenium='rubric_total']").text() + "\n");
+          submission = submission[0];
           console.log('test');
+          let criteria = ENV.rubric.criteria;
+          let earned = submission.rubric_assessment;
+          for (let id in earned) {
+            console.log(id);
+          }
 
           $(rubricSelector).find("tr.rubric-criterion").each(function () {
             let description = $(this).find("th.description-header").find("div.description").text();
