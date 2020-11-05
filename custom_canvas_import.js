@@ -83,7 +83,7 @@ if (window.location.pathname == "/grades") {
 if (/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/.test(window.location.pathname)) {
   let pieces = window.location.pathname.match(/^\/courses\/([0-9]+)\/assignments\/([0-9]+)\/submissions\/([0-9]+)/);
   let speed_grader_link = '<br><a class="assess_submission_link Button Button--small Button--link" href="/courses/' + pieces[1] + '/gradebook/speed_grader?assignment_id=' + pieces[2] + '&student_id=' + pieces[3] + '"><i class="icon-rubric" aria-hidden="true"></i> Speed Grader</a>';
-  $($(".submission-details-header div")[0]).append(speed_grader_link);
+  $(".submission-details-header div .grade-values").after(speed_grader_link);
 }
 //END SPEED GRADER LINK
 
