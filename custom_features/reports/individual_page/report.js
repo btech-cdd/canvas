@@ -133,6 +133,7 @@
                   sum += progress;
                 }
               }
+              let output = sum;
               return output;
             },
             sumHoursCompleted() {
