@@ -138,7 +138,7 @@
               return output;
             },
 
-            weightedGradeForTerm() {
+            weightedGradeForTermPercent() {
               let totalWeightedGrade = 0;
               let totalHoursCompleted = this.sumHoursCompleted();
               for (let c in this.courses) {
@@ -157,6 +157,26 @@
               return output;
             },
 
+            weightedGradeForTermHours() {
+              let totalWeightedGrade = 0;
+              let totalHoursCompleted = this.sumHoursCompleted();
+              for (let c in this.courses) {
+                let course = this.courses[c];
+                let progress = this.progressBetweenDates[course.course_id];
+                let grade = this.gradesBetweenDates[course.course_id];
+                if (progress !== undefined && grade !== undefined) {
+                  let hoursCompleted = this.getHoursCompleted(course);
+                  let weightedGrade = grade;
+                  //have some check to not = 0 if total hours completed is 0
+                  weightedGrade *= (hoursCompleted / totalHoursCompleted);
+                  totalWeightedGrade += weightedGrade;
+                }
+              }
+              let output = parseFloat(totalWeightedGrade.toFixed(2));
+              if (isNaN(output)) return 0;
+              return output;
+            },
+
             getHoursEnrolled(courseId) {
               let hours = this.hoursBetweenDates[courseId];
               if (hours !== undefined) return hours;
@@ -167,7 +187,7 @@
               let hoursEnrolled = this.estimatedHoursEnrolled; //might change how this is calculated because this doesn't really make sense. Maybe user has to select one? Consult on this.
               let requiredHours = this.estimatedHoursRequired * .67;
               let hoursCompleted = this.sumHoursCompleted();
-              let grade = this.weightedGradeForTerm();
+              let grade = this.weightedGradeForTermHours();
               if ((hoursCompleted < requiredHours) && (requiredHours !== 0 && hourseCompleted !== 0)) {
                 grade *= (hoursCompleted / requiredHours);
               }
