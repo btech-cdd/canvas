@@ -190,6 +190,7 @@
 
             weightedGradeForTerm() {
               let totalHoursCompleted = this.sumHoursCompleted();
+              //In some instances there will only be courses that have no hours, such as for HS. For this minority of cases, treat all courses as equal weight and weight score based on percent completed
               if (totalHoursCompleted === 0) {
                 return this.weightedGradeForTermPercent();
               } else {
