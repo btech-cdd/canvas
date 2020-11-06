@@ -101,7 +101,7 @@
                         <option v-for="course in courses" :value="course.course_id">{{course.name}} ({{course.term}})</option>
                       </select>
                       <br>
-                      <span>Grade </span><input style="width: 3em;" maxlength="3" type="text" v-model="selectedGrade"><span>%</span>
+                      <span>Grade </span><input style="width: 3em;" maxlength="5" type="text" v-model="selectedGrade"><span>%</span>
                       <br>
                       <div v-on:click="submitCourseGrade()" class="Button">Submit</div>
                     </div>
