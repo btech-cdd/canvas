@@ -81,6 +81,7 @@
                       <th>Course</th>
                       <th>Term Grades</th>
                       <th>Term Completed</th>
+                      <th>Course Hours</th>
                       <th>Hours Completed</th>
                       <th>Hours Enrolled</th>
                     </tr>
@@ -96,6 +97,7 @@
 
                       <td>{{getGradesBetweenDates(course.course_id)}}</td>
                       <td>{{getProgressBetweenDates(course.course_id)}}</td>
+                      <td>{{course.hours}}</td>
                       <td>{{getHoursCompleted(course)}}</td>
                       <td>{{getHoursEnrolled(course.course_id)}}</td>
                     </tr>
