@@ -142,7 +142,6 @@
                 let course = this.courses[c];
                 let progress = this.progressBetweenDates[course.course_id];
                 if (progress > 0) {
-                  console.log(course.hours);
                   sum += Math.round(progress * course.hours) * .01;
                 }
               }
