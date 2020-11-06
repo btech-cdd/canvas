@@ -166,10 +166,12 @@
               let requiredHours = this.estimatedHoursRequired * .67;
               let hoursCompleted = this.sumHoursCompleted();
               let grade = this.weightedGradeForTerm();
-              if (hoursCompleted < requiredHours) {
+              if ((hoursCompleted < requiredHours) && (requiredHours !== 0 && hourseCompleted !== 0)) {
                 grade *= (hoursCompleted / requiredHours);
               }
-              return parseFloat(grade.toFixed(2));
+              let output = grade.toFixed(2);
+              if (isNaN(output)) return 0;
+              return output;
             },
 
             getProgressBetweenDates(courseId) {
