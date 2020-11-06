@@ -465,6 +465,7 @@
                 }
               }
               this.estimatedHoursEnrolled = Math.floor(parseFloat((hoursTotal / count).toFixed(2)));
+              console.log(this.estimatedHoursEnrolled);
               this.estimatedHoursRequired = Math.floor(parseFloat((hoursTotal / count).toFixed(2)) * midtermPercentCompleted);
             },
             calcCourseGroupPointsPossible(courseId, groupId) {
