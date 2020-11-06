@@ -137,12 +137,12 @@
               return output;
             },
             sumHoursCompleted() {
-              console.log(course.hours);
               let sum = 0;
               for (let c in this.courses) {
                 let course = this.courses[c];
                 let progress = this.progressBetweenDates[course.course_id];
                 if (progress > 0) {
+                  console.log(course.hours);
                   sum += Math.round(progress * course.hours) * .01;
                 }
               }
