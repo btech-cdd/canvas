@@ -137,6 +137,7 @@
               return output;
             },
             sumHoursCompleted() {
+              console.log(course.hours);
               let sum = 0;
               for (let c in this.courses) {
                 let course = this.courses[c];
