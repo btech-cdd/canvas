@@ -208,7 +208,7 @@
               let requiredHours = this.estimatedHoursRequired * .67;
               let hoursCompleted = this.sumHoursCompleted();
               let grade = this.weightedGradeForTerm();
-              if ((hoursCompleted < requiredHours) && (requiredHours !== 0 && hourseCompleted !== 0)) {
+              if ((hoursCompleted < requiredHours) && (requiredHours !== 0 && hoursCompleted !== 0)) {
                 grade *= (hoursCompleted / requiredHours);
               }
               let output = grade.toFixed(2);
