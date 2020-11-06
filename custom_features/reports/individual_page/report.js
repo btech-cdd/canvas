@@ -133,7 +133,9 @@
                   sum += Math.round(progress * course.hours) * .01;
                 }
               }
-              return parseFloat(sum.toFixed(2));
+              let output = parseFloat(sum.toFixed(2));
+              if (isNaN(output)) return 0;
+              return output;
             },
 
             weightedGradeForTerm() {
@@ -148,13 +150,15 @@
                   weightedGrade += (grade * (hoursCompleted / totalHoursCompleted));
                 }
               }
-              return parseFloat(weightedGrade.toFixed(2));
+              let output = parseFloat(weightedGrade.toFixed(2));
+              if (isNaN(output)) return 0;
+              return output;
             },
 
             getHoursEnrolled(courseId) {
               let hours = this.hoursBetweenDates[courseId];
               if (hours !== undefined) return hours;
-              return 0;
+              return "N/A";
             },
 
             weightedFinalGradeForTerm() {
