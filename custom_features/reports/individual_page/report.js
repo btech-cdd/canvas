@@ -154,7 +154,7 @@
             getHoursEnrolled(courseId) {
               let hours = this.hoursBetweenDates[courseId];
               if (hours !== undefined) return hours;
-              return "N/A";
+              return 0;
             },
 
             weightedFinalGradeForTerm() {
