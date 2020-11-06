@@ -119,7 +119,7 @@
                     <tr height="10px"></tr>
                     <tr v-if='showGradeDetails'>
                       <td><b>Weighted Grade To Date</b></td>
-                      <td>{{weightedGradeForTermHours()}}%</td>
+                      <td>{{weightedGradeForTerm()}}%</td>
                     </tr>
                     <tr v-if='showGradeDetails'>
                       <td><b>Hours Completed</b></td>

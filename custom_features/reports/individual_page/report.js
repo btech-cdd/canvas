@@ -124,6 +124,17 @@
           },
 
           methods: {
+            sumProgressBetweenDates() {
+              let sum = 0;
+              for (let c in this.courses) {
+                let course = this.courses[c];
+                let progress = this.progressBetweenDates[course.course_id];
+                if (progress > 0) {
+                  sum += progress;
+                }
+              }
+              return output;
+            },
             sumHoursCompleted() {
               let sum = 0;
               for (let c in this.courses) {
@@ -140,15 +151,13 @@
 
             weightedGradeForTermPercent() {
               let totalWeightedGrade = 0;
-              let totalHoursCompleted = this.sumHoursCompleted();
+              let totalProgress =this.sumProgressBetweenDates();
               for (let c in this.courses) {
                 let course = this.courses[c];
                 let progress = this.progressBetweenDates[course.course_id];
                 let grade = this.gradesBetweenDates[course.course_id];
                 if (progress !== undefined && grade !== undefined) {
-                  let hoursCompleted = this.getHoursCompleted(course);
-                  let weightedGrade = grade;
-                  if (totalHoursCompleted > 0) weightedGrade *= (hoursCompleted / totalHoursCompleted);
+                  let weightedGrade = grade * (progress / totalProgress);
                   totalWeightedGrade += weightedGrade;
                 }
               }
@@ -177,6 +186,14 @@
               return output;
             },
 
+            weightedGradeForTerm() {
+              if (this.estimatedHoursRequired === 0) {
+                return this.weightedGradeForTermPercent();
+              } else {
+                return this.weightedGradeForTermHours();
+              }
+            },
+
             getHoursEnrolled(courseId) {
               let hours = this.hoursBetweenDates[courseId];
               if (hours !== undefined) return hours;
@@ -184,10 +201,9 @@
             },
 
             weightedFinalGradeForTerm() {
-              let hoursEnrolled = this.estimatedHoursEnrolled; //might change how this is calculated because this doesn't really make sense. Maybe user has to select one? Consult on this.
               let requiredHours = this.estimatedHoursRequired * .67;
               let hoursCompleted = this.sumHoursCompleted();
-              let grade = this.weightedGradeForTermHours();
+              let grade = this.weightedGradeForTerm();
               if ((hoursCompleted < requiredHours) && (requiredHours !== 0 && hourseCompleted !== 0)) {
                 grade *= (hoursCompleted / requiredHours);
               }
