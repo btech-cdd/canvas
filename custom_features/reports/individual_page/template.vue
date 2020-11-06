@@ -97,7 +97,7 @@
 
                       <td>{{getGradesBetweenDates(course.course_id)}}</td>
                       <td>{{getProgressBetweenDates(course.course_id)}}</td>
-                      <td><input style="padding: 0px 4px; margin: 0px;" v-model="course.hours" size='4' type="text"></td>
+                      <td><input style="padding: 0px 4px; margin: 0px; width: 3rem;" v-model="course.hours" type="text"></td>
                       <td>{{getHoursCompleted(course)}}</td>
                       <td>{{getHoursEnrolled(course.course_id)}}</td>
                     </tr>
