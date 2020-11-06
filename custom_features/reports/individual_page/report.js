@@ -464,10 +464,14 @@
                   hoursTotal += hours;
                 }
               }
-              this.estimatedHoursEnrolled = Math.floor(parseFloat((hoursTotal / count).toFixed(2)));
-              console.log(this.estimatedHoursEnrolled);
-              this.estimatedHoursRequired = Math.floor(parseFloat((hoursTotal / count).toFixed(2)) * midtermPercentCompleted);
+              let estimatedHoursEnrolled = Math.floor(parseFloat((hoursTotal / count).toFixed(2)));
+              if (isNaN(estimatedHoursEnrolled)) estimatedHoursEnrolled = 0;
+              this.estimatedHoursEnrolled = estimatedHoursEnrolled;
+              let estimatedHoursRequired = Math.floor(parseFloat((hoursTotal / count).toFixed(2)) * midtermPercentCompleted);
+              if (isNaN(estimatedHoursRequired)) estimatedHoursRequired = 0;
+              this.estimatedHoursRequired = estimatedHoursRequired;
             },
+
             calcCourseGroupPointsPossible(courseId, groupId) {
               let app = this;
               let assignmentGroups = app.courseAssignmentGroups[courseId];
