@@ -139,7 +139,7 @@
             },
 
             weightedGradeForTerm() {
-              let weightedGrade = 0;
+              let totalWeightedGrade = 0;
               let totalHoursCompleted = this.sumHoursCompleted();
               for (let c in this.courses) {
                 let course = this.courses[c];
@@ -147,10 +147,12 @@
                 let grade = this.gradesBetweenDates[course.course_id];
                 if (progress !== undefined && grade !== undefined) {
                   let hoursCompleted = this.getHoursCompleted(course);
-                  weightedGrade += (grade * (hoursCompleted / totalHoursCompleted));
+                  let weightedGrade = grade;
+                  if (totalHoursCompleted > 0) weightedGrade *= (hoursCompleted / totalHoursCompleted);
+                  totalWeightedGrade += weightedGrade;
                 }
               }
-              let output = parseFloat(weightedGrade.toFixed(2));
+              let output = parseFloat(totalWeightedGrade.toFixed(2));
               if (isNaN(output)) return 0;
               return output;
             },
