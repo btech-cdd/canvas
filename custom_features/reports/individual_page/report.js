@@ -189,7 +189,8 @@
             },
 
             weightedGradeForTerm() {
-              if (this.estimatedHoursRequired === 0) {
+              let totalHoursCompleted = this.sumHoursCompleted();
+              if (totalHoursCompleted === 0) {
                 return this.weightedGradeForTermPercent();
               } else {
                 return this.weightedGradeForTermHours();
