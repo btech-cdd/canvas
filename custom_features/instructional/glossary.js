@@ -15,7 +15,8 @@
           await $.get("/api/v1/courses/" + feature.courseId + "/pages/glossary").success(function (data) {
             //if custom settings page exists, look for the appropriate header
             console.log(data.body);
-            let rows = $(data.body).find('table tbody tr');
+            let table = $(data.body);
+            let rows = table.find('tbody tr');
             rows.each(function() {
               let row = $(this);
               console.log(row.find('td'));
