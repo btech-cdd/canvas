@@ -6,6 +6,8 @@
       initiated: false, //SET TO TRUE WHEN feature() IS RUN FROM THE custom_canvas.js PAGE TO MAKE SURE FEATURE ISN'T INITIATED TWICE
       courseId: '',
       settingsEl: null,
+      definitions: {},
+      terms: [],
       async getGlossary() {
         let feature = this;
         /*
@@ -13,22 +15,21 @@
         */
         try {
           await $.get("/api/v1/courses/" + feature.courseId + "/pages/glossary").success(function (data) {
+            let feature = this;
             //if custom settings page exists, look for the appropriate header
             console.log(data.body);
             let table = $(data.body);
             let rows = table.find('tbody tr');
-            let terms = [];
-            let definitions = {};
             rows.each(function() {
               let row = $(this);
               cells = row.find('td');
               let term = cells[0].textContent;
               let definition = cells[1].textContent;
-              terms.push(term);
-              definitions[term] = definition;
+              feature.terms.push(term);
+              feature.definitions[term] = definition;
             });
-            console.log(terms);
-            console.log(definitions);
+            console.log(feature.terms);
+            console.log(feature.definitions);
           });
         } catch (e) {
           console.log(e);
@@ -64,13 +65,18 @@
         }
         setting.text(value);
       },
+      renderPage() {
+        let page = $('#wiki_page_show .show-content');
+        console.log(page);
+      },
       async _init(params = {}) { //SOME FEATURES NEED CUSTOM PARAMS DEPENDING ON THE USER/DEPARTMENT/COURSE SUCH AS IF DENTAL HAS ONE SET OF RULES GOVERNING FORMATTING WHILE BUSINESS HAS ANOTHER
         let feature = this;
         let rPieces = /^\/courses\/([0-9]+)\/pages/;
         let pieces = window.location.pathname.match(rPieces);
         if (pieces) {
           feature.courseId = parseInt(pieces[1]);
-          await this.getGlossary();
+          await feature.getGlossary();
+          feature.renderPage(); 
         }
 
         //get header on modules page and add an empty div
