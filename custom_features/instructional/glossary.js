@@ -82,9 +82,23 @@
           p.html(html);
         });
         //cycle through terms and add a hover func
+        for (let t = 0; t < feature.terms.length; t++) {
+          let term = feature.terms[t];
+          let cssTerm = term.replace(' ', '-').toLowerCase();
+          let className = 'btech-glossary-term-' + cssTerm;
+          let inlineTerms = $('.' + className);
+          inlineTerms.each(function() {
+            let inlineTerm = $(this);
+            inlineTerm.hover(function() {
+              feature.enterInlineTerm(term, feature.definitions[term]);
+            }, function() {
+              feature.leaveInlineTerm();
+            });
+          })
+        }
         console.log(page);
       },
-      hover(termText, definitionText) {
+      enterInlineTerm(termText, definitionText) {
         let feature = this;
         feature.def.show();
         let term = feature.def.find('.btech-glossary-term');
@@ -93,7 +107,7 @@
         definition.text(definitionText);
         feature.def.find('.btech-glossary-term').text("TEST");
       },
-      leave() {
+      leaveInlineTerm() {
         let feature = this;
         feature.hide();
       },
