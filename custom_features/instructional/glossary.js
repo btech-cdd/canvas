@@ -105,7 +105,6 @@
         term.text(termText);
         let definition = feature.def.find('.btech-glossary-definition');
         definition.text(definitionText);
-        feature.def.find('.btech-glossary-term').text("TEST");
       },
       leaveInlineTerm() {
         let feature = this;
