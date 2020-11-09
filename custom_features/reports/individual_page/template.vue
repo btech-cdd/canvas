@@ -66,10 +66,12 @@
               <div v-if='loadingAssignments'>{{loadingMessage}}</div>
               <div v-else>
                 <div class='btech-report-submission-dates'>
+                  <!--WAIT DON'PUBLISH THIS YET
                   <img 
                     v-if='IS_TEACHER'
                     style="float: right; transform: scale(2); image-rendering: pixelated;"
                     src="https://jhveem.xyz/canvas/media/it-will-all-be-fine.png">
+                  -->
                   <span>Start Date:</span>
                   <input type="date" v-model="submissionDatesStart" @change='getIncludedAssignmentsBetweenDates()'>
                   <span>End Date:</span>
@@ -97,7 +99,8 @@
 
                       <td>{{getGradesBetweenDates(course.course_id)}}</td>
                       <td>{{getProgressBetweenDates(course.course_id)}}</td>
-                      <td><input style="padding: 0px 4px; margin: 0px; width: 3rem;" v-model="course.hours" type="text"></td>
+                      <td><input style="padding: 0px 4px; margin: 0px; width: 3rem;" v-model="course.hours" type="text">
+                      </td>
                       <td>{{getHoursCompleted(course)}}</td>
                       <td>{{getHoursEnrolled(course.course_id)}}</td>
                     </tr>
@@ -138,13 +141,6 @@
                     </tr>
                   </tfoot>
                 </table>
-                <!--WAIT DON'PUBLISH THIS YET
-                  <div v-if='IS_ME' style="text-align: right;">
-                    <img style="zoom: 2; image-rendering: pixelated;"
-                      src=SOURCE_URL + "/media/it-will-all-be-fine.png"
-                    >
-                  </div>
-                -->
                 <div v-if='showGradeDetails'>
                   <!--include a reset button to go back to the default. Probably just rerun the code from on change of date-->
                   <div v-for='course in includedAssignments' :key='course.name'>
