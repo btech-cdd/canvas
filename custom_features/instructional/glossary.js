@@ -104,6 +104,7 @@
             let term = feature.terms[t];
             let termIndex = -1;
             console.log(term);
+            /*
             do {
               termIndex = html.toLowerCase().indexOf(term.toLowerCase(), termIndex);
               console.log(termIndex);
@@ -111,6 +112,7 @@
 
               }
             } while(termIndex !== -1);
+            */
             let regEx = new RegExp('([^a-zA-Z>-])(' + term + ')([^a-zA-Z<-])', 'ig');
             let cssTerm = term.replace(' ', '-').toLowerCase();
             let replace = "$1<span style='font-weight: bold; cursor: help;' class='btech-glossasry-inline-definition btech-glossary-term-" + cssTerm + "'>$2</span>$3";
