@@ -20,7 +20,7 @@
             console.log(data.body);
             let table = $(data.body);
             let rows = table.find('tbody tr');
-            rows.each(function() {
+            rows.each(function () {
               let row = $(this);
               cells = row.find('td');
               let term = cells[0].textContent;
@@ -32,6 +32,7 @@
                 term: term
               };
             });
+            feature.sortTerms();
             console.log(feature.terms);
             console.log(feature.definitions);
           });
@@ -39,6 +40,31 @@
           console.log(e);
         }
         return;
+      },
+      sortTerms() {
+        let terms = feature.terms;
+        let output = [];
+        for (let t = 0; t < terms.length; t++) {
+          let term = terms[t];
+          let insterted = false;
+          for (let o = 0; o < output.length; o++) {
+            let outputTerm = output[o];
+            //See if term to be inserted is part of a previously included term and, if yes, put it after that larger term
+            if (term in output) {
+              output.splice(o + 1, 0, term);
+              inserted = true;
+              break;
+            }
+            //See if the term to be inserted includes a previously included term and, if yes, put it before that smaller term
+            if (outputTerm in term) {
+              output.splice(o, 0, term);
+              inserted = true;
+              break;
+            }
+          }
+          if (!inserted) output.push(term);
+        }
+        feature.terms = output;
       },
       async createSettingsPage() {
         let feature = this;
@@ -73,12 +99,12 @@
         let feature = this;
         let page = $('#wiki_page_show .show-content');
         let ps = page.find('p');
-        ps.each(function() {
+        ps.each(function () {
           let p = $(this);
           let html = p.html();
           for (let t = 0; t < feature.terms.length; t++) {
             let term = feature.terms[t];
-            let regEx = new RegExp('([^a-zA-Z0-9])(' + term + ')([^a-zA-Z0-9])', 'ig');
+            let regEx = new RegExp('([^a-zA-Z0-9\>])(' + term + ')([^a-zA-Z0-9])', 'ig');
             let cssTerm = term.replace(' ', '-').toLowerCase();
             let replace = "$1<span style='font-weight: bold; cursor: help;' class='btech-glossasry-inline-definition btech-glossary-term-" + cssTerm + "'>$2</span>$3";
             html = html.replace(regEx, replace);
@@ -91,11 +117,11 @@
           let cssTerm = term.replace(' ', '-').toLowerCase();
           let className = 'btech-glossary-term-' + cssTerm;
           let inlineTerms = $('.' + className);
-          inlineTerms.each(function() {
+          inlineTerms.each(function () {
             let inlineTerm = $(this);
-            inlineTerm.hover(function() {
+            inlineTerm.hover(function () {
               feature.enterInlineTerm(feature.definitions[term].term, feature.definitions[term].definition);
-            }, function() {
+            }, function () {
               feature.leaveInlineTerm();
             });
           })
@@ -124,7 +150,7 @@
         if (pieces) {
           feature.courseId = parseInt(pieces[1]);
           await feature.getGlossary();
-          feature.renderPage(); 
+          feature.renderPage();
         }
 
         //get header on modules page and add an empty div
