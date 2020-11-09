@@ -17,7 +17,6 @@
         try {
           await $.get("/api/v1/courses/" + feature.courseId + "/pages/glossary").success(function (data) {
             //if custom settings page exists, look for the appropriate header
-            console.log(data.body);
             let table = $(data.body);
             let rows = table.find('tbody tr');
             rows.each(function () {
@@ -33,8 +32,6 @@
               };
             });
             feature.sortTerms();
-            console.log(feature.terms);
-            console.log(feature.definitions);
           });
         } catch (e) {
           console.log(e);
@@ -109,7 +106,6 @@
             let cssTerm = term.replace(' ', '-').toLowerCase();
             let replace = "$1<span style='font-weight: bold; cursor: help;' class='btech-glossasry-inline-definition btech-glossary-term-" + cssTerm + "'>$2</span>$3";
             html = html.replace(regEx, replace);
-            console.log(html);
           }
           p.html(html);
         });
@@ -128,7 +124,6 @@
             });
           })
         }
-        console.log(page);
       },
       enterInlineTerm(termText, definitionText) {
         let feature = this;
