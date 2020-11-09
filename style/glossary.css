@@ -1,5 +1,5 @@
 #btech-glossary-modal {
-  position: relative;
+  position: fixed;
   top: 2em;
   left: 30%;
   width: 40%;
