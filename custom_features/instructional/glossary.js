@@ -51,13 +51,13 @@
           for (let o = 0; o < output.length; o++) {
             let outputTerm = output[o];
             //See if term to be inserted is part of a previously included term and, if yes, put it after that larger term
-            if (term in output) {
+            if (outputTerm.includes(term)) {
               output.splice(o + 1, 0, term);
               inserted = true;
               break;
             }
             //See if the term to be inserted includes a previously included term and, if yes, put it before that smaller term
-            if (outputTerm in term) {
+            if (term.includes(outputTerm)) {
               output.splice(o, 0, term);
               inserted = true;
               break;
