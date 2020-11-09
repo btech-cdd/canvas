@@ -23,10 +23,14 @@
             rows.each(function() {
               let row = $(this);
               cells = row.find('td');
-              let term = cells[0].textContent.toLowerCase();
+              let term = cells[0];
+              let key = term.textContent.toLowerCase()
               let definition = cells[1].textContent;
-              feature.terms.push(term);
-              feature.definitions[term] = definition;
+              feature.terms.push(key);
+              feature.definitions[key] = {
+                definition: definition,
+                term: term
+              };
             });
             console.log(feature.terms);
             console.log(feature.definitions);
@@ -90,7 +94,7 @@
           inlineTerms.each(function() {
             let inlineTerm = $(this);
             inlineTerm.hover(function() {
-              feature.enterInlineTerm(term, feature.definitions[term]);
+              feature.enterInlineTerm(feature.definitions[term].term, feature.definitions[term].definition);
             }, function() {
               feature.leaveInlineTerm();
             });
