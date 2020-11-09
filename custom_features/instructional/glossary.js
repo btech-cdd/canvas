@@ -15,7 +15,6 @@
         */
         try {
           await $.get("/api/v1/courses/" + feature.courseId + "/pages/glossary").success(function (data) {
-            let feature = this;
             //if custom settings page exists, look for the appropriate header
             console.log(data.body);
             let table = $(data.body);
