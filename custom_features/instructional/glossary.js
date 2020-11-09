@@ -47,7 +47,7 @@
         let output = [];
         for (let t = 0; t < terms.length; t++) {
           let term = terms[t];
-          let insterted = false;
+          let inserted = false;
           for (let o = 0; o < output.length; o++) {
             let outputTerm = output[o];
             //See if term to be inserted is part of a previously included term and, if yes, put it after that larger term
