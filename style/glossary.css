@@ -1,0 +1,24 @@
+#btech-glossary-modal {
+  position: absolute;
+  top: 2em;
+  left: 30%;
+  width: 40%;
+  padding: 0;
+  background-color: #fff;
+  border: 1px solid #000;
+  z-index: 1000001;
+}
+
+#btech-glossary-modal .btech-glossary-term {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  padding: .5em 1em;
+}
+
+#btech-glossary-modal .btech-glossary-definition {
+  width: 100%;
+  background-color: #fff;
+  color: #000;
+  padding: .5em 1em;
+}
