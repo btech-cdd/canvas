@@ -102,10 +102,10 @@
           let html = p.html();
           for (let t = 0; t < feature.terms.length; t++) {
             let term = feature.terms[t];
-            let termIndex;
+            let termIndex = -1;
             console.log(term);
             do {
-              termIndex = html.toLowerCase().indexOf(term.toLowerCase());
+              termIndex = html.toLowerCase().indexOf(term.toLowerCase(), termIndex);
               console.log(termIndex);
               if (termIndex > -1) {
 
