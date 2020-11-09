@@ -23,7 +23,7 @@
             rows.each(function() {
               let row = $(this);
               cells = row.find('td');
-              let term = cells[0].textContent;
+              let term = cells[0].textContent.toLowerCase();
               let definition = cells[1].textContent;
               feature.terms.push(term);
               feature.definitions[term] = definition;
@@ -75,12 +75,27 @@
           for (let t = 0; t < feature.terms.length; t++) {
             let term = feature.terms[t];
             let regEx = new RegExp(term, 'ig');
-            let replace = "<span style='font-weight: bold; cursor: help;' class='btech-term-definition'>" + term + "</span>";
+            let cssTerm = term.replace(' ', '-').toLowerCase();
+            let replace = "<span style='font-weight: bold; cursor: help;' class='btech-glossasry-inline-definition btech-glossary-term-" + cssTerm + "'>" + term + "</span>";
             html = html.replace(regEx, replace);
           }
           p.html(html);
         });
+        //cycle through terms and add a hover func
         console.log(page);
+      },
+      hover(termText, definitionText) {
+        let feature = this;
+        feature.def.show();
+        let term = feature.def.find('.btech-glossary-term');
+        term.text(termText);
+        let definition = feature.def.find('.btech-glossary-definition');
+        definition.text(definitionText);
+        feature.def.find('.btech-glossary-term').text("TEST");
+      },
+      leave() {
+        let feature = this;
+        feature.hide();
       },
       async _init(params = {}) { //SOME FEATURES NEED CUSTOM PARAMS DEPENDING ON THE USER/DEPARTMENT/COURSE SUCH AS IF DENTAL HAS ONE SET OF RULES GOVERNING FORMATTING WHILE BUSINESS HAS ANOTHER
         let feature = this;
@@ -88,7 +103,7 @@
         let pieces = window.location.pathname.match(rPieces);
         feature.def = $('<div id="btech-glossary-modal"><div class="btech-glossary-term"></div><div class="btech-glossary-definition"></div></div>');
         $('body').append(feature.def);
-        feature.def.find('.btech-glossary-term').text("TEST");
+        feature.def.hide();
         if (pieces) {
           feature.courseId = parseInt(pieces[1]);
           await feature.getGlossary();
