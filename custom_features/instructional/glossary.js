@@ -66,6 +66,13 @@
       },
       renderPage() {
         let page = $('#wiki_page_show .show-content');
+        let ps = page.find('p');
+        ps.each(function() {
+          let p = $(this);
+          let html = p.html();
+          console.log(html);
+          // p.html()
+        });
         console.log(page);
       },
       async _init(params = {}) { //SOME FEATURES NEED CUSTOM PARAMS DEPENDING ON THE USER/DEPARTMENT/COURSE SUCH AS IF DENTAL HAS ONE SET OF RULES GOVERNING FORMATTING WHILE BUSINESS HAS ANOTHER
