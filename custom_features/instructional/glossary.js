@@ -109,7 +109,7 @@
       },
       leaveInlineTerm() {
         let feature = this;
-        feature.hide();
+        feature.def.hide();
       },
       async _init(params = {}) { //SOME FEATURES NEED CUSTOM PARAMS DEPENDING ON THE USER/DEPARTMENT/COURSE SUCH AS IF DENTAL HAS ONE SET OF RULES GOVERNING FORMATTING WHILE BUSINESS HAS ANOTHER
         let feature = this;
