@@ -22,8 +22,8 @@
             rows.each(function() {
               let row = $(this);
               cells = row.find('td');
-              let term = cells[0];
-              let definition = cells[1];
+              let term = cells[0].textContent;
+              let definition = cells[1].textContent;
               terms.push(term);
               definitions[term] = definition;
             });
