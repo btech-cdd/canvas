@@ -88,7 +88,7 @@
         let pieces = window.location.pathname.match(rPieces);
         feature.def = $('<div id="btech-glossary-modal"><div class="btech-glossary-term"></div><div class="btech-glossary-definition"></div></div>');
         $('body').append(feature.def);
-        def.find('.btech-glossary.term').text("TEST");
+        feature.def.find('.btech-glossary.term').text("TEST");
         if (pieces) {
           feature.courseId = parseInt(pieces[1]);
           await feature.getGlossary();
