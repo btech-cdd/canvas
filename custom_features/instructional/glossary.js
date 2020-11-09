@@ -109,6 +109,7 @@
             let cssTerm = term.replace(' ', '-').toLowerCase();
             let replace = "$1<span style='font-weight: bold; cursor: help;' class='btech-glossasry-inline-definition btech-glossary-term-" + cssTerm + "'>$2</span>$3";
             html = html.replace(regEx, replace);
+            console.log(html);
           }
           p.html(html);
         });
