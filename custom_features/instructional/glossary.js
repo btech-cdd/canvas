@@ -105,7 +105,7 @@
           let html = p.html();
           for (let t = 0; t < feature.terms.length; t++) {
             let term = feature.terms[t];
-            let regEx = new RegExp('([^a-zA-Z0-9\>])(' + term + ')([^a-zA-Z0-9])', 'ig');
+            let regEx = new RegExp('([^a-zA-Z>])(' + term + ')([^<a-zA-Z])', 'ig');
             let cssTerm = term.replace(' ', '-').toLowerCase();
             let replace = "$1<span style='font-weight: bold; cursor: help;' class='btech-glossasry-inline-definition btech-glossary-term-" + cssTerm + "'>$2</span>$3";
             html = html.replace(regEx, replace);
