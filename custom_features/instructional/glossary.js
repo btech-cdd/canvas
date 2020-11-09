@@ -65,13 +65,19 @@
         setting.text(value);
       },
       renderPage() {
+        let feature = this;
         let page = $('#wiki_page_show .show-content');
         let ps = page.find('p');
         ps.each(function() {
           let p = $(this);
           let html = p.html();
-          console.log(html);
-          // p.html()
+          for (let t = 0; t < feature.terms.length; t++) {
+            let term = feature.terms[t];
+            let regEx = new RegExp(term, 'ig');
+            let replace = "<div class='btech-term-definition'>" + term + "</div>";
+            let html = console.log(html.replace(regEx, replace));
+          }
+          p.html(html);
         });
         console.log(page);
       },
