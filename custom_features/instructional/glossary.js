@@ -75,7 +75,7 @@
             let term = feature.terms[t];
             let regEx = new RegExp(term, 'ig');
             let replace = "<div class='btech-term-definition'>" + term + "</div>";
-            let html = console.log(html.replace(regEx, replace));
+            html = console.log(html.replace(regEx, replace));
           }
           p.html(html);
         });
