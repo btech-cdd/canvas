@@ -23,8 +23,8 @@
             rows.each(function() {
               let row = $(this);
               cells = row.find('td');
-              let term = cells[0];
-              let key = term.textContent.toLowerCase()
+              let term = cells[0].textContent;
+              let key = term.toLowerCase()
               let definition = cells[1].textContent;
               feature.terms.push(key);
               feature.definitions[key] = {
