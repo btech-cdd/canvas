@@ -17,12 +17,18 @@
             console.log(data.body);
             let table = $(data.body);
             let rows = table.find('tbody tr');
+            let terms = [];
+            let definitions = {};
             rows.each(function() {
               let row = $(this);
               cells = row.find('td');
-              console.log(cells[0]);
-              console.log(cells[1]);
-            })
+              let term = cells[0];
+              let definition = cells[1];
+              terms.push(term);
+              definitions[term] = definition;
+            });
+            console.log(terms);
+            console.log(definitions);
           });
         } catch (e) {
           console.log(e);
