@@ -42,6 +42,7 @@
         return;
       },
       sortTerms() {
+        let feature = this;
         let terms = feature.terms;
         let output = [];
         for (let t = 0; t < terms.length; t++) {
