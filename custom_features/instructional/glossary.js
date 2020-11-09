@@ -19,7 +19,9 @@
             let rows = table.find('tbody tr');
             rows.each(function() {
               let row = $(this);
-              console.log(row.find('td'));
+              cells = row.find('td');
+              console.log(cells[0]);
+              console.log(cells[1]);
             })
           });
         } catch (e) {
