@@ -74,7 +74,7 @@
           for (let t = 0; t < feature.terms.length; t++) {
             let term = feature.terms[t];
             let regEx = new RegExp(term, 'ig');
-            let replace = "<div class='btech-term-definition'>" + term + "</div>";
+            let replace = "<span class='btech-term-definition'>" + term + "</span>";
             html = html.replace(regEx, replace);
           }
           p.html(html);
