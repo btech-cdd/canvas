@@ -103,7 +103,7 @@ Look into quill editor
           <select v-model='flag.assignedTo[0]' @change='saveFlagEdits(flag, "assignedTo")'>
             <option value='' selected disabled>-Assign To-</option>
             <option v-for='(id, name) in loadedNames' :value='id'>
-              {{id}}
+              {{name}}
             </option>
           </select>
         </div>
