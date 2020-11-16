@@ -4,16 +4,18 @@
   let jsonUrl = 'https://jhveem.xyz/canvas/custom_features/reports/department/data.json';
   let jsonData = await canvasGet(jsonUrl);
   let deptData = jsonData[0][dept];
-  let enrollmentsUrl = '/api/v1/accounts/' + dept + '/users';
-  let enrollments = await canvasGet(enrollmentsUrl, {
+  let usersUrl = '/api/v1/accounts/' + dept + '/users';
+  let users = await canvasGet(usersUrl, {
     enrollment_type: 'student'
   });
-  console.log(enrollments);
-  for (let i = 0; i < enrollments.length; i++) {
-    let enrollment = enrollments[i];
-    if (enrollment.id in deptData) {
-      console.log(enrollment);
-      console.log(deptData[enrollment.id]);
+  console.log('awaited');
+  for (let i = 0; i < users.length; i++) {
+    let user = users[i];
+    if (user.id in deptData) {
+      deptData[user.id].name = user.sortable_name;
     }
+  }
+  for (let user in deptData) {
+    console.log(user);
   }
 })();
