@@ -23,6 +23,7 @@
     for (let courseId in user) {
       if (courseId !== 'name') {
         let progress = user[courseId].progress * .01;
+        if (progress > 1) progress = 1;
         console.log(progress);
         let progressWidth = Math.round(progress * 64);
         console.log(progressWidth);
