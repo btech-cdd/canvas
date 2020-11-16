@@ -284,6 +284,11 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
               /^\/courses\/[0-9]+\/grades\/[0-9]+/
             ]);
           }
+          let rCheckInDepartment = /^\/accounts\/([0-9]+)/;
+          if (rCheckInDepartment.test(window.location.pathname)) {
+            console.log(window.location.pathname);
+            CURRENT_DEPARTMENT_ID = parseInt(window.location.pathname.match(rCheckInDepartment)[1]);
+          }
           let rCheckInCourse = /^\/courses\/([0-9]+)/;
           if (rCheckInCourse.test(window.location.pathname)) {
             IS_BLUEPRINT = !(ENV.BLUEPRINT_COURSES_DATA === undefined)
@@ -335,18 +340,13 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             //DEPARTMENT SPECIFIC IMPORTS
             let departmentId = 0;
             //DETERMINE CURRENT DEPARTMENT FROM DEPARTMENT LIST
-            let rCheckInDepartment = /^\/accounts\/([0-9]+)/;
-            if (rCheckInDepartment.test(window.location.pathname)) {
-              CURRENT_DEPARTMENT_ID = parseInt(window.location.pathname.match(rCheckInDepartment)[1]);
-            } else {
-              for (let d in COURSE_LIST) {
-                if (COURSE_LIST[d].includes(courseId)) {
-                  departmentId = parseInt(d);
-                  break;
-                }
+            for (let d in COURSE_LIST) {
+              if (COURSE_LIST[d].includes(courseId)) {
+                departmentId = parseInt(d);
+                break;
               }
-              CURRENT_DEPARTMENT_ID = departmentId;
             }
+            CURRENT_DEPARTMENT_ID = departmentId;
             if (departmentId === 3824) { // DENTAL
               console.log("DENTAL");
               feature("highlighted_grades_page_items", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
