@@ -471,6 +471,7 @@ Look into quill editor
         let app = this;
         let saveData = {};
         saveData[flagPropName] = flag[flagPropName];
+        console.log(saveData);
         if (flagPropName === 'assignedTo') saveData[flagPropName] = JSON.stringify(saveData[flagPropName]);
         flag.editing = false;
         app.updateFlag(flag, saveData);
