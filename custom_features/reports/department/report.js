@@ -1,5 +1,6 @@
 (async function () {
-  $('#content').empty();
+  let content = $('#content');
+  content.empty();
   let dept = CURRENT_DEPARTMENT_ID;
   let jsonUrl = 'https://jhveem.xyz/canvas/custom_features/reports/department/data.json';
   let jsonData = await canvasGet(jsonUrl);
@@ -17,6 +18,18 @@
   }
   for (let userId in deptUsers) {
     let user = deptUsers[userId];
+    let div = $('<div></div>');
+    div.append('<span>' + user.name + '</span>');
+    for (let courseId in user) {
+      if (courseId !== 'name') {
+        let progress = user[courseId].progress * .01;
+        let progressWidth = Math.round(progress * 64);
+        div.append(`<div style="width: 64px; border: 1px solid #000">
+        <div style='background-color: #d22030; width: `+ progressWidth +`px;'></div>
+        </div>`);
+      }
+    }
+    content.append(div);
     console.log(user);
   }
 })();
