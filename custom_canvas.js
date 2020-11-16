@@ -335,13 +335,18 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             //DEPARTMENT SPECIFIC IMPORTS
             let departmentId = 0;
             //DETERMINE CURRENT DEPARTMENT FROM DEPARTMENT LIST
-            for (let d in COURSE_LIST) {
-              if (COURSE_LIST[d].includes(courseId)) {
-                departmentId = parseInt(d);
-                break;
+            let rCheckInDepartment = /^\/accounts\/([0-9]+)/;
+            if (rCheckInDepartment.test(window.location.pathname)) {
+              CURRENT_DEPARTMENT_ID = parseInt(window.location.pathname.match(rCheckInDepartment)[1]);
+            } else {
+              for (let d in COURSE_LIST) {
+                if (COURSE_LIST[d].includes(courseId)) {
+                  departmentId = parseInt(d);
+                  break;
+                }
               }
+              CURRENT_DEPARTMENT_ID = departmentId;
             }
-            CURRENT_DEPARTMENT_ID = departmentId;
             if (departmentId === 3824) { // DENTAL
               console.log("DENTAL");
               feature("highlighted_grades_page_items", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
@@ -450,13 +455,13 @@ $.getScript(ALLY_CFG.baseUrl + '/integration/canvas/ally.js');
  */
 
 
- /*
-  * CURRENTLY IN USE
-  * ctrl+shift+f : opens the create new flag modal in the flags feature
-  * 
-  */
+/*
+ * CURRENTLY IN USE
+ * ctrl+shift+f : opens the create new flag modal in the flags feature
+ * 
+ */
 
-(function(jQuery) {
+(function (jQuery) {
 
   jQuery.hotkeys = {
     version: "0.2.0",
@@ -553,7 +558,8 @@ $.getScript(ALLY_CFG.baseUrl + '/integration/canvas/ally.js');
     // excludes: button, checkbox, file, hidden, image, password, radio, reset, search, submit, url
     textAcceptingInputTypes: [
       "text", "password", "number", "email", "url", "range", "date", "month", "week", "time", "datetime",
-      "datetime-local", "search", "color", "tel"],
+      "datetime-local", "search", "color", "tel"
+    ],
 
     // default input types not to bind to unless bound directly
     textInputTypes: /textarea|input|select/i,
@@ -580,7 +586,7 @@ $.getScript(ALLY_CFG.baseUrl + '/integration/canvas/ally.js');
     var origHandler = handleObj.handler,
       keys = handleObj.data.keys.toLowerCase().split(" ");
 
-    handleObj.handler = function(event) {
+    handleObj.handler = function (event) {
       //      Don't fire in text-accepting inputs that we didn't directly bind to
       if (this !== event.target &&
         (jQuery.hotkeys.options.filterInputAcceptingElements &&
@@ -596,7 +602,7 @@ $.getScript(ALLY_CFG.baseUrl + '/integration/canvas/ally.js');
         modif = "",
         possible = {};
 
-      jQuery.each(["alt", "ctrl", "shift"], function(index, specialKey) {
+      jQuery.each(["alt", "ctrl", "shift"], function (index, specialKey) {
 
         if (event[specialKey + 'Key'] && special !== specialKey) {
           modif += specialKey + '+';
@@ -614,8 +620,7 @@ $.getScript(ALLY_CFG.baseUrl + '/integration/canvas/ally.js');
 
       if (special) {
         possible[modif + special] = true;
-      }
-      else {
+      } else {
         possible[modif + character] = true;
         possible[modif + jQuery.hotkeys.shiftNums[character]] = true;
 
@@ -633,7 +638,7 @@ $.getScript(ALLY_CFG.baseUrl + '/integration/canvas/ally.js');
     };
   }
 
-  jQuery.each(["keydown", "keyup", "keypress"], function() {
+  jQuery.each(["keydown", "keyup", "keypress"], function () {
     jQuery.event.special[this] = {
       add: keyHandler
     };
