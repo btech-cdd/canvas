@@ -22,13 +22,14 @@
     div.append('<span>' + user.name + '</span>');
     for (let courseId in user) {
       if (courseId !== 'name') {
-        let progress = user[courseId].progress * .01;
+        let course = user[courseId];
+        let progress = course.progress * .01;
         if (progress > 1) progress = 1;
         console.log(progress);
         let progressWidth = Math.round(progress * 64);
         console.log(progressWidth);
         div.append(`<div style="width: 64px; height: 16px; border: 1px solid #000">
-        <div style='background-color: #d22030; height: 16px; width: `+ progressWidth +`px;'></div>
+        <div style='background-color: #d22030; height: 16px; width: `+ progressWidth +`px;'>`+courseId+`</div>
         </div>`);
       }
     }
