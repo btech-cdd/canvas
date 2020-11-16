@@ -28,8 +28,8 @@
         console.log(progress);
         let progressWidth = Math.round(progress * 64);
         console.log(progressWidth);
-        div.append(`<div style="width: 64px; border: 1px solid #000;">
-          <div style='background-color: #d22030; color: #fff;'>`+courseId+`</div>
+        div.append(`<div style="width: 64px; border: 1px solid #000; background-color: #334;">
+          <div style='background-color: #227398; color: #fff; width: `+progressWidth+`px'>`+courseId+`</div>
         </div>`);
       }
     }
