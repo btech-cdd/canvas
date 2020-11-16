@@ -216,7 +216,6 @@ Look into quill editor
             flags.push(flag);
           }
         });
-        console.log(flags);
         app.flags = flags;
       }
 
@@ -373,21 +372,16 @@ Look into quill editor
       },
       loadSettings() {
         let app = this;
-        console.log(ENV.current_user_id);
         $.get("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, function (data) {
-          console.log(data);
           if (data.length === 0) {
             let settings = app.prepareSettingsPacket();
-            console.log(settings);
             $.post("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, {
               settings: JSON.stringify(settings)
             }, function (data) {
               console.log(data);
-              console.log("BOOM, Posted.")
             });
           } else {
             if (data[0].settings === undefined) {
-              console.log("DELETE");
               $.delete("https://jhveem.xyz/api/flag_settings/" + data[0]._id)
             } else {
               let settings = JSON.parse(data[0].settings);
@@ -405,7 +399,6 @@ Look into quill editor
           settings: JSON.stringify(settings)
         }, function (data) {
           console.log(data);
-          console.log("BOOM, Putted.")
         });
       },
       loadCDDNames() {
@@ -436,7 +429,6 @@ Look into quill editor
       },
       async submitFlag() {
         let app = this;
-        console.log(app.flagAssigned);
         $.post('https://jhveem.xyz/api/flags', {
           'courseId': app.courseId,
           'createdBy': ENV.current_user_id,
@@ -465,13 +457,9 @@ Look into quill editor
       },
       //this is not an api call, but what is called when edits are made in the user interface, will probably also initiate an api call though
       async saveFlagEdits(flag, flagPropName) {
-        console.log(flag);
-        console.log(flagPropName);
-        console.log(flag[flagPropName]);
         let app = this;
         let saveData = {};
         saveData[flagPropName] = flag[flagPropName];
-        console.log(saveData);
         if (flagPropName === 'assignedTo') saveData[flagPropName] = JSON.stringify(saveData[flagPropName]);
         flag.editing = false;
         app.updateFlag(flag, saveData);
