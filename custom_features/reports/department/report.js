@@ -25,7 +25,7 @@
         let progress = user[courseId].progress * .01;
         let progressWidth = Math.round(progress * 64);
         div.append(`<div style="width: 64px; height: 16px; border: 1px solid #000">
-        <div style='background-color: #d22030; width: `+ progressWidth +`px;'></div>
+        <div style='background-color: #d22030; height: 16px; width: `+ progressWidth +`px;'></div>
         </div>`);
       }
     }
