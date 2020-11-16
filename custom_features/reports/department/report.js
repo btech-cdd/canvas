@@ -5,7 +5,7 @@
   let jsonUrl = 'https://jhveem.xyz/canvas/custom_features/reports/department/data.json';
   let jsonData = await canvasGet(jsonUrl);
   console.log(jsonData);
-  let deptData = jsonData[dept];
+  let deptData = jsonData[0][dept];
   console.log(deptData);
   let enrollmentsUrl = '/api/v1/accounts/' + dept + '/users';
   let enrollments = await canvasGet(enrollmentsUrl, {
