@@ -467,9 +467,11 @@ Look into quill editor
       async saveFlagEdits(flag, flagPropName) {
         console.log(flag);
         console.log(flagPropName);
+        console.log(flag[flagPropName]);
         let app = this;
         let saveData = {};
         saveData[flagPropName] = flag[flagPropName];
+        if (flagPropName === 'assignedTo') saveData[flagPropName] = JSON.stringify(saveData[flagPropName]);
         flag.editing = false;
         app.updateFlag(flag, saveData);
       },
