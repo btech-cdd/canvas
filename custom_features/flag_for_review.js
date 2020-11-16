@@ -100,9 +100,9 @@ Look into quill editor
         <div style='text-align: right;'><i>-{{name(flag.createdBy)}}</i></div>
         <div style='text-align: right;'>
           <i class='far fa-share-square'></i>
-          <select @change='saveFlagEdits(flag, "assignedTo")'>
+          <select v-model='flag.assignedTo[0]' @change='saveFlagEdits(flag, "assignedTo")'>
             <option value='' selected disabled>-Assign To-</option>
-            <option v-for='(id, name) in loadedNames' :value='id' v-model='flag.assignedTo[0]'>
+            <option v-for='(id, name) in loadedNames' :value='id'>
               {{id}}
             </option>
           </select>
