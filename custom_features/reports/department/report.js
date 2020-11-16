@@ -12,6 +12,7 @@
   for (let i = 0; i < enrollments.length; i++) {
     let enrollment = enrollments[i];
     if (enrollment.id in deptData) {
+      console.log(enrollment);
       console.log(deptData[enrollment.id]);
     }
   }
