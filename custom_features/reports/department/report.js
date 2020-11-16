@@ -1,6 +1,6 @@
 (async function () {
   $('#content').empty();
-  let dept = 3824;
+  let dept = CURRENT_DEPARTMENT_ID;
   let jsonUrl = 'https://jhveem.xyz/canvas/custom_features/reports/department/data.json';
   let jsonData = await canvasGet(jsonUrl);
   let deptData = jsonData[dept];
