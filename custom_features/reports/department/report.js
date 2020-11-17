@@ -26,9 +26,10 @@
       let progress = course.progress * .01;
       if (progress > 1) progress = 1;
       console.log(progress);
-      let progressWidth = Math.round(progress * 64);
+      let containerWidth = 96;
+      let progressWidth = Math.round(progress * containerWidth);
       console.log(progressWidth);
-      div.append(`<div style="width: 64px; border: 1px solid #000; background-color: #334;">
+      div.append(`<div style="width: `+containerWidth+`px; border: 1px solid #000; background-color: #334;">
           <div style='background-color: #1C91A4; color: #fff; width: ` + progressWidth + `px'>` + courseCode + `</div>
         </div>`);
     }
