@@ -28,7 +28,7 @@
       let containerWidth = 102;
       let progressWidth = Math.round(progress * containerWidth);
       console.log(progressWidth);
-      div.append(`<div style="display: inline-block; border: 1px solid #000; background-color: #334;">
+      div.append(`<div style="display: inline-block; padding: 2px; border: 1px solid #000; background-color: #334;">
           <div style='white-space: nowrap; background-color: #1C91A4; color: #fff; width: ` + course.progress + `%;'>` + courseCode + `</div>
         </div>`);
     }
