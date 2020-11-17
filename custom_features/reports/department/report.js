@@ -25,12 +25,11 @@
       let course = user.courses[courseCode][0];
       let progress = course.progress * .01;
       if (progress > 1) progress = 1;
-      console.log(progress);
       let containerWidth = 102;
       let progressWidth = Math.round(progress * containerWidth);
       console.log(progressWidth);
-      div.append(`<div style="width: `+containerWidth+`px; border: 1px solid #000; background-color: #334;">
-          <div style='background-color: #1C91A4; color: #fff; width: ` + progressWidth + `px'>` + courseCode + `</div>
+      div.append(`<div style="border: 1px solid #000; background-color: #334;">
+          <div style='background-color: #1C91A4; color: #fff; width: ` + course.progress + `%;'>` + courseCode + `</div>
         </div>`);
     }
     content.append(div);
