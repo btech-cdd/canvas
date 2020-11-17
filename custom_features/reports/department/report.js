@@ -26,7 +26,7 @@
       let progress = course.progress;
       if (progress > 100) progress = 100;
       div.append(`<div style="display: inline-block; border: 1px solid #000; background-color: #334;">
-          <div style='box-sizing: border-box; white-space: nowrap; padding: 1px; font-size: 0.5em; background-color: #1C91A4; color: #fff; width: ` + progress + `%;'>` + courseCode + `</div>
+          <div style='box-sizing: border-box; white-space: nowrap; padding: 1px; font-size: 0.75em; background-color: #1C91A4; color: #fff; width: ` + progress + `%;'>` + courseCode + `</div>
         </div>`);
     }
     div.append('<br>')
