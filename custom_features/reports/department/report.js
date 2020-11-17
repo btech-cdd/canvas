@@ -21,18 +21,16 @@
     let user = deptUsers[userId];
     let div = $('<div></div>');
     div.append('<span>' + user.name + '</span>');
-    for (let courseId in user) {
-      if (courseId !== 'name') {
-        let course = user[courseId];
-        let progress = course.progress * .01;
-        if (progress > 1) progress = 1;
-        console.log(progress);
-        let progressWidth = Math.round(progress * 64);
-        console.log(progressWidth);
-        div.append(`<div style="width: 64px; border: 1px solid #000; background-color: #334;">
-          <div style='background-color: #1C91A4; color: #fff; width: `+progressWidth+`px'>`+courseId+`</div>
+    for (let courseCode in user.courses) {
+      let course = user.courses[courseId][0];
+      let progress = course.progress * .01;
+      if (progress > 1) progress = 1;
+      console.log(progress);
+      let progressWidth = Math.round(progress * 64);
+      console.log(progressWidth);
+      div.append(`<div style="width: 64px; border: 1px solid #000; background-color: #334;">
+          <div style='background-color: #1C91A4; color: #fff; width: ` + progressWidth + `px'>` + courseCode + `</div>
         </div>`);
-      }
     }
     content.append(div);
     console.log(user);
