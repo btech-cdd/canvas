@@ -32,6 +32,7 @@
           <div style='background-color: #1C91A4; color: #fff; width: ` + course.progress + `%;'>` + courseCode + `</div>
         </div>`);
     }
+    div.append('<br>')
     content.append(div);
     console.log(user);
   }
