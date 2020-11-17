@@ -3,7 +3,7 @@
   let content = $('#content');
   content.empty();
   let dept = CURRENT_DEPARTMENT_ID;
-  let jsonUrl = 'https://jhveem.xyz/canvas/custom_features/reports/department/data.json';
+  let jsonUrl = 'https://jhveem.xyz/canvas/custom_features/reports/department/progress.json';
   let jsonData = await canvasGet(jsonUrl);
   let deptUsers = jsonData[0][dept];
   let usersUrl = '/api/v1/accounts/' + dept + '/users';
