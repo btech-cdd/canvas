@@ -20,7 +20,7 @@
   for (let userId in deptUsers) {
     let user = deptUsers[userId];
     let div = $('<div></div>');
-    div.append('<span>' + user.name + '</span>');
+    div.append('<span>' + user.name + '</span><br>');
     for (let courseCode in user.courses) {
       let course = user.courses[courseCode][0];
       let progress = course.progress * .01;
@@ -28,7 +28,7 @@
       let containerWidth = 102;
       let progressWidth = Math.round(progress * containerWidth);
       console.log(progressWidth);
-      div.append(`<div style="border: 1px solid #000; background-color: #334;">
+      div.append(`<div style="display: inline-block; border: 1px solid #000; background-color: #334;">
           <div style='background-color: #1C91A4; color: #fff; width: ` + course.progress + `%;'>` + courseCode + `</div>
         </div>`);
     }
