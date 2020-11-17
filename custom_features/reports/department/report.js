@@ -20,7 +20,7 @@
   for (let userId in deptUsers) {
     let user = deptUsers[userId];
     let div = $('<div></div>');
-    div.append('<span>' + user.name + '</span><br>');
+    div.append('<span><a href="/users/'+userId+'"' + user.name + '</a></span><br>');
     for (let courseCode in user.courses) {
       let course = user.courses[courseCode][0];
       let progress = course.progress * .01;
