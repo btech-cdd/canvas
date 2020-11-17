@@ -22,7 +22,7 @@
     let div = $('<div></div>');
     div.append('<span>' + user.name + '</span>');
     for (let courseCode in user.courses) {
-      let course = user.courses[courseId][0];
+      let course = user.courses[courseCode][0];
       let progress = course.progress * .01;
       if (progress > 1) progress = 1;
       console.log(progress);
