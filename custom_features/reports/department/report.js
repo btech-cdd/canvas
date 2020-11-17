@@ -1,3 +1,4 @@
+//include a last updated list
 (async function () {
   let content = $('#content');
   content.empty();
