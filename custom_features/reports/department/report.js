@@ -59,9 +59,16 @@
 
         computed: {
           coreCourses: function () {
-            return this.columns.filter(function (c) {
-              return c.visible;
-            })
+            let core = [];
+            let app = this;
+            let courses = app.json[app.currentDepartment];
+            for (let c = 0; c < courses.length; c++) {
+              let course = courses[c];
+              if (course.is_core) {
+                core.push(course);
+              }
+            }
+            return core;
           }
         },
 

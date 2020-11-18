@@ -9,8 +9,14 @@
     >
       <span><a :href="'/users/' + userId">{{user.name}}</a></span><br>
       <div 
+        v-for='course in coreCourses'
+        :key='course.code'
+      >
+        {{course.code}}
+      </div>
+      <div 
         v-for='(course, courseId) in user.courses'
-        v-bind:key='courseId'
+        :key='courseId'
         style="display: inline-block; border: 1px solid #000; background-color: #334;"
       >
 
