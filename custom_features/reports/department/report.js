@@ -61,7 +61,7 @@
           coreCourses: function () {
             let core = [];
             let app = this;
-            let courses = app.json[app.currentDepartment];
+            let courses = app.json['departments'][app.currentDepartment];
             for (let c = 0; c < courses.length; c++) {
               let course = courses[c];
               if (course.is_core) {
