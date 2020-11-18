@@ -36,7 +36,6 @@
             }
           }
           app.users = deptUsers;
-          console.log(app.users);
           /*
           for (let userId in deptUsers) {
             let user = deptUsers[userId];
@@ -59,6 +58,18 @@
         },
 
         computed: {
+          electiveCourses: function () {
+            let core = [];
+            let app = this;
+            let courses = app.json['departments'][app.currentDepartment];
+            for (let c = 0; c < courses.length; c++) {
+              let course = courses[c];
+              if (!course.is_core) {
+                core.push(course);
+              }
+            }
+            return core;
+          },
           coreCourses: function () {
             let core = [];
             let app = this;
