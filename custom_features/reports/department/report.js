@@ -20,6 +20,7 @@
           await app.loadJsonFile('progress');
           await app.loadJsonFile('departments');
           await app.loadJsonFile('canvas_to_jenz');
+          console.log(app.json);
           app.availableDepartments = app.json.canvas_to_jenz[CURRENT_DEPARTMENT_ID];
           app.currentDepartment = app.availableDepartments[0];
 
