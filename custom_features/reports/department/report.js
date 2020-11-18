@@ -20,6 +20,8 @@
           await app.loadJsonFile('progress');
           await app.loadJsonFile('departments');
           await app.loadJsonFile('canvas_to_jenz');
+          app.availableDepartments = json.canvas_to_jenz[CURRENT_DEPARTMENT_ID];
+          app.currentDepartment = app.availableDepartments[0];
 
           let deptUsers = app.json['progress'][0][CURRENT_DEPARTMENT_ID];
           let usersUrl = '/api/v1/accounts/' + dept + '/users';
@@ -54,17 +56,27 @@
           app.loading = false;
         },
 
+        computed: {
+          coreCourses: function () {
+            return this.columns.filter(function (c) {
+              return c.visible;
+            })
+          }
+        },
+
         data: function () {
           return {
             loading: true,
             json: {},
             users: [],
+            currentDepartment: '',
+            availableDepartments: []
           }
         },
         methods: {
           async loadJsonFile(name) {
             let app = this;
-            let jsonUrl = 'https://jhveem.xyz/canvas/custom_features/reports/department/'+name+'.json';
+            let jsonUrl = 'https://jhveem.xyz/canvas/custom_features/reports/department/' + name + '.json';
             let jsonData = await canvasGet(jsonUrl);
             app.json[name] = jsonData;
           }

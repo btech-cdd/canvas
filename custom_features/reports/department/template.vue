@@ -1,5 +1,8 @@
 <template>
   <div>
+    <select v-bind='department'>
+      <option v-for='department in availableDepartments'>{{department}}</option>
+    </select>
     <div 
       v-for='(user, userId) in users'
       :key='userId'
