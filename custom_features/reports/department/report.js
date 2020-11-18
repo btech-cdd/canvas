@@ -13,7 +13,7 @@
       content.append('<div id="canvas-department-report-vue"></div>')
       $("#canvas-department-report-vue").append(vueString);
       this.APP = new Vue({
-        el: '#canvas-individual-report-vue',
+        el: '#canvas-department-report-vue',
         mounted: async function () {
           let app = this;
           let dept = CURRENT_DEPARTMENT_ID;
