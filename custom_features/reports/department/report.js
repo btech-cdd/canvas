@@ -63,9 +63,10 @@
         },
         methods: {
           async loadJsonFile(name) {
+            let app = this;
             let jsonUrl = 'https://jhveem.xyz/canvas/custom_features/reports/department/'+name+'.json';
             let jsonData = await canvasGet(jsonUrl);
-            json[name] = jsonData;
+            app.json[name] = jsonData;
           }
         }
       })
