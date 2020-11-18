@@ -36,6 +36,7 @@
             }
           }
           app.users = deptUsers;
+          console.log(app.users);
           /*
           for (let userId in deptUsers) {
             let user = deptUsers[userId];
