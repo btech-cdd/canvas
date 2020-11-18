@@ -1,6 +1,6 @@
 <template>
   <div>
-    <select v-bind='department'>
+    <select v-bind='currentDepartment'>
       <option v-for='department in availableDepartments'>{{department}}</option>
     </select>
     <div 
