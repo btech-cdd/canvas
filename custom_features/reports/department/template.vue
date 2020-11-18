@@ -25,6 +25,7 @@
           {{course.code}}
         </div>
         <div
+          style='box-sizing: border-box; white-space: nowrap; padding: 0px 5px; font-size: 0.75em; color: #fff;'
           v-else
         >
           {{course.code}}
