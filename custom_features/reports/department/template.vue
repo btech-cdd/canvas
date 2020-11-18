@@ -10,9 +10,14 @@
         <div 
           v-for='(course, courseId) in user.courses'
           v-bind:key='courseId'
-          style='box-sizing: border-box; white-space: nowrap; padding: 0px 5px; font-size: 0.75em; background-color: #1C91A4; color: #fff; width: ` + progress + `%;'
+          style='box-sizing: border-box; white-space: nowrap; padding: 0px 5px; font-size: 0.75em; background-color: #1C91A4; color: #fff;'
+          :style="
+            {
+              width: course[0].progress + '%'
+            }
+          " 
          >
-          {{course}}
+          {{courseId}}
         </div>
       </div>
     </div>
