@@ -123,10 +123,16 @@
 
             //Alphabetize
             users.sort(function (a, b) {
-              if (a.name.toLowerCase() < b.name.toLowerCase()) {
+              aName = a.name;
+              if (aName != undefined) aName = aName.toLowerCase();
+
+              bName = b.name;
+              if (bName != undefined) bName = bName.toLowerCase();
+
+              if (aName < bName) {
                 return -1;
               }
-              if (a.name.toLowerCase() > b.name.toLowerCase()) {
+              if (aName > bName) {
                 return 1;
               }
               return 0;
