@@ -98,9 +98,16 @@
             let app = this;
             let users = {};
             let jsonUsers = app.json['progress'];
+            console.log(jsonUsers);
+            let depts = app.json['departments'];
+            console.log(depts);
+            console.log(app.currentDepartment);
+            let deptCourses = depts[app.currentDepartment];
+            console.log(deptCourses);
+
             for (userId in jsonUsers) {
               let user = jsonUsers[userId];
-              for (course in app.json['departments'][app.currentDepartment]) {
+              for (course in deptCourses) {
                 if (course.code in user.courses) {
                   users[userId] = user;
                 }
