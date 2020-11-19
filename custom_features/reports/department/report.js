@@ -96,9 +96,18 @@
         methods: {
           loadDepartmentUsers() {
             let app = this;
-            let users;
+            let users = {};
             let jsonUsers = app.json['progress'];
-
+            for (userId in jsonUsers) {
+              let user = jsonUsers[userId];
+              for (course in app.json['departments'][app.currentDepartment]) {
+                if (course.code in user.courses) {
+                  users[userId] = user;
+                }
+              }
+            }
+            console.log(users);
+            app.users = users;
           },
           async loadJsonFile(name) {
             let app = this;
