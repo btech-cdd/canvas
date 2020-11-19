@@ -108,8 +108,9 @@
             for (userId in jsonUsers) {
               let user = jsonUsers[userId];
               for (course in deptCourses) {
-                if (course.code in user.courses) {
+                if (user.courses[course.code] !== undefined) {
                   users[userId] = user;
+                  break;
                 }
               }
             }
