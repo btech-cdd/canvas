@@ -107,16 +107,17 @@
             console.log(app.currentDepartment);
 
             //set last activity date
-            let users = {};
+            let users = [];
             let jsonUsers = app.json['progress'];
             let depts = app.json['departments'];
             let deptCourses = depts[app.currentDepartment];
             for (userId in jsonUsers) {
               let user = jsonUsers[userId];
+              user.id = userId;
               for (c in deptCourses) {
                 let course = deptCourses[c];
                 if (user.courses[course.code] !== undefined) {
-                  users[userId] = user;
+                  users.push(user);
                   break;
                 }
               }

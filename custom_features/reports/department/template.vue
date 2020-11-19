@@ -3,9 +3,9 @@
     <select @change='loadDepartmentUsers' v-model='currentDepartment'>
       <option v-for='department in availableDepartments' :value='department'>{{department}}</option>
     </select>
-    <div v-for='(user, userId) in users' :key='userId'>
+    <div v-for='user in users' :key='user.id'>
       <div v-if='user.name != undefined' style='padding-bottom: .5em;'>
-        <span><a :href="'/users/' + userId">{{user.name}}</a></span><br>
+        <span><a :href="'/users/' + user.id">{{user.name}}</a></span><br>
 
         <!--CORE COURSES-->
         <div v-for='course in coreCourses' :key='course.code'
