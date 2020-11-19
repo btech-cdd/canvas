@@ -24,7 +24,6 @@
           app.availableDepartments = app.json.canvas_to_jenz[CURRENT_DEPARTMENT_ID];
           app.currentDepartment = app.availableDepartments[0];
 
-          let deptUsers = app.json['progress'][CURRENT_DEPARTMENT_ID];
           let usersUrl = '/api/v1/accounts/' + dept + '/users';
           let users = await canvasGet(usersUrl, {
             enrollment_type: 'student'
@@ -32,10 +31,11 @@
           for (let i = 0; i < users.length; i++) {
             let user = users[i];
             if (user.id in deptUsers) {
-              deptUsers[user.id].name = user.sortable_name;
+              app.json['progress'][user.id].name = user.sortable_name;
             }
           }
-          app.users = deptUsers;
+
+          app.loadDepartmentUsers();
           /*
           for (let userId in deptUsers) {
             let user = deptUsers[userId];
@@ -94,6 +94,12 @@
           }
         },
         methods: {
+          loadDepartmentUsers() {
+            let app = this;
+            let users;
+            let jsonUsers = app.json['progress'];
+
+          },
           async loadJsonFile(name) {
             let app = this;
             let jsonUrl = 'https://jhveem.xyz/canvas/custom_features/reports/department/' + name + '.json';
