@@ -109,7 +109,8 @@
               console.log(userId)
               let user = jsonUsers[userId];
               console.log(user);
-              for (course in deptCourses) {
+              for (c in deptCourses) {
+                let course = deptCourses[c];
                 console.log(course);
                 if (user.courses[course.code] !== undefined) {
                   users[userId] = user;
