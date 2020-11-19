@@ -1,6 +1,6 @@
 <template>
   <div>
-    <select @change='loadDepartmentUsers' v-bind='currentDepartment'>
+    <select @change='loadDepartmentUsers' v-model='currentDepartment'>
       <option v-for='department in availableDepartments' :value='department'>{{department}}</option>
     </select>
     <div v-for='(user, userId) in users' :key='userId'>
