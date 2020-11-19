@@ -30,7 +30,7 @@
           });
           for (let i = 0; i < users.length; i++) {
             let user = users[i];
-            if (user.id in deptUsers) {
+            if (user.id in app.json['progress']) {
               app.json['progress'][user.id].name = user.sortable_name;
             }
           }
