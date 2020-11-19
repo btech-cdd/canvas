@@ -103,14 +103,13 @@
             return list;
           },
           loadDepartmentUsers() {
+            console.log(app.currentDepartment);
             //set last activity date
             let app = this;
             let users = {};
             let jsonUsers = app.json['progress'];
             let depts = app.json['departments'];
             let deptCourses = depts[app.currentDepartment];
-
-
             for (userId in jsonUsers) {
               let user = jsonUsers[userId];
               for (c in deptCourses) {
