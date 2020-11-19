@@ -8,7 +8,6 @@
         <span><a :href="'/users/' + userId">{{user.name}}</a></span><br>
 
         <!--CORE COURSES-->
-        <div>Core</div>
         <div v-for='course in coreCourses' :key='course.code'
           style="display: inline-block; border: 1px solid #000; background-color: #334;">
           <div
@@ -27,8 +26,7 @@
         </div>
 
         <!--Elective-->
-        <div v-if='electiveCourses.length > 0'>
-          <div>Electives</div>
+        <div v-if='electiveCourses.length > 0' style='border-top: 1px solid #000;'>
           <div v-for='course in electiveCourses' :key='course.code'
             style="display: inline-block; border: 1px solid #000; background-color: #334;">
             <div
