@@ -123,11 +123,13 @@
 
             //Alphabetize
             users.sort(function (a, b) {
-              aName = a.name;
+              let aName = a.name;
               if (aName != undefined) aName = aName.toLowerCase();
+              else aName = '';
 
-              bName = b.name;
+              let bName = b.name;
               if (bName != undefined) bName = bName.toLowerCase();
+              else bName = '';
 
               return aName.localeCompare(bName);
             });
