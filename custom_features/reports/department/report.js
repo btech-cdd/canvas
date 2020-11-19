@@ -59,28 +59,8 @@
 
         computed: {
           electiveCourses: function () {
-            let core = [];
-            let app = this;
-            let courses = app.json['departments'][app.currentDepartment];
-            for (let c = 0; c < courses.length; c++) {
-              let course = courses[c];
-              if (!course.is_core) {
-                core.push(course);
-              }
-            }
-            return core;
           },
           coreCourses: function () {
-            let core = [];
-            let app = this;
-            let courses = app.json['departments'][app.currentDepartment];
-            for (let c = 0; c < courses.length; c++) {
-              let course = courses[c];
-              if (course.is_core) {
-                core.push(course);
-              }
-            }
-            return core;
           }
         },
 
@@ -90,16 +70,46 @@
             json: {},
             users: [],
             currentDepartment: '',
+            coreCourses: [],
+            electiveCourses: [],
             availableDepartments: []
           }
         },
         methods: {
+          calcElectiveCourses() {
+            let list = [];
+            let app = this;
+            let courses = app.json['departments'][app.currentDepartment];
+            for (let c = 0; c < courses.length; c++) {
+              let course = courses[c];
+              if (!course.is_core) {
+                list.push(course);
+              }
+            }
+            app.electiveCourses = list;
+            return list;
+          },
+          calcCoreCourses() {
+            let list = [];
+            let app = this;
+            let courses = app.json['departments'][app.currentDepartment];
+            for (let c = 0; c < courses.length; c++) {
+              let course = courses[c];
+              if (course.is_core) {
+                list.push(course);
+              }
+            }
+            app.coreCourses = list;
+            return list;
+          },
           loadDepartmentUsers() {
+            //set last activity date
             let app = this;
             let users = {};
             let jsonUsers = app.json['progress'];
             let depts = app.json['departments'];
             let deptCourses = depts[app.currentDepartment];
+
 
             for (userId in jsonUsers) {
               let user = jsonUsers[userId];
@@ -113,6 +123,8 @@
             }
             console.log(users);
             app.users = users;
+            app.calcCoreCourses();
+            app.calcElectiveCourses();
           },
           async loadJsonFile(name) {
             let app = this;
