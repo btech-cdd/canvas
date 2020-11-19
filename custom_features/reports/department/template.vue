@@ -4,8 +4,7 @@
       <option v-for='department in availableDepartments'>{{department}}</option>
     </select>
     <div v-for='(user, userId) in users' :key='userId'>
-      <div v-if='user.name != undefined'>
-        <br>
+      <div v-if='user.name != undefined' style='padding-bottom: .5em;'>
         <span><a :href="'/users/' + userId">{{user.name}}</a></span><br>
 
         <!--CORE COURSES-->
