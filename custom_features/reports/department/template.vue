@@ -5,6 +5,7 @@
     </select>
     <div v-for='(user, userId) in users' :key='userId'>
       <div v-if='user.name != undefined'>
+        <br>
         <span><a :href="'/users/' + userId">{{user.name}}</a></span><br>
 
         <!--CORE COURSES-->
