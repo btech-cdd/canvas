@@ -103,13 +103,11 @@
 
             for (userId in jsonUsers) {
               let user = jsonUsers[userId];
-              if (user.name != '') {
-                for (c in deptCourses) {
-                  let course = deptCourses[c];
-                  if (user.courses[course.code] !== undefined) {
-                    users[userId] = user;
-                    break;
-                  }
+              for (c in deptCourses) {
+                let course = deptCourses[c];
+                if (user.courses[course.code] !== undefined) {
+                  users[userId] = user;
+                  break;
                 }
               }
             }
