@@ -1,7 +1,7 @@
 <template>
   <div>
     <select @change='loadDepartmentUsers' v-bind='currentDepartment'>
-      <option v-for='department in availableDepartments'>{{department}}</option>
+      <option v-for='department in availableDepartments' :value='department'>{{department}}</option>
     </select>
     <div v-for='(user, userId) in users' :key='userId'>
       <div v-if='user.name != undefined' style='padding-bottom: .5em;'>
