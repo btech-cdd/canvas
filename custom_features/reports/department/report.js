@@ -98,26 +98,18 @@
             let app = this;
             let users = {};
             let jsonUsers = app.json['progress'];
-            console.log(jsonUsers);
             let depts = app.json['departments'];
-            console.log(depts);
-            console.log(app.currentDepartment);
             let deptCourses = depts[app.currentDepartment];
-            console.log(deptCourses);
 
             for (userId in jsonUsers) {
-              console.log(userId)
               let user = jsonUsers[userId];
-              console.log(user);
               for (c in deptCourses) {
                 let course = deptCourses[c];
-                console.log(course);
                 if (user.courses[course.code] !== undefined) {
                   users[userId] = user;
                   break;
                 }
               }
-              break;
             }
             console.log(users);
             app.users = users;
