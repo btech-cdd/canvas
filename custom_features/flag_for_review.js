@@ -335,8 +335,8 @@ Look into quill editor
                 let item = module.items[i];
                 if (item.url !== undefined) {
                   let item_url = item.url.replace('/api/v1', '');
-                  for (let f = 0; f < flags.length; f++) {
-                    let flag = flags[f];
+                  for (let f = 0; f < app.flags.length; f++) {
+                    let flag = app.flags[f];
                     if (item_url === flag.item_url && flag.resolved === false) {
                       let li = $('li#context_module_item_' + item.id);
                       //Clicking on this icon should do something and/or hovering should give info about the flag.
