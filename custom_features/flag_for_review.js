@@ -217,6 +217,7 @@ Look into quill editor
 
       //For modules page
       else if (rInCourse.test(url)) {
+        console.log("in course")
         app.pageType = 'course';
         let flags = [];
         let match = url.match(rInCourse);
