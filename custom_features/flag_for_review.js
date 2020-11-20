@@ -228,7 +228,6 @@ Look into quill editor
           }
         });
         app.flags = flags;
-
         app.displayModuleFlags();
       }
 
@@ -323,7 +322,7 @@ Look into quill editor
         let app = this;
         if (app.rModules.test(app.url)) {
           //clear away flags
-          $('.ig-flags').each(function() {
+          $('.ig-flag').each(function() {
             $(this).remove();
           })
 
