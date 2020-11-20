@@ -107,7 +107,7 @@ Look into quill editor
         <div style='width: 100%;'>
           <i @click='deleteFlag(flag);' class='icon-trash'></i>
           <i v-if='flag.resolved' @click='resolveFlag(flag);' class='icon-publish icon-Solid' style='color: #0f0;'></i>
-          <i v-else @click='resolveFlag(flag);' class='icon-publish' style='color: #f00;'></i>
+          <i v-else @click='resolveFlag(flag); displayModuleFlags();' class='icon-publish' style='color: #f00;'></i>
         </div>
       </div>
     </div>
@@ -192,7 +192,6 @@ Look into quill editor
       let url = window.location.pathname.replace(/edit$/, '');
       let rItem = /^\/courses\/([0-9]+)\/(pages|assignments|quizzes|discussion_topics)\/(.*)$/;
       let rInCourse = /^\/courses\/([0-9]+)/;
-      let rModules = /^\/courses\/([0-9]+)(\/modules){0,1}$/;
 
       //in a page/quiz/assignment
       if (rItem.test(url)) {
@@ -217,13 +216,11 @@ Look into quill editor
 
       //For modules page
       else if (rInCourse.test(url)) {
-        console.log("in course")
         app.pageType = 'course';
         let flags = [];
         let match = url.match(rInCourse);
         app.courseId = match[1];
         await $.get("https://jhveem.xyz/api/flags/courses/" + app.courseId, function (data) {
-          console.log(data);
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
             flag = app.initFlag(flag);
@@ -232,28 +229,7 @@ Look into quill editor
         });
         app.flags = flags;
 
-        if (rModules.test(url)) {
-          await $.get('/api/v1/courses/' + app.courseId + '/modules?include[]=items&include[]=content_details', function (data) {
-            for (let m = 0; m < data.length; m++) {
-              let module = data[m];
-              for (let i = 0; i < module.items.length; i++) {
-                let item = module.items[i];
-                if (item.url !== undefined) {
-                  let item_url = item.url.replace('/api/v1', '');
-                  for (let f = 0; f < flags.length; f++) {
-                    let flag = flags[f];
-                    if (item_url === flag.item_url && flag.resolved === false) {
-                      let li = $('li#context_module_item_' + item.id);
-                      //Clicking on this icon should do something and/or hovering should give info about the flag.
-                      li.find('div.ig-row div.ig-info').after('<div class="ig-flag"><i class="fas fa-flag" aria-hidden="true"></i></div>');
-                    }
-                  }
-                }
-              }
-            }
-          })
-        }
-        console.log(app.flags);
+        app.displayModuleFlags();
       }
 
       //any other page, not in a specific course
@@ -321,6 +297,8 @@ Look into quill editor
         cddInfo: [],
         loadedNames: {},
         loadedCourses: {},
+        rModules: /^\/courses\/([0-9]+)(\/modules){0,1}$/,
+        url: window.location.pathname.replace(/edit$/, '')
 
         //qol
       }
@@ -341,6 +319,36 @@ Look into quill editor
       }
     },
     methods: {
+      displayModuleFlags() {
+        let app = this;
+        if (app.rModules.test(app.url)) {
+          //clear away flags
+          $('.ig-flags').each(function() {
+            $(this).remove();
+          })
+
+          //Get module items and set up flags
+          await $.get('/api/v1/courses/' + app.courseId + '/modules?include[]=items&include[]=content_details', function (data) {
+            for (let m = 0; m < data.length; m++) {
+              let module = data[m];
+              for (let i = 0; i < module.items.length; i++) {
+                let item = module.items[i];
+                if (item.url !== undefined) {
+                  let item_url = item.url.replace('/api/v1', '');
+                  for (let f = 0; f < flags.length; f++) {
+                    let flag = flags[f];
+                    if (item_url === flag.item_url && flag.resolved === false) {
+                      let li = $('li#context_module_item_' + item.id);
+                      //Clicking on this icon should do something and/or hovering should give info about the flag.
+                      li.find('div.ig-row div.ig-info').after('<div class="ig-flag"><i class="fas fa-flag" aria-hidden="true"></i></div>');
+                    }
+                  }
+                }
+              }
+            }
+          })
+        }
+      }
       checkDisplayFlag(flag) {
         let app = this;
         //do not include the check on if the name is loaded here because it messes up the flag count displayed before the menu opens
