@@ -253,6 +253,7 @@ Look into quill editor
             }
           })
         }
+        console.log(app.flags);
       }
 
       //any other page, not in a specific course
