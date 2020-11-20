@@ -319,7 +319,7 @@ Look into quill editor
       }
     },
     methods: {
-      displayModuleFlags() {
+      async displayModuleFlags() {
         let app = this;
         if (app.rModules.test(app.url)) {
           //clear away flags
