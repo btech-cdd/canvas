@@ -14,10 +14,9 @@
             style='box-sizing: border-box; white-space: nowrap; padding: 0px 5px; font-size: 0.75em; background-color: #1C91A4; color: #fff;'
             v-if='user.courses[course.code] !== undefined' :style="
             {
-              width: user.courses[course.code][0].progess + '%'
+              width: user.courses[course.code][0].progress + '%'
             }
           ">
-            {{user.courses[course.code][0]}}
             {{course.code}}
           </div>
           <div style='box-sizing: border-box; white-space: nowrap; padding: 0px 5px; font-size: 0.75em; color: #fff;'
