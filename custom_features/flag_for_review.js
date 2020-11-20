@@ -107,7 +107,7 @@ Look into quill editor
         <div style='width: 100%;'>
           <i @click='deleteFlag(flag);' class='icon-trash'></i>
           <i v-if='flag.resolved' @click='resolveFlag(flag);' class='icon-publish icon-Solid' style='color: #0f0;'></i>
-          <i v-else @click='resolveFlag(flag); displayModuleFlags();' class='icon-publish' style='color: #f00;'></i>
+          <i v-else @click='resolveFlag(flag);' class='icon-publish' style='color: #f00;'></i>
         </div>
       </div>
     </div>
@@ -322,12 +322,12 @@ Look into quill editor
         let app = this;
         if (app.rModules.test(app.url)) {
           //clear away flags
-          $('.ig-flag').each(function() {
-            $(this).remove();
-          })
 
           //Get module items and set up flags
           await $.get('/api/v1/courses/' + app.courseId + '/modules?include[]=items&include[]=content_details', function (data) {
+            $('.ig-flag').each(function () {
+              $(this).remove();
+            })
             for (let m = 0; m < data.length; m++) {
               let module = data[m];
               for (let i = 0; i < module.items.length; i++) {
@@ -487,6 +487,7 @@ Look into quill editor
         app.updateFlag(flag, {
           'resolved': flag.resolved
         });
+        app.displayModuleFlags();
       },
 
       async assignFlag(flag) {
