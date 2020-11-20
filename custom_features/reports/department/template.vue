@@ -5,7 +5,7 @@
     </select>
     <div v-for='user in users' :key='user.id'>
       <div v-if='user.name != undefined' style='padding-bottom: .5em;'>
-        <span><a :href="'/users/' + user.id">{{user.name}}</a></span><br>
+        <span><a :href="'/users/' + user.id">{{user.name}}</a></span><span>{{user.last}}</span><br>
 
         <!--CORE COURSES-->
         <div v-for='course in coreCourses' :key='course.code'
