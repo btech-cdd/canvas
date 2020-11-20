@@ -348,7 +348,7 @@ Look into quill editor
             }
           })
         }
-      }
+      },
       checkDisplayFlag(flag) {
         let app = this;
         //do not include the check on if the name is loaded here because it messes up the flag count displayed before the menu opens
