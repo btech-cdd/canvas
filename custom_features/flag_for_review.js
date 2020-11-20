@@ -2,9 +2,6 @@ CANVAS_FLAGS = {};
 (async function () {
   let canvasbody = $("#application");
   /*
-    make the assign name a drop down that you can edit whenever and is always there
-
-
   lots of options for sorting / filtering flags
   to do list on the front page organized by department or course?
 
@@ -109,7 +106,6 @@ Look into quill editor
         </div>
         <div style='width: 100%;'>
           <i @click='deleteFlag(flag);' class='icon-trash'></i>
-          <i @click='assignFlag(flag);' class='far fa-share-square'></i>
           <i v-if='flag.resolved' @click='resolveFlag(flag);' class='icon-publish icon-Solid' style='color: #0f0;'></i>
           <i v-else @click='resolveFlag(flag);' class='icon-publish' style='color: #f00;'></i>
         </div>
