@@ -223,6 +223,7 @@ Look into quill editor
         let match = url.match(rInCourse);
         app.courseId = match[1];
         await $.get("https://jhveem.xyz/api/flags/courses/" + app.courseId, function (data) {
+          console.log(data);
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
             flag = app.initFlag(flag);
