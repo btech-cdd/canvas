@@ -72,7 +72,13 @@
             coreCourses: [],
             electiveCourses: [],
             availableDepartments: [],
-            showStudentReport: false
+            showStudentReport: false,
+            graphSettings: {
+              startDate: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
+              endDate: new Date(),
+              radius: 8,
+
+            }
           }
         },
         methods: {
@@ -147,10 +153,7 @@
             app.showStudentReport = true;
             let graphElId = 'btech-department-report-student-submissions-graph';
             $('#' + graphElId).empty();
-            let radius = 8;
             let legendKeys = ['score', 'submitted'];
-            let startDate = new Date(new Date().setFullYear(new Date().getFullYear() - 1));
-            let endDate = new Date();
 
             var w = 800;
             var h = 450;
@@ -182,7 +185,7 @@
                 //check if there's submission data and if it's an assignment worth any points
                 if (submissionDate !== null && submission.assignment.points_possible > 0) {
                   submissionDate = new Date(submissionDate);
-                  if (submissionDate > startDate) {
+                  if (submissionDate > app.graphSettings.startDate) {
                     submission.submissionDate = submissionDate;
                     submissions.push(submission);
                   }
@@ -191,7 +194,7 @@
             }
 
             var x = d3.scaleTime()
-              .domain([startDate, endDate])
+              .domain([app.graphSettings.startDate, app.graphSettings.endDate])
               .range([0, width]);
 
             var y = d3.scaleLinear()
@@ -241,7 +244,7 @@
               .attr("cy", function (d) {
                 return yPlot(d)
               })
-              .attr("r", radius)
+              .attr("r", app.graphSettings.radius)
               .attr("fill", "#334")
               .attr("stroke", "#000")
               .on("mouseover", app.handleMouseOver)
@@ -250,6 +253,7 @@
           },
           // Create Event Handlers for mouse
           handleMouseOver(mouse, submission) { // Add interactivity
+            let app = this;
             console.log(mouse);
             if (submission.id === undefined) {
               submission.id = genId();
@@ -257,7 +261,7 @@
             // Use D3 to select element, change color and size
             d3.select(mouse.target)
               .attr("fill", "#1C91A4")
-              .attr("r", radius * 1.5);
+              .attr("r", app.graphSettings.radius * 1.5);
 
             // Specify where to put label of text
             svg.append("text")
@@ -274,16 +278,18 @@
           },
 
           handleMouseOut(mouse, submission) {
+            let app = this;
             // Use D3 to select element, change color back to normal
             d3.select(mouse.target)
               .attr("fill", "#334")
-              .attr("r", radius);
+              .attr("r", app.graphSettings.radius);
 
             // Select text by id and then remove
             d3.select("#t-" + submission.id).remove(); // Remove text location
           },
 
           handleMouseClick(mouse, submission) {
+            let app = this;
             var newWindow = window.open(submission.preview_url);
           },
 
