@@ -78,7 +78,13 @@
               startDate: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
               endDate: new Date(),
               radius: 8,
+              x: d3.scaleTime()
+                .domain([app.graphSettings.startDate, app.graphSettings.endDate])
+                .range([0, width]),
 
+              y: d3.scaleLinear()
+                .domain([0, 100])
+                .range([height, 0]),
             }
           }
         },
@@ -194,13 +200,7 @@
               });
             }
 
-            var x = d3.scaleTime()
-              .domain([app.graphSettings.startDate, app.graphSettings.endDate])
-              .range([0, width]);
 
-            var y = d3.scaleLinear()
-              .domain([0, 100])
-              .range([height, 0]);
 
 
 
@@ -294,11 +294,12 @@
           },
 
           xPlot(d) {
-            return x(new Date(d.submissionDate)) + margin.left;
+            let app = this;
+            return app.graphSettings.x(new Date(d.submissionDate)) + margin.left;
           },
 
           yPlot(d) {
-            return y((d.score / d.assignment.points_possible) * 100) + margin.top;
+            return app.graphSettings.y((d.score / d.assignment.points_possible) * 100) + margin.top;
           },
 
           async loadJsonFile(name) {
