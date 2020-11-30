@@ -5,7 +5,7 @@
     </select>
     <div v-for='user in users' :key='user.id'>
       <div v-if='user.name != undefined' style='padding-bottom: .5em;'>
-        <div><span @click='openStudentReport(user);'>{{user.name}}</span><a :href="'/users/' + user.id">(profile)</a>
+        <div><span @click='openStudentReport(user);'>{{user.name}}</span> (<a :href="'/users/' + user.id">profile</a>)
         </div>
 
         <!--CORE COURSES-->
