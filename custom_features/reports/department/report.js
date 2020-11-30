@@ -219,14 +219,14 @@
               .classed('x axis', true)
               .attr("transform", "translate(0," + height + ")")
               .call(
-                d3.axisBottom(x)
+                d3.axisBottom(app.graphSettings.x)
                 .tickFormat(d3.timeFormat("%Y-%m"))
                 .ticks(d3.timeMonth.every(1))
               );
 
             chart.append('g')
               .classed('y axis', true)
-              .call(d3.axisLeft(y)
+              .call(d3.axisLeft(app.graphSettings.y)
                 .ticks(10));
 
             app.svg
