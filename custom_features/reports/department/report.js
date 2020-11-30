@@ -250,6 +250,7 @@
           },
           // Create Event Handlers for mouse
           handleMouseOver(mouse, submission) { // Add interactivity
+            console.log(mouse);
             if (submission.id === undefined) {
               submission.id = genId();
             }
