@@ -78,6 +78,8 @@
               startDate: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
               endDate: new Date(),
               radius: 8,
+              x: null,
+              y: null,
               margin: {
                 top: 30,
                 bottom: 40,
@@ -196,11 +198,13 @@
             var x = d3.scaleTime()
               .domain([app.graphSettings.startDate, app.graphSettings.endDate])
               .range([0, width]);
+            app.graphSettings.x = x;
 
             var y = d3.scaleLinear()
               .domain([0, 100])
               .range([height, 0]);
 
+            app.graphSettings.y = y;
 
 
             app.svg = d3.select('#' + graphElId).append('svg')
@@ -261,10 +265,10 @@
             app.svg.append("text")
               .attr("id", "t-" + submission.id) // Create an id for text so we can select it later for removing on mouseout
               .attr("x", function () {
-                return app.xPlot(submission, x);
+                return app.xPlot(submission, app.graphSettings.x);
               })
               .attr("y", function () {
-                return app.yPlot(submission, y);
+                return app.yPlot(submission, app.graphSettings.y);
               })
               .text(function () {
                 return submission.assignment.name; // Value of the text
