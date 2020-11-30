@@ -147,7 +147,6 @@
             app.showStudentReport = true;
             let graphElId = 'btech-department-report-student-submissions-graph';
             $('#' + graphElId).empty();
-            document.getElementById('content').innerHTML = '<div id="d3-test" height=' + height + ' width=' + width + 50 + '></div>';
             let radius = 8;
             let legendKeys = ['score', 'submitted'];
             let startDate = new Date(new Date().setFullYear(new Date().getFullYear() - 1));
