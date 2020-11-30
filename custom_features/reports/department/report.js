@@ -293,10 +293,12 @@
           },
 
           xPlot(d, x) {
+            let app = this;
             return x(new Date(d.submissionDate)) + app.graphSettings.margin.left;
           },
 
           yPlot(d, y) {
+            let app = this;
             return y((d.score / d.assignment.points_possible) * 100) + app.graphSettings.margin.top;
           },
 
