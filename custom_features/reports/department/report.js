@@ -142,7 +142,7 @@
             app.calcElectiveCourses();
           },
 
-          openStudentReport(user) {
+          async openStudentReport(user) {
             let app = this;
             app.showStudentReport = true;
             let graphElId = 'btech-department-report-student-submissions-graph';
