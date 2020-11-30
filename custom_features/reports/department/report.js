@@ -202,13 +202,7 @@
               .domain([0, 100])
               .range([height, 0]);
 
-            var xPlot = function (d) {
-              return x(new Date(d.submissionDate)) + margin.left;
-            }
 
-            var yPlot = function (d) {
-              return y((d.score / d.assignment.points_possible) * 100) + margin.top;
-            }
 
             app.svg = d3.select('#' + graphElId).append('svg')
               .attr('class', 'chart')
@@ -240,10 +234,10 @@
               .enter()
               .append("circle")
               .attr("cx", function (d) {
-                return xPlot(d)
+                return app.xPlot(d)
               })
               .attr("cy", function (d) {
-                return yPlot(d)
+                return app.yPlot(d)
               })
               .attr("r", app.graphSettings.radius)
               .attr("fill", "#334")
@@ -268,10 +262,10 @@
             app.svg.append("text")
               .attr("id", "t-" + submission.id) // Create an id for text so we can select it later for removing on mouseout
               .attr("x", function () {
-                return xPlot(submission);
+                return app.xPlot(submission);
               })
               .attr("y", function () {
-                return yPlot(submission);
+                return app.yPlot(submission);
               })
               .text(function () {
                 return submission.assignment.name; // Value of the text
@@ -297,6 +291,14 @@
           closeStudentReport() {
             let app = this;
             app.showStudentReport = false;
+          },
+
+          xPlot(d) {
+            return x(new Date(d.submissionDate)) + margin.left;
+          },
+
+          yPlot(d) {
+            return y((d.score / d.assignment.points_possible) * 100) + margin.top;
           },
 
           async loadJsonFile(name) {
