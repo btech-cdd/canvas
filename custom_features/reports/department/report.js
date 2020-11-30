@@ -78,9 +78,7 @@
               startDate: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
               endDate: new Date(),
               radius: 8,
-              x: null,
 
-              y: null
             }
           }
         },
@@ -196,13 +194,14 @@
               });
             }
 
-            app.graphSettings.x = d3.scaleTime()
+            var x = d3.scaleTime()
               .domain([app.graphSettings.startDate, app.graphSettings.endDate])
               .range([0, width]);
 
-            app.graphSettings.y = d3.scalelinear()
+            var y = d3.scaleLinear()
               .domain([0, 100])
               .range([height, 0]);
+
 
 
             app.svg = d3.select('#' + graphElId).append('svg')
@@ -219,14 +218,14 @@
               .classed('x axis', true)
               .attr("transform", "translate(0," + height + ")")
               .call(
-                d3.axisBottom(app.graphSettings.x)
+                d3.axisBottom(x)
                 .tickFormat(d3.timeFormat("%Y-%m"))
                 .ticks(d3.timeMonth.every(1))
               );
 
             chart.append('g')
               .classed('y axis', true)
-              .call(d3.axisLeft(app.graphSettings.y)
+              .call(d3.axisLeft(y)
                 .ticks(10));
 
             app.svg
@@ -235,10 +234,10 @@
               .enter()
               .append("circle")
               .attr("cx", function (d) {
-                return app.xPlot(d)
+                return app.xPlot(d, x)
               })
               .attr("cy", function (d) {
-                return app.yPlot(d)
+                return app.yPlot(d, y)
               })
               .attr("r", app.graphSettings.radius)
               .attr("fill", "#334")
@@ -263,10 +262,10 @@
             app.svg.append("text")
               .attr("id", "t-" + submission.id) // Create an id for text so we can select it later for removing on mouseout
               .attr("x", function () {
-                return app.xPlot(submission);
+                return app.xPlot(submission, x);
               })
               .attr("y", function () {
-                return app.yPlot(submission);
+                return app.yPlot(submission, y);
               })
               .text(function () {
                 return submission.assignment.name; // Value of the text
@@ -294,13 +293,12 @@
             app.showStudentReport = false;
           },
 
-          xPlot(d) {
-            let app = this;
-            return app.graphSettings.x(new Date(d.submissionDate)) + margin.left;
+          xPlot(d, x) {
+            return x(new Date(d.submissionDate)) + margin.left;
           },
 
-          yPlot(d) {
-            return app.graphSettings.y((d.score / d.assignment.points_possible) * 100) + margin.top;
+          yPlot(d, y) {
+            return y((d.score / d.assignment.points_possible) * 100) + margin.top;
           },
 
           async loadJsonFile(name) {
