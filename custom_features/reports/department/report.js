@@ -77,7 +77,7 @@
             graphSettings: {
               startDate: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
               endDate: new Date(),
-              radius: 8,
+              radius: 4,
               x: null,
               y: null,
               margin: {
@@ -261,8 +261,7 @@
             }
             // Use D3 to select element, change color and size
             d3.select(mouse.target)
-              .attr("fill", "#1C91A4")
-              .attr("r", app.graphSettings.radius * 1.5);
+              .attr("fill", "#1C91A4");
 
             // Specify where to put label of text
             app.svg.append("text")
@@ -282,8 +281,7 @@
             let app = this;
             // Use D3 to select element, change color back to normal
             d3.select(mouse.target)
-              .attr("fill", "#334")
-              .attr("r", app.graphSettings.radius);
+              .attr("fill", "#334");
 
             // Select text by id and then remove
             d3.select("#t-" + submission.id).remove(); // Remove text location
