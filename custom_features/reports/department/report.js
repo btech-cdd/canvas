@@ -255,7 +255,7 @@
               submission.id = genId();
             }
             // Use D3 to select element, change color and size
-            d3.select(this)
+            d3.select(mouse.target)
               .attr("fill", "#1C91A4")
               .attr("r", radius * 1.5);
 
@@ -275,7 +275,7 @@
 
           handleMouseOut(mouse, submission) {
             // Use D3 to select element, change color back to normal
-            d3.select(this)
+            d3.select(mouse.target)
               .attr("fill", "#334")
               .attr("r", radius);
 
