@@ -57,7 +57,7 @@
           </ul>
         </div>
         <div class='btech-modal-content-inner'>
-          <p> TEST </p>
+          <div id='btech-department-report-student-submissions-graph'></div>
         </div>
       </div>
     </div>
