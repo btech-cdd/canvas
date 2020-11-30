@@ -125,10 +125,8 @@
             let jsonUsers = app.json['progress'];
             let depts = app.json['departments'];
             let deptCourses = depts[app.currentDepartment];
-            console.log(deptCourses);
             let coreCourses = app.calcCoreCourses();
-            console.log(coreCourses);
-            for (userId in jsonUsers) {
+            for (userId in deptCourses) {
               let user = jsonUsers[userId];
               user.id = userId;
               for (c in coreCourses) {
