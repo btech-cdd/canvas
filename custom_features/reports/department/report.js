@@ -251,6 +251,19 @@
               .on("mouseover", app.handleMouseOver)
               .on("mouseout", app.handleMouseOut)
               .on("click", app.handleMouseClick);
+
+            svg.append("text")
+              .attr("transform", "translate(" + (width / 2) + " ," + (height + app.graphSettings.margin.bottom) + ")")
+              .style("text-anchor", "middle")
+              .text("Date");
+
+            svg.append("text")
+              .attr("transform", "rotate(-90)")
+              .attr("y", 0 - app.graphSettings.margin.left)
+              .attr("x", 0 - (height / 2))
+              .attr("dy", "1em")
+              .style("text-anchor", "middle")
+              .text("Value");
           },
           // Create Event Handlers for mouse
           handleMouseOver(mouse, submission) { // Add interactivity
