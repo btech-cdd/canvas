@@ -5,7 +5,8 @@
     </select>
     <div v-for='user in users' :key='user.id'>
       <div v-if='user.name != undefined' style='padding-bottom: .5em;'>
-        <span><a :href="'/users/' + user.id">{{user.name}}</a></span><br>
+        <div><span @click='openStudentData(user);'>{{user.name}}</span><a :href="'/users/' + user.id">(profile)</a>
+        </div>
 
         <!--CORE COURSES-->
         <div v-for='course in coreCourses' :key='course.code'
@@ -43,6 +44,13 @@
               {{course.code}}
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div v-if='showStudentReport' class='btech-modal' style='display: inline-block;'>
+      <div class='btech-modal-content'>
+        <div class='btech-modal-content-inner'>
+          <p> TEST </p>
         </div>
       </div>
     </div>

@@ -70,7 +70,8 @@
             currentDepartment: '',
             coreCourses: [],
             electiveCourses: [],
-            availableDepartments: []
+            availableDepartments: [],
+            showStudentReport: false
           }
         },
         methods: {
@@ -139,6 +140,12 @@
             app.calcCoreCourses();
             app.calcElectiveCourses();
           },
+
+          openStudentData(user) {
+            let app = this;
+            app.showStudentReport = true;
+          },
+
           async loadJsonFile(name) {
             let app = this;
             let jsonUrl = 'https://jhveem.xyz/canvas/custom_features/reports/department/' + name + '.json';
