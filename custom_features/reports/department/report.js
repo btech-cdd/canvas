@@ -253,9 +253,9 @@
               .on("click", app.handleMouseClick);
 
             app.svg.append("text")
-              .attr("transform", "translate(" + (width / 2) + " ," + (h) + ")")
+              .attr("transform", "translate(" + (w / 2) + " ," + (h) + ")")
               .style("text-anchor", "middle")
-              .text("Date");
+              .text("Date Submitted");
 
             app.svg.append("text")
               .attr("transform", "rotate(-90)")
@@ -263,7 +263,7 @@
               .attr("x", 0 - (height / 2))
               .attr("dy", "1em")
               .style("text-anchor", "middle")
-              .text("Value");
+              .text("Assignment Grade");
           },
           // Create Event Handlers for mouse
           handleMouseOver(mouse, submission) { // Add interactivity
