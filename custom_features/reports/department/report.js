@@ -73,6 +73,7 @@
             electiveCourses: [],
             availableDepartments: [],
             showStudentReport: false,
+            svg: null,
             graphSettings: {
               startDate: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
               endDate: new Date(),
@@ -209,12 +210,12 @@
               return y((d.score / d.assignment.points_possible) * 100) + margin.top;
             }
 
-            var svg = d3.select('#' + graphElId).append('svg')
+            app.svg = d3.select('#' + graphElId).append('svg')
               .attr('class', 'chart')
               .attr('width', w)
               .attr('height', h);
 
-            var chart = svg.append('g')
+            var chart = app.svg.append('g')
               .classed('graph', true)
               .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
@@ -233,7 +234,7 @@
               .call(d3.axisLeft(y)
                 .ticks(10));
 
-            svg
+            app.svg
               .selectAll("whatever")
               .data(submissions)
               .enter()
@@ -264,7 +265,7 @@
               .attr("r", app.graphSettings.radius * 1.5);
 
             // Specify where to put label of text
-            svg.append("text")
+            app.svg.append("text")
               .attr("id", "t-" + submission.id) // Create an id for text so we can select it later for removing on mouseout
               .attr("x", function () {
                 return xPlot(submission);
