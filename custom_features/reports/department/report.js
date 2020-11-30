@@ -78,7 +78,12 @@
               startDate: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
               endDate: new Date(),
               radius: 8,
-
+              margin: {
+                top: 30,
+                bottom: 40,
+                left: 50,
+                right: 20,
+              }
             }
           }
         },
@@ -159,15 +164,9 @@
             var w = 800;
             var h = 450;
 
-            var margin = {
-              top: 30,
-              bottom: 40,
-              left: 50,
-              right: 20,
-            }
 
-            var width = w - margin.left - margin.right
-            var height = h - margin.top - margin.bottom
+            var width = w - app.graphSettings.margin.left - app.graphSettings.margin.right
+            var height = h - app.graphSettings.margin.top - app.graphSettings.margin.bottom
 
             var colors = [
               '#FFEBB6', '#FFC400', '#B4EDA0', '#FF4436', '#FF9A00'
@@ -211,7 +210,7 @@
 
             var chart = app.svg.append('g')
               .classed('graph', true)
-              .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+              .attr('transform', 'translate(' + app.graphSettings.margin.left + ',' + app.graphSettings.margin.top + ')');
 
 
             chart.append('g')
@@ -294,11 +293,11 @@
           },
 
           xPlot(d, x) {
-            return x(new Date(d.submissionDate)) + margin.left;
+            return x(new Date(d.submissionDate)) + app.graphSettings.margin.left;
           },
 
           yPlot(d, y) {
-            return y((d.score / d.assignment.points_possible) * 100) + margin.top;
+            return y((d.score / d.assignment.points_possible) * 100) + app.graphSettings.margin.top;
           },
 
           async loadJsonFile(name) {
