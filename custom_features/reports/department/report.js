@@ -145,9 +145,10 @@
             let app = this;
             app.showStudentReport = true;
           },
+
           closeStudentReport() {
             app.showStudentReport = false;
-          }
+          },
 
           async loadJsonFile(name) {
             let app = this;
