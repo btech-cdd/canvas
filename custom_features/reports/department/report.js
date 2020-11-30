@@ -131,7 +131,7 @@
             for (userId in jsonUsers) {
               let user = jsonUsers[userId];
               user.id = userId;
-              for (c in deptCourses) {
+              for (c in coreCourses) {
                 let course = deptCourses[c];
                 if (user.courses[course.code] !== undefined) {
                   users.push(user);
