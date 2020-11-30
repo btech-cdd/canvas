@@ -78,13 +78,9 @@
               startDate: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
               endDate: new Date(),
               radius: 8,
-              x: d3.scaleTime()
-                .domain([app.graphSettings.startDate, app.graphSettings.endDate])
-                .range([0, width]),
+              x: null,
 
-              y: d3.scaleLinear()
-                .domain([0, 100])
-                .range([height, 0]),
+              y: null
             }
           }
         },
@@ -200,8 +196,13 @@
               });
             }
 
+            app.graphSettings.x = d3.scaleTime()
+              .domain([app.graphSettings.startDate, app.graphSettings.endDate])
+              .range([0, width]);
 
-
+            app.graphSettings.y = d3.scalelinear()
+              .domain([0, 100])
+              .range([height, 0]);
 
 
             app.svg = d3.select('#' + graphElId).append('svg')
