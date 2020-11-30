@@ -141,10 +141,13 @@
             app.calcElectiveCourses();
           },
 
-          openStudentData(user) {
+          openStudentReport(user) {
             let app = this;
             app.showStudentReport = true;
           },
+          closeStudentReport() {
+            app.showStudentReport = false;
+          }
 
           async loadJsonFile(name) {
             let app = this;
