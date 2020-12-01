@@ -437,7 +437,7 @@
                     if (sumGroupWeights > 0) {
                       weightedGrade = Math.round(currentWeighted / totalWeightsSubmitted * 10000) / 100;
                     } else {
-                      weightedGrade = totalCurrentPoints / totalTotalPoints;
+                      weightedGrade = Math.round(totalCurrentPoints / totalTotalPoints * 10000) / 100;
                     }
                     output = "";
                     if (!isNaN(weightedGrade)) {
@@ -450,7 +450,7 @@
                     if (totalWeights > 0) {
                       progress = Math.round((totalProgress / totalWeights) * 10000) / 100;
                     } else {
-                      progress = totalPossiblePoints / totalTotalPoints;
+                      progress = Math.round((totalPossiblePoints / totalTotalPoints) * 10000) / 100;
                     }
                     console.log(progress);
                     output = "";
