@@ -390,7 +390,7 @@
                       if (group.group_weight > 0 || sumGroupWeights === 0) {
                         let currentPoints = 0; //points earned
                         let possiblePoints = 0; //potential points earned
-                        let totalPoints = app.calcCourseGroupPointsPossible(courseId, groupId); //all points in the course
+                        let totalPoints = app.calcCourseGroupPointsPossible(courseId, groupId, sumGroupWeights); //all points in the course
                         //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
                         for (let assignmentId in group.assignments) {
                           let assignment = group.assignments[assignmentId];
@@ -501,12 +501,12 @@
               this.estimatedHoursRequired = estimatedHoursRequired;
             },
 
-            calcCourseGroupPointsPossible(courseId, groupId) {
+            calcCourseGroupPointsPossible(courseId, groupId, sumGroupWeights) {
               let app = this;
               let assignmentGroups = app.courseAssignmentGroups[courseId];
               let group = assignmentGroups[groupId];
               let totalPoints = 0;
-              if (group.group_weight > 0) {
+              if (group.group_weight > 0 || sumGroupWeights === 0) {
                 //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
                 for (let a = 0; a < group.assignments.length; a++) {
                   let assignment = group.assignments[a];
