@@ -371,7 +371,6 @@
 
               for (let courseId in app.includedAssignments) {
                 let course = app.includedAssignments[courseId];
-                console.log(course.name);
                 if (app.checkIncludeCourse(course) && course.include) {
                   let currentWeighted = 0;
                   let totalWeights = 0; //sum of all weight values for assignment groups
@@ -428,7 +427,6 @@
                       }
                     }
                   }
-                  console.log(totalWeights);
                   //if there are any points possible in this course, put out some summary grades data
                   if (totalWeights > 0 || sumGroupWeights === 0) {
                     let output;
@@ -452,7 +450,6 @@
                     } else {
                       progress = Math.round((totalPossiblePoints / totalTotalPoints) * 10000) / 100;
                     }
-                    console.log(progress);
                     output = "";
                     if (!isNaN(progress)) {
                       output = progress;
