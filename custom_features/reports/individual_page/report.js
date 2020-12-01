@@ -377,6 +377,9 @@
                   let totalWeights = 0; //sum of all weight values for assignment groups
                   let totalWeightsSubmitted = 0; //sum of all weight values for assignment groups if at least one submitted assignment
                   let totalProgress = 0;
+                  let totalCurrentPoints = 0; //all points earned in the course
+                  let totalPossiblePoints = 0; //all points available to have earned from submitted assignments
+                  let totalTotalPoints = 0; //all points in the course;
 
                   let sumGroupWeights = 0; //used to check if group weights are even used
                   for (let groupId in course.groups) {
@@ -391,12 +394,15 @@
                         let currentPoints = 0; //points earned
                         let possiblePoints = 0; //potential points earned
                         let totalPoints = app.calcCourseGroupPointsPossible(courseId, groupId, sumGroupWeights); //all points in the course
+                        totalTotalPoints += totalPoints;
                         //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
                         for (let assignmentId in group.assignments) {
                           let assignment = group.assignments[assignmentId];
                           if (assignment.include) {
                             currentPoints += assignment.score;
+                            totalCurrentPoints += assignment.score;
                             possiblePoints += assignment.points_possible;
+                            totalPossiblePoints += assignment.points_possible;
                           }
                         }
                         //update info for the submission/earned points values
@@ -426,15 +432,25 @@
                   //if there are any points possible in this course, put out some summary grades data
                   if (totalWeights > 0 || sumGroupWeights === 0) {
                     let output;
-                    let weightedGrade = Math.round(currentWeighted / totalWeightsSubmitted * 10000) / 100;
+                      let weightedGrade;
+                    //dispaly grade
+                    if (sumGroupWeights > 0) {
+                      weightedGrade = Math.round(currentWeighted / totalWeightsSubmitted * 10000) / 100;
+                    } else {
+                      weightedGrade = totalCurrentPoints / totalTotalPoints;
+                    }
                     output = "";
                     if (!isNaN(weightedGrade)) {
                       output = weightedGrade;
                     }
                     gradesBetweenDates[courseId] = output;
+
+                    //display progress
                     let progress = totalProgress;
                     if (totalWeights > 0) {
                       progress = Math.round((totalProgress / totalWeights) * 10000) / 100;
+                    } else {
+                      progress = totalPossiblePoints / totalTotalPoints;
                     }
                     console.log(progress);
                     output = "";
