@@ -285,6 +285,7 @@
               //otherwise fill in all the progress / grades data for those dates
               for (let i = 0; i < app.courses.length; i++) {
                 let course = app.courses[i];
+                console.log(course.name);
                 let courseId = course.course_id;
                 includedAssignments[courseId] = {
                   name: course.name,
@@ -310,6 +311,7 @@
                     let group = assignmentGroups[g];
                     sumWeights += group.group_weight;
                   }
+                  console.log(sumWeights);
 
                   //weight grades based on assignment group weighting and hours completed in the course
                   for (let g = 0; g < assignmentGroups.length; g++) {
