@@ -422,7 +422,7 @@
                       }
                     }
                   }
-
+                  console.log(totalWeights);
                   //if there are any points possible in this course, put out some summary grades data
                   if (totalWeights > 0 || sumGroupWeights === 0) {
                     let output;
