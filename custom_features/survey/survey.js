@@ -47,7 +47,7 @@
   }
 
   function addButtons(inputId, description, list = [1, 2, 3, 4, "N/A"]) {
-    let buttonWidth = (100 - 20) / list.length;
+    let buttonWidth = (100 - 10) / list.length;
     let headingRows = "";
     let bodyRows = "";
     for (var i = 0; i < list.length; i++) {
