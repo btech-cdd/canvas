@@ -20,6 +20,7 @@
           let dept = CURRENT_DEPARTMENT_ID;
           await app.loadJsonFile('progress');
           await app.loadJsonFile('sis_to_canv');
+          console.log(app.json.sis_to_canv);
           await app.loadJsonFile('departments');
           await app.loadJsonFile('canvas_to_jenz');
           let availableDepartments = [];
