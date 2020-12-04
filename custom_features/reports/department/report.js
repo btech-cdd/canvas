@@ -21,26 +21,27 @@
           await app.loadJsonFile('progress');
           await app.loadJsonFile('departments');
           await app.loadJsonFile('canvas_to_jenz');
-          console.log(app.json);
           let availableDepartments = [];
           for (let key in app.json.progress) {
             availableDepartments.push(key);
           }
           app.availableDepartments = availableDepartments;
           app.currentDepartment = app.availableDepartments[0];
-          console.log(app.currentDepartment);
-          let usersUrl = '/api/v1/accounts/' + dept + '/users';
+          let usersUrl = '/api/v1/accounts/3/users';
           let users = await canvasGet(usersUrl, {
             enrollment_type: 'student'
           });
           for (let i = 0; i < users.length; i++) {
             let user = users[i];
-            if (user.id in app.json['progress']) {
-              app.json['progress'][user.id].name = user.sortable_name;
+            //If the name hasn't been saved yet
+            if (!(user.id in app.nameDict)) {
+              app.nameDict[user.id] = user.sortable_name;
             }
           }
+          app.users = app.json['progress'][app.currentDepartment];
+          console.log(app.users);
 
-          app.loadDepartmentUsers();
+          // app.loadDepartmentUsers();
           /*
           for (let userId in deptUsers) {
             let user = deptUsers[userId];
@@ -78,6 +79,7 @@
             availableDepartments: [],
             showStudentReport: false,
             svg: null,
+            nameDict: {},
             graphSettings: {
               startDate: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
               endDate: new Date(),
