@@ -24,7 +24,7 @@
           console.log(app.json);
           app.availableDepartments = app.json.canvas_to_jenz[CURRENT_DEPARTMENT_ID];
           app.currentDepartment = app.availableDepartments[0];
-
+          console.log(app.currentDepartment);
           let usersUrl = '/api/v1/accounts/' + dept + '/users';
           let users = await canvasGet(usersUrl, {
             enrollment_type: 'student'
