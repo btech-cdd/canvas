@@ -27,6 +27,7 @@
           }
           app.availableDepartments = availableDepartments;
           app.currentDepartment = app.availableDepartments[0];
+          /*
           let usersUrl = '/api/v1/accounts/3/users';
           let users = await canvasGet(usersUrl, {
             enrollment_type: 'student'
@@ -38,6 +39,7 @@
               app.nameDict[user.id] = user.sortable_name;
             }
           }
+          */
           app.users = app.json['progress'][app.currentDepartment];
           console.log(app.users);
 
