@@ -5,22 +5,24 @@
     </select>
     <div v-for='(users, year) in usersByYear' :key='year'>
       <div v-for='(user, userId) in users' :key='userId'>
-        <div style='padding-bottom: .5em;'>
-          <div><span @click='openStudentReport(user);' style='cursor: pointer;'>{{userId}}</span> (<a
-              :href="'/users/' + userId">profile</a>)
-          </div>
+        <div v-if='userId !== "base"'>
+          <div style='padding-bottom: .5em;'>
+            <div><span @click='openStudentReport(user);' style='cursor: pointer;'>{{userId}}</span> (<a
+                :href="'/users/' + json.sis_to_canv[userId].canvas_id">profile</a>)
+            </div>
 
-          <!--CORE COURSES-->
-          <div v-for='(course, courseCode) in user' :key='courseCode'
-            style="display: inline-block; border: 1px solid #000; background-color: #334;">
-            <div
-              style='box-sizing: border-box; white-space: nowrap; padding: 0px 5px; font-size: 0.75em; background-color: #1C91A4; color: #fff;'
-              :style="
+            <!--CORE COURSES-->
+            <div v-for='(course, courseCode) in user' :key='courseCode'
+              style="display: inline-block; border: 1px solid #000; background-color: #334;">
+              <div
+                style='box-sizing: border-box; white-space: nowrap; padding: 0px 5px; font-size: 0.75em; background-color: #1C91A4; color: #fff;'
+                :style="
             {
               width: course.progress + '%'
             }
           ">
-              {{courseCode}}
+                {{courseCode}}
+              </div>
             </div>
           </div>
         </div>
