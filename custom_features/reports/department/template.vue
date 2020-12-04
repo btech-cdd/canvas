@@ -1,6 +1,6 @@
 <template>
   <div>
-    <select @change='loadDepartmentUsers' v-model='currentDepartment'>
+    <select @change='function() {usersByYear = json['progress'][currentDepartment];}' v-model='currentDepartment'>
       <option v-for='department in availableDepartments' :value='department'>{{department}}</option>
     </select>
     <div v-for='(users, year) in usersByYear' :key='year'>

@@ -126,6 +126,8 @@
           },
           loadDepartmentUsers() {
             let app = this;
+            app.usersByYear = app.json['progress'][app.currentDepartment];
+            /*
             console.log(app.currentDepartment);
 
             //set last activity date
@@ -165,6 +167,7 @@
             app.users = users;
             app.calcCoreCourses();
             app.calcElectiveCourses();
+            */
           },
 
           async openStudentReport(user) {
