@@ -40,8 +40,8 @@
             }
           }
           */
-          app.users = app.json['progress'][app.currentDepartment];
-          console.log(app.users);
+          app.usersByYear = app.json['progress'][app.currentDepartment];
+          console.log(app.usersByYear);
 
           // app.loadDepartmentUsers();
           /*
@@ -74,7 +74,7 @@
           return {
             loading: true,
             json: {},
-            users: [],
+            usersByYear: {},
             currentDepartment: '',
             coreCourses: [],
             electiveCourses: [],
