@@ -24,9 +24,9 @@
           console.log(app.json);
           let availableDepartments = [];
           for (let key in app.json.progress) {
-            console.log(key);
+            availableDepartments.push(key);
           }
-          app.availableDepartments = app.json.canvas_to_jenz[CURRENT_DEPARTMENT_ID];
+          app.availableDepartments = availableDepartments;
           app.currentDepartment = app.availableDepartments[0];
           console.log(app.currentDepartment);
           let usersUrl = '/api/v1/accounts/' + dept + '/users';
