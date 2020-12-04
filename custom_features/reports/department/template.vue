@@ -7,7 +7,7 @@
       <div v-for='(user, userId) in users' :key='userId'>
         <div style='padding-bottom: .5em;'>
           <div><span @click='openStudentReport(user);' style='cursor: pointer;'>{{userId}}</span> (<a
-              :href="'/users/' + json.sis_to_canv[userId].canvas_id">profile</a>)
+              :href="'/users/' + userId">profile</a>)
           </div>
 
           <!--CORE COURSES-->
