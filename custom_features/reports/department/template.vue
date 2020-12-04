@@ -8,7 +8,9 @@
         <div v-if='userId !== "base"'>
           <div style='padding-bottom: .5em;'>
             <div><span @click='openStudentReport(user);' style='cursor: pointer;'>{{userId}}</span> (<a
-                :href="'/users/' + json.sis_to_canv[userId].canvas_id">profile</a>)
+                :href="'/users/' + json.sis_to_canv[userId].canvas_id"
+                target="_blank"
+                >profile</a>)
             </div>
 
             <!--CORE COURSES-->
