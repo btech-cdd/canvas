@@ -15,14 +15,19 @@
 
             <!--CORE COURSES-->
             <div v-for='(course, courseCode) in user' :key='courseCode'
-              style="display: inline-block; border: 1px solid #000; background-color: #334;">
+              style="position: relative; display: inline-block; border: 1px solid #000; background-color: #334;">
               <div
-                style='box-sizing: border-box; white-space: nowrap; padding: 0px 5px; font-size: 0.75em; background-color: #1C91A4; color: #fff;'
+                style='position: absolute; box-sizing: border-box; height: 100%; font-size: 0.75em; background-color: #1C91A4;'
                 :style="
-            {
-              width: course.progress + '%'
-            }
-          ">
+                  {
+                    width: course.progress + '%'
+                  }
+                "
+              >
+              </div>
+              <div
+                style='white-space: nowrap; padding: 0px 5px; font-size: 0.75em; color: #fff;'
+              >
                 {{courseCode}}
               </div>
             </div>
