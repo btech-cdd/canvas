@@ -196,11 +196,6 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
                 }
               }
             }
-            //Group weight
-            let groupElement = $("#submission_group-" + group.id).clone();
-            groupEls.push(groupElement);
-            groupElement.find('.assignment_score span.grade').text(Math.round(score / possiblePoints * 1000) / 10 + '%');
-            groupElement.find('.points_possible').text(score + ' / ' + possiblePoints);
             
             if (possiblePoints > 0) {
               let groupPerc = (score / possiblePoints);
@@ -208,6 +203,12 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
               finalTotalScore += group.group_weight;
               finalScore += (groupPerc * group.group_weight);
               finalUngradedAsZero += (groupUngradedAsZeroPerc * group.group_weight);
+
+              //Group weight
+              let groupElement = $("#submission_group-" + group.id).clone();
+              groupEls.push(groupElement);
+              groupElement.find('.assignment_score span.grade').text(Math.round(score / possiblePoints * 1000) / 10 + '%');
+              groupElement.find('.points_possible').text(score + ' / ' + possiblePoints);
             }
             if (totalPoints > 0) {
               let progress = possiblePoints / totalPoints;
@@ -227,7 +228,7 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
         outputUngradedAsZeroScore *= 100;
 
         let finalGradeEl = $('#submission_final-grade').clone();
-        finalGradeEl.find('span.grade').text(toPrecision(outputUngradedAsZeroScore, 2) + "%");
+        finalGradeEl.find('span.grade').text(toPrecision(outputScore, 2) + "%");
         newBody.append(finalGradeEl);
 
         if (isNaN(outputScore)) {
