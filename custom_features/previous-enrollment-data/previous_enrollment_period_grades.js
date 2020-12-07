@@ -217,6 +217,9 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
         }
 
         //Add the assignment group els to the end of the doc
+        groupEls.forEach(el => {
+          newBody.append(el);
+        })
 
         let outputScore = finalScore / finalTotalScore;
         let outputUngradedAsZeroScore = finalUngradedAsZero / finalTotalScore;
