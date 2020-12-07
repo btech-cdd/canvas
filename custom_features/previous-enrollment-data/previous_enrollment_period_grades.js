@@ -165,6 +165,7 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
         let finalUngradedAsZero = 0;
         let totalProgress = 0;
         let totalWeights = 0;
+        let groupEls = [];
         //loop assignments
         for (let i = 0; i < assignmentGroups.length; i++) {
           let group = assignmentGroups[i];
@@ -195,6 +196,11 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
                 }
               }
             }
+            //Group weight
+            let groupElement = $("#submission_group-" + group.id).clone();
+            groupEls.push(groupElement);
+            groupElement.find('.assignment_score span.grade').text(score / possiblePoints + '%');
+            
             if (possiblePoints > 0) {
               let groupPerc = (score / possiblePoints);
               let groupUngradedAsZeroPerc = (score / totalPoints);
@@ -209,6 +215,9 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
             }
           }
         }
+
+        //Add the assignment group els to the end of the doc
+
         let outputScore = finalScore / finalTotalScore;
         let outputUngradedAsZeroScore = finalUngradedAsZero / finalTotalScore;
         outputUngradedAsZeroScore *= 100;
