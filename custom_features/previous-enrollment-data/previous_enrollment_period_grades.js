@@ -199,7 +199,7 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
             //Group weight
             let groupElement = $("#submission_group-" + group.id).clone();
             groupEls.push(groupElement);
-            groupElement.find('.assignment_score span.grade').text(score / possiblePoints + '%');
+            groupElement.find('.assignment_score span.grade').text(Math.round(score / possiblePoints * 1000) / 10 + '%');
             
             if (possiblePoints > 0) {
               let groupPerc = (score / possiblePoints);
