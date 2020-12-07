@@ -200,6 +200,7 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
             let groupElement = $("#submission_group-" + group.id).clone();
             groupEls.push(groupElement);
             groupElement.find('.assignment_score span.grade').text(Math.round(score / possiblePoints * 1000) / 10 + '%');
+            groupElement.find('.points_possible').text(score + ' / ' + possiblePoints);
             
             if (possiblePoints > 0) {
               let groupPerc = (score / possiblePoints);
