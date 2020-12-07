@@ -225,6 +225,10 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
         let outputUngradedAsZeroScore = finalUngradedAsZero / finalTotalScore;
         outputUngradedAsZeroScore *= 100;
 
+        let finalGradeEl = $('#submission_final-grade').clone();
+        finalGradeEl.find('span.grade').text(toPrecision(outputUngradedAsZeroScore, 2) + "%");
+        newBody.append(finalGradeEl);
+
         if (isNaN(outputScore)) {
           outputScore = "N/A";
         } else {
