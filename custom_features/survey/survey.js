@@ -83,7 +83,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
   }
 
   function addSubmitButton() {
-    let submit = $('<input type="submit" name="submit" value="Submit" id="m_8914134288611702631ss-submit">');
+    let submit = $('<input style="float: right;" type="submit" name="submit" value="Submit" id="m_8914134288611702631ss-submit">');
     submit.click(function () {
       location.reload(true);
     })
@@ -135,6 +135,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
           action="https://docs.google.com/forms/u/0/d/e/` + formData[0].responseId + `/formResponse"
           target="formSubmitFrame">
         </form>
+        <br>
       `);
       //could grab any since they all have the responseId, but getting 0 for consistency sake
       //grab some default data
