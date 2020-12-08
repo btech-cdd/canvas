@@ -41,7 +41,7 @@
     for (var i = 0; i < list.length; i++) {
       select.append(`<option value="` + list[i] + `">` + list[i] + `</option>`);
     }
-    input.append("<br>");
+    input.append("<br><div style='width: 100%; border-bottom: 1px solid #000;'></div>");
     input.append(select);
     form.append(input);
   }
@@ -62,7 +62,7 @@
     form.append(`
 <p>` + description + `</p>
 
-<table width="100%" border="0" cellpadding="5" cellspacing="0">
+<table width="100%" border="0" cellpadding="5" cellspacing="0" style='background-color:#f2f2f2;'>
 <thead>
 <tr>
 <td>
@@ -72,7 +72,7 @@
 </thead>
 <tbody>
 <tr role="radiogroup" aria-label="" aria-describedby="1978569583_errorMessage"
-style="text-align:center;color:#666;border-bottom:1px solid #d3d8d3;padding:0;background-color:#f2f2f2">
+style="text-align:center;color:#666;border-bottom:1px solid #d3d8d3;padding:0;">
 <td
 style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-width:100px;max-width:200px;padding-left:15px">
 </td>
