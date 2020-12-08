@@ -172,7 +172,7 @@
             */
           },
 
-          async openStudentReport(user) {
+          async openStudentReport(userId) {
             let app = this;
             app.showStudentReport = true;
             let graphElId = 'btech-department-report-student-submissions-graph';
@@ -189,11 +189,11 @@
             var colors = [
               '#FFEBB6', '#FFC400', '#B4EDA0', '#FF4436', '#FF9A00'
             ];
-            let enrollments = await canvasGet("/api/v1/users/" + user.id + "/enrollments?type[]=StudentEnrollment");
+            let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
             let submissions = [];
             for (let e = 0; e < enrollments.length; e++) {
               let enrollment = enrollments[e];
-              let url = "/api/v1/courses/" + enrollment.course_id + "/students/submissions?student_ids[]=" + user.id + "&include=assignment";
+              let url = "/api/v1/courses/" + enrollment.course_id + "/students/submissions?student_ids[]=" + userId + "&include=assignment";
               let rawSubmissions = await canvasGet(url);
               rawSubmissions.map(function (submission) {
                 let submissionDate = submission.submitted_at;
