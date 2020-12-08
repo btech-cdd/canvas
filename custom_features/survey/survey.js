@@ -16,22 +16,20 @@
 
   function addParagraphTextEntry(inputId, description) {
     form.append(`
-<p>` + description + `<br>
+<p style='font-weight: bold;'>` + description + `</p>
 <textarea name="` + inputId + `" style="width:100%; box-sizing: border-box;"></textarea>
-</p>
 `)
   }
 
   function addTextEntry(inputId, description) {
     form.append(`
-<p>` + description + `<br>
+<p style='font-weight: bold;'>` + description + `</p>
 <input type="text" name="` + inputId + `" value="">
-</p>
 `)
   }
 
   function addDropdown(inputId, description, list) {
-    let input = $(`<p>` + description + `</p>`);
+    let input = $(`<p style='font-weight: bold;'>` + description + `</p>`);
     let bodyRows = "";
     let select = $(`
 <select name='` + inputId + `'>
@@ -60,7 +58,7 @@
 </td>`;
     }
     form.append(`
-<p>` + description + `</p>
+<p style='font-weight: bold;'>` + description + `</p>
 
 <table width="100%" border="0" cellpadding="5" cellspacing="0" style='background-color:#f2f2f2;'>
 <thead>
