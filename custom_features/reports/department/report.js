@@ -140,7 +140,22 @@
           },
           loadDepartmentUsers() {
             let app = this;
-            app.usersByYear = app.json['progress'][app.currentDepartment];
+            let usersByYear = app.usersByYear;
+            for (let year in usersByYear) {
+              let users = usersByYear[year];
+              users.sort(function(a, b) {
+                let aName = app.nameDict[a];
+                if (aName != undefined) aName = aName.toLowerCase();
+                else aName = '';
+
+                let bName = app.nameDict[b];
+                if (bName != undefined) bName = bName.toLowerCase();
+                else bName = '';
+
+                return aName.localeCompare(bName);
+              });
+            }
+            app.usersByYear = usersByYear;
             console.log(app.usersByYear);
             /*
             console.log(app.currentDepartment);
