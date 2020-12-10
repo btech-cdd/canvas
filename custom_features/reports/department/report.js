@@ -23,6 +23,7 @@
           console.log(app.json.sis_to_canv);
           await app.loadJsonFile('departments');
           await app.loadJsonFile('canvas_to_jenz');
+          await app.loadJsonFile('dept_code_to_name');
           let availableDepartments = [];
           for (let key in app.json.progress) {
             availableDepartments.push(key);
@@ -335,6 +336,8 @@
             let app = this;
             return y((d.score / d.assignment.points_possible) * 100) + app.graphSettings.margin.top;
           },
+
+
 
           async loadJsonFile(name) {
             let app = this;
