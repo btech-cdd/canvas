@@ -24,6 +24,7 @@
           await app.loadJsonFile('canv_dept_to_jenz');
           console.log(dept);
           await app.loadJsonFile('dept_code_to_name');
+          console.log(app.json.dept_code_to_name);
           //Sort departments alphabetically
           let availableDepartments = [];
           for (let i in app.json.canv_dept_to_jenz[dept]) {
