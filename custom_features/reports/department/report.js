@@ -49,7 +49,7 @@
           for (let i = 0; i < users.length; i++) {
             let user = users[i];
             //If the name hasn't been saved yet
-            if (user.sis_user_id !== none) {
+            if (user.sis_user_id !== null) {
               if (!(user.sis_user_id in app.nameDict)) {
                 app.nameDict[user.sis_user_id] = user.sortable_name;
               }
