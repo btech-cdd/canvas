@@ -141,6 +141,7 @@
           loadDepartmentUsers() {
             let app = this;
             app.usersByYear = app.json['progress'][app.currentDepartment];
+            console.log(app.usersByYear);
             /*
             console.log(app.currentDepartment);
 
