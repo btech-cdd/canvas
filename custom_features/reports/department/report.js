@@ -43,6 +43,7 @@
           let users = await canvasGet(usersUrl, {
             enrollment_type: 'student'
           });
+          console.log(users);
           for (let i = 0; i < users.length; i++) {
             let user = users[i];
             //If the name hasn't been saved yet
