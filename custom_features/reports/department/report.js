@@ -26,10 +26,11 @@
           await app.loadJsonFile('dept_code_to_name');
           //Sort departments alphabetically
           let availableDepartments = [];
-          for (let key in app.json.canv_dept_to_jenz[dept]) {
+          for (let i in app.json.canv_dept_to_jenz[dept]) {
+            let departmentCode = app.json.canv_dept_to_jenz[dept][i];
             console.log("DEPT");
-            console.log(key);
-            availableDepartments.push(key);
+            console.log(departmentCode);
+            availableDepartments.push(departmentCode);
           }
           availableDepartments.sort(function (a, b) {
             let deptNameA = app.json.dept_code_to_name[a].name;
