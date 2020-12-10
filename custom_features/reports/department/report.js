@@ -39,10 +39,12 @@
           });
           app.availableDepartments = availableDepartments;
           app.currentDepartment = app.availableDepartments[0];
+
           let usersUrl = '/api/v1/accounts/'+dept+'/users';
           let users = await canvasGet(usersUrl, {
             enrollment_type: 'student'
           });
+
           console.log(users);
           for (let i = 0; i < users.length; i++) {
             let user = users[i];
@@ -51,6 +53,7 @@
               app.nameDict[user.id] = user.sortable_name;
             }
           }
+          console.log(app.nameDict);
 
           // app.loadDepartmentUsers();
           /*
