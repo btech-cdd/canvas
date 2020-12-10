@@ -18,6 +18,22 @@
         mounted: async function () {
           let app = this;
           let dept = '' + CURRENT_DEPARTMENT_ID;
+
+          //Load names and create dict
+          let usersUrl = '/api/v1/accounts/' + dept + '/users';
+          let users = await canvasGet(usersUrl, {
+            enrollment_type: 'student'
+          });
+          for (let i = 0; i < users.length; i++) {
+            let user = users[i];
+            //If the name hasn't been saved yet
+            if (user.sis_user_id !== null) {
+              if (!(user.sis_user_id in app.nameDict)) {
+                app.nameDict[user.sis_user_id] = user.sortable_name;
+              }
+            }
+          }
+
           //import json files
           await app.loadJsonFile('progress');
           await app.loadJsonFile('sis_to_canv');
@@ -39,23 +55,6 @@
           });
           app.availableDepartments = availableDepartments;
           app.currentDepartment = app.availableDepartments[0];
-
-          let usersUrl = '/api/v1/accounts/' + dept + '/users';
-          let users = await canvasGet(usersUrl, {
-            enrollment_type: 'student'
-          });
-
-          console.log(users);
-          for (let i = 0; i < users.length; i++) {
-            let user = users[i];
-            //If the name hasn't been saved yet
-            if (user.sis_user_id !== null) {
-              if (!(user.sis_user_id in app.nameDict)) {
-                app.nameDict[user.sis_user_id] = user.sortable_name;
-              }
-            }
-          }
-          console.log(app.nameDict);
 
           // app.loadDepartmentUsers();
           /*
