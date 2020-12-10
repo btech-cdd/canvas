@@ -18,21 +18,20 @@
         mounted: async function () {
           let app = this;
           let dept = '' + CURRENT_DEPARTMENT_ID;
+          //import json files
           await app.loadJsonFile('progress');
           await app.loadJsonFile('sis_to_canv');
-          console.log(app.json.sis_to_canv);
           await app.loadJsonFile('canv_dept_to_jenz');
-          console.log(dept);
           await app.loadJsonFile('dept_code_to_name');
-          console.log(app.json.dept_code_to_name);
-          //Sort departments alphabetically
+
+          //get list of departments available to this sub account
           let availableDepartments = [];
           for (let i in app.json.canv_dept_to_jenz[dept]) {
             let departmentCode = app.json.canv_dept_to_jenz[dept][i];
-            console.log("DEPT");
-            console.log(departmentCode);
             availableDepartments.push(departmentCode);
           }
+
+          //Sort departments alphabetically
           availableDepartments.sort(function (a, b) {
             let deptNameA = app.json.dept_code_to_name[a].name;
             let deptNameB = app.json.dept_code_to_name[b].name;
@@ -40,8 +39,7 @@
           });
           app.availableDepartments = availableDepartments;
           app.currentDepartment = app.availableDepartments[0];
-          /*
-          let usersUrl = '/api/v1/accounts/3/users';
+          let usersUrl = '/api/v1/accounts/'+dept+'/users';
           let users = await canvasGet(usersUrl, {
             enrollment_type: 'student'
           });
@@ -52,9 +50,6 @@
               app.nameDict[user.id] = user.sortable_name;
             }
           }
-          */
-          app.usersByYear = app.json['progress'][app.currentDepartment];
-          console.log(app.usersByYear);
 
           // app.loadDepartmentUsers();
           /*
