@@ -1,7 +1,7 @@
 <template>
   <div>
     <select @change='loadDepartmentUsers' v-model='currentDepartment'>
-      <option v-for='department in availableDepartments' :value='department'>{{json.dept_code_to_name[department].name}}</option>
+      <option v-for='department in availableDepartments' :value='department'>{{json.dept_code_to_name[department].name + "(" + json.dept_code_to_name[department].first_year + "-" + json.dept_code_to_name[department].last_year + ")"}}</option>
     </select>
     <div v-for='(users, year) in usersByYear' :key='year'>
       <div v-for='(user, userId) in users' :key='userId'>
