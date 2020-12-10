@@ -58,25 +58,7 @@
           app.availableDepartments = availableDepartments;
           app.currentDepartment = app.availableDepartments[0];
 
-          // app.loadDepartmentUsers();
-          /*
-          for (let userId in deptUsers) {
-            let user = deptUsers[userId];
-            let div = $('<div></div>');
-            div.append('<span><a href="/users/' + userId + '">' + user.name + '</a></span><br>');
-            for (let courseCode in user.courses) {
-              let course = user.courses[courseCode][0];
-              let progress = course.progress;
-              if (progress > 100) progress = 100;
-              div.append(`<div style="display: inline-block; border: 1px solid #000; background-color: #334;">
-          <div style='box-sizing: border-box; white-space: nowrap; padding: 0px 5px; font-size: 0.75em; background-color: #1C91A4; color: #fff; width: ` + progress + `%;'>` + courseCode + `</div>
-        </div>`);
-            }
-            div.append('<br>')
-            content.append(div);
-            console.log(user);
-          }
-          */
+          app.loadDepartmentUsers();
           app.loading = false;
         },
 
