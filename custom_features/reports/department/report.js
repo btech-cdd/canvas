@@ -44,6 +44,7 @@
           let availableDepartments = [];
           for (let i in app.json.canv_dept_to_jenz[dept]) {
             let departmentCode = app.json.canv_dept_to_jenz[dept][i];
+            console.log(app.json.progress[departmentCode]);
             availableDepartments.push(departmentCode);
           }
 
@@ -169,7 +170,6 @@
               usersByYear[year] = userList;
             }
             app.usersByYear = usersByYear;
-            console.log(app.usersByYear);
             /*
             console.log(app.currentDepartment);
 
