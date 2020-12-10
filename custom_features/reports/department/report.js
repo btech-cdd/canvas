@@ -140,9 +140,15 @@
           },
           loadDepartmentUsers() {
             let app = this;
-            let usersByYear = app.json['progress'][app.currentDepartment];
-            for (let year in usersByYear) {
-              let users = usersByYear[year];
+            let usersByYear;
+            for (let year in app.json['progress'][app.currentDepartment]) {
+              let users = app.json['progress'][app.currentDepartment];
+              let userList = [];
+              for (let id in users) {
+                console.log(id);
+                let user = users[id];
+                console.log(user);
+              }
               console.log(users);
               users.sort(function(a, b) {
                 let aName = app.nameDict[a];
