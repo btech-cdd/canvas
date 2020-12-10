@@ -27,6 +27,9 @@
           for (let key in app.json.progress) {
             availableDepartments.push(key);
           }
+          availableDepartments.sort(function (a, b) {
+            return a.localeCompare(b);
+          });
           app.availableDepartments = availableDepartments;
           app.currentDepartment = app.availableDepartments[0];
           /*
