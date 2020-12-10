@@ -29,7 +29,9 @@
             availableDepartments.push(key);
           }
           availableDepartments.sort(function (a, b) {
-            return a.localeCompare(b);
+            let deptNameA = app.json.dept_code_to_name[a].name;
+            let deptNameB = app.json.dept_code_to_name[b].name;
+            return deptNameA.localeCompare(deptNameB);
           });
           app.availableDepartments = availableDepartments;
           app.currentDepartment = app.availableDepartments[0];
