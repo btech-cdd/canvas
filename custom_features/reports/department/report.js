@@ -17,14 +17,18 @@
         el: '#canvas-department-report-vue',
         mounted: async function () {
           let app = this;
-          let dept = CURRENT_DEPARTMENT_ID;
+          let dept = '' + CURRENT_DEPARTMENT_ID;
           await app.loadJsonFile('progress');
           await app.loadJsonFile('sis_to_canv');
           console.log(app.json.sis_to_canv);
-          await app.loadJsonFile('canvas_to_jenz');
+          await app.loadJsonFile('canv_dept_to_jenz');
+          console.log(dept);
           await app.loadJsonFile('dept_code_to_name');
+          //Sort departments alphabetically
           let availableDepartments = [];
-          for (let key in app.json.progress) {
+          for (let key in app.json.canv_dept_to_jenz[dept]) {
+            console.log("DEPT");
+            console.log(key);
             availableDepartments.push(key);
           }
           availableDepartments.sort(function (a, b) {
