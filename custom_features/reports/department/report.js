@@ -40,7 +40,7 @@
           app.availableDepartments = availableDepartments;
           app.currentDepartment = app.availableDepartments[0];
 
-          let usersUrl = '/api/v1/accounts/'+dept+'/users';
+          let usersUrl = '/api/v1/accounts/' + dept + '/users';
           let users = await canvasGet(usersUrl, {
             enrollment_type: 'student'
           });
@@ -49,8 +49,10 @@
           for (let i = 0; i < users.length; i++) {
             let user = users[i];
             //If the name hasn't been saved yet
-            if (!(user.id in app.nameDict)) {
-              app.nameDict[user.id] = user.sortable_name;
+            if (user.sis_user_id !== none) {
+              if (!(user.sis_user_id in app.nameDict)) {
+                app.nameDict[user.sis_user_id] = user.sortable_name;
+              }
             }
           }
           console.log(app.nameDict);
