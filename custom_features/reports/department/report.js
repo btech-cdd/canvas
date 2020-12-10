@@ -145,12 +145,17 @@
               let users = app.json['progress'][app.currentDepartment][year];
               let userList = [];
               for (let id in users) {
-                console.log(id);
-                let user = users[id];
-                console.log(user);
+                if (id in app.nameDict) {
+                  let courses = users[id];
+                  userList.push({
+                    'name': app.nameDict[id],
+                    'id': id,
+                    'courses': courses 
+                  });
+                }
               }
-              console.log(users);
-              users.sort(function(a, b) {
+
+              userList.sort(function(a, b) {
                 let aName = app.nameDict[a];
                 if (aName != undefined) aName = aName.toLowerCase();
                 else aName = '';
@@ -161,6 +166,8 @@
 
                 return aName.localeCompare(bName);
               });
+
+              usersByYear[year] = userList;
             }
             app.usersByYear = usersByYear;
             console.log(app.usersByYear);

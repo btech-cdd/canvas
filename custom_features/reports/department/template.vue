@@ -5,15 +5,15 @@
     </select>
     <div v-for='(users, year) in usersByYear' :key='year'>
       <h2>{{year}} {{currentDepartment}} Tree</h2>
-      <div v-for='(user, userId) in users' :key='userId'>
-        <div v-if='userId !== "base"'>
+      <div v-for='user in users' :key='user.id'>
+        <div v-if='user.id !== "base"'>
           <div style='padding-bottom: .5em;'>
-            <div><span @click='openStudentReport(json.sis_to_canv[userId].canvas_id);' style='cursor: pointer;'>
-              {{nameDict[userId]}}
+            <div><span @click='openStudentReport(json.sis_to_canv[user.id].canvas_id);' style='cursor: pointer;'>
+              {{user.name}}
               </span> 
               (
               <a
-                :href="'/users/' + json.sis_to_canv[userId].canvas_id"
+                :href="'/users/' + json.sis_to_canv[user.id].canvas_id"
                 target="_blank"
                 >
                 profile
@@ -22,7 +22,7 @@
             </div>
 
             <!--CORE COURSES-->
-            <div v-for='(course, courseCode) in user' :key='courseCode'
+            <div v-for='(course, courseCode) in user.courses' :key='courseCode'
               style="position: relative; display: inline-block; border: 1px solid #000; background-color: #334;">
               <div
                 style='position: absolute; box-sizing: border-box; height: 100%; font-size: 0.75em; background-color: #1C91A4;'
