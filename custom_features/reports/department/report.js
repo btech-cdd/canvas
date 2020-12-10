@@ -140,7 +140,7 @@
           },
           loadDepartmentUsers() {
             let app = this;
-            let usersByYear;
+            let usersByYear = {};
             for (let year in app.json['progress'][app.currentDepartment]) {
               let users = app.json['progress'][app.currentDepartment][year];
               let userList = [];
