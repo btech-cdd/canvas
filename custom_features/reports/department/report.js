@@ -143,6 +143,7 @@
             let usersByYear = app.json['progress'][app.currentDepartment];
             for (let year in usersByYear) {
               let users = usersByYear[year];
+              console.log(users);
               users.sort(function(a, b) {
                 let aName = app.nameDict[a];
                 if (aName != undefined) aName = aName.toLowerCase();
