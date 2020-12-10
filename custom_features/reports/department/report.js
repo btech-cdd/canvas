@@ -96,7 +96,7 @@
             svg: null,
             nameDict: {},
             graphSettings: {
-              startDate: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
+              startDate: new Date(new Date().setMonths(new Date().getMontsh() - 6)),
               endDate: new Date(),
               radius: 4,
               x: null,
