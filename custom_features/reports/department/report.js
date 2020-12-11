@@ -103,6 +103,12 @@
           }
         },
         methods: {
+          getCourseProgressBarColor(progress) {
+            let app = this;
+            if (progress <= 0) return app.colors.noProgress;
+            if (progress >= 100) return app.colors.complete;
+            return app.colors.inProgress;
+          },
           calcElectiveCourses() {
             let list = [];
             let app = this;

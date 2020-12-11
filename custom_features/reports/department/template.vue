@@ -28,16 +28,15 @@
               class='btech-course-progress-bar'
               :style="
               {
-                'background-color': color.base 
+                'background-color': colors.base 
               }
               "
               >
               <div
-                style='position: absolute; box-sizing: border-box; height: 100%; font-size: 0.75em;'
                 class='btech-course-progress-bar-fill'
                 :style="
                   {
-                    'background-color': color.incomplete,
+                    'background-color': getCourseProgressBarColor(course.progress),
                     width: course.progress + '%'
                   }
                 ">
