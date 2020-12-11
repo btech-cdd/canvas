@@ -220,7 +220,7 @@
           async openStudentReport(userId) {
             let app = this;
             app.showStudentReport = true;
-            SUBMISSIONS_GRAPH_POINTS(app);
+            SUBMISSIONS_GRAPH_POINTS._init(app);
           },
 
           closeStudentReport() {
