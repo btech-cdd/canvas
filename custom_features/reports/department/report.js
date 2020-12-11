@@ -280,9 +280,9 @@
           //check if there's submission data and if it's an assignment worth any points
           if (submissionDate !== null) {
             let date = new Date(submissionDate);
-            let day = date.getDay();
+            let day = date.getDate();
             day = Math.floor(day / 7) * 7 + 1;
-            date.setDay(day);
+            date.setDate(day);
             if (!(date in submissionDates)) {
               submissionDates[date] = {
                 date: date,
