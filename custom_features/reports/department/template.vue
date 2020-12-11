@@ -41,7 +41,7 @@
                   }
                 ">
               </div>
-              <div style='position: relative; white-space: nowrap; padding: 0px 5px; font-size: 0.75em; color: #fff;'>
+              <div style='position: relative; white-space: nowrap; padding: 2px 8px; font-size: 0.75em; color: #fff;'>
                 {{course.code}}
               </div>
             </div>
