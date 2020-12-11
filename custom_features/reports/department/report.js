@@ -150,10 +150,9 @@
                     let elective = [];
                     for (let courseCode in courses) {
                       let course = courses[courseCode];
-                      console.log(course);
                       let courseData = {
                         'code': courseCode,
-                        'progess': course.progress
+                        'progress': course.progress
                       }
                       if (base[courseCode].type === 'CORE') {
                         core.push(courseData);
