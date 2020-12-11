@@ -24,7 +24,7 @@
             </div>
 
             <!--CORE COURSES-->
-            <div v-for='(course, courseCode) in user.courses' :key='courseCode'
+            <div v-for='(course) in user.core' :key='course.code'
               class='btech-course-progress-bar'
               :style="
               {
@@ -42,7 +42,7 @@
                 ">
               </div>
               <div style='position: relative; white-space: nowrap; padding: 0px 5px; font-size: 0.75em; color: #fff;'>
-                {{courseCode}}
+                {{course.code}}
               </div>
             </div>
           </div>
