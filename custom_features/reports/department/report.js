@@ -354,7 +354,7 @@
         .attr("height", function (d) {
           return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
         })
-        .attr("fill", "#334");
+        .attr("fill", app.colors.complete);
 
       graph.svg.append("text")
         .attr("transform", "translate(" + (w / 2) + " ," + (h) + ")")
@@ -400,7 +400,7 @@
       let graph = this;
       // Use D3 to select element, change color back to normal
       d3.select(mouse.target)
-        .attr("fill", "#334");
+        .attr("fill", app.colors.complete);
 
       // Select text by id and then remove
       d3.select("#t-" + submission.id).remove(); // Remove text location
