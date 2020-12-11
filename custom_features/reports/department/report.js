@@ -253,7 +253,7 @@
         right: 20,
       }
     },
-    _init(app) {
+    async _init(app) {
       this.app = app;
       let graph = this;
       let graphElId = 'btech-department-report-student-submissions-graph';
