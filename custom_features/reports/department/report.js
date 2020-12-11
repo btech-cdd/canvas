@@ -247,6 +247,7 @@
       radius: 4,
       x: null,
       y: null,
+      maxY: 25,
       margin: {
         top: 30,
         bottom: 40,
@@ -290,7 +291,9 @@
                 count: 0
               }
             }
-            submissionDates[date].count += 1;
+            if (submissionDates[date].count < graph.maxY) {
+              submissionDates[date].count += 1;
+            }
           }
         });
       }
@@ -334,7 +337,7 @@
       chart.append('g')
         .classed('y axis', true)
         .call(d3.axisLeft(y)
-          .ticks(10));
+          .ticks(graph.maxY));
 
       graph.svg
         .selectAll("whatever")
