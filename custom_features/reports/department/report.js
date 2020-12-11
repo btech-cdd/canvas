@@ -128,17 +128,19 @@
               let users = app.json['progress'][app.currentDepartment][year];
               let userList = [];
               for (let id in users) {
-                if (id in app.nameDict) {
-                  let courses = users[id];
-                  userList.push({
-                    'name': app.nameDict[id],
-                    'id': id,
-                    'courses': courses 
-                  });
+                if (id !== "base") {
+                  if (id in app.nameDict) {
+                    let courses = users[id];
+                    userList.push({
+                      'name': app.nameDict[id],
+                      'id': id,
+                      'courses': courses
+                    });
+                  }
                 }
               }
 
-              userList.sort(function(a, b) {
+              userList.sort(function (a, b) {
                 let aName = app.nameDict[a];
                 if (aName != undefined) aName = aName.toLowerCase();
                 else aName = '';
@@ -305,7 +307,6 @@
           // Create Event Handlers for mouse
           handleMouseOver(mouse, submission) { // Add interactivity
             let app = this;
-            console.log(mouse);
             if (submission.id === undefined) {
               submission.id = genId();
             }
