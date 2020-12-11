@@ -344,7 +344,7 @@
         .attr("x", function (d) {
           return graph.xPlot(d, x)
         })
-        .attr("width", 10)
+        .attr("width", 5)
         .attr("y", function (d) {
           return graph.yPlot(d, y);
         })
