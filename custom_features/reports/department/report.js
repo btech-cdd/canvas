@@ -150,6 +150,7 @@
                     let elective = [];
                     for (let courseCode in courses) {
                       let course = courses[courseCode];
+                      console.log(course);
                       let courseData = {
                         'code': courseCode,
                         'progess': course.progress
