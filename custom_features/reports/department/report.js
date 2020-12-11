@@ -279,13 +279,16 @@
           }
           //check if there's submission data and if it's an assignment worth any points
           if (submissionDate !== null) {
-            if (!(submissionDate in submissionDates)) {
-              submissionDates[submissionDate] = {
-                date: new Date(submissionDate),
+            let date = new Date(submissionDate);
+            let day = date.getDay();
+            day = Math.floor(day / 7) * 7;
+            if (!(date in submissionDates)) {
+              submissionDates[date] = {
+                date: date,
                 count: 0
               }
             }
-            submissionDates[submissionDate].count += 1;
+            submissionDates[date].count += 1;
           }
         });
       }
