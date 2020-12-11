@@ -1,7 +1,7 @@
 #canvas-department-report-vue .btech-course-progress-bar {
   position: relative;
   display: inline-block;
-  border: 1px solid #000;
+  border: 1px solid #fff;
   background-color: #334;
   font-weight: bold;
 }
