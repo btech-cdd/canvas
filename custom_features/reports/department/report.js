@@ -291,7 +291,7 @@
                 count: 0
               }
             }
-            if (submissionDates[date].count < graph.maxY) {
+            if (submissionDates[date].count < graph.graphSettings.maxY) {
               submissionDates[date].count += 1;
             }
           }
@@ -309,7 +309,7 @@
       graph.graphSettings.x = x;
 
       var y = d3.scaleLinear()
-        .domain([0, graph.maxY])
+        .domain([0, graph.graphSettings.maxY])
         .range([height, 0]);
 
       graph.graphSettings.y = y;
@@ -337,7 +337,7 @@
       chart.append('g')
         .classed('y axis', true)
         .call(d3.axisLeft(y)
-          .ticks(graph.maxY));
+          .ticks(graph.graphSettings.maxY));
 
       graph.svg
         .selectAll("whatever")
