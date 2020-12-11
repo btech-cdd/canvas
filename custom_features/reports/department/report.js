@@ -45,6 +45,8 @@
           for (let i in app.json.canv_dept_to_jenz[dept]) {
             let departmentCode = app.json.canv_dept_to_jenz[dept][i];
             if (departmentCode in app.json.progress) {
+              console.log(departmentCode);
+              console.log(app.json.progress[departmentCode]);
               availableDepartments.push(departmentCode);
             }
           }
