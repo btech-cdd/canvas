@@ -93,6 +93,12 @@
                 left: 50,
                 right: 20,
               }
+            },
+            colors: {
+              base: '334',
+              noProgress: 'D9534F',
+              inProgress: 'F0AD4E',
+              complete: '5CB85C'
             }
           }
         },

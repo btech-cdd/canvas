@@ -25,11 +25,18 @@
 
             <!--CORE COURSES-->
             <div v-for='(course, courseCode) in user.courses' :key='courseCode'
-              style="position: relative; display: inline-block; border: 1px solid #000; background-color: #334;">
+              style="position: relative; display: inline-block; border: 1px solid #000; background-color: #334;"
+              :style="
+              {
+                'background-color': color.base 
+              }
+              "
+              >
               <div
-                style='position: absolute; box-sizing: border-box; height: 100%; font-size: 0.75em; background-color: #1C91A4;'
+                style='position: absolute; box-sizing: border-box; height: 100%; font-size: 0.75em;'
                 :style="
                   {
+                    'background-color': color.incomplete,
                     width: course.progress + '%'
                   }
                 ">
