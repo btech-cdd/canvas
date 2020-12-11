@@ -4,21 +4,20 @@
   </div>
   <div v-else>
     <select @change='loadDepartmentUsers' v-model='currentDepartment'>
-      <option v-for='department in availableDepartments' :value='department'>{{json.dept_code_to_name[department].name + " (" + json.dept_code_to_name[department].first_year + "-" + json.dept_code_to_name[department].last_year + ")"}}</option>
+      <option v-for='department in availableDepartments' :value='department'>
+        {{json.dept_code_to_name[department].name + " (" + json.dept_code_to_name[department].first_year + "-" + json.dept_code_to_name[department].last_year + ")"}}
+      </option>
     </select>
     <div v-for='(users, year) in usersByYear' :key='year'>
-      <h2>{{year}} {{currentDepartment}} Tree</h2>
-      <div v-for='user in users' :key='user.id'>
-        <div v-if='user.id !== "base"'>
+      <div v-if='users.length > 0'>
+        <h2>{{year}} {{currentDepartment}} Tree</h2>
+        <div v-for='user in users' :key='user.id'>
           <div style='padding-bottom: .5em;'>
             <div><span @click='openStudentReport(json.sis_to_canv[user.id].canvas_id);' style='cursor: pointer;'>
-              {{user.name}}
-              </span> 
+                {{user.name}}
+              </span>
               (
-              <a
-                :href="'/users/' + json.sis_to_canv[user.id].canvas_id"
-                target="_blank"
-                >
+              <a :href="'/users/' + json.sis_to_canv[user.id].canvas_id" target="_blank">
                 profile
               </a>
               )
@@ -33,12 +32,9 @@
                   {
                     width: course.progress + '%'
                   }
-                "
-              >
+                ">
               </div>
-              <div
-                style='position: relative; white-space: nowrap; padding: 0px 5px; font-size: 0.75em; color: #fff;'
-              >
+              <div style='position: relative; white-space: nowrap; padding: 0px 5px; font-size: 0.75em; color: #fff;'>
                 {{courseCode}}
               </div>
             </div>
