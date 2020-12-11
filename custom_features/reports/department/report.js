@@ -283,6 +283,7 @@
             let day = date.getDate();
             day = Math.floor(day / 7) * 7 + 1;
             date.setDate(day);
+            console.log(date);
             if (!(date in submissionDates)) {
               submissionDates[date] = {
                 date: date,
