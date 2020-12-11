@@ -283,7 +283,6 @@
             let year = date.getFullYear();
             let month = date.getMonth();
             let day = date.getDate();
-            day = Math.floor(day / 7) * 7 + 1;
             date = new Date(year, month, day);
             if (!(date in submissionDates)) {
               submissionDates[date] = {
