@@ -37,7 +37,7 @@
                 :style="
                   {
                     'background-color': getCourseProgressBarColor(course.progress),
-                    width: course.progress + '%'
+                    width: 100 + '%'
                   }
                 ">
               </div>
