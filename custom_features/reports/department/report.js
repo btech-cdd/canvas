@@ -337,14 +337,14 @@
         .enter()
         .append("rect")
         .attr("x", function (d) {
-          return app.xPlot(d, x)
+          return graph.xPlot(d, x)
         })
         .attr("width", 10)
         .attr("y", function (d) {
-          return app.yPlot(d, y);
+          return graph.yPlot(d, y);
         })
         .attr("height", function (d) {
-          return height - app.yPlot(d, y) + app.graphSettings.margin.top;
+          return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
         })
         .attr("fill", "#334");
 
