@@ -141,14 +141,31 @@
             for (let year in app.json['progress'][app.currentDepartment]) {
               let users = app.json['progress'][app.currentDepartment][year];
               let userList = [];
+              let base = users['base'];
               for (let id in users) {
                 if (id !== "base") {
                   if (id in app.nameDict) {
                     let courses = users[id];
+                    let core = [];
+                    let elective = [];
+                    for (let courseCode in courses) {
+                      let course = courses[courseCode];
+                      let courseData = {
+                        'code': courseCode,
+                        'progess': course.progress
+                      }
+                      if (base[courseCode].type === 'CORE') {
+                        core.push(courseData);
+                      }
+                      if (base[courseCode].type === 'ELECT') {
+                        elective.push(courseData);
+                      }
+                    }
                     userList.push({
                       'name': app.nameDict[id],
                       'id': id,
-                      'courses': courses
+                      'core': core,
+                      'elective': elective 
                     });
                   }
                 }
