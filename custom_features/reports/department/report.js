@@ -95,10 +95,10 @@
               }
             },
             colors: {
-              base: '334',
-              noProgress: 'D9534F',
-              inProgress: 'F0AD4E',
-              complete: '5CB85C'
+              base: '#334',
+              noProgress: '#D9534F',
+              inProgress: '#F0AD4E',
+              complete: '#5CB85C'
             }
           }
         },
