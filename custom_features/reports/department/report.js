@@ -81,19 +81,7 @@
             showStudentReport: false,
             svg: null,
             nameDict: {},
-            graphSettings: {
-              startDate: new Date(new Date().setMonth(new Date().getMonth() - 6)),
-              endDate: new Date(),
-              radius: 4,
-              x: null,
-              y: null,
-              margin: {
-                top: 30,
-                bottom: 40,
-                left: 50,
-                right: 20,
-              }
-            },
+
             colors: {
               base: '#334',
               noProgress: '#D9534F',
@@ -165,7 +153,7 @@
                       'name': app.nameDict[id],
                       'id': id,
                       'core': core,
-                      'elective': elective 
+                      'elective': elective
                     });
                   }
                 }
@@ -232,164 +220,13 @@
           async openStudentReport(userId) {
             let app = this;
             app.showStudentReport = true;
-            let graphElId = 'btech-department-report-student-submissions-graph';
-            $('#' + graphElId).empty();
-            let legendKeys = ['score', 'submitted'];
-
-            var w = 800;
-            var h = 450;
-
-
-            var width = w - app.graphSettings.margin.left - app.graphSettings.margin.right
-            var height = h - app.graphSettings.margin.top - app.graphSettings.margin.bottom
-
-            var colors = [
-              '#FFEBB6', '#FFC400', '#B4EDA0', '#FF4436', '#FF9A00'
-            ];
-            let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
-            let submissions = [];
-            for (let e = 0; e < enrollments.length; e++) {
-              let enrollment = enrollments[e];
-              let url = "/api/v1/courses/" + enrollment.course_id + "/students/submissions?student_ids[]=" + userId + "&include=assignment";
-              let rawSubmissions = await canvasGet(url);
-              rawSubmissions.map(function (submission) {
-                let submissionDate = submission.submitted_at;
-                if (submissionDate === null) {
-                  submissionDate = submission.graded_at;
-                }
-                //check if there's submission data and if it's an assignment worth any points
-                if (submissionDate !== null && submission.assignment.points_possible > 0) {
-                  submissionDate = new Date(submissionDate);
-                  if (submissionDate > app.graphSettings.startDate) {
-                    submission.submissionDate = submissionDate;
-                    submissions.push(submission);
-                  }
-                }
-              });
-            }
-
-            var x = d3.scaleTime()
-              .domain([app.graphSettings.startDate, app.graphSettings.endDate])
-              .range([0, width]);
-            app.graphSettings.x = x;
-
-            var y = d3.scaleLinear()
-              .domain([0, 100])
-              .range([height, 0]);
-
-            app.graphSettings.y = y;
-
-
-            app.svg = d3.select('#' + graphElId).append('svg')
-              .attr('class', 'chart')
-              .attr('width', w)
-              .attr('height', h);
-
-            var chart = app.svg.append('g')
-              .classed('graph', true)
-              .attr('transform', 'translate(' + app.graphSettings.margin.left + ',' + app.graphSettings.margin.top + ')');
-
-
-            chart.append('g')
-              .classed('x axis', true)
-              .attr("transform", "translate(0," + height + ")")
-              .call(
-                d3.axisBottom(x)
-                .tickFormat(d3.timeFormat("%Y-%m"))
-                .ticks(d3.timeMonth.every(1))
-              );
-
-            chart.append('g')
-              .classed('y axis', true)
-              .call(d3.axisLeft(y)
-                .ticks(10));
-
-            app.svg
-              .selectAll("whatever")
-              .data(submissions)
-              .enter()
-              .append("circle")
-              .attr("cx", function (d) {
-                return app.xPlot(d, x)
-              })
-              .attr("cy", function (d) {
-                return app.yPlot(d, y)
-              })
-              .attr("r", app.graphSettings.radius)
-              .attr("fill", "#334")
-              .attr("stroke", "#000")
-              .on("mouseover", app.handleMouseOver)
-              .on("mouseout", app.handleMouseOut)
-              .on("click", app.handleMouseClick);
-
-            app.svg.append("text")
-              .attr("transform", "translate(" + (w / 2) + " ," + (h) + ")")
-              .style("text-anchor", "middle")
-              .text("Date Submitted");
-
-            app.svg.append("text")
-              .attr("transform", "rotate(-90)")
-              .attr("y", 0)
-              .attr("x", 0 - (height / 2))
-              .attr("dy", "1em")
-              .style("text-anchor", "middle")
-              .text("Assignment Grade");
-          },
-          // Create Event Handlers for mouse
-          handleMouseOver(mouse, submission) { // Add interactivity
-            let app = this;
-            if (submission.id === undefined) {
-              submission.id = genId();
-            }
-            // Use D3 to select element, change color and size
-            d3.select(mouse.target)
-              .attr("fill", "#1C91A4");
-
-            // Specify where to put label of text
-            app.svg.append("text")
-              .attr("id", "t-" + submission.id) // Create an id for text so we can select it later for removing on mouseout
-              .attr("x", function () {
-                return app.xPlot(submission, app.graphSettings.x);
-              })
-              .attr("y", function () {
-                return app.yPlot(submission, app.graphSettings.y);
-              })
-              .text(function () {
-                return submission.assignment.name; // Value of the text
-              });
-          },
-
-          handleMouseOut(mouse, submission) {
-            let app = this;
-            // Use D3 to select element, change color back to normal
-            d3.select(mouse.target)
-              .attr("fill", "#334");
-
-            // Select text by id and then remove
-            d3.select("#t-" + submission.id).remove(); // Remove text location
-          },
-
-          handleMouseClick(mouse, submission) {
-            let app = this;
-            var newWindow = window.open(submission.preview_url);
+            SUBMISSIONS_GRAPH_POINTS(app);
           },
 
           closeStudentReport() {
             let app = this;
             app.showStudentReport = false;
           },
-
-          xPlot(d, x) {
-            let app = this;
-            return x(new Date(d.submissionDate)) + app.graphSettings.margin.left;
-          },
-
-          yPlot(d, y) {
-            let app = this;
-            return y((d.score / d.assignment.points_possible) * 100) + app.graphSettings.margin.top;
-          },
-
-
 
           async loadJsonFile(name) {
             let app = this;
@@ -400,5 +237,175 @@
         }
       })
     }
+  }
+  SUBMISSIONS_GRAPH_POINTS = {
+    app: {},
+    graphSettings: {
+      startDate: new Date(new Date().setMonth(new Date().getMonth() - 6)),
+      endDate: new Date(),
+      radius: 4,
+      x: null,
+      y: null,
+      margin: {
+        top: 30,
+        bottom: 40,
+        left: 50,
+        right: 20,
+      }
+    },
+    _init(app) {
+      this.app = app;
+      let graph = this;
+      let graphElId = 'btech-department-report-student-submissions-graph';
+      $('#' + graphElId).empty();
+      var w = 800;
+      var h = 450;
+
+
+      var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right
+      var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom
+
+      let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
+      let submissions = [];
+      for (let e = 0; e < enrollments.length; e++) {
+        let enrollment = enrollments[e];
+        let url = "/api/v1/courses/" + enrollment.course_id + "/students/submissions?student_ids[]=" + userId + "&include=assignment";
+        let rawSubmissions = await canvasGet(url);
+        rawSubmissions.map(function (submission) {
+          let submissionDate = submission.submitted_at;
+          if (submissionDate === null) {
+            submissionDate = submission.graded_at;
+          }
+          //check if there's submission data and if it's an assignment worth any points
+          if (submissionDate !== null && submission.assignment.points_possible > 0) {
+            submissionDate = new Date(submissionDate);
+            if (submissionDate > graph.graphSettings.startDate) {
+              submission.submissionDate = submissionDate;
+              submissions.push(submission);
+            }
+          }
+        });
+      }
+
+      var x = d3.scaleTime()
+        .domain([graph.graphSettings.startDate, graph.graphSettings.endDate])
+        .range([0, width]);
+      graph.graphSettings.x = x;
+
+      var y = d3.scaleLinear()
+        .domain([0, 100])
+        .range([height, 0]);
+
+      graph.graphSettings.y = y;
+
+
+      graph.svg = d3.select('#' + graphElId).append('svg')
+        .attr('class', 'chart')
+        .attr('width', w)
+        .attr('height', h);
+
+      var chart = graph.svg.append('g')
+        .classed('graph', true)
+        .attr('transform', 'translate(' + graph.graphSettings.margin.left + ',' + graph.graphSettings.margin.top + ')');
+
+
+      chart.append('g')
+        .classed('x axis', true)
+        .attr("transform", "translate(0," + height + ")")
+        .call(
+          d3.axisBottom(x)
+          .tickFormat(d3.timeFormat("%Y-%m"))
+          .ticks(d3.timeMonth.every(1))
+        );
+
+      chart.append('g')
+        .classed('y axis', true)
+        .call(d3.axisLeft(y)
+          .ticks(10));
+
+      graph.svg
+        .selectAll("whatever")
+        .data(submissions)
+        .enter()
+        .append("circle")
+        .attr("cx", function (d) {
+          return graph.xPlot(d, x)
+        })
+        .attr("cy", function (d) {
+          return graph.yPlot(d, y)
+        })
+        .attr("r", graph.graphSettings.radius)
+        .attr("fill", "#334")
+        .attr("stroke", "#000")
+        .on("mouseover", graph.handleMouseOver)
+        .on("mouseout", graph.handleMouseOut)
+        .on("click", graph.handleMouseClick);
+
+      graph.svg.append("text")
+        .attr("transform", "translate(" + (w / 2) + " ," + (h) + ")")
+        .style("text-anchor", "middle")
+        .text("Date Submitted");
+
+      graph.svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("Assignment Grade");
+    },
+
+    // Create Event Handlers for mouse
+    handleMouseOver(mouse, submission) { // Add interactivity
+      let = this.app;
+      let graph = this;
+      if (submission.id === undefined) {
+        submission.id = genId();
+      }
+      // Use D3 to select element, change color and size
+      d3.select(mouse.target)
+        .attr("fill", "#1C91A4");
+
+      // Specify where to put label of text
+      graph.svg.append("text")
+        .attr("id", "t-" + submission.id) // Create an id for text so we can select it later for removing on mouseout
+        .attr("x", function () {
+          return graph.xPlot(submission, graph.graphSettings.x);
+        })
+        .attr("y", function () {
+          return graph.yPlot(submission, graph.graphSettings.y);
+        })
+        .text(function () {
+          return submission.assignment.name; // Value of the text
+        });
+    },
+
+    handleMouseOut(mouse, submission) {
+      let app = this.app;
+      let graph = this;
+      // Use D3 to select element, change color back to normal
+      d3.select(mouse.target)
+        .attr("fill", "#334");
+
+      // Select text by id and then remove
+      d3.select("#t-" + submission.id).remove(); // Remove text location
+    },
+
+    handleMouseClick(mouse, submission) {
+      let app = this.app;
+      let graph = this;
+      var newWindow = window.open(submission.preview_url);
+    },
+    xPlot(d, x) {
+      let app = this.app;
+      let graph = this;
+      return x(new Date(d.submissionDate)) + graph.graphSettings.margin.left;
+    },
+
+    yPlot(d, y) {
+      let app = this.app;
+      let graph = this;
+      return y((d.score / d.assignment.points_possible) * 100) + graph.graphSettings.margin.top;
+    },
   }
 })();
