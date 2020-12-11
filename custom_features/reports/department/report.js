@@ -309,7 +309,7 @@
       graph.graphSettings.x = x;
 
       var y = d3.scaleLinear()
-        .domain([0, 10])
+        .domain([0, graph.maxY])
         .range([height, 0]);
 
       graph.graphSettings.y = y;
