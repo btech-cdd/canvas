@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div v-if="loading">
+    <span>Loading...</span>
+  </div>
+  <div v-else>
     <select @change='loadDepartmentUsers' v-model='currentDepartment'>
       <option v-for='department in availableDepartments' :value='department'>{{json.dept_code_to_name[department].name + " (" + json.dept_code_to_name[department].first_year + "-" + json.dept_code_to_name[department].last_year + ")"}}</option>
     </select>
