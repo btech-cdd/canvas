@@ -25,7 +25,7 @@
 
             <!--CORE COURSES-->
             <div v-for='(course, courseCode) in user.courses' :key='courseCode'
-              style="position: relative; display: inline-block; border: 1px solid #000; background-color: #334;"
+              class='btech-course-progress-bar'
               :style="
               {
                 'background-color': color.base 
@@ -34,6 +34,7 @@
               >
               <div
                 style='position: absolute; box-sizing: border-box; height: 100%; font-size: 0.75em;'
+                class='btech-course-progress-bar-fill'
                 :style="
                   {
                     'background-color': color.incomplete,
