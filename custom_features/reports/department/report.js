@@ -155,10 +155,10 @@
                         'progess': course.progress
                       }
                       if (base[courseCode].type === 'CORE') {
-                        core.append(courseData);
+                        core.push(courseData);
                       }
                       if (base[courseCode].type === 'ELECT') {
-                        elective.append(courseData);
+                        elective.push(courseData);
                       }
                     }
                     userList.push({
