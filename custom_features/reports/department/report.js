@@ -220,7 +220,7 @@
           async openStudentReport(userId) {
             let app = this;
             app.showStudentReport = true;
-            SUBMISSIONS_GRAPH_POINTS._init(app);
+            SUBMISSIONS_GRAPH_POINTS._init(app, userId);
           },
 
           closeStudentReport() {
@@ -253,7 +253,7 @@
         right: 20,
       }
     },
-    async _init(app) {
+    async _init(app, userId) {
       this.app = app;
       let graph = this;
       let graphElId = 'btech-department-report-student-submissions-graph';
