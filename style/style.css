@@ -84,13 +84,13 @@
 #content #wiki_page_show .btech-content-box .btech-content-box-body,
 #content #assignment_show .btech-content-box .btech-content-box-body,
 #content #quiz_show .btech-content-box .btech-content-box-body {
-  padding: 2px;
+  padding: 8px 8px;
 }
 
 #content #wiki_page_show .btech-content-box .btech-content-box-head,
 #content #assignment_show .btech-content-box .btech-content-box-head,
 #content #quiz_show .btech-content-box .btech-content-box-head {
-  padding: 2px;
+  padding: 8px 2px;
   background-color: #f8f8f8;
 }
 
