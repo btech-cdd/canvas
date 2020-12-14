@@ -5,14 +5,17 @@
 }
 
 #content #wiki_page_show hr,
+#content #wiki_page_show br,
 #content #wiki_page_show h2,
 #content #wiki_page_show h3,
 #content #wiki_page_show h4,
 #content #assignment_show hr, 
+#content #assignment_show br, 
 #content #assignment_show h2, 
 #content #assignment_show h3, 
 #content #assignment_show h4, 
 #content #quiz_show hr,
+#content #quiz_show br,
 #content #quiz_show h2,
 #content #quiz_show h3,
 #content #quiz_show h4 {
