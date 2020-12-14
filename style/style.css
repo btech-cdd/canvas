@@ -79,6 +79,7 @@
 #content #assignment_show .btech-content-box,
 #content #quiz_show .btech-content-box {
   border: 1px solid #ddd;
+  border-radius: 2px;
 }
 
 #content #wiki_page_show .btech-content-box .btech-content-box-body,
