@@ -78,7 +78,7 @@
 #content #wiki_page_show .btech-content-box,
 #content #assignment_show .btech-content-box,
 #content #quiz_show .btech-content-box {
-  border: 1px solid #aaa;
+  border: 1px solid #ddd;
 }
 
 #content #wiki_page_show .btech-content-box .btech-content-box-body,
@@ -91,7 +91,7 @@
 #content #assignment_show .btech-content-box .btech-content-box-head,
 #content #quiz_show .btech-content-box .btech-content-box-head {
   padding: 2px;
-  background-color: #ccc;
+  background-color: #f8f8f8;
 }
 
 .btech-citation {
