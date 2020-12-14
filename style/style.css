@@ -75,6 +75,18 @@
   padding-left: 0;
 }
 
+#content #wiki_page_show .btech-content-box,
+#content #assignment_show .btech-content-box,
+#content #quiz_show .btech-content-box {
+  background-color: #ccc
+}
+
+#content #wiki_page_show .btech-content-box h2,
+#content #assignment_show .btech-content-box h2,
+#content #quiz_show .btech-content-box h2 {
+  background-color: #ccc
+}
+
 .btech-citation {
   font-size: .66rem;
 }
