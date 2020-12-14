@@ -81,7 +81,7 @@
             showStudentReport: false,
             svg: null,
             nameDict: {},
-
+            enrollments: {}, //or submission data or student data or somewhere else to hold all of the data pulling from canvas and saving it for reuse.
             colors: {
               base: '#334',
               noProgress: '#D9534F',

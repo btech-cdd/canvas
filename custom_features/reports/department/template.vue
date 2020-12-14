@@ -41,7 +41,9 @@
                   }
                 ">
               </div>
-              <div style='position: relative; white-space: nowrap; padding: 2px 8px; font-size: 0.75em; color: #fff;'>
+              <div 
+                class='btech-course-progress-bar-text'
+                >
                 {{course.code}}
               </div>
             </div>
