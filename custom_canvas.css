@@ -99,6 +99,10 @@ ul.btech-question-banks-sorter li.btech-bank-course.selected {
   text-align: center;
 }
 
+.btech-toggler:hover {
+
+}
+
 .ui-accordion-header {
   background: #f8f8f8;
   border: 1px solid #000000;
