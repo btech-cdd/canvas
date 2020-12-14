@@ -78,13 +78,20 @@
 #content #wiki_page_show .btech-content-box,
 #content #assignment_show .btech-content-box,
 #content #quiz_show .btech-content-box {
-  background-color: #ccc
+  border: 1px solid #888;
 }
 
-#content #wiki_page_show .btech-content-box h2,
-#content #assignment_show .btech-content-box h2,
-#content #quiz_show .btech-content-box h2 {
-  background-color: #ccc
+#content #wiki_page_show .btech-content-box .btech-content-box-body,
+#content #assignment_show .btech-content-box .btech-content-box-body,
+#content #quiz_show .btech-content-box .btech-content-box-body {
+  padding: 2px;
+}
+
+#content #wiki_page_show .btech-content-box .btech-content-box-head,
+#content #assignment_show .btech-content-box .btech-content-box-head,
+#content #quiz_show .btech-content-box .btech-content-box-head {
+  padding: 2px;
+  background-color: #ccc;
 }
 
 .btech-citation {
