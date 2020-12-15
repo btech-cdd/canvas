@@ -204,7 +204,7 @@
                     SET UP THE MINI GRAPH NEXT TO THE USERS NAME WITH SUBMISSION DATA
                     ALSO NEED A LOCATION TO RUN THIS WHEN STUDENTS ARE FIRST LOADED
                   */
-                  SUBMISSIONS_GRAPH_BAR._init(app, userId, "btech-user-submission-summary-" + userId, 96, 16);
+                  SUBMISSIONS_GRAPH_BAR._initSmall(app, userId, "btech-user-submission-summary-" + userId);
                   app.loadNextStudentSubmissionData();
                   return;
                 }
@@ -268,9 +268,112 @@
         right: 20,
       }
     },
+    async _initSmall(app, userId, graphElId, w=160, h=64) {
+      this.app = app;
+      let graph = this;
+      await app.loadUserSubmissionData(userId);
+      let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
+      let submissionDates = {};
+      for (let e = 0; e < enrollments.length; e++) {
+        let enrollment = enrollments[e];
+        let rawSubmissions = app.userSubmissionData[userId][enrollment.course_id];
+        rawSubmissions.map(function (submission) {
+          let submissionDate = submission.submitted_at;
+          if (submissionDate === null) {
+            submissionDate = submission.graded_at;
+          }
+          //check if there's submission data and if it's an assignment worth any points
+          if (submissionDate !== null) {
+            let date = new Date(submissionDate);
+            let year = date.getFullYear();
+            let month = date.getMonth();
+            let day = date.getDate();
+            date = new Date(year, month, day);
+            if (!(date in submissionDates)) {
+              submissionDates[date] = {
+                date: date,
+                count: 0
+              }
+            }
+            if (submissionDates[date].count < graph.graphSettings.maxY) {
+              submissionDates[date].count += 1;
+            }
+          }
+        });
+      }
+      let submissions = [];
+      for (let date in submissionDates) {
+        submissionDate = submissionDates[date];
+        submissions.push(submissionDate);
+      }
+      app.loadingStudentReport = false;
+
+      //Begin setting up the graph
+      $('#' + graphElId).empty();
+      console.log(d3.select('#' + graphElId));
+
+      var width = w;
+      var height = h;
+
+      var x = d3.scaleTime()
+        .domain([graph.graphSettings.startDate, graph.graphSettings.endDate])
+        .range([0, width]);
+      graph.graphSettings.x = x;
+
+      var y = d3.scaleLinear()
+        .domain([0, graph.graphSettings.maxY])
+        .range([height, 0]);
+
+      graph.graphSettings.y = y;
+
+
+      graph.svg = d3.select('#' + graphElId).append('svg')
+        .attr('class', 'chart')
+        .attr('width', w)
+        .attr('height', h);
+
+      var chart = graph.svg.append('g')
+        .classed('graph', true)
+        .attr('transform', 'translate(' + graph.graphSettings.margin.left + ',' + graph.graphSettings.margin.top + ')');
+
+
+        /*
+      chart.append('g')
+        .classed('x axis', true)
+        .attr("transform", "translate(0, " + height + ")")
+        .call(
+          d3.axisBottom(x)
+          .tickFormat(d3.timeFormat("%Y-%m"))
+          .ticks(d3.timeMonth.every(1))
+        );
+
+      chart.append('g')
+        .classed('y axis', true)
+        .call(d3.axisLeft(y)
+          .ticks(graph.graphSettings.maxY));
+          */
+
+      graph.graphSettings.barWidth = Math.floor(w / 180) + 1;
+
+      graph.svg
+        .selectAll("whatever")
+        .data(submissions)
+        .enter()
+        .append("rect")
+        .attr("x", function (d) {
+          return graph.xPlot(d, x)
+        })
+        .attr("width", graph.graphSettings.barWidth)
+        .attr("y", function (d) {
+          return graph.yPlot(d, y);
+        })
+        .attr("height", function (d) {
+          return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
+        })
+        .attr("fill", app.colors.complete);
+    },
     async _init(app, userId, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 450) {
       this.app = app;
-      app.loadingStudentReport = true;
       let graph = this;
 
       //Load enrollment and submission data
