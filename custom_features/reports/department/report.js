@@ -187,7 +187,7 @@
               let users = usersByYear[year];
               for (let sisId in users) {
                 let user = users[sisId];
-                let userId = json.sis_to_canv[sisId].canvas_id
+                let userId = app.json.sis_to_canv[sisId].canvas_id
                 if (app.userSubmissionData[userId] == undefined) {
                   console.log("OUTPUT");
                   console.log(sisId);
