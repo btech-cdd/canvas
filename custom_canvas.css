@@ -100,7 +100,8 @@ ul.btech-question-banks-sorter li.btech-bank-course.selected {
 }
 
 .btech-toggler:hover {
-
+  background-color: #ffffff; 
+  cursor: pointer;
 }
 
 .ui-accordion-header {
