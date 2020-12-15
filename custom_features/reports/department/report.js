@@ -72,6 +72,7 @@
         data: function () {
           return {
             loading: true,
+            loadingStudentSubmissionsInProgress: false,
             json: {},
             usersByYear: {},
             userSubmissionData: {},
@@ -177,11 +178,19 @@
             }
             app.usersByYear = usersByYear;
 
-            app.loadNextStudentSubmissionData();
+            //Don't want to start multiple of these
+            if (app.loadingStudentSubmissionsInProgress === false) {
+              app.loadNextStudentSubmissionData();
+            }
           },
 
+          //This will keep rerunning until it has loaded every visible student. 
+          //Once done, flags to system that it's no longer running.
+          //If there's a change in department displayed, the cycle will be reset.
+          //This set up should hopefully prevent multiple pulls from going on at once.
           async loadNextStudentSubmissionData() {
             let app = this;
+            app.loadingStudentSubmissionsInProgress = true;
             let usersByYear = app.usersByYear;
             for (let year in usersByYear) {
               let users = usersByYear[year];
@@ -190,15 +199,18 @@
                 let sisId = user.id
                 let userId = app.json.sis_to_canv[sisId].canvas_id
                 if (app.userSubmissionData[userId] == undefined) {
-                  console.log("OUTPUT");
-                  console.log(sisId);
-                  console.log(userId);
                   await app.loadUserSubmissionData(userId);
+                  /*
+                    SET UP THE MINI GRAPH NEXT TO THE USERS NAME WITH SUBMISSION DATA
+                    ALSO NEED A LOCATION TO RUN THIS WHEN STUDENTS ARE FIRST LOADED
+                  */
+                  SUBMISSIONS_GRAPH_BAR._init(app, userId, "btech-user-submission-summary-" + userId, 96, 16);
                   app.loadNextStudentSubmissionData();
                   return;
                 }
               }
             }
+            app.loadingStudentSubmissionsInProgress = false;
           },
 
           async openStudentReport(userId) {
