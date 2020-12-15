@@ -176,7 +176,7 @@
               usersByYear[year] = userList;
             }
             app.usersByYear = usersByYear;
-            
+
             app.loadNextStudentSubmissionData();
           },
 
@@ -184,7 +184,19 @@
             let app = this;
             let usersByYear = app.usersByYear;
             for (let year in usersByYear) {
-              console.log(year);
+              let users = usersByYear[year];
+              for (let sisId in users) {
+                let user = users[sisId];
+                let userId = json.sis_to_canv[sisId].canvas_id
+                if (app.userSubmissionData[userId] == undefined) {
+                  console.log("OUTPUT");
+                  console.log(sisId);
+                  console.log(userId);
+                  await app.loadUserSubmissionData(userId);
+                  app.loadNextStudentSubmissionData();
+                  return;
+                }
+              }
             }
           },
 
@@ -204,6 +216,21 @@
             let jsonUrl = 'https://jhveem.xyz/canvas/custom_features/reports/department/' + name + '.json';
             let jsonData = await canvasGet(jsonUrl);
             app.json[name] = jsonData[0];
+          },
+
+          async loadUserSubmissionData(userId) {
+            if (app.userSubmissionData[userId] == undefined) app.userSubmissionData[userId] = {};
+            else return;
+            let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
+            for (let e = 0; e < enrollments.length; e++) {
+              let enrollment = enrollments[e];
+              if (app.userSubmissionData[userId][enrollment.course_id] == undefined) {
+
+                let url = "/api/v1/courses/" + enrollment.course_id + "/students/submissions?student_ids[]=" + userId + "&include=assignment";
+                app.userSubmissionData[userId][enrollment.course_id] = await canvasGet(url);
+              }
+            }
+            return;
           }
         }
       })
@@ -227,22 +254,17 @@
         right: 20,
       }
     },
-    async _init(app, userId, graphElId='btech-department-report-student-submissions-graph', w=800, h=450) {
+    async _init(app, userId, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 450) {
       this.app = app;
       app.loadingStudentReport = true;
       let graph = this;
 
       //Load enrollment and submission data
+      await app.loadUserSubmissionData(userId);
       let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
-      if (app.userSubmissionData[userId] == undefined) app.userSubmissionData[userId] = {};
       let submissionDates = {};
       for (let e = 0; e < enrollments.length; e++) {
         let enrollment = enrollments[e];
-        if (app.userSubmissionData[userId][enrollment.course_id] == undefined) {
-
-        let url = "/api/v1/courses/" + enrollment.course_id + "/students/submissions?student_ids[]=" + userId + "&include=assignment";
-          app.userSubmissionData[userId][enrollment.course_id] = await canvasGet(url);
-        }
         let rawSubmissions = app.userSubmissionData[userId][enrollment.course_id];
         rawSubmissions.map(function (submission) {
           let submissionDate = submission.submitted_at;
