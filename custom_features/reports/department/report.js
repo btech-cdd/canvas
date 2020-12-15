@@ -261,8 +261,6 @@
       this.app = app;
       app.loadingStudentReport = true;
       let graph = this;
-
-      //Load enrollment and submission data
       let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
       if (app.userSubmissionData[userId] == undefined) app.userSubmissionData[userId] = {};
       let submissionDates = {};
@@ -305,7 +303,6 @@
       }
       app.loadingStudentReport = false;
 
-      //Begin setting up the graph
       let graphElId = 'btech-department-report-student-submissions-graph';
       $('#' + graphElId).empty();
       var w = 800;
