@@ -271,6 +271,15 @@
     async _initSmall(app, userId, graphElId, w=160, h=64) {
       this.app = app;
       let graph = this;
+
+      //set margins
+      app.graphSettings.margin = {
+        top: 30,
+        bottom: 40,
+        left: 50,
+        right: 20,
+      };
+
       await app.loadUserSubmissionData(userId);
       let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
       let submissionDates = {};
@@ -312,8 +321,8 @@
       $('#' + graphElId).empty();
       console.log(d3.select('#' + graphElId));
 
-      var width = w;
-      var height = h;
+      var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right;
+      var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom;
 
       var x = d3.scaleTime()
         .domain([graph.graphSettings.startDate, graph.graphSettings.endDate])
@@ -375,6 +384,14 @@
       this.app = app;
       let graph = this;
 
+      //Set margins
+      app.graphSettings.margin = {
+        top: 30,
+        bottom: 40,
+        left: 50,
+        right: 20,
+      };
+
       //Load enrollment and submission data
       await app.loadUserSubmissionData(userId);
       let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
@@ -417,8 +434,8 @@
       $('#' + graphElId).empty();
       console.log(d3.select('#' + graphElId));
 
-      var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right
-      var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom
+      var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right;
+      var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom;
 
       var x = d3.scaleTime()
         .domain([graph.graphSettings.startDate, graph.graphSettings.endDate])
