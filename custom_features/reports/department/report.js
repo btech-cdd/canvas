@@ -318,7 +318,7 @@
 
       //Begin setting up the graph
       $('#' + graphElId).empty();
-      console.log(d3.select('#' + graphElId).node().getBoundingClientRect());
+      console.log(d3.select('#' + graphElId).node().parentNode.getBoundingClientRect());
       console.log(d3.select('#' + graphElId));
 
       var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right;
