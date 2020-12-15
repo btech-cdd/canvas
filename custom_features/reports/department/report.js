@@ -337,21 +337,20 @@
         .attr('transform', 'translate(' + graph.graphSettings.margin.left + ',' + graph.graphSettings.margin.top + ')');
 
 
-        /*
       chart.append('g')
         .classed('x axis', true)
         .attr("transform", "translate(0, " + height + ")")
         .call(
           d3.axisBottom(x)
-          .tickFormat(d3.timeFormat("%Y-%m"))
+          .tickFormat("")
           .ticks(d3.timeMonth.every(1))
         );
 
       chart.append('g')
         .classed('y axis', true)
         .call(d3.axisLeft(y)
+          .tickFormat("")
           .ticks(graph.graphSettings.maxY));
-          */
 
       graph.graphSettings.barWidth = Math.floor(w / 180) + 1;
 
