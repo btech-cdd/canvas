@@ -262,10 +262,6 @@
       barWidth: 1,
       maxY: 25,
       margin: {
-        top: 30,
-        bottom: 40,
-        left: 50,
-        right: 20,
       }
     },
     async _initSmall(app, userId, graphElId, w=160, h=64) {
@@ -273,7 +269,7 @@
       let graph = this;
 
       //set margins
-      app.graphSettings.margin = {
+      graph.graphSettings.margin = {
         top: 30,
         bottom: 40,
         left: 50,
@@ -385,7 +381,7 @@
       let graph = this;
 
       //Set margins
-      app.graphSettings.margin = {
+      graph.graphSettings.margin = {
         top: 30,
         bottom: 40,
         left: 50,
