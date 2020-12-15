@@ -21,6 +21,7 @@
                 profile
               </a>
               )
+              <div :id="'btech-user-submission-summary-' + user.id"></div>
             </div>
 
             <!--CORE COURSES-->
