@@ -263,7 +263,7 @@
       margin: {
       }
     },
-    async _initSmall(app, userId, graphElId, w=160, h=32) {
+    async _initSmall(app, userId, graphElId, w=160, h=24) {
       this.app = app;
       let graph = this;
 
@@ -271,12 +271,12 @@
       graph.graphSettings.startDate = new Date(new Date().setMonth(new Date().getMonth() - 3));
       graph.graphSettings.endDate = new Date();
       graph.graphSettings.barWidth = 1;
-      graph.graphSettings.maxY = 8;
+      graph.graphSettings.maxY = 5;
       graph.graphSettings.margin = {
-        top: 3,
-        bottom: 4,
-        left: 5,
-        right: 2,
+        top: 1,
+        bottom: 1,
+        left: 1,
+        right: 1,
       };
 
       await app.loadUserSubmissionData(userId);
