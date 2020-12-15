@@ -188,7 +188,6 @@
               for (let i in users) {
                 let user = users[i];
                 let sisId = user.id
-                console.log(sisId);
                 let userId = app.json.sis_to_canv[sisId].canvas_id
                 if (app.userSubmissionData[userId] == undefined) {
                   console.log("OUTPUT");
@@ -221,6 +220,7 @@
           },
 
           async loadUserSubmissionData(userId) {
+            let app = this;
             if (app.userSubmissionData[userId] == undefined) app.userSubmissionData[userId] = {};
             else return;
             let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
