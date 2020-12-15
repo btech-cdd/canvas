@@ -249,6 +249,7 @@
       radius: 4,
       x: null,
       y: null,
+      barWidth: 1,
       maxY: 25,
       margin: {
         top: 30,
@@ -257,10 +258,12 @@
         right: 20,
       }
     },
-    async _init(app, userId) {
+    async _init(app, userId, graphElId='btech-department-report-student-submissions-graph', w=800, h=450) {
       this.app = app;
       app.loadingStudentReport = true;
       let graph = this;
+
+      //Load enrollment and submission data
       let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
       if (app.userSubmissionData[userId] == undefined) app.userSubmissionData[userId] = {};
       let submissionDates = {};
@@ -303,11 +306,9 @@
       }
       app.loadingStudentReport = false;
 
-      let graphElId = 'btech-department-report-student-submissions-graph';
+      //Begin setting up the graph
       $('#' + graphElId).empty();
-      var w = 800;
-      var h = 450;
-
+      console.log(d3.select('#' + graphElId));
 
       var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right
       var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom
@@ -336,7 +337,7 @@
 
       chart.append('g')
         .classed('x axis', true)
-        .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(0, " + height + ")")
         .call(
           d3.axisBottom(x)
           .tickFormat(d3.timeFormat("%Y-%m"))
@@ -348,6 +349,8 @@
         .call(d3.axisLeft(y)
           .ticks(graph.graphSettings.maxY));
 
+      graph.graphSettings.barWidth = Math.floor(w / 180) + 1;
+
       graph.svg
         .selectAll("whatever")
         .data(submissions)
@@ -356,7 +359,7 @@
         .attr("x", function (d) {
           return graph.xPlot(d, x)
         })
-        .attr("width", 5)
+        .attr("width", graph.graphSettings.barWidth)
         .attr("y", function (d) {
           return graph.yPlot(d, y);
         })
