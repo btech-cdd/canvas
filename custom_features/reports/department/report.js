@@ -318,6 +318,7 @@
 
       //Begin setting up the graph
       $('#' + graphElId).empty();
+      console.log(d3.select('#' + graphElId).getBBox());
       console.log(d3.select('#' + graphElId));
 
       var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right;
