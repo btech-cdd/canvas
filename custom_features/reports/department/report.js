@@ -74,6 +74,7 @@
             loading: true,
             json: {},
             usersByYear: {},
+            userSubmissionData: {},
             currentDepartment: '',
             coreCourses: [],
             electiveCourses: [],
@@ -268,11 +269,16 @@
       var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom
 
       let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
+      if (app.userSubmissionData[userId] == undefined) app.userSubmissionData[userId] = {};
       let submissionDates = {};
       for (let e = 0; e < enrollments.length; e++) {
         let enrollment = enrollments[e];
+        if (app.userSubmissionData[userId][enrollment.course_id] == undefined) {
+
         let url = "/api/v1/courses/" + enrollment.course_id + "/students/submissions?student_ids[]=" + userId + "&include=assignment";
-        let rawSubmissions = await canvasGet(url);
+          app.userSubmissionData[userId][enrollment.course_id] = await canvasGet(url);
+        }
+        let rawSubmissions = app.userSubmissionData[userId][enrollment.course_id];
         rawSubmissions.map(function (submission) {
           let submissionDate = submission.submitted_at;
           if (submissionDate === null) {
