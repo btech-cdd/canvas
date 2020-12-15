@@ -180,7 +180,7 @@
             app.loadNextStudentSubmissionData();
           },
 
-          loadNextStudentSubmissionData() {
+          async loadNextStudentSubmissionData() {
             let app = this;
             let usersByYear = app.usersByYear;
             for (let year in usersByYear) {
