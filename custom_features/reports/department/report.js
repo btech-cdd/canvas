@@ -263,7 +263,7 @@
       margin: {
       }
     },
-    async _initSmall(app, userId, graphElId, w=160, h=16) {
+    async _initSmall(app, userId, graphElId, w=160, h=32) {
       this.app = app;
       let graph = this;
 

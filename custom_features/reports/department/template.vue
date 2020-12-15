@@ -21,7 +21,11 @@
                 profile
               </a>
               )
-              <div :id="'btech-user-submission-summary-' + json.sis_to_canv[user.id].canvas_id"></div>
+              <div 
+                :id="'btech-user-submission-summary-' + json.sis_to_canv[user.id].canvas_id"
+                style="display: inline-block;"
+                >
+              </div>
             </div>
 
             <!--CORE COURSES-->
