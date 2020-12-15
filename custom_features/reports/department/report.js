@@ -256,7 +256,6 @@
     graphSettings: {
       startDate: new Date(new Date().setMonth(new Date().getMonth() - 6)),
       endDate: new Date(),
-      radius: 4,
       x: null,
       y: null,
       barWidth: 1,
@@ -268,7 +267,11 @@
       this.app = app;
       let graph = this;
 
-      //set margins
+      //set graph settings 
+      graph.graphSettings.startDate = new Date(new Date().setMonth(new Date().getMonth() - 3));
+      graph.graphSettings.endDate = new Date();
+      graph.graphSettings.barWidth = 1;
+      graph.graphSettings.maxY = 10;
       graph.graphSettings.margin = {
         top: 3,
         bottom: 4,
@@ -360,7 +363,7 @@
           .ticks(graph.graphSettings.maxY)
           );
 
-      graph.graphSettings.barWidth = Math.floor(w / 180) + 1;
+      graph.graphSettings.barWidth = Math.floor(w / 60) + 1;
 
       graph.svg
         .selectAll("whatever")
@@ -384,6 +387,10 @@
       let graph = this;
 
       //Set margins
+      graph.graphSettings.startDate = new Date(new Date().setMonth(new Date().getMonth() - 6));
+      graph.graphSettings.endDate = new Date();
+      graph.graphSettings.barWidth = 1;
+      graph.graphSettings.maxY = 25;
       graph.graphSettings.margin = {
         top: 30,
         bottom: 40,
