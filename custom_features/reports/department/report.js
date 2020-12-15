@@ -88,7 +88,8 @@
               noProgress: '#D9534F',
               inProgress: '#F0AD4E',
               complete: '#5CB85C'
-            }
+            },
+            loadingStudentReport: false
           }
         },
         methods: {
@@ -258,16 +259,10 @@
     },
     async _init(app, userId) {
       this.app = app;
+      app.loadingStudentReport = true;
       let graph = this;
-      let graphElId = 'btech-department-report-student-submissions-graph';
-      $('#' + graphElId).empty();
-      var w = 800;
-      var h = 450;
 
-
-      var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right
-      var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom
-
+      //Load enrollment and submission data
       let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
       if (app.userSubmissionData[userId] == undefined) app.userSubmissionData[userId] = {};
       let submissionDates = {};
@@ -308,6 +303,17 @@
         submissionDate = submissionDates[date];
         submissions.push(submissionDate);
       }
+      app.loadingStudentReport = false;
+
+      //Begin setting up the graph
+      let graphElId = 'btech-department-report-student-submissions-graph';
+      $('#' + graphElId).empty();
+      var w = 800;
+      var h = 450;
+
+
+      var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right
+      var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom
 
       var x = d3.scaleTime()
         .domain([graph.graphSettings.startDate, graph.graphSettings.endDate])

@@ -61,7 +61,8 @@
           </ul>
         </div>
         <div class='btech-modal-content-inner'>
-          <div id='btech-department-report-student-submissions-graph'></div>
+          <div v-if='loadingStudentReport'>Loading...</div>
+          <div v-else id='btech-department-report-student-submissions-graph'></div>
         </div>
       </div>
     </div>
