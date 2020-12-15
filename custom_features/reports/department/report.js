@@ -348,6 +348,7 @@
         .call(
           d3.axisBottom(x)
           .tickFormat("")
+          .tickSize(0)
           .ticks(d3.timeMonth.every(1))
         );
 
@@ -355,7 +356,9 @@
         .classed('y axis', true)
         .call(d3.axisLeft(y)
           .tickFormat("")
-          .ticks(graph.graphSettings.maxY));
+          .tickSize(0)
+          .ticks(graph.graphSettings.maxY)
+          );
 
       graph.graphSettings.barWidth = Math.floor(w / 180) + 1;
 
