@@ -270,10 +270,10 @@
 
       //set margins
       graph.graphSettings.margin = {
-        top: 30,
-        bottom: 40,
-        left: 50,
-        right: 20,
+        top: 3,
+        bottom: 4,
+        left: 5,
+        right: 2,
       };
 
       await app.loadUserSubmissionData(userId);
