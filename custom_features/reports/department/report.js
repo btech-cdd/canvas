@@ -176,47 +176,16 @@
               usersByYear[year] = userList;
             }
             app.usersByYear = usersByYear;
-            /*
-            console.log(app.currentDepartment);
+            
+            app.loadNextStudentSubmissionData();
+          },
 
-            //set last activity date
-            let users = [];
-            let jsonUsers = app.json['progress'];
-            let depts = app.json['departments'];
-            let deptCourses = depts[app.currentDepartment];
-            console.log(deptCourses);
-            let coreCourses = app.calcCoreCourses();
-            console.log(coreCourses);
-            for (userId in jsonUsers) {
-              let user = jsonUsers[userId];
-              user.id = userId;
-              for (c in deptCourses) {
-                let course = deptCourses[c];
-                if (user.courses[course.code] !== undefined) {
-                  users.push(user);
-                  break;
-                }
-              }
+          loadNextStudentSubmissionData() {
+            let app = this;
+            let usersByYear = app.usersByYear;
+            for (let year in usersByYear) {
+              console.log(year);
             }
-
-            //Alphabetize
-            users.sort(function (a, b) {
-              let aName = a.name;
-              if (aName != undefined) aName = aName.toLowerCase();
-              else aName = '';
-
-              let bName = b.name;
-              if (bName != undefined) bName = bName.toLowerCase();
-              else bName = '';
-
-              return aName.localeCompare(bName);
-            });
-
-            console.log(users);
-            app.users = users;
-            app.calcCoreCourses();
-            app.calcElectiveCourses();
-            */
           },
 
           async openStudentReport(userId) {
