@@ -308,7 +308,7 @@
 
       //Begin setting up the graph
       $('#' + graphElId).empty();
-      console.log(graphElId);
+      console.log(d3.select('#' + graphElId));
 
       var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right
       var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom
