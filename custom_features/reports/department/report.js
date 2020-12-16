@@ -179,8 +179,30 @@
             app.usersByYear = usersByYear;
 
             //Don't want to start multiple of these
+            app.initGraphs();
             if (app.loadingStudentSubmissionsInProgress === false) {
               app.loadNextStudentSubmissionData();
+            }
+          },
+
+          //Specifically set up to be used when a new section is selected.
+          //Cycles through all users, sees if any info has been loaded and a graph doesn't exist, if yes, create the graph for it.
+          initGraphs() {
+
+            let app = this;
+            app.loadingStudentSubmissionsInProgress = true;
+            let usersByYear = app.usersByYear;
+            for (let year in usersByYear) {
+              let users = usersByYear[year];
+              for (let i in users) {
+                let user = users[i];
+                let sisId = user.id;
+                let userId = app.json.sis_to_canv[sisId].canvas_id;
+                if (app.userSubmissionData[userId] == undefined) {
+                  let graph = new SubmissionsGraphBar();
+                  graph._initSmall(app, userId, "btech-user-submission-summary-" + userId);
+                }
+              }
             }
           },
 
@@ -196,15 +218,16 @@
               let users = usersByYear[year];
               for (let i in users) {
                 let user = users[i];
-                let sisId = user.id
-                let userId = app.json.sis_to_canv[sisId].canvas_id
+                let sisId = user.id;
+                let userId = app.json.sis_to_canv[sisId].canvas_id;
                 if (app.userSubmissionData[userId] == undefined) {
                   await app.loadUserSubmissionData(userId);
                   /*
                     SET UP THE MINI GRAPH NEXT TO THE USERS NAME WITH SUBMISSION DATA
                     ALSO NEED A LOCATION TO RUN THIS WHEN STUDENTS ARE FIRST LOADED
                   */
-                  SUBMISSIONS_GRAPH_BAR._initSmall(app, userId, "btech-user-submission-summary-" + userId);
+                  let graph = new SubmissionsGraphBar();
+                  graph._initSmall(app, userId, "btech-user-submission-summary-" + userId);
                   app.loadNextStudentSubmissionData();
                   return;
                 }
@@ -255,323 +278,323 @@
       let graph = this;
       graph.app = {};
       graph.graphSettings = {
-          months: 6,
-          startDate: new Date(new Date().setMonth(new Date().getMonth() - 6)),
-          endDate: new Date(),
-          x: null,
-          y: null,
-          barWidth: 1,
-          maxY: 25,
-          margin: {}
-        }
+        months: 6,
+        startDate: new Date(new Date().setMonth(new Date().getMonth() - 6)),
+        endDate: new Date(),
+        x: null,
+        y: null,
+        barWidth: 1,
+        maxY: 25,
+        margin: {}
+      }
     }
     async _initSmall(app, userId, graphElId, w = 240, h = 24) {
-        this.app = app;
-        let graph = this;
+      this.app = app;
+      let graph = this;
 
-        //set graph settings 
-        graph.graphSettings.months = 6;
-        graph.graphSettings.startDate = new Date(new Date().setMonth(new Date().getMonth() - graph.graphSettings.months));
-        graph.graphSettings.endDate = new Date();
-        graph.graphSettings.barWidth = 1;
-        graph.graphSettings.maxY = 5;
-        graph.graphSettings.margin = {
-          top: 1,
-          bottom: 1,
-          left: 1,
-          right: 1,
-        };
+      //set graph settings 
+      graph.graphSettings.months = 6;
+      graph.graphSettings.startDate = new Date(new Date().setMonth(new Date().getMonth() - graph.graphSettings.months));
+      graph.graphSettings.endDate = new Date();
+      graph.graphSettings.barWidth = 1;
+      graph.graphSettings.maxY = 5;
+      graph.graphSettings.margin = {
+        top: 1,
+        bottom: 1,
+        left: 1,
+        right: 1,
+      };
 
-        await app.loadUserSubmissionData(userId);
-        let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
-        let submissionDates = {};
-        for (let e = 0; e < enrollments.length; e++) {
-          let enrollment = enrollments[e];
-          let rawSubmissions = app.userSubmissionData[userId][enrollment.course_id];
-          rawSubmissions.map(function (submission) {
-            let submissionDate = submission.submitted_at;
-            if (submissionDate === null) {
-              submissionDate = submission.graded_at;
-            }
-            //check if there's submission data and if it's an assignment worth any points
-            if (submissionDate !== null) {
-              let date = new Date(submissionDate);
-              let year = date.getFullYear();
-              let month = date.getMonth();
-              let day = date.getDate();
-              date = new Date(year, month, day);
-              if (!(date in submissionDates)) {
-                submissionDates[date] = {
-                  date: date,
-                  count: 0
-                }
-              }
-              if (submissionDates[date].count < graph.graphSettings.maxY) {
-                submissionDates[date].count += 1;
+      await app.loadUserSubmissionData(userId);
+      let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
+      let submissionDates = {};
+      for (let e = 0; e < enrollments.length; e++) {
+        let enrollment = enrollments[e];
+        let rawSubmissions = app.userSubmissionData[userId][enrollment.course_id];
+        rawSubmissions.map(function (submission) {
+          let submissionDate = submission.submitted_at;
+          if (submissionDate === null) {
+            submissionDate = submission.graded_at;
+          }
+          //check if there's submission data and if it's an assignment worth any points
+          if (submissionDate !== null) {
+            let date = new Date(submissionDate);
+            let year = date.getFullYear();
+            let month = date.getMonth();
+            let day = date.getDate();
+            date = new Date(year, month, day);
+            if (!(date in submissionDates)) {
+              submissionDates[date] = {
+                date: date,
+                count: 0
               }
             }
-          });
-        }
-        let submissions = [];
-        for (let date in submissionDates) {
-          let submissionDate = submissionDates[date];
-          submissions.push(submissionDate);
-        }
-        app.loadingStudentReport = false;
-
-        //Begin setting up the graph
-        $('#' + graphElId).empty();
-        h = d3.select('#' + graphElId).node().parentNode.getBoundingClientRect().height;
-
-        var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right;
-        var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom;
-
-        var x = d3.scaleTime()
-          .domain([graph.graphSettings.startDate, graph.graphSettings.endDate])
-          .range([0, width]);
-        graph.graphSettings.x = x;
-
-        var y = d3.scaleLinear()
-          .domain([0, graph.graphSettings.maxY])
-          .range([height, 0]);
-
-        graph.graphSettings.y = y;
-
-
-        graph.svg = d3.select('#' + graphElId).append('svg')
-          .attr('class', 'chart')
-          .attr("style", "vertical-align: top;")
-          .attr('width', w)
-          .attr('height', h);
-
-
-        var chart = graph.svg.append('g')
-          .classed('graph', true)
-          .attr('transform', 'translate(' + graph.graphSettings.margin.left + ',' + graph.graphSettings.margin.top + ')');
-
-
-
-        chart.append('g')
-          .classed('x axis', true)
-          .attr("transform", "translate(0, " + height + ")")
-          .call(
-            d3.axisBottom(x)
-            .tickFormat("")
-            .tickSize(0)
-            .ticks(d3.timeMonth.every(1))
-          );
-
-        chart.append('g')
-          .classed('y axis', true)
-          .call(d3.axisLeft(y)
-            .tickFormat("")
-            .tickSize(0)
-            .ticks(graph.graphSettings.maxY)
-          );
-
-        graph.graphSettings.barWidth = Math.floor(w / (graph.graphSettings.months * 30)) + 1;
-
-        graph.svg
-          .selectAll("whatever")
-          .data(submissions)
-          .enter()
-          .append("rect")
-          .attr("x", function (d) {
-            return graph.xPlot(d, x)
-          })
-          .attr("width", graph.graphSettings.barWidth)
-          .attr("y", function (d) {
-            return graph.yPlot(d, y);
-          })
-          .attr("height", function (d) {
-            return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
-          })
-          .attr("fill", app.colors.complete);
+            if (submissionDates[date].count < graph.graphSettings.maxY) {
+              submissionDates[date].count += 1;
+            }
+          }
+        });
       }
+      let submissions = [];
+      for (let date in submissionDates) {
+        let submissionDate = submissionDates[date];
+        submissions.push(submissionDate);
+      }
+      app.loadingStudentReport = false;
 
-      async _init(app, userId, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 450) {
-          this.app = app;
-          let graph = this;
+      //Begin setting up the graph
+      $('#' + graphElId).empty();
+      h = d3.select('#' + graphElId).node().parentNode.getBoundingClientRect().height;
 
-          //Set margins
-          graph.graphSettings.months = 6;
-          graph.graphSettings.startDate = new Date(new Date().setMonth(new Date().getMonth() - graph.graphSettings.months));
-          graph.graphSettings.endDate = new Date();
-          graph.graphSettings.barWidth = 1;
-          graph.graphSettings.maxY = 25;
-          graph.graphSettings.margin = {
-            top: 30,
-            bottom: 40,
-            left: 50,
-            right: 20,
-          };
+      var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right;
+      var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom;
 
-          //Load enrollment and submission data
-          await app.loadUserSubmissionData(userId);
-          let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
-          let submissionDates = {};
-          for (let e = 0; e < enrollments.length; e++) {
-            let enrollment = enrollments[e];
-            let rawSubmissions = app.userSubmissionData[userId][enrollment.course_id];
-            rawSubmissions.map(function (submission) {
-              let submissionDate = submission.submitted_at;
-              if (submissionDate === null) {
-                submissionDate = submission.graded_at;
+      var x = d3.scaleTime()
+        .domain([graph.graphSettings.startDate, graph.graphSettings.endDate])
+        .range([0, width]);
+      graph.graphSettings.x = x;
+
+      var y = d3.scaleLinear()
+        .domain([0, graph.graphSettings.maxY])
+        .range([height, 0]);
+
+      graph.graphSettings.y = y;
+
+
+      graph.svg = d3.select('#' + graphElId).append('svg')
+        .attr('class', 'chart')
+        .attr("style", "vertical-align: top;")
+        .attr('width', w)
+        .attr('height', h);
+
+
+      var chart = graph.svg.append('g')
+        .classed('graph', true)
+        .attr('transform', 'translate(' + graph.graphSettings.margin.left + ',' + graph.graphSettings.margin.top + ')');
+
+
+
+      chart.append('g')
+        .classed('x axis', true)
+        .attr("transform", "translate(0, " + height + ")")
+        .call(
+          d3.axisBottom(x)
+          .tickFormat("")
+          .tickSize(0)
+          .ticks(d3.timeMonth.every(1))
+        );
+
+      chart.append('g')
+        .classed('y axis', true)
+        .call(d3.axisLeft(y)
+          .tickFormat("")
+          .tickSize(0)
+          .ticks(graph.graphSettings.maxY)
+        );
+
+      graph.graphSettings.barWidth = Math.floor(w / (graph.graphSettings.months * 30)) + 1;
+
+      graph.svg
+        .selectAll("whatever")
+        .data(submissions)
+        .enter()
+        .append("rect")
+        .attr("x", function (d) {
+          return graph.xPlot(d, x)
+        })
+        .attr("width", graph.graphSettings.barWidth)
+        .attr("y", function (d) {
+          return graph.yPlot(d, y);
+        })
+        .attr("height", function (d) {
+          return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
+        })
+        .attr("fill", app.colors.complete);
+    }
+
+    async _init(app, userId, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 450) {
+      this.app = app;
+      let graph = this;
+
+      //Set margins
+      graph.graphSettings.months = 6;
+      graph.graphSettings.startDate = new Date(new Date().setMonth(new Date().getMonth() - graph.graphSettings.months));
+      graph.graphSettings.endDate = new Date();
+      graph.graphSettings.barWidth = 1;
+      graph.graphSettings.maxY = 25;
+      graph.graphSettings.margin = {
+        top: 30,
+        bottom: 40,
+        left: 50,
+        right: 20,
+      };
+
+      //Load enrollment and submission data
+      await app.loadUserSubmissionData(userId);
+      let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
+      let submissionDates = {};
+      for (let e = 0; e < enrollments.length; e++) {
+        let enrollment = enrollments[e];
+        let rawSubmissions = app.userSubmissionData[userId][enrollment.course_id];
+        rawSubmissions.map(function (submission) {
+          let submissionDate = submission.submitted_at;
+          if (submissionDate === null) {
+            submissionDate = submission.graded_at;
+          }
+          //check if there's submission data and if it's an assignment worth any points
+          if (submissionDate !== null) {
+            let date = new Date(submissionDate);
+            let year = date.getFullYear();
+            let month = date.getMonth();
+            let day = date.getDate();
+            date = new Date(year, month, day);
+            if (!(date in submissionDates)) {
+              submissionDates[date] = {
+                date: date,
+                count: 0
               }
-              //check if there's submission data and if it's an assignment worth any points
-              if (submissionDate !== null) {
-                let date = new Date(submissionDate);
-                let year = date.getFullYear();
-                let month = date.getMonth();
-                let day = date.getDate();
-                date = new Date(year, month, day);
-                if (!(date in submissionDates)) {
-                  submissionDates[date] = {
-                    date: date,
-                    count: 0
-                  }
-                }
-                if (submissionDates[date].count < graph.graphSettings.maxY) {
-                  submissionDates[date].count += 1;
-                }
-              }
-            });
+            }
+            if (submissionDates[date].count < graph.graphSettings.maxY) {
+              submissionDates[date].count += 1;
+            }
           }
-          let submissions = [];
-          for (let date in submissionDates) {
-            submissionDate = submissionDates[date];
-            submissions.push(submissionDate);
-          }
-          app.loadingStudentReport = false;
+        });
+      }
+      let submissions = [];
+      for (let date in submissionDates) {
+        submissionDate = submissionDates[date];
+        submissions.push(submissionDate);
+      }
+      app.loadingStudentReport = false;
 
-          //Begin setting up the graph
-          $('#' + graphElId).empty();
-          console.log(d3.select('#' + graphElId));
+      //Begin setting up the graph
+      $('#' + graphElId).empty();
+      console.log(d3.select('#' + graphElId));
 
-          var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right;
-          var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom;
+      var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right;
+      var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom;
 
-          var x = d3.scaleTime()
-            .domain([graph.graphSettings.startDate, graph.graphSettings.endDate])
-            .range([0, width]);
-          graph.graphSettings.x = x;
+      var x = d3.scaleTime()
+        .domain([graph.graphSettings.startDate, graph.graphSettings.endDate])
+        .range([0, width]);
+      graph.graphSettings.x = x;
 
-          var y = d3.scaleLinear()
-            .domain([0, graph.graphSettings.maxY])
-            .range([height, 0]);
+      var y = d3.scaleLinear()
+        .domain([0, graph.graphSettings.maxY])
+        .range([height, 0]);
 
-          graph.graphSettings.y = y;
-
-
-          graph.svg = d3.select('#' + graphElId).append('svg')
-            .attr('class', 'chart')
-            .attr('width', w)
-            .attr('height', h);
-
-          var chart = graph.svg.append('g')
-            .classed('graph', true)
-            .attr('transform', 'translate(' + graph.graphSettings.margin.left + ',' + graph.graphSettings.margin.top + ')');
+      graph.graphSettings.y = y;
 
 
-          chart.append('g')
-            .classed('x axis', true)
-            .attr("transform", "translate(0, " + height + ")")
-            .call(
-              d3.axisBottom(x)
-              .tickFormat(d3.timeFormat("%Y-%m"))
-              .ticks(d3.timeMonth.every(1))
-            );
+      graph.svg = d3.select('#' + graphElId).append('svg')
+        .attr('class', 'chart')
+        .attr('width', w)
+        .attr('height', h);
 
-          chart.append('g')
-            .classed('y axis', true)
-            .call(d3.axisLeft(y)
-              .ticks(graph.graphSettings.maxY));
+      var chart = graph.svg.append('g')
+        .classed('graph', true)
+        .attr('transform', 'translate(' + graph.graphSettings.margin.left + ',' + graph.graphSettings.margin.top + ')');
 
-          graph.graphSettings.barWidth = Math.floor(w / (graph.graphSettings.months * 30)) + 1;
 
-          graph.svg
-            .selectAll("whatever")
-            .data(submissions)
-            .enter()
-            .append("rect")
-            .attr("x", function (d) {
-              return graph.xPlot(d, x)
-            })
-            .attr("width", graph.graphSettings.barWidth)
-            .attr("y", function (d) {
-              return graph.yPlot(d, y);
-            })
-            .attr("height", function (d) {
-              return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
-            })
-            .attr("fill", app.colors.complete);
+      chart.append('g')
+        .classed('x axis', true)
+        .attr("transform", "translate(0, " + height + ")")
+        .call(
+          d3.axisBottom(x)
+          .tickFormat(d3.timeFormat("%Y-%m"))
+          .ticks(d3.timeMonth.every(1))
+        );
 
-          graph.svg.append("text")
-            .attr("transform", "translate(" + (w / 2) + " ," + (h) + ")")
-            .style("text-anchor", "middle")
-            .text("Date Submitted");
+      chart.append('g')
+        .classed('y axis', true)
+        .call(d3.axisLeft(y)
+          .ticks(graph.graphSettings.maxY));
 
-          graph.svg.append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 0)
-            .attr("x", 0 - (height / 2))
-            .attr("dy", "1em")
-            .style("text-anchor", "middle")
-            .text("Assignment Grade");
-        }
+      graph.graphSettings.barWidth = Math.floor(w / (graph.graphSettings.months * 30)) + 1;
 
-        // Create Event Handlers for mouse
-        handleMouseOver(mouse, submission) { // Add interactivity
-          let app = this.app;
-          let graph = this;
-          if (submission.id === undefined) {
-            submission.id = genId();
-          }
-          // Use D3 to select element, change color and size
-          d3.select(mouse.target)
-            .attr("fill", "#1C91A4");
+      graph.svg
+        .selectAll("whatever")
+        .data(submissions)
+        .enter()
+        .append("rect")
+        .attr("x", function (d) {
+          return graph.xPlot(d, x)
+        })
+        .attr("width", graph.graphSettings.barWidth)
+        .attr("y", function (d) {
+          return graph.yPlot(d, y);
+        })
+        .attr("height", function (d) {
+          return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
+        })
+        .attr("fill", app.colors.complete);
 
-          // Specify where to put label of text
-          graph.svg.append("text")
-            .attr("id", "t-" + submission.id) // Create an id for text so we can select it later for removing on mouseout
-            .attr("x", function () {
-              return graph.xPlot(submission, graph.graphSettings.x);
-            })
-            .attr("y", function () {
-              return graph.yPlot(submission, graph.graphSettings.y);
-            })
-            .text(function () {
-              return submission.assignment.name; // Value of the text
-            });
-        }
+      graph.svg.append("text")
+        .attr("transform", "translate(" + (w / 2) + " ," + (h) + ")")
+        .style("text-anchor", "middle")
+        .text("Date Submitted");
 
-        handleMouseOut(mouse, submission) {
-          let app = this.app;
-          let graph = this;
-          // Use D3 to select element, change color back to normal
-          d3.select(mouse.target)
-            .attr("fill", app.colors.complete);
+      graph.svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("Assignment Grade");
+    }
 
-          // Select text by id and then remove
-          d3.select("#t-" + submission.id).remove(); // Remove text location
-        }
+    // Create Event Handlers for mouse
+    handleMouseOver(mouse, submission) { // Add interactivity
+      let app = this.app;
+      let graph = this;
+      if (submission.id === undefined) {
+        submission.id = genId();
+      }
+      // Use D3 to select element, change color and size
+      d3.select(mouse.target)
+        .attr("fill", "#1C91A4");
 
-        handleMouseClick(mouse, submission) {
-          let app = this.app;
-          let graph = this;
-          var newWindow = window.open(submission.preview_url);
-        }
-        xPlot(d, x) {
-          let app = this.app;
-          let graph = this;
-          return x(new Date(d.date)) + graph.graphSettings.margin.left;
-        }
+      // Specify where to put label of text
+      graph.svg.append("text")
+        .attr("id", "t-" + submission.id) // Create an id for text so we can select it later for removing on mouseout
+        .attr("x", function () {
+          return graph.xPlot(submission, graph.graphSettings.x);
+        })
+        .attr("y", function () {
+          return graph.yPlot(submission, graph.graphSettings.y);
+        })
+        .text(function () {
+          return submission.assignment.name; // Value of the text
+        });
+    }
 
-        yPlot(d, y) {
-          let app = this.app;
-          let graph = this;
-          return y(d.count) + graph.graphSettings.margin.top;
-        }
+    handleMouseOut(mouse, submission) {
+      let app = this.app;
+      let graph = this;
+      // Use D3 to select element, change color back to normal
+      d3.select(mouse.target)
+        .attr("fill", app.colors.complete);
+
+      // Select text by id and then remove
+      d3.select("#t-" + submission.id).remove(); // Remove text location
+    }
+
+    handleMouseClick(mouse, submission) {
+      let app = this.app;
+      let graph = this;
+      var newWindow = window.open(submission.preview_url);
+    }
+    xPlot(d, x) {
+      let app = this.app;
+      let graph = this;
+      return x(new Date(d.date)) + graph.graphSettings.margin.left;
+    }
+
+    yPlot(d, y) {
+      let app = this.app;
+      let graph = this;
+      return y(d.count) + graph.graphSettings.margin.top;
+    }
   }
 
   SUBMISSIONS_GRAPH_BAR = new SubmissionsGraphBar();
