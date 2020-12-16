@@ -236,7 +236,9 @@
           async openStudentReport(userId) {
             let app = this;
             app.showStudentReport = true;
-            SUBMISSIONS_GRAPH_BAR._init(app, userId);
+            await SUBMISSIONS_GRAPH_BAR._init(app, userId);
+            let graph = new SubmissionsGraphBar();
+            graph._initSmall(app, userId, "btech-user-submission-summary-" + userId);
           },
 
           closeStudentReport() {
