@@ -45,8 +45,6 @@
           for (let i in app.json.canv_dept_to_jenz[dept]) {
             let departmentCode = app.json.canv_dept_to_jenz[dept][i];
             if (departmentCode in app.json.progress) {
-              console.log(departmentCode);
-              console.log(app.json.progress[departmentCode]);
               availableDepartments.push(departmentCode);
             }
           }
@@ -220,7 +218,6 @@
                 let sisId = user.id;
                 let userId = app.json.sis_to_canv[sisId].canvas_id;
                 if (app.userSubmissionData[userId] == undefined) {
-                  console.log(userId);
                   await app.loadUserSubmissionData(userId);
                   /*
                     SET UP THE MINI GRAPH NEXT TO THE USERS NAME WITH SUBMISSION DATA
@@ -289,7 +286,6 @@
       }
     }
     async _initSmall(app, userId, graphElId, w = 240, h = 24) {
-      console.log('Test');
       this.app = app;
       let graph = this;
 
@@ -311,30 +307,32 @@
       let submissionDates = {};
       for (let e = 0; e < enrollments.length; e++) {
         let enrollment = enrollments[e];
-        let rawSubmissions = app.userSubmissionData[userId][enrollment.course_id];
-        rawSubmissions.map(function (submission) {
-          let submissionDate = submission.submitted_at;
-          if (submissionDate === null) {
-            submissionDate = submission.graded_at;
-          }
-          //check if there's submission data and if it's an assignment worth any points
-          if (submissionDate !== null) {
-            let date = new Date(submissionDate);
-            let year = date.getFullYear();
-            let month = date.getMonth();
-            let day = date.getDate();
-            date = new Date(year, month, day);
-            if (!(date in submissionDates)) {
-              submissionDates[date] = {
-                date: date,
-                count: 0
+        if (app.userSubmissionData[userId][enrollment.course_id] !== undefined) {
+          let rawSubmissions = app.userSubmissionData[userId][enrollment.course_id];
+          rawSubmissions.map(function (submission) {
+            let submissionDate = submission.submitted_at;
+            if (submissionDate === null) {
+              submissionDate = submission.graded_at;
+            }
+            //check if there's submission data and if it's an assignment worth any points
+            if (submissionDate !== null) {
+              let date = new Date(submissionDate);
+              let year = date.getFullYear();
+              let month = date.getMonth();
+              let day = date.getDate();
+              date = new Date(year, month, day);
+              if (!(date in submissionDates)) {
+                submissionDates[date] = {
+                  date: date,
+                  count: 0
+                }
+              }
+              if (submissionDates[date].count < graph.graphSettings.maxY) {
+                submissionDates[date].count += 1;
               }
             }
-            if (submissionDates[date].count < graph.graphSettings.maxY) {
-              submissionDates[date].count += 1;
-            }
-          }
-        });
+          });
+        }
       }
       let submissions = [];
       for (let date in submissionDates) {
@@ -472,7 +470,6 @@
 
       //Begin setting up the graph
       $('#' + graphElId).empty();
-      console.log(d3.select('#' + graphElId));
 
       var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right;
       var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom;
