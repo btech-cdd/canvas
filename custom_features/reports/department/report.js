@@ -279,10 +279,25 @@
               if (app.userSubmissionData[userId][enrollment.course_id] == undefined) {
                 let url = "/api/v1/courses/" + enrollment.course_id + "/students/submissions?student_ids[]=" + userId + "&include=assignment";
                 let submissions = await canvasGet(url);
-                console.log(submissions);
+                for (let s in submissions) {
+                  let submission = submissions[s];
+                  let submissionDate = submission.submitted_at;
+                  if (submissionDate === null) {
+                    submissionDate = submission.graded_at;
+                  }
+                  if (submissionDate !== null) {
+                    if (app.userSubmissionData[userId]['last'] === null) {
+                      app.userSubmissionData[userId]['last'] = submissionDate;
+                    } else {
+                      if (app.userSubmissionData[userId]['last'] < submissionDate)
+                      app.userSubmissionData[userId]['last'] = submissionDate;
+                    }
+                  }
+                }
                 app.userSubmissionData[userId][enrollment.course_id] = submissions;
               }
             }
+            console.log(app.userSubmissionData[userId]['last']);
             return;
           }
         }
