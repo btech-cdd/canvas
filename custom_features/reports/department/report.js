@@ -410,6 +410,8 @@
           return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
         })
         .attr("fill", app.colors.complete);
+
+      return;
     }
 
     async _init(app, userId, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 450) {
