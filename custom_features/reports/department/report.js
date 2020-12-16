@@ -380,7 +380,7 @@
         .attr("height", function (d) {
           return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
         })
-        .append("style").text("vertical-align: top;")
+        .attre("vertical-align", "top")
         .attr("fill", app.colors.complete);
     },
     async _init(app, userId, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 450) {
