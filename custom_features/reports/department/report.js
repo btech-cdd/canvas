@@ -319,7 +319,6 @@
       //Begin setting up the graph
       $('#' + graphElId).empty();
       h = d3.select('#' + graphElId).node().parentNode.getBoundingClientRect().height;
-      console.log(h);
 
       var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right;
       var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom;
@@ -381,6 +380,7 @@
         .attr("height", function (d) {
           return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
         })
+        .append("style").text("vertical-align: top;")
         .attr("fill", app.colors.complete);
     },
     async _init(app, userId, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 450) {
