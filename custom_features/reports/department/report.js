@@ -88,10 +88,10 @@
             colors: {
               base: '#334',
               noProgress: '#EEEEEE',
+              complete: '#5BC0DE',
               badDate: '#D9534F',
-              inProgress: '#F0AD4E',
-              badDate: '#5CB85C',
-              complete: '#5BC0DE' 
+              warningDate: '#F0AD4E',
+              goodDate: '#5CB85C',
             },
             loadingStudentReport: false
           }
@@ -103,14 +103,16 @@
             let app = this;
             if (progress <= 0) return app.colors.noProgress;
             if (progress >= 100) return app.colors.complete;
-            else {
-              let diffDays = (new Date() - new Date(course.start)) / (1000 * 60 * 60 * 24);
-              console.log(diffDays);
-              //red = rgb(217, 83, 79)
-              //yellow = rgb(240, 173, 78)
-              //green = rgb(92, 184, 92)
-              
-            }
+
+            let diffDays = Math.floor((new Date() - new Date(course.start)) / (1000 * 60 * 60 * 24));
+            console.log(diffDays);
+            if (diffDays < 7) return app.colors.goodDate;
+            if (diffDays < 10) return app.colors.warningDate;
+            return app.colors.badDate;
+            //red = rgb(217, 83, 79)
+            //yellow = rgb(240, 173, 78)
+            //green = rgb(92, 184, 92)
+
           },
           calcElectiveCourses() {
             let list = [];
