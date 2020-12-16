@@ -106,13 +106,11 @@
 
             let diffDays = Math.floor((new Date() - new Date(course.start)) / (1000 * 60 * 60 * 24));
             console.log(diffDays);
-            if (diffDays < 7) return app.colors.goodDate;
-            if (diffDays < 10) return app.colors.warningDate;
-            return app.colors.badDate;
-            //red = rgb(217, 83, 79)
-            //yellow = rgb(240, 173, 78)
-            //green = rgb(92, 184, 92)
-
+            if (diffDays < 30) return 'rgb(92, 184, 92)'; //green
+            if (diffDays < 60) return 'rgb(166, 179, 85)'; //yellow-green
+            if (diffDays < 90) return 'rgb(240, 173, 78)'; //yellow
+            if (diffDays < 120) return 'rgb(229, 128, 79)'; //orange
+            return 'rgb(217, 83, 79)'; //red
           },
           calcElectiveCourses() {
             let list = [];
