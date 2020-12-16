@@ -289,6 +289,7 @@
       }
     }
     async _initSmall(app, userId, graphElId, w = 240, h = 24) {
+      console.log('Test');
       this.app = app;
       let graph = this;
 
