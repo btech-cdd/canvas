@@ -522,7 +522,7 @@
 
         // Create Event Handlers for mouse
         handleMouseOver(mouse, submission) { // Add interactivity
-          let = this.app;
+          let app = this.app;
           let graph = this;
           if (submission.id === undefined) {
             submission.id = genId();
