@@ -254,6 +254,7 @@
   SUBMISSIONS_GRAPH_BAR = {
     app: {},
     graphSettings: {
+      months: 6,
       startDate: new Date(new Date().setMonth(new Date().getMonth() - 6)),
       endDate: new Date(),
       x: null,
@@ -262,12 +263,13 @@
       maxY: 25,
       margin: {}
     },
-    async _initSmall(app, userId, graphElId, w = 160, h = 24) {
+    async _initSmall(app, userId, graphElId, w = 240, h = 24) {
       this.app = app;
       let graph = this;
 
       //set graph settings 
-      graph.graphSettings.startDate = new Date(new Date().setMonth(new Date().getMonth() - 3));
+      graph.graphSettings.months = 6;
+      graph.graphSettings.startDate = new Date(new Date().setMonth(new Date().getMonth() - graph.graphSettings.months));
       graph.graphSettings.endDate = new Date();
       graph.graphSettings.barWidth = 1;
       graph.graphSettings.maxY = 5;
@@ -365,7 +367,7 @@
           .ticks(graph.graphSettings.maxY)
         );
 
-      graph.graphSettings.barWidth = Math.floor(w / 60) + 1;
+      graph.graphSettings.barWidth = Math.floor(w / (graph.graphSettings.months * 30)) + 1;
 
       graph.svg
         .selectAll("whatever")
@@ -389,7 +391,8 @@
       let graph = this;
 
       //Set margins
-      graph.graphSettings.startDate = new Date(new Date().setMonth(new Date().getMonth() - 6));
+      graph.graphSettings.months = 6;
+      graph.graphSettings.startDate = new Date(new Date().setMonth(new Date().getMonth() - graph.graphSettings.months));
       graph.graphSettings.endDate = new Date();
       graph.graphSettings.barWidth = 1;
       graph.graphSettings.maxY = 25;
@@ -481,7 +484,7 @@
         .call(d3.axisLeft(y)
           .ticks(graph.graphSettings.maxY));
 
-      graph.graphSettings.barWidth = Math.floor(w / 180) + 1;
+      graph.graphSettings.barWidth = Math.floor(w / (graph.graphSettings.months * 30)) + 1;
 
       graph.svg
         .selectAll("whatever")
