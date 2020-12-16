@@ -104,8 +104,8 @@
             if (progress <= 0) return app.colors.noProgress;
             if (progress >= 100) return app.colors.complete;
             else {
-              console.log(new Date(course.start));
-              console.log(new Date() - new Date(course.start));
+              let diffDays = (new Date() - new Date(course.start)) / (1000 * 60 * 60 * 24);
+              console.log(diffDays);
               //red = rgb(217, 83, 79)
               //yellow = rgb(240, 173, 78)
               //green = rgb(92, 184, 92)
