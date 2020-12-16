@@ -179,16 +179,15 @@
             app.usersByYear = usersByYear;
 
             //Don't want to start multiple of these
-            app.initGraphs();
             if (app.loadingStudentSubmissionsInProgress === false) {
               app.loadNextStudentSubmissionData();
             }
+            app.initGraphs();
           },
 
           //Specifically set up to be used when a new section is selected.
           //Cycles through all users, sees if any info has been loaded and a graph doesn't exist, if yes, create the graph for it.
           initGraphs() {
-
             let app = this;
             app.loadingStudentSubmissionsInProgress = true;
             let usersByYear = app.usersByYear;
