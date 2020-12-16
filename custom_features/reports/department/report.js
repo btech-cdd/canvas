@@ -148,7 +148,8 @@
                       let course = courses[courseCode];
                       let courseData = {
                         'code': courseCode,
-                        'progress': course.progress
+                        'progress': course.progress,
+                        'start': course.start
                       }
                       if (base[courseCode].type === 'CORE') {
                         core.push(courseData);
