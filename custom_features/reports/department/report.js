@@ -98,10 +98,8 @@
         },
         methods: {
           getCourseProgressBarColor(course) {
-            console.log(course);
             let progress = course.progress;
             let start = course.start;
-            console.log(start);
             let app = this;
             if (progress <= 0) return app.colors.noProgress;
             if (progress >= 100) return app.colors.complete;
