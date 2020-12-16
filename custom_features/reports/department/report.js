@@ -382,6 +382,7 @@
       //Begin setting up the graph
       let barColor = app.colors.green;
       let daysSinceLastSubmission = Math.floor((new Date() - app.userSubmissionData[userId]['last']) / (1000 * 60 * 60 * 24));
+      console.log(daysSinceLastSubmission);
       if (daysSinceLastSubmission >= 7) barColor = app.colors.yellow;
       if (daysSinceLastSubmission >= 10) barColor = app.colors.red;
       $('#' + graphElId).empty();
