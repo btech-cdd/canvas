@@ -542,7 +542,7 @@
         .attr("x", 0 - (height / 2))
         .attr("dy", "1em")
         .style("text-anchor", "middle")
-        .text("Assignment Grade");
+        .text("Number of Submissions");
     }
 
     // Create Event Handlers for mouse
