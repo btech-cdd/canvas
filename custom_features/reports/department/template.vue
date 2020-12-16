@@ -47,7 +47,7 @@
                 ">
               </div>
               <div 
-                v-if="progress > 0"
+                v-if="course.progress > 0"
                 style="color: #FFFFFF"
                 class='btech-course-progress-bar-text'
                 >
