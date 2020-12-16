@@ -221,6 +221,7 @@
                 let sisId = user.id;
                 let userId = app.json.sis_to_canv[sisId].canvas_id;
                 if (app.userSubmissionData[userId] == undefined) {
+                  console.log(userId);
                   await app.loadUserSubmissionData(userId);
                   /*
                     SET UP THE MINI GRAPH NEXT TO THE USERS NAME WITH SUBMISSION DATA
