@@ -336,7 +336,7 @@
 
       graph.svg = d3.select('#' + graphElId).append('svg')
         .attr('class', 'chart')
-        .attr("vertical-align", "top")
+        .attr("style", "vertical-align: top;")
         .attr('width', w)
         .attr('height', h);
 
