@@ -318,9 +318,8 @@
 
       //Begin setting up the graph
       $('#' + graphElId).empty();
-      console.log(d3.select('#' + graphElId).node().parentNode.getBoundingClientRect());
       h = d3.select('#' + graphElId).node().parentNode.getBoundingClientRect().height;
-      console.log(d3.select('#' + graphElId));
+      console.log(h);
 
       var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right;
       var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom;
