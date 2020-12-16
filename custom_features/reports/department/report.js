@@ -260,10 +260,9 @@
       y: null,
       barWidth: 1,
       maxY: 25,
-      margin: {
-      }
+      margin: {}
     },
-    async _initSmall(app, userId, graphElId, w=160, h=24) {
+    async _initSmall(app, userId, graphElId, w = 160, h = 24) {
       this.app = app;
       let graph = this;
 
@@ -337,12 +336,15 @@
 
       graph.svg = d3.select('#' + graphElId).append('svg')
         .attr('class', 'chart')
+        .attr("vertical-align", "top")
         .attr('width', w)
         .attr('height', h);
+
 
       var chart = graph.svg.append('g')
         .classed('graph', true)
         .attr('transform', 'translate(' + graph.graphSettings.margin.left + ',' + graph.graphSettings.margin.top + ')');
+
 
 
       chart.append('g')
@@ -361,7 +363,7 @@
           .tickFormat("")
           .tickSize(0)
           .ticks(graph.graphSettings.maxY)
-          );
+        );
 
       graph.graphSettings.barWidth = Math.floor(w / 60) + 1;
 
@@ -380,7 +382,6 @@
         .attr("height", function (d) {
           return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
         })
-        .attr("vertical-align", "top")
         .attr("fill", app.colors.complete);
     },
     async _init(app, userId, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 450) {
