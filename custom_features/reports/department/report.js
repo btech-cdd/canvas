@@ -109,7 +109,6 @@
             if (progress >= 100) return app.colors.complete;
 
             let diffDays = Math.floor((new Date() - new Date(course.start)) / (1000 * 60 * 60 * 24));
-            console.log(diffDays);
             if (diffDays < 60) return app.colors.green;
             if (diffDays < 120) return app.colors.yellow; //yellow
             if (diffDays < 180) return app.colors.orange; //orange
@@ -380,11 +379,7 @@
       app.loadingStudentReport = false;
 
       //Begin setting up the graph
-      let barColor = app.colors.green;
-      let daysSinceLastSubmission = Math.floor((new Date() - new Date(app.userSubmissionData[userId]['last'])) / (1000 * 60 * 60 * 24));
-      console.log(daysSinceLastSubmission);
-      if (daysSinceLastSubmission >= 7) barColor = app.colors.yellow;
-      if (daysSinceLastSubmission >= 10) barColor = app.colors.red;
+      let barColor = graph.getBarColor();
       $('#' + graphElId).empty();
       h = d3.select('#' + graphElId).node().parentNode.getBoundingClientRect().height;
 
@@ -512,6 +507,7 @@
       app.loadingStudentReport = false;
 
       //Begin setting up the graph
+      let barColor = graph.getBarColor();
       $('#' + graphElId).empty();
 
       var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right;
@@ -570,7 +566,7 @@
         .attr("height", function (d) {
           return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
         })
-        .attr("fill", app.colors.complete);
+        .attr("fill", barColor);
 
       graph.svg.append("text")
         .attr("transform", "translate(" + (w / 2) + " ," + (h) + ")")
@@ -584,6 +580,15 @@
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .text("Number of Submissions");
+    }
+
+    getBarColor() {
+      let barColor = app.colors.green;
+      let daysSinceLastSubmission = Math.floor((new Date() - new Date(app.userSubmissionData[userId]['last'])) / (1000 * 60 * 60 * 24));
+      console.log(daysSinceLastSubmission);
+      if (daysSinceLastSubmission >= 7) barColor = app.colors.yellow;
+      if (daysSinceLastSubmission >= 10) barColor = app.colors.red;
+      return barColor;
     }
 
     // Create Event Handlers for mouse
