@@ -583,6 +583,8 @@
     }
 
     getBarColor() {
+      let app = this.app;
+      let graph = this;
       let barColor = app.colors.green;
       let daysSinceLastSubmission = Math.floor((new Date() - new Date(app.userSubmissionData[userId]['last'])) / (1000 * 60 * 60 * 24));
       console.log(daysSinceLastSubmission);
