@@ -454,7 +454,7 @@
     async _init(app, userId, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 450) {
       this.app = app;
       let graph = this;
-
+      graph.userId = userId;
       //Set margins
       graph.graphSettings.months = 6;
       graph.graphSettings.startDate = new Date(new Date().setMonth(new Date().getMonth() - graph.graphSettings.months));
@@ -585,6 +585,7 @@
     getBarColor() {
       let app = this.app;
       let graph = this;
+      let userId = graph.userId;
       let barColor = app.colors.green;
       let daysSinceLastSubmission = Math.floor((new Date() - new Date(app.userSubmissionData[userId]['last'])) / (1000 * 60 * 60 * 24));
       console.log(daysSinceLastSubmission);
