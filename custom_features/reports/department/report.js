@@ -464,7 +464,7 @@
       }
       let submissions = [];
       for (let date in submissionDates) {
-        submissionDate = submissionDates[date];
+        let submissionDate = submissionDates[date];
         submissions.push(submissionDate);
       }
       app.loadingStudentReport = false;
