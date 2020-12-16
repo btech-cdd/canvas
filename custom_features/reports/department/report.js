@@ -87,6 +87,10 @@
             enrollments: {}, //or submission data or student data or somewhere else to hold all of the data pulling from canvas and saving it for reuse.
             colors: {
               base: '#334',
+              red: 'rgb(217, 83, 79)',
+              orange: 'rgb(229, 128, 79)',
+              yellow: 'rgb(240, 173, 78)',
+              green: 'rgb(92, 184, 92)',
               noProgress: '#E0E0E0',
               complete: '#5BC0DE',
               badDate: '#D9534F',
@@ -106,10 +110,10 @@
 
             let diffDays = Math.floor((new Date() - new Date(course.start)) / (1000 * 60 * 60 * 24));
             console.log(diffDays);
-            if (diffDays < 60) return 'rgb(92, 184, 92)'; //green
-            if (diffDays < 120) return 'rgb(240, 173, 78)'; //yellow
-            if (diffDays < 180) return 'rgb(229, 128, 79)'; //orange
-            return 'rgb(217, 83, 79)'; //red
+            if (diffDays < 60) return app.colors.green;
+            if (diffDays < 120) return app.colors.yellow; //yellow
+            if (diffDays < 180) return app.colors.orange; //orange
+            return app.colors.red; //red
           },
           calcElectiveCourses() {
             let list = [];
@@ -376,6 +380,10 @@
       app.loadingStudentReport = false;
 
       //Begin setting up the graph
+      let barColor = app.colors.green;
+      let daysSinceLastSubmission = Math.floor((new Date() - app.userSubmissionData[userId]['last']) / (1000 * 60 * 60 * 24));
+      if (daysSinceLastSubmission >= 7) barColor = app.colors.yellow;
+      if (daysSinceLastSubmission >= 10) barColor = app.colors.red;
       $('#' + graphElId).empty();
       h = d3.select('#' + graphElId).node().parentNode.getBoundingClientRect().height;
 
@@ -442,7 +450,7 @@
         .attr("height", function (d) {
           return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
         })
-        .attr("fill", app.colors.complete);
+        .attr("fill", barColor);
 
       return;
     }
