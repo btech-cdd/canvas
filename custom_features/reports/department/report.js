@@ -198,7 +198,7 @@
                 let user = users[i];
                 let sisId = user.id;
                 let userId = app.json.sis_to_canv[sisId].canvas_id;
-                if (app.userSubmissionData[userId] == undefined) {
+                if (app.userSubmissionData[userId] != undefined) {
                   let graph = new SubmissionsGraphBar();
                   graph._initSmall(app, userId, "btech-user-submission-summary-" + userId);
                 }
