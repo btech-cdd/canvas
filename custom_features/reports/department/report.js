@@ -105,7 +105,14 @@
             let app = this;
             if (progress <= 0) return app.colors.noProgress;
             if (progress >= 100) return app.colors.complete;
-            return app.colors.inProgress;
+            else {
+              console.log(new Date(course.start));
+              console.log(new Date() - new Date(course.start));
+              //red = rgb(217, 83, 79)
+              //yellow = rgb(240, 173, 78)
+              //green = rgb(92, 184, 92)
+              
+            }
           },
           calcElectiveCourses() {
             let list = [];
