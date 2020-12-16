@@ -269,15 +269,18 @@
 
           async loadUserSubmissionData(userId) {
             let app = this;
-            if (app.userSubmissionData[userId] == undefined) app.userSubmissionData[userId] = {};
+            if (app.userSubmissionData[userId] == undefined) app.userSubmissionData[userId] = {
+              'last': null
+            };
             else return;
             let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
             for (let e = 0; e < enrollments.length; e++) {
               let enrollment = enrollments[e];
               if (app.userSubmissionData[userId][enrollment.course_id] == undefined) {
-
                 let url = "/api/v1/courses/" + enrollment.course_id + "/students/submissions?student_ids[]=" + userId + "&include=assignment";
-                app.userSubmissionData[userId][enrollment.course_id] = await canvasGet(url);
+                let submissions = await canvasGet(url);
+                console.log(submissions);
+                app.userSubmissionData[userId][enrollment.course_id] = submissions;
               }
             }
             return;
