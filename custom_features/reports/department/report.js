@@ -90,7 +90,8 @@
               noProgress: '#EEEEEE',
               badDate: '#D9534F',
               inProgress: '#F0AD4E',
-              complete: '#5CB85C'
+              badDate: '#5CB85C',
+              complete: '#5BC0DE' 
             },
             loadingStudentReport: false
           }
