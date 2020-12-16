@@ -325,6 +325,7 @@
     async _initSmall(app, userId, graphElId, w = 240, h = 24) {
       this.app = app;
       let graph = this;
+      graph.userId = userId;
 
       //set graph settings 
       graph.graphSettings.months = 6;
