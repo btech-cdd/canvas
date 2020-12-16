@@ -87,7 +87,8 @@
             enrollments: {}, //or submission data or student data or somewhere else to hold all of the data pulling from canvas and saving it for reuse.
             colors: {
               base: '#334',
-              noProgress: '#D9534F',
+              noProgress: '#FFFFFF',
+              badDate: '#D9534F',
               inProgress: '#F0AD4E',
               complete: '#5CB85C'
             },
