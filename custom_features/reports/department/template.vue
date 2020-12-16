@@ -41,7 +41,7 @@
                 class='btech-course-progress-bar-fill'
                 :style="
                   {
-                    'background-color': getCourseProgressBarColor(course.progress),
+                    'background-color': getCourseProgressBarColor(course),
                     width: 100 + '%'
                   }
                 ">

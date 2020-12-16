@@ -96,6 +96,7 @@
         },
         methods: {
           getCourseProgressBarColor(course) {
+            console.log(course);
             let progress = course.progress;
             let start = course.start;
             console.log(start);
