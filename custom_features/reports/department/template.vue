@@ -13,9 +13,9 @@
         <h2>{{year}} {{currentDepartment}} Tree</h2>
         <div v-for='user in users' :key='user.id'>
           <div style='padding-bottom: .5em;'>
-            <div><span @click='openStudentReport(json.sis_to_canv[user.id].canvas_id);' style='cursor: pointer;'>
+            <div><div @click='openStudentReport(json.sis_to_canv[user.id].canvas_id);' style='cursor: pointer; width: 180px; display: inline-block;'>
                 {{user.name}}
-              </span>
+              </div>
               (
               <a :href="'/users/' + json.sis_to_canv[user.id].canvas_id" target="_blank">
                 profile
