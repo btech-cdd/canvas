@@ -21,7 +21,7 @@
                 profile
               </a>
               )
-              <span>{{user.summary.average_score}}</span>
+              <span>{{user.summary}}</span>
               <div 
                 :id="'btech-user-submission-summary-' + json.sis_to_canv[user.id].canvas_id"
                 style="display: inline-block;"
