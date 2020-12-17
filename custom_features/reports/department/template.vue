@@ -19,6 +19,7 @@
                 {{user.name}}
               </a>
               </div>
+              <div style='display: inline-block; width: 4rem;'>
               <span :style="{
                 'background-color': calcDepartmentScoreColorBg(user),
                 'color': calcDepartmentScoreColorFont(user),
@@ -28,6 +29,7 @@
               }">
                 {{calcDepartmentScoreText(user)}}
               </span>
+              </div>
               <div 
                 :id="'btech-user-submission-summary-' + json.sis_to_canv[user.id].canvas_id"
                 style="display: inline-block; cursor: pointer;"
