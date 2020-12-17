@@ -151,30 +151,34 @@
               let userList = [];
               let base = users['base'];
               for (let id in users) {
-                if (id !== "base" && id !== "summary") {
+                if (id !== "base") {
                   if (id in app.nameDict) {
                     let courses = users[id];
                     let core = [];
                     let elective = [];
+                    let summary = base['summary'];
                     for (let courseCode in courses) {
-                      let course = courses[courseCode];
-                      let courseData = {
-                        'code': courseCode,
-                        'progress': course.progress,
-                        'start': course.start
-                      }
-                      if (base[courseCode].type === 'CORE') {
-                        core.push(courseData);
-                      }
-                      if (base[courseCode].type === 'ELECT') {
-                        elective.push(courseData);
+                      if (courseCode !== "summary") {
+                        let course = courses[courseCode];
+                        let courseData = {
+                          'code': courseCode,
+                          'progress': course.progress,
+                          'start': course.start
+                        }
+                        if (base[courseCode].type === 'CORE') {
+                          core.push(courseData);
+                        }
+                        if (base[courseCode].type === 'ELECT') {
+                          elective.push(courseData);
+                        }
                       }
                     }
                     userList.push({
                       'name': app.nameDict[id],
                       'id': id,
                       'core': core,
-                      'elective': elective
+                      'elective': elective,
+                      'summary': summary
                     });
                   }
                 }
@@ -296,7 +300,7 @@
                       app.userSubmissionData[userId]['last'] = submissionDate;
                     } else {
                       if (app.userSubmissionData[userId]['last'] < submissionDate)
-                      app.userSubmissionData[userId]['last'] = submissionDate;
+                        app.userSubmissionData[userId]['last'] = submissionDate;
                     }
                   }
                 }
