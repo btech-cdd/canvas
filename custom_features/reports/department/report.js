@@ -185,11 +185,11 @@
               }
 
               userList.sort(function (a, b) {
-                let aName = app.nameDict[a];
+                let aName = a.name;
                 if (aName != undefined) aName = aName.toLowerCase();
                 else aName = '';
 
-                let bName = app.nameDict[b];
+                let bName = b.name;
                 if (bName != undefined) bName = bName.toLowerCase();
                 else bName = '';
 
