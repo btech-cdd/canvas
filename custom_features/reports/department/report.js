@@ -149,6 +149,7 @@
             let usersByYear = {};
             for (let year in app.json['progress'][app.currentDepartment]) {
               let users = app.json['progress'][app.currentDepartment][year];
+              console.log(users);
               let userList = [];
               let base = users['base'];
               for (let id in users) {
@@ -174,9 +175,6 @@
                         }
                       }
                     }
-                    console.log(app.nameDict[id]);
-                    console.log(courses);
-                    console.log(summary);
                     userList.push({
                       'name': app.nameDict[id],
                       'id': id,
