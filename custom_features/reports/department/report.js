@@ -173,6 +173,8 @@
                         }
                       }
                     }
+                    console.log(app.nameDict[id]);
+                    console.log(sumamry);
                     userList.push({
                       'name': app.nameDict[id],
                       'id': id,
