@@ -151,7 +151,7 @@
               let userList = [];
               let base = users['base'];
               for (let id in users) {
-                if (id !== "base") {
+                if (id !== "base" && id !== "summary") {
                   if (id in app.nameDict) {
                     let courses = users[id];
                     let core = [];
