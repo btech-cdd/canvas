@@ -175,6 +175,7 @@
                       }
                     }
                     console.log(app.nameDict[id]);
+                    console.log(courses);
                     console.log(summary);
                     userList.push({
                       'name': app.nameDict[id],
