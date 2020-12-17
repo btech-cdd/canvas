@@ -24,7 +24,7 @@
               <span :style="{
                 'background-color': colors.green,
                 'color': '#FFFFFF',
-                'padding': '4px';
+                'padding': '4px',
                 'border-radius': '10px'
               }">{{calcDepartmentScore(user)}}</span>
               <div 
