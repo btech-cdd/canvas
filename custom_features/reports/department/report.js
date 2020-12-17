@@ -94,6 +94,7 @@
               orange: 'rgb(229, 128, 79)',
               yellow: 'rgb(240, 173, 78)',
               green: 'rgb(92, 184, 92)',
+              gray: '#E0E0E0',
               noProgress: '#E0E0E0',
               complete: '#5BC0DE',
               badDate: '#D9534F',
@@ -209,10 +210,28 @@
             app.initGraphs();
           },
 
-          calcDepartmentScore(user) {
+          calcDepartmentScoreText(user) {
             if (user.summary === undefined) return "N/A";
             if (user.summary.average_score === undefined) return "N/A";
             return Math.round(user.summary.average_score * 100) + "%";
+          },
+
+          calcDepartmentScoreColorBg(user) {
+            let app = this;
+            if (user.summary === undefined) return app.color.gray;
+            if (user.summary.average_score === undefined) return app.color.gray;
+            let score = Math.round(user.summary.average_score * 100);
+            if (score < 60) return app.color.red;
+            if (score < 80) return app.color.orange;
+            if (score < 90) return app.color.yellow;
+            return app.color.green;
+          },
+
+          calcDepartmentScoreColorFont(user) {
+            let app = this;
+            if (user.summary === undefined) return "#000000";
+            if (user.summary.average_score === undefined) return "#000000";
+            return "#FFFFFF";
           },
 
           //Specifically set up to be used when a new section is selected.

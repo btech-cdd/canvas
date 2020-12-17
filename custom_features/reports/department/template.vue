@@ -22,11 +22,11 @@
               </a>
               )
               <span :style="{
-                'background-color': colors.green,
-                'color': '#FFFFFF',
+                'background-color': calcDepartmentScoreColorBg(user),
+                'color': calcDepartmentScoreColorFont(user),
                 'padding': '4px',
                 'border-radius': '10px'
-              }">{{calcDepartmentScore(user)}}</span>
+              }">{{calcDepartmentScoreText(user)}}</span>
               <div 
                 :id="'btech-user-submission-summary-' + json.sis_to_canv[user.id].canvas_id"
                 style="display: inline-block;"
