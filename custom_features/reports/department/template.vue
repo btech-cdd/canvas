@@ -25,7 +25,6 @@
                 'color': calcDepartmentScoreColorFont(user),
                 'padding': '4px',
                 'border-radius': '10px',
-                'margin-right': '4px'
               }">
                 {{calcDepartmentScoreText(user)}}
               </span>
