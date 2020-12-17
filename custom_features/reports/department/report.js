@@ -218,13 +218,13 @@
 
           calcDepartmentScoreColorBg(user) {
             let app = this;
-            if (user.summary === undefined) return app.color.gray;
-            if (user.summary.average_score === undefined) return app.color.gray;
+            if (user.summary === undefined) return app.colors.gray;
+            if (user.summary.average_score === undefined) return app.colors.gray;
             let score = Math.round(user.summary.average_score * 100);
-            if (score < 60) return app.color.red;
-            if (score < 80) return app.color.orange;
-            if (score < 90) return app.color.yellow;
-            return app.color.green;
+            if (score < 60) return app.colors.red;
+            if (score < 80) return app.colors.orange;
+            if (score < 90) return app.colors.yellow;
+            return app.colors.green;
           },
 
           calcDepartmentScoreColorFont(user) {
