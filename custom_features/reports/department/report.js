@@ -174,7 +174,7 @@
                       }
                     }
                     console.log(app.nameDict[id]);
-                    console.log(sumamry);
+                    console.log(summary);
                     userList.push({
                       'name': app.nameDict[id],
                       'id': id,
