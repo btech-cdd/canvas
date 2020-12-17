@@ -13,24 +13,26 @@
         <h2>{{year}} {{currentDepartment}} Tree</h2>
         <div v-for='user in users' :key='user.id'>
           <div style='padding-bottom: .5em;'>
-            <div><div @click='openStudentReport(json.sis_to_canv[user.id].canvas_id);' style='cursor: pointer; width: 180px; display: inline-block;'>
-                {{user.name}}
-              </div>
-              (
+            <div>
+              <div style='width: 180px; display: inline-block;'>
               <a :href="'/users/' + json.sis_to_canv[user.id].canvas_id" target="_blank">
-                profile
+                {{user.name}}
               </a>
-              )
+              </div>
               <span :style="{
                 'background-color': calcDepartmentScoreColorBg(user),
                 'color': calcDepartmentScoreColorFont(user),
                 'padding': '4px',
                 'border-radius': '10px'
-              }">{{calcDepartmentScoreText(user)}}</span>
+              }">
+                {{calcDepartmentScoreText(user)}}
+              </span>
               <div 
                 :id="'btech-user-submission-summary-' + json.sis_to_canv[user.id].canvas_id"
                 style="display: inline-block;"
+                @click='openStudentReport(json.sis_to_canv[user.id].canvas_id);'
                 >
+                ...
               </div>
             </div>
 
