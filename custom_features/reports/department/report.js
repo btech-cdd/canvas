@@ -156,7 +156,7 @@
                     let courses = users[id];
                     let core = [];
                     let elective = [];
-                    let summary = base['summary'];
+                    let summary = courses['summary'];
                     for (let courseCode in courses) {
                       if (courseCode !== "summary") {
                         let course = courses[courseCode];
