@@ -25,7 +25,7 @@
                 'background-color': colors.green,
                 'color': '#FFFFFF',
                 'border-radius': '10px'
-              }">{{Math.round(user.summary.average_score * 100)}}%</span>
+              }">{{calcDepartmentScore(user)}}</span>
               <div 
                 :id="'btech-user-submission-summary-' + json.sis_to_canv[user.id].canvas_id"
                 style="display: inline-block;"

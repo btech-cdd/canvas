@@ -209,6 +209,12 @@
             app.initGraphs();
           },
 
+          calcDepartmentScore(user) {
+            if (user.summary === undefined) return "N/A";
+            if (user.summary.average_score === undefined) return "N/A";
+            return Math.round(user.summary.average_score * 100) + "%";
+          },
+
           //Specifically set up to be used when a new section is selected.
           //Cycles through all users, sees if any info has been loaded and a graph doesn't exist, if yes, create the graph for it.
           initGraphs() {
