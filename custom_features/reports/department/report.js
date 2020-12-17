@@ -2,6 +2,9 @@
 //GET THE STUDENT'S AVERAGE GRADE WEIGHTED BY COURSE HOURS
 //SHOW STUDENT STATUS FROM JENZABAR, IE ACTIVE, ON HOLD, DROPPED, GRADUATED, ETC.
 //SHOW DATE OF SUBMISSIONS WHEN YOU HOVER OVER SUBMISSION BAR GRAPH BAR. MAYBE ALSO SHOW DAYS SINCE LAST SUBMISSION SOMEWHERE ON THAT REPORT
+//SHOW GRADE FROM LAST MONTH (OR SOME OTHER SET PERIOD OF TIME)
+//CLICK ON COURSE ID AND LINK TO THAT STUDENT'S GRADE PAGE FOR THAT COURSE
+//HOVER OVER COURSE CODE TO GET THE NAME OF THAT COURSE
 (async function () {
   IMPORTED_FEATURE = {};
   IMPORTED_FEATURE = {
@@ -300,7 +303,6 @@
                 app.userSubmissionData[userId][enrollment.course_id] = submissions;
               }
             }
-            console.log(app.userSubmissionData[userId]['last']);
             return;
           }
         }
@@ -589,7 +591,6 @@
       let userId = graph.userId;
       let barColor = app.colors.green;
       let daysSinceLastSubmission = Math.floor((new Date() - new Date(app.userSubmissionData[userId]['last'])) / (1000 * 60 * 60 * 24));
-      console.log(daysSinceLastSubmission);
       if (daysSinceLastSubmission >= 7) barColor = app.colors.yellow;
       if (daysSinceLastSubmission >= 10) barColor = app.colors.red;
       return barColor;
