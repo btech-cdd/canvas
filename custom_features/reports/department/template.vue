@@ -75,7 +75,7 @@
         </div>
       </div>
     </div>
-    <div v-if='showStudentReport' class='btech-modal' style='display: inline-block;'>
+    <div v-show='showStudentReport' class='btech-modal' style='display: inline-block;'>
       <div class='btech-modal-content'>
         <div class="btech-tabs">
           <ul>
