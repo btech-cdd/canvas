@@ -523,7 +523,6 @@
       let userId = graph.userId;
       let barColor = app.colors.green;
       let daysSinceLastSubmission = Math.floor((new Date() - new Date(app.userSubmissionDates[userId]['last'])) / (1000 * 60 * 60 * 24));
-      let daysSinceLastSubmission = 0;
       if (daysSinceLastSubmission >= 7) barColor = app.colors.yellow;
       if (daysSinceLastSubmission >= 10) barColor = app.colors.red;
       return barColor;
