@@ -195,7 +195,7 @@
               let base = users['base'];
               for (let id in users) {
                 if (id !== "base") {
-                  if (id in app.nameDict) {
+                  if (id in app.nameDict && id in app.json['sis_to_canv']) {
                     let courses = users[id];
                     let core = [];
                     let elective = [];
@@ -286,12 +286,10 @@
                 let user = users[i];
                 let sisId = user.id;
                 console.log(sisId);
-                if (sisId in app.json.sis_to_canv) {
-                  let userId = app.json.sis_to_canv[sisId].canvas_id;
-                  if (app.userSubmissionDates[sisId] != undefined) {
-                    let graph = new SubmissionsGraphBar();
-                    graph._initSmall(app, userId, sisId, "btech-user-submission-summary-" + userId);
-                  }
+                let userId = app.json.sis_to_canv[sisId].canvas_id;
+                if (app.userSubmissionDates[sisId] != undefined) {
+                  let graph = new SubmissionsGraphBar();
+                  graph._initSmall(app, userId, sisId, "btech-user-submission-summary-" + userId);
                 }
               }
             }
