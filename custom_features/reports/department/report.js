@@ -48,11 +48,19 @@
           await app.loadJsonFile('submissions');
           for (let userId in app.json.submissions) {
             let submissions = {};
-            app.userSubmissionDates[userId] = [];
+            app.userSubmissionDates[userId] = {
+              'list': [],
+              'last': null
+            };
             let userSubmissionDates = app.json.submissions[userId];
             for (let dateString in userSubmissionDates) {
               let longDate = new Date(dateString);
               let date = new Date(longDate.getFullYear(), longDate.getMonth(), longDate.getDate());
+              if (app.userSubmissionDates[userId]['last'] === null) {
+                app.userSubmissionDates[userId]['last'] = date;
+              } else if (app.userSubmissionDates[userId]['last'] < date) {
+                app.userSubmissionDates[userId]['last'] = date;
+              }
               if (!(date in submissions)) {
                 submissions[date] = 0;
               }
@@ -60,7 +68,7 @@
             }
             for (let dateString in submissions) {
               let count = submissions[dateString];
-              app.userSubmissionDates[userId].push({
+              app.userSubmissionDates[userId]['list'].push({
                 'date': dateString,
                 'count': count
               })
@@ -335,7 +343,7 @@
         right: 1,
       };
 
-      let submissions = app.userSubmissionDates[sisId];
+      let submissions = app.userSubmissionDates[sisId]['list'];
       console.log(submissions);
       app.loadingStudentReport = false;
 
@@ -514,7 +522,7 @@
       let graph = this;
       let userId = graph.userId;
       let barColor = app.colors.green;
-      // let daysSinceLastSubmission = Math.floor((new Date() - new Date(app.userSubmissionData[userId]['last'])) / (1000 * 60 * 60 * 24));
+      let daysSinceLastSubmission = Math.floor((new Date() - new Date(app.userSubmissionDates[userId]['last'])) / (1000 * 60 * 60 * 24));
       let daysSinceLastSubmission = 0;
       if (daysSinceLastSubmission >= 7) barColor = app.colors.yellow;
       if (daysSinceLastSubmission >= 10) barColor = app.colors.red;
