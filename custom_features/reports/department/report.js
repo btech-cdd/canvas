@@ -73,7 +73,6 @@
                 'count': count
               })
             }
-            console.log(app.userSubmissionDates[userId]);
           }
 
           //get list of departments available to this sub account
@@ -345,7 +344,7 @@
       };
 
       let submissions = app.userSubmissionDates[sisId]['list'];
-      console.log(submissions);
+      console.log(app.userSubmissionDates[sisId]);
       app.loadingStudentReport = false;
 
       //Begin setting up the graph
