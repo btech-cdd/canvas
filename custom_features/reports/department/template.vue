@@ -40,7 +40,7 @@
 
             <!--CORE COURSES-->
             <div v-for='courseType in courseTypes'>
-              <div>user[courseType].length</div>
+              <div>{{user[courseType].length}}</div>
               <div v-for='(course) in user[courseType]' :key='course.code'
                 class='btech-course-progress-bar'
                 :style="
