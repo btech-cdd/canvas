@@ -47,11 +47,25 @@
           await app.loadJsonFile('dept_code_to_name');
           await app.loadJsonFile('submissions');
           for (let userId in app.json.submissions) {
+            let submissions = {};
             app.userSubmissionDates[userId] = [];
             let userSubmissionDates = app.json.submissions[userId];
-            for (let date in userSubmissionDates) {
-              app.userSubmissionDates[userId].push(new Date(date));
+            for (let dateString in userSubmissionDates) {
+              let longDate = new Date(dateString);
+              let date = new Date(longDate.getFullYear(), longDate.getMonth(), longDate.getDate());
+              if (!(date in submissions)) {
+                submissions[date] = 0;
+              }
+              submissions[date] += 1;
             }
+            for (let dateString in submissions) {
+              let count = submissions[dateString];
+              app.userSubmissionDates[userId].push({
+                'date': dateString,
+                'count': count
+              })
+            }
+            console.log(app.userSubmissionDates[userId]);
           }
 
           //get list of departments available to this sub account
@@ -324,7 +338,8 @@
 
       let submissions = [];
       let userSubmissionDates = app.userSubmissionDates[sisId];
-      for (let date in userSubmissionDates) {
+      for (let d in userSubmissionDates) {
+        let date = userSubmissionDates[d];
         console.log(date);
         break;
       }
