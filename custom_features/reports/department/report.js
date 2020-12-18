@@ -322,7 +322,12 @@
         right: 1,
       };
 
-      let submissions = app.userSubmissionDates[sisId];
+      let submissions = [];
+      let userSubmissionDates = app.userSubmissionDates[sisId];
+      for (let date in userSubmissionDates) {
+        console.log(date);
+        break;
+      }
       console.log(submissions);
       app.loadingStudentReport = false;
 
