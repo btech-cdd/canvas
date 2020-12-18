@@ -326,6 +326,7 @@
       this.app = app;
       let graph = this;
       graph.userId = userId;
+      graph.sisId = sisId;
       console.log(userId);
       console.log(sisId);
       console.log(graphElId);
@@ -425,6 +426,7 @@
       this.app = app;
       let graph = this;
       graph.userId = userId;
+      graph.sisId = sisId;
       //Set margins
       graph.graphSettings.months = 6;
       graph.graphSettings.startDate = new Date(new Date().setMonth(new Date().getMonth() - graph.graphSettings.months));
@@ -521,8 +523,9 @@
       let app = this.app;
       let graph = this;
       let userId = graph.userId;
+      let sisId = graph.sisId;
       let barColor = app.colors.green;
-      let daysSinceLastSubmission = Math.floor((new Date() - new Date(app.userSubmissionDates[userId]['last'])) / (1000 * 60 * 60 * 24));
+      let daysSinceLastSubmission = Math.floor((new Date() - new Date(app.userSubmissionDates[sisId]['last'])) / (1000 * 60 * 60 * 24));
       if (daysSinceLastSubmission >= 7) barColor = app.colors.yellow;
       if (daysSinceLastSubmission >= 10) barColor = app.colors.red;
       return barColor;
