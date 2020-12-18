@@ -345,7 +345,6 @@
       };
 
       let submissions = app.userSubmissionDates[sisId]['list'];
-      console.log(app.userSubmissionDates[sisId]);
       app.loadingStudentReport = false;
 
       //Begin setting up the graph
@@ -440,7 +439,7 @@
         right: 20,
       };
 
-      let submissions = app.userSubmissionDates[sisId];
+      let submissions = app.userSubmissionDates[sisId]['list'];
       app.loadingStudentReport = false;
 
       //Begin setting up the graph
