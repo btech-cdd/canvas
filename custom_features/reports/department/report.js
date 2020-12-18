@@ -442,6 +442,7 @@
 
       //Begin setting up the graph
       let barColor = graph.getBarColor();
+      console.log(graphElId);
       $('#' + graphElId).empty();
 
       var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right;
