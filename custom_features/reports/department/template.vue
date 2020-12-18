@@ -39,36 +39,39 @@
             </div>
 
             <!--CORE COURSES-->
-            <div v-for='(course) in user.core' :key='course.code'
-              class='btech-course-progress-bar'
-              :style="
-              {
-                'background-color': colors.base 
-              }
-              "
-              >
-              <div
-                class='btech-course-progress-bar-fill'
+            <div v-for='courseType in courseTypes'>
+              <h2>{{type}}</h2>
+              <div v-for='(course) in user[courseType]' :key='course.code'
+                class='btech-course-progress-bar'
                 :style="
-                  {
-                    'background-color': getCourseProgressBarColor(course),
-                    width: 100 + '%'
-                  }
-                ">
-              </div>
-              <div 
-                v-if="course.progress > 0"
-                style="color: #FFFFFF"
-                class='btech-course-progress-bar-text'
+                {
+                  'background-color': colors.base 
+                }
+                "
                 >
-                {{course.code}}
-              </div>
-              <div 
-                v-else
-                style="color: #000000"
-                class='btech-course-progress-bar-text'
-                >
-                {{course.code}}
+                <div
+                  class='btech-course-progress-bar-fill'
+                  :style="
+                    {
+                      'background-color': getCourseProgressBarColor(course),
+                      width: 100 + '%'
+                    }
+                  ">
+                </div>
+                <div 
+                  v-if="course.progress > 0"
+                  style="color: #FFFFFF"
+                  class='btech-course-progress-bar-text'
+                  >
+                  {{course.code}}
+                </div>
+                <div 
+                  v-else
+                  style="color: #000000"
+                  class='btech-course-progress-bar-text'
+                  >
+                  {{course.code}}
+                </div>
               </div>
             </div>
           </div>

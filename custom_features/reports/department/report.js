@@ -130,7 +130,8 @@
               warningDate: '#F0AD4E',
               goodDate: '#5CB85C',
             },
-            loadingStudentReport: false
+            loadingStudentReport: false,
+            courseTypes: ['core', 'elective']
           }
         },
         methods: {
