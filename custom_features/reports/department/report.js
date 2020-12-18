@@ -324,6 +324,7 @@
       };
 
       let submissions = app.userSubmissionDates[sisId];
+      console.log(submissions);
       app.loadingStudentReport = false;
 
       //Begin setting up the graph
