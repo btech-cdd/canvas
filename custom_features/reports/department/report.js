@@ -45,6 +45,15 @@
           await app.loadJsonFile('sis_to_canv');
           await app.loadJsonFile('canv_dept_to_jenz');
           await app.loadJsonFile('dept_code_to_name');
+          await app.loadJsonFile('submissions');
+          for (let userId in app.json.submissions) {
+            app.userSubmissionDates[userId] = [];
+            let userSubmissionDates = app.json.submissions[userId];
+            for (let i in userSubmissionDates) {
+              let date = userSubmissionDates[i];
+              app.userSubmissionDates[userId].push(date);
+            }
+          }
 
           //get list of departments available to this sub account
           let availableDepartments = [];
@@ -80,6 +89,7 @@
             json: {},
             usersByYear: {},
             userSubmissionData: {},
+            userSubmissionDates: {},
             currentDepartment: '',
             coreCourses: [],
             electiveCourses: [],
@@ -303,6 +313,7 @@
             app.json[name] = jsonData[0];
           },
 
+          //May be obsolete if I can preprocess all submission data
           async loadUserSubmissionData(userId) {
             let app = this;
             if (app.userSubmissionData[userId] == undefined) app.userSubmissionData[userId] = {
@@ -373,7 +384,9 @@
       };
 
       await app.loadUserSubmissionData(userId);
-      let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
+      // let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
+      //May become obsolete with preprocessing submission data
+      /*
       let submissionDates = {};
       for (let e = 0; e < enrollments.length; e++) {
         let enrollment = enrollments[e];
@@ -409,6 +422,8 @@
         let submissionDate = submissionDates[date];
         submissions.push(submissionDate);
       }
+      */
+     let submissions = app.userSubmissionDates;
       app.loadingStudentReport = false;
 
       //Begin setting up the graph
