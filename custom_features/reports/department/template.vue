@@ -46,7 +46,6 @@
                   :style="
                   {
                     'background-color': colors.base,
-                    'border-bottom': 'solid 1px #000'
                   }
                   "
                   >
@@ -74,6 +73,7 @@
                     {{course.code}}
                   </div>
                 </div>
+                <div style='border-bottom: solid 1px #000;'></div>
               </div>
             </div>
           </div>
