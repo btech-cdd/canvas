@@ -439,7 +439,6 @@
 
       //Begin setting up the graph
       let barColor = graph.getBarColor();
-      console.log(graphElId);
       let el = await getElement('#' + graphElId);
       console.log("TEST");
       el.empty();
