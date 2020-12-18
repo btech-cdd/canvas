@@ -214,7 +214,7 @@
 
             //Don't want to start multiple of these
             if (app.loadingStudentSubmissionsInProgress === false) {
-              app.loadNextStudentSubmissionData();
+              // app.loadNextStudentSubmissionData();
             }
             app.initGraphs();
           },
@@ -255,7 +255,7 @@
                 let user = users[i];
                 let sisId = user.id;
                 let userId = app.json.sis_to_canv[sisId].canvas_id;
-                if (app.userSubmissionData[userId] != undefined) {
+                if (app.userSubmissionDates[userId] != undefined) {
                   let graph = new SubmissionsGraphBar();
                   graph._initSmall(app, userId, "btech-user-submission-summary-" + userId);
                 }
@@ -285,7 +285,7 @@
                   */
                   let graph = new SubmissionsGraphBar();
                   graph._initSmall(app, userId, "btech-user-submission-summary-" + userId);
-                  app.loadNextStudentSubmissionData();
+                  // app.loadNextStudentSubmissionData();
                   return;
                 }
               }
