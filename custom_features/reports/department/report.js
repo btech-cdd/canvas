@@ -286,7 +286,8 @@
           async openStudentReport(userId, sisId) {
             let app = this;
             app.showStudentReport = true;
-            SUBMISSIONS_GRAPH_BAR._init(app, userId, sisId);
+            let graph = new SubmissionsGraphBar();
+            graph._init(app, userId, sisId);
           },
 
           closeStudentReport() {
@@ -580,8 +581,6 @@
       return y(d.count) + graph.graphSettings.margin.top;
     }
   }
-
-  SUBMISSIONS_GRAPH_BAR = new SubmissionsGraphBar();
 
   SUBMISSIONS_GRAPH_POINTS = {
     app: {},
