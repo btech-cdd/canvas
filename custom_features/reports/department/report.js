@@ -328,8 +328,8 @@
 
       //Begin setting up the graph
       let barColor = graph.getBarColor();
-      console.log(barColor);
-      $('#' + graphElId).empty();
+      let el = await getElement("#" + graphElId);
+      el.empty();
       h = d3.select('#' + graphElId).node().parentNode.getBoundingClientRect().height;
 
       var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right;
