@@ -85,7 +85,7 @@
           </ul>
         </div>
         <div class='btech-modal-content-inner'>
-          <div id='btech-department-report-student-submissions-graph'></div>
+          <div id='btech-department-report-student-submissions-graph'>Loading...</div>
         </div>
       </div>
     </div>
