@@ -88,7 +88,6 @@
             loadingStudentSubmissionsInProgress: false,
             json: {},
             usersByYear: {},
-            userSubmissionData: {},
             userSubmissionDates: {},
             currentDepartment: '',
             coreCourses: [],
@@ -154,12 +153,12 @@
             app.coreCourses = list;
             return list;
           },
+
           loadDepartmentUsers() {
             let app = this;
             let usersByYear = {};
             for (let year in app.json['progress'][app.currentDepartment]) {
               let users = app.json['progress'][app.currentDepartment][year];
-              console.log(users);
               let userList = [];
               let base = users['base'];
               for (let id in users) {
@@ -255,7 +254,7 @@
                 let user = users[i];
                 let sisId = user.id;
                 let userId = app.json.sis_to_canv[sisId].canvas_id;
-                if (app.userSubmissionDates[userId] != undefined) {
+                if (app.userSubmissionDates[sisId] != undefined) {
                   let graph = new SubmissionsGraphBar();
                   graph._initSmall(app, userId, "btech-user-submission-summary-" + userId);
                 }
@@ -263,35 +262,6 @@
             }
           },
 
-          //This will keep rerunning until it has loaded every visible student. 
-          //Once done, flags to system that it's no longer running.
-          //If there's a change in department displayed, the cycle will be reset.
-          //This set up should hopefully prevent multiple pulls from going on at once.
-          async loadNextStudentSubmissionData() {
-            let app = this;
-            app.loadingStudentSubmissionsInProgress = true;
-            let usersByYear = app.usersByYear;
-            for (let year in usersByYear) {
-              let users = usersByYear[year];
-              for (let i in users) {
-                let user = users[i];
-                let sisId = user.id;
-                let userId = app.json.sis_to_canv[sisId].canvas_id;
-                if (app.userSubmissionData[userId] == undefined) {
-                  await app.loadUserSubmissionData(userId);
-                  /*
-                    SET UP THE MINI GRAPH NEXT TO THE USERS NAME WITH SUBMISSION DATA
-                    ALSO NEED A LOCATION TO RUN THIS WHEN STUDENTS ARE FIRST LOADED
-                  */
-                  let graph = new SubmissionsGraphBar();
-                  graph._initSmall(app, userId, "btech-user-submission-summary-" + userId);
-                  // app.loadNextStudentSubmissionData();
-                  return;
-                }
-              }
-            }
-            app.loadingStudentSubmissionsInProgress = false;
-          },
 
           async openStudentReport(userId) {
             let app = this;
@@ -313,39 +283,6 @@
             app.json[name] = jsonData[0];
           },
 
-          //May be obsolete if I can preprocess all submission data
-          async loadUserSubmissionData(userId) {
-            let app = this;
-            if (app.userSubmissionData[userId] == undefined) app.userSubmissionData[userId] = {
-              'last': null
-            };
-            else return;
-            let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
-            for (let e = 0; e < enrollments.length; e++) {
-              let enrollment = enrollments[e];
-              if (app.userSubmissionData[userId][enrollment.course_id] == undefined) {
-                let url = "/api/v1/courses/" + enrollment.course_id + "/students/submissions?student_ids[]=" + userId + "&include=assignment";
-                let submissions = await canvasGet(url);
-                for (let s in submissions) {
-                  let submission = submissions[s];
-                  let submissionDate = submission.submitted_at;
-                  if (submissionDate === null) {
-                    submissionDate = submission.graded_at;
-                  }
-                  if (submissionDate !== null) {
-                    if (app.userSubmissionData[userId]['last'] === null) {
-                      app.userSubmissionData[userId]['last'] = submissionDate;
-                    } else {
-                      if (app.userSubmissionData[userId]['last'] < submissionDate)
-                        app.userSubmissionData[userId]['last'] = submissionDate;
-                    }
-                  }
-                }
-                app.userSubmissionData[userId][enrollment.course_id] = submissions;
-              }
-            }
-            return;
-          }
         }
       })
     }
@@ -383,47 +320,7 @@
         right: 1,
       };
 
-      await app.loadUserSubmissionData(userId);
-      // let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
-      //May become obsolete with preprocessing submission data
-      /*
-      let submissionDates = {};
-      for (let e = 0; e < enrollments.length; e++) {
-        let enrollment = enrollments[e];
-        if (app.userSubmissionData[userId][enrollment.course_id] !== undefined) {
-          let rawSubmissions = app.userSubmissionData[userId][enrollment.course_id];
-          rawSubmissions.map(function (submission) {
-            let submissionDate = submission.submitted_at;
-            if (submissionDate === null) {
-              submissionDate = submission.graded_at;
-            }
-            //check if there's submission data and if it's an assignment worth any points
-            if (submissionDate !== null) {
-              let date = new Date(submissionDate);
-              let year = date.getFullYear();
-              let month = date.getMonth();
-              let day = date.getDate();
-              date = new Date(year, month, day);
-              if (!(date in submissionDates)) {
-                submissionDates[date] = {
-                  date: date,
-                  count: 0
-                }
-              }
-              if (submissionDates[date].count < graph.graphSettings.maxY) {
-                submissionDates[date].count += 1;
-              }
-            }
-          });
-        }
-      }
-      let submissions = [];
-      for (let date in submissionDates) {
-        let submissionDate = submissionDates[date];
-        submissions.push(submissionDate);
-      }
-      */
-     let submissions = app.userSubmissionDates;
+      let submissions = app.userSubmissionDates[userId];
       app.loadingStudentReport = false;
 
       //Begin setting up the graph
@@ -516,42 +413,7 @@
         right: 20,
       };
 
-      //Load enrollment and submission data
-      await app.loadUserSubmissionData(userId);
-      let enrollments = await canvasGet("/api/v1/users/" + userId + "/enrollments?type[]=StudentEnrollment");
-      let submissionDates = {};
-      for (let e = 0; e < enrollments.length; e++) {
-        let enrollment = enrollments[e];
-        let rawSubmissions = app.userSubmissionData[userId][enrollment.course_id];
-        rawSubmissions.map(function (submission) {
-          let submissionDate = submission.submitted_at;
-          if (submissionDate === null) {
-            submissionDate = submission.graded_at;
-          }
-          //check if there's submission data and if it's an assignment worth any points
-          if (submissionDate !== null) {
-            let date = new Date(submissionDate);
-            let year = date.getFullYear();
-            let month = date.getMonth();
-            let day = date.getDate();
-            date = new Date(year, month, day);
-            if (!(date in submissionDates)) {
-              submissionDates[date] = {
-                date: date,
-                count: 0
-              }
-            }
-            if (submissionDates[date].count < graph.graphSettings.maxY) {
-              submissionDates[date].count += 1;
-            }
-          }
-        });
-      }
-      let submissions = [];
-      for (let date in submissionDates) {
-        let submissionDate = submissionDates[date];
-        submissions.push(submissionDate);
-      }
+      let submissions = app.userSubmissionDates[userId];
       app.loadingStudentReport = false;
 
       //Begin setting up the graph
