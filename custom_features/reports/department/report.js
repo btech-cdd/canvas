@@ -65,7 +65,6 @@
                 'count': count
               })
             }
-            console.log(app.userSubmissionDates[userId]);
           }
 
           //get list of departments available to this sub account
@@ -336,13 +335,7 @@
         right: 1,
       };
 
-      let submissions = [];
-      let userSubmissionDates = app.userSubmissionDates[sisId];
-      for (let d in userSubmissionDates) {
-        let date = userSubmissionDates[d];
-        console.log(date);
-        break;
-      }
+      let submissions = app.userSubmissionDates[sisId];
       console.log(submissions);
       app.loadingStudentReport = false;
 
