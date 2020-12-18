@@ -286,10 +286,12 @@
                 let user = users[i];
                 let sisId = user.id;
                 console.log(sisId);
-                let userId = app.json.sis_to_canv[sisId].canvas_id;
-                if (app.userSubmissionDates[sisId] != undefined) {
-                  let graph = new SubmissionsGraphBar();
-                  graph._initSmall(app, userId, sisId, "btech-user-submission-summary-" + userId);
+                if (sisId in app.json.sis_to_canv) {
+                  let userId = app.json.sis_to_canv[sisId].canvas_id;
+                  if (app.userSubmissionDates[sisId] != undefined) {
+                    let graph = new SubmissionsGraphBar();
+                    graph._initSmall(app, userId, sisId, "btech-user-submission-summary-" + userId);
+                  }
                 }
               }
             }
