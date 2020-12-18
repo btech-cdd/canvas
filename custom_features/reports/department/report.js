@@ -344,7 +344,7 @@
 
       //Begin setting up the graph
       let barColor = graph.getBarColor();
-      let el = $("#" + graphElId);
+      let el = await getElement("#" + graphElId);
       el.empty();
       h = d3.select('#' + graphElId).node().parentNode.getBoundingClientRect().height;
 
@@ -439,7 +439,7 @@
 
       //Begin setting up the graph
       let barColor = graph.getBarColor();
-      let el = await getElement('#' + graphElId);
+      let el = $('#' + graphElId);
       console.log("TEST");
       el.empty();
 
