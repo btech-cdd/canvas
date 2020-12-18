@@ -49,8 +49,7 @@
           for (let userId in app.json.submissions) {
             app.userSubmissionDates[userId] = [];
             let userSubmissionDates = app.json.submissions[userId];
-            for (let i in userSubmissionDates) {
-              let date = userSubmissionDates[i];
+            for (let date in userSubmissionDates) {
               app.userSubmissionDates[userId].push(date);
             }
           }
