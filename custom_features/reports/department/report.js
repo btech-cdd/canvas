@@ -306,6 +306,9 @@
       this.app = app;
       let graph = this;
       graph.userId = userId;
+      console.log(userId);
+      console.log(sisId);
+      console.log(graphElId);
 
       //set graph settings 
       graph.graphSettings.months = 6;
