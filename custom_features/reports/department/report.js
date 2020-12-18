@@ -285,6 +285,7 @@
               for (let i in users) {
                 let user = users[i];
                 let sisId = user.id;
+                console.log(sisId);
                 let userId = app.json.sis_to_canv[sisId].canvas_id;
                 if (app.userSubmissionDates[sisId] != undefined) {
                   let graph = new SubmissionsGraphBar();
