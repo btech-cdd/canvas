@@ -73,6 +73,7 @@
                 'count': count
               })
             }
+            console.log(app.userSubmissionDates[userId]);
           }
 
           //get list of departments available to this sub account
