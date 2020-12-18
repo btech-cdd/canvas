@@ -340,7 +340,7 @@
         right: 1,
       };
 
-      let submissions = app.userSubmissionDates[sisId]['list'];
+      let submissions = app.userSubmissionDates[sisId]['list'].filter(date => date.date >= graph.graphSettings.startDate);
       app.loadingStudentReport = false;
 
       //Begin setting up the graph
@@ -435,7 +435,7 @@
         right: 20,
       };
 
-      let submissions = app.userSubmissionDates[sisId]['list'];
+      let submissions = app.userSubmissionDates[sisId]['list'].filter(date => date.date >= graph.graphSettings.startDate);
       app.loadingStudentReport = false;
 
       //Begin setting up the graph
