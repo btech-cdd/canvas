@@ -50,7 +50,7 @@
             app.userSubmissionDates[userId] = [];
             let userSubmissionDates = app.json.submissions[userId];
             for (let date in userSubmissionDates) {
-              app.userSubmissionDates[userId].push(date);
+              app.userSubmissionDates[userId].push(new Date(date));
             }
           }
 
