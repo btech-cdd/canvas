@@ -440,7 +440,8 @@
       //Begin setting up the graph
       let barColor = graph.getBarColor();
       console.log(graphElId);
-      $('#' + graphElId).empty();
+      let el = await getElement('#' + graphElId);
+      el.empty();
 
       var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right;
       var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom;
