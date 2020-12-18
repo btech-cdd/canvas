@@ -256,19 +256,19 @@
                 let userId = app.json.sis_to_canv[sisId].canvas_id;
                 if (app.userSubmissionDates[sisId] != undefined) {
                   let graph = new SubmissionsGraphBar();
-                  graph._initSmall(app, userId, "btech-user-submission-summary-" + userId);
+                  graph._initSmall(app, userId, sisId, "btech-user-submission-summary-" + userId);
                 }
               }
             }
           },
 
 
-          async openStudentReport(userId) {
+          async openStudentReport(userId, sisId) {
             let app = this;
             app.showStudentReport = true;
-            await SUBMISSIONS_GRAPH_BAR._init(app, userId);
+            await SUBMISSIONS_GRAPH_BAR._init(app, userId, sisId);
             let graph = new SubmissionsGraphBar();
-            graph._initSmall(app, userId, "btech-user-submission-summary-" + userId);
+            graph._initSmall(app, userId, "btech-user-submission-summary-" + userId, sisId);
           },
 
           closeStudentReport() {
@@ -302,7 +302,7 @@
         margin: {}
       }
     }
-    async _initSmall(app, userId, graphElId, w = 240, h = 24) {
+    async _initSmall(app, userId, sisId, graphElId, w = 240, h = 24) {
       this.app = app;
       let graph = this;
       graph.userId = userId;
@@ -320,7 +320,7 @@
         right: 1,
       };
 
-      let submissions = app.userSubmissionDates[userId];
+      let submissions = app.userSubmissionDates[sisId];
       app.loadingStudentReport = false;
 
       //Begin setting up the graph
@@ -396,7 +396,7 @@
       return;
     }
 
-    async _init(app, userId, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 450) {
+    async _init(app, userId, sisId, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 450) {
       this.app = app;
       let graph = this;
       graph.userId = userId;
@@ -413,7 +413,7 @@
         right: 20,
       };
 
-      let submissions = app.userSubmissionDates[userId];
+      let submissions = app.userSubmissionDates[sisId];
       app.loadingStudentReport = false;
 
       //Begin setting up the graph
