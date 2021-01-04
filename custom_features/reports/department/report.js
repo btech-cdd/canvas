@@ -159,32 +159,6 @@
             if (diffDays < 180) return app.colors.orange; //orange
             return app.colors.red; //red
           },
-          calcElectiveCourses() {
-            let list = [];
-            let app = this;
-            let courses = app.json['departments'][app.currentDepartment];
-            for (let c = 0; c < courses.length; c++) {
-              let course = courses[c];
-              if (!course.is_core) {
-                list.push(course);
-              }
-            }
-            app.electiveCourses = list;
-            return list;
-          },
-          calcCoreCourses() {
-            let list = [];
-            let app = this;
-            let courses = app.json['departments'][app.currentDepartment];
-            for (let c = 0; c < courses.length; c++) {
-              let course = courses[c];
-              if (course.is_core) {
-                list.push(course);
-              }
-            }
-            app.coreCourses = list;
-            return list;
-          },
 
           loadDepartmentUsers() {
             let app = this;
@@ -211,7 +185,8 @@
                         if (base[courseCode].type === 'CORE') {
                           core.push(courseData);
                         }
-                        if (base[courseCode].type === 'ELECT') {
+                        else {
+                        // if (base[courseCode].type === 'ELECT') {
                           elective.push(courseData);
                         }
                       }
