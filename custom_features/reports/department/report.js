@@ -310,7 +310,7 @@
 
           async loadJsonFile(name) {
             let app = this;
-            let jsonUrl = 'https://jhveem.xyz/canvas/custom_features/reports/department/' + name + '.json';
+            let jsonUrl = 'https://jhveem.xyz/api/report_data/' + name;
             let jsonData = await canvasGet(jsonUrl);
             app.json[name] = jsonData[0];
           },
