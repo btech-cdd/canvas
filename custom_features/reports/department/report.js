@@ -58,7 +58,6 @@
           await app.loadJsonFile('dept_code_to_name');
           await app.loadJsonFile('submissions');
           for (let userId in app.json.submissions) {
-            console.log(userId);
             let submissions = {};
             app.userSubmissionDates[userId] = {
               'list': [],
@@ -330,8 +329,6 @@
       };
 
       let submissions = app.userSubmissionDates[sisId]['list'].filter(date => new Date(date.date) >= graph.graphSettings.startDate);
-      console.log(sisId);
-      console.log(submissions);
       app.loadingStudentReport = false;
 
       //Begin setting up the graph
@@ -432,7 +429,6 @@
       //Begin setting up the graph
       let barColor = graph.getBarColor();
       let el = $('#' + graphElId);
-      console.log("TEST");
       el.empty();
 
       var width = w - graph.graphSettings.margin.left - graph.graphSettings.margin.right;
