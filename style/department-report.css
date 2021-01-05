@@ -4,6 +4,7 @@
   border: 1px solid #fff;
   background-color: #334;
   font-weight: bold;
+  cursor: pointer;
 }
 
 #canvas-department-report-vue .btech-course-progress-bar .btech-course-progress-bar-fill {
