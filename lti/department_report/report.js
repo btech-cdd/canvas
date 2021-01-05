@@ -17,6 +17,29 @@
 ////TOGGLE ON THE FEATURE TO PARTIALLY FILL A BAR DEPENDING ON PROGRESS IN THAT COURSE. MAKE BACKGROUND BLACK AND THEN PARTIALLY SHADE, DEFAULT IS OFF THOUGH
 ////CHANGE NAME TO SORT BY FIRST NAME, ALSO CHANGE TO SHOW FIRST NAME FIRST THEN LAST NAME
 (async function () {
+  async function canvasGet(url, reqData = {}, page = "1", resData = []) {
+    let nextPage = "";
+    reqData.per_page = 100;
+    reqData.page = page;
+    await $.get(url, reqData, function (data, status, xhr) {
+      //add assignments to the list
+      resData = resData.concat(data);
+      //see if there's another page to get
+      let rNext = /<([^>]*)>; rel="next"/;
+      let header = xhr.getResponseHeader("Link");
+      if (header !== null) {
+        let nextMatch = header.match(rNext);
+        if (nextMatch !== null) {
+          let next = nextMatch[1];
+          nextPage = next.match(/page=(.*?)&/)[1];
+        }
+      }
+    });
+    if (nextPage !== "") {
+      return await canvasGet(url, reqData, nextPage, resData);
+    }
+    return resData;
+  }
   this.APP = new Vue({
     el: '#canvas-department-report-vue',
     mounted: async function () {
