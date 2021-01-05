@@ -260,11 +260,8 @@
               for (let i in users) {
                 let user = users[i];
                 let sisId = user.id;
-                console.log(sisId);
                 let userId = app.json.sis_to_canv[sisId].canvas_id;
-                console.log(userId);
                 if (app.userSubmissionDates[sisId] != undefined) {
-                  console.log(app.userSubmissionDates[sisId]);
                   let graph = new SubmissionsGraphBar();
                   graph._initSmall(app, userId, sisId, "btech-user-submission-summary-" + userId);
                 }
@@ -331,6 +328,8 @@
       };
 
       let submissions = app.userSubmissionDates[sisId]['list'].filter(date => new Date(date.date) >= graph.graphSettings.startDate);
+      console.log(sisId);
+      console.log(submissions);
       app.loadingStudentReport = false;
 
       //Begin setting up the graph
