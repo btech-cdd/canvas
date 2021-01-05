@@ -561,6 +561,8 @@
     xPlot(d, x) {
       let app = this.app;
       let graph = this;
+      console.log(d.date);
+      console.log(graph.graphSettings.margin.left);
       let xVal = x(new Date(d.date)) + graph.graphSettings.margin.left;
       console.log(xVal);
       return xVal;
