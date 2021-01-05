@@ -77,7 +77,9 @@
               }
               submissions[date] += 1;
             }
+            console.log(userId);
             for (let dateString in submissions) {
+              console.log(dateString);
               let count = submissions[dateString];
               app.userSubmissionDates[userId]['list'].push({
                 'date': dateString,
@@ -328,7 +330,6 @@
       };
 
       let submissions = app.userSubmissionDates[sisId]['list'].filter(date => new Date(date.date) >= graph.graphSettings.startDate);
-      console.log(submissions);
       console.log(sisId);
       console.log(submissions);
       app.loadingStudentReport = false;
