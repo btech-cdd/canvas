@@ -67,6 +67,7 @@
             let userSubmissionDates = app.json.submissions[userId];
             for (let dateStringLong in userSubmissionDates) {
               let dateString = dateStringLong.substring(0,10);
+              console.log(dateString);
               let longDate = new Date(dateString);
               console.log(longDate);
               let date = new Date(longDate.getFullYear(), longDate.getMonth(), longDate.getDate());
