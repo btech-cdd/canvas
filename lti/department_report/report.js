@@ -17,6 +17,7 @@
 ////TOGGLE ON THE FEATURE TO PARTIALLY FILL A BAR DEPENDING ON PROGRESS IN THAT COURSE. MAKE BACKGROUND BLACK AND THEN PARTIALLY SHADE, DEFAULT IS OFF THOUGH
 ////CHANGE NAME TO SORT BY FIRST NAME, ALSO CHANGE TO SHOW FIRST NAME FIRST THEN LAST NAME
 (async function () {
+  console.log("TEST");
   IMPORTED_FEATURE = {};
   IMPORTED_FEATURE = {
     initiated: false,
@@ -26,9 +27,6 @@
       await $.get(SOURCE_URL + '/custom_features/reports/department/template.vue', null, function (html) {
         vueString = html.replace("<template>", "").replace("</template>", "");
       }, 'text');
-      let content = $("#content");
-      content.empty();
-      content.append('<div id="canvas-department-report-vue"></div>')
       $("#canvas-department-report-vue").append(vueString);
       this.APP = new Vue({
         el: '#canvas-department-report-vue',
