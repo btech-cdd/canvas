@@ -15,63 +15,50 @@
           <div style='padding-bottom: .5em;'>
             <div>
               <div style='width: 180px; display: inline-block;'>
-              <a :href="'/users/' + json.sis_to_canv[user.id].canvas_id" target="_blank">
-                {{user.name}}
-              </a>
+                <a :href="'/users/' + json.sis_to_canv[user.id].canvas_id" target="_blank">
+                  {{user.name}}
+                </a>
               </div>
               <div style='display: inline-block; width: 4rem;'>
-              <span :style="{
+                <span :style="{
                 'background-color': calcDepartmentScoreColorBg(user),
                 'color': calcDepartmentScoreColorFont(user),
                 'padding': '4px',
                 'border-radius': '10px',
               }">
-                {{calcDepartmentScoreText(user)}}
-              </span>
+                  {{calcDepartmentScoreText(user)}}
+                </span>
               </div>
-              <div 
-                :id="'btech-user-submission-summary-' + json.sis_to_canv[user.id].canvas_id"
+              <div :id="'btech-user-submission-summary-' + json.sis_to_canv[user.id].canvas_id"
                 style="display: inline-block; cursor: pointer;"
-                @click='openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);'
-                >
-                 . . .
+                @click='openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);'>
+                . . .
               </div>
             </div>
 
             <!--CORE COURSES-->
             <div v-for='courseType in courseTypes'>
               <div v-if='user[courseType].length > 0'>
-                <div v-for='(course) in user[courseType]' :key='course.code'
-                  class='btech-course-progress-bar'
-                  :style="
+                <div v-for='(course) in user[courseType]' :key='course.code' class='btech-course-progress-bar' :style="
                   {
                     'background-color': colors.base,
                   }
-                  "
-                  >
-                  <div
-                    class='btech-course-progress-bar-fill'
-                    :style="
+                  ">
+                  <a :href="'/courses/' + course.course_id">
+                    <div class='btech-course-progress-bar-fill' :style="
                       {
                         'background-color': getCourseProgressBarColor(course),
                         width: 100 + '%'
                       }
                     ">
-                  </div>
-                  <div 
-                    v-if="course.progress > 0"
-                    style="color: #FFFFFF"
-                    class='btech-course-progress-bar-text'
-                    >
-                    {{course.code}}
-                  </div>
-                  <div 
-                    v-else
-                    style="color: #000000"
-                    class='btech-course-progress-bar-text'
-                    >
-                    {{course.code}}
-                  </div>
+                    </div>
+                    <div v-if="course.progress > 0" style="color: #FFFFFF" class='btech-course-progress-bar-text'>
+                      {{course.code}}
+                    </div>
+                    <div v-else style="color: #000000" class='btech-course-progress-bar-text'>
+                      {{course.code}}
+                    </div>
+                  </a>
                 </div>
                 <div style='border-bottom: solid 1px #000;'></div>
               </div>
