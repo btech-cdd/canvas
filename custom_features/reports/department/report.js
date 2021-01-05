@@ -180,6 +180,8 @@
                         let course = courses[courseCode];
                         let courseData = {
                           'code': courseCode,
+                          'course_id': course.course_id,
+                          'last_activity': course.last_activity,
                           'progress': course.progress,
                           'start': course.start
                         }
