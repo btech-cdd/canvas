@@ -42,7 +42,7 @@
                 <div 
                   v-for='(course) in user[courseType]' 
                   class='btech-course-progress-bar' 
-                  :title="users['base'][course.code].name"
+                  :title="app.json['progress'][department]['base'][course.code].name"
                   :key='course.code' 
                   :style="
                     {
