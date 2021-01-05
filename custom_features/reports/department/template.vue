@@ -44,7 +44,7 @@
                     'background-color': colors.base,
                   }
                   ">
-                  <a :href="'/courses/' + course.course_id">
+                  <a :href="'/courses/' + course.course_id" target="_blank">
                     <div class='btech-course-progress-bar-fill' :style="
                       {
                         'background-color': getCourseProgressBarColor(course),
