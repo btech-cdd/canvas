@@ -103,7 +103,8 @@
 
   </div>
   <script>
-    var obj = <%= canvas_data %>
+    var obj = JSON.parse(<%= canvas_data %>);
+    console.log(obj);
   </script>
 </body>
 </html>
