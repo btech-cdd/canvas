@@ -262,6 +262,7 @@
                 let sisId = user.id;
                 console.log(sisId);
                 let userId = app.json.sis_to_canv[sisId].canvas_id;
+                console.log(userId);
                 if (app.userSubmissionDates[sisId] != undefined) {
                   let graph = new SubmissionsGraphBar();
                   graph._initSmall(app, userId, sisId, "btech-user-submission-summary-" + userId);
