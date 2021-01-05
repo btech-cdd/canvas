@@ -103,7 +103,7 @@
 
   </div>
   <script>
-    var obj = JSON.parse(JSON.stringify(<%= canvas_data %>));
+    var obj = JSON.parse(<%- cJSON.stringify(anvas_data) %>);
     console.log(obj);
   </script>
 </body>
