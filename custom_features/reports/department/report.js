@@ -561,13 +561,16 @@
     xPlot(d, x) {
       let app = this.app;
       let graph = this;
-      return x(new Date(d.date)) + graph.graphSettings.margin.left;
+      let xVal = x(new Date(d.date)) + graph.graphSettings.margin.left;
+      console.log(xVal);
+      return xVal;
     }
 
     yPlot(d, y) {
       let app = this.app;
       let graph = this;
-      return y(d.count) + graph.graphSettings.margin.top;
+      let yVal = y(d.count) + graph.graphSettings.margin.top;
+      return yVal;
     }
   }
 
