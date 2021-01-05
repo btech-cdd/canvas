@@ -67,9 +67,7 @@
             let userSubmissionDates = app.json.submissions[userId];
             for (let i in userSubmissionDates) {
               let dateString = userSubmissionDates[i];
-              console.log(dateString);
               let longDate = new Date(dateString);
-              console.log(longDate);
               let date = new Date(longDate.getFullYear(), longDate.getMonth(), longDate.getDate());
               if (app.userSubmissionDates[userId]['last'] === null) {
                 app.userSubmissionDates[userId]['last'] = date;
