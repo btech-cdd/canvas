@@ -58,15 +58,19 @@
           await app.loadJsonFile('dept_code_to_name');
           await app.loadJsonFile('submissions');
           for (let userId in app.json.submissions) {
+            console.log(userId);
             let submissions = {};
             app.userSubmissionDates[userId] = {
               'list': [],
               'last': null
             };
             let userSubmissionDates = app.json.submissions[userId];
+            console.log(userSubmissionDates);
             for (let dateString in userSubmissionDates) {
               let longDate = new Date(dateString);
+              console.log(longDate);
               let date = new Date(longDate.getFullYear(), longDate.getMonth(), longDate.getDate());
+              console.log(date);
               if (app.userSubmissionDates[userId]['last'] === null) {
                 app.userSubmissionDates[userId]['last'] = date;
               } else if (app.userSubmissionDates[userId]['last'] < date) {
@@ -77,9 +81,7 @@
               }
               submissions[date] += 1;
             }
-            console.log(userId);
             for (let dateString in submissions) {
-              console.log(dateString);
               let count = submissions[dateString];
               app.userSubmissionDates[userId]['list'].push({
                 'date': dateString,
