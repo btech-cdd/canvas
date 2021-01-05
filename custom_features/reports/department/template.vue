@@ -39,10 +39,15 @@
             <!--CORE COURSES-->
             <div v-for='courseType in courseTypes'>
               <div v-if='user[courseType].length > 0'>
-                <div v-for='(course) in user[courseType]' :key='course.code' class='btech-course-progress-bar' :style="
-                  {
-                    'background-color': colors.base,
-                  }
+                <div 
+                  v-for='(course) in user[courseType]' 
+                  class='btech-course-progress-bar' 
+                  :title="users['base'][course.code].name"
+                  :key='course.code' 
+                  :style="
+                    {
+                      'background-color': colors.base,
+                    }
                   ">
                   <a :href="'/courses/' + course.course_id" target="_blank">
                     <div class='btech-course-progress-bar-fill' :style="
