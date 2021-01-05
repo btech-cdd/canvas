@@ -65,8 +65,8 @@
               'last': null
             };
             let userSubmissionDates = app.json.submissions[userId];
-            for (let dateStringLong in userSubmissionDates) {
-              let dateString = dateStringLong.substring(0,10);
+            for (let i in userSubmissionDates) {
+              let dateString = userSubmissionDates[i];
               console.log(dateString);
               let longDate = new Date(dateString);
               console.log(longDate);
