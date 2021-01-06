@@ -259,9 +259,13 @@
 
       async loadJsonFile(name) {
         let app = this;
-        let jsonUrl = 'https://jhveem.xyz/api/report_data/' + name;
-        let jsonData = await $.get(jsonUrl);
-        app.json[name] = jsonData[0];
+        let jsonUrl = 'https://jhveem.xyz/lti/report_data/' + name;
+        let jsonData = {};
+        await $.get(jsonUrl, function(data) {
+          jsonData = data;
+          console.log(data);
+        });
+        app.json[name] = jsonData;
       },
 
     }
