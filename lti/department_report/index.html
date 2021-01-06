@@ -26,7 +26,10 @@
         <div v-if='users.length > 0'>
           <h2>{{year}} {{currentDepartment}} Tree</h2>
           <div 
-            v-for='user in users' :key='user.id'>
+            v-for='user in users' 
+            :key='user.id'
+            class='btech-user-block'
+            >
             <div style='margin-bottom: 2em;'>
               <div>
                 <div class='btech-user-name' style='width: 180px; display: inline-block;'>
