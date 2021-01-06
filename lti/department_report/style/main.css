@@ -4,6 +4,10 @@ body {
   font-size: 1rem;
 }
 
+#canvas-department-report-vue a .disabled {
+  pointer-events: none;
+}
+
 #canvas-department-report-vue .btech-user-name {
   text-decoration: none;
   cursor: pointer;

@@ -59,7 +59,11 @@
                       'background-color': colors.base,
                     }
                   ">
-                    <a :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[user.id].canvas_id"
+                    <a 
+                      :class="{
+                        disabled: course.course_id !== undefined
+                      }" 
+                      :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[user.id].canvas_id"
                       target="_blank">
                       <div class='btech-course-progress-bar-fill' :style="
                       {
