@@ -28,7 +28,7 @@
             <div style='padding-bottom: .5em;'>
               <div>
                 <div style='width: 180px; display: inline-block;'>
-                  <a :href="'/users/' + json.sis_to_canv[user.id].canvas_id" target="_blank">
+                  <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[user.id].canvas_id" target="_blank">
                     {{user.name}}
                   </a>
                 </div>
@@ -59,7 +59,7 @@
                       'background-color': colors.base,
                     }
                   ">
-                    <a :href="'/courses/' + course.course_id + '/grades/' + json.sis_to_canv[user.id].canvas_id"
+                    <a :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[user.id].canvas_id"
                       target="_blank">
                       <div class='btech-course-progress-bar-fill' :style="
                       {
