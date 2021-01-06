@@ -1,11 +1,11 @@
 body {
   font-family: Arial, sans-serif;
   font-size: 16px;
-  font-size: 0.5rem;
+  font-size: 1rem;
 }
 #canvas-department-report-vue {
   background-color: #e0e0e0;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 #canvas-department-report-vue .btech-tree-header {
