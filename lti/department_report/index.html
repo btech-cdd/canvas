@@ -33,12 +33,12 @@
             >
             <div>
               <div>
-                <div class='btech-user-name' style='width: 180px; display: inline-block;'>
+                <div class='btech-user-name' style='width: 180px; display: inline-block; font-size: 1rem;'>
                   <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[user.id].canvas_id" target="_blank">
                     <strong>{{user.name}}</strong>
                   </a>
                 </div>
-                <div style='display: inline-block; width: 3rem; font-size: .75rem;'>
+                <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
                   <span :style="{
                 'background-color': calcDepartmentScoreColorBg(user),
                 'color': calcDepartmentScoreColorFont(user),
