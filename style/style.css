@@ -60,7 +60,6 @@
 #content #assignment_show ul, 
 #content #quiz_show_show ol, 
 #content #quiz_show_show ul {
-  overflow: hidden;
   padding-left: 20px;
   margin-left: 0;
 }
@@ -150,7 +149,6 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
   /* background-color: var(--btech-theme-header-background-color); */
   background-color: var(--ic-brand-font-color-dark);
 }
