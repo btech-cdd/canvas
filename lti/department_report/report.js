@@ -122,7 +122,6 @@
         availableDepartments: [],
         showStudentReport: false,
         svg: null,
-        nameDict: {},
         enrollments: {}, //or submission data or student data or somewhere else to hold all of the data pulling from canvas and saving it for reuse.
         colors: {
           base: '#334',
@@ -165,7 +164,7 @@
           let base = users['base'];
           for (let id in users) {
             if (id !== "base") {
-              if (id in app.nameDict && id in app.json['sis_to_canv']) {
+              if (id in app.json['sis_to_canv']) {
                 let courses = users[id];
                 let core = [];
                 let elective = [];
