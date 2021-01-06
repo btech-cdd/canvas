@@ -4,6 +4,12 @@ body {
   font-size: 1rem;
 }
 
+#canvas-department-report-vue a {
+  pointer-events: none;
+  cursor: default;
+  cursor: pointer;
+}
+
 #canvas-department-report-vue a.disabled {
   pointer-events: none;
   cursor: default;
@@ -11,7 +17,6 @@ body {
 
 #canvas-department-report-vue .btech-user-name {
   text-decoration: none;
-  cursor: pointer;
 }
 
 #canvas-department-report-vue .btech-user-name a {
@@ -26,7 +31,6 @@ body {
   background-color: #334;
   font-weight: bold;
   font-size: 1rem;
-  cursor: pointer;
 }
 
 #canvas-department-report-vue .btech-course-progress-bar a {
