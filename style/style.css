@@ -4,12 +4,18 @@
   clear: both;
 }
 
+#content #wiki_page_show hr,
+#content #wiki_page_show br,
 #content #wiki_page_show h2,
 #content #wiki_page_show h3,
 #content #wiki_page_show h4,
+#content #assignment_show hr, 
+#content #assignment_show br, 
 #content #assignment_show h2, 
 #content #assignment_show h3, 
 #content #assignment_show h4, 
+#content #quiz_show hr,
+#content #quiz_show br,
 #content #quiz_show h2,
 #content #quiz_show h3,
 #content #quiz_show h4 {
@@ -67,6 +73,26 @@
 #content #quiz_show_show ul li {
   list-style-position: outside;
   padding-left: 0;
+}
+
+#content #wiki_page_show .btech-content-box,
+#content #assignment_show .btech-content-box,
+#content #quiz_show .btech-content-box {
+  border: 1px solid #ddd;
+  border-radius: 2px;
+}
+
+#content #wiki_page_show .btech-content-box .btech-content-box-body,
+#content #assignment_show .btech-content-box .btech-content-box-body,
+#content #quiz_show .btech-content-box .btech-content-box-body {
+  padding: 8px 8px;
+}
+
+#content #wiki_page_show .btech-content-box .btech-content-box-head,
+#content #assignment_show .btech-content-box .btech-content-box-head,
+#content #quiz_show .btech-content-box .btech-content-box-head {
+  padding: 2px 8px;
+  background-color: #f8f8f8;
 }
 
 .btech-citation {

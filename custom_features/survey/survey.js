@@ -16,22 +16,20 @@
 
   function addParagraphTextEntry(inputId, description) {
     form.append(`
-<p>` + description + `<br>
+<p style='font-weight: bold;'>` + description + `</p>
 <textarea name="` + inputId + `" style="width:100%; box-sizing: border-box;"></textarea>
-</p>
 `)
   }
 
   function addTextEntry(inputId, description) {
     form.append(`
-<p>` + description + `<br>
+<p style='font-weight: bold;'>` + description + `</p>
 <input type="text" name="` + inputId + `" value="">
-</p>
 `)
   }
 
   function addDropdown(inputId, description, list) {
-    let input = $(`<p>` + description + `</p>`);
+    let input = $(`<p style='font-weight: bold;'>` + description + `</p>`);
     let bodyRows = "";
     let select = $(`
 <select name='` + inputId + `'>
@@ -41,13 +39,13 @@
     for (var i = 0; i < list.length; i++) {
       select.append(`<option value="` + list[i] + `">` + list[i] + `</option>`);
     }
-    input.append("<br>");
+    input.append("<br><div style='width: 100%; border-bottom: 1px solid #000;'></div>");
     input.append(select);
     form.append(input);
   }
 
   function addButtons(inputId, description, list = [1, 2, 3, 4, "N/A"]) {
-    let buttonWidth = (100 - 20) / list.length;
+    let buttonWidth = (100 - 10) / list.length;
     let headingRows = "";
     let bodyRows = "";
     for (var i = 0; i < list.length; i++) {
@@ -60,9 +58,9 @@
 </td>`;
     }
     form.append(`
-<p>` + description + `</p>
+<p style='font-weight: bold;'>` + description + `</p>
 
-<table border="0" cellpadding="5" cellspacing="0">
+<table width="100%" border="0" cellpadding="5" cellspacing="0" style='background-color:#f2f2f2;'>
 <thead>
 <tr>
 <td>
@@ -72,7 +70,7 @@
 </thead>
 <tbody>
 <tr role="radiogroup" aria-label="" aria-describedby="1978569583_errorMessage"
-style="text-align:center;color:#666;border-bottom:1px solid #d3d8d3;padding:0;background-color:#f2f2f2">
+style="text-align:center;color:#666;border-bottom:1px solid #d3d8d3;padding:0;">
 <td
 style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-width:100px;max-width:200px;padding-left:15px">
 </td>
@@ -80,11 +78,12 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
 </tr>
 </tbody>
 </table>
+<br>
 `);
   }
 
   function addSubmitButton() {
-    let submit = $('<input type="submit" name="submit" value="Submit" id="m_8914134288611702631ss-submit">');
+    let submit = $('<input style="float: right;" type="submit" name="submit" value="Submit" id="m_8914134288611702631ss-submit">');
     submit.click(function () {
       location.reload(true);
     })
@@ -136,6 +135,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
           action="https://docs.google.com/forms/u/0/d/e/` + formData[0].responseId + `/formResponse"
           target="formSubmitFrame">
         </form>
+        <br>
       `);
       //could grab any since they all have the responseId, but getting 0 for consistency sake
       //grab some default data

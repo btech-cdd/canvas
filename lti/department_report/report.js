@@ -17,285 +17,292 @@
 ////TOGGLE ON THE FEATURE TO PARTIALLY FILL A BAR DEPENDING ON PROGRESS IN THAT COURSE. MAKE BACKGROUND BLACK AND THEN PARTIALLY SHADE, DEFAULT IS OFF THOUGH
 ////CHANGE NAME TO SORT BY FIRST NAME, ALSO CHANGE TO SHOW FIRST NAME FIRST THEN LAST NAME
 (async function () {
-  IMPORTED_FEATURE = {};
-  IMPORTED_FEATURE = {
-    initiated: false,
-    async _init(params = {}) {
-      let vueString = '';
-      $.getScript("https://d3js.org/d3.v6.min.js");
-      await $.get(SOURCE_URL + '/custom_features/reports/department/template.vue', null, function (html) {
-        vueString = html.replace("<template>", "").replace("</template>", "");
-      }, 'text');
-      let content = $("#content");
-      content.empty();
-      content.append('<div id="canvas-department-report-vue"></div>')
-      $("#canvas-department-report-vue").append(vueString);
-      this.APP = new Vue({
-        el: '#canvas-department-report-vue',
-        mounted: async function () {
-          let app = this;
-          let dept = '' + CURRENT_DEPARTMENT_ID;
+  async function canvasGet(url, reqData = {}, page = "1", resData = []) {
+    let nextPage = "";
+    reqData.per_page = 100;
+    reqData.page = page;
+    await $.get(url, reqData, function (data, status, xhr) {
+      //add assignments to the list
+      resData = resData.concat(data);
+      //see if there's another page to get
+      let rNext = /<([^>]*)>; rel="next"/;
+      let header = xhr.getResponseHeader("Link");
+      if (header !== null) {
+        let nextMatch = header.match(rNext);
+        if (nextMatch !== null) {
+          let next = nextMatch[1];
+          nextPage = next.match(/page=(.*?)&/)[1];
+        }
+      }
+    });
+    if (nextPage !== "") {
+      return await canvasGet(url, reqData, nextPage, resData);
+    }
+    return resData;
+  }
+  this.APP = new Vue({
+    el: '#canvas-department-report-vue',
+    mounted: async function () {
+      let app = this;
+      let dept = '' + 3837;
 
-          //Load names and create dict
-          let usersUrl = '/api/v1/accounts/' + dept + '/users';
-          let users = await canvasGet(usersUrl, {
-            enrollment_type: 'student'
-          });
-          for (let i = 0; i < users.length; i++) {
-            let user = users[i];
-            //If the name hasn't been saved yet
-            if (user.sis_user_id !== null) {
-              if (!(user.sis_user_id in app.nameDict)) {
-                app.nameDict[user.sis_user_id] = user.sortable_name;
-              }
-            }
+      //Load names and create dict
+      let usersUrl = '/api/v1/accounts/' + dept + '/users';
+      let users = await canvasGet(usersUrl, {
+        enrollment_type: 'student'
+      });
+      for (let i = 0; i < users.length; i++) {
+        let user = users[i];
+        //If the name hasn't been saved yet
+        if (user.sis_user_id !== null) {
+          if (!(user.sis_user_id in app.nameDict)) {
+            app.nameDict[user.sis_user_id] = user.sortable_name;
           }
+        }
+      }
 
-          //import json files
-          await app.loadJsonFile('progress');
-          await app.loadJsonFile('sis_to_canv');
-          await app.loadJsonFile('canv_dept_to_jenz');
-          await app.loadJsonFile('dept_code_to_name');
-          await app.loadJsonFile('submissions');
-          for (let userId in app.json.submissions) {
-            let submissions = {};
-            app.userSubmissionDates[userId] = {
-              'list': [],
-              'last': null
-            };
-            let userSubmissionDates = app.json.submissions[userId];
-            for (let i in userSubmissionDates) {
-              let dateString = userSubmissionDates[i];
-              let longDate = new Date(dateString);
-              let date = new Date(longDate.getFullYear(), longDate.getMonth(), longDate.getDate());
-              if (app.userSubmissionDates[userId]['last'] === null) {
-                app.userSubmissionDates[userId]['last'] = date;
-              } else if (app.userSubmissionDates[userId]['last'] < date) {
-                app.userSubmissionDates[userId]['last'] = date;
-              }
-              if (!(date in submissions)) {
-                submissions[date] = 0;
-              }
-              submissions[date] += 1;
-            }
-            for (let dateString in submissions) {
-              let count = submissions[dateString];
-              app.userSubmissionDates[userId]['list'].push({
-                'date': dateString,
-                'count': count
-              })
-            }
+      //import json files
+      await app.loadJsonFile('progress');
+      await app.loadJsonFile('sis_to_canv');
+      await app.loadJsonFile('canv_dept_to_jenz');
+      await app.loadJsonFile('dept_code_to_name');
+      await app.loadJsonFile('submissions');
+      for (let userId in app.json.submissions) {
+        let submissions = {};
+        app.userSubmissionDates[userId] = {
+          'list': [],
+          'last': null
+        };
+        let userSubmissionDates = app.json.submissions[userId];
+        for (let i in userSubmissionDates) {
+          let dateString = userSubmissionDates[i];
+          let longDate = new Date(dateString);
+          let date = new Date(longDate.getFullYear(), longDate.getMonth(), longDate.getDate());
+          if (app.userSubmissionDates[userId]['last'] === null) {
+            app.userSubmissionDates[userId]['last'] = date;
+          } else if (app.userSubmissionDates[userId]['last'] < date) {
+            app.userSubmissionDates[userId]['last'] = date;
           }
-
-          //get list of departments available to this sub account
-          let availableDepartments = [];
-          for (let i in app.json.canv_dept_to_jenz[dept]) {
-            let departmentCode = app.json.canv_dept_to_jenz[dept][i];
-            if (departmentCode in app.json.progress) {
-              availableDepartments.push(departmentCode);
-            }
+          if (!(date in submissions)) {
+            submissions[date] = 0;
           }
+          submissions[date] += 1;
+        }
+        for (let dateString in submissions) {
+          let count = submissions[dateString];
+          app.userSubmissionDates[userId]['list'].push({
+            'date': dateString,
+            'count': count
+          })
+        }
+      }
 
-          //Sort departments alphabetically
-          availableDepartments.sort(function (a, b) {
-            let deptNameA = app.json.dept_code_to_name[a].name;
-            let deptNameB = app.json.dept_code_to_name[b].name;
-            return deptNameA.localeCompare(deptNameB);
-          });
-          app.availableDepartments = availableDepartments;
-          app.currentDepartment = app.availableDepartments[0];
+      //get list of departments available to this sub account
+      let availableDepartments = [];
+      for (let i in app.json.canv_dept_to_jenz[dept]) {
+        let departmentCode = app.json.canv_dept_to_jenz[dept][i];
+        if (departmentCode in app.json.progress) {
+          availableDepartments.push(departmentCode);
+        }
+      }
 
-          app.loadDepartmentUsers();
-          app.loading = false;
+      //Sort departments alphabetically
+      availableDepartments.sort(function (a, b) {
+        let deptNameA = app.json.dept_code_to_name[a].name;
+        let deptNameB = app.json.dept_code_to_name[b].name;
+        return deptNameA.localeCompare(deptNameB);
+      });
+      app.availableDepartments = availableDepartments;
+      app.currentDepartment = app.availableDepartments[0];
+
+      app.loadDepartmentUsers();
+      app.loading = false;
+    },
+
+    computed: {
+      electiveCourses: function () {},
+      coreCourses: function () {}
+    },
+
+    data: function () {
+      return {
+        loading: true,
+        loadingStudentSubmissionsInProgress: false,
+        json: {},
+        usersByYear: {},
+        userSubmissionDates: {},
+        currentDepartment: '',
+        coreCourses: [],
+        electiveCourses: [],
+        availableDepartments: [],
+        showStudentReport: false,
+        svg: null,
+        nameDict: {},
+        enrollments: {}, //or submission data or student data or somewhere else to hold all of the data pulling from canvas and saving it for reuse.
+        colors: {
+          base: '#334',
+          red: 'rgb(217, 83, 79)',
+          orange: 'rgb(229, 128, 79)',
+          yellow: 'rgb(240, 173, 78)',
+          green: 'rgb(92, 184, 92)',
+          gray: '#E0E0E0',
+          noProgress: '#E0E0E0',
+          complete: '#5BC0DE',
+          badDate: '#D9534F',
+          warningDate: '#F0AD4E',
+          goodDate: '#5CB85C',
         },
+        loadingStudentReport: false,
+        courseTypes: ['core', 'elective']
+      }
+    },
+    methods: {
+      getCourseProgressBarColor(course) {
+        let progress = course.progress;
+        let start = course.start;
+        let app = this;
+        if (progress <= 0) return app.colors.noProgress;
+        if (progress >= 100) return app.colors.complete;
 
-        computed: {
-          electiveCourses: function () {},
-          coreCourses: function () {}
-        },
+        let diffDays = Math.floor((new Date() - new Date(course.start)) / (1000 * 60 * 60 * 24));
+        if (diffDays < 60) return app.colors.green;
+        if (diffDays < 120) return app.colors.yellow; //yellow
+        if (diffDays < 180) return app.colors.orange; //orange
+        return app.colors.red; //red
+      },
 
-        data: function () {
-          return {
-            loading: true,
-            loadingStudentSubmissionsInProgress: false,
-            json: {},
-            usersByYear: {},
-            userSubmissionDates: {},
-            currentDepartment: '',
-            coreCourses: [],
-            electiveCourses: [],
-            availableDepartments: [],
-            showStudentReport: false,
-            svg: null,
-            nameDict: {},
-            enrollments: {}, //or submission data or student data or somewhere else to hold all of the data pulling from canvas and saving it for reuse.
-            colors: {
-              base: '#334',
-              red: 'rgb(217, 83, 79)',
-              orange: 'rgb(229, 128, 79)',
-              yellow: 'rgb(240, 173, 78)',
-              green: 'rgb(92, 184, 92)',
-              gray: '#E0E0E0',
-              noProgress: '#E0E0E0',
-              complete: '#5BC0DE',
-              badDate: '#D9534F',
-              warningDate: '#F0AD4E',
-              goodDate: '#5CB85C',
-            },
-            loadingStudentReport: false,
-            courseTypes: ['core', 'elective']
-          }
-        },
-        methods: {
-          getCourseProgressBarColor(course) {
-            let progress = course.progress;
-            let start = course.start;
-            let app = this;
-            if (progress <= 0) return app.colors.noProgress;
-            if (progress >= 100) return app.colors.complete;
-
-            let diffDays = Math.floor((new Date() - new Date(course.start)) / (1000 * 60 * 60 * 24));
-            if (diffDays < 60) return app.colors.green;
-            if (diffDays < 120) return app.colors.yellow; //yellow
-            if (diffDays < 180) return app.colors.orange; //orange
-            return app.colors.red; //red
-          },
-
-          loadDepartmentUsers() {
-            let app = this;
-            let usersByYear = {};
-            for (let year in app.json['progress'][app.currentDepartment]) {
-              let users = app.json['progress'][app.currentDepartment][year];
-              let userList = [];
-              let base = users['base'];
-              for (let id in users) {
-                if (id !== "base") {
-                  if (id in app.nameDict && id in app.json['sis_to_canv']) {
-                    let courses = users[id];
-                    let core = [];
-                    let elective = [];
-                    let summary = courses['summary'];
-                    for (let courseCode in courses) {
-                      if (courseCode !== "summary") {
-                        let course = courses[courseCode];
-                        let courseData = {
-                          'code': courseCode,
-                          'course_id': course.course_id,
-                          'last_activity': course.last_activity,
-                          'progress': course.progress,
-                          'start': course.start
-                        }
-                        if (base[courseCode].type === 'CORE') {
-                          core.push(courseData);
-                        }
-                        else {
-                        // if (base[courseCode].type === 'ELECT') {
-                          elective.push(courseData);
-                        }
-                      }
+      loadDepartmentUsers() {
+        let app = this;
+        let usersByYear = {};
+        for (let year in app.json['progress'][app.currentDepartment]) {
+          let users = app.json['progress'][app.currentDepartment][year];
+          let userList = [];
+          let base = users['base'];
+          for (let id in users) {
+            if (id !== "base") {
+              if (id in app.nameDict && id in app.json['sis_to_canv']) {
+                let courses = users[id];
+                let core = [];
+                let elective = [];
+                let summary = courses['summary'];
+                for (let courseCode in courses) {
+                  if (courseCode !== "summary") {
+                    let course = courses[courseCode];
+                    let courseData = {
+                      'code': courseCode,
+                      'course_id': course.course_id,
+                      'last_activity': course.last_activity,
+                      'progress': course.progress,
+                      'start': course.start
                     }
-                    userList.push({
-                      'name': app.nameDict[id],
-                      'id': id,
-                      'core': core,
-                      'elective': elective,
-                      'summary': summary
-                    });
+                    if (base[courseCode].type === 'CORE') {
+                      core.push(courseData);
+                    } else {
+                      // if (base[courseCode].type === 'ELECT') {
+                      elective.push(courseData);
+                    }
                   }
                 }
-              }
-
-              userList.sort(function (a, b) {
-                let aName = a.name;
-                if (aName != undefined) aName = aName.toLowerCase();
-                else aName = '';
-
-                let bName = b.name;
-                if (bName != undefined) bName = bName.toLowerCase();
-                else bName = '';
-
-                return aName.localeCompare(bName);
-              });
-
-              usersByYear[year] = userList;
-            }
-            app.usersByYear = usersByYear;
-
-            //Don't want to start multiple of these
-            if (app.loadingStudentSubmissionsInProgress === false) {
-              // app.loadNextStudentSubmissionData();
-            }
-            app.initGraphs();
-          },
-
-          calcDepartmentScoreText(user) {
-            if (user.summary === undefined) return "N/A";
-            if (user.summary.average_score === undefined) return "N/A";
-            return Math.round(user.summary.average_score * 100) + "%";
-          },
-
-          calcDepartmentScoreColorBg(user) {
-            let app = this;
-            if (user.summary === undefined) return app.colors.gray;
-            if (user.summary.average_score === undefined) return app.colors.gray;
-            let score = Math.round(user.summary.average_score * 100);
-            if (score < 60) return app.colors.red;
-            if (score < 80) return app.colors.orange;
-            if (score < 90) return app.colors.yellow;
-            return app.colors.green;
-          },
-
-          calcDepartmentScoreColorFont(user) {
-            let app = this;
-            if (user.summary === undefined) return "#000000";
-            if (user.summary.average_score === undefined) return "#000000";
-            return "#FFFFFF";
-          },
-
-          //Specifically set up to be used when a new section is selected.
-          //Cycles through all users, sees if any info has been loaded and a graph doesn't exist, if yes, create the graph for it.
-          initGraphs() {
-            let app = this;
-            app.loadingStudentSubmissionsInProgress = true;
-            let usersByYear = app.usersByYear;
-            for (let year in usersByYear) {
-              let users = usersByYear[year];
-              for (let i in users) {
-                let user = users[i];
-                let sisId = user.id;
-                let userId = app.json.sis_to_canv[sisId].canvas_id;
-                if (app.userSubmissionDates[sisId] != undefined) {
-                  let graph = new SubmissionsGraphBar();
-                  graph._initSmall(app, userId, sisId, "btech-user-submission-summary-" + userId);
-                }
+                userList.push({
+                  'name': app.nameDict[id],
+                  'id': id,
+                  'core': core,
+                  'elective': elective,
+                  'summary': summary
+                });
               }
             }
-          },
+          }
 
+          userList.sort(function (a, b) {
+            let aName = a.name;
+            if (aName != undefined) aName = aName.toLowerCase();
+            else aName = '';
 
-          async openStudentReport(userId, sisId) {
-            let app = this;
-            app.showStudentReport = true;
-            let graph = new SubmissionsGraphBar();
-            graph._init(app, userId, sisId);
-          },
+            let bName = b.name;
+            if (bName != undefined) bName = bName.toLowerCase();
+            else bName = '';
 
-          closeStudentReport() {
-            let app = this;
-            app.showStudentReport = false;
-          },
+            return aName.localeCompare(bName);
+          });
 
-          async loadJsonFile(name) {
-            let app = this;
-            let jsonUrl = 'https://jhveem.xyz/api/report_data/' + name;
-            let jsonData = await canvasGet(jsonUrl);
-            app.json[name] = jsonData[0];
-          },
-
+          usersByYear[year] = userList;
         }
-      })
+        app.usersByYear = usersByYear;
+
+        //Don't want to start multiple of these
+        if (app.loadingStudentSubmissionsInProgress === false) {
+          // app.loadNextStudentSubmissionData();
+        }
+        app.initGraphs();
+      },
+
+      calcDepartmentScoreText(user) {
+        if (user.summary === undefined) return "N/A";
+        if (user.summary.average_score === undefined) return "N/A";
+        return Math.round(user.summary.average_score * 100) + "%";
+      },
+
+      calcDepartmentScoreColorBg(user) {
+        let app = this;
+        if (user.summary === undefined) return app.colors.gray;
+        if (user.summary.average_score === undefined) return app.colors.gray;
+        let score = Math.round(user.summary.average_score * 100);
+        if (score < 60) return app.colors.red;
+        if (score < 80) return app.colors.orange;
+        if (score < 90) return app.colors.yellow;
+        return app.colors.green;
+      },
+
+      calcDepartmentScoreColorFont(user) {
+        let app = this;
+        if (user.summary === undefined) return "#000000";
+        if (user.summary.average_score === undefined) return "#000000";
+        return "#FFFFFF";
+      },
+
+      //Specifically set up to be used when a new section is selected.
+      //Cycles through all users, sees if any info has been loaded and a graph doesn't exist, if yes, create the graph for it.
+      initGraphs() {
+        let app = this;
+        app.loadingStudentSubmissionsInProgress = true;
+        let usersByYear = app.usersByYear;
+        for (let year in usersByYear) {
+          let users = usersByYear[year];
+          for (let i in users) {
+            let user = users[i];
+            let sisId = user.id;
+            let userId = app.json.sis_to_canv[sisId].canvas_id;
+            if (app.userSubmissionDates[sisId] != undefined) {
+              let graph = new SubmissionsGraphBar();
+              graph._initSmall(app, userId, sisId, "btech-user-submission-summary-" + userId);
+            }
+          }
+        }
+      },
+
+
+      async openStudentReport(userId, sisId) {
+        let app = this;
+        app.showStudentReport = true;
+        let graph = new SubmissionsGraphBar();
+        graph._init(app, userId, sisId);
+      },
+
+      closeStudentReport() {
+        let app = this;
+        app.showStudentReport = false;
+      },
+
+      async loadJsonFile(name) {
+        let app = this;
+        let jsonUrl = 'https://jhveem.xyz/api/report_data/' + name;
+        let jsonData = await canvasGet(jsonUrl);
+        app.json[name] = jsonData[0];
+      },
+
     }
-  }
+  })
   class SubmissionsGraphBar {
     constructor() {
       let graph = this;

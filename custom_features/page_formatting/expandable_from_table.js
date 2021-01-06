@@ -13,7 +13,7 @@
       let row = $(this);
       let cells = row.find("td");
       if (cells.length > 0) {
-        let tab = $(cells[0]).text();
+        let tab = $(cells[0]).html();
         let h3 = $("<h3 class='btech-toggler'>" + tab + "</h3>");
         data[tab] = $(cells[1]).html();
         newTable.append(h3);

@@ -165,6 +165,7 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
         let finalUngradedAsZero = 0;
         let totalProgress = 0;
         let totalWeights = 0;
+        let groupEls = [];
         //loop assignments
         for (let i = 0; i < assignmentGroups.length; i++) {
           let group = assignmentGroups[i];
@@ -195,12 +196,19 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
                 }
               }
             }
+            
             if (possiblePoints > 0) {
               let groupPerc = (score / possiblePoints);
               let groupUngradedAsZeroPerc = (score / totalPoints);
               finalTotalScore += group.group_weight;
               finalScore += (groupPerc * group.group_weight);
               finalUngradedAsZero += (groupUngradedAsZeroPerc * group.group_weight);
+
+              //Group weight
+              let groupElement = $("#submission_group-" + group.id).clone();
+              groupEls.push(groupElement);
+              groupElement.find('.assignment_score span.grade').text(Math.round(score / possiblePoints * 1000) / 10 + '%');
+              groupElement.find('.points_possible').text(score + ' / ' + possiblePoints);
             }
             if (totalPoints > 0) {
               let progress = possiblePoints / totalPoints;
@@ -209,9 +217,19 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
             }
           }
         }
+
+        //Add the assignment group els to the end of the doc
+        groupEls.forEach(el => {
+          newBody.append(el);
+        })
+
         let outputScore = finalScore / finalTotalScore;
         let outputUngradedAsZeroScore = finalUngradedAsZero / finalTotalScore;
         outputUngradedAsZeroScore *= 100;
+
+        let finalGradeEl = $('#submission_final-grade').clone();
+        finalGradeEl.find('span.grade').text(toPrecision(outputScore * 100, 2) + "%");
+        newBody.append(finalGradeEl);
 
         if (isNaN(outputScore)) {
           outputScore = "N/A";
