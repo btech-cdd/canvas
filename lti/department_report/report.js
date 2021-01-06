@@ -17,6 +17,10 @@
 ////TOGGLE ON THE FEATURE TO PARTIALLY FILL A BAR DEPENDING ON PROGRESS IN THAT COURSE. MAKE BACKGROUND BLACK AND THEN PARTIALLY SHADE, DEFAULT IS OFF THOUGH
 ////CHANGE NAME TO SORT BY FIRST NAME, ALSO CHANGE TO SHOW FIRST NAME FIRST THEN LAST NAME
 (async function () {
+  async function delay(ms) {
+    // return await for better async stack trace support in case of errors.
+    return await new Promise(resolve => setTimeout(resolve, ms));
+  }
   async function getElement(selectorText, iframe = "") {
     let element;
     if (iframe === "") {
