@@ -50,7 +50,6 @@
                 </div>
               </div>
 
-              <!--CORE COURSES-->
               <div v-for='courseType in courseTypes'>
                 <div v-if='user[courseType].length > 0'>
                   <div v-for='(course) in user[courseType]' class='btech-course-progress-bar'
@@ -81,7 +80,7 @@
                       </div>
                     </a>
                   </div>
-                  <div style='border-bottom: solid 1px #000;'></div>
+                  <div style='border-bottom: solid 1px #000; padding-bottom: 1rem;'></div>
                 </div>
               </div>
             </div>
