@@ -1,5 +1,7 @@
 body {
   font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-size: 1rem;
 }
 
 #canvas-department-report-vue .btech-course-progress-bar {
