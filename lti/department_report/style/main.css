@@ -4,7 +4,7 @@ body {
   font-size: 1rem;
 }
 
-#canvas-department-report-vue > a .disabled {
+#canvas-department-report-vue > a.disabled {
   pointer-events: none;
 }
 
