@@ -5,6 +5,7 @@ body {
 }
 #canvas-department-report-vue {
   background-color: #e0e0e0;
+  padding: 1rem;
 }
 
 #canvas-department-report-vue .btech-tree-header {
