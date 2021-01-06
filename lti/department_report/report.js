@@ -17,6 +17,20 @@
 ////TOGGLE ON THE FEATURE TO PARTIALLY FILL A BAR DEPENDING ON PROGRESS IN THAT COURSE. MAKE BACKGROUND BLACK AND THEN PARTIALLY SHADE, DEFAULT IS OFF THOUGH
 ////CHANGE NAME TO SORT BY FIRST NAME, ALSO CHANGE TO SHOW FIRST NAME FIRST THEN LAST NAME
 (async function () {
+  async function getElement(selectorText, iframe = "") {
+    let element;
+    if (iframe === "") {
+      element = $(selectorText);
+    } else {
+      element = $(iframe).contents().find(selectorText);
+    }
+    if (element.length > 0 && element.html().trim() !== "") {
+      return element;
+    } else {
+      await delay(250);
+      return getElement(selectorText, iframe);
+    }
+  }
   this.APP = new Vue({
     el: '#canvas-department-report-vue',
     mounted: async function () {
@@ -261,7 +275,7 @@
         let app = this;
         let jsonUrl = 'https://jhveem.xyz/api/report_data/' + name;
         let jsonData = {};
-        await $.get(jsonUrl, function(data) {
+        await $.get(jsonUrl, function (data) {
           jsonData = data;
           console.log(data);
         });
