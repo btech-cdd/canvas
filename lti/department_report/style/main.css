@@ -4,6 +4,15 @@ body {
   font-size: 1rem;
 }
 
+#canvas-department-report-vue .btech-user-name {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#canvas-department-report-vue .btech-user-name a {
+  text-decoration: none;
+}
+
 #canvas-department-report-vue .btech-course-progress-bar {
   position: relative;
   display: inline-block;
