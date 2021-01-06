@@ -6,6 +6,7 @@ body {
 
 #canvas-department-report-vue a.disabled {
   pointer-events: none;
+  cursor: default;
 }
 
 #canvas-department-report-vue .btech-user-name {
