@@ -11,6 +11,7 @@ body {
 
 #canvas-department-report-vue .btech-user-name a {
   text-decoration: none;
+  color: #000000;
 }
 
 #canvas-department-report-vue .btech-course-progress-bar {
