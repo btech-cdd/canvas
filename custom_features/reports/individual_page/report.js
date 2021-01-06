@@ -680,9 +680,13 @@
                 let assignment = sub.assignment;
                 if (assignment.name.toLowerCase() === "hours") {
                   if (IS_TEACHER) {
-                    await $.get("/api/v1/courses/" + courseId + "/gradebook_history/feed?user_id=" + app.userId + "&assignment_id=" + assignment.id).done(function (data) {
-                      app.hoursAssignmentData[courseId] = data;
-                    });
+                    try {
+                      await $.get("/api/v1/courses/" + courseId + "/gradebook_history/feed?user_id=" + app.userId + "&assignment_id=" + assignment.id).done(function (data) {
+                        app.hoursAssignmentData[courseId] = data;
+                      });
+                    } catch(error) {
+                      console.log(error);
+                    }
                   } else {
                     app.hoursAssignmentData[courseId] = [sub];
                   }
