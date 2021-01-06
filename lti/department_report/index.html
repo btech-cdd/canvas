@@ -61,7 +61,7 @@
                   ">
                     <a 
                       :class="{
-                        disabled: course.course_id !== undefined
+                        disabled: course.course_id !== null
                       }" 
                       :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[user.id].canvas_id"
                       target="_blank">
