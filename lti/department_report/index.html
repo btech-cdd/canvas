@@ -103,8 +103,8 @@
 
   </div>
   <script>
-    var obj = <%- JSON.stringify(canvas_data) %>;
-    console.log(obj);
+    var CANVAS_LTI_DATA = <%- JSON.stringify(canvas_lti_data) %>;
+    var CURRENT_DEPARTMENT = CANVAS_LTI_DATA.custom_canvas_account_id;
   </script>
 </body>
 </html>

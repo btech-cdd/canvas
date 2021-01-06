@@ -44,7 +44,7 @@
     el: '#canvas-department-report-vue',
     mounted: async function () {
       let app = this;
-      let dept = '' + 3837;
+      let dept = '' + CURRENT_DEPARTMENT;
 
       //Load names and create dict
       let usersUrl = '/api/v1/accounts/' + dept + '/users';
