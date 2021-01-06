@@ -5,9 +5,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
   $("tr.student_assignment").each(function() {
       let context = $(this).find("div.context").text();
       let gradeText = $(this).find("span.grade").text().replaceAll("Click to test a different score", "").trim();
-      console.log(gradeText);
       let grade = parseFloat(gradeText);
-      console.log(grade);
       let total = parseFloat($(this).find("td.points_possible").text().trim());
       if (isNaN(grade) && gradeText != "-" && gradeText != "N/A") {
         $(this).css("background-color", highlightColor);
