@@ -40,7 +40,6 @@
     mounted: async function () {
       let app = this;
       let dept = '' + CURRENT_DEPARTMENT;
-      console.log(dept);
 
       //import json files
       await app.loadJsonFile('progress');
@@ -48,7 +47,6 @@
       await app.loadJsonFile('canv_dept_to_jenz');
       await app.loadJsonFile('dept_code_to_name');
       await app.loadJsonFile('submissions');
-      console.log(app.json);
       for (let userId in app.json.submissions) {
         let submissions = {};
         app.userSubmissionDates[userId] = {
@@ -283,7 +281,6 @@
         let jsonData = {};
         await $.get(jsonUrl, function (data) {
           jsonData = data;
-          console.log(data);
         });
         app.json[name] = jsonData;
       },
