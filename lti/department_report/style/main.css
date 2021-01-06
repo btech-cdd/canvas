@@ -3,6 +3,9 @@ body {
   font-size: 16px;
   font-size: 1rem;
 }
+#canvas-department-report-vue {
+  background-color: #e0e0e0;
+}
 
 #canvas-department-report-vue .btech-user-container {
   background-color: #ffffff;
