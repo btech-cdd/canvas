@@ -1,6 +1,6 @@
 (function () {
   IMPORTED_FEATURE = {};
-  if (/^\/courses\/[0-9]+\/modules$/.test(window.location.pathname)) {
+  if (/^\/courses\/[0-9]+\/modules$/.test(window.location.pathname) || /^\/courses\/[0-9]+$/.test(window.location.pathname)) {
       IMPORTED_FEATURE = {
           initiated: false,
           displayHours: false,
