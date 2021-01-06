@@ -264,10 +264,12 @@
 
 
       async openStudentReport(userId, sisId) {
+        /*
         let app = this;
         app.showStudentReport = true;
         let graph = new SubmissionsGraphBar();
         graph._init(app, userId, sisId);
+        */
       },
 
       closeStudentReport() {
