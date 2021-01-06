@@ -4,6 +4,10 @@ body {
   font-size: 1rem;
 }
 
+#canvas-department-report-vue .btech-user-container {
+  background-color: #ffffff;
+}
+
 #canvas-department-report-vue a {
   cursor: pointer;
 }
