@@ -10,6 +10,7 @@ body {
   border: 1px solid #fff;
   background-color: #334;
   font-weight: bold;
+  font-size: 1rem;
   cursor: pointer;
 }
 
