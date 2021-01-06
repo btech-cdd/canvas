@@ -125,7 +125,7 @@
           yellow: 'rgb(240, 173, 78)',
           green: 'rgb(92, 184, 92)',
           gray: '#E0E0E0',
-          noProgress: '#E0E0E0',
+          noProgress: '#D0D0D0',
           complete: '#5BC0DE',
           badDate: '#D9534F',
           warningDate: '#F0AD4E',
