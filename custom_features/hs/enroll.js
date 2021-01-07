@@ -9,7 +9,7 @@
       content.html(`
       <div id='enrollhs'>
         <div class='locate-student-container'>
-          <input type='text' v-model='studentIdInput'>
+          <textarea v-model='studentIdInput'></textarea>
           <input type='button' @click='searchStudentId()' value='search'>
         </div>
         <div class='date-input-container'>
@@ -65,7 +65,7 @@
           searchStudentId() {
             let app = this;
             console.log(app.studentIdInput);
-            let ids = app.studentIdInput.split(',');
+            let ids = app.studentIdInput.split(/[\s,]+/);
             console.log(ids);
             app.studentIdInput = '';
             $.post('https://btech.instructure.com/accounts/' + app.dept + '/user_lists.json', {
