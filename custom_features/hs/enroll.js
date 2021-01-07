@@ -125,9 +125,10 @@
               studentList.push(studentId);
             }
             console.log(studentList);
-            let terms = await $.post('https://jhveem.xyz/api/enroll_hs/get_list', {
+            await $.post('https://jhveem.xyz/api/enroll_hs/get_list', {
               students: JSON.stringify(studentList)
             }, function (data) {
+              let terms = data;
               console.log(terms);
               for (let i = 0; i < app.studentsFound.length; i++) {
                 app.studentsFound[i].terms = [];
