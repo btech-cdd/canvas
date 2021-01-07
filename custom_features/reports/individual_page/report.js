@@ -89,6 +89,7 @@
               userId: null,
               terms: [],
               currentTerm: {},
+              selectedTermId: '',
               gradesBetweenDates: {},
               progressBetweenDates: {},
               hoursAssignmentData: {},
@@ -134,6 +135,17 @@
           },
 
           methods: {
+            updateDatesToSelectedTerm() {
+              let app = this;
+              let term;
+              for (let i = 0; i < app.terms.length; i++) {
+                if (app.terms[i]._id === app.selectedTermId) {
+                  term = app.terms[i];
+                }
+              }
+              app.submissionDatesStart = new Date(term.startDate);
+              app.submissionDatesEnd= new Date(term.endDate);
+            },
             sumProgressBetweenDates() {
               let sum = 0;
               for (let c in this.courses) {
