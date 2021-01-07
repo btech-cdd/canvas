@@ -66,6 +66,7 @@
         </div>
         <div v-if='task==="manage"'>
           <h2>{{managedStudent.user_name}}</h2>
+          <div @click='task="enroll"'>Return To Enrollments</div>
           <div v-for='term in managedStudent.terms' style='padding-bottom: 2rem;'>
             <span style='display: inline-block;'>
               <i @click='deleteTerm(term)' style='font-size: 2rem; select: pointer;' class='icon-trash'></i>
