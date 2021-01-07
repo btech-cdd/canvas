@@ -174,6 +174,7 @@
           async manageStudentEnrollments(student) {
             let app = this;
             app.task = 'manage';
+            console.log(student);
             student.startDate = app.dateToHTMLDate(student.startDate);
             student.endDate = app.dateToHTMLDate(student.endDate);
             app.managedStudent = student;
