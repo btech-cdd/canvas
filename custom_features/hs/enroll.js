@@ -187,6 +187,12 @@
             console.log(term);
             await $.delete('https://jhveem.xyz/api/enroll_hs/' + term._id, {
             });
+            for (let i = 0; i < managedStudent.terms.length; i++) {
+              if (managedStudent.terms[i]._id === term._id) {
+                managedStudent.terms.splice(i, 1);
+                return;
+              }
+            }
           },
           dateToHTMLDate(date) {
             date = new Date(date);
