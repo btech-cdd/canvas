@@ -107,19 +107,21 @@
             console.log(ids);
             app.studentIdInput = '';
             //look up ids in Canvas
+            let studentsFound;
+            let studentsNotFound;
             await $.post('https://btech.instructure.com/accounts/' + app.dept + '/user_lists.json', {
               "user_list": ids,
               "v2": true,
               "search_type": "unique_id"
             }, function (data) {
-              app.studentsFound = data.users;
-              app.studentsNotFound = data.missing;
+              studentsFound = data.users;
+              studentsNotFound = data.missing;
             });
 
             //create list of ids and send it to server to find existing terms for those students
             let studentList = [];
-            for (let i = 0; i < app.studentsFound.length; i++) {
-              let student = app.studentsFound[i];
+            for (let i = 0; i < studentsFound.length; i++) {
+              let student = studentsFound[i];
               console.log(student);
               let studentId = student.user_id;
               studentList.push(studentId);
@@ -130,17 +132,19 @@
             }, function (data) {
               let terms = data;
               console.log(terms);
-              for (let i = 0; i < app.studentsFound.length; i++) {
-                app.studentsFound[i].terms = [];
+              for (let i = 0; i < studentsFound.length; i++) {
+                studentsFound[i].terms = [];
                 for (let j = 0; j < terms.length; j++) {
                   let term = terms[j];
-                  if (term.student_id === app.studentsFound[i].user_id) {
-                    app.studentsFound[i].terms.push(term);
+                  if (term.student_id === studentsFound[i].user_id) {
+                    studentsFound[i].terms.push(term);
                   }
                 }
               }
             });
-            console.log(app.studentsFound);
+            console.log(studentsFound);
+            app.studentsFound = studentsFound;
+            app.studentsNotFound = studentsNotFound;
           },
           resetSearch() {
             let app = this;
