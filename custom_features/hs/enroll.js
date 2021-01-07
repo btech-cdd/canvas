@@ -8,58 +8,66 @@
       content.empty();
       content.html(`
       <div id='enrollhs'>
-        <div v-if='studentsFound.length === 0' class='locate-student-container'>
-          <p>Locate student(s) by thier sis id. Separate students by a comma, newline, or space.</p>
-          <textarea v-model='studentIdInput'></textarea>
+        <div v-if='task==="enroll"'>
+          <div v-if='studentsFound.length === 0' class='locate-student-container'>
+            <p>Locate student(s) by thier sis id. Separate students by a comma, newline, or space.</p>
+            <textarea v-model='studentIdInput'></textarea>
+            <br>
+            <input type='button' @click='searchStudentId()' value='search'>
+          </div>
+          <div v-else>
+          <div v-for='student in studentsFound'>
+            <span @click='manageStudentEnrollments(student);'>{{student.user_name}} ({{student.address}}) ({{student.terms.length}})</span>
+          </div>
+          <input type='button' @click='resetSearch()' value='reset'>
+          </div>
           <br>
-          <input type='button' @click='searchStudentId()' value='search'>
+          <div class='term-data-container'>
+            <span>Start Date</span>
+            <input type='date' v-model='saveTerm.startDate'>
+            <span>End Date</span>
+            <input type='date' v-model='saveTerm.endDate'>
+            <br>
+            <span>Term Type</span>
+            <select v-model='saveTerm.type'>
+              <option>Semester</option>
+              <option>Trimester</option>
+            </select>
+            <br>
+            <span>Hours: </span>
+            <input type='number' min='30' max='300' step='15' v-model='saveTerm.hours'>
+            <br>
+            <span>School: </span>
+            <select v-model='saveTerm.school'>
+              <option value='' selected disabled>-select school-</option>
+              <option v-for='school in schools' :value='school'>
+                {{school}}
+              </option>
+            </select>
+          </div>
+          <div class='select-course-container'>
+            <span>Select a course to enroll this student.</span>
+            <select class='select-course'>
+              <option value='' selected disabled>-select initial course-</option>
+              <option v-for='course in courses' :value='course.id'>
+                {{course.name}} ({{course.term.name}})
+              </option>
+            </select>
+          </div>
+          <input type='button' @click='enroll()' value='enroll'>
+          <div class='existing-terms'>
+            <div v-for='term in  terms'>
+              <span>{{term.startDate}}</span>
+              <span>{{term.endDate}}</span>
+              <span>{{term.hours}}</span>
+              <span>{{term.school}}</span>
+            </div>
+          </div>
         </div>
-        <div v-else>
-         <div v-for='student in studentsFound'>
-          <span>{{student.user_name}} ({{student.address}}) ({{student.terms.length}})</span>
-         </div>
-         <input type='button' @click='resetSearch()' value='reset'>
-        </div>
-        <br>
-        <div class='term-data-container'>
-          <span>Start Date</span>
-          <input type='date' v-model='saveTerm.startDate'>
-          <span>End Date</span>
-          <input type='date' v-model='saveTerm.endDate'>
-          <br>
-          <span>Term Type</span>
-          <select v-model='saveTerm.type'>
-            <option>Semester</option>
-            <option>Trimester</option>
-          </select>
-          <br>
-          <span>Hours: </span>
-          <input type='number' min='30' max='300' step='15' v-model='saveTerm.hours'>
-          <br>
-          <span>School: </span>
-          <select v-model='saveTerm.school'>
-            <option value='' selected disabled>-select school-</option>
-            <option v-for='school in schools' :value='school'>
-              {{school}}
-            </option>
-          </select>
-        </div>
-        <div class='select-course-container'>
-          <span>Select a course to enroll this student.</span>
-          <select class='select-course'>
-            <option value='' selected disabled>-select initial course-</option>
-            <option v-for='course in courses' :value='course.id'>
-              {{course.name}} ({{course.term.name}})
-            </option>
-          </select>
-        </div>
-        <input type='button' @click='enroll()' value='enroll'>
-        <div class='existing-terms'>
-          <div v-for='term in  terms'>
-            <span>{{term.startDate}}</span>
-            <span>{{term.endDate}}</span>
-            <span>{{term.hours}}</span>
-            <span>{{term.school}}</span>
+        <div v-if='task==="manage"'>
+          <h2>{{managedStudent.user_name}}</h2>
+          <div v-for='term in managedStudent.terms'>
+            <span>{{term.startDate}} - {{term.endDate}} <b>School:</b> {{term.school}} <b>Hours:</b> {{term.hours}}</span>
           </div>
         </div>
       </div>
@@ -83,6 +91,8 @@
         },
         data: function () {
           return {
+            managedStudent: {},
+            task: 'enroll',
             schools: [
               'Sky View',
               'Cache High',
@@ -156,6 +166,11 @@
               studentList.push(studentId);
             }
             return studentList;
+          },
+          async manageStudentEnrollments(student) {
+            let app = this;
+            app.task = 'manage';
+            app.managedStudent = student;
           },
           async enroll() {
             let app = this;
