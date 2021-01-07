@@ -41,6 +41,7 @@
         el: "#enrollhs",
         mounted: async function () {
           let app = this;
+          app.dept = CURRENT_DEPARTMENT_ID;
         },
         data: function () {
           return {
@@ -56,14 +57,24 @@
             ],
             terms: [],
             saveTerm: {},
-            studentIdInput: ''
+            studentIdInput: '',
+            dept: '',
           }
         },
         methods: {
           searchStudentId() {
             let app = this;
             console.log(app.studentIdInput);
+            let ids = app.studentIdInput.split(',');
+            console.log(ids);
             app.studentIdInput = '';
+            $.post('https://btech.instructure.com/accounts/' + app.dept + '/user_lists.json', {
+              "user_list": ids,
+              "v2": true,
+              "search_type": "unique_id"
+            }, function (data) {
+              console.log(data);
+            });
           }
         }
       });
