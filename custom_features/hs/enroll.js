@@ -16,7 +16,7 @@
         </div>
         <div v-else>
          <div v-for='student in studentsFound'>
-          <span>{{student.user_name}} ({{student.address}})</span>
+          <span>{{student.user_name}} ({{student.address}}) ({{student.terms.length}})</span>
          </div>
          <input type='button' @click='resetSearch()' value='reset'>
         </div>
