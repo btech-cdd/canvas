@@ -120,9 +120,11 @@
             let studentList = [];
             for (let i = 0; i < app.studentsFound.length; i++) {
               let student = app.studentsFound[i];
+              console.log(student);
               let studentId = student.user_id;
               studentList.push(studentId);
             }
+            console.log(studentList);
             let terms = await $.post('https://jhveem.xyz/api/enroll_hs/get_list', {
               students: studentList
             }, function (data) {
