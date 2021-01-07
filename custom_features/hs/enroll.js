@@ -9,7 +9,8 @@
       content.html(`
       <div id='enrollhs'>
         <div class='locate-student-container'>
-          <input type='text' v-model='searchStudentId'>
+          <input type='text' v-model='studentIdInput'>
+          <input type='button' @click='searchStudentId()' value='search'>
         </div>
         <div class='date-input-container'>
           <input type='date' v-model='saveTerm.startDate'>
@@ -55,10 +56,15 @@
             ],
             terms: [],
             saveTerm: {},
-            searchStudentId: ''
+            studentIdInput: ''
           }
         },
         methods: {
+          searchStudentId() {
+            let app = this;
+            console.log(app.studentIdInput);
+            app.studentIdInput = '';
+          }
         }
       });
     },
