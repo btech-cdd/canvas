@@ -143,6 +143,7 @@
                   term = app.terms[i];
                 }
               }
+              console.log(term);
               app.submissionDatesStart = new Date(term.startDate);
               app.submissionDatesEnd= new Date(term.endDate);
             },
