@@ -16,7 +16,7 @@
         </div>
         <div v-else>
          <div v-for='student in studentsFound'>
-          <span>{{student.name}}</span>
+          <span>{{student.name}} ({{student.address}})</span>
          </div>
         </div>
         <br>
