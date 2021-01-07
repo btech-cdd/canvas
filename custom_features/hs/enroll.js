@@ -42,8 +42,9 @@
           </select>
         </div>
         <div class='select-course-container'>
+          <span>Select a course to enroll this student.</span>
           <select class='select-course'>
-            <option value=''>-select initial course-</option>
+            <option value='' selected disabled>-select initial course-</option>
           </select>
         </div>
         <div class='existing-terms'>
@@ -61,6 +62,15 @@
         mounted: async function () {
           let app = this;
           app.dept = CURRENT_DEPARTMENT_ID;
+          let courses = await canvasGet('/api/v1/accounts/' + app.dept + '/courses' {
+            published: true,
+            completed: false,
+            blueprint: false,
+            state: [
+              'available'
+            ]
+          });
+          console.log(courses);
         },
         data: function () {
           return {
@@ -80,6 +90,7 @@
             studentsFound: [],
             studentsNotFound: [],
             dept: '',
+            courses: [],
           }
         },
         methods: {
