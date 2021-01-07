@@ -50,6 +50,7 @@
             </option>
           </select>
         </div>
+        <input type='button' @click='enroll()' value='enroll'>
         <div class='existing-terms'>
           <div v-for='term in  terms'>
             <span>{{term.startDate}}</span>
@@ -99,26 +100,47 @@
           }
         },
         methods: {
-          searchStudentId() {
+          async searchStudentId() {
             let app = this;
             console.log(app.studentIdInput);
             let ids = app.studentIdInput.split(/[\s,]+/);
             console.log(ids);
             app.studentIdInput = '';
-            $.post('https://btech.instructure.com/accounts/' + app.dept + '/user_lists.json', {
+            await $.post('https://btech.instructure.com/accounts/' + app.dept + '/user_lists.json', {
               "user_list": ids,
               "v2": true,
               "search_type": "unique_id"
             }, function (data) {
               app.studentsFound = data.users;
+              let studentList = [];
+              for (let i = 0; i < app.studentsFound.length; i++) {
+                let student = app.studentsFound[i];
+                let studentId = student.user_id;
+                studentList.push(studentId);
+              }
+              let terms = await $.post('https://jhveem.xyz/api/enroll_hs/get_list', {students: studentList},function(data) {
+                console.log(terms);
+                for (let i = 0; i < app.studentsFound.length; i++) {
+                  app.studentsFound[i].terms = [];
+                  for (let j = 0; j < terms.length; j++) {
+                    let term = terms[j];
+                    if (term.student_id === app.studentsFound[i].user_id) {
+                      app.studentsFound[i].terms.push(term);
+                    }
+                  }
+                }
+              });
+              console.log(app.studentsFound);
               app.studentsNotFound = data.missing;
-              console.log(data);
             });
           },
           resetSearch() {
             let app = this;
             app.studentsFound = [];
             app.studentsNotFound = [];
+          },
+          enroll() {
+
           }
         }
       });
