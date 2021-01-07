@@ -35,6 +35,7 @@
           <span>Hours: </span>
           <input type='number' min='30' max='300' step='15' v-model='saveTerm.hours'>
           <select v-model='saveTerm.school'>
+            <option value='' selected disabled>-select school-</option>
             <option v-for='school in schools' :value='school'>
               {{school}}
             </option>
@@ -42,7 +43,7 @@
         </div>
         <div class='select-course-container'>
           <select class='select-course'>
-            <option>-select initial course-</option>
+            <option value=''>-select initial course-</option>
           </select>
         </div>
         <div class='existing-terms'>
