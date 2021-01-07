@@ -184,12 +184,13 @@
             console.log(app.managedStudent);
           },
           async deleteTerm(term) {
+            let app = this;
             console.log(term);
             await $.delete('https://jhveem.xyz/api/enroll_hs/' + term._id, {
             });
-            for (let i = 0; i < managedStudent.terms.length; i++) {
-              if (managedStudent.terms[i]._id === term._id) {
-                managedStudent.terms.splice(i, 1);
+            for (let i = 0; i < app.managedStudent.terms.length; i++) {
+              if (app.managedStudent.terms[i]._id === term._id) {
+                app.managedStudent.terms.splice(i, 1);
                 return;
               }
             }
