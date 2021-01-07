@@ -65,10 +65,10 @@
             //pull in data from hs database
             let terms;
             $.get("https://jhveem.xyz/api/enroll_hs/1994271", function (data) {
-              console.log(data);
               terms = data;
             });
             app.terms = terms;
+            console.log(app.terms);
 
             this.courses = await this.getCourseData();
             this.loading = false;
