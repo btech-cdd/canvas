@@ -66,7 +66,7 @@
         </div>
         <div v-if='task==="manage"'>
           <h2>{{managedStudent.user_name}}</h2>
-          <div v-for='term in managedStudent.terms'>
+          <div v-for='term in managedStudent.terms' style='padding-bottom: 2rem;'>
             <span style='width: 90%; display: inline-block;'>
               <span><b>Start Date</b></span>
               <input type='date' v-model='term.startDate'>
@@ -81,8 +81,6 @@
             </span>
             <br>
           </div>
-            <br>
-            <br>
         </div>
       </div>
       `)
