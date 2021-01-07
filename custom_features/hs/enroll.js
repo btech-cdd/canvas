@@ -185,8 +185,8 @@
           },
           deleteTerm(term) {
             console.log(term);
-            // await $.delete('https://jhveem.xyz/api/enroll_hs', {
-            // });
+            await $.delete('https://jhveem.xyz/api/enroll_hs/' + term._id, {
+            });
           },
           dateToHTMLDate(date) {
             date = new Date(date);
