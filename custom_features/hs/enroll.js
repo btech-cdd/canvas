@@ -68,7 +68,7 @@
           <h2>{{managedStudent.user_name}}</h2>
           <div v-for='term in managedStudent.terms' style='padding-bottom: 2rem;'>
             <span style='display: inline-block;'>
-              <i style='font-size: 2rem;' class='icon-trash'></i>
+              <i @click='deleteTerm(term)' style='font-size: 2rem; select: pointer;' class='icon-trash'></i>
             </span>
             <span style='display: inline-block;'>
               <span><b>Start Date</b></span>
@@ -182,6 +182,11 @@
             }
             app.managedStudent = student;
             console.log(app.managedStudent);
+          },
+          deleteTerm(term) {
+            console.log(term);
+            // await $.delete('https://jhveem.xyz/api/enroll_hs', {
+            // });
           },
           dateToHTMLDate(date) {
             date = new Date(date);
