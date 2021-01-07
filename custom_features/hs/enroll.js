@@ -45,6 +45,9 @@
           <span>Select a course to enroll this student.</span>
           <select class='select-course'>
             <option value='' selected disabled>-select initial course-</option>
+            <option v-for='course in course' :value='course.id'>
+              {{course.name}}
+            </option>
           </select>
         </div>
         <div class='existing-terms'>
@@ -68,8 +71,10 @@
             blueprint: false,
             state: [
               'available'
-            ]
+            ],
+            include: ['term']
           });
+          app.courses = courses;
           console.log(courses);
         },
         data: function () {
