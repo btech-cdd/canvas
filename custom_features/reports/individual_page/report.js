@@ -67,6 +67,7 @@
             $.get("https://jhveem.xyz/api/enroll_hs/1994271", function (data) {
               terms = data;
             });
+            console.log(terms);
             app.terms = terms;
             console.log(app.terms);
 
