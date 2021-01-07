@@ -197,6 +197,7 @@
             }
           },
           dateToHTMLDate(date) {
+            console.log(date);
             date = new Date(date);
             let month = '' + (date.getMonth() + 1);
             if (month.length === 1) month = '0' + month;
