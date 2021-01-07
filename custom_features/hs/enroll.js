@@ -163,7 +163,8 @@
                 hours: app.saveTerm.hours,
                 type: app.saveTerm.type,
                 startDate: app.saveTerm.startDate,
-                endDate: app.saveTerm.endDate
+                endDate: app.saveTerm.endDate,
+                school: app.saveTerm.school
               }),
             }, function (data) {
               console.log(data);
