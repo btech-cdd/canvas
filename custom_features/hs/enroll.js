@@ -185,7 +185,7 @@
           dateToHTMLDate(date) {
             date = new Date(date);
             let htmlDate = date.getYear() + "-" + (date.getMonth() + 1).toFixed(2) + "-" + date.getDate().toFixed(2);
-            return htmlDate;
+            return date;
           },
           async enroll() {
             let app = this;
