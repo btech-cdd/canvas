@@ -176,6 +176,7 @@
             app.task = 'manage';
             console.log(student);
             for (let t = 0; t < student.terms.length; t++) {
+              console.log(student.terms[t]);
               student.terms[t].startDate = app.dateToHTMLDate(student.terms[t].startDate);
               student.terms[t].endDate = app.dateToHTMLDate(student.terms[t].endDate);
             }
