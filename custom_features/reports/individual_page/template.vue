@@ -67,7 +67,7 @@
               <div v-else>
                 <div class='btech-report-submission-dates'>
                   <select>
-                    <option v-for='term in terms'>{{dateToHTMLDate(term.startDate) + "-" + dateToHTMLDate(term.end)}}</option>
+                    <option v-for='term in terms'>{{dateToHTMLDate(term.startDate) + "-" + dateToHTMLDate(term.endDate)}}</option>
                   </select>
                   <span>Start Date:</span>
                   <input type="date" v-model="submissionDatesStart" @change='getIncludedAssignmentsBetweenDates()'>
