@@ -106,33 +106,38 @@
             let ids = app.studentIdInput.split(/[\s,]+/);
             console.log(ids);
             app.studentIdInput = '';
+            //look up ids in Canvas
             await $.post('https://btech.instructure.com/accounts/' + app.dept + '/user_lists.json', {
               "user_list": ids,
               "v2": true,
               "search_type": "unique_id"
             }, function (data) {
               app.studentsFound = data.users;
-              let studentList = [];
-              for (let i = 0; i < app.studentsFound.length; i++) {
-                let student = app.studentsFound[i];
-                let studentId = student.user_id;
-                studentList.push(studentId);
-              }
-              let terms = await $.post('https://jhveem.xyz/api/enroll_hs/get_list', {students: studentList},function(data) {
-                console.log(terms);
-                for (let i = 0; i < app.studentsFound.length; i++) {
-                  app.studentsFound[i].terms = [];
-                  for (let j = 0; j < terms.length; j++) {
-                    let term = terms[j];
-                    if (term.student_id === app.studentsFound[i].user_id) {
-                      app.studentsFound[i].terms.push(term);
-                    }
-                  }
-                }
-              });
-              console.log(app.studentsFound);
               app.studentsNotFound = data.missing;
             });
+
+            //create list of ids and send it to server to find existing terms for those students
+            let studentList = [];
+            for (let i = 0; i < app.studentsFound.length; i++) {
+              let student = app.studentsFound[i];
+              let studentId = student.user_id;
+              studentList.push(studentId);
+            }
+            let terms = await $.post('https://jhveem.xyz/api/enroll_hs/get_list', {
+              students: studentList
+            }, function (data) {
+              console.log(terms);
+              for (let i = 0; i < app.studentsFound.length; i++) {
+                app.studentsFound[i].terms = [];
+                for (let j = 0; j < terms.length; j++) {
+                  let term = terms[j];
+                  if (term.student_id === app.studentsFound[i].user_id) {
+                    app.studentsFound[i].terms.push(term);
+                  }
+                }
+              }
+            });
+            console.log(app.studentsFound);
           },
           resetSearch() {
             let app = this;
