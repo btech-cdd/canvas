@@ -178,7 +178,7 @@
           },
           dateToHTMLDate(date) {
             date = new Date(date);
-            let htmlDate = date.getYear() + "-" + (date.getMonth() + 1).toFixed(2) + "-" + date.getDate().toFixed(2);
+            let htmlDate = date.getFullYear() + "-" + (date.getMonth() + 1).toFixed(2) + "-" + date.getDate().toFixed(2);
             return htmlDate;
           },
           async enroll() {
