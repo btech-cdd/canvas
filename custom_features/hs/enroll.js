@@ -9,7 +9,9 @@
       content.html(`
       <div id='enrollhs'>
         <div class='locate-student-container'>
+          <p>Locate student(s) by thier sis id. Separate students by a comma, newline, or space.</p>
           <textarea v-model='studentIdInput'></textarea>
+          <br>
           <input type='button' @click='searchStudentId()' value='search'>
         </div>
         <div class='date-input-container'>
