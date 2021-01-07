@@ -21,19 +21,22 @@
          <input type='button' @click='resetSearch()' value='reset'>
         </div>
         <br>
-        <div class='date-input-container'>
+        <div class='term-data-container'>
           <span>Start Date</span>
           <input type='date' v-model='saveTerm.startDate'>
           <span>End Date</span>
           <input type='date' v-model='saveTerm.endDate'>
-        </div>
-        <div class='addition-information-container'>
+          <br>
+          <span>Term Type</span>
           <select v-model='saveTerm.type'>
             <option>Semester</option>
             <option>Trimester</option>
           </select>
+          <br>
           <span>Hours: </span>
           <input type='number' min='30' max='300' step='15' v-model='saveTerm.hours'>
+          <br>
+          <span>School: </span>
           <select v-model='saveTerm.school'>
             <option value='' selected disabled>-select school-</option>
             <option v-for='school in schools' :value='school'>
