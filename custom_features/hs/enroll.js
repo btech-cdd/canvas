@@ -16,8 +16,9 @@
         </div>
         <div v-else>
          <div v-for='student in studentsFound'>
-          <span>{{student.name}} ({{student.address}})</span>
+          <span>{{student.user_name}} ({{student.address}})</span>
          </div>
+         <input type='button' @click='resetSearch()' value='reset'>
         </div>
         <br>
         <div class='date-input-container'>
@@ -87,6 +88,11 @@
               app.studentsNotFound = data.missing;
               console.log(data);
             });
+          },
+          resetSearch() {
+            let app = this;
+            app.studentsFound = [];
+            app.studentsNotFound = [];
           }
         }
       });
