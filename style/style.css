@@ -145,6 +145,12 @@
   margin-bottom: 10px;
 }
 
+.btech-tabs {
+  display: inline-block;
+  width: 100%;
+  background-color: #2D3B45;
+}
+
 .btech-tabs ul {
   list-style-type: none;
   margin: 0;
