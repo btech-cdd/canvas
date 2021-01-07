@@ -46,7 +46,7 @@
           <select class='select-course'>
             <option value='' selected disabled>-select initial course-</option>
             <option v-for='course in courses' :value='course.id'>
-              {{course.name}}
+              {{course.name}} ({{course.term.name}})
             </option>
           </select>
         </div>
