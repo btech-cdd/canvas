@@ -17,7 +17,7 @@
           </div>
           <div v-else>
           <div v-for='student in studentsFound'>
-            <span @click='manageStudentEnrollments(student);'>{{student.user_name}} ({{student.address}}) ({{student.terms.length}})</span>
+            <span @click='manageStudentEnrollments(student);' style='cursor: pointer;'>{{student.user_name}} ({{student.address}}) ({{student.terms.length}})</span>
           </div>
           <input type='button' @click='resetSearch()' value='reset'>
           </div>
@@ -66,10 +66,10 @@
         </div>
         <div v-if='task==="manage"'>
           <h2>{{managedStudent.user_name}}</h2>
-          <div @click='task="enroll"'>Return To Enrollments</div>
+          <div @click='task="enroll"' style='cursor: pointer;'>Return To Enrollments</div>
           <div v-for='term in managedStudent.terms' style='padding-bottom: 2rem;'>
             <span style='display: inline-block;'>
-              <i @click='deleteTerm(term)' style='font-size: 2rem; select: pointer;' class='icon-trash'></i>
+              <i @click='deleteTerm(term)' style='font-size: 2rem; cursor: pointer;' class='icon-trash'></i>
             </span>
             <span style='display: inline-block;'>
               <span><b>Start Date</b></span>
