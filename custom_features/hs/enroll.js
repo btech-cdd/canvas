@@ -174,7 +174,13 @@
           async manageStudentEnrollments(student) {
             let app = this;
             app.task = 'manage';
+            student.startDate = app.dateToHTMLDate(student.startDate);
+            student.endDate = app.dateToHTMLDate(student.endDate);
             app.managedStudent = student;
+          },
+          dateToHTMLDate(date) {
+            let htmlDate = date.getYear() + "-" + (date.getMonth() + 1).toFixed(2) + "-" + date.getDate().toFixed(2);
+            return htmlDate;
           },
           async enroll() {
             let app = this;
