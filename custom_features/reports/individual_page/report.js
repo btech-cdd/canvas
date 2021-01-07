@@ -144,8 +144,8 @@
                 }
               }
               console.log(term);
-              app.submissionDatesStart = new Date(term.startDate);
-              app.submissionDatesEnd= new Date(term.endDate);
+              app.submissionDatesStart = app.dateToHTMLDate(term.startDate);
+              app.submissionDatesEnd= app.dateToHTMLDate(term.endDate);
             },
             sumProgressBetweenDates() {
               let sum = 0;
