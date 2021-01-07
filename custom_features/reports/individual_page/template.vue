@@ -66,12 +66,9 @@
               <div v-if='loadingAssignments'>{{loadingMessage}}</div>
               <div v-else>
                 <div class='btech-report-submission-dates'>
-                  <!--WAIT DON'PUBLISH THIS YET
-                  <img 
-                    v-if='IS_TEACHER'
-                    style="float: right; transform: scale(2); image-rendering: pixelated;"
-                    src="https://jhveem.xyz/canvas/media/it-will-all-be-fine.png">
-                  -->
+                  <select>
+                    <option v-for='term in terms'>{{dateToHTMLDate(term.startDate) + "-" + dateToHTMLDate(term.end)}}</option>
+                  </select>
                   <span>Start Date:</span>
                   <input type="date" v-model="submissionDatesStart" @change='getIncludedAssignmentsBetweenDates()'>
                   <span>End Date:</span>
