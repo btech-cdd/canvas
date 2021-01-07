@@ -127,7 +127,7 @@
                       <td>{{sumHoursCompleted()}}</td>
                     </tr>
                     <tr v-if='showGradeDetails'>
-                      <td><b>Estimated Hours Enrolled</b></td>
+                      <td><b>Hours Enrolled</b></td>
                       <td>{{estimatedHoursEnrolled}}</td>
                     </tr>
                     <tr>
