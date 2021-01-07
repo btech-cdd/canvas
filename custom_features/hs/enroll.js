@@ -62,7 +62,7 @@
         mounted: async function () {
           let app = this;
           app.dept = CURRENT_DEPARTMENT_ID;
-          let courses = await canvasGet('/api/v1/accounts/' + app.dept + '/courses' {
+          let courses = await canvasGet('/api/v1/accounts/' + app.dept + '/courses', {
             published: true,
             completed: false,
             blueprint: false,
