@@ -90,6 +90,7 @@
               terms: [],
               currentTerm: {},
               selectedTermId: '',
+              selectedTerm: {},
               gradesBetweenDates: {},
               progressBetweenDates: {},
               hoursAssignmentData: {},
@@ -144,6 +145,7 @@
                 }
               }
               console.log(term);
+              app.selectedTerm = term;
               app.submissionDatesStart = app.dateToHTMLDate(term.startDate);
               app.submissionDatesEnd = app.dateToHTMLDate(term.endDate);
               app.estimatedHoursEnrolled = term.hours;
@@ -383,7 +385,6 @@
               let app = this;
               let gradesBetweenDates = {};
               let progressBetweenDates = {};
-              let hoursBetweenDates = {};
               let startDate = this.parseDate(this.submissionDatesStart);
               let endDate = this.parseDate(this.submissionDatesEnd);
               let midtermPercentCompleted = 1;
@@ -481,60 +482,15 @@
                     }
                     progressBetweenDates[courseId] = output;
                   }
-                  if (this.hoursAssignmentData[courseId] != null) {
-                    let hoursData = this.hoursAssignmentData[courseId];
-                    let foundDate = null;
-                    hoursBetweenDates[courseId] = null;
-                    for (let h = 0; h < hoursData.length; h++) {
-                      let hoursDatum = hoursData[h];
-                      let hoursDateString = hoursDatum.graded_at;
-                      let hoursDate = new Date(hoursDateString);
-                      //see if it's between the period dates, then make sure a date hasn't been found. if it's more recent or there's no previous data, update.
-                      if (hoursDate >= startDate && hoursDate <= endDate) {
-                        if (foundDate === null) {
-                          hoursBetweenDates[courseId] = hoursDatum.score;
-                          foundDate = hoursDate;
-                        } else if (hoursDate > foundDate) {
-                          //might be worth putting some kind of warning saying there's more than one date
-                          hoursBetweenDates[courseId] = hoursDatum.score;
-                          foundDate = hoursDate;
-                        }
-                      }
-                      //If you couldn't find anything, start fresh and just find the most recent score
-                      if (hoursBetweenDates[courseId] === null) {
-                        if (foundDate === null) {
-                          hoursBetweenDates[courseId] = hoursDatum.score;
-                          foundDate = hoursDate;
-                        } else if (hoursDate > foundDate) {
-                          //might be worth putting some kind of warning saying there's more than one date
-                          hoursBetweenDates[courseId] = hoursDatum.score;
-                          foundDate = hoursDate;
-                        }
-                      }
-                    }
-                  }
                 }
               }
               app.gradesBetweenDates = JSON.parse(JSON.stringify(gradesBetweenDates));
               app.progressBetweenDates = JSON.parse(JSON.stringify(progressBetweenDates));
-              app.hoursBetweenDates = JSON.parse(JSON.stringify(hoursBetweenDates));
               //estimate the hours enrolled from the hours between dates data collected
               //this value can be edited by the instructor
               let count = 0;
-              let hoursTotal = 0;
-              for (let c = 0; c < this.courses.length; c++) {
-                let course = this.courses[c];
-                let courseId = course.course_id;
-                let hours = this.hoursBetweenDates[courseId];
-                if (hours !== undefined && hours > 0) {
-                  count += 1;
-                  hoursTotal += hours;
-                }
-              }
-              let estimatedHoursEnrolled = Math.floor(parseFloat((hoursTotal / count).toFixed(2)));
-              if (isNaN(estimatedHoursEnrolled)) estimatedHoursEnrolled = 0;
-              this.estimatedHoursEnrolled = estimatedHoursEnrolled;
-              let estimatedHoursRequired = Math.floor(parseFloat((hoursTotal / count).toFixed(2)) * midtermPercentCompleted);
+              app.estimatedHoursEnrolled = app.selectedTerm.hours;
+              let estimatedHoursRequired = Math.floor(app.estimatedHoursEnrolled * midtermPercentCompleted);
               if (isNaN(estimatedHoursRequired)) estimatedHoursRequired = 0;
               this.estimatedHoursRequired = estimatedHoursRequired;
             },
