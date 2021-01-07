@@ -146,6 +146,7 @@
               console.log(term);
               app.submissionDatesStart = app.dateToHTMLDate(term.startDate);
               app.submissionDatesEnd= app.dateToHTMLDate(term.endDate);
+              app.getIncludedAssignmentsBetweenDates();
             },
             sumProgressBetweenDates() {
               let sum = 0;
