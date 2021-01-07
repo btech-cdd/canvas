@@ -67,11 +67,19 @@
         <div v-if='task==="manage"'>
           <h2>{{managedStudent.user_name}}</h2>
           <div v-for='term in managedStudent.terms'>
-          <span><b>Start Date</b></span>
-          <input type='date' v-model='term.startDate'>
-          <span><b>End Date</b></span>
-          <input type='date' v-model='term.endDate'>
-          <span><b>School:</b> {{term.school}} <b>Hours:</b> {{term.hours}}</span>
+            <div width='90%'>
+              <span><b>Start Date</b></span>
+              <input type='date' v-model='term.startDate'>
+              <span><b>End Date</b></span>
+              <input type='date' v-model='term.endDate'>
+              <br>
+              <span><b>School:</b> {{term.school}} <b>Hours:</b> {{term.hours}}</span>
+              <br>
+            </div>
+            <div width='10%'>
+              <i class='icon-trash'></i>
+            </div>
+            <br>
           </div>
         </div>
       </div>
@@ -169,7 +177,6 @@
             let app = this;
             app.task = 'manage';
             for (let t = 0; t < student.terms.length; t++) {
-              console.log(student.terms[t]);
               student.terms[t].startDate = app.dateToHTMLDate(student.terms[t].startDate);
               student.terms[t].endDate = app.dateToHTMLDate(student.terms[t].endDate);
             }
