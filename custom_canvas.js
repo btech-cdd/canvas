@@ -276,6 +276,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           }
           if (IS_TEACHER) {
             feature("reports/grades_page/report", {}, /^\/courses\/[0-9]+\/gradebook$/);
+            feature("hs/enroll", {}, /^\/accounts\/[0-9]+\/enrollhs$/);
             feature("reports/individual_page/report", {}, [
               /^\/courses\/[0-9]+\/users\/[0-9]+$/,
               /^\/accounts\/[0-9]+\/users\/[0-9]+$/,
