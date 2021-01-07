@@ -91,7 +91,6 @@
             include: ['term']
           });
           app.courses = courses;
-          console.log(courses);
         },
         data: function () {
           return {
@@ -119,9 +118,7 @@
         methods: {
           async searchStudentId() {
             let app = this;
-            console.log(app.studentIdInput);
             let ids = app.studentIdInput.split(/[\s,]+/);
-            console.log(ids);
             app.studentIdInput = '';
             //look up ids in Canvas
             let studentsFound;
@@ -137,12 +134,10 @@
 
             //create list of ids and send it to server to find existing terms for those students
             let studentList = app.studentListFromStudents(studentsFound); 
-            console.log(studentList);
             await $.post('https://jhveem.xyz/api/enroll_hs/get_list', {
               students: JSON.stringify(studentList)
             }, function (data) {
               let terms = data;
-              console.log(terms);
               for (let i = 0; i < studentsFound.length; i++) {
                 studentsFound[i].terms = [];
                 for (let j = 0; j < terms.length; j++) {
@@ -153,7 +148,6 @@
                 }
               }
             });
-            console.log(studentsFound);
             app.studentsFound = studentsFound;
             app.studentsNotFound = studentsNotFound;
           },
@@ -174,18 +168,18 @@
           async manageStudentEnrollments(student) {
             let app = this;
             app.task = 'manage';
-            console.log(student);
             for (let t = 0; t < student.terms.length; t++) {
               console.log(student.terms[t]);
               student.terms[t].startDate = app.dateToHTMLDate(student.terms[t].startDate);
               student.terms[t].endDate = app.dateToHTMLDate(student.terms[t].endDate);
             }
             app.managedStudent = student;
+            console.log(app.managedStudent);
           },
           dateToHTMLDate(date) {
             date = new Date(date);
             let htmlDate = date.getYear() + "-" + (date.getMonth() + 1).toFixed(2) + "-" + date.getDate().toFixed(2);
-            return date;
+            return htmlDate;
           },
           async enroll() {
             let app = this;
