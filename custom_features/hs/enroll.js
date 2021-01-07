@@ -162,8 +162,8 @@
               'term_data': JSON.stringify({
                 hours: app.saveTerm.hours,
                 type: app.saveTerm.type,
-                startDate: app.saveTerm.startDate,
-                endDate: app.saveTerm.endDate,
+                startDate: new Date(app.saveTerm.startDate),
+                endDate: new Date(app.saveTerm.endDate),
                 school: app.saveTerm.school
               }),
             }, function (data) {
