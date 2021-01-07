@@ -85,7 +85,6 @@
                       <th>Term Completed</th>
                       <th>Course Hours</th>
                       <th>Hours Completed</th>
-                      <th>Hours Enrolled</th>
                     </tr>
                   </thead>
                   <tbody border='1'>
@@ -102,7 +101,6 @@
                       <td><input style="padding: 0px 4px; margin: 0px; width: 3rem;" v-model="course.hours" type="text">
                       </td>
                       <td>{{getHoursCompleted(course)}}</td>
-                      <td>{{getHoursEnrolled(course.course_id)}}</td>
                     </tr>
                     <tr height="10px"></tr>
                   </tbody>

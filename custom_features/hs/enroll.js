@@ -182,11 +182,9 @@
               student.terms[t].endDate = app.dateToHTMLDate(student.terms[t].endDate);
             }
             app.managedStudent = student;
-            console.log(app.managedStudent);
           },
           async deleteTerm(term) {
             let app = this;
-            console.log(term);
             await $.delete('https://jhveem.xyz/api/enroll_hs/' + term._id, {
             });
             for (let i = 0; i < app.managedStudent.terms.length; i++) {
@@ -197,7 +195,6 @@
             }
           },
           dateToHTMLDate(date) {
-            console.log(date);
             date = new Date(date);
             let month = '' + (date.getMonth() + 1);
             if (month.length === 1) month = '0' + month;
