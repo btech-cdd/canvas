@@ -8,12 +8,18 @@
       content.empty();
       content.html(`
       <div id='enrollhs'>
-        <div class='locate-student-container'>
+        <div v-if='studentsFound.length === 0' class='locate-student-container'>
           <p>Locate student(s) by thier sis id. Separate students by a comma, newline, or space.</p>
           <textarea v-model='studentIdInput'></textarea>
           <br>
           <input type='button' @click='searchStudentId()' value='search'>
         </div>
+        <div v-else>
+         <div v-for='student in studentsFound'>
+          <span>{{student.name}}</span>
+         </div>
+        </div>
+        <br>
         <div class='date-input-container'>
           <input type='date' v-model='saveTerm.startDate'>
           <input type='date' v-model='saveTerm.endDate'>
@@ -60,6 +66,8 @@
             terms: [],
             saveTerm: {},
             studentIdInput: '',
+            studentsFound: [],
+            studentsNotFound: [],
             dept: '',
           }
         },
@@ -75,6 +83,8 @@
               "v2": true,
               "search_type": "unique_id"
             }, function (data) {
+              app.studentsFound = data.users;
+              app.studentsNotFound = data.missing;
               console.log(data);
             });
           }
