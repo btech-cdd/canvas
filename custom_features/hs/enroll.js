@@ -119,13 +119,7 @@
             });
 
             //create list of ids and send it to server to find existing terms for those students
-            let studentList = [];
-            for (let i = 0; i < studentsFound.length; i++) {
-              let student = studentsFound[i];
-              console.log(student);
-              let studentId = student.user_id;
-              studentList.push(studentId);
-            }
+            let studentList = app.studentListFromStudents(studentsFound); 
             console.log(studentList);
             await $.post('https://jhveem.xyz/api/enroll_hs/get_list', {
               students: JSON.stringify(studentList)
@@ -151,8 +145,29 @@
             app.studentsFound = [];
             app.studentsNotFound = [];
           },
+          studentListFromStudents(obj) {
+            let studentList = [];
+            for (let i = 0; i < obj.length; i++) {
+              let student = obj[i];
+              let studentId = student.user_id;
+              studentList.push(studentId);
+            }
+            return studentList;
+          },
           enroll() {
-
+            let app = this;
+            let studentList = app.studentListFromStudents(app.studentsFound);
+            await $.post('https://jhveem.xyz/api/enroll_hs', {
+              'students': JSON.stringify(studentList),
+              'term_data': JSON.stringify({
+                hours: app.saveTerm.hours,
+                type: app.saveTerm.type,
+                startDate: app.saveTerm.startDate,
+                endDate: app.saveTerm.endDate
+              }),
+            }, function (data) {
+              console.log(data);
+            })
           }
         }
       });
