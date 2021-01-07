@@ -178,7 +178,13 @@
           },
           dateToHTMLDate(date) {
             date = new Date(date);
-            let htmlDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+            let month = '' + (date.getMonth() + 1);
+            if (month.length === 1) month = '0' + month;
+
+            let day = '' + date.getDate();
+            if (day.length === 1) day = '0' + day;
+
+            let htmlDate = date.getFullYear() + "-" + month + "-" + day;
             return htmlDate;
           },
           async enroll() {
