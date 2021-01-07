@@ -45,7 +45,7 @@
           <span>Select a course to enroll this student.</span>
           <select class='select-course'>
             <option value='' selected disabled>-select initial course-</option>
-            <option v-for='course in course' :value='course.id'>
+            <option v-for='course in courses' :value='course.id'>
               {{course.name}}
             </option>
           </select>
