@@ -145,7 +145,8 @@
               }
               console.log(term);
               app.submissionDatesStart = app.dateToHTMLDate(term.startDate);
-              app.submissionDatesEnd= app.dateToHTMLDate(term.endDate);
+              app.submissionDatesEnd = app.dateToHTMLDate(term.endDate);
+              app.estimatedHoursEnrolled = term.hours;
               app.getIncludedAssignmentsBetweenDates();
             },
             sumProgressBetweenDates() {
