@@ -67,7 +67,11 @@
         <div v-if='task==="manage"'>
           <h2>{{managedStudent.user_name}}</h2>
           <div v-for='term in managedStudent.terms'>
-            <span>{{term.startDate}} - {{term.endDate}} <b>School:</b> {{term.school}} <b>Hours:</b> {{term.hours}}</span>
+          <span><b>Start Date</b></span>
+          <input type='date' v-model='term.startDate'>
+          <span><b>End Date</b></span>
+          <input type='date' v-model='term.endDate'>
+          <span><b>School:</b> {{term.school}} <b>Hours:</b> {{term.hours}}</span>
           </div>
         </div>
       </div>
