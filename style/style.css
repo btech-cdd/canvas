@@ -150,7 +150,7 @@
   margin: 0;
   padding: 0;
   /* background-color: var(--btech-theme-header-background-color); */
-  background-color: var(--ic-brand-font-color-dark);
+  background-color: #2D3B45;
 }
 
 .btech-tabs ul li {
@@ -163,7 +163,7 @@
 }
 
 .btech-tabs ul li:hover {
-  background-color: var(--btech-theme-header-hover-background-color);
+  background-color: #3D4B55;
 }
 
 .btech-tabs ul li.active {
