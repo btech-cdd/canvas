@@ -52,6 +52,7 @@
         this.APP = new Vue({
           el: '#canvas-individual-report-vue',
           mounted: async function () {
+            let app = this;
             this.IS_TEACHER = IS_TEACHER;
             // if (!IS_TEACHER) this.menu = 'period';
             let gradesBetweenDates = {};
