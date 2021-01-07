@@ -183,7 +183,7 @@
             app.managedStudent = student;
           },
           dateToHTMLDate(date) {
-            let date = new Date(date);
+            date = new Date(date);
             let htmlDate = date.getYear() + "-" + (date.getMonth() + 1).toFixed(2) + "-" + date.getDate().toFixed(2);
             return htmlDate;
           },
