@@ -247,11 +247,13 @@
       },
 
       calcDepartmentTimeText(user) {
+        let app = this;
         if (user.completedHours === undefined || user.completedHours === 0) return "N/A";
         return Math.round((user.enrolledHours / user.completedHours) * 100) + "%";
       },
 
       calcDepartmentTimeColorBg(user) {
+        let app = this;
         if (user.completedHours === undefined || user.completedHours === 0) return app.colors.gray;
         let timePerc = Math.round((user.enrolledHours / user.completedHours) * 100);
         if (timePerc < 100) return app.colors.green;
@@ -260,6 +262,7 @@
       },
 
       calcDepartmentScoreText(user) {
+        let app = this;
         if (user.summary === undefined) return "N/A";
         if (user.summary.average_score === undefined) return "N/A";
         return Math.round(user.summary.average_score * 100) + "%";
