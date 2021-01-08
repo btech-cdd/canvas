@@ -147,7 +147,7 @@
     </div>
   </div>
   <script>
-    var CANVAS_LTI_DATA = < % -JSON.stringify(canvas_lti_data) % > ;
+    var CANVAS_LTI_DATA = <%- JSON.stringify(canvas_lti_data) %>;
     const CURRENT_DEPARTMENT = CANVAS_LTI_DATA.custom_canvas_account_id;
     var scr = document.createElement('script'),
       head = document.head || document.getElementsByTagName('head')[0];
