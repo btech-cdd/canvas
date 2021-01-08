@@ -16,8 +16,18 @@
       <span>Loading...</span>
     </div>
     <div v-else>
-      <div style='position: fixed; width: 100%; background-color: #fff; z-index: 10;'>
-        Grade: <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>0-60%</span>
+      <div style='position: fixed; width: 100%; background-color: #fff; z-index: 10; padding: 4px;'>
+        Grade: 
+          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>0-59%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>60-79%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>80-89%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>&gt;90%</span>
+          <br>
+        Time:
+          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>>150%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>100>149%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>&lt;100%</span>
+          <br>
       </div>
       <select @change='loadDepartmentUsers' v-model='currentDepartment'>
         <option v-for='department in availableDepartments' :value='department'>
