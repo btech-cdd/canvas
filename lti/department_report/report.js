@@ -115,7 +115,6 @@
         coreCourses: [],
         electiveCourses: [],
         availableDepartments: [],
-        showStudentReport: false,
         svg: null,
         enrollments: {}, //or submission data or student data or somewhere else to hold all of the data pulling from canvas and saving it for reuse.
         colors: {
@@ -311,17 +310,14 @@
 
 
       async openStudentReport(userId, sisId) {
-        /*
         let app = this;
-        app.showStudentReport = true;
         let graph = new SubmissionsGraphBar();
         graph._init(app, userId, sisId);
-        */
       },
 
       closeStudentReport() {
         let app = this;
-        app.showStudentReport = false;
+        app.showStudent = 'all';
       },
 
       async loadJsonFile(name) {
