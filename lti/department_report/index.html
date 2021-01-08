@@ -16,7 +16,7 @@
       <span>Loading...</span>
     </div>
     <div v-else>
-      <div style='position: sticky; width: 100%; background-color: #fff; z-index: 10; padding: 4px; box-sizing: border-box; box-shadow: 0px 5px 5px #888;'>
+      <div style='position: sticky; width: 100%; background-color: #fff; z-index: 10; padding: 4px; box-sizing: border-box; box-shadow: 0px 5px 5px #888; margin-bottom: 1rem;'>
         Grade: 
           <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>0-59%</span>
           <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>60-79%</span>
@@ -41,8 +41,6 @@
           <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>121-180 days</span>
           <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>61-120 days</span>
           <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-60 days</span>
-          <br>
-          <br>
       </div>
       <select @change='loadDepartmentUsers' v-model='currentDepartment'>
         <option v-for='department in availableDepartments' :value='department'>
