@@ -95,6 +95,7 @@
       app.availableDepartments = availableDepartments;
       app.currentDepartment = app.availableDepartments[0];
 
+      console.log('load users');
       app.loadDepartmentUsers();
       app.loading = false;
     },
@@ -170,9 +171,9 @@
                 let enrolledHours = 0;
                 let completedHours = 0;
                 for (let courseCode in courses) {
+                  console.log(courseCode);
                   if (courseCode !== "summary") {
                     let course = courses[courseCode];
-                    console.log(courseCode);
                     console.log(course);
                     //THIS NEEDS TO BE CONFIRMED THAT IT IS CONSISTENT WITH HOW THINGS ARE CALCULATED ON THE JENZABAR END
                     if (course.progress >= 100) {
