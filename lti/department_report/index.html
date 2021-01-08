@@ -143,7 +143,7 @@
         </div>
       </div>
       <div v-show='showStudent !== "all"' class='btech-modal' style='display: inline-block; background-color: #fff;'>
-        <div class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff", "width": "1rem", "float": "right"}' @click='closeStudentReport()'>X</div>
+        <div class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff", "width": "1rem", "float": "right", "text-align": "center", "cursor": "pointer"}' @click='closeStudentReport()'>X</div>
         <div v-if='showStudent !== "all"'>
           <div class='btech-user-name'>
             <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[showStudent.id].canvas_id" target="_blank">
