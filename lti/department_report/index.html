@@ -10,41 +10,40 @@
 </head>
 
 <body>
-  <div id='canvas-department-report-vue'>
-    <div
-      style='position: fixed; width: 100%; background-color: #fff; z-index: 10; padding: 4px; box-sizing: border-box; box-shadow: 0px 5px 5px #888;'>
-      Grade:
-      <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>0-59%</span>
-      <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>60-79%</span>
-      <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>80-89%</span>
-      <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>90-100%</span>
-      <br>
-      <br>
-      Time:
-      <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;150%</span>
-      <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>100>149%</span>
-      <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-100%</span>
-      <br>
-      <br>
-      Submission History:
-      <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;10 days</span>
-      <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>7-9 days</span>
-      <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-7 days</span>
-      <br>
-      <br>
-      Course Enrollment:
-      <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;180 days</span>
-      <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>121-180 days</span>
-      <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>61-120 days</span>
-      <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-60 days</span>
-      <br>
-      <br>
-    </div>
+  <div 
+    id='canvas-department-report-vue'>
     <div v-if="loading">
       <span>Loading...</span>
     </div>
     <div v-else>
-
+      <div style='position: fixed; width: 100%; background-color: #fff; z-index: 10; padding: 4px; box-sizing: border-box; box-shadow: 0px 5px 5px #888;'>
+        Grade: 
+          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>0-59%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>60-79%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>80-89%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>90-100%</span>
+          <br>
+          <br>
+        Time:
+          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;150%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>100>149%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-100%</span>
+          <br>
+          <br>
+        Submission History:
+          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;10 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>7-9 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-7 days</span>
+          <br>
+          <br>
+        Course Enrollment:
+          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;180 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>121-180 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>61-120 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-60 days</span>
+          <br>
+          <br>
+      </div>
       <select @change='loadDepartmentUsers' v-model='currentDepartment'>
         <option v-for='department in availableDepartments' :value='department'>
           {{json.dept_code_to_name[department].name + " (" + json.dept_code_to_name[department].first_year + "-" + json.dept_code_to_name[department].last_year + ")"}}
@@ -52,18 +51,25 @@
       </select>
       <div v-for='(users, year) in usersByYear' :key='year'>
         <div v-if='users.length > 0'>
-          <h2 class='btech-tree-header'>{{year}} {{currentDepartment}} Tree</h2>
-          <div v-for='user in users' :key='user.id' class='btech-user-container'>
+          <h2
+            class='btech-tree-header'
+          >{{year}} {{currentDepartment}} Tree</h2>
+          <div 
+            v-for='user in users' 
+            :key='user.id'
+            class='btech-user-container'
+            >
             <div>
               <div>
                 <div class='btech-user-name' style='width: 180px; display: inline-block; font-size: 1rem;'>
-                  <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[user.id].canvas_id"
-                    target="_blank">
+                  <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[user.id].canvas_id" target="_blank">
                     <strong>{{user.name}}</strong>
                   </a>
                 </div>
                 <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
-                  <span class='btech-pill-text' :style="{
+                  <span 
+                  class='btech-pill-text'
+                  :style="{
                 'background-color': calcDepartmentScoreColorBg(user),
                 'color': calcDepartmentScoreColorFont(user),
               }">
@@ -71,15 +77,19 @@
                   </span>
                 </div>
                 <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
-                  <span class='btech-pill-text' :style="{
+                  <span 
+                  class='btech-pill-text'
+                  :style="{
                 'background-color': calcDepartmentTimeColorBg(user),
                 'color': '#ffffff',
               }">
-                    {{calcDepartmentTimeText(user)}}
+                    {{calcDepartmentTimeText(user)}} 
                   </span>
                 </div>
                 <div style='display: inline-block; width: 6rem; font-size: 1rem;'>
-                  <span class='btech-pill-text' :style="{
+                  <span 
+                  class='btech-pill-text'
+                  :style="{
                 'background-color': colors.gray,
                 'color': '#000',
               }">
@@ -93,7 +103,9 @@
                 </div>
               </div>
 
-              <div style='padding-top: 0.25rem; padding-bottom: 0.25rem;' v-for='courseType in courseTypes'>
+              <div 
+                style='padding-top: 0.25rem; padding-bottom: 0.25rem;'
+                v-for='courseType in courseTypes'>
                 <div v-if='user[courseType].length > 0'>
                   <div v-for='(course) in user[courseType]' class='btech-course-progress-bar'
                     :title="json['progress'][currentDepartment][year]['base'][course.code].name" :key='course.code'
@@ -102,9 +114,10 @@
                       'background-color': colors.base,
                     }
                   ">
-                    <a :class="{
+                    <a 
+                      :class="{
                         disabled: course.course_id === null
-                      }"
+                      }" 
                       :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[user.id].canvas_id"
                       target="_blank">
                       <div class='btech-course-progress-bar-fill' :style="
@@ -145,7 +158,7 @@
     </div>
   </div>
   <script>
-    var CANVAS_LTI_DATA = < % -JSON.stringify(canvas_lti_data) % > ;
+    var CANVAS_LTI_DATA = <%-JSON.stringify(canvas_lti_data) %>;
     const CURRENT_DEPARTMENT = CANVAS_LTI_DATA.custom_canvas_account_id;
     var scr = document.createElement('script'),
       head = document.head || document.getElementsByTagName('head')[0];
