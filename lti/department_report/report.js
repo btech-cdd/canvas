@@ -1,7 +1,6 @@
 //include a last updated list
 //SHOW STUDENT STATUS FROM JENZABAR, IE ACTIVE, ON HOLD, DROPPED, GRADUATED, ETC.
 //SHOW DATE OF SUBMISSIONS WHEN YOU HOVER OVER SUBMISSION BAR GRAPH BAR. MAYBE ALSO SHOW DAYS SINCE LAST SUBMISSION SOMEWHERE ON THAT REPORT
-//SHOW GRADE FROM LAST MONTH (OR SOME OTHER SET PERIOD OF TIME)
 //CLICK ON COURSE ID AND LINK TO THAT STUDENT'S GRADE PAGE FOR THAT COURSE
 //SAVE COURSE ID IN PREPROCESSED DATA
 //HOVER OVER COURSE CODE TO GET THE NAME OF THAT COURSE
@@ -176,7 +175,7 @@
                     let course = courses[courseCode];
                     console.log(course);
                     //THIS NEEDS TO BE CONFIRMED THAT IT IS CONSISTENT WITH HOW THINGS ARE CALCULATED ON THE JENZABAR END
-                    if (course.progress > 0) {
+                    if (course.contract_begin !== undefined) {
                       if (course.progress >= 100) {
                         enrolledHours += course.hours;
                         completedHours += course.hours;
