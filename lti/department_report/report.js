@@ -144,9 +144,9 @@
         if (progress >= 100) return app.colors.complete;
 
         let diffDays = Math.floor((new Date() - new Date(course.start)) / (1000 * 60 * 60 * 24));
-        if (diffDays < 60) return app.colors.green;
-        if (diffDays < 120) return app.colors.yellow; //yellow
-        if (diffDays < 180) return app.colors.orange; //orange
+        if (diffDays <= 60) return app.colors.green;
+        if (diffDays <= 120) return app.colors.yellow; //yellow
+        if (diffDays <= 180) return app.colors.orange; //orange
         return app.colors.red; //red
       },
 
