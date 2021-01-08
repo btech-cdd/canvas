@@ -142,10 +142,12 @@
           </div>
         </div>
       </div>
-      <div v-else class='btech-modal' style='display: inline-block;'>
-        <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[showStudent.id].canvas_id" target="_blank">
-          <strong>{{showStudent.name}}</strong>
-        </a>
+      <div v-show='showStudent !== "all"' class='btech-modal' style='display: inline-block;'>
+        <div v-if='showStudent !== "all"'>
+          <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[showStudent.id].canvas_id" target="_blank">
+            <strong>{{showStudent.name}}</strong>
+          </a>
+        </div>
         <div class='btech-modal-content-inner'>
           <div id='btech-department-report-student-submissions-graph'>Loading...</div>
         </div>
