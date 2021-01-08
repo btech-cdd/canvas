@@ -164,15 +164,33 @@
                 let core = [];
                 let elective = [];
                 let summary = courses['summary'];
+                let deptProgress = 0;
+                let enrolledHours = 0;
+                let completedHours = 0;
                 for (let courseCode in courses) {
                   if (courseCode !== "summary") {
+                    //THIS NEEDS TO BE CONFIRMED THAT IT IS CONSISTENT WITH HOW THINGS ARE CALCULATED ON THE JENZABAR END
+                    if (course.progress >= 100) {
+                      enrolledHours += course.hours;
+                      completedHours += course.hours;
+                    } else {
+                      let today = new Date();
+                      let totalTime = course.contract_end - course.contract_begin;
+                      let completedTime = today - course.contract_begin;
+                      let percTime = completedTime / totalTime;
+                      let courseEnrolledHours = percTime * course.hours;
+                      enrolledHours += courseEnrolledHours;
+                      let courseCompletedHours = course.hours * course.progress * .01;
+                      completedHours += courseCompletedHours;
+                    }
                     let course = courses[courseCode];
                     let courseData = {
                       'code': courseCode,
                       'course_id': course.course_id,
                       'last_activity': course.last_activity,
                       'progress': course.progress,
-                      'start': course.start
+                      'start': course.start,
+
                     }
                     if (base[courseCode].type === 'CORE') {
                       core.push(courseData);
@@ -187,7 +205,9 @@
                   'id': id,
                   'core': core,
                   'elective': elective,
-                  'summary': summary
+                  'summary': summary,
+                  'enrolledHours': enrolledHours,
+                  'completedHours': completedHours
                 });
               }
             }
