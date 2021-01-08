@@ -71,16 +71,6 @@
                   <span 
                   class='btech-pill-text'
                   :style="{
-                'background-color': calcDepartmentScoreColorBg(user),
-                'color': calcDepartmentScoreColorFont(user),
-              }">
-                    {{calcDepartmentScoreText(user)}}
-                  </span>
-                </div>
-                <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
-                  <span 
-                  class='btech-pill-text'
-                  :style="{
                 'background-color': calcDepartmentTimeColorBg(user),
                 'color': '#ffffff',
               }">
@@ -95,6 +85,16 @@
                 'color': '#000',
               }">
                     {{user.completedHours}} / {{user.enrolledHours}} hrs
+                  </span>
+                </div>
+                <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
+                  <span 
+                  class='btech-pill-text'
+                  :style="{
+                'background-color': calcDepartmentScoreColorBg(user),
+                'color': calcDepartmentScoreColorFont(user),
+              }">
+                    {{calcDepartmentScoreText(user)}}
                   </span>
                 </div>
                 <div :id="'btech-user-submission-summary-' + json.sis_to_canv[user.id].canvas_id"
