@@ -132,8 +132,7 @@
           goodDate: '#5CB85C',
         },
         loadingStudentReport: false,
-        courseTypes: ['core', 'elective'],
-        output: []
+        courseTypes: ['core', 'elective']
       }
     },
     methods: {
@@ -162,7 +161,7 @@
             if (id !== "base") {
               if (id in app.json['sis_to_canv']) {
                 let name = app.json.sis_to_canv[id].name;
-                app.output.push(name);
+                console.log(name)
                 let courses = users[id];
                 let core = [];
                 let elective = [];
@@ -171,8 +170,10 @@
                 let enrolledHours = 0;
                 let completedHours = 0;
                 for (let courseCode in courses) {
+                  console.log(courseCode);
                   if (courseCode !== "summary") {
                     let course = courses[courseCode];
+                    console.log(course);
                     //THIS NEEDS TO BE CONFIRMED THAT IT IS CONSISTENT WITH HOW THINGS ARE CALCULATED ON THE JENZABAR END
                     if (course.progress >= 100) {
                       enrolledHours += course.hours;

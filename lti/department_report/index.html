@@ -120,9 +120,6 @@
           </div>
         </div>
       </div>
-      <div>
-        <div v-for='log in output'>{{log}}</div>
-      </div>
     </div>
   </div>
   <script>
@@ -130,7 +127,7 @@
     const CURRENT_DEPARTMENT = CANVAS_LTI_DATA.custom_canvas_account_id;
     var scr = document.createElement('script'),
       head = document.head || document.getElementsByTagName('head')[0];
-    scr.src = '/canvas/lti/department_report/report.js';
+    scr.src = '/canvas-beta/lti/department_report/report.js';
     scr.async = false; // optionally
 
     head.insertBefore(scr, head.firstChild);
