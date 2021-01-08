@@ -61,6 +61,17 @@
                     {{calcDepartmentTimeText(user)}} 
                   </span>
                 </div>
+                <div style='display: inline-block; width: 10rem; font-size: 1rem;'>
+                  <span :style="{
+                'background-color': color.grey,
+                'color': '#000',
+                'padding': '4px',
+                'border-radius': '10px',
+                'font-size': '.75rem'
+              }">
+                    {{user.completedHours}} / {{user.enrolledHours}} hrs
+                  </span>
+                </div>
                 <div :id="'btech-user-submission-summary-' + json.sis_to_canv[user.id].canvas_id"
                   style="display: inline-block; cursor: pointer;"
                   @click='openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);'>
