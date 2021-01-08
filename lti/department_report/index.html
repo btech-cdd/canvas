@@ -16,7 +16,7 @@
       <span>Loading...</span>
     </div>
     <div v-else>
-      <div style='top: 0; position: fixed; width: 100%;'>KEY</div>
+      <div style='position: fixed; width: 100%; background-color: #fff;'>KEY</div>
       <select @change='loadDepartmentUsers' v-model='currentDepartment'>
         <option v-for='department in availableDepartments' :value='department'>
           {{json.dept_code_to_name[department].name + " (" + json.dept_code_to_name[department].first_year + "-" + json.dept_code_to_name[department].last_year + ")"}}
