@@ -121,7 +121,9 @@
         </div>
       </div>
     </div>
-
+    <div>
+      <div v-for='log in output'>{{log}}</div>
+    </div>
   </div>
   <script>
     var CANVAS_LTI_DATA = <%-JSON.stringify(canvas_lti_data) %>;
