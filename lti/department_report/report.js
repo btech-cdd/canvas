@@ -181,17 +181,19 @@
                         completedHours += course.hours;
                       } else {
                         let today = new Date();
-                        let totalTime = new Date(course.contract_end) - new Date(course.contract_begin);
-                        console.log(totalTime);
-                        let completedTime = today - new Date(course.contract_begin);
-                        console.log(completedTime);
-                        let percTime = completedTime / totalTime;
-                        console.log(percTime);
-                        let courseEnrolledHours = percTime * course.hours;
-                        console.log(courseEnrolledHours);
-                        enrolledHours += courseEnrolledHours;
-                        let courseCompletedHours = course.hours * course.progress * .01;
-                        completedHours += courseCompletedHours;
+                        if (new Date(course.contract_begin) <= today) {
+                          let totalTime = new Date(course.contract_end) - new Date(course.contract_begin);
+                          console.log(totalTime);
+                          let completedTime = today - new Date(course.contract_begin);
+                          console.log(completedTime);
+                          let percTime = completedTime / totalTime;
+                          console.log(percTime);
+                          let courseEnrolledHours = percTime * course.hours;
+                          console.log(courseEnrolledHours);
+                          enrolledHours += courseEnrolledHours;
+                          let courseCompletedHours = course.hours * course.progress * .01;
+                          completedHours += courseCompletedHours;
+                        }
                       }
                     }
                     let courseData = {
