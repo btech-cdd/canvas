@@ -142,8 +142,8 @@
           </div>
         </div>
       </div>
-      <div v-show='showStudent !== "all"' class='btech-modal' style='display: inline-block;'>
-        <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[user.id].canvas_id" target="_blank">
+      <div v-else class='btech-modal' style='display: inline-block;'>
+        <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[showStudent.id].canvas_id" target="_blank">
           <strong>{{showStudent.name}}</strong>
         </a>
         <div class='btech-modal-content-inner'>
