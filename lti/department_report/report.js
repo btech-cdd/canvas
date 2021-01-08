@@ -214,8 +214,8 @@
                   'core': core,
                   'elective': elective,
                   'summary': summary,
-                  'enrolledHours': enrolledHours,
-                  'completedHours': completedHours
+                  'enrolledHours': Math.round(enrolledHours),
+                  'completedHours': Math.round(completedHours)
                 });
               }
             }
