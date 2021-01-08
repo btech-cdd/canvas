@@ -3,6 +3,7 @@ body {
   font-size: 18px;
   font-size: 1rem;
 }
+
 #canvas-department-report-vue {
   background-color: #e0e0e0;
   padding: 0.5rem;
@@ -13,6 +14,7 @@ body {
   margin: 0.25rem;
   padding: 0.25rem;
 }
+
 #canvas-department-report-vue .btech-user-container {
   background-color: #ffffff;
   margin: 0.25rem;
@@ -57,10 +59,16 @@ body {
   height: 100%;
 }
 
-#canvas-department-report-vue .btech-course-progress-bar .btech-course-progress-bar-text{
-  position: relative; 
-  white-space: nowrap; 
-  padding: 2px 8px; 
-  font-size: 0.75em; 
+#canvas-department-report-vue .btech-pill-text {
+  padding: 4px;
+  border-radius: 10px;
+  font-size: .75rem;
+}
+
+#canvas-department-report-vue .btech-course-progress-bar .btech-course-progress-bar-text {
+  position: relative;
+  white-space: nowrap;
+  padding: 2px 8px;
+  font-size: 0.75em;
   color: #fff;
 }

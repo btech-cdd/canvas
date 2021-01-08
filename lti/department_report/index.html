@@ -16,7 +16,9 @@
       <span>Loading...</span>
     </div>
     <div v-else>
-      <div style='position: fixed; width: 100%; background-color: #fff;'>KEY</div>
+      <div style='position: fixed; width: 100%; background-color: #fff; z-index: 10;'>
+        Grade: <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>0-60%</span>
+      </div>
       <select @change='loadDepartmentUsers' v-model='currentDepartment'>
         <option v-for='department in availableDepartments' :value='department'>
           {{json.dept_code_to_name[department].name + " (" + json.dept_code_to_name[department].first_year + "-" + json.dept_code_to_name[department].last_year + ")"}}
@@ -40,34 +42,31 @@
                   </a>
                 </div>
                 <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
-                  <span :style="{
+                  <span 
+                  class='btech-pill-text'
+                  :style="{
                 'background-color': calcDepartmentScoreColorBg(user),
                 'color': calcDepartmentScoreColorFont(user),
-                'padding': '4px',
-                'border-radius': '10px',
-                'font-size': '.75rem'
               }">
                     {{calcDepartmentScoreText(user)}}
                   </span>
                 </div>
                 <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
-                  <span :style="{
+                  <span 
+                  class='btech-pill-text'
+                  :style="{
                 'background-color': calcDepartmentTimeColorBg(user),
                 'color': '#ffffff',
-                'padding': '4px',
-                'border-radius': '10px',
-                'font-size': '.75rem'
               }">
                     {{calcDepartmentTimeText(user)}} 
                   </span>
                 </div>
                 <div style='display: inline-block; width: 6rem; font-size: 1rem;'>
-                  <span :style="{
+                  <span 
+                  class='btech-pill-text'
+                  :style="{
                 'background-color': colors.gray,
                 'color': '#000',
-                'padding': '4px',
-                'border-radius': '10px',
-                'font-size': '.75rem'
               }">
                     {{user.completedHours}} / {{user.enrolledHours}} hrs
                   </span>
