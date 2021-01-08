@@ -106,6 +106,7 @@
     data: function () {
       return {
         loading: true,
+        showStudent: 'all',
         loadingStudentSubmissionsInProgress: false,
         json: {},
         usersByYear: {},

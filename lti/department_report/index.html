@@ -16,125 +16,125 @@
       <span>Loading...</span>
     </div>
     <div v-else>
-      <div style='position: sticky; width: 100%; background-color: #fff; z-index: 10; padding: 4px; box-sizing: border-box; box-shadow: 0px 5px 5px #888; margin-bottom: 1rem; top: 0;'>
-        <div style='display: inline-block;'>
-        Grade: 
-          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>0-59%</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>60-79%</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>80-89%</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>90-100%</span>
-          <br>
-          <br>
-        Time:
-          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;150%</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>100>149%</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-100%</span>
+      <div v-if='showStudent==="all"'>
+        <div style='position: sticky; width: 100%; background-color: #fff; z-index: 10; padding: 4px; box-sizing: border-box; box-shadow: 0px 5px 5px #888; margin-bottom: 1rem; top: 0;'>
+          <div style='display: inline-block;'>
+          Grade: 
+            <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>0-59%</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>60-79%</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>80-89%</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>90-100%</span>
+            <br>
+            <br>
+          Time:
+            <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;150%</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>100>149%</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-100%</span>
+          </div>
+          <div style='display: inline-block;'>
+          Submission History:
+            <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;10 days</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>7-9 days</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-7 days</span>
+            <br>
+            <br>
+          Course Enrollment:
+            <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;180 days</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>121-180 days</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>61-120 days</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-60 days</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.complete, "color": "#fff"}'>Completed</span>
+          </div>
         </div>
-        <div style='display: inline-block;'>
-        Submission History:
-          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;10 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>7-9 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-7 days</span>
-          <br>
-          <br>
-        Course Enrollment:
-          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;180 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>121-180 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>61-120 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-60 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.complete, "color": "#fff"}'>Completed</span>
-        </div>
-      </div>
-      <select @change='loadDepartmentUsers' v-model='currentDepartment'>
-        <option v-for='department in availableDepartments' :value='department'>
-          {{json.dept_code_to_name[department].name + " (" + json.dept_code_to_name[department].first_year + "-" + json.dept_code_to_name[department].last_year + ")"}}
-        </option>
-      </select>
-      <div v-for='(users, year) in usersByYear' :key='year'>
-        <div v-if='users.length > 0'>
-          <h2
-            class='btech-tree-header'
-          >{{year}} {{currentDepartment}} Tree</h2>
-          <div 
-            v-for='user in users' 
-            :key='user.id'
-            class='btech-user-container'
-            >
-            <div>
+        <select @change='loadDepartmentUsers' v-model='currentDepartment'>
+          <option v-for='department in availableDepartments' :value='department'>
+            {{json.dept_code_to_name[department].name + " (" + json.dept_code_to_name[department].first_year + "-" + json.dept_code_to_name[department].last_year + ")"}}
+          </option>
+        </select>
+        <div v-for='(users, year) in usersByYear' :key='year'>
+          <div v-if='users.length > 0'>
+            <h2
+              class='btech-tree-header'
+            >{{year}} {{currentDepartment}} Tree</h2>
+            <div 
+              v-for='user in users' 
+              :key='user.id'
+              class='btech-user-container'
+              >
               <div>
-                <div class='btech-user-name' style='width: 180px; display: inline-block; font-size: 1rem;'>
-                  <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[user.id].canvas_id" target="_blank">
+                <div>
+                  <div @click='showStudent=user; openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);' class='btech-user-name' style='width: 180px; display: inline-block; font-size: 1rem;'>
                     <strong>{{user.name}}</strong>
-                  </a>
+                  </div>
+                  <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
+                    <span 
+                    class='btech-pill-text'
+                    :style="{
+                  'background-color': calcDepartmentScoreColorBg(user),
+                  'color': calcDepartmentScoreColorFont(user),
+                }">
+                      {{calcDepartmentScoreText(user)}}
+                    </span>
+                  </div>
+                  <div style='display: inline-block; width: 6rem; font-size: 1rem;'>
+                    <span 
+                    class='btech-pill-text'
+                    :style="{
+                  'background-color': colors.gray,
+                  'color': '#000',
+                }">
+                      {{user.completedHours}} / {{user.enrolledHours}} hrs
+                    </span>
+                  </div>
+                  <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
+                    <span 
+                    class='btech-pill-text'
+                    :style="{
+                  'background-color': calcDepartmentTimeColorBg(user),
+                  'color': '#ffffff',
+                }">
+                      {{calcDepartmentTimeText(user)}} 
+                    </span>
+                  </div>
+                  <div :id="'btech-user-submission-summary-' + json.sis_to_canv[user.id].canvas_id"
+                    style="display: inline-block; cursor: pointer;"
+                    @click='openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);'>
+                    . . .
+                  </div>
                 </div>
-                <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
-                  <span 
-                  class='btech-pill-text'
-                  :style="{
-                'background-color': calcDepartmentScoreColorBg(user),
-                'color': calcDepartmentScoreColorFont(user),
-              }">
-                    {{calcDepartmentScoreText(user)}}
-                  </span>
-                </div>
-                <div style='display: inline-block; width: 6rem; font-size: 1rem;'>
-                  <span 
-                  class='btech-pill-text'
-                  :style="{
-                'background-color': colors.gray,
-                'color': '#000',
-              }">
-                    {{user.completedHours}} / {{user.enrolledHours}} hrs
-                  </span>
-                </div>
-                <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
-                  <span 
-                  class='btech-pill-text'
-                  :style="{
-                'background-color': calcDepartmentTimeColorBg(user),
-                'color': '#ffffff',
-              }">
-                    {{calcDepartmentTimeText(user)}} 
-                  </span>
-                </div>
-                <div :id="'btech-user-submission-summary-' + json.sis_to_canv[user.id].canvas_id"
-                  style="display: inline-block; cursor: pointer;"
-                  @click='openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);'>
-                  . . .
-                </div>
-              </div>
 
-              <div 
-                style='padding-top: 0.25rem; padding-bottom: 0.25rem;'
-                v-for='courseType in courseTypes'>
-                <div v-if='user[courseType].length > 0'>
-                  <div v-for='(course) in user[courseType]' class='btech-course-progress-bar'
-                    :title="json['progress'][currentDepartment][year]['base'][course.code].name" :key='course.code'
-                    :style="
-                    {
-                      'background-color': colors.base,
-                    }
-                  ">
-                    <a 
-                      :class="{
-                        disabled: course.course_id === null
-                      }" 
-                      :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[user.id].canvas_id"
-                      target="_blank">
-                      <div class='btech-course-progress-bar-fill' :style="
+                <div 
+                  style='padding-top: 0.25rem; padding-bottom: 0.25rem;'
+                  v-for='courseType in courseTypes'>
+                  <div v-if='user[courseType].length > 0'>
+                    <div v-for='(course) in user[courseType]' class='btech-course-progress-bar'
+                      :title="json['progress'][currentDepartment][year]['base'][course.code].name" :key='course.code'
+                      :style="
                       {
-                        'background-color': getCourseProgressBarColor(course),
-                        width: 100 + '%'
+                        'background-color': colors.base,
                       }
                     ">
-                      </div>
-                      <div v-if="course.progress > 0" style="color: #FFFFFF" class='btech-course-progress-bar-text'>
-                        {{course.code}}
-                      </div>
-                      <div v-else style="color: #000000" class='btech-course-progress-bar-text'>
-                        {{course.code}}
-                      </div>
-                    </a>
+                      <a 
+                        :class="{
+                          disabled: course.course_id === null
+                        }" 
+                        :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[user.id].canvas_id"
+                        target="_blank">
+                        <div class='btech-course-progress-bar-fill' :style="
+                        {
+                          'background-color': getCourseProgressBarColor(course),
+                          width: 100 + '%'
+                        }
+                      ">
+                        </div>
+                        <div v-if="course.progress > 0" style="color: #FFFFFF" class='btech-course-progress-bar-text'>
+                          {{course.code}}
+                        </div>
+                        <div v-else style="color: #000000" class='btech-course-progress-bar-text'>
+                          {{course.code}}
+                        </div>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -142,20 +142,13 @@
           </div>
         </div>
       </div>
-      <div v-show='showStudentReport' class='btech-modal' style='display: inline-block;'>
-        <div class='btech-modal-content'>
-          <div class="btech-tabs">
-            <ul>
-              <li @click="menu='report'">Submissions</li>
-              <li @click="menu='period'"></li>
-              <li style='float: right;' v-on:click='closeStudentReport()'>X</li>
-            </ul>
-          </div>
-          <div class='btech-modal-content-inner'>
-            <div id='btech-department-report-student-submissions-graph'>Loading...</div>
-          </div>
+      <div v-show='showStudent !== "all"' class='btech-modal' style='display: inline-block;'>
+        <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[user.id].canvas_id" target="_blank">
+          <strong>{{showStudent.name}}</strong>
+        </a>
+        <div class='btech-modal-content-inner'>
+          <div id='btech-department-report-student-submissions-graph'>Loading...</div>
         </div>
-      </div>
     </div>
   </div>
   <script>
