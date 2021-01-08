@@ -160,6 +160,8 @@
           for (let id in users) {
             if (id !== "base") {
               if (id in app.json['sis_to_canv']) {
+                let name = app.json.sis_to_canv[id].name;
+                console.log(name)
                 let courses = users[id];
                 let core = [];
                 let elective = [];
@@ -169,6 +171,9 @@
                 let completedHours = 0;
                 for (let courseCode in courses) {
                   if (courseCode !== "summary") {
+                    let course = courses[courseCode];
+                    console.log(courseCode);
+                    console.log(course);
                     //THIS NEEDS TO BE CONFIRMED THAT IT IS CONSISTENT WITH HOW THINGS ARE CALCULATED ON THE JENZABAR END
                     if (course.progress >= 100) {
                       enrolledHours += course.hours;
@@ -183,7 +188,6 @@
                       let courseCompletedHours = course.hours * course.progress * .01;
                       completedHours += courseCompletedHours;
                     }
-                    let course = courses[courseCode];
                     let courseData = {
                       'code': courseCode,
                       'course_id': course.course_id,
@@ -201,7 +205,7 @@
                   }
                 }
                 userList.push({
-                  'name': app.json.sis_to_canv[id].name,
+                  'name': name,
                   'id': id,
                   'core': core,
                   'elective': elective,
