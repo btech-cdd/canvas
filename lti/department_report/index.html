@@ -63,7 +63,7 @@
               >
               <div>
                 <div>
-                  <div @click='showStudent=user; openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);' class='btech-user-name' style='width: 180px; display: inline-block; font-size: 1rem;'>
+                  <div @click='showStudent=user; openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);' class='btech-user-name' style='width: 180px; display: inline-block; font-size: 1rem; cursor: pointer;'>
                     <strong>{{user.name}}</strong>
                   </div>
                   <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
@@ -142,11 +142,13 @@
           </div>
         </div>
       </div>
-      <div v-show='showStudent !== "all"' class='btech-modal' style='display: inline-block;'>
+      <div v-show='showStudent !== "all"' class='btech-modal' style='display: inline-block; background-color: #fff;'>
         <div v-if='showStudent !== "all"'>
-          <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[showStudent.id].canvas_id" target="_blank">
-            <strong>{{showStudent.name}}</strong>
-          </a>
+          <div class='btech-user-name'>
+            <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[showStudent.id].canvas_id" target="_blank">
+              <strong>{{showStudent.name}}</strong>
+            </a>
+          </div>
         </div>
         <div class='btech-modal-content-inner'>
           <div id='btech-department-report-student-submissions-graph'>Loading...</div>
