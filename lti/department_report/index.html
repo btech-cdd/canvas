@@ -52,13 +52,13 @@
                 </div>
                 <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
                   <span :style="{
-                'background-color': '#000000',
+                'background-color': calcDepartmentTimeColorBg(user),
                 'color': '#ffffff',
                 'padding': '4px',
                 'border-radius': '10px',
                 'font-size': '.75rem'
               }">
-                    {{user.completedHours}} / {{user.enrolledHours}} 
+                    {{calcDepartmentTimeText(user)}} 
                   </span>
                 </div>
                 <div :id="'btech-user-submission-summary-' + json.sis_to_canv[user.id].canvas_id"
