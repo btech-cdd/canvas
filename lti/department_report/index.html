@@ -164,6 +164,17 @@
               {{calcDepartmentScoreText(showStudent)}}
             </span>
           </div>
+          Department Hours:
+          <div style='display: inline-block; width: 4rem; font-size: 1rem;'>
+            <span 
+            class='btech-pill-text'
+            :style="{
+                'background-color': colors.gray,
+                'color': '#000000',
+              }">
+              {{json.dept_code_to_name[currentDepartment].hours}} hrs
+            </span>
+          </div>
           Completed Hours:
           <div style='display: inline-block; width: 4rem; font-size: 1rem;'>
             <span 
