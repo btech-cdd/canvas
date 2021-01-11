@@ -168,7 +168,7 @@
                   :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[showStudent.id].canvas_id"
                   target="_blank">
                   <div v-else style="color: #000000" class='btech-course-progress-bar-text'>
-                    {{json['progress'][currentDepartment][year]['base'][course.code].name}}
+                    {{json['progress'][currentDepartment][showStudent.year]['base'][course.code].name}}
                   </div>
                 </a>
                 <div
