@@ -161,7 +161,9 @@
               <div 
                 v-for='(course) in showStudent[courseType]' 
               >
-                <div>
+                <div
+                  class='btech-course-progress-bar' 
+                  >
                   <a 
                     :class="{
                       disabled: course.course_id === null
@@ -189,7 +191,7 @@
                       width: 100 + '%'
                     }
                   ">
-                  <div class='btech-course-progress-bar-text' style="color: #000000;">Progress</div>
+                    <div class='btech-course-progress-bar-text' style="color: #000000;">Progress</div>
                   </div>
                 </div>
               </div>
