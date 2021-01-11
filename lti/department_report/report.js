@@ -308,6 +308,8 @@
         let app = this;
         let graph = new SubmissionsGraphBar();
         graph._init(app, userId, sisId);
+        let donut = new ProgressGraphDonut();
+        donut._init(app, userId, sisId);
       },
 
       closeStudentReport() {
@@ -606,15 +608,21 @@
   }
   class ProgressGraphDonut {
     constructor() {
-      var width = 450
-      height = 450
+      let graph = this;
+      graph.app = {};
+      graph.graphSettings = {
+      }
+    }
+    async _init(app, userId, sisId, graphElId = 'btech-department-report-student-progress-donut', w = 450, h = 450) {
+      var width = w,
+      height = h,
       margin = 40
 
       // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
       var radius = Math.min(width, height) / 2 - margin
 
       // append the svg object to the div called 'my_dataviz'
-      var svg = d3.select("#btech-department-report-student-progress-donut")
+      var svg = d3.select("#" + graphElId)
         .append("svg")
         .attr("width", width)
         .attr("height", height)
