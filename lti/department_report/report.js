@@ -474,7 +474,7 @@
 
       var y = d3.scaleLinear()
         .domain([0, graph.graphSettings.maxY])
-        .range([height, 0]);
+        .range([height - (graph.graphSettings.margin.top), 0]);
 
       graph.graphSettings.y = y;
 
