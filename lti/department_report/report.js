@@ -437,7 +437,7 @@
       return;
     }
 
-    async _init(app, userId, sisId, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 450) {
+    async _init(app, userId, sisId, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 160) {
       console.log("LOADING?")
       this.app = app;
       let graph = this;
