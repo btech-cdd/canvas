@@ -204,6 +204,7 @@
             style='padding-top: 0.25rem; padding-bottom: 0.25rem;'
             v-for='courseType in courseTypes'
             >
+            <span><strong>{{courseType}}</strong></span>
             <div v-if='showStudent[courseType].length > 0'>
               <div 
                 v-for='(course) in showStudent[courseType]' 
