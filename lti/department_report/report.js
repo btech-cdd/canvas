@@ -161,7 +161,6 @@
             if (id !== "base") {
               if (id in app.json['sis_to_canv']) {
                 let name = app.json.sis_to_canv[id].name;
-                console.log(name)
                 let courses = users[id];
                 let core = [];
                 let elective = [];
@@ -170,10 +169,8 @@
                 let enrolledHours = 0;
                 let completedHours = 0;
                 for (let courseCode in courses) {
-                  console.log(courseCode);
                   if (courseCode !== "summary") {
                     let course = courses[courseCode];
-                    console.log(course);
                     //THIS NEEDS TO BE CONFIRMED THAT IT IS CONSISTENT WITH HOW THINGS ARE CALCULATED ON THE JENZABAR END
                     if (course.contract_begin !== undefined) {
                       if (course.progress >= 100) {
@@ -183,13 +180,9 @@
                         let today = new Date();
                         if (new Date(course.contract_begin) <= today) {
                           let totalTime = new Date(course.contract_end) - new Date(course.contract_begin);
-                          console.log(totalTime);
                           let completedTime = today - new Date(course.contract_begin);
-                          console.log(completedTime);
                           let percTime = completedTime / totalTime;
-                          console.log(percTime);
                           let courseEnrolledHours = percTime * course.hours;
-                          console.log(courseEnrolledHours);
                           enrolledHours += courseEnrolledHours;
                           let courseCompletedHours = course.hours * course.progress * .01;
                           completedHours += courseCompletedHours;
@@ -310,6 +303,7 @@
 
 
       async openStudentReport(userId, sisId) {
+        console.log("OPEN")
         let app = this;
         let graph = new SubmissionsGraphBar();
         graph._init(app, userId, sisId);
