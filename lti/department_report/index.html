@@ -181,11 +181,6 @@
                   {{calcDepartmentTimeText(showStudent)}} 
                 </span>
               </div>
-              <div :id="'btech-user-submission-summary-' + json.sis_to_canv[showStudent.id].canvas_id"
-                style="display: inline-block; cursor: pointer;"
-                @click='openStudentReport(json.sis_to_canv[showStudent.id].canvas_id, showStudent.id);'>
-                . . .
-              </div>
             </div>
             <div id='btech-department-report-student-submissions-graph'>Loading...</div>
 
