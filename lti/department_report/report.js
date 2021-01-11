@@ -474,7 +474,7 @@
 
       var y = d3.scaleLinear()
         .domain([0, graph.graphSettings.maxY])
-        .range([height - (graph.graphSettings.margin.top), 0]);
+        .range([height, 0]);
 
       graph.graphSettings.y = y;
 
@@ -599,7 +599,7 @@
     yPlot(d, y) {
       let app = this.app;
       let graph = this;
-      let yVal = y(d.count) + graph.graphSettings.margin.top;
+      let yVal = y(d.count);
       return yVal;
     }
   }
