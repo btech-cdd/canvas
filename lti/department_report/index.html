@@ -162,7 +162,7 @@
                 v-for='(course) in showStudent[courseType]' 
               >
                 <div style="background-color: rgb(255, 255, 255); display: inline-block; width: 100%; font-size: 0.75rem; padding: .25rem;">
-                  <div style="display: inline-block; width: 12rem;">
+                  <div style="display: inline-block; width: 15rem;">
                     <a 
                       :class="{
                         disabled: course.course_id === null
@@ -170,7 +170,7 @@
                       style="text-decoration: none; color: #000000;"
                       :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[showStudent.id].canvas_id"
                       target="_blank">
-                      {{json['progress'][currentDepartment][showStudent.year]['base'][course.code].name}}
+                      {{json['progress'][currentDepartment][showStudent.year]['base'][course.code].name}} ({{course.code}})
                     </a>
                   </div>
                   <div
@@ -188,7 +188,7 @@
                     ">
                     </div>
                     <div style="color: #ffffff" class='btech-course-progress-bar-text'>
-                      {{course.code}}
+                      {{course.progress}}%
                     </div>
                   </div>
                 </div>
