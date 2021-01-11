@@ -153,17 +153,17 @@
           <div id='btech-department-report-student-submissions-graph'>Loading...</div>
           <div>
                 <div>
-                  <div @click='showStudent=user; openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);' class='btech-user-name' style='width: 180px; display: inline-block; font-size: 1rem; cursor: pointer;'>
-                    <strong>{{user.name}}</strong>
+                  <div class='btech-user-name' style='width: 180px; display: inline-block; font-size: 1rem; cursor: pointer;'>
+                    <strong>{{showStudent.name}}</strong>
                   </div>
                   <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
                     <span 
                     class='btech-pill-text'
                     :style="{
-                  'background-color': calcDepartmentScoreColorBg(user),
-                  'color': calcDepartmentScoreColorFont(user),
+                  'background-color': calcDepartmentScoreColorBg(showStudent),
+                  'color': calcDepartmentScoreColorFont(showStudent),
                 }">
-                      {{calcDepartmentScoreText(user)}}
+                      {{calcDepartmentScoreText(showStudent)}}
                     </span>
                   </div>
                   <div style='display: inline-block; width: 6rem; font-size: 1rem;'>
@@ -173,22 +173,22 @@
                   'background-color': colors.gray,
                   'color': '#000',
                 }">
-                      {{user.completedHours}} / {{user.enrolledHours}} hrs
+                      {{showStudent.completedHours}} / {{showStudent.enrolledHours}} hrs
                     </span>
                   </div>
                   <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
                     <span 
                     class='btech-pill-text'
                     :style="{
-                  'background-color': calcDepartmentTimeColorBg(user),
+                  'background-color': calcDepartmentTimeColorBg(showStudent),
                   'color': '#ffffff',
                 }">
-                      {{calcDepartmentTimeText(user)}} 
+                      {{calcDepartmentTimeText(showStudent)}} 
                     </span>
                   </div>
-                  <div :id="'btech-user-submission-summary-' + json.sis_to_canv[user.id].canvas_id"
+                  <div :id="'btech-user-submission-summary-' + json.sis_to_canv[showStudent.id].canvas_id"
                     style="display: inline-block; cursor: pointer;"
-                    @click='openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);'>
+                    @click='openStudentReport(json.sis_to_canv[showStudent.id].canvas_id, showStudent.id);'>
                     . . .
                   </div>
                 </div>
@@ -196,8 +196,8 @@
                 <div 
                   style='padding-top: 0.25rem; padding-bottom: 0.25rem;'
                   v-for='courseType in courseTypes'>
-                  <div v-if='user[courseType].length > 0'>
-                    <div v-for='(course) in user[courseType]' class='btech-course-progress-bar'
+                  <div v-if='showStudent[courseType].length > 0'>
+                    <div v-for='(course) in showStudent[courseType]' class='btech-course-progress-bar'
                       :title="json['progress'][currentDepartment][year]['base'][course.code].name" :key='course.code'
                       :style="
                       {
@@ -208,7 +208,7 @@
                         :class="{
                           disabled: course.course_id === null
                         }" 
-                        :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[user.id].canvas_id"
+                        :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[showStudent.id].canvas_id"
                         target="_blank">
                         <div class='btech-course-progress-bar-fill' :style="
                         {
