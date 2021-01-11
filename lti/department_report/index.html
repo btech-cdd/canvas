@@ -167,18 +167,8 @@
                   }" 
                   :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[showStudent.id].canvas_id"
                   target="_blank">
-                  <div class='btech-course-progress-bar-fill' :style="
-                    {
-                      'background-color': getCourseProgressBarColor(course),
-                      width: 100 + '%'
-                    }
-                  ">
-                  </div>
-                  <div v-if="course.progress > 0" style="color: #FFFFFF" class='btech-course-progress-bar-text'>
-                    {{course.code}}
-                  </div>
                   <div v-else style="color: #000000" class='btech-course-progress-bar-text'>
-                    {{course.code}}
+                    {{json['progress'][currentDepartment][year]['base'][course.code].name}}
                   </div>
                 </a>
                 <div
@@ -189,6 +179,14 @@
                       'background-color': colors.base,
                     }"
                   >
+                  <div class='btech-course-progress-bar-fill' :style="
+                    {
+                      'background-color': getCourseProgressBarColor(course),
+                      width: 100 + '%'
+                    }
+                  ">
+                  <span>Progress</span>
+                  </div>
                 </div>
               </div>
             </div>
