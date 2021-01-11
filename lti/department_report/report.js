@@ -279,7 +279,7 @@
         let app = this;
         if (user.summary === undefined) return "#000000";
         if (user.summary.average_score === undefined) return "#000000";
-        return "#000";
+        return "#FFFFFF";
       },
 
       //Specifically set up to be used when a new section is selected.
