@@ -175,24 +175,29 @@
                   <div
                     class='btech-course-progress-bar'
                     style='width: 20rem;'
-                    >
+                  >
                     <a 
-                        :class="{
-                          disabled: course.course_id === null
-                        }" 
-                        :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[showStudent.id].canvas_id"
-                        target="_blank">
-                        <div class='btech-course-progress-bar-fill' :style="
-                        {
-                          'background-color': getCourseProgressBarColor(course),
-                          width: course.progress + '%'
-                        }
-                        ">
-                        </div>
-                        <div style="color: #ffffff" class='btech-course-progress-bar-text'>
-                          {{course.code}}
-                        </div>
-                      </a>
+                      style='text-decoration: none; color: #000;'
+                      :style='{
+                        "background-color": color.base
+                      }'
+                      :class="{
+                        disabled: course.course_id === null
+                      }" 
+                      :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[showStudent.id].canvas_id"
+                      target="_blank"
+                    >
+                      <div class='btech-course-progress-bar-fill' :style="
+                      {
+                        'background-color': getCourseProgressBarColor(course),
+                        width: course.progress + '%'
+                      }
+                      ">
+                      </div>
+                      <div style="color: #ffffff" class='btech-course-progress-bar-text'>
+                        {{course.code}}
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
