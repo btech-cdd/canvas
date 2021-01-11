@@ -19,30 +19,30 @@
       <div style='position: sticky; width: 100%; background-color: #fff; z-index: 10; padding: 4px; box-sizing: border-box; box-shadow: 0px 5px 5px #888; margin-bottom: 1rem; top: 0;'>
         <div style='display: inline-block;'>
         Grade: 
-          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>0-59%</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>60-79%</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>80-89%</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>90-100%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#000"}'>0-59%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#000"}'>60-79%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#000"}'>80-89%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#000"}'>90-100%</span>
           <br>
           <br>
         Time:
-          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;150%</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>100>149%</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-100%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#000"}'>&gt;150%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#000"}'>100>149%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#000"}'>0-100%</span>
         </div>
         <div style='display: inline-block;'>
         Submission History:
-          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;10 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>7-9 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-7 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#000"}'>&gt;10 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#000"}'>7-9 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#000"}'>0-7 days</span>
           <br>
           <br>
         Course Enrollment:
-          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;180 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>121-180 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>61-120 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-60 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.complete, "color": "#fff"}'>Completed</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#000"}'>&gt;180 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#000"}'>121-180 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#000"}'>61-120 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#000"}'>0-60 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.complete, "color": "#000"}'>Completed</span>
         </div>
       </div>
       <div v-show='showStudent==="all"'>
@@ -91,7 +91,7 @@
                     class='btech-pill-text'
                     :style="{
                         'background-color': calcDepartmentTimeColorBg(user),
-                        'color': '#ffffff',
+                        'color': '#000',
                       }">
                       {{calcDepartmentTimeText(user)}} 
                     </span>
@@ -127,7 +127,7 @@
                         }
                         ">
                         </div>
-                        <div v-if="course.progress > 0" style="color: #FFFFFF" class='btech-course-progress-bar-text'>
+                        <div v-if="course.progress > 0" style="color: #000" class='btech-course-progress-bar-text'>
                           {{course.code}}
                         </div>
                         <div v-else style="color: #000000" class='btech-course-progress-bar-text'>
@@ -143,7 +143,7 @@
         </div>
       </div>
       <div v-show='showStudent !== "all"' class='btech-modal' style='display: inline-block; background-color: #fff; padding: 0.5rem;'>
-        <div class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff", "width": "1rem", "float": "right", "text-align": "center", "cursor": "pointer"}' @click='closeStudentReport()'>X</div>
+        <div class='btech-pill-text' :style='{"background-color": colors.red, "color": "#000", "width": "1rem", "float": "right", "text-align": "center", "cursor": "pointer"}' @click='closeStudentReport()'>X</div>
         <div v-if='showStudent !== "all"'>
           <div 
             class='btech-user-name'
@@ -192,7 +192,7 @@
             class='btech-pill-text'
             :style="{
                 'background-color': calcDepartmentTimeColorBg(showStudent),
-                'color': '#ffffff',
+                'color': '#000',
               }">
               {{calcDepartmentTimeText(showStudent)}} 
             </span>

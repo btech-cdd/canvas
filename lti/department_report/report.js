@@ -15,6 +15,7 @@
 //////IE CHANGE GRADE FLAGS, DAYS IN COURSE FLAGS,A ND DAYS SINCE LAST SUBMISSION FLAGS
 ////TOGGLE ON THE FEATURE TO PARTIALLY FILL A BAR DEPENDING ON PROGRESS IN THAT COURSE. MAKE BACKGROUND BLACK AND THEN PARTIALLY SHADE, DEFAULT IS OFF THOUGH
 ////CHANGE NAME TO SORT BY FIRST NAME, ALSO CHANGE TO SHOW FIRST NAME FIRST THEN LAST NAME
+//EXCLUDE COURSES COMPLETED AS HS STUDENT WHEN CALCULATING ENROLLED/COMPLETED HOURS
 (async function () {
   async function delay(ms) {
     // return await for better async stack trace support in case of errors.
@@ -278,7 +279,7 @@
         let app = this;
         if (user.summary === undefined) return "#000000";
         if (user.summary.average_score === undefined) return "#000000";
-        return "#FFFFFF";
+        return "#000";
       },
 
       //Specifically set up to be used when a new section is selected.
