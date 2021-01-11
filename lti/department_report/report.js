@@ -448,7 +448,7 @@
       graph.graphSettings.startDate = new Date(new Date().setMonth(new Date().getMonth() - graph.graphSettings.months));
       graph.graphSettings.endDate = new Date();
       graph.graphSettings.barWidth = 1;
-      graph.graphSettings.maxY = 10;
+      graph.graphSettings.maxY = 15;
       graph.graphSettings.margin = {
         top: 30,
         bottom: 40,
