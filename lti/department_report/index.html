@@ -63,7 +63,7 @@
               >
               <div>
                 <div>
-                  <div @click='showStudent=user; openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);' class='btech-user-name' style='width: 180px; display: inline-block; font-size: 1rem; cursor: pointer;'>
+                  <div @click='showStudent=user; showStudent.year = year; openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);' class='btech-user-name' style='width: 180px; display: inline-block; font-size: 1rem; cursor: pointer;'>
                     <strong>{{user.name}}</strong>
                   </div>
                   <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
@@ -156,9 +156,9 @@
           <div 
                   style='padding-top: 0.25rem; padding-bottom: 0.25rem;'
                   v-for='courseType in courseTypes'>
-                  <div v-if='user[courseType].length > 0'>
-                    <div v-for='(course) in user[courseType]' class='btech-course-progress-bar'
-                      :title="json['progress'][currentDepartment][year]['base'][course.code].name" :key='course.code'
+                  <div v-if='showStudent[courseType].length > 0'>
+                    <div v-for='(course) in showStudent[courseType]' class='btech-course-progress-bar'
+                      :title="json['progress'][currentDepartment][showStudent.year]['base'][course.code].name" :key='course.code'
                       :style="
                       {
                         'background-color': colors.base,
@@ -168,7 +168,7 @@
                         :class="{
                           disabled: course.course_id === null
                         }" 
-                        :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[user.id].canvas_id"
+                        :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[showStudent.id].canvas_id"
                         target="_blank">
                         <div class='btech-course-progress-bar-fill' :style="
                         {
