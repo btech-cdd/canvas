@@ -150,6 +150,36 @@
               <strong>{{showStudent.name}}</strong>
             </a>
           </div>
+          <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
+            <span 
+            class='btech-pill-text'
+            :style="{
+                'background-color': calcDepartmentScoreColorBg(user),
+                'color': calcDepartmentScoreColorFont(user),
+              }">
+              {{calcDepartmentScoreText(user)}}
+            </span>
+          </div>
+          <div style='display: inline-block; width: 6rem; font-size: 1rem;'>
+            <span 
+            class='btech-pill-text'
+            :style="{
+                'background-color': colors.gray,
+                'color': '#000',
+              }">
+              {{user.completedHours}} / {{user.enrolledHours}} hrs
+            </span>
+          </div>
+          <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
+            <span 
+            class='btech-pill-text'
+            :style="{
+                'background-color': calcDepartmentTimeColorBg(user),
+                'color': '#ffffff',
+              }">
+              {{calcDepartmentTimeText(user)}} 
+            </span>
+          </div>
         </div>
         <div id='btech-department-report-student-submissions-graph'>Loading...</div>
         <div v-if='showStudent !== "all"'>
