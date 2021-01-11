@@ -150,26 +150,19 @@
               <strong>{{showStudent.name}}</strong>
             </a>
           </div>
+          Average Grade:
           <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
-            <span 
-            class='btech-pill-text'
-            :style="{
-                'background-color': calcDepartmentScoreColorBg(showStudent),
-                'color': calcDepartmentScoreColorFont(showStudent),
-              }">
-              {{calcDepartmentScoreText(showStudent)}}
-            </span>
+            {{calcDepartmentScoreText(showStudent)}}
           </div>
-          <div style='display: inline-block; width: 6rem; font-size: 1rem;'>
-            <span 
-            class='btech-pill-text'
-            :style="{
-                'background-color': colors.gray,
-                'color': '#000',
-              }">
-              {{showStudent.completedHours}} / {{showStudent.enrolledHours}} hrs
-            </span>
+          Completed Hours:
+          <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
+            {{showStudent.completedHours}} hrs
           </div>
+          Enrolled Hours:
+          <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
+            {{showStudent.enrolledHours}} hrs
+          </div>
+          Progress Ratio:
           <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
             <span 
             class='btech-pill-text'
