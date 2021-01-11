@@ -158,13 +158,16 @@
             v-for='courseType in courseTypes'
             >
             <div v-if='showStudent[courseType].length > 0'>
-              <div v-for='(course) in showStudent[courseType]' class='btech-course-progress-bar'
-                :title="json['progress'][currentDepartment][showStudent.year]['base'][course.code].name" :key='course.code'
-                :style="
-                {
-                  'background-color': colors.base,
-                }
-              ">
+              <div 
+                v-for='(course) in showStudent[courseType]' 
+                class='btech-course-progress-bar'
+                :title="json['progress'][currentDepartment][showStudent.year]['base'][course.code].name" 
+                :key='course.code'
+                style="display: none;"
+                :style="{
+                    'background-color': colors.base,
+                  }"
+                >
                 <a 
                   :class="{
                     disabled: course.course_id === null
@@ -185,7 +188,6 @@
                     {{course.code}}
                   </div>
                 </a>
-                <br>
               </div>
             </div>
           </div>
