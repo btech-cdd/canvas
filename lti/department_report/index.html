@@ -161,35 +161,34 @@
               <div 
                 v-for='(course) in showStudent[courseType]' 
               >
-                <div
-                  class='btech-course-progress-bar'
-                  :title="json['progress'][currentDepartment][showStudent.year]['base'][course.code].name" 
-                  :key='course.code'
-                  style="display: block;"
-                  :style="{
-                      'background-color': colors.base,
-                    }"
-                  >
-                  <a 
-                    :class="{
-                      disabled: course.course_id === null
-                    }" 
-                    :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[showStudent.id].canvas_id"
-                    target="_blank">
-                    <div class='btech-course-progress-bar-fill' :style="
+                <a 
+                  :class="{
+                    disabled: course.course_id === null
+                  }" 
+                  :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[showStudent.id].canvas_id"
+                  target="_blank">
+                  <div class='btech-course-progress-bar-fill' :style="
                     {
                       'background-color': getCourseProgressBarColor(course),
                       width: 100 + '%'
                     }
                   ">
-                    </div>
-                    <div v-if="course.progress > 0" style="color: #FFFFFF" class='btech-course-progress-bar-text'>
-                      {{course.code}}
-                    </div>
-                    <div v-else style="color: #000000" class='btech-course-progress-bar-text'>
-                      {{course.code}}
-                    </div>
-                  </a>
+                  </div>
+                  <div v-if="course.progress > 0" style="color: #FFFFFF" class='btech-course-progress-bar-text'>
+                    {{course.code}}
+                  </div>
+                  <div v-else style="color: #000000" class='btech-course-progress-bar-text'>
+                    {{course.code}}
+                  </div>
+                </a>
+                <div
+                  class='btech-course-progress-bar'
+                  :title="json['progress'][currentDepartment][showStudent.year]['base'][course.code].name" 
+                  :key='course.code'
+                  :style="{
+                      'background-color': colors.base,
+                    }"
+                  >
                 </div>
               </div>
             </div>
