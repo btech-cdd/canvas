@@ -146,7 +146,7 @@
         <div class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff", "width": "1rem", "float": "right", "text-align": "center", "cursor": "pointer"}' @click='closeStudentReport()'>X</div>
         <div v-if='showStudent !== "all"'>
             <div>
-              <div class='btech-user-name'>
+              <div class='btech-user-name' style='display: inline-block;'>
                 <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[showStudent.id].canvas_id" target="_blank">
                   <strong>{{showStudent.name}}</strong>
                 </a>
@@ -187,7 +187,7 @@
                 . . .
               </div>
             </div>
-          <div id='btech-department-report-student-submissions-graph'>Loading...</div>
+            <div id='btech-department-report-student-submissions-graph'>Loading...</div>
 
             <div 
               style='padding-top: 0.25rem; padding-bottom: 0.25rem;'
