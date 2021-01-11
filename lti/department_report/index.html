@@ -179,7 +179,7 @@
                         :class="{
                           disabled: course.course_id === null
                         }" 
-                        :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[user.id].canvas_id"
+                        :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[showStudent.id].canvas_id"
                         target="_blank">
                         <div class='btech-course-progress-bar-fill' :style="
                         {
