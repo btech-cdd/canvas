@@ -167,6 +167,7 @@
                       :class="{
                         disabled: course.course_id === null
                       }" 
+                      style="text-decoration: : none;"
                       :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.sis_to_canv[showStudent.id].canvas_id"
                       target="_blank">
                       {{json['progress'][currentDepartment][showStudent.year]['base'][course.code].name}}
