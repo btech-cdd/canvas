@@ -19,6 +19,7 @@
         <lticm:property name="url">https://jhveem.xyz/lti/department_report</lticm:property>
         <lticm:property name="text">Department Report</lticm:property>
         <lticm:property name="enabled">true</lticm:property>
+        <lticm:property name=" windowTarget ">_blank </lticm:property>
       </lticm:options>
     </blti:extensions>
     <cartridge_bundle identifierref="BLTI001_Bundle"/>
