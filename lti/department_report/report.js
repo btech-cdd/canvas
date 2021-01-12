@@ -319,7 +319,7 @@
 
       async loadJsonFile(name) {
         let app = this;
-        let jsonUrl = 'https://jhveem.xyz/api/report_data/' + name;
+        let jsonUrl = 'https://jhveem.xyz/lti/report_data/' + name;
         let jsonData = {};
         await $.post(jsonUrl, function (data) {
           jsonData = data;

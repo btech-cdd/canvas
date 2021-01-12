@@ -64,7 +64,7 @@
               >
               <div>
                 <div>
-                  <div @click='showStudent=user; showStudent.year = year; console.log(decodeURIComponent(document.cookie)); console.log(showStudent); openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);' class='btech-user-name' style='width: 180px; display: inline-block; font-size: 1rem; cursor: pointer;'>
+                  <div @click='showStudent=user; showStudent.year = year; console.log(showStudent); openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);' class='btech-user-name' style='width: 180px; display: inline-block; font-size: 1rem; cursor: pointer;'>
                     <strong>{{user.name}}</strong>
                   </div>
                   <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
@@ -260,7 +260,7 @@
     </div>
   </div>
   <script>
-    console.log(getCookie('testing'));
+    console.log($.cookie('testing'));
     var CANVAS_LTI_DATA = <%-JSON.stringify(canvas_lti_data) %>;
     const CURRENT_DEPARTMENT = CANVAS_LTI_DATA.custom_canvas_account_id;
     console.log(CANVAS_LTI_DATA);
