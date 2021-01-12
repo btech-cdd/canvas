@@ -304,10 +304,6 @@
 
 
       async openStudentReport(userId, sisId) {
-        console.log(document.cookie);
-        $.get('https://jhveem.xyz/lti/check_cookies', function(data) {
-          console.log(document.cookie);
-        });
         let app = this;
         let graph = new SubmissionsGraphBar();
         graph._init(app, userId, sisId);
