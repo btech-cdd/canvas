@@ -321,7 +321,7 @@
         let app = this;
         let jsonUrl = 'https://jhveem.xyz/api/report_data/' + name;
         let jsonData = {};
-        await $.get(jsonUrl, function (data) {
+        await $.post(jsonUrl, function (data) {
           jsonData = data;
         });
         app.json[name] = jsonData;
