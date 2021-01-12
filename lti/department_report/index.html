@@ -261,6 +261,7 @@
   <script>
     var CANVAS_LTI_DATA = <%-JSON.stringify(canvas_lti_data) %>;
     const CURRENT_DEPARTMENT = CANVAS_LTI_DATA.custom_canvas_account_id;
+    console.log(CANVAS_LTI_DATA);
     var scr = document.createElement('script'),
       head = document.head || document.getElementsByTagName('head')[0];
     scr.src = '/canvas-beta/lti/department_report/report.js';
