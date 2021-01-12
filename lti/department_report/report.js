@@ -311,8 +311,8 @@
         let app = this;
         let graph = new SubmissionsGraphBar();
         graph._init(app, userId, sisId);
-        let donut = new ProgressGraphDonut();
-        donut._init(app, userId, sisId);
+        // let donut = new ProgressGraphDonut();
+        // donut._init(app, userId, sisId);
       },
 
       closeStudentReport() {
