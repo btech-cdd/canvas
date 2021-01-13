@@ -649,7 +649,7 @@
         .data(pied_data)
         .join((enter) => enter.append("path").attr("class", "arc").style("stroke", "white"));
 
-      arcs.attr("d", arc).style("fill", (d, i) => color(i));
+      arcs.attr("d", arc).style("fill", (d, i) => (console.log(i); console.log(d); color(i);));
     }
   }
 })();
