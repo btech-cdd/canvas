@@ -632,8 +632,7 @@
 
       const radius = Math.min(width, height) / 2;
 
-      const color = d3.scaleOrdinal(d3.schemeCategory10);
-      console.log(color);
+      const colors = [app.colors.gray, app.colors.red, app.colors.blue];
 
       const arc = d3
         .arc()
@@ -649,7 +648,7 @@
         .data(pied_data)
         .join((enter) => enter.append("path").attr("class", "arc").style("stroke", "white"));
 
-      arcs.attr("d", arc).style("fill", (d, i) => {console.log(i); console.log(d); color(i);});
+      arcs.attr("d", arc).style("fill", (d, i) => {return colors[i];});
     }
   }
 })();
