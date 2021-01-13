@@ -612,8 +612,8 @@
       graph.graphSettings = {}
     }
     async _init(app, userId, sisId, graphElId = 'btech-department-report-student-progress-donut', w = 450, h = 450) {
-      const width = 800;
-      const height = 600;
+      const width = w;
+      const height = h;
 
       // Creates sources <svg> element
       $('#' + graphElId).empty();
@@ -630,7 +630,7 @@
       const arc = d3
         .arc()
         .outerRadius(radius - 10)
-        .innerRadius(10);
+        .innerRadius(radius / 2);
 
       const pie = d3.pie();
 
