@@ -630,7 +630,7 @@
       const arc = d3
         .arc()
         .outerRadius(radius - 10)
-        .innerRadius(0);
+        .innerRadius(10);
 
       const pie = d3.pie();
 
