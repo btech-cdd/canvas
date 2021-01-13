@@ -72,3 +72,9 @@ body {
   font-size: 0.75em;
   color: #fff;
 }
+
+#canvas-department-report-vue .btech-department-report-student-hours {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
