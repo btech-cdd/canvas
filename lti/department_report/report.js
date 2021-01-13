@@ -661,7 +661,7 @@
           transform: 'translate(' + w / 2 + ',' + h / 2 + ')'
         });
 
-      var path = svg.selectAll('path')
+      var path = svg.selectAll('whatever')
         .data(pie(dataset))
         .enter()
         .append('path')
