@@ -629,6 +629,7 @@
       const g = svg.append("g").attr("transform", `translate(${width / 2}, ${height / 2})`);
 
       const data = [unenrolledHours, uncompletedEnrolledHours, completedHours];
+      console.log(data);
 
       const radius = Math.min(width, height) / 2;
 
