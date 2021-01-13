@@ -646,7 +646,7 @@
 
       var color = d3.scaleOrdinal(d3.schemeCategory10);;
 
-      var arc = d3.svg.arc()
+      var arc = d3.arc()
         .outerRadius(outerRadius)
         .innerRadius(innerRadius);
 
