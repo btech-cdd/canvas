@@ -617,7 +617,7 @@
       let student = app.showStudent;
       let departmentHours = app.json.dept_code_to_name[app.currentDepartment].hours;
       let enrolledHours = student.enrolledHours;
-      let completedHours = student.enrolledHours;
+      let completedHours = student.completedHours;
       let uncompletedEnrolledHours = enrolledHours - completedHours;
       let unenrolledHours = departmentHours - enrolledHours;
       console.log(student);
