@@ -615,6 +615,11 @@
       const width = w;
       const height = h;
       let student = app.showStudent;
+      let departmentHours = app.json.dept_code_to_name[app.currentDepartment].hours;
+      let enrolledHours = student.enrolledHours;
+      let completedHours = student.enrolledHours;
+      let uncompletedEnrolledHours = enrolledHours - completedHours;
+      let unenrolledHours = departmentHours - enrolledHours;
       console.log(student);
 
       // Creates sources <svg> element
@@ -623,11 +628,12 @@
 
       const g = svg.append("g").attr("transform", `translate(${width / 2}, ${height / 2})`);
 
-      const data = [1, 2, 0.5, 1, 1.5];
+      const data = [unenrolledHours, uncompletedEnrolledHours, completedHours];
 
       const radius = Math.min(width, height) / 2;
 
       const color = d3.scaleOrdinal(d3.schemeCategory10);
+      console.log(color);
 
       const arc = d3
         .arc()
