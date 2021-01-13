@@ -188,22 +188,22 @@
         <div class='btech-department-report-student-hours'>
           <div id='btech-department-report-student-progress-donut' style='float: left;'>Loading...</div>
           <div style='display: inline-block;'>
-            <span>
-              Department Hours:
-            </span>
-            <div style='display: inline-block; width: 4rem; font-size: 1rem;'>
-              <div>
+            <div class='data-item'>
+              <span>
+                Department Hours:
+              </span>
+              <div style='display: inline-block; width: 4rem; font-size: 1rem;'>
                 <span 
-                class='btech-pill-text'
-                :style="{
-                    'background-color': colors.gray,
-                    'color': '#000000',
-                  }">
+                  class='btech-pill-text'
+                  :style="{
+                      'background-color': colors.gray,
+                      'color': '#000000',
+                    }">
                   {{json.dept_code_to_name[currentDepartment].hours}} hrs
                 </span>
               </div>
             </div>
-            <div>
+            <div class='data-item'>
               <span>
                 Enrolled Hours:
               </span>
@@ -218,7 +218,7 @@
                 </span>
               </div>
             </div>
-            <div>
+            <div class='data-item'>
               <span>
                 Completed Hours:
               </span>
