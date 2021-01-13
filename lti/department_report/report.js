@@ -614,6 +614,8 @@
     async _init(app, userId, sisId, graphElId = 'btech-department-report-student-progress-donut', w = 450, h = 450) {
       const width = w;
       const height = h;
+      let student = app.showStudent;
+      console.log(student);
 
       // Creates sources <svg> element
       $('#' + graphElId).empty();
