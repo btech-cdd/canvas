@@ -2,7 +2,8 @@
   let originalTables = $(".btech-tabs-table");
   originalTables.each(function () {
     let originalTable = $(this);
-    let newTable = $("<div class='btech-tabs-container btech-tabs'></div>");
+    let newTable = $("<div class='btech-tabs-container'></div>");
+    let newTableTabsContainer = $("<div class='btech-tabs'></div>");
     let newTableTabs = $("<ul style='list-style-type:none;'></ul>");
     let newTableContent = $("<div style='padding: 10px; background-color: #fff;' ></div>");
     let rows = originalTable.find("> tbody > tr");
@@ -43,7 +44,8 @@
       }
     });
     originalTable.before(newTable);
-    newTable.append(newTableTabs);
+    newTableTabsContainer.append(newTableTabs);
+    newTable.append(newTableTabsContainer);
     newTable.append(newTableContent);
     //set up custom themes from theme parent if needed
     let themeParent = $('#btech-theme-parent');
