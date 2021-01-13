@@ -612,65 +612,35 @@
       graph.graphSettings = {}
     }
     async _init(app, userId, sisId, graphElId = 'btech-department-report-student-progress-donut', w = 450, h = 450) {
-      var dataset = [{
-          name: 'IE',
-          percent: 39.10
-        },
-        {
-          name: 'Chrome',
-          percent: 32.51
-        },
-        {
-          name: 'Safari',
-          percent: 13.68
-        },
-        {
-          name: 'Firefox',
-          percent: 8.71
-        },
-        {
-          name: 'Others',
-          percent: 6.01
-        }
-      ];
+      const width = 800;
+      const height = 600;
 
-      var pie = d3.pie()
-        .value(function (d) {
-          return d.percent
-        })
-        .sort(null)
-        .padAngle(.03);
+      // Creates sources <svg> element
+      const svg = d3.select("#" + graphElId).append("svg").attr("width", width).attr("height", height);
 
-      var outerRadius = w / 2;
-      var innerRadius = 100;
+      const g = svg.append("g").attr("transform", `translate(${width / 2}, ${height / 2})`);
 
-      var color = d3.scaleOrdinal(d3.schemeCategory10);;
+      const data = [1, 2, 0.5, 1, 1.5];
 
-      var arc = d3.arc()
-        .outerRadius(outerRadius)
-        .innerRadius(innerRadius);
+      const radius = Math.min(width, height) / 2;
 
-      var svg = d3.select("#" + graphElId)
-        .append("svg")
-        .attr({
-          width: w,
-          height: h,
-          class: 'shadow'
-        }).append('g')
-        .attr({
-          transform: 'translate(' + w / 2 + ',' + h / 2 + ')'
-        });
+      const color = d3.scaleOrdinal(d3.schemeCategory10);
 
-      var path = svg.selectAll('whatever')
-        .data(pie(dataset))
-        .enter()
-        .append('path')
-        .attr({
-          d: arc,
-          fill: function (d, i) {
-            return color(d.data.name);
-          }
-        });
+      const arc = d3
+        .arc()
+        .outerRadius(radius - 10)
+        .innerRadius(0);
+
+      const pie = d3.pie();
+
+      const pied_data = pie(data);
+
+      const arcs = g
+        .selectAll(".arc")
+        .data(pied_data)
+        .join((enter) => enter.append("path").attr("class", "arc").style("stroke", "white"));
+
+      arcs.attr("d", arc).style("fill", (d, i) => color(i));
     }
   }
 })();
