@@ -616,6 +616,7 @@
       const height = 600;
 
       // Creates sources <svg> element
+      $('#' + graphElId).empty();
       const svg = d3.select("#" + graphElId).append("svg").attr("width", width).attr("height", height);
 
       const g = svg.append("g").attr("transform", `translate(${width / 2}, ${height / 2})`);
