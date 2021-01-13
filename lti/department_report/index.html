@@ -165,6 +165,20 @@
               {{calcDepartmentScoreText(showStudent)}}
             </span>
           </div>
+          Progress Ratio:
+          <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
+            <span 
+            class='btech-pill-text'
+            :style="{
+                'background-color': calcDepartmentTimeColorBg(showStudent),
+                'color': '#ffffff',
+              }">
+              {{calcDepartmentTimeText(showStudent)}} 
+            </span>
+          </div>
+        </div>
+        <div id='btech-department-report-student-progress-donut' style='float: left;'>Loading...</div>
+        <div id='btech-department-report-student-submissions-graph'>Loading...</div>
           Department Hours:
           <div style='display: inline-block; width: 4rem; font-size: 1rem;'>
             <span 
@@ -198,20 +212,6 @@
               {{showStudent.enrolledHours}} hrs
             </span>
           </div>
-          Progress Ratio:
-          <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
-            <span 
-            class='btech-pill-text'
-            :style="{
-                'background-color': calcDepartmentTimeColorBg(showStudent),
-                'color': '#ffffff',
-              }">
-              {{calcDepartmentTimeText(showStudent)}} 
-            </span>
-          </div>
-        </div>
-        <div id='btech-department-report-student-progress-donut'>Loading...</div>
-        <div id='btech-department-report-student-submissions-graph'>Loading...</div>
         <div v-if='showStudent !== "all"'>
           <div 
             style='padding-top: 0.25rem; padding-bottom: 0.25rem;'
