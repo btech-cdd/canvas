@@ -609,62 +609,68 @@
     constructor() {
       let graph = this;
       graph.app = {};
-      graph.graphSettings = {
-      }
+      graph.graphSettings = {}
     }
     async _init(app, userId, sisId, graphElId = 'btech-department-report-student-progress-donut', w = 450, h = 450) {
-      var width = w,
-      height = h,
-      margin = 40
+      var dataset = [{
+          name: 'IE',
+          percent: 39.10
+        },
+        {
+          name: 'Chrome',
+          percent: 32.51
+        },
+        {
+          name: 'Safari',
+          percent: 13.68
+        },
+        {
+          name: 'Firefox',
+          percent: 8.71
+        },
+        {
+          name: 'Others',
+          percent: 6.01
+        }
+      ];
 
-      // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
-      var radius = Math.min(width, height) / 2 - margin
+      var pie = d3.layout.pie()
+        .value(function (d) {
+          return d.percent
+        })
+        .sort(null)
+        .padAngle(.03);
 
-      // append the svg object to the div called 'my_dataviz'
+      var outerRadius = w / 2;
+      var innerRadius = 100;
+
+      var color = d3.scale.category10();
+
+      var arc = d3.svg.arc()
+        .outerRadius(outerRadius)
+        .innerRadius(innerRadius);
+
       var svg = d3.select("#" + graphElId)
         .append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+        .attr({
+          width: w,
+          height: h,
+          class: 'shadow'
+        }).append('g')
+        .attr({
+          transform: 'translate(' + w / 2 + ',' + h / 2 + ')'
+        });
 
-      // Create dummy data
-      var data = {
-        a: 9,
-        b: 20,
-        c: 30,
-        d: 8,
-        e: 12
-      }
-
-      // set the color scale
-      var color = d3.scaleOrdinal()
-        .domain(data)
-        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"])
-
-      // Compute the position of each group on the pie:
-      var pie = d3.pie()
-        .value(function (d) {
-          return d.value;
-        })
-      var data_ready = pie(d3.entries(data))
-
-      // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
-      svg
-        .selectAll('whatever')
-        .data(data_ready)
+      var path = svg.selectAll('path')
+        .data(pie(dataset))
         .enter()
         .append('path')
-        .attr('d', d3.arc()
-          .innerRadius(100) // This is the size of the donut hole
-          .outerRadius(radius)
-        )
-        .attr('fill', function (d) {
-          return (color(d.data.key))
-        })
-        .attr("stroke", "black")
-        .style("stroke-width", "2px")
-        .style("opacity", 0.7)
+        .attr({
+          d: arc,
+          fill: function (d, i) {
+            return color(d.data.name);
+          }
+        });
     }
   }
 })();
