@@ -146,35 +146,41 @@
       <div v-show='showStudent !== "all"' class='btech-modal' style='display: inline-block; background-color: #fff; padding: 0.5rem;'>
         <div class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff", "width": "1rem", "float": "right", "text-align": "center", "cursor": "pointer"}' @click='closeStudentReport()'>X</div>
         <div v-if='showStudent !== "all"'>
-          <div 
-            class='btech-user-name'
-            style='margin-bottom: .25rem;'
-            >
-            <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[showStudent.id].canvas_id" target="_blank">
-              <strong>{{showStudent.name}}</strong>
-            </a>
-          </div>
-          Average Grade:
-          <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
-            <span 
+          <div>
+            <div 
+              class='btech-user-name'
+              style='margin-bottom: .25rem;'
+              >
+              <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[showStudent.id].canvas_id" target="_blank">
+                <strong>{{showStudent.name}}</strong>
+              </a>
+            </div>
+            <span>
+              Average Grade:
+            </span>
+            <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
+              <span 
+                class='btech-pill-text'
+                :style="{
+                    'background-color': calcDepartmentScoreColorBg(showStudent),
+                    'color': calcDepartmentScoreColorFont(showStudent),
+                  }">
+                {{calcDepartmentScoreText(showStudent)}}
+              </span>
+            </div>
+            <span>
+              Progress Ratio:
+            </span>
+            <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
+              <span 
               class='btech-pill-text'
               :style="{
-                  'background-color': calcDepartmentScoreColorBg(showStudent),
-                  'color': calcDepartmentScoreColorFont(showStudent),
+                  'background-color': calcDepartmentTimeColorBg(showStudent),
+                  'color': '#ffffff',
                 }">
-              {{calcDepartmentScoreText(showStudent)}}
-            </span>
-          </div>
-          Progress Ratio:
-          <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
-            <span 
-            class='btech-pill-text'
-            :style="{
-                'background-color': calcDepartmentTimeColorBg(showStudent),
-                'color': '#ffffff',
-              }">
-              {{calcDepartmentTimeText(showStudent)}} 
-            </span>
+                {{calcDepartmentTimeText(showStudent)}} 
+              </span>
+            </div>
           </div>
         </div>
         <div id='btech-department-report-student-progress-donut' style='float: left;'>Loading...</div>
