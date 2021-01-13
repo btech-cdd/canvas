@@ -41,59 +41,6 @@
   font-size: 1rem;
 }
 
-
-#content #wiki_page_show img[style*="float: left"], 
-#content #assignment_show img[style*="float: left"], 
-#content #quiz_show img[style*="float: left"] {
-  margin: 5px 15px 0px 0px;
-}
-
-#content #wiki_page_show img[style*="float: right"], 
-#content #assignment_show img[style*="float: right"], 
-#content #quiz_show img[style*="float: right"] {
-  margin: 5px 0px 0px 15px;
-}
-
-#content #wiki_page_show ol, 
-#content #wiki_page_show ul, 
-#content #assignment_show ol, 
-#content #assignment_show ul, 
-#content #quiz_show_show ol, 
-#content #quiz_show_show ul {
-  padding-left: 20px;
-  margin-left: 0;
-}
-
-#content #wiki_page_show ol li, 
-#content #wiki_page_show ul li, 
-#content #assignment_show ol li, 
-#content #assignment_show ul li, 
-#content #quiz_show_show ol li, 
-#content #quiz_show_show ul li {
-  list-style-position: outside;
-  padding-left: 0;
-}
-
-#content #wiki_page_show .btech-content-box,
-#content #assignment_show .btech-content-box,
-#content #quiz_show .btech-content-box {
-  border: 1px solid #ddd;
-  border-radius: 2px;
-}
-
-#content #wiki_page_show .btech-content-box .btech-content-box-body,
-#content #assignment_show .btech-content-box .btech-content-box-body,
-#content #quiz_show .btech-content-box .btech-content-box-body {
-  padding: 8px 8px;
-}
-
-#content #wiki_page_show .btech-content-box .btech-content-box-head,
-#content #assignment_show .btech-content-box .btech-content-box-head,
-#content #quiz_show .btech-content-box .btech-content-box-head {
-  padding: 2px 8px;
-  background-color: #f8f8f8;
-}
-
 .btech-citation {
   font-size: .66rem;
 }
