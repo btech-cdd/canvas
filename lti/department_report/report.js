@@ -611,7 +611,7 @@
       graph.app = {};
       graph.graphSettings = {}
     }
-    async _init(app, userId, sisId, graphElId = 'btech-department-report-student-progress-donut', w = 450, h = 450) {
+    async _init(app, userId, sisId, graphElId = 'btech-department-report-student-progress-donut', w = 200, h = 200) {
       const width = w;
       const height = h;
       let student = app.showStudent;
