@@ -153,35 +153,37 @@
               class='btech-user-name'
               style='margin-bottom: .25rem;'
               >
-              <a :href="'https://btech.instructure.com/users/' + json.sis_to_canv[showStudent.id].canvas_id" target="_blank">
+              <a 
+                style='width: 10rem;' 
+                :href="'https://btech.instructure.com/users/' + json.sis_to_canv[showStudent.id].canvas_id" target="_blank">
                 <strong>{{showStudent.name}}</strong>
               </a>
-            </div>
-            <span>
-              Average Grade:
-            </span>
-            <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
-              <span 
+              <span>
+                Average Grade:
+              </span>
+              <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
+                <span 
+                  class='btech-pill-text'
+                  :style="{
+                      'background-color': calcDepartmentScoreColorBg(showStudent),
+                      'color': calcDepartmentScoreColorFont(showStudent),
+                    }">
+                  {{calcDepartmentScoreText(showStudent)}}
+                </span>
+              </div>
+              <span>
+                Progress Ratio:
+              </span>
+              <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
+                <span 
                 class='btech-pill-text'
                 :style="{
-                    'background-color': calcDepartmentScoreColorBg(showStudent),
-                    'color': calcDepartmentScoreColorFont(showStudent),
+                    'background-color': calcDepartmentTimeColorBg(showStudent),
+                    'color': '#ffffff',
                   }">
-                {{calcDepartmentScoreText(showStudent)}}
-              </span>
-            </div>
-            <span>
-              Progress Ratio:
-            </span>
-            <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
-              <span 
-              class='btech-pill-text'
-              :style="{
-                  'background-color': calcDepartmentTimeColorBg(showStudent),
-                  'color': '#ffffff',
-                }">
-                {{calcDepartmentTimeText(showStudent)}} 
-              </span>
+                  {{calcDepartmentTimeText(showStudent)}} 
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -211,7 +213,7 @@
                 <span 
                 class='btech-pill-text'
                 :style="{
-                    'background-color': colors.blue,
+                    'background-color': colors.red,
                     'color': '#ffffff',
                   }">
                   {{showStudent.enrolledHours}} hrs
@@ -226,7 +228,7 @@
                 <span 
                 class='btech-pill-text'
                 :style="{
-                    'background-color': colors.red,
+                    'background-color': colors.blue,
                     'color': '#ffffff',
                   }">
                   {{showStudent.completedHours}} hrs
