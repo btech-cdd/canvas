@@ -153,11 +153,13 @@
               class='btech-user-name'
               style='margin-bottom: .25rem;'
               >
-              <a 
-                style='width: 10rem;' 
-                :href="'https://btech.instructure.com/users/' + json.sis_to_canv[showStudent.id].canvas_id" target="_blank">
-                <strong>{{showStudent.name}}</strong>
-              </a>
+              <div style='display: inline-block; width: 8rem; font-size: 1rem;'>
+                <a 
+                  style='width: 10rem;' 
+                  :href="'https://btech.instructure.com/users/' + json.sis_to_canv[showStudent.id].canvas_id" target="_blank">
+                  <strong>{{showStudent.name}}</strong>
+                </a>
+              </div>
               <span>
                 Average Grade:
               </span>
