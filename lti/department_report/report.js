@@ -253,7 +253,7 @@
         if (user.completedHours === undefined || user.completedHours === 0) return app.colors.gray;
         let timePerc = Math.round((user.enrolledHours / user.completedHours) * 100);
         if (timePerc <= 100) return app.colors.green;
-        if (timePerc < 150) return app.colors.yellow;
+        if (timePerc <= 150) return app.colors.yellow;
         return app.colors.red;
       },
 
