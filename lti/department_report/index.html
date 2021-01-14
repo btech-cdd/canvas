@@ -153,9 +153,8 @@
               class='btech-user-name'
               style='margin-bottom: .25rem;'
               >
-              <div style='display: inline-block; width: 8rem; font-size: 1rem;'>
+              <div style='display: inline-block; width: 10rem; font-size: 1rem;'>
                 <a 
-                  style='width: 10rem;' 
                   :href="'https://btech.instructure.com/users/' + json.sis_to_canv[showStudent.id].canvas_id" target="_blank">
                   <strong>{{showStudent.name}}</strong>
                 </a>
@@ -193,7 +192,9 @@
           <div id='btech-department-report-student-progress-donut' style='float: left;'>Loading...</div>
           <div style='display: inline-block;'>
             <div class='data-item'>
-              <span>
+              <span
+                style="width: 10rem;"
+              >
                 Department Hours:
               </span>
               <div style='display: inline-block; width: 4rem; font-size: 1rem;'>
