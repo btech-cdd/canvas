@@ -26,7 +26,7 @@
           <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>90-100%</span>
           <br>
           <br>
-        Progress Ratio:
+        Progress Ratio (P.R.):
           <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;150%</span>
           <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>100>149%</span>
           <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-100%</span>
@@ -67,7 +67,8 @@
                   <div @click='showStudent=user; showStudent.year = year; console.log(showStudent); openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);' class='btech-user-name' style='width: 180px; display: inline-block; font-size: 1rem; cursor: pointer;'>
                     <strong>{{user.name}}</strong>
                   </div>
-                  <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
+                  <div style='display: inline-block; width: 6rem; font-size: 1rem;'>
+                    <span>Grade: </span>
                     <span 
                     class='btech-pill-text'
                     :style="{
@@ -78,16 +79,7 @@
                     </span>
                   </div>
                   <div style='display: inline-block; width: 6rem; font-size: 1rem;'>
-                    <span 
-                    class='btech-pill-text'
-                    :style="{
-                        'background-color': colors.gray,
-                        'color': '#000',
-                      }">
-                      {{user.completedHours}} / {{user.enrolledHours}} hrs
-                    </span>
-                  </div>
-                  <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
+                    <span>P.R.</span>
                     <span 
                     class='btech-pill-text'
                     :style="{
