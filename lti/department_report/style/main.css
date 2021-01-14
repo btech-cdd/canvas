@@ -80,7 +80,7 @@ body {
 #canvas-department-report-vue .btech-department-report-student-hours .data-item {
   margin-bottom: 1rem;
 }
-#canvas-department-report-vue .btech-department-report-student-hours .data-item span {
+#canvas-department-report-vue .btech-department-report-student-hours .data-item .data-item-title {
   display: inline-block;
   width: 8rem;
 }
