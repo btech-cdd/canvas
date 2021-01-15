@@ -264,13 +264,13 @@
                     style='width: 20rem;'
                     :style='{
                       "background-color": colors.gray,
-                      "width": (course.hours / 90) * 20 + "rem"
+                      "width": ((course.hours / 90) * 20) + "rem"
                     }'
                   >
                     <div class='btech-course-progress-bar-fill' :style="
                     {
                       'background-color': getCourseProgressBarColor(course),
-                      width: course.progress + '%'
+                      'width': course.progress + '%'
                     }
                     ">
                     </div>
