@@ -157,6 +157,7 @@
         let app = this;
         let usersByYear = {};
         for (let year in app.json['progress'][app.currentDepartment]) {
+          console.log(year);
           let users = app.json['progress'][app.currentDepartment][year];
           let userList = [];
           let base = users['base'];
