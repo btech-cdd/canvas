@@ -157,13 +157,14 @@
         let app = this;
         let usersByYear = {};
         for (let year in app.json['progress'][app.currentDepartment]) {
-          console.log(year);
           let users = app.json['progress'][app.currentDepartment][year];
+          console.log(users);
           let userList = [];
           let base = users['base'];
           for (let id in users) {
             if (id !== "base") {
               if (id in app.json['sis_to_canv']) {
+                console.log(id);
                 let name = app.json.sis_to_canv[id].name;
                 let courses = users[id];
                 let core = [];
