@@ -164,23 +164,27 @@
                   {{calcDepartmentScoreText(showStudent)}}
                 </span>
               </div>
-              <span>
-                Progress Ratio:
-              </span>
-              <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
-                <span 
-                class='btech-pill-text'
-                :style="{
-                    'background-color': calcDepartmentTimeColorBg(showStudent),
-                    'color': '#ffffff',
-                  }">
-                  {{calcDepartmentTimeText(showStudent)}} 
+              <div v-show='false'>
+                <span>
+                  Progress Ratio:
                 </span>
-              </div>
+                <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
+                  <span 
+                  class='btech-pill-text'
+                  :style="{
+                      'background-color': calcDepartmentTimeColorBg(showStudent),
+                      'color': '#ffffff',
+                    }">
+                    {{calcDepartmentTimeText(showStudent)}} 
+                  </span>
+                </div>
+            </div>
             </div>
           </div>
         </div>
-        <div class='btech-department-report-student-hours'>
+        <div 
+          v-show='false'
+          class='btech-department-report-student-hours'>
           <div id='btech-department-report-student-progress-donut' style='float: left;'>Loading...</div>
           <div style='display: inline-block;'>
             <div class='data-item'>
@@ -259,6 +263,7 @@
                       {{json['progress'][currentDepartment][showStudent.year]['base'][course.code].name}} ({{course.code}})
                     </a>
                   </div>
+                  <!--Change the first 90 under width to the course's hours once figure out how to include that-->
                   <div
                     class='btech-course-progress-bar'
                     style='width: 20rem;'
