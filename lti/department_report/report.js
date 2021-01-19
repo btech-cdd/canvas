@@ -83,6 +83,7 @@
         let departmentCode = app.json.canv_dept_to_jenz[dept][i];
         if (departmentCode in app.json.progress) {
           availableDepartments.push(departmentCode);
+          console.log(app.json.progress[departmentCode]);
         }
       }
 
