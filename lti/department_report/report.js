@@ -106,7 +106,7 @@
 
     data: function () {
       return {
-        showProgressRatio: false,
+        showProgressRatio: true,
         loading: true,
         showStudent: 'all',
         loadingStudentSubmissionsInProgress: false,
