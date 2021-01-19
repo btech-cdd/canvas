@@ -196,7 +196,7 @@
                       'last_activity': course.last_activity,
                       'progress': course.progress,
                       'start': course.start,
-
+                      'hours': course.hours
                     }
                     if (base[courseCode].type === 'CORE') {
                       core.push(courseData);
