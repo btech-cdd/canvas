@@ -171,7 +171,7 @@
                 let elective = [];
                 let summary = courses['summary'];
                 let deptProgress = 0;
-                let enrolledHours = app.json.sis_to_canv[id].enrollment_hours;
+                let enrolledHours = app.json.sis_to_canv[id].enrolled_hours;
                 let completedHours = 0;
                 for (let courseCode in courses) {
                   if (courseCode !== "summary") {
