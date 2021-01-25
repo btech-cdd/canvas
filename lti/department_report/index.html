@@ -18,37 +18,38 @@
     </div>
     <div v-else>
       <div style='position: sticky; width: 100%; background-color: #fff; z-index: 10; padding: 4px; box-sizing: border-box; box-shadow: 0px 5px 5px #888; margin-bottom: 1rem; top: 0;'>
-        <div style='display: inline-block;'>
-        Grade: 
-          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>0-59%</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>60-79%</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>80-89%</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>90-100%</span>
-          <br>
-          <br>
-          <div
-            v-show='showProgressRatio'
-          >
-          Progress Ratio (P.R.):
-            <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;150%</span>
-            <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>101-150%</span>
-            <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-100%</span>
+          <div style='display: inline-block;'>
+            Grade: 
+            <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>0-59%</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>60-79%</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>80-89%</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>90-100%</span>
+            <br>
+            <br>
+            <div
+              v-show='showProgressRatio'
+            >
+              SAP:
+              <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;150%</span>
+              <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>101-150%</span>
+              <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-100%</span>
+            </div>
           </div>
-        </div>
-        <div style='display: inline-block;'>
-        Submission History:
-          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;10 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>7-9 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-7 days</span>
-          <br>
-          <br>
-        Course Enrollment:
-          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;180 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>121-180 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>61-120 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-60 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.complete, "color": "#fff"}'>Completed</span>
-        </div>
+          <div style='display: inline-block;'>
+            Submission History:
+            <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;10 days</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>7-9 days</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-7 days</span>
+            <br>
+            <br>
+            Course Enrollment:
+            <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;180 days</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>121-180 days</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>61-120 days</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-60 days</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.complete, "color": "#fff"}'>Completed</span>
+          </div>
+          <div>WARNING: The SAP provided in this report is an estimation and not the student's official SAP.</div>
       </div>
       <div v-show='showStudent==="all"'>
         <select @change='loadDepartmentUsers' v-model='currentDepartment'>
@@ -85,7 +86,7 @@
                   <div 
                     v-show='showProgressRatio' 
                     style='display: inline-block; width: 6rem; font-size: 1rem;'>
-                    <span>P.R.</span>
+                    <span>SAP</span>
                     <span 
                     class='btech-pill-text'
                     :style="{
@@ -172,7 +173,7 @@
               </div>
               <div v-show='showProgressRatio'>
                 <span>
-                  Progress Ratio:
+                  SAP:
                 </span>
                 <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
                   <span 
