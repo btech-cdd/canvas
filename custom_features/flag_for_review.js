@@ -1,5 +1,6 @@
 CANVAS_FLAGS = {};
 (async function () {
+  return;
   let canvasbody = $("#application");
   /*
   lots of options for sorting / filtering flags
