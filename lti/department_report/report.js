@@ -174,6 +174,7 @@
                 let enrolledHours = app.json.sis_to_canv[id].enrolled_hours;
                 let manualHours = false;
                 if (enrolledHours === 0 || isNaN(enrolledHours)) {
+                  enrolledHours = 0;
                   manualHours = true;
                 }
                 let completedHours = 0;
