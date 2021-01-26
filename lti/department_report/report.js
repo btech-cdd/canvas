@@ -17,6 +17,7 @@
 ////CHANGE NAME TO SORT BY FIRST NAME, ALSO CHANGE TO SHOW FIRST NAME FIRST THEN LAST NAME
 //EXCLUDE COURSES COMPLETED AS HS STUDENT WHEN CALCULATING ENROLLED/COMPLETED HOURS
 (async function () {
+  $('#canvas-department-report-vue').show();
   async function delay(ms) {
     // return await for better async stack trace support in case of errors.
     return await new Promise(resolve => setTimeout(resolve, ms));
