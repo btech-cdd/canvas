@@ -64,7 +64,7 @@
             }
             //pull in data from hs database
             let terms;
-            await $.get("https://jhveem.xyz/api/enroll_hs/1994271", function (data) {
+            await $.get("https://jhveem.xyz/api/enroll_hs/" + app.userId, function (data) {
               terms = data;
             });
             app.terms = terms;
