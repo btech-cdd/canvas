@@ -910,6 +910,28 @@
               return htmlDate;
             },
 
+            async getHSEnrollment() {
+
+            },
+
+            async enrollHS() {
+              let app = this;
+              let studentList = app.studentListFromStudents(app.studentsFound);
+              await $.post('https://jhveem.xyz/api/enroll_hs', {
+                'students': JSON.stringify([app.userId]),
+                'term_data': JSON.stringify({
+                  hours: app.saveTerm.hours,
+                  type: app.saveTerm.type,
+                  startDate: app.saveTerm.startDate,
+                  endDate: app.saveTerm.endDate,
+                  school: app.saveTerm.school
+                }),
+              }, function (data) {
+                console.log(data);
+              })
+              location.reload();
+            }
+
           }
         })
       },
