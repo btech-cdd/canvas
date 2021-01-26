@@ -921,10 +921,11 @@
 
             formatDate(date) {
               date = new Date(date);
+              date.setDate(date.getDate() + 1);
               let month = '' + (date.getMonth() + 1);
               if (month.length === 1) month = '0' + month;
 
-              let day = '' + (date.getDate() + 1);
+              let day = '' + date.getDate();
               if (day.length === 1) day = '0' + day;
 
               let formattedDate =  day + "/" + month + "/" + date.getFullYear();
