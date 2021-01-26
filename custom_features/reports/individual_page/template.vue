@@ -205,9 +205,9 @@
                   </option>
                 </select>
               </div>
-              <input type='button' @click='enroll()' value='enroll'>
+              <input type='button' @click='enrollHS()' value='enroll'>
               <div class='existing-terms'>
-                <div v-for='term in enrollment_tab.terms'>
+                <div v-for='term in terms'>
                   <span>{{term.startDate}}</span>
                   <span>{{term.endDate}}</span>
                   <span>{{term.hours}}</span>
