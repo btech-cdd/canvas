@@ -920,7 +920,8 @@
             },
 
             formatDate(date) {
-
+              date = new Date(date);
+              return date.getFullYear();
             },
             async deleteHSEnrollmentTerm(term) {
               let app = this;
