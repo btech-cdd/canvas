@@ -198,7 +198,7 @@
                 <input type='number' min='30' max='300' step='15' v-model='enrollment_tab.saveTerm.hours'>
                 <br>
                 <span>School: </span>
-                <select v-model='saveTerm.school'>
+                <select v-model='enrollment_tab.saveTerm.school'>
                   <option value='' selected disabled>-select school-</option>
                   <option v-for='school in schools' :value='school'>
                     {{school}}
