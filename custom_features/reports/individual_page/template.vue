@@ -200,7 +200,7 @@
                 <span>School: </span>
                 <select v-model='enrollment_tab.saveTerm.school'>
                   <option value='' selected disabled>-select school-</option>
-                  <option v-for='school in schools' :value='school'>
+                  <option v-for='school in enrollment_tab.schools' :value='school'>
                     {{school}}
                   </option>
                 </select>
