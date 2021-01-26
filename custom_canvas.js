@@ -265,6 +265,12 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
   https://btech.instructure.com/accounts/3/theme_editor
   */
   feature("login_page", {}, /^\/login/);
+
+  let rCheckInCourse = /^\/courses\/([0-9]+)/;
+  //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA
+  if (rCheckInCourse.test(window.location.pathname)) {
+    feature('modules/course_features');
+  }
   add_javascript_library(SOURCE_URL + "/custom_canvas_import.js");
   $.getScript("https://cdn.jsdelivr.net/npm/vue").done(function () {
     $.getScript(SOURCE_URL + "/custom_features/editor_toolbar/toolbar.js").done(() => {
@@ -330,7 +336,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             feature('modules/convert_to_page');
 
             featureBeta('rubrics/gen_comment');
-            feature('modules/course_features');
             // feature('instructional/glossary');
             let courseId = CURRENT_COURSE_ID;
             //COURSE SPECIFIC FEATURES

@@ -124,6 +124,27 @@
               showGradeDetails: false,
               includedAssignments: {},
               courseTotalPoints: {},
+              enrollment_tab: {
+                managedStudent: {},
+                task: 'enroll',
+                schools: [
+                  'Sky View',
+                  'Cache High',
+                  'Bear River',
+                  'Box Elder',
+                  'Mountain Crest',
+                  'Green Canyon',
+                  'Logan High',
+                  'Ridgeline',
+                ],
+                terms: [],
+                saveTerm: {},
+                studentIdInput: '',
+                studentsFound: [],
+                studentsNotFound: [],
+                dept: '',
+                courses: [],
+              }
             }
           },
 

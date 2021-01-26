@@ -5,6 +5,7 @@
         <ul>
           <li @click="menu='report'">Student Course Report</li>
           <li @click="menu='period'">Grades Between Dates</li>
+          <li @click="menu='enroll'">HS Enrollment Periods</li>
           <li style='float: right;' v-on:click='close()'>X</li>
         </ul>
       </div>
@@ -176,6 +177,41 @@
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+
+            <div v-if="menu=='enroll'">
+              <div class='term-data-container'>
+                <span>Start Date</span>
+                <input type='date' v-model='enrollment_tab.saveTerm.startDate'>
+                <span>End Date</span>
+                <input type='date' v-model='enrollment_tab.saveTerm.endDate'>
+                <br>
+                <span>Term Type</span>
+                <select v-model='enrollment_tab.saveTerm.type'>
+                  <option>Semester</option>
+                  <option>Trimester</option>
+                </select>
+                <br>
+                <span>Hours: </span>
+                <input type='number' min='30' max='300' step='15' v-model='enrollment_tab.saveTerm.hours'>
+                <br>
+                <span>School: </span>
+                <select v-model='saveTerm.school'>
+                  <option value='' selected disabled>-select school-</option>
+                  <option v-for='school in schools' :value='school'>
+                    {{school}}
+                  </option>
+                </select>
+              </div>
+              <input type='button' @click='enroll()' value='enroll'>
+              <div class='existing-terms'>
+                <div v-for='term in enrollment_tab.terms'>
+                  <span>{{term.startDate}}</span>
+                  <span>{{term.endDate}}</span>
+                  <span>{{term.hours}}</span>
+                  <span>{{term.school}}</span>
                 </div>
               </div>
             </div>
