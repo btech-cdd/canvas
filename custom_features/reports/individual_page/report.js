@@ -919,11 +919,11 @@
               await $.post('https://jhveem.xyz/api/enroll_hs', {
                 'students': JSON.stringify([app.userId]),
                 'term_data': JSON.stringify({
-                  hours: app.saveTerm.hours,
-                  type: app.saveTerm.type,
-                  startDate: app.saveTerm.startDate,
-                  endDate: app.saveTerm.endDate,
-                  school: app.saveTerm.school
+                  hours: app.enrollment_tab.saveTerm.hours,
+                  type: app.enrollment_tab.saveTerm.type,
+                  startDate: app.enrollment_tab.saveTerm.startDate,
+                  endDate: app.enrollment_tab.saveTerm.endDate,
+                  school: app.enrollment_tab.saveTerm.school
                 }),
               }, function (data) {
                 console.log(data);
