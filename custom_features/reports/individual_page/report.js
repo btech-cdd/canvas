@@ -928,7 +928,7 @@
               let day = '' + date.getDate();
               if (day.length === 1) day = '0' + day;
 
-              let formattedDate =  day + "/" + month + "/" + date.getFullYear();
+              let formattedDate =  month + "/" + day + "/" + date.getFullYear();
               return formattedDate;
             },
             async deleteHSEnrollmentTerm(term) {
