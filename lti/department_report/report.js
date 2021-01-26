@@ -38,7 +38,7 @@
   this.APP = new Vue({
     el: '#canvas-department-report-vue',
     mounted: async function () {
-      $('#canvas-department-report-vue').style({visibility: 'visible'});
+      $('#canvas-department-report-vue').css({visibility: 'visible'});
       let app = this;
       let dept = '' + CURRENT_DEPARTMENT;
 
