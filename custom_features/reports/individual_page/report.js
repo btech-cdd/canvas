@@ -63,11 +63,7 @@
               this.userId = ENV.current_user_id;
             }
             //pull in data from hs database
-            let terms;
-            await $.get("https://jhveem.xyz/api/enroll_hs/" + app.userId, function (data) {
-              terms = data;
-            });
-            app.terms = terms;
+            app.refreshHSEnrollmentTerms();
 
             this.courses = await this.getCourseData();
             this.loading = false;
@@ -908,6 +904,15 @@
 
               let htmlDate = date.getFullYear() + "-" + month + "-" + day;
               return htmlDate;
+            },
+
+            async refreshHSEnrollmentTerms() {
+              let app = this;
+              let terms;
+              await $.get("https://jhveem.xyz/api/enroll_hs/" + app.userId, function (data) {
+                terms = data;
+              });
+              app.terms = terms
             },
 
             async getHSEnrollment() {
