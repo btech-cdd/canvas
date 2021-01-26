@@ -916,7 +916,6 @@
 
             async enrollHS() {
               let app = this;
-              let studentList = app.studentListFromStudents(app.studentsFound);
               await $.post('https://jhveem.xyz/api/enroll_hs', {
                 'students': JSON.stringify([app.userId]),
                 'term_data': JSON.stringify({
