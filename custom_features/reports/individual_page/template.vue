@@ -206,7 +206,9 @@
                 </select>
               </div>
               <input type='button' @click='enrollHS()' value='enroll'>
+              <br>
               <div class='existing-terms'>
+                <h2>Existing Enrollments</h2>
                 <div v-for='term in terms'>
                   <span>
                     <i @click='deleteHSEnrollmentTerm(term);' style='cursor: pointer;' class='icon-trash'></i>
