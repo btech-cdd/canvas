@@ -931,6 +931,7 @@
                   school: app.enrollment_tab.saveTerm.school
                 }),
               }, function (data) {
+                app.refreshHSEnrollmentTerms();
                 console.log(data);
               })
             }
