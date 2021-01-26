@@ -208,10 +208,13 @@
               <input type='button' @click='enrollHS()' value='enroll'>
               <div class='existing-terms'>
                 <div v-for='term in terms'>
-                  <span>{{term.startDate}}</span>
-                  <span>{{term.endDate}}</span>
+                  <span>{{formatDate(term.startDate)}}</span>
+                  <span>{{formatDate(term.endDate)}}</span>
                   <span>{{term.hours}}</span>
                   <span>{{term.school}}</span>
+                  <span style='display: inline-block;'>
+                    <i @click='deleteHSEnrollmentTerm(term);' style='font-size: 2rem; cursor: pointer;' class='icon-trash'></i>
+                  </span>
                 </div>
               </div>
             </div>

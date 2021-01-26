@@ -919,6 +919,20 @@
 
             },
 
+            formatDate(date) {
+
+            },
+            async deleteHSEnrollmentTerm(term) {
+              let app = this;
+              await $.delete('https://jhveem.xyz/api/enroll_hs/' + term._id, {});
+              for (let i = 0; i < app.terms.length; i++) {
+                if (app.terms[i]._id === term._id) {
+                  app.terms.splice(i, 1);
+                  return;
+                }
+              }
+            },
+
             async enrollHS() {
               let app = this;
               await $.post('https://jhveem.xyz/api/enroll_hs', {
