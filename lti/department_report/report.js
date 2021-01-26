@@ -172,6 +172,10 @@
                 let summary = courses['summary'];
                 let deptProgress = 0;
                 let enrolledHours = app.json.sis_to_canv[id].enrolled_hours;
+                let manualHours = false;
+                if (enrolledHours === 0 || isNaN(enrolledHours)) {
+                  manualHours = true;
+                }
                 let completedHours = 0;
                 for (let courseCode in courses) {
                   if (courseCode !== "summary") {
@@ -179,7 +183,7 @@
                     //THIS NEEDS TO BE CONFIRMED THAT IT IS CONSISTENT WITH HOW THINGS ARE CALCULATED ON THE JENZABAR END
                     if (course.contract_begin !== undefined) {
                       if (course.progress >= 100) {
-                        // enrolledHours += course.hours;
+                        if (manualHours) enrolledHours += course.hours;
                         completedHours += course.hours;
                       } else {
                         let today = new Date();
@@ -188,7 +192,7 @@
                           let completedTime = today - new Date(course.contract_begin);
                           let percTime = completedTime / totalTime;
                           let courseEnrolledHours = percTime * course.hours;
-                          // enrolledHours += courseEnrolledHours;
+                          if (manualHours) enrolledHours += courseEnrolledHours;
                           let courseCompletedHours = course.hours * course.progress * .01;
                           completedHours += courseCompletedHours;
                         }
