@@ -216,6 +216,7 @@
                   <span>{{formatDate(term.startDate)}} - {{formatDate(term.endDate)}}</span>
                   <span>{{term.hours}} HRS</span>
                   <span>{{term.school}}</span>
+                  <span>{{term.type}}</span>
                 </div>
               </div>
             </div>
