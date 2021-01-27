@@ -666,7 +666,7 @@
       if (enrolledHours < certificateHours) fillHours = certificateHours - enrolledHours;
       const data = [fillHours, certificateHours - fillHours]
       const radius = Math.min(graph.width, graph.height) / 2;
-      const colors = [graph.app.colors.blue, graph.app.colors.gray];
+      const colors = [graph.app.colors.blue, "none"];
 
       const arc = d3
         .arc()
