@@ -706,7 +706,7 @@
             }
     
             d.endAngle = Math.min(currentAngle, originalEnd);
-            if (!initCompleted && (currentAngle > (d.endAngle / 2))) {
+            if (!initCompleted && (currentAngle > (originalEnd / 2))) {
               initCompleted = true;
               graph.fillCompletedHours(graphElId, certificateHours, completedHours);
             }
