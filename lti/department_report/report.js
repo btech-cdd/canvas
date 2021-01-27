@@ -320,6 +320,7 @@
       async openStudentReport(userId, sisId) {
         let app = this;
         let graph = new SubmissionsGraphBar();
+        document.title = showStudent.name + " Summary"
         graph._init(app, userId, sisId);
         let donut = new ProgressGraphDonut();
         donut._init(app, userId, sisId);
@@ -328,6 +329,7 @@
       },
 
       closeStudentReport() {
+        document.title = "Department Report"
         let app = this;
         app.showStudent = 'all';
         app.$nextTick(function() {
