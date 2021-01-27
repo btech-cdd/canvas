@@ -658,7 +658,7 @@
       arcs.attr("d", arc).style("fill", (d, i) => {return colors[i];});
     }
 
-    fillEnrolledHours(graphElId, certificateHours, enrolledHours) {
+    fillEnrolledHours(graphElId, certificateHours, enrolledHours, completedHours) {
       let graph = this;
       const svg = d3.select("#" + graphElId).append("svg").attr("width", graph.width).attr("height", graph.height).style("position", "absolute").style("left", "0");
       const g = svg.append("g").attr("transform", `translate(${graph.width / 2}, ${graph.height / 2})`);
@@ -704,7 +704,60 @@
     
             return arc(d);
           };
+        })
+        .on("end", function() {
+          fillCompletedHours(graphElId, certificateHours, completedHours);
         });
+      arcs.attr("d", arc).style("fill", (d, i) => {return colors[i];});
+    }
+    
+    fillCompletedHours(graphElId, certificateHours, completedHours) {
+      let graph = this;
+      const svg = d3.select("#" + graphElId).append("svg").attr("width", graph.width).attr("height", graph.height).style("position", "absolute").style("left", "0");
+      const g = svg.append("g").attr("transform", `translate(${graph.width / 2}, ${graph.height / 2})`);
+      //make sure you don't fill more than the certificate has hours
+      let fillHours = certificateHours;
+      if (completedHours < certificateHours) fillHours = completedHours;
+
+      const data = [fillHours]
+      const radius = Math.min(graph.width, graph.height) / 2;
+      const colors = [graph.app.colors.blue];
+
+      const arc = d3
+        .arc()
+        .outerRadius(radius - 10)
+        .innerRadius(radius / 2);
+
+      const pie = d3.pie();
+
+      const pied_data = pie(data);
+      pied_data[0].endAngle = Math.PI * 2 * (fillHours / certificateHours); 
+      console.log(pied_data);
+
+      const arcs = g
+        .selectAll(".arc")
+        .data(pied_data)
+        .join((enter) => enter.append("path").attr("class", "arc").style("stroke", "white"));
+
+      let generator = d3.pie();
+      let angleInterpolation = d3.interpolate(generator.startAngle()(), generator.endAngle()());
+      
+      //animate fill
+      arcs.transition()
+        .duration(1000)
+        .attrTween("d", d => {
+          let originalEnd = d.endAngle;
+          return t => {
+            let currentAngle = angleInterpolation(t);
+            if (currentAngle < d.startAngle) {
+              return "";
+            }
+    
+            d.endAngle = Math.min(currentAngle, originalEnd);
+    
+            return arc(d);
+          };
+        })
       arcs.attr("d", arc).style("fill", (d, i) => {return colors[i];});
     }
 
@@ -730,7 +783,7 @@
       // Creates sources <svg> element
       $('#' + graphElId).empty();
       graph.fillCertificateHours(graphElId, certificateHours);
-      graph.fillEnrolledHours(graphElId, certificateHours, enrolledHours);
+      graph.fillEnrolledHours(graphElId, certificateHours, enrolledHours, completedHours);
       /*
       const svg = d3.select("#" + graphElId).append("svg").attr("width", graph.width).attr("height", graph.height);
 
