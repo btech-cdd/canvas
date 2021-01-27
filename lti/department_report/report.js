@@ -664,9 +664,9 @@
       const g = svg.append("g").attr("transform", `translate(${graph.width / 2}, ${graph.height / 2})`);
       let fillHours = certificateHours;
       if (enrolledHours < certificateHours) fillHours = certificateHours - enrolledHours;
-      const data = [fillHours, certificateHours - fillHours]
+      const data = [fillHours]
       const radius = Math.min(graph.width, graph.height) / 2;
-      const colors = [graph.app.colors.blue, "none"];
+      const colors = [graph.app.colors.blue];
 
       const arc = d3
         .arc()
@@ -676,6 +676,7 @@
       const pie = d3.pie();
 
       const pied_data = pie(data);
+      console.log(pied_data);
 
       const arcs = g
         .selectAll(".arc")
