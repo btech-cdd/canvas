@@ -671,8 +671,8 @@
       //enrolled is not always less than completed, so check to see if red should even show
       if (enrolledHours > completedHours) uncompletedEnrolledHours = enrolledHours - completedHours;
       //check which number should be used for gray
-      let unenrolledHours = departmentHours - enrolledHours;
-      let uncompletedHours = departmentHours - completedHours;
+      let unenrolledHours = certificateHours - enrolledHours;
+      let uncompletedHours = certificateHours - completedHours;
       let grayHours = unenrolledHours;
       if (uncompletedHours > unenrolledHours) grayHours = uncompletedHours;
 
