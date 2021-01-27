@@ -632,6 +632,7 @@
       graph.graphSettings = {
         width: 0,
         height: 0,
+        fillTime: 2000,
       }
     }
     fillCertificateHours(graphElId, certificateHours) {
@@ -691,7 +692,7 @@
       
       //animate fill
       arcs.transition()
-        .duration(500)
+        .duration(graph.graphSettings.fillTime * (fillHours / certificateHours))
         .attrTween("d", d => {
           let originalEnd = d.endAngle;
           return t => {
@@ -744,7 +745,7 @@
       
       //animate fill
       arcs.transition()
-        .duration(500)
+        .duration(graph.graphSettings.fillTime * (fillHours / certificateHours))
         .attrTween("d", d => {
           let originalEnd = d.endAngle;
           return t => {
