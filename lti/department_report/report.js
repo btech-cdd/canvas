@@ -706,7 +706,7 @@
           };
         })
         .on("end", function() {
-          fillCompletedHours(graphElId, certificateHours, completedHours);
+          graph.fillCompletedHours(graphElId, certificateHours, completedHours);
         });
       arcs.attr("d", arc).style("fill", (d, i) => {return colors[i];});
     }
