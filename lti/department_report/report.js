@@ -84,7 +84,6 @@
         let departmentCode = app.json.canv_dept_to_jenz[dept][i];
         if (departmentCode in app.json.progress) {
           availableDepartments.push(departmentCode);
-          console.log(app.json.progress[departmentCode]);
         }
       }
 
@@ -160,13 +159,11 @@
         let usersByYear = {};
         for (let year in app.json['progress'][app.currentDepartment]) {
           let users = app.json['progress'][app.currentDepartment][year];
-          console.log(users);
           let userList = [];
           let base = users['base'];
           for (let id in users) {
             if (id !== "base") {
               if (id in app.json['sis_to_canv']) {
-                console.log(id);
                 let name = app.json.sis_to_canv[id].name;
                 let courses = users[id];
                 let core = [];
@@ -321,12 +318,14 @@
         let donut = new ProgressGraphDonut();
         donut._init(app, userId, sisId);
         app.scrollTop = $(window).scrollTop();
+        console.log(app.scrollTop);
         $(window).scrollTop(0);
       },
 
       closeStudentReport() {
         let app = this;
         app.showStudent = 'all';
+        console.log(app.scrollTop);
         $(window).scrollTop(app.scrollTop);
       },
 
@@ -454,7 +453,6 @@
     }
 
     async _init(app, userId, sisId, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 240) {
-      console.log("LOADING?")
       this.app = app;
       let graph = this;
       graph.userId = userId;
@@ -634,7 +632,6 @@
       let completedHours = student.completedHours;
       let uncompletedEnrolledHours = enrolledHours - completedHours;
       let unenrolledHours = departmentHours - enrolledHours;
-      console.log(student);
 
       // Creates sources <svg> element
       $('#' + graphElId).empty();
@@ -643,7 +640,6 @@
       const g = svg.append("g").attr("transform", `translate(${width / 2}, ${height / 2})`);
 
       const data = [unenrolledHours, uncompletedEnrolledHours, completedHours];
-      console.log(data);
 
       const radius = Math.min(width, height) / 2;
 
