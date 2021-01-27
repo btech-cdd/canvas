@@ -676,6 +676,7 @@
       const pie = d3.pie();
 
       const pied_data = pie(data);
+      pied_data[0].endAngle = Math.PI * 2 * fillHours; 
       console.log(pied_data);
 
       const arcs = g
