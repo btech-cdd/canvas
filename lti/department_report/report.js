@@ -673,6 +673,22 @@
         .data(pied_data)
         .join((enter) => enter.append("path").attr("class", "arc").style("stroke", "white"));
 
+        arcs.transition()
+        .duration(durations.entryAnimation)
+        .attrTween("d", d => {
+          let originalEnd = d.endAngle;
+          return t => {
+            let currentAngle = angleInterpolation(t);
+            if (currentAngle < d.startAngle) {
+              return "";
+            }
+    
+            d.endAngle = Math.min(currentAngle, originalEnd);
+    
+            return arc(d);
+          };
+        });
+
       arcs.attr("d", arc).style("fill", (d, i) => {return colors[i];});
     }
   }
