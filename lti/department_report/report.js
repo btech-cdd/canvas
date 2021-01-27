@@ -324,14 +324,12 @@
         let donut = new ProgressGraphDonut();
         donut._init(app, userId, sisId);
         app.scrollTop = $(window).scrollTop();
-        console.log(app.scrollTop);
         $(window).scrollTop(0);
       },
 
       closeStudentReport() {
         let app = this;
         app.showStudent = 'all';
-        console.log(app.scrollTop);
         app.$nextTick(function() {
           $(window).scrollTop(app.scrollTop);
         })
@@ -683,7 +681,6 @@
 
       const pied_data = pie(data);
       pied_data[0].endAngle = Math.PI * 2 * (fillHours / certificateHours); 
-      console.log(pied_data);
 
       const arcs = g
         .selectAll(".arc")
@@ -742,7 +739,6 @@
 
       const pied_data = pie(data);
       pied_data[0].endAngle = Math.PI * 2 * (fillHours / certificateHours); 
-      console.log(pied_data);
 
       const arcs = g
         .selectAll(".arc")
