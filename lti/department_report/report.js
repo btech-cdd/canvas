@@ -682,7 +682,7 @@
         .data(pied_data)
         .join((enter) => enter.append("path").attr("class", "arc").style("stroke", "white"));
 
-      let generator = d3.pie().sort(null);
+      let generator = d3.pie();
       let angleInterpolation = d3.interpolate(generator.startAngle()(), generator.endAngle()());
       
       //animate fill
