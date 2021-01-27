@@ -97,7 +97,7 @@ body {
     left: 0;
     top: 0;
   }
-  #printable-report .print-button {
+  #printable-report .print-hide {
     visibility: hidden !important;
   }
 }
