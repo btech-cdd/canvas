@@ -660,7 +660,7 @@
 
     fillEnrolledHours(graphElId, certificateHours, enrolledHours) {
       let graph = this;
-      const svg = d3.select("#" + graphElId).append("svg").attr("width", graph.width).attr("height", graph.height);
+      const svg = d3.select("#" + graphElId).append("svg").attr("width", graph.width).attr("height", graph.height).attr("position", "absolute").attr("left", "0");
       const g = svg.append("g").attr("transform", `translate(${graph.width / 2}, ${graph.height / 2})`);
       //make sure you don't fill more than the certificate has hours
       let fillHours = certificateHours;
