@@ -674,7 +674,7 @@
         .join((enter) => enter.append("path").attr("class", "arc").style("stroke", "white"));
 
         arcs.transition()
-        .duration(durations.entryAnimation)
+        .duration(1000)
         .attrTween("d", d => {
           let originalEnd = d.endAngle;
           return t => {
