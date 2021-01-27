@@ -1,12 +1,14 @@
+//Courses w/ 0% progress but still enrolled are showing as gray. Have something other than 0% progress when no enrollment is found.
+
 //include a last updated list
 //SHOW STUDENT STATUS FROM JENZABAR, IE ACTIVE, ON HOLD, DROPPED, GRADUATED, ETC.
 //SHOW DATE OF SUBMISSIONS WHEN YOU HOVER OVER SUBMISSION BAR GRAPH BAR. MAYBE ALSO SHOW DAYS SINCE LAST SUBMISSION SOMEWHERE ON THAT REPORT
-//CLICK ON COURSE ID AND LINK TO THAT STUDENT'S GRADE PAGE FOR THAT COURSE
-//SAVE COURSE ID IN PREPROCESSED DATA
-//HOVER OVER COURSE CODE TO GET THE NAME OF THAT COURSE
+
 //HS VERSION OF REPORT
 ////MAYBE MAKE IT IT'S OWN DROP DOWN IN ADDITION TO DIFFERENT DEPARTMENTS. NO TREES, JUST WHATEVER THEY'RE IN RIGHT NOW
 ////OR COULD HAVE THEM ALL IN CURRENT TREE FOR THAT DEPARTMENT
+//EXCLUDE COURSES COMPLETED AS HS STUDENT WHEN CALCULATING ENROLLED/COMPLETED HOURS
+
 //SETTINGS TAB
 ////SHOW DOT GRAPH INSTEAD OF BAR
 ////SHOW ONLY STUDENTS ACTIVE IN A COURSE RIGHT NOW
@@ -15,7 +17,7 @@
 //////IE CHANGE GRADE FLAGS, DAYS IN COURSE FLAGS,A ND DAYS SINCE LAST SUBMISSION FLAGS
 ////TOGGLE ON THE FEATURE TO PARTIALLY FILL A BAR DEPENDING ON PROGRESS IN THAT COURSE. MAKE BACKGROUND BLACK AND THEN PARTIALLY SHADE, DEFAULT IS OFF THOUGH
 ////CHANGE NAME TO SORT BY FIRST NAME, ALSO CHANGE TO SHOW FIRST NAME FIRST THEN LAST NAME
-//EXCLUDE COURSES COMPLETED AS HS STUDENT WHEN CALCULATING ENROLLED/COMPLETED HOURS
+
 (async function () {
   async function delay(ms) {
     // return await for better async stack trace support in case of errors.
@@ -636,7 +638,8 @@
       let departmentHours = app.json.dept_code_to_name[app.currentDepartment].hours;
       let enrolledHours = student.enrolledHours;
       let completedHours = student.completedHours;
-      let uncompletedEnrolledHours = enrolledHours - completedHours;
+      let uncompletedEnrolledHours = 0;
+      if (enrolledHours > completedHours) uncompletedEnrolledHours = enrolledHours - completedHours;
       let unenrolledHours = departmentHours - enrolledHours;
 
       // Creates sources <svg> element
