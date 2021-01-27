@@ -657,6 +657,50 @@
         .join((enter) => enter.append("path").attr("class", "arc").style("stroke", "white"));
       arcs.attr("d", arc).style("fill", (d, i) => {return colors[i];});
     }
+
+    fillEnrolledHours(graphElId, certificateHours, enrolledHours) {
+      let graph = this;
+      const svg = d3.select("#" + graphElId).append("svg").attr("width", graph.width).attr("height", graph.height);
+      const g = svg.append("g").attr("transform", `translate(${graph.width / 2}, ${graph.height / 2})`);
+      let fillHours = certificateHours;
+      if (enrolledHours < certificateHours) fillHours = certificateHours - enrolledHours;
+      const data = [fillHours, certificateHours - fillHours]
+      const radius = Math.min(graph.width, graph.height) / 2;
+      const colors = [graph.app.colors.blue, graph.app.colors.gray];
+
+      const arc = d3
+        .arc()
+        .outerRadius(radius - 10)
+        .innerRadius(radius / 2);
+
+      const pie = d3.pie();
+
+      const pied_data = pie(data);
+
+      const arcs = g
+        .selectAll(".arc")
+        .data(pied_data)
+        .join((enter) => enter.append("path").attr("class", "arc").style("stroke", "white"));
+      
+      //animate fill
+      arcs.transition()
+        .duration(1000)
+        .attrTween("d", d => {
+          let originalEnd = d.endAngle;
+          return t => {
+            let currentAngle = angleInterpolation(t);
+            if (currentAngle < d.startAngle) {
+              return "";
+            }
+    
+            d.endAngle = Math.min(currentAngle, originalEnd);
+    
+            return arc(d);
+          };
+        });
+      arcs.attr("d", arc).style("fill", (d, i) => {return colors[i];});
+    }
+
     async _init(app, userId, sisId, graphElId = 'btech-department-report-student-progress-donut', w = 200, h = 200) {
       let graph = this;
       graph.app = app;
