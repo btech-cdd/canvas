@@ -723,6 +723,7 @@
       // Creates sources <svg> element
       $('#' + graphElId).empty();
       graph.fillCertificateHours(graphElId, certificateHours);
+      graph.fillEnrolledHours(graphElId, certificateHours, enrolledHours);
       /*
       const svg = d3.select("#" + graphElId).append("svg").attr("width", graph.width).attr("height", graph.height);
 
