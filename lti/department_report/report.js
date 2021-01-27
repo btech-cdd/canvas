@@ -136,7 +136,8 @@
           goodDate: '#5CB85C',
         },
         loadingStudentReport: false,
-        courseTypes: ['core', 'elective']
+        courseTypes: ['core', 'elective'],
+        scrollTop: 0, //used to save the scroll location of the main screen before going into the student report
       }
     },
     methods: {
@@ -319,11 +320,14 @@
         graph._init(app, userId, sisId);
         let donut = new ProgressGraphDonut();
         donut._init(app, userId, sisId);
+        app.scrollTop = $(window).scrollTop();
+        $(window).scrollTop(0);
       },
 
       closeStudentReport() {
         let app = this;
         app.showStudent = 'all';
+        $(window).scrollTop(app.scrollTop);
       },
 
       async loadJsonFile(name) {
