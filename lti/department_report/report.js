@@ -662,10 +662,10 @@
       let graph = this;
       const svg = d3.select("#" + graphElId).append("svg").attr("width", graph.width).attr("height", graph.height);
       const g = svg.append("g").attr("transform", `translate(${graph.width / 2}, ${graph.height / 2})`);
+      //make sure you don't fill more than the certificate has hours
       let fillHours = certificateHours;
-      if (enrolledHours < certificateHours) fillHours = certificateHours - enrolledHours;
-      console.log(enrolledHours);
-      console.log(certificateHours);
+      if (enrolledHours < certificateHours) fillHours = enrolledHours;
+
       const data = [fillHours]
       const radius = Math.min(graph.width, graph.height) / 2;
       const colors = [graph.app.colors.red];
