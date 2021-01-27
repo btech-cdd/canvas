@@ -84,3 +84,17 @@ body {
   display: inline-block;
   width: 9rem;
 }
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-report, #printable-report * {
+    visibility: visible;
+  }
+  #printable-report {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
