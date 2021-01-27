@@ -639,7 +639,9 @@
       let enrolledHours = student.enrolledHours;
       let completedHours = student.completedHours;
       let uncompletedEnrolledHours = 0;
+      //enrolled is not always less than completed, so check to see if red should even show
       if (enrolledHours > completedHours) uncompletedEnrolledHours = enrolledHours - completedHours;
+      //check which number should be used for gray
       let unenrolledHours = departmentHours - enrolledHours;
       let uncompletedHours = departmentHours - completedHours;
       let grayHours = unenrolledHours;
@@ -651,7 +653,7 @@
 
       const g = svg.append("g").attr("transform", `translate(${width / 2}, ${height / 2})`);
 
-      const data = [unenrolledHours, uncompletedEnrolledHours, completedHours];
+      const data = [grayHours, uncompletedEnrolledHours, completedHours];
 
       const radius = Math.min(width, height) / 2;
 
