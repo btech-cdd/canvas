@@ -320,7 +320,7 @@
       async openStudentReport(userId, sisId) {
         let app = this;
         let graph = new SubmissionsGraphBar();
-        document.title = showStudent.name + " Summary"
+        document.title = app.showStudent.name + " Summary"
         graph._init(app, userId, sisId);
         let donut = new ProgressGraphDonut();
         donut._init(app, userId, sisId);
