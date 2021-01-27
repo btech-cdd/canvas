@@ -672,7 +672,8 @@
       const colors = [graph.app.colors.red];
 
       let innerRadius = radius / 2;
-      if (enrolledHours < completedHours) innerRadius -= 5;
+      // if (enrolledHours < completedHours) innerRadius -= 5;
+      innerRadius -= 5;
       const arc = d3
         .arc()
         .outerRadius(radius - 10)
@@ -692,6 +693,7 @@
       let generator = d3.pie();
       let angleInterpolation = d3.interpolate(generator.startAngle()(), generator.endAngle()());
       
+      let initCompleted = false;
       //animate fill
       arcs.transition()
         .duration(graph.graphSettings.fillTime * (fillHours / certificateHours))
@@ -704,12 +706,16 @@
             }
     
             d.endAngle = Math.min(currentAngle, originalEnd);
+            if (!initCompleted && (currentAngle > (d.endAngle / 2))) {
+              initCompleted = true;
+              graph.fillCompletedHours(graphElId, certificateHours, completedHours);
+            }
     
             return arc(d);
           };
         })
         .on("end", function() {
-          graph.fillCompletedHours(graphElId, certificateHours, completedHours);
+          // graph.fillCompletedHours(graphElId, certificateHours, completedHours);
         });
       arcs.attr("d", arc).style("fill", (d, i) => {return colors[i];});
     }
