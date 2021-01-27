@@ -668,6 +668,9 @@
 
       const pied_data = pie(data);
 
+      let generator = d3.pie().sort(null);
+      let angleInterpolation = d3.interpolate(generator.startAngle()(), generator.endAngle()());
+
       const arcs = g
         .selectAll(".arc")
         .data(pied_data)
