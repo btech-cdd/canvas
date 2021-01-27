@@ -105,6 +105,9 @@
       coreCourses: function () {}
     },
 
+    updated: function() {
+    },
+
     data: function () {
       return {
         showProgressRatio: true,
@@ -137,6 +140,7 @@
         loadingStudentReport: false,
         courseTypes: ['core', 'elective'],
         scrollTop: 0, //used to save the scroll location of the main screen before going into the student report
+        previousScreen: 'all'
       }
     },
     methods: {
@@ -326,7 +330,9 @@
         let app = this;
         app.showStudent = 'all';
         console.log(app.scrollTop);
-        $(window).scrollTop(app.scrollTop);
+        app.$nextTick(function() {
+          $(window).scrollTop(app.scrollTop);
+        })
       },
 
       async loadJsonFile(name) {
