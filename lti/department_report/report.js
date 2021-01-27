@@ -629,13 +629,42 @@
     constructor() {
       let graph = this;
       graph.app = {};
-      graph.graphSettings = {}
+      graph.graphSettings = {
+        width: 0,
+        height: 0,
+      }
+    }
+    fillCertificateHours(graphElId, certificateHours) {
+      let graph = this;
+      const svg = d3.select("#" + graphElId).append("svg").attr("width", graph.width).attr("height", graph.height);
+      const g = svg.append("g").attr("transform", `translate(${graph.width / 2}, ${graph.height / 2})`);
+      const data = [certificateHours]
+      const radius = Math.min(graph.width, graph.height) / 2;
+      const colors = [graph.app.colors.gray];
+
+      const arc = d3
+        .arc()
+        .outerRadius(radius - 10)
+        .innerRadius(radius / 2);
+
+      const pie = d3.pie();
+
+      const pied_data = pie(data);
+
+      const arcs = g
+        .selectAll(".arc")
+        .data(pied_data)
+        .join((enter) => enter.append("path").attr("class", "arc").style("stroke", "white"));
+      arcs.attr("d", arc).style("fill", (d, i) => {return colors[i];});
     }
     async _init(app, userId, sisId, graphElId = 'btech-department-report-student-progress-donut', w = 200, h = 200) {
-      const width = w;
-      const height = h;
+      let graph = this;
+      graph.app = app;
+      graph.width = w;
+      graph.height = h;
       let student = app.showStudent;
-      let departmentHours = app.json.dept_code_to_name[app.currentDepartment].hours;
+      //THIS NUMBER IS WRONG! IT'S ASSUMING CERT HOURS ARE SAME FOR ALL TREES IN A DEPARTMENT...
+      let certificateHours = app.json.dept_code_to_name[app.currentDepartment].hours;
       let enrolledHours = student.enrolledHours;
       let completedHours = student.completedHours;
       let uncompletedEnrolledHours = 0;
@@ -649,13 +678,15 @@
 
       // Creates sources <svg> element
       $('#' + graphElId).empty();
-      const svg = d3.select("#" + graphElId).append("svg").attr("width", width).attr("height", height);
+      graph.fillCertificateHours(graphElId, certificateHours);
+      /*
+      const svg = d3.select("#" + graphElId).append("svg").attr("width", graph.width).attr("height", graph.height);
 
-      const g = svg.append("g").attr("transform", `translate(${width / 2}, ${height / 2})`);
+      const g = svg.append("g").attr("transform", `translate(${width.width / 2}, ${graph.height / 2})`);
 
       const data = [grayHours, uncompletedEnrolledHours, completedHours];
 
-      const radius = Math.min(width, height) / 2;
+      const radius = Math.min(graph.width, graph.height) / 2;
 
       const colors = [app.colors.gray, app.colors.red, app.colors.blue];
 
@@ -693,6 +724,7 @@
         });
 
       arcs.attr("d", arc).style("fill", (d, i) => {return colors[i];});
+      */
     }
   }
 })();
