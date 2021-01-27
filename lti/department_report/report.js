@@ -664,6 +664,8 @@
       const g = svg.append("g").attr("transform", `translate(${graph.width / 2}, ${graph.height / 2})`);
       let fillHours = certificateHours;
       if (enrolledHours < certificateHours) fillHours = certificateHours - enrolledHours;
+      console.log(enrolledHours);
+      console.log(certificateHours);
       const data = [fillHours]
       const radius = Math.min(graph.width, graph.height) / 2;
       const colors = [graph.app.colors.red];
