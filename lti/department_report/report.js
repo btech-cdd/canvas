@@ -641,6 +641,9 @@
       let uncompletedEnrolledHours = 0;
       if (enrolledHours > completedHours) uncompletedEnrolledHours = enrolledHours - completedHours;
       let unenrolledHours = departmentHours - enrolledHours;
+      let uncompletedHours = departmentHours - completedHours;
+      let grayHours = unenrolledHours;
+      if (uncompletedHours > unenrolledHours) grayHours = uncompletedHours;
 
       // Creates sources <svg> element
       $('#' + graphElId).empty();
