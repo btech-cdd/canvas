@@ -671,10 +671,12 @@
       const radius = Math.min(graph.width, graph.height) / 2;
       const colors = [graph.app.colors.red];
 
+      let innerRadius = radius / 2;
+      if (enrolledHours < completedHours) innerRadius -= 5;
       const arc = d3
         .arc()
         .outerRadius(radius - 10)
-        .innerRadius(radius / 2);
+        .innerRadius(innerRadius);
 
       const pie = d3.pie();
 
@@ -724,10 +726,11 @@
       const radius = Math.min(graph.width, graph.height) / 2;
       const colors = [graph.app.colors.blue];
 
+      let innerRadius = radius / 2;
       const arc = d3
         .arc()
         .outerRadius(radius - 10)
-        .innerRadius(radius / 2);
+        .innerRadius(innerRadius);
 
       const pie = d3.pie();
 
