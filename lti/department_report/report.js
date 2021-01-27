@@ -691,7 +691,7 @@
       
       //animate fill
       arcs.transition()
-        .duration(1000)
+        .duration(500)
         .attrTween("d", d => {
           let originalEnd = d.endAngle;
           return t => {
@@ -744,7 +744,7 @@
       
       //animate fill
       arcs.transition()
-        .duration(1000)
+        .duration(500)
         .attrTween("d", d => {
           let originalEnd = d.endAngle;
           return t => {
