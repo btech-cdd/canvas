@@ -666,7 +666,7 @@
       if (enrolledHours < certificateHours) fillHours = certificateHours - enrolledHours;
       const data = [fillHours]
       const radius = Math.min(graph.width, graph.height) / 2;
-      const colors = [graph.app.colors.blue];
+      const colors = [graph.app.colors.red];
 
       const arc = d3
         .arc()
@@ -676,7 +676,7 @@
       const pie = d3.pie();
 
       const pied_data = pie(data);
-      pied_data[0].endAngle = Math.PI * 2 * fillHours; 
+      pied_data[0].endAngle = Math.PI * 2 * (fillHours / certificateHours); 
       console.log(pied_data);
 
       const arcs = g
