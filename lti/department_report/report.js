@@ -213,7 +213,7 @@
                   'last_activity': course.last_activity,
                   'progress': course.progress,
                   'start': course.start,
-                  'hours': users[courseCode].hours
+                  'hours': course.hours
                 }
                 if (course_code in program.courses.core) {
                   core.push(courseData);
