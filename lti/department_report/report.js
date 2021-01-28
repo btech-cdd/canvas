@@ -222,7 +222,7 @@
                 } else {
                   console.log("OTHER")
                   console.log(name);
-                  console.log(user.canvas_id);
+                  // console.log(user.canvas_id);
                   other.push(courseData);
                 }
               }
@@ -309,7 +309,7 @@
           for (let i in users) {
             let user = users[i];
             let sisId = user.id;
-            let userId = app.json.sis_to_canv[sisId].canvas_id;
+            let userId = app.json.users[sisId].canvas_id;
             if (app.userSubmissionDates[sisId] != undefined) {
               let graph = new SubmissionsGraphBar();
               graph._initSmall(app, userId, sisId, "btech-user-submission-summary-" + userId);
