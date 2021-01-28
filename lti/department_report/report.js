@@ -215,9 +215,9 @@
                   'start': course.start,
                   'hours': course.hours
                 }
-                if (course_code in program.courses.core) {
+                if (courseCode in program.courses.core) {
                   core.push(courseData);
-                } else if (course_code in program.courses.elect) {
+                } else if (courseCode in program.courses.elect) {
                   elective.push(courseData);
                 } else {
                   console.log("OTHER")
