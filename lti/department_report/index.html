@@ -109,6 +109,7 @@
                   style='padding-top: 0.25rem; padding-bottom: 0.25rem;'
                   v-for="courseType in json['trees'][currentDepartment][year]['courses']"
                 >
+                  <div>{{courseType}}</div>
                   <div v-for="(course, course_code) in json['trees'][currentDepartment][year]['courses'][courseType]" class='btech-course-progress-bar'
                     :title="course.name"
                     :style="

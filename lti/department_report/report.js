@@ -167,6 +167,7 @@
         let usersByYear = {};
         for (let year in app.json['trees'][app.currentDepartment]) {
           let program = app.json['trees'][app.currentDepartment][year];
+          console.log(app.json['trees'][app.currentDepartment][year]['courses']);
           let users = program['users'];
           console.log(users);
           let userList = [];
