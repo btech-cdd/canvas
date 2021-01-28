@@ -222,7 +222,7 @@
                 } else {
                   console.log("OTHER")
                   console.log(name);
-                  console.log(id);
+                  console.log(user.canvas_id);
                   other.push(courseData);
                 }
               }
