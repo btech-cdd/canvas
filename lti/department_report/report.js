@@ -171,7 +171,9 @@
             if (id !== "base") {
               if (id in app.json['sis_to_canv']) {
                 let name = app.json.sis_to_canv[id].name;
+                console.log(name);
                 let courses = users[id];
+                console.log(courses);
                 let core = [];
                 let elective = [];
                 let other = [];
