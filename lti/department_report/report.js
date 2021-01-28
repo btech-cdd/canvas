@@ -154,8 +154,8 @@
         console.log(user);
         console.log(courseCode);
         console.log(courseType);
-        if (courseCode in user[courseType]) {
-          progress = user[courseType][courseCode].progress;
+        if (courseCode in app.json.users.courses) {
+          progress = app.json.users.courses[courseCode].progress;
         } else {
           return app.colors.gray;
         }
