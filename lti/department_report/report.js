@@ -40,13 +40,13 @@
   this.APP = new Vue({
     el: '#canvas-department-report-vue',
     mounted: async function () {
-      $('#canvas-department-report-vue').css({visibility: 'visible'});
+      $('#canvas-department-report-vue').css({
+        visibility: 'visible'
+      });
       let app = this;
       let dept = '' + CURRENT_DEPARTMENT;
 
       //import json files
-      await app.loadJsonFile('progress');
-      await app.loadJsonFile('trees');
       await app.loadJsonFile('users');
       await app.loadJsonFile('sis_to_canv');
       await app.loadJsonFile('canv_dept_to_jenz');
@@ -86,7 +86,7 @@
       let availableDepartments = [];
       for (let i in app.json.canv_dept_to_jenz[dept]) {
         let departmentCode = app.json.canv_dept_to_jenz[dept][i];
-        if (departmentCode in app.json.progress) {
+        if (departmentCode in app.json.trees) {
           availableDepartments.push(departmentCode);
         }
       }
@@ -109,8 +109,7 @@
       coreCourses: function () {}
     },
 
-    updated: function() {
-    },
+    updated: function () {},
 
     data: function () {
       return {
@@ -148,14 +147,15 @@
       }
     },
     methods: {
-      getCourseProgressBarColor(course) {
-        let progress = course.progress;
-        let start = course.start;
+      getCourseProgressBarColor(user, course, courseCode) {
+        let progress = user.courses[courseCode].progress;
+        // let start = course.start;
+        let start = new Date();
         let app = this;
         if (progress <= 0) return app.colors.noProgress;
         if (progress >= 100) return app.colors.complete;
 
-        let diffDays = Math.floor((new Date() - new Date(course.start)) / (1000 * 60 * 60 * 24));
+        let diffDays = Math.floor((new Date() - new Date(start)) / (1000 * 60 * 60 * 24));
         if (diffDays <= 60) return app.colors.green;
         if (diffDays <= 120) return app.colors.yellow; //yellow
         if (diffDays <= 180) return app.colors.orange; //orange
@@ -165,81 +165,76 @@
       loadDepartmentUsers() {
         let app = this;
         let usersByYear = {};
-        for (let year in app.json['progress'][app.currentDepartment]) {
-          let users = app.json['progress'][app.currentDepartment][year];
+        for (let year in app.json['trees'][app.currentDepartment]) {
+          let program = app.json['trees'][app.currentDepartment][year];
+          let users = program['users'];
+          print(users);
           let userList = [];
-          let base = users['base'];
-          for (let id in users) {
-            if (id !== "base") {
-              if (id in app.json['sis_to_canv']) {
-                let name = app.json.sis_to_canv[id].name;
-                console.log(name);
-                let courses = users[id];
-                console.log(courses);
-                let core = [];
-                let elective = [];
-                let other = [];
-                let summary = courses['summary'];
-                let deptProgress = 0;
-                let enrolledHours = app.json.sis_to_canv[id].enrolled_hours;
-                let manualHours = false;
-                if (enrolledHours === 0 || isNaN(enrolledHours)) {
-                  enrolledHours = 0;
-                  manualHours = true;
-                }
-                let completedHours = 0;
-                for (let courseCode in courses) {
-                  if (courseCode !== "summary") {
-                    let course = courses[courseCode];
-                    //THIS NEEDS TO BE CONFIRMED THAT IT IS CONSISTENT WITH HOW THINGS ARE CALCULATED ON THE JENZABAR END
-                    if (course.contract_begin !== undefined) {
-                      if (course.progress >= 100) {
-                        if (manualHours) enrolledHours += course.hours;
-                        completedHours += course.hours;
-                      } else {
-                        let today = new Date();
-                        if (new Date(course.contract_begin) <= today) {
-                          let totalTime = new Date(course.contract_end) - new Date(course.contract_begin);
-                          let completedTime = today - new Date(course.contract_begin);
-                          let percTime = completedTime / totalTime;
-                          let courseEnrolledHours = percTime * course.hours;
-                          if (manualHours) enrolledHours += courseEnrolledHours;
-                          let courseCompletedHours = course.hours * course.progress * .01;
-                          completedHours += courseCompletedHours;
-                        }
-                      }
-                    }
-                    let courseData = {
-                      'code': courseCode,
-                      'course_id': course.course_id,
-                      'last_activity': course.last_activity,
-                      'progress': course.progress,
-                      'start': course.start,
-                      'hours': users['base'][courseCode].hours
-                    }
-                    if (base[courseCode] === undefined) {
-                      console.log("OTHER")
-                      console.log(name);
-                      console.log(id);
-                      other.push(courseData);
-                    } else if (base[courseCode].type === 'CORE') {
-                      core.push(courseData);
-                    } else if (base[courseCode].type === 'ELECT') {
-                      elective.push(courseData);
-                    }
+          for (let sis_id in users) {
+            print(sis_id)
+            if (sis_id in app.json['users']) {
+              let user = app.json['users'][sis_id]
+              let name = user.name;
+              console.log(name);
+              let courses = user.coures;
+              console.log(courses);
+              let core = [];
+              let elective = [];
+              let other = [];
+              let enrolledHours = user.enrolled_hours;
+              let manualHours = false;
+              if (enrolledHours === 0 || isNaN(enrolledHours)) {
+                enrolledHours = 0;
+                manualHours = true;
+              }
+              let completedHours = 0;
+              for (let courseCode in courses) {
+                let course = courses[courseCode];
+                if (course.progress >= 100) {
+                  if (manualHours) enrolledHours += course.hours;
+                  completedHours += course.hours;
+                } else {
+                  let today = new Date();
+                  if (new Date(course.contract_begin) <= today) {
+                    let totalTime = new Date(course.contract_end) - new Date(course.contract_begin);
+                    let completedTime = today - new Date(course.contract_begin);
+                    let percTime = completedTime / totalTime;
+                    let courseEnrolledHours = percTime * course.hours;
+                    if (manualHours) enrolledHours += courseEnrolledHours;
+                    let courseCompletedHours = course.hours * course.progress * .01;
+                    completedHours += courseCompletedHours;
                   }
                 }
-                userList.push({
-                  'name': name,
-                  'id': id,
-                  'core': core,
-                  'elective': elective,
-                  'other': other,
-                  'summary': summary,
-                  'enrolledHours': Math.round(enrolledHours),
-                  'completedHours': Math.round(completedHours)
-                });
+
+                let courseData = {
+                  'code': courseCode,
+                  'course_id': course.course_id,
+                  'last_activity': course.last_activity,
+                  'progress': course.progress,
+                  'start': course.start,
+                  'hours': users['base'][courseCode].hours
+                }
+                if (course_code in program.courses.core) {
+                  core.push(courseData);
+                } else if (course_code in program.courses.elect) {
+                  elective.push(courseData);
+                } else {
+                  console.log("OTHER")
+                  console.log(name);
+                  console.log(id);
+                  other.push(courseData);
+                }
               }
+              userList.push({
+                'name': name,
+                'id': id,
+                'core': core,
+                'elective': elective,
+                'other': other,
+                'summary': summary,
+                'enrolledHours': Math.round(enrolledHours),
+                'completedHours': Math.round(completedHours)
+              });
             }
           }
 
@@ -342,7 +337,7 @@
         document.title = "Department Report"
         let app = this;
         app.showStudent = 'all';
-        app.$nextTick(function() {
+        app.$nextTick(function () {
           $(window).scrollTop(app.scrollTop);
         })
       },
@@ -666,7 +661,9 @@
         .selectAll(".arc")
         .data(pied_data)
         .join((enter) => enter.append("path").attr("class", "arc").style("stroke", "white"));
-      arcs.attr("d", arc).style("fill", (d, i) => {return colors[i];});
+      arcs.attr("d", arc).style("fill", (d, i) => {
+        return colors[i];
+      });
     }
 
     fillEnrolledHours(graphElId, certificateHours, enrolledHours, completedHours) {
@@ -692,7 +689,7 @@
       const pie = d3.pie();
 
       const pied_data = pie(data);
-      pied_data[0].endAngle = Math.PI * 2 * (fillHours / certificateHours); 
+      pied_data[0].endAngle = Math.PI * 2 * (fillHours / certificateHours);
 
       const arcs = g
         .selectAll(".arc")
@@ -701,7 +698,7 @@
 
       let generator = d3.pie();
       let angleInterpolation = d3.interpolate(generator.startAngle()(), generator.endAngle()());
-      
+
       let initCompleted = false;
       //animate fill
       arcs.transition()
@@ -713,22 +710,24 @@
             if (currentAngle < d.startAngle) {
               return "";
             }
-    
+
             d.endAngle = Math.min(currentAngle, originalEnd);
             if (!initCompleted && (currentAngle > (originalEnd / 2))) {
               initCompleted = true;
               graph.fillCompletedHours(graphElId, certificateHours, completedHours);
             }
-    
+
             return arc(d);
           };
         })
-        .on("end", function() {
+        .on("end", function () {
           // graph.fillCompletedHours(graphElId, certificateHours, completedHours);
         });
-      arcs.attr("d", arc).style("fill", (d, i) => {return colors[i];});
+      arcs.attr("d", arc).style("fill", (d, i) => {
+        return colors[i];
+      });
     }
-    
+
     fillCompletedHours(graphElId, certificateHours, completedHours) {
       let graph = this;
       const svg = d3.select("#" + graphElId).append("svg").attr("width", graph.width).attr("height", graph.height).style("position", "absolute").style("left", "0");
@@ -750,7 +749,7 @@
       const pie = d3.pie();
 
       const pied_data = pie(data);
-      pied_data[0].endAngle = Math.PI * 2 * (fillHours / certificateHours); 
+      pied_data[0].endAngle = Math.PI * 2 * (fillHours / certificateHours);
 
       const arcs = g
         .selectAll(".arc")
@@ -759,7 +758,7 @@
 
       let generator = d3.pie();
       let angleInterpolation = d3.interpolate(generator.startAngle()(), generator.endAngle()());
-      
+
       //animate fill
       arcs.transition()
         .duration(graph.graphSettings.fillTime * (fillHours / certificateHours))
@@ -770,13 +769,15 @@
             if (currentAngle < d.startAngle) {
               return "";
             }
-    
+
             d.endAngle = Math.min(currentAngle, originalEnd);
-    
+
             return arc(d);
           };
         })
-      arcs.attr("d", arc).style("fill", (d, i) => {return colors[i];});
+      arcs.attr("d", arc).style("fill", (d, i) => {
+        return colors[i];
+      });
     }
 
     async _init(app, userId, sisId, graphElId = 'btech-department-report-student-progress-donut', w = 200, h = 200) {
