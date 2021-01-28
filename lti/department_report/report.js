@@ -170,7 +170,8 @@
           let users = program['users'];
           console.log(users);
           let userList = [];
-          for (let sis_id in users) {
+          for (let i in users) {
+            let sis_id = users[i];
             console.log(sis_id)
             if (sis_id in app.json['users']) {
               let user = app.json['users'][sis_id]
