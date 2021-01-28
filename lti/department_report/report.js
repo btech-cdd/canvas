@@ -48,7 +48,7 @@
 
       //import json files
       await app.loadJsonFile('users');
-      await app.loadJsonFile('sis_to_canv');
+      await app.loadJsonFile('trees');
       await app.loadJsonFile('canv_dept_to_jenz');
       await app.loadJsonFile('dept_code_to_name');
       await app.loadJsonFile('submissions');
