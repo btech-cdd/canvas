@@ -214,6 +214,9 @@
                       'hours': users['base'][courseCode].hours
                     }
                     if (base[courseCode] === undefined) {
+                      console.log("OTHER")
+                      console.log(name);
+                      console.log(id);
                       other.push(courseData);
                     } else if (base[courseCode].type === 'CORE') {
                       core.push(courseData);
