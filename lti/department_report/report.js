@@ -150,6 +150,10 @@
       getCourseProgressBarColor(user, course, courseCode, courseType) {
         let app = this;
         let progress;
+        console.log(user.name);
+        console.log(user);
+        console.log(courseCode);
+        console.log(courseType);
         if (courseCode in user[courseType]) {
           progress = user[courseType][courseCode].progress;
         } else {
