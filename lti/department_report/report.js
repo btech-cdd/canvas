@@ -379,6 +379,8 @@
       let graph = this;
       graph.userId = userId;
       graph.sisId = sisId;
+      console.log(userId);
+      console.log(sisId);
 
       //set graph settings 
       graph.graphSettings.months = 6;
