@@ -119,7 +119,7 @@
                   ">
                     <a 
                       :class="{
-                        disabled: user[courseType][course_code].course_id === null
+                        disabled: user[courseType][course_code] === undefined 
                       }" 
                       :href="'https://btech.instructure.com/courses/' + user[courseType][course_code].course_id + '/grades/' + user.canvas_id"
                       target="_blank">
