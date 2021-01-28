@@ -283,14 +283,16 @@
 
       calcDepartmentScoreText(user) {
         let app = this;
-        if (user.average_score === undefined) return "N/A";
-        return Math.round(user.average_score * 100) + "%";
+        let averageScore = app.json.users[user.id].average_score;
+        if (averageScore === undefined) return "N/A";
+        return Math.round(averageScore * 100) + "%";
       },
 
       calcDepartmentScoreColorBg(user) {
         let app = this;
-        if (user.average_score === undefined) return app.colors.gray;
-        let score = Math.round(user.average_score * 100);
+        let averageScore = app.json.users[user.id].average_score;
+        if (averageScore === undefined) return app.colors.gray;
+        let score = Math.round(user.averageScore * 100);
         if (score < 60) return app.colors.red;
         if (score < 80) return app.colors.orange;
         if (score < 90) return app.colors.yellow;
@@ -299,7 +301,8 @@
 
       calcDepartmentScoreColorFont(user) {
         let app = this;
-        if (user.average_score === undefined) return "#000000";
+        let averageScore = app.json.users[user.id].average_score;
+        if (averageScore === undefined) return "#000000";
         return "#FFFFFF";
       },
 
