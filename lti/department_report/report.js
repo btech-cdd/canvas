@@ -232,7 +232,6 @@
                 'core': core,
                 'elective': elective,
                 'other': other,
-                'summary': summary,
                 'enrolledHours': Math.round(enrolledHours),
                 'completedHours': Math.round(completedHours)
               });
@@ -279,16 +278,14 @@
 
       calcDepartmentScoreText(user) {
         let app = this;
-        if (user.summary === undefined) return "N/A";
-        if (user.summary.average_score === undefined) return "N/A";
-        return Math.round(user.summary.average_score * 100) + "%";
+        if (user.average_score === undefined) return "N/A";
+        return Math.round(user.average_score * 100) + "%";
       },
 
       calcDepartmentScoreColorBg(user) {
         let app = this;
-        if (user.summary === undefined) return app.colors.gray;
-        if (user.summary.average_score === undefined) return app.colors.gray;
-        let score = Math.round(user.summary.average_score * 100);
+        if (user.average_score === undefined) return app.colors.gray;
+        let score = Math.round(user.average_score * 100);
         if (score < 60) return app.colors.red;
         if (score < 80) return app.colors.orange;
         if (score < 90) return app.colors.yellow;
@@ -297,8 +294,7 @@
 
       calcDepartmentScoreColorFont(user) {
         let app = this;
-        if (user.summary === undefined) return "#000000";
-        if (user.summary.average_score === undefined) return "#000000";
+        if (user.average_score === undefined) return "#000000";
         return "#FFFFFF";
       },
 
