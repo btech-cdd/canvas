@@ -73,7 +73,7 @@
               >
               <div>
                 <div>
-                  <div @click='showStudent=user; showStudent.year = year; openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);' class='btech-user-name' style='width: 180px; display: inline-block; font-size: 1rem; cursor: pointer;'>
+                  <div @click='showStudent=user; console.log(showStudent); showStudent.year = year; openStudentReport(json.sis_to_canv[user.id].canvas_id, user.id);' class='btech-user-name' style='width: 180px; display: inline-block; font-size: 1rem; cursor: pointer;'>
                     <strong>{{user.name}}</strong>
                   </div>
                   <div style='display: inline-block; width: 6rem; font-size: 1rem;'>

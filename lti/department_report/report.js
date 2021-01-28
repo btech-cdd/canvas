@@ -140,7 +140,7 @@
           goodDate: '#5CB85C',
         },
         loadingStudentReport: false,
-        courseTypes: ['core', 'elective'],
+        courseTypes: ['core', 'elective', 'other'],
         scrollTop: 0, //used to save the scroll location of the main screen before going into the student report
         previousScreen: 'all'
       }
@@ -174,6 +174,7 @@
                 let courses = users[id];
                 let core = [];
                 let elective = [];
+                let other = [];
                 let summary = courses['summary'];
                 let deptProgress = 0;
                 let enrolledHours = app.json.sis_to_canv[id].enrolled_hours;
@@ -212,10 +213,11 @@
                       'start': course.start,
                       'hours': users['base'][courseCode].hours
                     }
-                    if (base[courseCode].type === 'CORE') {
+                    if (base[courseCode] === undefined) {
+                      other.push(courseData);
+                    } else if (base[courseCode].type === 'CORE') {
                       core.push(courseData);
-                    } else {
-                      // if (base[courseCode].type === 'ELECT') {
+                    } else if (base[courseCode].type === 'ELECT') {
                       elective.push(courseData);
                     }
                   }
@@ -225,6 +227,7 @@
                   'id': id,
                   'core': core,
                   'elective': elective,
+                  'other': other,
                   'summary': summary,
                   'enrolledHours': Math.round(enrolledHours),
                   'completedHours': Math.round(completedHours)
