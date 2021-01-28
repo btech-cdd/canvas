@@ -118,9 +118,9 @@
                   ">
                     <a 
                       :class="{
-                        disabled: !(course_code in app.json.users[user.id].courses) 
+                        disabled: !(course_code in json.users[user.id].courses) 
                       }" 
-                      :href="'https://btech.instructure.com/courses/' + course_code in app.json.users[user.id].courses[course_code].canvas_id + '/grades/' + user.canvas_id"
+                      :href="'https://btech.instructure.com/courses/' + course_code in json.users[user.id].courses[course_code].canvas_id + '/grades/' + user.canvas_id"
                       target="_blank">
                       <div class='btech-course-progress-bar-fill' :style="
                       {
