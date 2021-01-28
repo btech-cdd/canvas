@@ -228,7 +228,7 @@
               }
               userList.push({
                 'name': name,
-                'id': id,
+                'id': sis_id,
                 'core': core,
                 'elective': elective,
                 'other': other,
