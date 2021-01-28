@@ -148,11 +148,15 @@
     },
     methods: {
       getCourseProgressBarColor(user, course, courseCode) {
-        let progress = user.courses[courseCode].progress;
+        let progress;
+        if (courseCode in user.courses) {
+          progress = user.courses[courseCode].progress;
+        } else {
+          return app.colors.gray;
+        }
         // let start = course.start;
         let start = new Date();
         let app = this;
-        if (progress <= 0) return app.colors.noProgress;
         if (progress >= 100) return app.colors.complete;
 
         let diffDays = Math.floor((new Date() - new Date(start)) / (1000 * 60 * 60 * 24));
