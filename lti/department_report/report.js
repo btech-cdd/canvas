@@ -168,10 +168,10 @@
         for (let year in app.json['trees'][app.currentDepartment]) {
           let program = app.json['trees'][app.currentDepartment][year];
           let users = program['users'];
-          print(users);
+          console.log(users);
           let userList = [];
           for (let sis_id in users) {
-            print(sis_id)
+            console.log(sis_id)
             if (sis_id in app.json['users']) {
               let user = app.json['users'][sis_id]
               let name = user.name;
