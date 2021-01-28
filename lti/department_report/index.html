@@ -117,6 +117,7 @@
                       'background-color': colors.base,
                     }
                   ">
+                    <!--:href="'https://btech.instructure.com/courses/' + user[courseType][course_code].course_id + '/grades/' + user.canvas_id"-->
                     <a 
                       :class="{
                         disabled: user[courseType][course_code] !== undefined 
@@ -124,7 +125,7 @@
                       target="_blank">
                       <div class='btech-course-progress-bar-fill' :style="
                       {
-                        'background-color': getCourseProgressBarColor(user, course, course_code),
+                        'background-color': getCourseProgressBarColor(user, course, course_code, courseType),
                         width: 100 + '%'
                       }
                       ">

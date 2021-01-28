@@ -147,10 +147,10 @@
       }
     },
     methods: {
-      getCourseProgressBarColor(user, course, courseCode) {
+      getCourseProgressBarColor(user, course, courseCode, courseType) {
         let progress;
-        if (courseCode in user.courses) {
-          progress = user.courses[courseCode].progress;
+        if (courseCode in user[courseType]) {
+          progress = user[courseType][courseCode].progress;
         } else {
           return app.colors.gray;
         }
