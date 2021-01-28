@@ -177,7 +177,7 @@
               let user = app.json['users'][sis_id]
               let name = user.name;
               console.log(name);
-              let courses = user.coures;
+              let courses = user.courses;
               console.log(courses);
               let core = [];
               let elective = [];
