@@ -107,36 +107,35 @@
 
                 <div 
                   style='padding-top: 0.25rem; padding-bottom: 0.25rem;'
-                  v-for="courseType in json['trees'][currentDepartment][year]['courses']">
-                  <div v-if="json['trees'][currentDepartment][year]['courses'][courseType].length > 0">
-                    <div v-for="(course, course_code) in json['trees'][currentDepartment][year]['courses'][courseType]" class='btech-course-progress-bar'
-                      :title="course.name"
-                      :style="
+                  v-for="courseType in json['trees'][currentDepartment][year]['courses']"
+                >
+                  <div v-for="(course, course_code) in json['trees'][currentDepartment][year]['courses'][courseType]" class='btech-course-progress-bar'
+                    :title="course.name"
+                    :style="
+                    {
+                      'background-color': colors.base,
+                    }
+                  ">
+                    <a 
+                      :class="{
+                        disabled: users.courses[course_code].course_id === null
+                      }" 
+                      :href="'https://btech.instructure.com/courses/' + users.courses[course_code].course_id + '/grades/' + user.canvas_id"
+                      target="_blank">
+                      <div class='btech-course-progress-bar-fill' :style="
                       {
-                        'background-color': colors.base,
+                        'background-color': getCourseProgressBarColor(user, course, course_code),
+                        width: 100 + '%'
                       }
-                    ">
-                      <a 
-                        :class="{
-                          disabled: users.courses[course_code].course_id === null
-                        }" 
-                        :href="'https://btech.instructure.com/courses/' + users.courses[course_code].course_id + '/grades/' + user.canvas_id"
-                        target="_blank">
-                        <div class='btech-course-progress-bar-fill' :style="
-                        {
-                          'background-color': getCourseProgressBarColor(user, course, course_code),
-                          width: 100 + '%'
-                        }
-                        ">
-                        </div>
-                        <div v-if="course.progress > 0" style="color: #FFFFFF" class='btech-course-progress-bar-text'>
-                          {{course_code}}
-                        </div>
-                        <div v-else style="color: #000000" class='btech-course-progress-bar-text'>
-                          {{course_code}}
-                        </div>
-                      </a>
-                    </div>
+                      ">
+                      </div>
+                      <div v-if="course.progress > 0" style="color: #FFFFFF" class='btech-course-progress-bar-text'>
+                        {{course_code}}
+                      </div>
+                      <div v-else style="color: #000000" class='btech-course-progress-bar-text'>
+                        {{course_code}}
+                      </div>
+                    </a>
                   </div>
                 </div>
               </div>
