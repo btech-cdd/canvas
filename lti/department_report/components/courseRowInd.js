@@ -31,20 +31,6 @@ Vue.component('course-row-ind', {
     'userCanvasId'
   ],
   computed: {
-    progressBarBaseStyle() {
-      let vm = this;
-      return {
-        'background-color': vm.colors.gray,
-        'width': ((90 / 90) * 20) + 'rem'
-      }
-    },
-    progressBarFillStyle() {
-      let vm = this;
-      return {
-        'background-color': vm.getFillColor(),
-        'width': vm.progress + '%'
-      }
-    }
   },
   data() {
     return {
@@ -53,22 +39,10 @@ Vue.component('course-row-ind', {
   mounted() {
     let vm = this;
     console.log(vm.progress);
-    console.log(vm.bgColor);
+    console.log(vm.courseName)
     console.log(vm.colors);
   },
   methods: {
-    getFillColor() {
-      let vm = this;
-      let progress = vm.progress;
-      let start = new Date(); //include start date
-      if (progress >= 100) return vm.colors.complete;
-
-      let diffDays = Math.floor((new Date() - new Date(start)) / (1000 * 60 * 60 * 24));
-      if (diffDays <= 60) return vm.colors.green;
-      if (diffDays <= 120) return vm.colors.yellow; //yellow
-      if (diffDays <= 180) return vm.colors.orange; //orange
-      return vm.colors.red; //red
-    },
   },
   destroyed: function () {
   }
