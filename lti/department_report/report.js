@@ -357,6 +357,13 @@
         app.json[name] = jsonData;
       },
 
+      getCourseURL(user, courseCode) {
+        let app = this;
+        let course = app.json.users[user.id].courses[courseCode];
+        if (course === undefined) return "";
+        return 'https://btech.instructure.com/courses/' + app.json.users[user.id].courses[course_code].canvas_id + '/grades/' + user.canvas_id
+      }
+
     }
   })
   class SubmissionsGraphBar {
