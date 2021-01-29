@@ -20,10 +20,10 @@ Vue.component('course-progress-bar-ind', {
   </div>
   `,
   props: [
-    progress,
-    hours,
-    bgColor,
-    barColor
+    'progress',
+    'hours',
+    'bgColor',
+    'barColor'
   ],
   computed: {
     progressBarBaseStyle() {
