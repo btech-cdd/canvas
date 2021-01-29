@@ -244,6 +244,16 @@
               <div
                 style="background-color: rgb(255, 255, 255); display: inline-block; width: 100%; font-size: 0.75rem; padding: .25rem;"
               >
+                <div style="display: inline-block; width: 15rem;">
+                  <a :class="{
+                      disabled: course.course_id === null
+                    }" 
+                    style="text-decoration: none; color: #000000;"
+                    :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.users[showStudent.id].canvas_id"
+                    target="_blank">
+                    {{course.name}} ({{course.code}})
+                  </a>
+                </div>
               </div>
             </div>
           </div>
