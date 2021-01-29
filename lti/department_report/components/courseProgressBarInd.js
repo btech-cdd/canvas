@@ -37,7 +37,7 @@ Vue.component('course-progress-bar-ind', {
     progressBarFillStyle() {
       let vm = this;
       return {
-        'background-color': vm.colors.blue,
+        'background-color': getFillColor(),
         'width': vm.progress + '%'
       }
     }
@@ -53,6 +53,18 @@ Vue.component('course-progress-bar-ind', {
     console.log(vm.colors);
   },
   methods: {
+    getFillColor() {
+      let vm = this;
+      let progress = vm.progress;
+      let start = new Date(); //include start date
+      if (progress >= 100) return vm.colors.complete;
+
+      let diffDays = Math.floor((new Date() - new Date(start)) / (1000 * 60 * 60 * 24));
+      if (diffDays <= 60) return vm.colors.green;
+      if (diffDays <= 120) return vm.colors.yellow; //yellow
+      if (diffDays <= 180) return vm.colors.orange; //orange
+      return vm.colors.red; //red
+    },
   },
   destroyed: function () {
   }
