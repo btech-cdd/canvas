@@ -359,9 +359,12 @@
 
       getCourseURL(user, courseCode) {
         let app = this;
-        let course = app.json.users[user.id].courses[courseCode];
-        if (course === undefined) return "";
-        return 'https://btech.instructure.com/courses/' + app.json.users[user.id].courses[course_code].canvas_id + '/grades/' + user.canvas_id
+        let userData = app.json.users[user.id];
+        console.log(userData);
+        let courseData = userData.courses[courseCode];
+        console.log(courseData);
+        if (courseData === undefined) return "";
+        return 'https://btech.instructure.com/courses/' + courseData.canvas_id + '/grades/' + user.canvas_id
       }
 
     }
