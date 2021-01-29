@@ -239,28 +239,28 @@
                 >
                   Completed Hours:
                 </span>
-                <div style='display: inline-block; width: 4rem; font-size: 1rem;'>
+                <div style="display: inline-block; width: 4rem; font-size: 1rem;">
                   <span 
-                  class='btech-pill-text'
-                  :style="{
-                      'background-color': colors.blue,
-                      'color': '#ffffff',
-                    }">
+                    class="btech-pill-text"
+                    :style="{
+                        'background-color': colors.blue,
+                        'color': '#ffffff',
+                      }">
                     {{showStudent.completedHours}} hrs
                   </span>
                 </div>
               </div>
             </div>
           </div>
-          <div id='btech-department-report-student-submissions-graph'>Loading...</div>
-          <div v-if='showStudent !== "all"'>
+          <div id="btech-department-report-student-submissions-graph">Loading...</div>
+          <div v-if="showStudent !== 'all'">
             <div 
-              style='padding-top: 0.25rem; padding-bottom: 0.25rem;'
-              v-for='(courses, courseType) in json.trees[currentDepartment][showStudent.year]["courses"]'
+              style="padding-top: 0.25rem; padding-bottom: 0.25rem;"
+              v-for="(courses, courseType) in json.trees[currentDepartment][showStudent.year]['courses']"
               >
               <span><strong>{{courseType}}</strong></span>
-              <div 
-                v-for='(course in courses)' 
+              <div
+                v-for="(course in courses)"
                 >
                 <div style="background-color: rgb(255, 255, 255); display: inline-block; width: 100%; font-size: 0.75rem; padding: .25rem;">
                   <div style="display: inline-block; width: 15rem;">
@@ -276,22 +276,22 @@
                   </div>
                   <!--Change the first 90 under width to the course's hours once figure out how to include that-->
                   <div
-                    class='btech-course-progress-bar'
-                    style='width: 20rem;'
-                    :style='{
-                      "background-color": colors.gray,
-                      "width": ((90 / 90) * 20) + "rem"
-                    }'
-                  >
-                    <div class='btech-course-progress-bar-fill' :style="
-                    {
-                      'background-color': getCourseProgressBarColor(showStudent, course, course.code, courseType),
-                      'width': course.progress + '%'
-                    }
-                    ">
+                    class="btech-course-progress-bar"
+                    style="width: 20rem;"
+                    :style="{
+                      'background-color': colors.gray,
+                      'width': ((90 / 90) * 20) + 'rem'
+                    }"
+                    >
+                    <div class="btech-course-progress-bar-fill" :style="
+                      {
+                        'background-color': getCourseProgressBarColor(showStudent, course, course.code, courseType),
+                        'width': course.progress + '%'
+                      }
+                      ">
                     </div>
-                    <div style="color: #000000" class='btech-course-progress-bar-text'>
-                      {{Math.round(course.progress * 10) / 10}}% <span v-if='!isNaN(course.hours)'>({{Math.round((course.hours * course.progress) / 100)}}/{{course.hours}} HRS)</span>
+                    <div style="color: #000000" class="btech-course-progress-bar-text">
+                      {{Math.round(course.progress * 10) / 10}}% <span v-if="!isNaN(course.hours)">({{Math.round((course.hours * course.progress) / 100)}}/{{course.hours}} HRS)</span>
                     </div>
                   </div>
                 </div>
@@ -300,7 +300,7 @@
           </div>
         </div> 
       </div> 
-  </div>
+    </div>
   <script>
     const CURRENT_DEPARTMENT = getCookie('currentDepartment');
     var scr = document.createElement('script'),
