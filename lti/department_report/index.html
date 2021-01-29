@@ -254,6 +254,26 @@
                     {{course.name}} ({{courseCode}})
                   </a>
                 </div>
+                <!--Change the first 90 under width to the course's hours once figure out how to include that-->
+                <div class="btech-course-progress-bar" style="width: 20rem;" :style="{
+                    'background-color': colors.gray,
+                    'width': ((90 / 90) * 20) + 'rem'
+                  }">
+                  <div class="btech-course-progress-bar-fill" :style="
+                    {
+                      'background-color': getCourseProgressBarColor(showStudent, course, course.code, courseType),
+                      'width': course.progress + '%'
+                    }
+                    ">
+                  </div>
+                  <div style="color: #000000" class="btech-course-progress-bar-text">
+                    {{Math.round(course.progress * 10) / 10}}% 
+                    <span
+                      v-if="!isNaN(course.hours)">
+                      ({{Math.round((course.hours * course.progress) / 100)}}/{{course.hours}} HRS)
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
