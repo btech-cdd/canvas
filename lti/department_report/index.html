@@ -9,6 +9,7 @@
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
   <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="/canvas/lti/department_report/components/courseProgressBarInd.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.5.0/print.js"></script>
 </head>
 
@@ -255,27 +256,11 @@
                   </a>
                 </div>
                 <!--Change the first 90 under width to the course's hours once figure out how to include that-->
-                <div class="btech-course-progress-bar" style="width: 20rem;" :style="{
-                    'background-color': colors.gray,
-                    'width': ((90 / 90) * 20) + 'rem'
-                  }">
-                  <div 
-                    class="btech-course-progress-bar-fill" 
-                    :style="
-                    {
-                      'background-color': getCourseProgressBarColor(showStudent, course, courseCode, courseType),
-                      'width': getUserCourseProgress(showStudent.id, courseCode) + '%'
-                    }
-                    ">
-                  </div>
-                  <div style="color: #000000" class="btech-course-progress-bar-text">
-                    {{Math.round(getUserCourseProgress(showStudent.id, courseCode, course) * 10) / 10}}% 
-                    <span
-                      v-if="!isNaN(course.hours)">
-                      ({{Math.round((course.hours * getUserCourseProgress(showStudent.id, courseCode)) / 100)}}/{{course.hours}} HRS)
-                    </span>
-                  </div>
-                </div>
+                <course-progress-bar-ind
+                  :progress='getUserCourseProgress(showStudent.id, courseCode)'
+                  :barColor='getCourseProgressBarColor(showStudent, course, courseCode, courseType)'
+                  :bgColor='colors.gray'
+                ></course-progress-bar-ind> 
               </div>
             </div>
           </div>

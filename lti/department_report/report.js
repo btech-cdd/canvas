@@ -357,8 +357,7 @@
         return 'https://btech.instructure.com/courses/' + courseData.canvas_id + '/grades/' + userData.canvas_id
       },
 
-      getUserCourseProgress(userId, courseCode, course=undefined) {
-        if (course !== undefined) console.log(course);
+      getUserCourseProgress(userId, courseCode) {
         let app = this;
         let user = app.json.users[userId];
         console.log(user);
