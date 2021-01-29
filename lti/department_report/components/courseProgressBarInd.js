@@ -16,7 +16,6 @@ Vue.component('course-progress-bar-ind', {
         </span>
       </div>
     </div> 
-    <span>{{bgColor}}, {{barColor}}</span>
   </div>
   `,
   props: [
