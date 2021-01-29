@@ -37,7 +37,7 @@ Vue.component('course-progress-bar-ind', {
     progressBarFillStyle() {
       let vm = this;
       return {
-        'background-color': getFillColor(),
+        'background-color': vm.getFillColor(),
         'width': vm.progress + '%'
       }
     }
