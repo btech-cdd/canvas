@@ -132,6 +132,23 @@
         </div>
       </div>
       
+      <div 
+        v-show="showStudent !== 'all'" 
+        id="printable-report" 
+        class="btech-modal"
+        style="display: inline-block; background-color: #fff; padding: 0.5rem;">
+        <div class="btech-pill-text print-hide"
+          :style="{'background-color': colors.red, 'color': '#fff', 'width': '1rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}"
+          @click="closeStudentReport()">
+          X
+        </div>
+        <div class="btech-pill-text print-hide"
+          title="You may have to enable printing background images for everything to appear."
+          :style="{'background-color': colors.gray, 'color': '#000', 'width': '2.5rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}"
+          @click="print()">
+          Print
+        </div>
+      </div>
     </div>
   </div>
   <script>
