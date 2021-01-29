@@ -4,23 +4,23 @@ Vue.component('course-progress-bar-ind', {
       'background-color': bgColor,
       'width': ((90 / 90) * 20) + 'rem'
     }">
-    <div 
-      class="btech-course-progress-bar-fill" 
-      :style="
-      {
-        'background-color': barColor,
-        'width': progress + '%'
-      }
-      ">
-    </div>
-    <div style="color: #000000" class="btech-course-progress-bar-text">
-      {{Math.round(progress * 10) / 10}}% 
-      <span
-        v-if="hours!==0">
-        ({{Math.round((hours * progress) / 100)}}/{{hours}} HRS)
-      </span>
-    </div>
-  </div> 
+      <div 
+        class="btech-course-progress-bar-fill" 
+        :style="
+        {
+          'background-color': barColor,
+          'width': progress + '%'
+        }
+        ">
+      </div>
+      <div style="color: #000000" class="btech-course-progress-bar-text">
+        {{Math.round(progress * 10) / 10}}% 
+        <span
+          v-if="hours!==0 && !isNaN(hours)">
+          ({{Math.round((hours * progress) / 100)}}/{{hours}} HRS)
+        </span>
+      </div>
+    </div> 
   `,
   props: {
     progress: 0,
