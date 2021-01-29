@@ -1,6 +1,10 @@
-<div class='btech-pill-text print-hide' :style='{"background-color": colors.red, "color": "#fff", "width": "1rem", "float": "right", "text-align": "center", "cursor": "pointer"}' @click='closeStudentReport()'>X</div>
-<div class='btech-pill-text print-hide' title="You may have to enable printing background images for everything to appear." :style='{"background-color": colors.gray, "color": "#000", "width": "2.5rem", "float": "right", "text-align": "center", "cursor": "pointer"}' @click='print()'>Print</div>
-<div v-if='showStudent !== "all"'>
+<div class="btech-pill-text print-hide" :style="{'background-color': colors.red, 'color': '#fff', 'width': '1rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}" @click="closeStudentReport()">
+  X
+</div>
+<div class="btech-pill-text print-hide" title="You may have to enable printing background images for everything to appear." :style="{'background-color': colors.gray, 'color': '#000', 'width': '2.5rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}" @click="print()">
+  Print
+</div>
+<div v-if="showStudent !== 'all'">
   <div
     style='margin-bottom: 2rem;'
   >
@@ -56,14 +60,17 @@
       >
         Certificate Hours:
       </span>
-      <div style='display: inline-block; width: 4rem; font-size: 1rem;'>
+      <div 
+        v-if="showStudent!=='all'"
+        style='display: inline-block; width: 4rem; font-size: 1rem;'
+      >
         <span 
           class='btech-pill-text'
           :style="{
               'background-color': colors.gray,
               'color': '#000000',
             }">
-          {{trees[currentDepartment][year].hours}} hrs
+          {{json.trees[currentDepartment][showStudent.year].hours}} hrs
         </span>
       </div>
     </div>
@@ -90,30 +97,29 @@
       >
         Completed Hours:
       </span>
-      <div style='display: inline-block; width: 4rem; font-size: 1rem;'>
+      <div style="display: inline-block; width: 4rem; font-size: 1rem;">
         <span 
-        class='btech-pill-text'
-        :style="{
-            'background-color': colors.blue,
-            'color': '#ffffff',
-          }">
+          class="btech-pill-text"
+          :style="{
+              'background-color': colors.blue,
+              'color': '#ffffff',
+            }">
           {{showStudent.completedHours}} hrs
         </span>
       </div>
     </div>
   </div>
 </div>
-<div id='btech-department-report-student-submissions-graph'>Loading...</div>
-<div v-if='showStudent !== "all"'>
+<div id="btech-department-report-student-submissions-graph">Loading...</div>
+<div v-if="showStudent !== 'all'">
   <div 
-  style='padding-top: 0.25rem; padding-bottom: 0.25rem;'
-  v-for='courseType in courseTypes'
-  >
-  <div v-if='showStudent[courseType].length > 0'>
-    <span><strong>{{courseType}}</strong></span>
-    <div 
-      v-for='(course) in showStudent[courseType]' 
+    style="padding-top: 0.25rem; padding-bottom: 0.25rem;"
+    v-for="(courses, courseType) in json.trees[currentDepartment][showStudent.year]['courses']"
     >
+    <span><strong>{{courseType}}</strong></span>
+    <div
+      v-for="(course in courses)"
+      >
       <div style="background-color: rgb(255, 255, 255); display: inline-block; width: 100%; font-size: 0.75rem; padding: .25rem;">
         <div style="display: inline-block; width: 15rem;">
           <a 
@@ -123,30 +129,30 @@
             style="text-decoration: none; color: #000000;"
             :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.users[showStudent.id].canvas_id"
             target="_blank">
-            {{json['users'][currentDepartment][showStudent.year]['base'][course.code].name}} ({{course.code}})
+            {{course.name}} ({{course.code}})
           </a>
         </div>
         <!--Change the first 90 under width to the course's hours once figure out how to include that-->
         <div
-          class='btech-course-progress-bar'
-          style='width: 20rem;'
-          :style='{
-            "background-color": colors.gray,
-            "width": ((90 / 90) * 20) + "rem"
-          }'
-        >
-          <div class='btech-course-progress-bar-fill' :style="
-          {
-            'background-color': getCourseProgressBarColor(course),
-            'width': course.progress + '%'
-          }
-          ">
+          class="btech-course-progress-bar"
+          style="width: 20rem;"
+          :style="{
+            'background-color': colors.gray,
+            'width': ((90 / 90) * 20) + 'rem'
+          }"
+          >
+          <div class="btech-course-progress-bar-fill" :style="
+            {
+              'background-color': getCourseProgressBarColor(showStudent, course, course.code, courseType),
+              'width': course.progress + '%'
+            }
+            ">
           </div>
-          <div style="color: #000000" class='btech-course-progress-bar-text'>
-            {{Math.round(course.progress * 10) / 10}}% <span v-if='!isNaN(course.hours)'>({{Math.round((course.hours * course.progress) / 100)}}/{{course.hours}} HRS)</span>
+          <div style="color: #000000" class="btech-course-progress-bar-text">
+            {{Math.round(course.progress * 10) / 10}}% <span v-if="!isNaN(course.hours)">({{Math.round((course.hours * course.progress) / 100)}}/{{course.hours}} HRS)</span>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div> 
+</div>
