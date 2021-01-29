@@ -116,11 +116,11 @@
                       'background-color': colors.base,
                     }
                   ">
+                    <!--:href="'https://btech.instructure.com/courses/' + user[courseType][course_code].course_id + '/grades/' + user.canvas_id"-->
                     <a 
                       :class="{
-                        disabled: !(course_code in json.users[user.id].courses) 
+                        disabled: !(course_code in app.json.users[user.id].courses) 
                       }" 
-                      :href="getCourseURL(user, course_code);"
                       target="_blank">
                       <div class='btech-course-progress-bar-fill' :style="
                       {
