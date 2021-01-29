@@ -241,7 +241,7 @@
             style="padding-top: 0.25rem; padding-bottom: 0.25rem;"
             v-for="(courses, courseType) in json.trees[currentDepartment][showStudent.year]['courses']"
           >
-            <span><strong>{{courseType}}</strong></span>
+            <span><strong>{{courseType.topUpperCase()}}</strong></span>
             <div v-for="(course, courseCode) in courses">
               <course-row-ind
                 :progress='getUserCourseProgress(showStudent.id, courseCode)'
@@ -257,7 +257,7 @@
           <div 
             style="padding-top: 0.25rem; padding-bottom: 0.25rem;"
           >
-            <span><strong>Other</strong></span>
+            <span><strong>OTHER</strong></span>
             <div v-for="course in showStudent.other">
               <course-row-ind
                 :progress='getUserCourseProgress(showStudent.id, course.code)'
