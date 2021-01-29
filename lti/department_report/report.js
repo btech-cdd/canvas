@@ -358,6 +358,7 @@
       },
 
       getCourseURL(user, courseCode) {
+        console.log("HELP!");
         let app = this;
         let userData = app.json.users[user.id];
         console.log(userData);
