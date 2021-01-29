@@ -202,7 +202,10 @@
                   >
                     Certificate Hours:
                   </span>
-                  <div style='display: inline-block; width: 4rem; font-size: 1rem;'>
+                  <div 
+                    v-if="showStudent!=='all'"
+                    style='display: inline-block; width: 4rem; font-size: 1rem;'
+                  >
                     <span 
                       class='btech-pill-text'
                       :style="{
