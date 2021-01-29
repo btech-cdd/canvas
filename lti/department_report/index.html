@@ -257,11 +257,11 @@
             <div 
               style='padding-top: 0.25rem; padding-bottom: 0.25rem;'
               v-for='(courses, courseType) in json.trees[currentDepartment][showStudent.year]["courses"]'
-            >
+              >
               <span><strong>{{courseType}}</strong></span>
               <div 
                 v-for='(course in courses)' 
-              >
+                >
                 <div style="background-color: rgb(255, 255, 255); display: inline-block; width: 100%; font-size: 0.75rem; padding: .25rem;">
                   <div style="display: inline-block; width: 15rem;">
                     <a 
@@ -300,7 +300,6 @@
           </div>
         </div> 
       </div> 
-    </div>
   </div>
   <script>
     const CURRENT_DEPARTMENT = getCookie('currentDepartment');
