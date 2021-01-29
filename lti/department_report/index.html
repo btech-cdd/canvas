@@ -286,7 +286,7 @@
                     >
                       <div class='btech-course-progress-bar-fill' :style="
                       {
-                        'background-color': getCourseProgressBarColor(course),
+                        'background-color': getCourseProgressBarColor(showStudent, course, course.code, courseType),
                         'width': course.progress + '%'
                       }
                       ">
