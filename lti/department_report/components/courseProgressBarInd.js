@@ -1,17 +1,11 @@
 Vue.component('course-progress-bar-ind', {
   template:` 
   <div>
-   <div class="btech-course-progress-bar" style="width: 20rem;" :style="{
-      'background-color': bgColor,
-      'width': ((90 / 90) * 20) + 'rem'
-    }">
+   <div class="btech-course-progress-bar" style="width: 20rem;" :style="progressBarBaseStyle">
       <div 
         class="btech-course-progress-bar-fill" 
         :style="
-        {
-          'background-color': barColor,
-          'width': progress + '%'
-        }
+          progressBarFillStyle
         ">
       </div>
       <div style="color: #000000" class="btech-course-progress-bar-text">
@@ -30,6 +24,22 @@ Vue.component('course-progress-bar-ind', {
     hours: 0,
     bgColor: '',
     barColor: '',
+  },
+  computed: {
+    progressBarBaseStyle() {
+      let vm = this;
+      return {
+        'background-color': vm.bgColor,
+        'width': ((90 / 90) * 20) + 'rem'
+      }
+    },
+    progressBarFillStyle() {
+      let vm = this;
+      return {
+        'background-color': vm.barColor,
+        'width': vm.progress + '%'
+      }
+    }
   },
   data() {
     return {
