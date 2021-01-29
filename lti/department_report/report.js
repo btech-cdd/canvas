@@ -178,8 +178,10 @@
             if (sis_id in app.json['users']) {
               let user = app.json['users'][sis_id]
               let name = user.name;
+              console.log(name);
               let courses = user.courses;
               let entryDate = new Date(user.entryDate);
+              console.log(entryDate);
               let core = [];
               let elective = [];
               let other = [];
@@ -193,8 +195,10 @@
               let completedHours = 0;
               for (let courseCode in courses) {
                 let course = courses[courseCode];
+                console.log(courseCode);
                 let courseStartDate = new Date(course.start);
                 let courseEntryDate = new Date(course.contract_begin);
+                console.log(courseEntryDate);
                 let courseEndDate = new Date(course.contract_end);
 
                 let today = new Date();
