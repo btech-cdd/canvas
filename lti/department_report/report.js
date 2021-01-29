@@ -180,7 +180,7 @@
               let name = user.name;
               console.log(name);
               let courses = user.courses;
-              let entryDate = new Date(user.entryDate);
+              let entryDate = new Date(user.entryDate + "T00:00.000000");
               console.log(entryDate);
               let core = [];
               let elective = [];
