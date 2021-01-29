@@ -1,4 +1,3 @@
-        <div id="btech-department-report-student-submissions-graph">Loading...</div>
         <div v-if="showStudent !== 'all'">
           <div style="padding-top: 0.25rem; padding-bottom: 0.25rem;"
             v-for="(courses, courseType) in json.trees[currentDepartment][showStudent.year]['courses']">
@@ -29,9 +28,11 @@
                     ">
                   </div>
                   <div style="color: #000000" class="btech-course-progress-bar-text">
-                    {{Math.round(course.progress * 10) / 10}}% <span
-                      v-if="!isNaN(course.hours)">({{Math.round((course.hours * course.progress) / 100)}}/{{course.hours}}
-                      HRS)</span>
+                    {{Math.round(course.progress * 10) / 10}}% 
+                    <span
+                      v-if="!isNaN(course.hours)">
+                      ({{Math.round((course.hours * course.progress) / 100)}}/{{course.hours}} HRS)
+                    </span>
                   </div>
                 </div>
               </div>
