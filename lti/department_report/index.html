@@ -235,45 +235,6 @@
         <div id="btech-department-report-student-submissions-graph">Loading...</div>
 
         <div v-if="showStudent !== 'all'">
-          <div style="padding-top: 0.25rem; padding-bottom: 0.25rem;"
-            v-for="(courses, courseType) in json.trees[currentDepartment][showStudent.year]['courses']">
-            <span><strong>{{courseType}}</strong></span>
-            <div v-for="(course in courses)">
-              <div
-                style="background-color: rgb(255, 255, 255); display: inline-block; width: 100%; font-size: 0.75rem; padding: .25rem;">
-                <div style="display: inline-block; width: 15rem;">
-                  <a :class="{
-                      disabled: course.course_id === null
-                    }" 
-                    style="text-decoration: none; color: #000000;"
-                    :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.users[showStudent.id].canvas_id"
-                    target="_blank">
-                    {{course.name}} ({{course.code}})
-                  </a>
-                </div>
-                <!--Change the first 90 under width to the course's hours once figure out how to include that-->
-                <div class="btech-course-progress-bar" style="width: 20rem;" :style="{
-                    'background-color': colors.gray,
-                    'width': ((90 / 90) * 20) + 'rem'
-                  }">
-                  <div class="btech-course-progress-bar-fill" :style="
-                    {
-                      'background-color': getCourseProgressBarColor(showStudent, course, course.code, courseType),
-                      'width': course.progress + '%'
-                    }
-                    ">
-                  </div>
-                  <div style="color: #000000" class="btech-course-progress-bar-text">
-                    {{Math.round(course.progress * 10) / 10}}% 
-                    <span
-                      v-if="!isNaN(course.hours)">
-                      ({{Math.round((course.hours * course.progress) / 100)}}/{{course.hours}} HRS)
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

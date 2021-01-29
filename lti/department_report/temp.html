@@ -1,4 +1,3 @@
-        <div v-if="showStudent !== 'all'">
           <div style="padding-top: 0.25rem; padding-bottom: 0.25rem;"
             v-for="(courses, courseType) in json.trees[currentDepartment][showStudent.year]['courses']">
             <span><strong>{{courseType}}</strong></span>
@@ -38,4 +37,3 @@
               </div>
             </div>
           </div>
-        </div>
