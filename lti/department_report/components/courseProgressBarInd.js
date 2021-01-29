@@ -30,14 +30,14 @@ Vue.component('course-progress-bar-ind', {
     progressBarBaseStyle() {
       let vm = this;
       return {
-        'background-color': vm.bgColor,
+        'background-color': vm.colors.gray,
         'width': ((90 / 90) * 20) + 'rem'
       }
     },
     progressBarFillStyle() {
       let vm = this;
       return {
-        'background-color': vm.barColor,
+        'background-color': vm.colors.blue,
         'width': vm.progress + '%'
       }
     }
