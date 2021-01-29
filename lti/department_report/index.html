@@ -14,47 +14,47 @@
 
 <body>
   <div 
-    style='visibility: hidden;'
-    id='canvas-department-report-vue'
-  >
+    style="visibility: hidden;"
+    id="canvas-department-report-vue"
+    >
     <div v-if="loading">
       <span>Loading...</span>
     </div>
     <div v-else>
-      <div style='position: sticky; width: 100%; background-color: #fff; z-index: 10; padding: 4px; box-sizing: border-box; box-shadow: 0px 5px 5px #888; margin-bottom: 1rem; top: 0;'>
-          <div style='display: inline-block;'>
-            Grade: 
-            <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>0-59%</span>
-            <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>60-79%</span>
-            <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>80-89%</span>
-            <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>90-100%</span>
-            <br>
-            <br>
-            <div
-              v-show='showProgressRatio'
-            >
-              SAP:
-              <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;150%</span>
-              <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>101-150%</span>
-              <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-100%</span>
-            </div>
+      <div style="position: sticky; width: 100%; background-color: #fff; z-index: 10; padding: 4px; box-sizing: border-box; box-shadow: 0px 5px 5px #888; margin-bottom: 1rem; top: 0;">
+        <div style='display: inline-block;'>
+          Grade: 
+          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>0-59%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>60-79%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>80-89%</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>90-100%</span>
+          <br>
+          <br>
+          <div
+            v-show='showProgressRatio'
+          >
+            SAP:
+            <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;150%</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>101-150%</span>
+            <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-100%</span>
           </div>
-          <div style='display: inline-block;'>
-            Submission History:
-            <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;10 days</span>
-            <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>7-9 days</span>
-            <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-7 days</span>
-            <br>
-            <br>
-            Course Enrollment:
-            <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;180 days</span>
-            <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>121-180 days</span>
-            <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>61-120 days</span>
-            <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-60 days</span>
-            <span class='btech-pill-text' :style='{"background-color": colors.complete, "color": "#fff"}'>Completed</span>
-            <span class='btech-pill-text' :style='{"background-color": colors.gray, "color": "#000"}'>No Enrollment Found</span>
-          </div>
-          <div style='padding-top: 2rem;'><strong>WARNING: </strong>The SAP provided in this report is an estimation and not the student's official SAP.</div>
+        </div>
+        <div style='display: inline-block;'>
+          Submission History:
+          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;10 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>7-9 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-7 days</span>
+          <br>
+          <br>
+          Course Enrollment:
+          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;180 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.orange, "color": "#fff"}'>121-180 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>61-120 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-60 days</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.complete, "color": "#fff"}'>Completed</span>
+          <span class='btech-pill-text' :style='{"background-color": colors.gray, "color": "#000"}'>No Enrollment Found</span>
+        </div>
+        <div style='padding-top: 2rem;'><strong>WARNING: </strong>The SAP provided in this report is an estimation and not the student's official SAP.</div>
       </div>
       <div v-show='showStudent==="all"'>
         <select @change='loadDepartmentUsers' v-model='currentDepartment'>
@@ -107,10 +107,10 @@
                 </div>
 
                 <div 
-                  style='padding-top: 0.25rem; padding-bottom: 0.25rem;'
+                  style="padding-top: 0.25rem; padding-bottom: 0.25rem;"
                   v-for="(courses, courseType) in json['trees'][currentDepartment][year]['courses']"
                 >
-                  <div v-for="(course, course_code) in courses" class='btech-course-progress-bar'
+                  <div v-for="(course, course_code) in courses" class="btech-course-progress-bar"
                     :title="course.name"
                     :style="
                     {
@@ -122,17 +122,17 @@
                       :class="{disabled: !(course_code in json.users[user.id].courses)}"
                       :href="getCourseURL(user, course_code)"
                       target="_blank">
-                      <div class='btech-course-progress-bar-fill' :style="
+                      <div class="btech-course-progress-bar-fill" :style="
                       {
                         'background-color': getCourseProgressBarColor(user, course, course_code, courseType),
                         width: 100 + '%'
                       }
                       ">
                       </div>
-                      <div v-if="course_code in json.users[user.id].courses" style="color: #FFFFFF" class='btech-course-progress-bar-text'>
+                      <div v-if="course_code in json.users[user.id].courses" style="color: #FFFFFF" class="btech-course-progress-bar-text">
                         {{course_code}}
                       </div>
-                      <div v-else style="color: #000000" class='btech-course-progress-bar-text'>
+                      <div v-else style="color: #000000" class="btech-course-progress-bar-text">
                         {{course_code}}
                       </div>
                     </a>
@@ -143,162 +143,161 @@
           </div>
         </div>
       </div>
-      <div v-show='showStudent !== "all"' id='printable-report' class='btech-modal' style='display: inline-block; background-color: #fff; padding: 0.5rem;'>
-        <div class='btech-pill-text print-hide' :style='{"background-color": colors.red, "color": "#fff", "width": "1rem", "float": "right", "text-align": "center", "cursor": "pointer"}' @click='closeStudentReport()'>X</div>
-          <div class='btech-pill-text print-hide' title="You may have to enable printing background images for everything to appear." :style='{"background-color": colors.gray, "color": "#000", "width": "2.5rem", "float": "right", "text-align": "center", "cursor": "pointer"}' @click='print()'>Print</div>
-          <div v-if='showStudent !== "all"'>
-            <div
-              style='margin-bottom: 2rem;'
-            >
-              <div 
-                class='btech-user-name'
-                style='margin-bottom: .25rem;'
-                >
-                <div style='display: inline-block; width: 10rem; font-size: 1rem;'>
-                  <a 
-                    :href="'https://btech.instructure.com/users/' + json.users[showStudent.id].canvas_id" target="_blank">
-                    <strong>{{showStudent.name}}</strong>
-                  </a>
-                </div>
+      <div v-show="showStudent !== 'all'" id="printable-report" class="btech-modal" style="display: inline-block; background-color: #fff; padding: 0.5rem;">
+        <div class="btech-pill-text print-hide" :style="{'background-color': colors.red, 'color': '#fff', 'width': '1rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}" @click="closeStudentReport()">X</div>
+        <div class="btech-pill-text print-hide" title="You may have to enable printing background images for everything to appear." :style="{'background-color': colors.gray, 'color': '#000', 'width': '2.5rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}" @click="print()">Print</div>
+        <div v-if="showStudent !== 'all'">
+          <div
+            style='margin-bottom: 2rem;'
+          >
+            <div 
+              class='btech-user-name'
+              style='margin-bottom: .25rem;'
+              >
+              <div style='display: inline-block; width: 10rem; font-size: 1rem;'>
+                <a 
+                  :href="'https://btech.instructure.com/users/' + json.users[showStudent.id].canvas_id" target="_blank">
+                  <strong>{{showStudent.name}}</strong>
+                </a>
+              </div>
+              <span>
+                Average Grade:
+              </span>
+              <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
+                <span 
+                  class='btech-pill-text'
+                  :style="{
+                      'background-color': calcDepartmentScoreColorBg(showStudent),
+                      'color': calcDepartmentScoreColorFont(showStudent),
+                    }">
+                  {{calcDepartmentScoreText(showStudent)}}
+                </span>
+              </div>
+              <div style='display: inline-block; width: 6rem; font-size: 1rem;'>
                 <span>
-                  Average Grade:
+                  SAP:
                 </span>
                 <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
                   <span 
-                    class='btech-pill-text'
-                    :style="{
-                        'background-color': calcDepartmentScoreColorBg(showStudent),
-                        'color': calcDepartmentScoreColorFont(showStudent),
-                      }">
-                    {{calcDepartmentScoreText(showStudent)}}
-                  </span>
-                </div>
-                <div style='display: inline-block; width: 6rem; font-size: 1rem;'>
-                  <span>
-                    SAP:
-                  </span>
-                  <div style='display: inline-block; width: 3rem; font-size: 1rem;'>
-                    <span 
-                    class='btech-pill-text'
-                    :style="{
-                        'background-color': calcDepartmentTimeColorBg(showStudent),
-                        'color': '#ffffff',
-                      }">
-                      {{calcDepartmentTimeText(showStudent)}} 
-                    </span>
-                  </div>
-              </div>
-              </div>
-            </div>
-          </div>
-          <div 
-            v-show='showProgressRatio'
-            class='btech-department-report-student-hours'>
-            <div id='btech-department-report-student-progress-donut' style='float: left; position: relative;'>Loading...</div>
-            <div style='display: inline-block;'>
-              <div class='data-item'>
-                <span
-                  class='data-item-title'
-                >
-                  Certificate Hours:
-                </span>
-                <div 
-                  v-if="showStudent!=='all'"
-                  style='display: inline-block; width: 4rem; font-size: 1rem;'
-                >
-                  <span 
-                    class='btech-pill-text'
-                    :style="{
-                        'background-color': colors.gray,
-                        'color': '#000000',
-                      }">
-                    {{json.trees[currentDepartment][showStudent.year].hours}} hrs
-                  </span>
-                </div>
-              </div>
-              <div class='data-item'>
-                <span
-                  class='data-item-title'
-                >
-                  Enrolled Hours:
-                </span>
-                <div style='display: inline-block; width: 4rem; font-size: 1rem;'>
-                  <span 
                   class='btech-pill-text'
                   :style="{
-                      'background-color': colors.red,
+                      'background-color': calcDepartmentTimeColorBg(showStudent),
                       'color': '#ffffff',
                     }">
-                    {{showStudent.enrolledHours}} hrs
+                    {{calcDepartmentTimeText(showStudent)}} 
                   </span>
                 </div>
-              </div>
-              <div class='data-item'>
-                <span
-                  class='data-item-title'
-                >
-                  Completed Hours:
-                </span>
-                <div style="display: inline-block; width: 4rem; font-size: 1rem;">
-                  <span 
-                    class="btech-pill-text"
-                    :style="{
-                        'background-color': colors.blue,
-                        'color': '#ffffff',
-                      }">
-                    {{showStudent.completedHours}} hrs
-                  </span>
-                </div>
-              </div>
+            </div>
             </div>
           </div>
-          <div id="btech-department-report-student-submissions-graph">Loading...</div>
-          <div v-if="showStudent !== 'all'">
-            <div 
-              style="padding-top: 0.25rem; padding-bottom: 0.25rem;"
-              v-for="(courses, courseType) in json.trees[currentDepartment][showStudent.year]['courses']"
+        </div>
+        <div 
+          v-show='showProgressRatio'
+          class='btech-department-report-student-hours'>
+          <div id='btech-department-report-student-progress-donut' style='float: left; position: relative;'>Loading...</div>
+          <div style='display: inline-block;'>
+            <div class='data-item'>
+              <span
+                class='data-item-title'
               >
-              <span><strong>{{courseType}}</strong></span>
-              <div
-                v-for="(course in courses)"
-                >
-                <div style="background-color: rgb(255, 255, 255); display: inline-block; width: 100%; font-size: 0.75rem; padding: .25rem;">
-                  <div style="display: inline-block; width: 15rem;">
-                    <a 
-                      :class="{
-                        disabled: course.course_id === null
-                      }" 
-                      style="text-decoration: none; color: #000000;"
-                      :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.users[showStudent.id].canvas_id"
-                      target="_blank">
-                      {{course.name}} ({{course.code}})
-                    </a>
-                  </div>
-                  <!--Change the first 90 under width to the course's hours once figure out how to include that-->
-                  <div
-                    class="btech-course-progress-bar"
-                    style="width: 20rem;"
-                    :style="{
+                Certificate Hours:
+              </span>
+              <div 
+                v-if="showStudent!=='all'"
+                style='display: inline-block; width: 4rem; font-size: 1rem;'
+              >
+                <span 
+                  class='btech-pill-text'
+                  :style="{
                       'background-color': colors.gray,
-                      'width': ((90 / 90) * 20) + 'rem'
-                    }"
-                    >
-                    <div class="btech-course-progress-bar-fill" :style="
-                      {
-                        'background-color': getCourseProgressBarColor(showStudent, course, course.code, courseType),
-                        'width': course.progress + '%'
-                      }
-                      ">
-                    </div>
-                    <div style="color: #000000" class="btech-course-progress-bar-text">
-                      {{Math.round(course.progress * 10) / 10}}% <span v-if="!isNaN(course.hours)">({{Math.round((course.hours * course.progress) / 100)}}/{{course.hours}} HRS)</span>
-                    </div>
+                      'color': '#000000',
+                    }">
+                  {{json.trees[currentDepartment][showStudent.year].hours}} hrs
+                </span>
+              </div>
+            </div>
+            <div class='data-item'>
+              <span
+                class='data-item-title'
+              >
+                Enrolled Hours:
+              </span>
+              <div style='display: inline-block; width: 4rem; font-size: 1rem;'>
+                <span 
+                class='btech-pill-text'
+                :style="{
+                    'background-color': colors.red,
+                    'color': '#ffffff',
+                  }">
+                  {{showStudent.enrolledHours}} hrs
+                </span>
+              </div>
+            </div>
+            <div class='data-item'>
+              <span
+                class='data-item-title'
+              >
+                Completed Hours:
+              </span>
+              <div style="display: inline-block; width: 4rem; font-size: 1rem;">
+                <span 
+                  class="btech-pill-text"
+                  :style="{
+                      'background-color': colors.blue,
+                      'color': '#ffffff',
+                    }">
+                  {{showStudent.completedHours}} hrs
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="btech-department-report-student-submissions-graph">Loading...</div>
+        <div v-if="showStudent !== 'all'">
+          <div 
+            style="padding-top: 0.25rem; padding-bottom: 0.25rem;"
+            v-for="(courses, courseType) in json.trees[currentDepartment][showStudent.year]['courses']"
+            >
+            <span><strong>{{courseType}}</strong></span>
+            <div
+              v-for="(course in courses)"
+              >
+              <div style="background-color: rgb(255, 255, 255); display: inline-block; width: 100%; font-size: 0.75rem; padding: .25rem;">
+                <div style="display: inline-block; width: 15rem;">
+                  <a 
+                    :class="{
+                      disabled: course.course_id === null
+                    }" 
+                    style="text-decoration: none; color: #000000;"
+                    :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.users[showStudent.id].canvas_id"
+                    target="_blank">
+                    {{course.name}} ({{course.code}})
+                  </a>
+                </div>
+                <!--Change the first 90 under width to the course's hours once figure out how to include that-->
+                <div
+                  class="btech-course-progress-bar"
+                  style="width: 20rem;"
+                  :style="{
+                    'background-color': colors.gray,
+                    'width': ((90 / 90) * 20) + 'rem'
+                  }"
+                  >
+                  <div class="btech-course-progress-bar-fill" :style="
+                    {
+                      'background-color': getCourseProgressBarColor(showStudent, course, course.code, courseType),
+                      'width': course.progress + '%'
+                    }
+                    ">
+                  </div>
+                  <div style="color: #000000" class="btech-course-progress-bar-text">
+                    {{Math.round(course.progress * 10) / 10}}% <span v-if="!isNaN(course.hours)">({{Math.round((course.hours * course.progress) / 100)}}/{{course.hours}} HRS)</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div> 
+        </div>
       </div> 
     </div>
   <script>
