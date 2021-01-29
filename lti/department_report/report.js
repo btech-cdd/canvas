@@ -355,6 +355,17 @@
         let courseData = userData.courses[courseCode];
         if (courseData === undefined) return "/";
         return 'https://btech.instructure.com/courses/' + courseData.canvas_id + '/grades/' + userData.canvas_id
+      },
+
+      getUserCourseProgress(userId, courseCode) {
+        let app = this;
+        let user = app.json.users[userId];
+        console.log(user);
+        console.log(courseCode);
+        if (courseCode in user.courses) {
+          return user.courses[courseCode].progress;
+        }
+        return 0;
       }
 
     }
