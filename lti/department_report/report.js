@@ -363,7 +363,7 @@
         console.log(userData);
         let courseData = userData.courses[courseCode];
         console.log(courseData);
-        if (courseData === undefined) return "";
+        if (courseData === undefined) return "/";
         return 'https://btech.instructure.com/courses/' + courseData.canvas_id + '/grades/' + user.canvas_id
       }
 
