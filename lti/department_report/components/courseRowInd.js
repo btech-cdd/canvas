@@ -1,6 +1,5 @@
 Vue.component('course-row-ind', {
   template:` 
-    <div>
       <div
         style="background-color: rgb(255, 255, 255); display: inline-block; width: 100%; font-size: 0.75rem; padding: .25rem;"
       >
@@ -21,7 +20,6 @@ Vue.component('course-row-ind', {
           :hours='courseHours'
         ></course-progress-bar-ind> 
       </div>
-    </div>
   `,
   props: [
     'progress',

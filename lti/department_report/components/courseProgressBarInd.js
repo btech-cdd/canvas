@@ -1,6 +1,5 @@
 Vue.component('course-progress-bar-ind', {
   template:` 
-  <div>
    <div class="btech-course-progress-bar" style="width: 20rem;" :style="progressBarBaseStyle">
       <div 
         class="btech-course-progress-bar-fill" 
@@ -16,7 +15,6 @@ Vue.component('course-progress-bar-ind', {
         </span>
       </div>
     </div> 
-  </div>
   `,
   props: [
     'progress',
