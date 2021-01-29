@@ -119,7 +119,7 @@
                     <!--:href="'https://btech.instructure.com/courses/' + user[courseType][course_code].course_id + '/grades/' + user.canvas_id"-->
                     <a 
                       :class="{
-                        disabled: !(course_code in app.json.users[user.id].courses) 
+                        disabled: user[courseType][course_code] !== undefined 
                       }" 
                       target="_blank">
                       <div class='btech-course-progress-bar-fill' :style="
