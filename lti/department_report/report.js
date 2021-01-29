@@ -171,19 +171,14 @@
         let usersByYear = {};
         for (let year in app.json['trees'][app.currentDepartment]) {
           let program = app.json['trees'][app.currentDepartment][year];
-          console.log(app.json['trees'][app.currentDepartment][year]['courses']);
           let users = program['users'];
-          console.log(users);
           let userList = [];
           for (let i in users) {
             let sis_id = users[i];
-            console.log(sis_id)
             if (sis_id in app.json['users']) {
               let user = app.json['users'][sis_id]
               let name = user.name;
-              console.log(name);
               let courses = user.courses;
-              console.log(courses);
               let core = [];
               let elective = [];
               let other = [];
@@ -225,9 +220,6 @@
                 } else if (courseCode in program.courses.elect) {
                   elective.push(courseData);
                 } else {
-                  console.log("OTHER")
-                  console.log(name);
-                  // console.log(user.canvas_id);
                   other.push(courseData);
                 }
               }
@@ -390,8 +382,6 @@
       let graph = this;
       graph.userId = userId;
       graph.sisId = sisId;
-      console.log(userId);
-      console.log(sisId);
 
       //set graph settings 
       graph.graphSettings.months = 6;
