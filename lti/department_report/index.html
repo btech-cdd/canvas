@@ -121,6 +121,7 @@
                       :class="{
                         disabled: user[courseType][course_code] !== undefined 
                       }" 
+                      :href="getCourseURL(user, course_code);"
                       target="_blank">
                       <div class='btech-course-progress-bar-fill' :style="
                       {
