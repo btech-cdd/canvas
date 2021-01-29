@@ -1,5 +1,6 @@
 Vue.component('course-progress-bar-ind', {
   template:` 
+  <div>
    <div class="btech-course-progress-bar" style="width: 20rem;" :style="{
       'background-color': bgColor,
       'width': ((90 / 90) * 20) + 'rem'
@@ -21,6 +22,8 @@ Vue.component('course-progress-bar-ind', {
         </span>
       </div>
     </div> 
+    <span>{{bgColor}}, {{barColor}}</span>
+  </div>
   `,
   props: {
     progress: 0,
@@ -34,7 +37,6 @@ Vue.component('course-progress-bar-ind', {
   },
   mounted() {
     let vm = this
-    
   },
   methods: {
   },
