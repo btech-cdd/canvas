@@ -181,7 +181,6 @@
               console.log(name);
               let courses = user.courses;
               let entryDate = new Date(user.entry_date);
-              console.log(entryDate);
               let core = [];
               let elective = [];
               let other = [];
@@ -200,9 +199,10 @@
                 let courseEntryDate = new Date(course.contract_begin);
                 console.log(courseEntryDate);
                 let courseEndDate = new Date(course.contract_end);
+                console.log(courseEndDate);
 
                 let today = new Date();
-                if (courseEntryDate >= entryDate && courseEntryDate <= today) {
+                if (courseEndDate >= entryDate && courseEntryDate <= today) {
                   if (course.progress >= 100) {
                     if (manualHours) {
                       enrolledHours += course.hours;
