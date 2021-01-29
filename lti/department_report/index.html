@@ -256,17 +256,16 @@
           </div>
           <div 
             style="padding-top: 0.25rem; padding-bottom: 0.25rem;"
-            v-for="(courses, courseType) in json.trees[currentDepartment][showStudent.year]['courses']"
           >
             <span><strong>Other</strong></span>
-            <div v-for="(course, courseCode) in showStudent.other">
+            <div v-for="course in showStudent.other">
               <course-row-ind
-                :progress='getUserCourseProgress(showStudent.id, courseCode)'
+                :progress='getUserCourseProgress(showStudent.id, course.code)'
                 :colors='colors'
                 :hours='0'
                 :course-name='course.name'
                 :course-canvas-id='course.course_id'
-                :course-code='courseCode'
+                :course-code='course.code'
                 :user-canvas-id='json.users[showStudent.id].canvas_id'
               ></course-row-ind>
             </div>
