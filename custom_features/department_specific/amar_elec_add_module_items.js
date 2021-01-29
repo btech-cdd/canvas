@@ -55,7 +55,7 @@
     await $.post(url, {
       question: {
         'question_name': 'Time Spent in Course',
-        'question_text': 'Approximately how many hours total have you spent on this class?',
+        'question_text': 'Approximately how many hours total have you spent on this module?',
         'question_type': 'multiple_choice_question',
         'points_possible': 0,
         'answers': answers
