@@ -10,6 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
   <script src="https://d3js.org/d3.v6.min.js"></script>
   <script src="/canvas/lti/department_report/components/courseProgressBarInd.js"></script>
+  <script src="/canvas/lti/department_report/components/courseRowInd.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.5.0/print.js"></script>
 </head>
 
@@ -242,28 +243,15 @@
           >
             <span><strong>{{courseType}}</strong></span>
             <div v-for="(course, courseCode) in courses">
-              <div
-                style="background-color: rgb(255, 255, 255); display: inline-block; width: 100%; font-size: 0.75rem; padding: .25rem;"
-              >
-                <div style="display: inline-block; width: 15rem;">
-                  <a :class="{
-                      disabled: course.course_id === null
-                    }" 
-                    style="text-decoration: none; color: #000000;"
-                    :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.users[showStudent.id].canvas_id"
-                    target="_blank">
-                    {{course.name}} ({{courseCode}})
-                  </a>
-                </div>
-                <!--Change the first 90 under width to the course's hours once figure out how to include that-->
-                <course-progress-bar-ind
-                  :progress='getUserCourseProgress(showStudent.id, courseCode)'
-                  :barColor='getCourseProgressBarColor(showStudent, course, courseCode, courseType)'
-                  :bgColor='colors.gray'
-                  :colors='colors'
-                  :hours='0'
-                ></course-progress-bar-ind> 
-              </div>
+              <course-row-ind
+                :progress='getUserCourseProgress(showStudent.id, courseCode)'
+                :colors='colors'
+                :hours='0'
+                :courseName='course.name'
+                :courseCanvasId='course.course_id'
+                :courseCode='courseCode'
+                :userCanvasId='json.users[showStudent.id].canvas_id'
+              ></course-row-ind>
             </div>
           </div>
         </div>

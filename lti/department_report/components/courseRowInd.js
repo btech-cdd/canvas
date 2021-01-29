@@ -1,27 +1,34 @@
-Vue.component('course-progress-bar-ind', {
+Vue.component('course-row-ind', {
   template:` 
-  <div>
-   <div class="btech-course-progress-bar" style="width: 20rem;" :style="progressBarBaseStyle">
-      <div 
-        class="btech-course-progress-bar-fill" 
-        :style="
-          progressBarFillStyle
-        ">
+    <div
+      style="background-color: rgb(255, 255, 255); display: inline-block; width: 100%; font-size: 0.75rem; padding: .25rem;"
+    >
+      <div style="display: inline-block; width: 15rem;">
+        <a :class="{
+            disabled: courseCanvasId === null
+          }" 
+          style="text-decoration: none; color: #000000;"
+          :href="'https://btech.instructure.com/courses/' + courseCanvasId + '/grades/' + userCanvasId"
+          target="_blank">
+          {{courseName}} ({{courseCode}})
+        </a>
       </div>
-      <div style="color: #000000" class="btech-course-progress-bar-text">
-        {{Math.round(progress * 10) / 10}}% 
-        <span
-          v-if="hours!==0 && !isNaN(hours)">
-          ({{Math.round((hours * progress) / 100)}}/{{hours}} HRS)
-        </span>
-      </div>
-    </div> 
-  </div>
+      <!--Change the first 90 under width to the course's hours once figure out how to include that-->
+      <course-progress-bar-ind
+        :progress='progress'
+        :colors='colors'
+        :hours='courseHours'
+      ></course-progress-bar-ind> 
+    </div>
   `,
   props: [
     'progress',
-    'hours',
-    'colors'
+    'courseName',
+    'courseCanvasId',
+    'courseCode',
+    'courseHours',
+    'colors',
+    'userCanvasId'
   ],
   computed: {
     progressBarBaseStyle() {
