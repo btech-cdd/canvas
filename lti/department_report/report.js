@@ -149,7 +149,6 @@
     methods: {
       getCourseProgressBarColor(user, course, courseCode, courseType) {
         let app = this;
-        console.log(user);
         let progress;
         if (courseCode in app.json.users[user.id].courses) {
           progress = app.json.users[user.id].courses[courseCode].progress;
