@@ -23,7 +23,8 @@ Vue.component('course-progress-bar-ind', {
     'progress',
     'hours',
     'bgColor',
-    'barColor'
+    'barColor',
+    'colors'
   ],
   computed: {
     progressBarBaseStyle() {
@@ -49,6 +50,7 @@ Vue.component('course-progress-bar-ind', {
     let vm = this;
     console.log(vm.progress);
     console.log(vm.bgColor);
+    console.log(vm.colors);
   },
   methods: {
   },
