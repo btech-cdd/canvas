@@ -272,7 +272,7 @@
                         style="text-decoration: none; color: #000000;"
                         :href="'https://btech.instructure.com/courses/' + course.course_id + '/grades/' + json.users[showStudent.id].canvas_id"
                         target="_blank">
-                        {{json['users'][currentDepartment][showStudent.year]['base'][course.code].name}} ({{course.code}})
+                        {{json.users[currentStudent.id][course.code].name}} ({{course.code}})
                       </a>
                     </div>
                     <!--Change the first 90 under width to the course's hours once figure out how to include that-->
