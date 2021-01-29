@@ -266,15 +266,16 @@
         </div>
       </div>
     </div>
-    <script>
-      const CURRENT_DEPARTMENT = getCookie('currentDepartment');
-      var scr = document.createElement('script'),
-        head = document.head || document.getElementsByTagName('head')[0];
-      scr.src = '/canvas/lti/department_report/report.js';
-      scr.async = false; // optionally
+  </div>
+  <script>
+    const CURRENT_DEPARTMENT = getCookie('currentDepartment');
+    var scr = document.createElement('script'),
+      head = document.head || document.getElementsByTagName('head')[0];
+    scr.src = '/canvas/lti/department_report/report.js';
+    scr.async = false; // optionally
 
-      head.insertBefore(scr, head.firstChild);
-    </script>
+    head.insertBefore(scr, head.firstChild);
+  </script>
 </body>
 
 </html>
