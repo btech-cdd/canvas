@@ -179,9 +179,11 @@
               let user = app.json['users'][sis_id]
               let name = user.name;
               let courses = user.courses;
+              let entryDate = new Date(user.entryDate);
               let core = [];
               let elective = [];
               let other = [];
+              // let completedHours = user.graded_hours;
               let enrolledHours = user.enrolled_hours;
               let manualHours = false;
               if (enrolledHours === 0 || isNaN(enrolledHours)) {
@@ -191,17 +193,29 @@
               let completedHours = 0;
               for (let courseCode in courses) {
                 let course = courses[courseCode];
+                let courseStartDate = new Date(course.start);
+                let courseEntryDate = new Date(course.contract_begin);
+                let courseEndDate = new Date(course.contract_end);
+
                 if (course.progress >= 100) {
-                  if (manualHours) enrolledHours += course.hours;
-                  completedHours += course.hours;
+                  if (manualHours) {
+                    enrolledHours += course.hours;
+                    completedHours += course.hours;
+                  } else {
+                    //for now, do this, may use jenz hours if ends up being off
+                    completedHours += course.hours;
+                  }
                 } else {
                   let today = new Date();
-                  if (new Date(course.contract_begin) <= today) {
-                    let totalTime = new Date(course.contract_end) - new Date(course.contract_begin);
-                    let completedTime = today - new Date(course.contract_begin);
+                  if (courseEntryDate >= entryDate && courseEntryDate <= today) {
+                    let totalTime = courseEndDate - courseEntryDate; 
+                    let completedTime = today - courseEntryDate;
                     let percTime = completedTime / totalTime;
+
+                    //enrolled hours if nothing found in jenz
                     let courseEnrolledHours = percTime * course.hours;
                     if (manualHours) enrolledHours += courseEnrolledHours;
+
                     let courseCompletedHours = course.hours * course.progress * .01;
                     completedHours += courseCompletedHours;
                   }
