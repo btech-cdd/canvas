@@ -17,7 +17,7 @@ Vue.component('course-row-ind', {
         <course-progress-bar-ind
           :progress='progress'
           :colors='colors'
-          :hours='courseHours'
+          :hours='0'
         ></course-progress-bar-ind> 
       </div>
   `,
