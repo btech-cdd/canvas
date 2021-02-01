@@ -5,10 +5,10 @@ Vue.component('course-row-ind', {
       >
         <div style="display: inline-block; width: 15rem;">
           <a :class="{
-              disabled: checkValidCourseId 
+              disabled: !checkValidCourseId 
             }" 
             style="text-decoration: none; color: #000000;"
-            :href="'https://btech.instructure.com/courses/' + course.canavs_id+ '/grades/' + userCanvasId"
+            :href="courseUrl"
             target="_blank">
             {{courseName}} ({{courseCode}})
           </a>
@@ -35,11 +35,15 @@ Vue.component('course-row-ind', {
   computed: {
     checkValidCourseId: function() {
       let vm = this;
-      console.log("CHECK");
-      console.log(vm.course);
-      if (vm.course === undefined) return true;
-      if (vm.course.canvas_id === null || vm.course.canvas_id === undefined) return true;
-      return false;
+      if (vm.course === undefined) return false;
+      if (vm.course.canvas_id === null || vm.course.canvas_id === undefined) return false;
+      return true;
+    },
+    courseUrl: function() {
+      let vm = this;
+      if (vm.course === undefined) return '';
+      if (vm.course.canvas_id === null || vm.course.canvas_id === undefined) return '';
+      return 'https://btech.instructure.com/courses/' + vm.course.canavs_id+ '/grades/' + vm.userCanvasId
     }
   },
   data() {
