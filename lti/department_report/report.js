@@ -185,12 +185,7 @@
               let elective = [];
               let other = [];
               // let completedHours = user.graded_hours;
-              let enrolledHours = user.enrolled_hours;
-              let manualHours = true;
-              if (enrolledHours === 0 || isNaN(enrolledHours)) {
-                enrolledHours = 0;
-                manualHours = true;
-              }
+              let enrolledHours = 0;
               let completedHours = 0;
               for (let courseCode in courses) {
                 let course = courses[courseCode];
