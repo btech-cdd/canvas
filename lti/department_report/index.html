@@ -256,7 +256,6 @@
             <span><strong>OTHER</strong></span>
             <div v-for="course in showStudent.other">
               <course-row-ind
-                v-if='json.users[showStudent.id].courses[course.code].hours > 0'
                 :progress='getUserCourseProgress(showStudent.id, course.code)'
                 :colors='colors'
                 :hours='json.users[showStudent.id].courses[course.code].hours'
