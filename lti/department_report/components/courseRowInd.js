@@ -106,6 +106,8 @@ Vue.component('course-row-ind', {
   },
   mounted() {
     let vm = this;
+    console.log(vm.course);
+    console.log(vm.hours);
   },
   methods: {
   },
