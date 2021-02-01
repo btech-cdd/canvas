@@ -13,7 +13,7 @@ Vue.component('course-row-ind', {
             {{courseName}} ({{courseCode}})
           </a>
         </div>
-        <div style="display: inline-block; width: 6rem; font-size: 1rem;">
+        <div style="display: inline-block; width: 4rem; font-size: 1rem;">
           <span class="btech-pill-text" :style="{
               'background-color': gradeBGColor,
               'color': gradeFontColor,
