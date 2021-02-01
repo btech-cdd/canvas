@@ -186,7 +186,7 @@
               let other = [];
               // let completedHours = user.graded_hours;
               let enrolledHours = user.enrolled_hours;
-              let manualHours = false;
+              let manualHours = true;
               if (enrolledHours === 0 || isNaN(enrolledHours)) {
                 enrolledHours = 0;
                 manualHours = true;
@@ -194,49 +194,52 @@
               let completedHours = 0;
               for (let courseCode in courses) {
                 let course = courses[courseCode];
-                let courseStartDate = new Date(course.start);
-                let courseEntryDate = new Date(course.contract_begin);
-                let courseEndDate = new Date(course.contract_end);
+                if (course.enabled) {
+                  let courseStartDate = new Date(course.start);
+                  let courseEntryDate = new Date(course.contract_begin);
+                  let courseEndDate = new Date(course.contract_end);
 
-                let today = new Date();
-                if (courseEndDate >= entryDate && courseEntryDate <= today) {
-                  if (course.progress >= 100) {
-                    if (manualHours) {
-                      enrolledHours += course.hours;
-                      completedHours += course.hours;
+                  let today = new Date();
+                  if (courseEndDate >= entryDate && courseEntryDate <= today) {
+                    if (course.progress >= 100) {
+                      if (manualHours) {
+                        enrolledHours += course.hours;
+                        completedHours += course.hours;
+                      } else {
+                        //for now, do this, may use jenz hours if ends up being off
+                        completedHours += course.hours;
+                      }
                     } else {
-                      //for now, do this, may use jenz hours if ends up being off
-                      completedHours += course.hours;
+                      let totalTime = courseEndDate - courseEntryDate;
+                      let completedTime = today - courseEntryDate;
+                      let percTime = completedTime / totalTime;
+
+                      //enrolled hours if nothing found in jenz
+                      let courseEnrolledHours = percTime * course.hours;
+                      if (manualHours) enrolledHours += courseEnrolledHours;
+
+                      let courseCompletedHours = course.hours * course.progress * .01;
+                      completedHours += courseCompletedHours;
                     }
+                  }
+
+                  let courseData = {
+                    'code': courseCode,
+                    'course_id': course.course_id,
+                    'last_activity': course.last_activity,
+                    'progress': course.progress,
+                    'start': course.start,
+                    'hours': course.hours
+                  }
+                  if (courseCode in program.courses.core) {
+                    core.push(courseData);
+                  } else if (courseCode in program.courses.elect) {
+                    elective.push(courseData);
                   } else {
-                    let totalTime = courseEndDate - courseEntryDate;
-                    let completedTime = today - courseEntryDate;
-                    let percTime = completedTime / totalTime;
-
-                    //enrolled hours if nothing found in jenz
-                    let courseEnrolledHours = percTime * course.hours;
-                    if (manualHours) enrolledHours += courseEnrolledHours;
-
-                    let courseCompletedHours = course.hours * course.progress * .01;
-                    completedHours += courseCompletedHours;
+                    other.push(courseData);
                   }
                 }
 
-                let courseData = {
-                  'code': courseCode,
-                  'course_id': course.course_id,
-                  'last_activity': course.last_activity,
-                  'progress': course.progress,
-                  'start': course.start,
-                  'hours': course.hours
-                }
-                if (courseCode in program.courses.core) {
-                  core.push(courseData);
-                } else if (courseCode in program.courses.elect) {
-                  elective.push(courseData);
-                } else {
-                  other.push(courseData);
-                }
               }
               userList.push({
                 'name': name,
