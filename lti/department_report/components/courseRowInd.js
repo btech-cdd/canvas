@@ -41,7 +41,7 @@ Vue.component('course-row-ind', {
     let vm = this;
     console.log(vm.progress);
     console.log(vm.courseName);
-    console.log(vm.corse);
+    console.log(vm.course);
     console.log(vm.colors);
   },
   methods: {
