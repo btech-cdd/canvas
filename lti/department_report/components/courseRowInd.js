@@ -54,7 +54,9 @@ Vue.component('course-row-ind', {
     let vm = this;
     console.log(vm.courseName);
     console.log(vm.course);
-    console.log(vm.course.canvas_id);
+    if (vm.course !== undefined) {
+      console.log(vm.course.canvas_id);
+    }
   },
   methods: {
   },
