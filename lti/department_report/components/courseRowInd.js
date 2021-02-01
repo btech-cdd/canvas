@@ -23,6 +23,7 @@ Vue.component('course-row-ind', {
   `,
   props: [
     'progress',
+    'user',
     'course',
     'courseName',
     'courseCanvasId',
@@ -41,6 +42,7 @@ Vue.component('course-row-ind', {
     let vm = this;
     console.log(vm.progress);
     console.log(vm.courseName);
+    console.log(vm.user);
     console.log(vm.course);
     console.log(vm.colors);
   },

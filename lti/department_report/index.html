@@ -247,6 +247,7 @@
                 :progress='getUserCourseProgress(showStudent.id, courseCode)'
                 :colors='colors'
                 :hours='0'
+                :user='json.users[showStudent.id]'
                 :course='json.users[showStudent.id].courses[courseCode]'
                 :course-name='course.name'
                 :course-canvas-id='course.course_id'
