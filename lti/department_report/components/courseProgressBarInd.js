@@ -52,9 +52,8 @@ Vue.component('course-progress-bar-ind', {
       if (progress >= 100) return vm.colors.complete;
 
       let diffDays = Math.floor((new Date() - new Date(start)) / (1000 * 60 * 60 * 24));
-      if (diffDays <= 60) return vm.colors.green;
-      if (diffDays <= 120) return vm.colors.yellow; //yellow
-      if (diffDays <= 180) return vm.colors.orange; //orange
+      if (diffDays <= 90) return vm.colors.green;
+      if (diffDays <= 180) return vm.colors.yellow;
       return vm.colors.red; //red
     },
   },

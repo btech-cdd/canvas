@@ -82,8 +82,7 @@ Vue.component('course-row-ind', {
       if (vm.course.score === undefined) return vm.colors.gray;
       let score = vm.course.score;
       if (score < 60) return vm.colors.red;
-      if (score < 80) return vm.colors.orange;
-      if (score < 90) return vm.colors.yellow;
+      if (score < 80) return vm.colors.yellow;
       return vm.colors.green;
 
     },
