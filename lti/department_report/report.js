@@ -196,8 +196,10 @@
                 let course = courses[courseCode];
                 if (course.registered_hours !== undefined) {
                   enrolledHours += course.registered_hours;
-                  if (course.progress < 100) {
-                    let courseCompletedHours = course.registered_hours * course.progress * .01;
+                  if (course.progress >= 100) {
+                    completedHours += course.registered_hours;
+                  } else {
+                    let courseCompletedHours = course.registered_hours * (course.progress * .01);
                     completedHours += courseCompletedHours;
                   }
                 }
