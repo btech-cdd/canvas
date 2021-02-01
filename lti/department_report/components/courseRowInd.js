@@ -18,7 +18,7 @@ Vue.component('course-row-ind', {
               'background-color': gradeBGColor,
               'color': gradeFontColor,
             }">
-            {{gradeText}
+            {{gradeText}}
           </span>
         </div>
         <!--Change the first 90 under width to the course's hours once figure out how to include that-->
