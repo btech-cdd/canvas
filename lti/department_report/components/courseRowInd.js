@@ -37,9 +37,9 @@ Vue.component('course-row-ind', {
       let vm = this;
       console.log("CHECK");
       console.log(vm.course);
-      if (vm.course === undefined) return false;
-      if (vm.course.canvas_id === null || vm.course.canvas_id === undefined) return false;
-      return true;
+      if (vm.course === undefined) return true;
+      if (vm.course.canvas_id === null || vm.course.canvas_id === undefined) return true;
+      return false;
     }
   },
   data() {
