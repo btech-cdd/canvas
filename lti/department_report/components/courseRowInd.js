@@ -8,7 +8,7 @@ Vue.component('course-row-ind', {
               disabled: !checkValidCourseId 
             }" 
             style="text-decoration: none; color: #000000;"
-            :href="courseUrl()"
+            :href="courseUrl"
             target="_blank">
             {{courseName}} ({{courseCode}})
           </a>
@@ -61,6 +61,7 @@ Vue.component('course-row-ind', {
   },
   data() {
     return {
+      courseUrl: '',
     }
   },
   mounted() {
@@ -69,16 +70,10 @@ Vue.component('course-row-ind', {
     console.log(vm.course);
     if (vm.course !== undefined) {
       console.log(vm.course.canvas_id);
+      vm.courseUrl = 'https://btech.instructure.com/courses/' + vm.course.canavs_id+ '/grades/' + vm.userCanvasId
     }
   },
   methods: {
-    courseUrl() {
-      let vm = this;
-      console.log(vm.course);
-      if (vm.course === undefined) return '';
-      if (vm.course.canvas_id === null || vm.course.canvas_id === undefined) return '';
-      return 'https://btech.instructure.com/courses/' + vm.course.canavs_id+ '/grades/' + vm.userCanvasId
-    }
   },
   destroyed: function () {
   }
