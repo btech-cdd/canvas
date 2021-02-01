@@ -63,7 +63,7 @@ Vue.component('course-row-ind', {
     checkValidCourseId: function() {
       let vm = this;
       if (vm.course === undefined) return false;
-      if (vm.course.canvas_id === null || vm.course.canvas_id === undefined) return false;
+      if (vm.course.course_id === null || vm.course.course_id === undefined) return false;
       return true;
     },
     courseUrl: function() {
@@ -96,6 +96,7 @@ Vue.component('course-row-ind', {
     gradeText: function() {
       let vm = this;
       if (vm.course.score === undefined) return "N/A";
+      if (vm.course.score === null) return "N/A";
       return vm.course.score + "%"
 
     }
