@@ -194,42 +194,28 @@
               let completedHours = 0;
               for (let courseCode in courses) {
                 let course = courses[courseCode];
-                if (course.enabled) {
-                  let courseStartDate = new Date(course.start);
-                  let courseEntryDate = new Date(course.contract_begin);
-                  let courseEndDate = new Date(course.contract_end);
-
-                  let today = new Date();
-                  if (course.registered_hours !== undefined) {
-                    if (courseEndDate >= entryDate && courseEntryDate <= today) {
-                      enrolledHours += course.registered_hours;
-                      if (course.progress > 100) {
-                        // let totalTime = courseEndDate - courseEntryDate;
-                        // let completedTime = today - courseEntryDate;
-                        // let percTime = completedTime / totalTime;
-
-                        //enrolled hours if nothing found in jenz
-                        let courseCompletedHours = course.registered_hours * course.progress * .01;
-                        completedHours += courseCompletedHours;
-                      }
-                    }
+                if (course.registered_hours !== undefined) {
+                  enrolledHours += course.registered_hours;
+                  if (course.progress < 100) {
+                    let courseCompletedHours = course.registered_hours * course.progress * .01;
+                    completedHours += courseCompletedHours;
                   }
+                }
 
-                  let courseData = {
-                    'code': courseCode,
-                    'course_id': course.course_id,
-                    'last_activity': course.last_activity,
-                    'progress': course.progress,
-                    'start': course.start,
-                    'hours': course.hours
-                  }
-                  if (courseCode in program.courses.core) {
-                    core.push(courseData);
-                  } else if (courseCode in program.courses.elect) {
-                    elective.push(courseData);
-                  } else {
-                    other.push(courseData);
-                  }
+                let courseData = {
+                  'code': courseCode,
+                  'course_id': course.course_id,
+                  'last_activity': course.last_activity,
+                  'progress': course.progress,
+                  'start': course.start,
+                  'hours': course.hours
+                }
+                if (courseCode in program.courses.core) {
+                  core.push(courseData);
+                } else if (courseCode in program.courses.elect) {
+                  elective.push(courseData);
+                } else {
+                  other.push(courseData);
                 }
 
               }
