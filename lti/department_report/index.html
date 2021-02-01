@@ -260,7 +260,7 @@
                 :colors='colors'
                 :hours='0'
                 :course='json.users[showStudent.id].courses[course.code]'
-                :course-name='course.name'
+                :course-name='json.users[showStudent.id].courses[course.code].name'
                 :course-code='course.code'
                 :user-canvas-id='json.users[showStudent.id].canvas_id'
               ></course-row-ind>
