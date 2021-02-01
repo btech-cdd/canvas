@@ -61,8 +61,8 @@ Vue.component('course-row-ind', {
     courseUrl: function() {
       let vm = this;
       if (vm.course === undefined) return '';
-      if (vm.course.canvas_id === null || vm.course.canvas_id === undefined) return '';
-      return 'https://btech.instructure.com/courses/' + vm.course.canvas_id+ '/grades/' + vm.userCanvasId
+      if (vm.course.canvas_id === null || vm.course.course_id === undefined) return '';
+      return 'https://btech.instructure.com/courses/' + vm.course.course_id + '/grades/' + vm.userCanvasId
     }
   },
   data() {
