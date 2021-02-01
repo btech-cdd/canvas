@@ -107,11 +107,6 @@ Vue.component('course-row-ind', {
   },
   mounted() {
     let vm = this;
-    console.log(vm.courseName);
-    console.log(vm.course);
-    if (vm.course !== undefined) {
-      console.log(vm.course.canvas_id);
-    }
   },
   methods: {
   },
