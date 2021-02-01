@@ -13,6 +13,14 @@ Vue.component('course-row-ind', {
             {{courseName}} ({{courseCode}})
           </a>
         </div>
+        <div style="display: inline-block; width: 6rem; font-size: 1rem;">
+          <span class="btech-pill-text" :style="{
+              'background-color': gradeBGColor,
+              'color': gradeFontColor,
+            }">
+            {{gradeText}
+          </span>
+        </div>
         <!--Change the first 90 under width to the course's hours once figure out how to include that-->
         <course-progress-bar-ind
           :progress='progress'
@@ -63,6 +71,32 @@ Vue.component('course-row-ind', {
       if (vm.course === undefined) return '';
       if (vm.course.canvas_id === null || vm.course.course_id === undefined) return '';
       return 'https://btech.instructure.com/courses/' + vm.course.course_id + '/grades/' + vm.userCanvasId
+    },
+    enrolled: function() {
+      let vm = this;
+      if (vm.course === undefined) return false;
+      return true;
+    },
+    gradeBGColor: function() {
+      let vm = this;
+      if (vm.course === undefined) return vm.colors.gray;
+      let score = vm.course.score;
+      if (score < 60) return vm.colors.red;
+      if (score < 80) return vm.colors.orange;
+      if (score < 90) return vm.colors.yellow;
+      return vm.colors.green;
+
+    },
+    gradeFontColor: function() {
+      let vm = this;
+      if (vm.course === undefined) return vm.colors.black;
+       return vm.colors.white;
+
+    },
+    gradeText: function() {
+      if (vm.course === undefined) return "N/A";
+      return vm.course.score + "%"
+
     }
   },
   data() {

@@ -128,6 +128,8 @@
         enrollments: {}, //or submission data or student data or somewhere else to hold all of the data pulling from canvas and saving it for reuse.
         colors: {
           base: '#334',
+          black: '#000000',
+          white: '#ffffff',
           red: 'rgb(217, 83, 79)',
           orange: 'rgb(229, 128, 79)',
           yellow: 'rgb(240, 173, 78)',
