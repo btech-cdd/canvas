@@ -242,7 +242,7 @@
               <course-row-ind
                 :progress='getUserCourseProgress(showStudent.id, courseCode)'
                 :colors='colors'
-                :hours='0'
+                :hours='json.users[showStudent.id].courses[courseCode]'
                 :course='json.users[showStudent.id].courses[courseCode]'
                 :course-name='course.name'
                 :course-code='courseCode'
@@ -256,6 +256,7 @@
             <span><strong>OTHER</strong></span>
             <div v-for="course in showStudent.other">
               <course-row-ind
+                v-if='json.users[showStudent.id].courses[course.code].enabled'
                 :progress='getUserCourseProgress(showStudent.id, course.code)'
                 :colors='colors'
                 :hours='json.users[showStudent.id].courses[course.code].hours'
