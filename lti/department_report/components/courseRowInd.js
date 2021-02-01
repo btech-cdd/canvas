@@ -21,17 +21,32 @@ Vue.component('course-row-ind', {
         ></course-progress-bar-ind> 
       </div>
   `,
-  props: [
-    'progress',
-    'user',
-    'course',
-    'courseName',
-    'courseCanvasId',
-    'courseCode',
-    'courseHours',
-    'colors',
-    'userCanvasId'
-  ],
+  props: {
+    progress: {
+      type: Number,
+      default: 0
+    },
+    course: {
+      type: Object,
+      default: () => ({type: 'someType'})
+    },
+    courseName: {
+      type: String,
+      default: ''
+    },
+    courseCode: {
+      type: String,
+      default: ''
+    },
+    colors: {
+      type: Object,
+      default: () => ({type: 'someType'})
+    },
+    userCanvasId: {
+      type: String,
+      default: ''
+    }
+  },
   computed: {
     checkValidCourseId: function() {
       let vm = this;
