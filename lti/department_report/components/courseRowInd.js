@@ -35,6 +35,8 @@ Vue.component('course-row-ind', {
   computed: {
     checkValidCourseId: function() {
       let vm = this;
+      console.log("CHECK");
+      console.log(vm.course);
       if (vm.course === undefined) return false;
       if (vm.course.canvas_id === null || vm.course.canvas_id === undefined) return false;
       return true;
@@ -48,6 +50,7 @@ Vue.component('course-row-ind', {
     let vm = this;
     console.log(vm.courseName);
     console.log(vm.course);
+    console.log(vm.course.canvas_id);
   },
   methods: {
   },
