@@ -79,7 +79,7 @@ Vue.component('course-row-ind', {
     },
     gradeBGColor: function() {
       let vm = this;
-      if (vm.course === undefined) return vm.colors.gray;
+      if (vm.course.score === undefined) return vm.colors.gray;
       let score = vm.course.score;
       if (score < 60) return vm.colors.red;
       if (score < 80) return vm.colors.orange;
@@ -89,13 +89,13 @@ Vue.component('course-row-ind', {
     },
     gradeFontColor: function() {
       let vm = this;
-      if (vm.course === undefined) return vm.colors.black;
+      if (vm.course.score === undefined) return vm.colors.black;
        return vm.colors.white;
 
     },
     gradeText: function() {
       let vm = this;
-      if (vm.course === undefined) return "N/A";
+      if (vm.course.score === undefined) return "N/A";
       return vm.course.score + "%"
 
     }
