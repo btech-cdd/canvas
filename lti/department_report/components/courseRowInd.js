@@ -22,6 +22,10 @@ Vue.component('course-row-ind', {
       </div>
   `,
   props: {
+    hours: {
+      type: Number,
+      default: 0
+    },
     progress: {
       type: Number,
       default: 0
