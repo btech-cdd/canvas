@@ -43,9 +43,6 @@ Vue.component('course-progress-bar-ind', {
   },
   mounted() {
     let vm = this;
-    console.log(vm.progress);
-    console.log(vm.bgColor);
-    console.log(vm.colors);
   },
   methods: {
     getFillColor() {
