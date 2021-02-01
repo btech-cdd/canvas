@@ -200,26 +200,18 @@
                   let courseEndDate = new Date(course.contract_end);
 
                   let today = new Date();
-                  if (courseEndDate >= entryDate && courseEntryDate <= today) {
-                    if (course.progress >= 100) {
-                      if (manualHours) {
-                        enrolledHours += course.hours;
-                        completedHours += course.hours;
-                      } else {
-                        //for now, do this, may use jenz hours if ends up being off
-                        completedHours += course.hours;
+                  if (course.registered_hours !== undefined) {
+                    if (courseEndDate >= entryDate && courseEntryDate <= today) {
+                      enrolledHours += course.registered_hours;
+                      if (course.progress > 100) {
+                        // let totalTime = courseEndDate - courseEntryDate;
+                        // let completedTime = today - courseEntryDate;
+                        // let percTime = completedTime / totalTime;
+
+                        //enrolled hours if nothing found in jenz
+                        let courseCompletedHours = course.registered_hours * course.progress * .01;
+                        completedHours += courseCompletedHours;
                       }
-                    } else {
-                      let totalTime = courseEndDate - courseEntryDate;
-                      let completedTime = today - courseEntryDate;
-                      let percTime = completedTime / totalTime;
-
-                      //enrolled hours if nothing found in jenz
-                      let courseEnrolledHours = percTime * course.hours;
-                      if (manualHours) enrolledHours += courseEnrolledHours;
-
-                      let courseCompletedHours = course.hours * course.progress * .01;
-                      completedHours += courseCompletedHours;
                     }
                   }
 
