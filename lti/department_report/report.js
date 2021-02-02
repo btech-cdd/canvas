@@ -359,10 +359,8 @@
       },
 
       checkIncludeCourse(courseType, courseCodeInCourses) {
-        console.log(courseType);
-        console.log(courseCodeInCourses);
-        if (courseType==='core' || courseCodeInCourses) return "none";
-        return "inline-block";
+        if (courseType==='core' || courseCodeInCourses) return "inline-block";
+        return "none";
       }
     }
   })
