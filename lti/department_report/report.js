@@ -185,12 +185,12 @@
               let elective = [];
               let other = [];
               // let completedHours = user.graded_hours;
-              let enrolledHours = 0;
+              let enrolledHours = user.enrolled_hours;
               let completedHours = 0;
               for (let courseCode in courses) {
                 let course = courses[courseCode];
                 if (course.registered_hours !== undefined) {
-                  enrolledHours += course.registered_hours;
+                  // enrolledHours += course.registered_hours;
                   if (course.progress >= 100) {
                     completedHours += course.hours;
                   } else {
