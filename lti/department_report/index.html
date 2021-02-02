@@ -111,29 +111,36 @@
 
                 <div style="padding-top: 0.25rem; padding-bottom: 0.25rem;"
                   v-for="(courses, courseType) in json['trees'][currentDepartment][year]['courses']">
-                  <div v-for="(course, course_code) in courses" class="btech-course-progress-bar" :title="course.name"
-                    :style="
-                    {
-                      'background-color': colors.base,
-                    }
-                  ">
-                    <a :class="{disabled: !(course_code in json.users[user.id].courses)}"
-                      :href="getCourseURL(user, course_code)" target="_blank">
-                      <div class="btech-course-progress-bar-fill" :style="
+                  <div 
+                    v-for="(course, course_code) in courses" 
+                  >
+                    <div
+                      v-if="course_code in json.users[user.id].courses"
+                      class="btech-course-progress-bar" 
+                      :title="course.name"
+                      :style="
                       {
-                        'background-color': getCourseProgressBarColor(user, course, course_code, courseType),
-                        width: 100 + '%'
+                        'background-color': colors.base,
                       }
-                      ">
-                      </div>
-                      <div v-if="course_code in json.users[user.id].courses" style="color: #FFFFFF"
-                        class="btech-course-progress-bar-text">
-                        {{course_code}}
-                      </div>
-                      <div v-else style="color: #000000" class="btech-course-progress-bar-text">
-                        {{course_code}}
-                      </div>
-                    </a>
+                    ">
+                      <a :class="{disabled: !(course_code in json.users[user.id].courses)}"
+                        :href="getCourseURL(user, course_code)" target="_blank">
+                        <div class="btech-course-progress-bar-fill" :style="
+                        {
+                          'background-color': getCourseProgressBarColor(user, course, course_code, courseType),
+                          width: 100 + '%'
+                        }
+                        ">
+                        </div>
+                        <div v-if="course_code in json.users[user.id].courses" style="color: #FFFFFF"
+                          class="btech-course-progress-bar-text">
+                          {{course_code}}
+                        </div>
+                        <div v-else style="color: #000000" class="btech-course-progress-bar-text">
+                          {{course_code}}
+                        </div>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
