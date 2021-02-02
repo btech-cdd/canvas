@@ -98,7 +98,7 @@
                         'background-color': colors.gray,
                         'color': '#000000',
                       }">
-                      {{user.completedHours / json.trees[currentDepartment][year].hours}}%
+                      {{Math.round((user.completedHours / json.trees[currentDepartment][year].hours) * 100)}}%
                     </span>
                   </div>
                   <div :id="'btech-user-submission-summary-' + json.users[user.id].canvas_id"
