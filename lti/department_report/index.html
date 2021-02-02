@@ -109,7 +109,8 @@
                   </div>
                 </div>
 
-                <div style="padding-top: 0.25rem; padding-bottom: 0.25rem;"
+                <div 
+                  style="padding-top: 0.25rem; padding-bottom: 0.25rem;"
                   v-for="(courses, courseType) in json['trees'][currentDepartment][year]['courses']">
                   <div 
                     v-for="(course, course_code) in courses" 
@@ -117,6 +118,7 @@
                     :style="
                     {
                       'background-color': colors.base,
+                      'display': checkIncludeCourse(courseType, (courseType==='core' || course_code in json.users[user.id].courses))
                     }
                   ">
                     <a :class="{disabled: !(course_code in json.users[user.id].courses)}"

@@ -356,8 +356,12 @@
           return user.courses[courseCode].progress;
         }
         return 0;
-      }
+      },
 
+      checkIncludeCourse(courseType, courseCodeInCourses) {
+        if (courseType==='core' || courseCodeInCourses) return "none";
+        return "inline-block";
+      }
     }
   })
   class SubmissionsGraphBar {
