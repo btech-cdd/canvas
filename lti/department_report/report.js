@@ -192,9 +192,9 @@
                 if (course.registered_hours !== undefined) {
                   enrolledHours += course.registered_hours;
                   if (course.progress >= 100) {
-                    completedHours += course.registered_hours;
+                    completedHours += course.hours;
                   } else {
-                    let courseCompletedHours = course.registered_hours * (course.progress * .01);
+                    let courseCompletedHours = course.hours * (course.progress * .01);
                     completedHours += courseCompletedHours;
                   }
                 }
