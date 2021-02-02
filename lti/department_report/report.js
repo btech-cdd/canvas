@@ -209,7 +209,7 @@
                 }
                 if (courseCode in program.courses.core) {
                   core.push(courseData);
-                } else if (courseCode in program.courses.elect) {
+                } else if (courseCode in program.courses.elective) {
                   elective.push(courseData);
                 } else {
                   other.push(courseData);
