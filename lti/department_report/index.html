@@ -22,50 +22,50 @@
     <div v-else>
       <div
         style="position: sticky; width: 100%; background-color: #fff; z-index: 10; padding: 4px; box-sizing: border-box; box-shadow: 0px 5px 5px #888; margin-bottom: 1rem; top: 0;">
-        <div style='display: inline-block;'>
+        <div style="display: inline-block;">
           Grade:
-          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>0-59%</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>60-79%</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>80-100%</span>
+          <span class="btech-pill-text" :style="{'background-color': colors.red, 'color': '#fff'}">0-59%</span>
+          <span class="btech-pill-text" :style="{'background-color': colors.yellow, 'color': '#fff'}">60-79%</span>
+          <span class="btech-pill-text" :style="{'background-color': colors.green, 'color': '#fff'}">80-100%</span>
           <br>
           <br>
-          <div v-show='showProgressRatio'>
+          <div v-show="showProgressRatio">
             SAP:
-            <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;150%</span>
-            <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>101-150%</span>
-            <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-100%</span>
+            <span class="btech-pill-text" :style="{'background-color': colors.red, 'color': '#fff'}">&gt;150%</span>
+            <span class="btech-pill-text" :style="{'background-color': colors.yellow, 'color': '#fff'}">101-150%</span>
+            <span class="btech-pill-text" :style="{'background-color': colors.green, 'color': '#fff'}">0-100%</span>
           </div>
         </div>
-        <div style='display: inline-block;'>
+        <div style="display: inline-block;">
           Submission History:
-          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;10 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>7-9 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-7 days</span>
+          <span class="btech-pill-text" :style="{'background-color': colors.red, 'color': '#fff'}">&gt;10 days</span>
+          <span class="btech-pill-text" :style="{'background-color': colors.yellow, 'color': '#fff'}">7-9 days</span>
+          <span class="btech-pill-text" :style="{'background-color': colors.green, 'color': '#fff'}">0-7 days</span>
           <br>
           <br>
           Course Enrollment:
-          <span class='btech-pill-text' :style='{"background-color": colors.red, "color": "#fff"}'>&gt;180 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.yellow, "color": "#fff"}'>91-120 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.green, "color": "#fff"}'>0-90 days</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.complete, "color": "#fff"}'>Completed</span>
-          <span class='btech-pill-text' :style='{"background-color": colors.gray, "color": "#000"}'>No Enrollment
+          <span class="btech-pill-text" :style="{'background-color': colors.red, 'color': '#fff'}">&gt;180 days</span>
+          <span class="btech-pill-text" :style="{'background-color': colors.yellow, 'color': '#fff'}">91-120 days</span>
+          <span class="btech-pill-text" :style="{'background-color': colors.green, 'color': '#fff'}">0-90 days</span>
+          <span class="btech-pill-text" :style="{'background-color': colors.complete, 'color': '#fff'}">Completed</span>
+          <span class="btech-pill-text" :style="{'background-color': colors.gray, 'color': '#000'}">No Enrollment
             Found</span>
         </div>
-        <div style='padding-top: 2rem;'>
+        <div style="padding-top: 2rem;">
           <strong>DISCLAIMER: </strong>
           All data presented is an estimation and will NOT include submissions from the current day. Not intended for official use.
         </div>
       </div>
       <div v-show="showStudent==='all'">
-        <select @change='loadDepartmentUsers' v-model='currentDepartment'>
-          <option v-for='department in availableDepartments' :value='department'>
+        <select @change="loadDepartmentUsers" v-model="currentDepartment">
+          <option v-for="department in availableDepartments" :value="department">
             {{json.dept_code_to_name[department].name + " (" + json.dept_code_to_name[department].first_year + "-" + json.dept_code_to_name[department].last_year + ")"}}
           </option>
         </select>
-        <div v-for='(users, year) in usersByYear' :key='year'>
-          <div v-if='users.length > 0'>
-            <h2 class='btech-tree-header'>{{year}} {{currentDepartment}} Tree</h2>
-            <div v-for='user in users' :key='user.id' class='btech-user-container'>
+        <div v-for="(users, year) in usersByYear" :key="year">
+          <div v-if="users.length > 0">
+            <h2 class="btech-tree-header">{{year}} {{currentDepartment}} Tree</h2>
+            <div v-for="user in users" :key="user.id" class="btech-user-container">
               <div>
                 <div>
                   <div
@@ -241,13 +241,13 @@
             <span><strong>{{courseType.toUpperCase()}}</strong></span>
             <div v-for="(course, courseCode) in courses">
               <course-row-ind
-                :progress='getUserCourseProgress(showStudent.id, courseCode)'
-                :colors='colors'
-                :hours='json.users[showStudent.id].courses[courseCode]'
-                :course='json.users[showStudent.id].courses[courseCode]'
-                :course-name='course.name'
-                :course-code='courseCode'
-                :user-canvas-id='json.users[showStudent.id].canvas_id'
+                :progress="getUserCourseProgress(showStudent.id, courseCode)"
+                :colors="colors"
+                :hours="json.users[showStudent.id].courses[courseCode]"
+                :course="json.users[showStudent.id].courses[courseCode]"
+                :course-name="course.name"
+                :course-code="courseCode"
+                :user-canvas-id="json.users[showStudent.id].canvas_id"
               ></course-row-ind>
             </div>
           </div>
@@ -257,14 +257,14 @@
             <span><strong>OTHER</strong></span>
             <div v-for="course in showStudent.other">
               <course-row-ind
-                v-if='(json.users[showStudent.id].courses[course.code].enabled || (getUserCourseProgress(showStudent.id, course.code) < 100))'
-                :progress='getUserCourseProgress(showStudent.id, course.code)'
-                :colors='colors'
-                :hours='json.users[showStudent.id].courses[course.code].hours'
-                :course='json.users[showStudent.id].courses[course.code]'
-                :course-name='json.users[showStudent.id].courses[course.code].name'
-                :course-code='course.code'
-                :user-canvas-id='json.users[showStudent.id].canvas_id'
+                v-if="(json.users[showStudent.id].courses[course.code].enabled || (json.users[showStudent.id].courses[course.code].state==='active'))"
+                :progress="getUserCourseProgress(showStudent.id, course.code)"
+                :colors="colors"
+                :hours="json.users[showStudent.id].courses[course.code].hours"
+                :course="json.users[showStudent.id].courses[course.code]"
+                :course-name="json.users[showStudent.id].courses[course.code].name"
+                :course-code="course.code"
+                :user-canvas-id="json.users[showStudent.id].canvas_id"
               ></course-row-ind>
             </div>
           </div>
