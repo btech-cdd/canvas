@@ -85,11 +85,23 @@
                   </div>
                   <div style="display: inline-block; width: 6rem; font-size: 1rem;">
                     <span>SAP</span>
-                    <span class="btech-pill-text" :style="{
+                    <span 
+                      v-if='user.enrolledHours > 0'
+                      class="btech-pill-text" 
+                      :style="{
                         'background-color': calcDepartmentTimeColorBg(user),
                         'color': '#ffffff',
                       }">
                       {{calcDepartmentTimeText(user)}}
+                    </span>
+                    <span 
+                      v-else
+                      class="btech-pill-text" 
+                      :style="{
+                        'background-color': colors.gray,
+                        'color': '#000000',
+                      }">
+                      N/A 
                     </span>
                   </div>
                   <div 
