@@ -95,7 +95,7 @@ Vue.component('course-row-ind', {
     gradeText: function() {
       let vm = this;
       if (vm.course.score === undefined) return "N/A";
-      if (vm.course.score === null) return "0%";
+      if (vm.course.score === null) return "N/A";
       return vm.course.score + "%"
 
     }
