@@ -16,6 +16,7 @@
       sourceRows.each(function () {
         let row = $(this);
         let key = $(row.find('td')[0]).text().toLowerCase();
+        console.log(key);
         rowRef[key] = row;
       });
 
