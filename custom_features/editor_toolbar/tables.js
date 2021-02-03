@@ -85,7 +85,7 @@
       if (keycode == '13') {
         //*
         editor.execCommand("mceReplaceContent", false, `
-          <table class="google-sheet-based sheet-` + $(this).val() + `">
+          <table border="1" class="google-sheet-based sheet-` + $(this).val() + `">
           <tbody>
           <tr>
           <td>
@@ -128,7 +128,7 @@
       if (keycode == '13') {
         //*
         editor.execCommand("mceReplaceContent", false, `
-          <table class="btech-table-from-page btech-table-from-page-source-` + $(this).val() + `">
+          <table border="1" class="btech-table-from-page btech-table-from-page-source-` + $(this).val() + `">
           <tbody>
           <tr>
           <td>
