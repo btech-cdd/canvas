@@ -1,3 +1,7 @@
+function dupStyle(to, from) {
+  to.attr('style', from.attr('style'));
+  to.attr('border', from.attr('border'));
+}
 let childTables = $('.btech-table-from-page');
 if (childTables.length > 0) {
   let courseId = ENV.COURSE_ID;
@@ -17,10 +21,10 @@ if (childTables.length > 0) {
     childTables.each(function() {
       let thead = sourceTable.find('thead').clone();
       let newTable = $('<table></table>');
-      newTable.attr('style', sourceTable.attr('style'));
+      dupStyle(newTable, sourceTable);
       newTable.append(thead);
       let tbody = $("<tbody></tbody>")
-      tbody.attr('style', sourceTable.find('tbody').attr('style'));
+      dupStyle(tbody, sourceTable.find('tbody'));
       newTable.append(tbody);
       let childTable = $(this);
       let childRows = childTable.find('tbody tr');
