@@ -340,7 +340,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             // feature('instructional/glossary');
             let courseId = CURRENT_COURSE_ID;
             //COURSE SPECIFIC FEATURES
-            featurePilot("change_2019_to_2019-2020", courseId, [489538]); //IV Therapy
             featurePilot("rubrics/gen_comment", courseId, [489089]); //Micro Controllers I
             featurePilot("previous-enrollment-data/previous_enrollment_period_grades", courseId, [511596]); //Business High School Summer
             //DEPARTMENT SPECIFIC IMPORTS

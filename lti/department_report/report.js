@@ -179,52 +179,55 @@
             if (sis_id in app.json['users']) {
               let user = app.json['users'][sis_id]
               let name = user.name;
-              let courses = user.courses;
-              let entryDate = new Date(user.entry_date);
-              let core = [];
-              let elective = [];
-              let other = [];
-              // let completedHours = user.graded_hours;
-              let enrolledHours = user.enrolled_hours;
-              let completedHours = 0;
-              for (let courseCode in courses) {
-                let course = courses[courseCode];
-                if (course.registered_hours !== undefined) {
-                  // enrolledHours += course.registered_hours;
-                  if (course.progress >= 100) {
-                    completedHours += course.hours;
-                  } else {
-                    let courseCompletedHours = course.hours * (course.progress * .01);
-                    completedHours += courseCompletedHours;
+              if (name !== '') {
+
+                let courses = user.courses;
+                let entryDate = new Date(user.entry_date);
+                let core = [];
+                let elective = [];
+                let other = [];
+                // let completedHours = user.graded_hours;
+                let enrolledHours = user.enrolled_hours;
+                let completedHours = 0;
+                for (let courseCode in courses) {
+                  let course = courses[courseCode];
+                  if (course.registered_hours !== undefined) {
+                    // enrolledHours += course.registered_hours;
+                    if (course.progress >= 100) {
+                      completedHours += course.hours;
+                    } else {
+                      let courseCompletedHours = course.hours * (course.progress * .01);
+                      completedHours += courseCompletedHours;
+                    }
                   }
-                }
 
-                let courseData = {
-                  'code': courseCode,
-                  'course_id': course.course_id,
-                  'last_activity': course.last_activity,
-                  'progress': course.progress,
-                  'start': course.start,
-                  'hours': course.hours
-                }
-                if (courseCode in program.courses.core) {
-                  core.push(courseData);
-                } else if (courseCode in program.courses.elective) {
-                  elective.push(courseData);
-                } else {
-                  other.push(courseData);
-                }
+                  let courseData = {
+                    'code': courseCode,
+                    'course_id': course.course_id,
+                    'last_activity': course.last_activity,
+                    'progress': course.progress,
+                    'start': course.start,
+                    'hours': course.hours
+                  }
+                  if (courseCode in program.courses.core) {
+                    core.push(courseData);
+                  } else if (courseCode in program.courses.elective) {
+                    elective.push(courseData);
+                  } else {
+                    other.push(courseData);
+                  }
 
+                }
+                userList.push({
+                  'name': name,
+                  'id': sis_id,
+                  'core': core,
+                  'elective': elective,
+                  'other': other,
+                  'enrolledHours': Math.round(enrolledHours),
+                  'completedHours': Math.round(completedHours)
+                });
               }
-              userList.push({
-                'name': name,
-                'id': sis_id,
-                'core': core,
-                'elective': elective,
-                'other': other,
-                'enrolledHours': Math.round(enrolledHours),
-                'completedHours': Math.round(completedHours)
-              });
             }
           }
 
@@ -359,7 +362,7 @@
       },
 
       checkIncludeCourse(courseType, courseCodeInCourses) {
-        if (courseType==='core' || courseCodeInCourses) return "inline-block";
+        if (courseType === 'core' || courseCodeInCourses) return "inline-block";
         return "none";
       }
     }
