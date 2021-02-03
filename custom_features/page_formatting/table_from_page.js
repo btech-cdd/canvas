@@ -6,10 +6,8 @@
 
   let childTables = $('.btech-table-from-page');
   if (childTables.length > 0) {
-    console.log("CHILD EXISTS");
     let courseId = ENV.COURSE_ID;
     $.get('/api/v1/courses/' + courseId + '/pages/parts-list-master', function (data) {
-      console.log("SOURCE FOUND");
       let pBody = $('<div class=".page-body">' + data.body + '</div>');
       let sourceTable = pBody.find('.btech-table-from-page-source');
       rowRef = {};
@@ -18,7 +16,6 @@
       sourceRows.each(function () {
         let row = $(this);
         let key = $(row.find('td')[0]).text().toLowerCase();
-        console.log(key);
         rowRef[key] = row;
       });
 
@@ -26,19 +23,15 @@
         //Set up table
         let newTable = $('<table></table>');
         dupStyle(newTable, sourceTable);
-        console.log("CREATE TABLE")
-        console.log(newTable);
 
         //pull head directly from source
         let thead = sourceTable.find('thead').clone();
         newTable.append(thead);
-        console.log(thead);
 
         //Create a new body and duplicate style from source
         let tbody = $("<tbody></tbody>")
         dupStyle(tbody, sourceTable.find('tbody'));
         newTable.append(tbody);
-        console.log(tbody);
 
         //Go row by from and add in same order as what appears on page
         let childTable = $(this);
@@ -46,15 +39,14 @@
         childRows.each(function () {
           let row = $(this);
           let key = $(row.find('td')[0]).text().toLowerCase();
-          console.log(key);
           if (key in rowRef) {
             tbody.append(rowRef[key].clone());
           }
         });
 
         //add the newly created table to the page
-        console.log("ADD TO PAGE");
-        $('.show-content').append(newTable);
+        childTable.after(newTable);
+        childTable.remove();
       })
     });
   }
