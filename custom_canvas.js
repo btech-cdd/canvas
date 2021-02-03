@@ -397,7 +397,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
 
           //CDD ONLY
           featureCDD("rubrics/sortable", {}, [/\/rubrics/, /\/assignments\//]);
-          featureCDD("quizzes/question_bank_sorter", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/);
+          feature("quizzes/question_bank_sorter", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/);
           //featureCDD("previous-enrollment-data/previous_enrollment_period_grades");
           // featureCDD("help_tab");
           featureCDD("rubrics/add_criteria_from_csv", {}, new RegExp('/(rubrics|assignments\/)'));
@@ -430,15 +430,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
     });
   });
 }
-
-/*
-add_javascript_library("https://btech.evaluationkit.com/CanvasScripts/btech.js?v=2");
-window.ALLY_CFG = {
-  'baseUrl': 'https://prod.ally.ac',
-  'clientId': 1164
-};
-$.getScript(ALLY_CFG.baseUrl + '/integration/canvas/ally.js');
-*/
 
 //FROM https://github.com/jeresig/jquery.hotkeys
 /*jslint browser: true*/

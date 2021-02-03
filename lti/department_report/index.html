@@ -270,7 +270,7 @@
             style="padding-top: 0.25rem; padding-bottom: 0.25rem;"
             v-for="(courses, courseType) in json.trees[currentDepartment][showStudent.year]['courses']"
           >
-            <span><strong>{{courseType.toUpperCase()}}</strong></span>
+            <span v-if="Object.keys(json['trees'][currentDepartment][year]['courses'][courseType]).length > 0"><strong>{{courseType.toUpperCase()}}</strong></span>
             <div v-for="(course, courseCode) in courses">
               <course-row-ind
                 :progress="getUserCourseProgress(showStudent.id, courseCode)"
