@@ -1,8 +1,4 @@
 (function () {
-  function dupStyle(to, from) {
-    to.attr('style', from.attr('style'));
-    // to.attr('border', from.attr('border'));
-  }
 
   let childTables = $('.btech-table-from-page');
   if (childTables.length > 0) {
@@ -36,7 +32,7 @@
 
         //Create a new body and duplicate style from source
         let tbody = $("<tbody></tbody>")
-        // dupStyle(tbody, sourceTable.find('tbody'));
+        dupStyle(tbody, sourceTable.find('tbody'));
         newTable.append(tbody);
         console.log(tbody);
 
@@ -57,5 +53,11 @@
         $('.show-content').append(newTable);
       })
     });
+  }
+
+  function dupStyle(to, from) {
+    to.attr('style', from.attr('style'));
+    return;
+    // to.attr('border', from.attr('border'));
   }
 })();
