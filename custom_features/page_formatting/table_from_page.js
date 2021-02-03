@@ -6,7 +6,6 @@ if (childTables.length > 0) {
     let sourceTable = pBody.find('.table-from-page-source');
     rowRef = {};
     //set style of new table to style of source table
-    newTable.append(tbody);
     sourceRows = sourceTable.find('tbody tr');
     sourceRows.each(function() {
       let row = $(this);
@@ -20,6 +19,7 @@ if (childTables.length > 0) {
       let newTable = $('<table></table>');
       newTable.append(thead);
       let tbody = $("<tbody></tbody>")
+      newTable.append(tbody);
       let childTable = $(this);
       let childRows = childTable.find('tbody tr');
       childRows.each(function() {
