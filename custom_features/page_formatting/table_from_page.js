@@ -40,6 +40,7 @@
         childRows.each(function () {
           let row = $(this);
           let key = $(row.find('td')[0]).text().toLowerCase();
+          console.log(key);
           if (key in rowRef) {
             tbody.append(rowRef[key].clone());
           }
