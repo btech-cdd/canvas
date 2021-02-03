@@ -69,7 +69,7 @@
               <div>
                 <div>
                   <div
-                    @click="showStudent=user; showStudent.year = year; openStudentReport(json.users[user.id].canvas_id, user.id);"
+                    @click="showStudent=user; console.log(showStudent); showStudent.year = year; openStudentReport(json.users[user.id].canvas_id, user.id);"
                     class="btech-user-name"
                     style="width: 180px; display: inline-block; font-size: 1rem; cursor: pointer;">
                     <strong>{{user.name}}</strong>
