@@ -89,7 +89,7 @@
           <tbody>
           <tr>
           <td>
-          {$selection}
+          -insert key- 
           </td>
           </tr>
           </tbody>
@@ -132,7 +132,7 @@
           <tbody>
           <tr>
           <td>
-          {$selection}
+            -insert key- 
           </td>
           </tr>
           </tbody>
