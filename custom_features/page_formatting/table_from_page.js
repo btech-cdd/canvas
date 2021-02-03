@@ -17,8 +17,10 @@ if (childTables.length > 0) {
     childTables.each(function() {
       let thead = sourceTable.find('thead').clone();
       let newTable = $('<table></table>');
+      newTable.attr('style', sourceTable.attr('style'));
       newTable.append(thead);
       let tbody = $("<tbody></tbody>")
+      tbody.attr('style', sourceTable.find('tbody').attr('style'));
       newTable.append(tbody);
       let childTable = $(this);
       let childRows = childTable.find('tbody tr');
