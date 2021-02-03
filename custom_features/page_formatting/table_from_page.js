@@ -23,7 +23,7 @@ if (childTables.length > 0) {
       let childTable = $(this);
       let childRows = childTable.find('tbody tr');
       childRows.each(function() {
-        let row = this;
+        let row = $(this);
         let key = $(row.find('td')[0]).text().toLowerCase();
         if (key in rowRef) {
           tbody.append(rowRef[key]);
