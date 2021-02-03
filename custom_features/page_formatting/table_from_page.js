@@ -29,7 +29,7 @@ if (childTables.length > 0) {
           tbody.append(rowRef[key].clone());
         }
       })
+      $('.show-content').append(newTable);
     })
-    $('.show-content').append(newTable);
   });
 }
