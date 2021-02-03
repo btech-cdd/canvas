@@ -11,7 +11,7 @@ if (childTables.length > 0) {
     rows = sourceTable.find('tbody tr');
     rows.each(function() {
       let row = $(this);
-      let key = row.find('td')[0].text()
+      let key = $(row.find('td')[0]).text()
       console.log(key);
     })
     $('.show-content').append(sourceTable);
