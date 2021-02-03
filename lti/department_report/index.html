@@ -127,7 +127,7 @@
                   <div 
                     style="padding-top: 0.25rem; padding-bottom: 0.25rem;"
                   >
-                    <div v-if="courseType==='elective' && user.elective.length===0">No Elective Enrollments Found</div>
+                    <div v-if="courseType==='elective' && user.elective.length===0 && Object.keys(json['trees'][currentDepartment][year]['courses'].elective).length > 0">No Elective Enrollments Found</div>
                     <div 
                       v-for="(course, course_code) in courses" 
                       class="btech-course-progress-bar" :title="course.name"
