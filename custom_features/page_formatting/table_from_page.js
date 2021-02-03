@@ -1,3 +1,4 @@
+console.log('TEST');
 (function () {
 
   let childTables = $('.btech-table-from-page');
