@@ -1,8 +1,7 @@
 (function () {
   function dupStyle(to, from) {
     to.attr('style', from.attr('style'));
-    return;
-    // to.attr('border', from.attr('border'));
+    to.attr('border', from.attr('border'));
   }
 
   let childTables = $('.btech-table-from-page');
