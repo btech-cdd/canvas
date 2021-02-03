@@ -1,5 +1,9 @@
-console.log('TEST');
 (function () {
+  function dupStyle(to, from) {
+    to.attr('style', from.attr('style'));
+    return;
+    // to.attr('border', from.attr('border'));
+  }
 
   let childTables = $('.btech-table-from-page');
   if (childTables.length > 0) {
@@ -8,7 +12,7 @@ console.log('TEST');
     $.get('/api/v1/courses/' + courseId + '/pages/parts-list-master', function (data) {
       console.log("SOURCE FOUND");
       let pBody = $('<div class=".page-body">' + data.body + '</div>');
-      let sourceTable = pBody.find('.table-from-page-source');
+      let sourceTable = pBody.find('.btech-table-from-page-source');
       rowRef = {};
       //set style of new table to style of source table
       sourceRows = sourceTable.find('tbody tr');
@@ -54,11 +58,5 @@ console.log('TEST');
         $('.show-content').append(newTable);
       })
     });
-  }
-
-  function dupStyle(to, from) {
-    to.attr('style', from.attr('style'));
-    return;
-    // to.attr('border', from.attr('border'));
   }
 })();
