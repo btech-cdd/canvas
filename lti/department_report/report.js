@@ -165,7 +165,7 @@
           start = new Date(userCourseData.start);
         }
 
-        let diffDays = Math.floor((new Date() - new Date(start)) / (1000 * 60 * 60 * 24));
+        let diffDays = Math.floor((new Date() - start) / (1000 * 60 * 60 * 24));
         console.log(diffDays);
         if (diffDays <= 90) return app.colors.green;
         if (diffDays <= 180) return app.colors.yellow;
