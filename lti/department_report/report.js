@@ -157,12 +157,13 @@
         } else {
           return app.colors.gray;
         }
-        // let start = course.start;
-        console.log(user);
-        console.log(app.json.users[user.id]);
-        console.log(course);
-        let start = new Date();
         if (progress >= 100) return app.colors.complete;
+        // let start = course.start;
+        let userCourseData = app.json.users[user.id].courses[courseCode];
+        let start = new Date();
+        if (userCourseData.start !== null) {
+          start = new Date(userCourseData.start);
+        }
 
         let diffDays = Math.floor((new Date() - new Date(start)) / (1000 * 60 * 60 * 24));
         console.log(diffDays);
