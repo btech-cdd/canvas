@@ -178,7 +178,7 @@
             let sis_id = users[i];
             if (sis_id in app.json['users']) {
               let user = app.json['users'][sis_id]
-              let name = user.name;
+              let name = user.sortable_name;
               if (name !== '') {
 
                 let courses = user.courses;
