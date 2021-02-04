@@ -278,12 +278,9 @@
 
       calcDepartmentScoreColorBg(user) {
         let app = this;
-        console.log(user);
         let averageScore = app.json.users[user.id].average_score;
-        console.log(averageScore);
         if (averageScore === undefined) return app.colors.gray;
         let score = Math.round(averageScore * 100);
-        console.log(score);
         if (score < 60) return app.colors.red;
         if (score < 80) return app.colors.yellow;
         return app.colors.green;
