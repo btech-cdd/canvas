@@ -25,6 +25,8 @@
       });
       let app = this;
       let dept = '' + CURRENT_DEPARTMENT;
+      app.loadJsonFile('dept_data/3819');
+      console.log(app.json.courses_data);
       app.loading = false;
     },
 
@@ -63,6 +65,7 @@
         await $.post(jsonUrl, function (data) {
           jsonData = data;
         });
+        if ('dept_data' in name) name = 'courses_data'
         app.json[name] = jsonData;
       },
     }
