@@ -149,7 +149,7 @@
 
       var y = d3.scaleLinear()
         .domain([0, d3.max(moduleItems, function(d) { return d.submissions; })])
-        .range([h, 0]);
+        .range([height, 0]);
 
       graph.graphSettings.y = y;
 
@@ -227,7 +227,7 @@
     yPlot(d, y) {
       let app = this.app;
       let graph = this;
-      let yVal = y(d.submissions);
+      let yVal = y(d.submissions) + graph.graphSettings.margin.top;
       return yVal;
     }
   }
