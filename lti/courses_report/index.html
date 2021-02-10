@@ -55,11 +55,11 @@
       </div>
       <div>
         <div 
-            class="btech-data-container"
             v-for="course in json.courses_data.courses"
           >
           <div
-            v-if='course.enrolled >= minEnrollments && (course.averageProgress * 100) >= minProgress' 
+            class="btech-data-container"
+            v-if='course.enrolled >= minEnrollments && (course.average_progress * 100) >= minProgress' 
            >
             <div>
               <div
