@@ -122,26 +122,34 @@
         </div>
       </div>
       <div 
-          v-show="showCourse !== 'all'" 
-          id="printable-report" 
-          class="btech-modal"
-          style="display: inline-block; background-color: #fff; padding: 0.5rem; width: 800px;"
-        >
-        <div class="btech-pill-text print-hide"
-          :style="{'background-color': colors.red, 'color': '#fff', 'width': '1rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}"
-          @click="closeCourseReport()">
-          X
+        v-show="showCourse !== 'all'" 
+        id="printable-report" 
+        class="btech-modal"
+        style="display: inline-block; background-color: #fff; padding: 0.5rem; width: 800px;"
+      >
+        <!--Heading-->
+        <div>
+          <div class="btech-pill-text print-hide"
+            :style="{'background-color': colors.red, 'color': '#fff', 'width': '1rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}"
+            @click="closeCourseReport()">
+            X
+          </div>
+          <div class="btech-pill-text print-hide"
+            title="You may have to enable printing background graphics for everything to appear."
+            :style="{'background-color': colors.gray, 'color': '#000', 'width': '2.5rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}"
+            @click="print()">
+            Print
+          </div>
+          <div
+            class="btech-data-title"
+          >
+            <strong>{{showCourse.name}}</strong>
+          </div>
         </div>
-        <div class="btech-pill-text print-hide"
-          title="You may have to enable printing background graphics for everything to appear."
-          :style="{'background-color': colors.gray, 'color': '#000', 'width': '2.5rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}"
-          @click="print()">
-          Print
-        </div>
-        <div
-          class="btech-data-title"
-        >
-          <strong>{{showCourse.name}}</strong>
+        <!--Submissions Graph-->
+        <div id="btech-department-report-student-submissions-graph">Loading...</div>
+        <div>
+
         </div>
       </div>
     </div>

@@ -371,6 +371,7 @@
       }
     }
   })
+
   class SubmissionsGraphBar {
     constructor() {
       let graph = this;
@@ -647,6 +648,7 @@
       return yVal;
     }
   }
+
   class ProgressGraphDonut {
     constructor() {
       let graph = this;
