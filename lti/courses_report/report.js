@@ -107,7 +107,7 @@
         let count = 0;
         for (let q = 0; q < questions.length; q++) {
           let stats = questions[q];
-          if (stats.alpha !== null) sum += stats.alpha; count += 1;
+          if (stats.alpha !== null && stats.alpha !== undefined) sum += stats.alpha; count += 1;
         }
         if (count > 0) return Math.round(sum / count * 100) / 100;
         return 0;
