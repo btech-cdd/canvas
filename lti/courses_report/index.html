@@ -65,7 +65,7 @@
            >
             <div>
               <div
-                @click="console.log(course); showCourse=course; $nextTick(()=>{let graph = new SubmissionsGraphBar(); graph._init();});"
+                @click="console.log(course); showCourse=course; openCourseReport();"
                 class="btech-data-title"
                 style="width: 20rem; display: inline-block; font-size: 1rem; cursor: pointer;">
                 <strong>{{course.name}}</strong>

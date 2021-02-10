@@ -80,6 +80,11 @@
          return app.colors.green;
       },
 
+      openCourseReport() {
+        let app = this;
+        $nextTick(()=>{let graph = new SubmissionsGraphBar(); graph._init();});
+      },
+
       closeCourseReport() {
         let app = this;
         app.showCourse = 'all';
