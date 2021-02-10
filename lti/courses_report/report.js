@@ -91,6 +91,13 @@
         app.showCourse = 'all';
       },
 
+      formatTime(time) {
+        let minutes = time % 60;
+        time -= (minutes * 60);
+        let seconds = Math.round(time);
+        return minutes + ":" + seconds; 
+      },
+
       calcAverageQuizAlpha(quiz) {
         let questions = quiz.question_statistics;
         let sum = 0;
