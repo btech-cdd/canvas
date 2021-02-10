@@ -92,11 +92,12 @@
       },
 
       formatTime(time) {
+        time = Math.round(time);
         console.log(time);
         let minutes = time % 60;
         console.log(minutes);
         time -= (minutes * 60);
-        let seconds = Math.round(time);
+        let seconds = time;
         return minutes + ":" + seconds; 
       },
 
