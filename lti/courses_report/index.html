@@ -78,6 +78,18 @@
               </span>
             </div>
             <div style="display: inline-block; width: 6rem; font-size: 1rem;">
+              <span>Score</span>
+              <span 
+                  class="btech-pill-text" 
+                  :style="{
+                    'background-color': getBGColor(course.weighted_average_score, [60, 80]),
+                    'color': colors.white,
+                  }"
+                >
+                {{Math.round(course.weighted_average_score)}}%
+              </span>
+            </div>
+            <div style="display: inline-block; width: 6rem; font-size: 1rem;">
               <span>Enrolled</span>
               <span 
                 class="btech-pill-text" 
