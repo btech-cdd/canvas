@@ -26,7 +26,7 @@
       });
       let app = this;
       let dept = '' + CURRENT_DEPARTMENT;
-      await app.loadJsonFile('dept_data/3819');
+      await app.loadJsonFile('dept_data/3820');
       console.log(app.json.courses_data);
       app.loading = false;
     },
@@ -115,7 +115,7 @@
           if (stats.alpha !== null && stats.alpha !== undefined) sum += stats.alpha; count += 1;
         }
         if (count > 0) return Math.round(sum / count * 100) / 100;
-        return 0;
+        return "N/A";
       },
 
       calcAverageQuizDifficulty(quiz) {
@@ -127,7 +127,7 @@
           if (stats.difficulty_index !== null && stats.difficulty_index !== undefined) sum += stats.difficulty_index; count += 1;
         }
         if (count > 0) return Math.round(sum / count * 100) / 100;
-        return 0;
+        return "N/A";
       },
     }
   })
