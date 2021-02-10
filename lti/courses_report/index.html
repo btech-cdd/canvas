@@ -55,7 +55,10 @@
       </div>
       <div>
         <p>Hello 3</p>
-        <div v-for='course in json.courses_data.courses'>
+        <div 
+            class="btech-data-container"
+            v-for="course in json.courses_data.courses"
+          >
           {{course.name}}
         </div>
       </div>

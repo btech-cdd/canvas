@@ -1,0 +1,17 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-size: 1rem;
+}
+
+#canvas-courses-report-vue {
+  background-color: #e0e0e0;
+  padding: 0.5rem;
+}
+
+.btech-data-container {
+  background-color: #ffffff;
+  margin: 0.25rem;
+  margin-bottom: 1rem;
+  padding: 0.25rem;
+}
