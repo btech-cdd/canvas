@@ -149,7 +149,7 @@
 
       var y = d3.scaleLinear()
         .domain([0, d3.max(moduleItems, function(d) { return d.submissions; })])
-        .range([height, 0]);
+        .range([h, 0]);
 
       graph.graphSettings.y = y;
 
