@@ -78,6 +78,11 @@
         if (val < groups[0]) return app.colors.red;
         if (val < groups[1]) return app.colors.yellow;
          return app.colors.green;
+      },
+
+      closeCourseReport() {
+        let app = this;
+        app.showCourse = 'all';
       }
     }
   })

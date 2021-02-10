@@ -121,7 +121,12 @@
           </div>
         </div>
       </div>
-      <div v-else>
+      <div 
+          v-show="showCourse !== 'all'" 
+          id="printable-report" 
+          class="btech-modal"
+          style="display: inline-block; background-color: #fff; padding: 0.5rem;"
+        >
         <div>{{showCourse.name}}</div>
       </div>
     </div>

@@ -25,3 +25,20 @@ body {
   border-radius: 10px;
   font-size: .75rem;
 }
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-report, #printable-report * {
+    visibility: visible;
+  }
+  #printable-report {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  #printable-report .print-hide {
+    visibility: hidden !important;
+  }
+}
