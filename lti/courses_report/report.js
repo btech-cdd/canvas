@@ -197,7 +197,7 @@
           return graph.yPlot(d, y);
         })
         .attr("height", function (d) {
-          return height - graph.yPlot(d, y);
+          return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
         })
         .attr("fill", barColor);
 
