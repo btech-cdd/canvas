@@ -93,7 +93,7 @@
               <span 
                   class="btech-pill-text" 
                   :style="{
-                    'background-color': colors.blue,
+                    'background-color': getBGColor(1-(course.dropped / course.enrolled), [.8, .9]),
                     'color': colors.white,
                   }"
                 >

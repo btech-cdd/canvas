@@ -69,6 +69,13 @@
         if (name.includes('dept_data')) name = 'courses_data'
         app.json[name] = jsonData;
       },
+
+      getBGColor(val, groups) {
+        let app = this;
+        if (val < groups[0]) return app.colors.red;
+        if (val < groups[1]) return app.colors.yellow;
+         return app.colors.green;
+      }
     }
   })
 })();
