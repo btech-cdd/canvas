@@ -38,6 +38,7 @@
     data: function () {
       return {
         loading: true,
+        json: {},
         colors: {
           base: '#334',
           black: '#000000',
