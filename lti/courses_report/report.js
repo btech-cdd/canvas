@@ -119,7 +119,7 @@
         let count = 0;
         for (let q = 0; q < questions.length; q++) {
           let stats = questions[q];
-          if (stats.difficulty_index !== null) sum += stats.difficulty_index; count += 1;
+          if (stats.difficulty_index !== null && stats.difficulty_index !== undefined) sum += stats.difficulty_index; count += 1;
         }
         if (count > 0) return Math.round(sum / count * 100) / 100;
         return 0;
