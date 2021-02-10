@@ -82,7 +82,7 @@
 
       openCourseReport() {
         let app = this;
-        $nextTick(()=>{let graph = new SubmissionsGraphBar(); graph._init();});
+        app.$nextTick(()=>{let graph = new SubmissionsGraphBar(); graph._init();});
       },
 
       closeCourseReport() {
