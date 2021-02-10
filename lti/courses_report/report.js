@@ -94,7 +94,7 @@
       formatTime(time) {
         time = Math.round(time);
         console.log(time);
-        let minutes = Math.round(time / 60);
+        let minutes = Math.floor(time / 60);
         console.log(minutes);
         time -= (minutes * 60);
         let seconds = time;
