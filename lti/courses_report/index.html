@@ -54,12 +54,41 @@
         </div>
       </div>
       <div>
-        <p>Hello 3</p>
         <div 
             class="btech-data-container"
             v-for="course in json.courses_data.courses"
           >
-          {{course.name}}
+          <div>
+            <div
+              @click="console.log(course);"
+              class="btech-data-title"
+              style="width: 180px; display: inline-block; font-size: 1rem; cursor: pointer;">
+              <strong>{{course.name}}</strong>
+            </div>
+            <div style="display: inline-block; width: 6rem; font-size: 1rem;">
+              <span>Progress</span>
+              <span 
+                  class="btech-pill-text" 
+                  :style="{
+                    'background-color': colors.blue,
+                    'color': colors.white,
+                  }"
+                >
+                {{Math.round(course.averageProgress * 100)}}
+              </span>
+            </div>
+            <div style="display: inline-block; width: 6rem; font-size: 1rem;">
+              <span>Enrolled</span>
+              <span 
+                class="btech-pill-text" 
+                :style="{
+                  'background-color': colors.green,
+                  'color': colors.white,
+                }">
+                {{course.enrolled}}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
