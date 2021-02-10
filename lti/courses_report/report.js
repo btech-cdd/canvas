@@ -39,6 +39,7 @@
       return {
         loading: true,
         json: {},
+        showCourse: 'all',
         minEnrollments: 5,
         minProgress: 10,
         colors: {

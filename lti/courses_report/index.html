@@ -53,17 +53,19 @@
           <p>Email Josh (jhveem@btech.edu) with any questions or suggestsions.</p>
         </div>
       </div>
-      <div>
+      <div
+        v-if="showCourse==='all'"
+        >
         <div 
             v-for="course in json.courses_data.courses"
           >
           <div
             class="btech-data-container"
-            v-if='course.enrolled >= minEnrollments && (course.average_progress * 100) >= minProgress' 
+            v-if="course.enrolled >= minEnrollments && (course.average_progress * 100) >= minProgress"
            >
             <div>
               <div
-                @click="console.log(course);"
+                @click="console.log(course); showCourse=course;"
                 class="btech-data-title"
                 style="width: 20rem; display: inline-block; font-size: 1rem; cursor: pointer;">
                 <strong>{{course.name}}</strong>
@@ -118,6 +120,9 @@
             </div>
           </div>
         </div>
+      </div>
+      <div v-else>
+        <div>{{showCourse.name}}</div>
       </div>
     </div>
   </div>
