@@ -1,3 +1,4 @@
+//need a breakdown of which user ids are active, concluded, and dropped. This will allow a breakdown in the submissions graph to show which assignments aren't being completed by dropped students
 (async function () {
   async function delay(ms) {
     // return await for better async stack trace support in case of errors.
@@ -196,7 +197,7 @@
           return graph.yPlot(d, y);
         })
         .attr("height", function (d) {
-          return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
+          return height - graph.yPlot(d, y);
         })
         .attr("fill", barColor);
 
