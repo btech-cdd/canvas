@@ -160,7 +160,7 @@
           >
           {{quiz.name}}
           Time: {{formatTime(quiz.average_duration)}}
-          Score: {{Math.round(quiz.averaged_score / quiz.points_possible * 100)}}%
+          Score: {{Math.round(quiz.average_score / quiz.points_possible * 100)}}%
           Submissions: {{quiz.submission_count}}
           Alpha: {{calcAverageQuizAlpha(quiz)}}
           Difficulty: {{calcAverageQuizDifficulty(quiz)}}
