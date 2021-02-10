@@ -39,6 +39,8 @@
       return {
         loading: true,
         json: {},
+        minEnrollments: 5,
+        minProgress: 10,
         colors: {
           base: '#334',
           black: '#000000',

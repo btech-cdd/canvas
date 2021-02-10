@@ -58,59 +58,63 @@
             class="btech-data-container"
             v-for="course in json.courses_data.courses"
           >
-          <div>
-            <div
-              @click="console.log(course);"
-              class="btech-data-title"
-              style="width: 20rem; display: inline-block; font-size: 1rem; cursor: pointer;">
-              <strong>{{course.name}}</strong>
-            </div>
-            <div style="display: inline-block; width: 6rem; font-size: 1rem;">
-              <span>Prog</span>
-              <span 
+          <div
+            v-if='course.enrolled >= minEnrollments && (course.averageProgress * 100) >= minProgress' 
+           >
+            <div>
+              <div
+                @click="console.log(course);"
+                class="btech-data-title"
+                style="width: 20rem; display: inline-block; font-size: 1rem; cursor: pointer;">
+                <strong>{{course.name}}</strong>
+              </div>
+              <div style="display: inline-block; width: 6rem; font-size: 1rem;">
+                <span>Prog</span>
+                <span 
+                    class="btech-pill-text" 
+                    :style="{
+                      'background-color': colors.blue,
+                      'color': colors.white,
+                    }"
+                  >
+                  {{Math.round(course.average_progress * 100)}}%
+                </span>
+              </div>
+              <div style="display: inline-block; width: 6rem; font-size: 1rem;">
+                <span>Score</span>
+                <span 
+                    class="btech-pill-text" 
+                    :style="{
+                      'background-color': getBGColor(course.weighted_average_score, [60, 80]),
+                      'color': colors.white,
+                    }"
+                  >
+                  {{Math.round(course.weighted_average_score)}}%
+                </span>
+              </div>
+              <div style="display: inline-block; width: 6rem; font-size: 1rem;">
+                <span>Enrolled</span>
+                <span 
                   class="btech-pill-text" 
                   :style="{
                     'background-color': colors.blue,
                     'color': colors.white,
-                  }"
-                >
-                {{Math.round(course.average_progress * 100)}}%
-              </span>
-            </div>
-            <div style="display: inline-block; width: 6rem; font-size: 1rem;">
-              <span>Score</span>
-              <span 
-                  class="btech-pill-text" 
-                  :style="{
-                    'background-color': getBGColor(course.weighted_average_score, [60, 80]),
-                    'color': colors.white,
-                  }"
-                >
-                {{Math.round(course.weighted_average_score)}}%
-              </span>
-            </div>
-            <div style="display: inline-block; width: 6rem; font-size: 1rem;">
-              <span>Enrolled</span>
-              <span 
-                class="btech-pill-text" 
-                :style="{
-                  'background-color': colors.blue,
-                  'color': colors.white,
-                }">
-                {{course.enrolled}}
-              </span>
-            </div>
-            <div style="display: inline-block; width: 6rem; font-size: 1rem;">
-              <span>Drop</span>
-              <span 
-                  class="btech-pill-text" 
-                  :style="{
-                    'background-color': getBGColor(1-(course.dropped / course.enrolled), [.8, .9]),
-                    'color': colors.white,
-                  }"
-                >
-                {{Math.round((course.dropped / course.enrolled) * 100)}}%
-              </span>
+                  }">
+                  {{course.enrolled}}
+                </span>
+              </div>
+              <div style="display: inline-block; width: 6rem; font-size: 1rem;">
+                <span>Drop</span>
+                <span 
+                    class="btech-pill-text" 
+                    :style="{
+                      'background-color': getBGColor(1-(course.dropped / course.enrolled), [.8, .9]),
+                      'color': colors.white,
+                    }"
+                  >
+                  {{Math.round((course.dropped / course.enrolled) * 100)}}%
+                </span>
+              </div>
             </div>
           </div>
         </div>
