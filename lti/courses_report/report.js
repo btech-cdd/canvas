@@ -25,7 +25,7 @@
       });
       let app = this;
       let dept = '' + CURRENT_DEPARTMENT;
-      app.loadJsonFile('dept_data/3819');
+      await app.loadJsonFile('dept_data/3819');
       console.log(app.json.courses_data);
       app.loading = false;
     },
