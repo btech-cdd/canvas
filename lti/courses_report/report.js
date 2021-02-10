@@ -66,7 +66,7 @@
         await $.post(jsonUrl, function (data) {
           jsonData = data;
         });
-        if ('dept_data' in name) name = 'courses_data'
+        if (name.includes('dept_data')) name = 'courses_data'
         app.json[name] = jsonData;
       },
     }
