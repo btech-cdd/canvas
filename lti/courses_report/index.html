@@ -148,7 +148,18 @@
         </div>
         <!--Submissions Graph-->
         <div id="btech-department-report-student-submissions-graph">Loading...</div>
+        <!--Quizzes-->
         <div>
+          <div
+            class="btech-data-title"
+          >
+            <strong>Quizzes</strong>
+          </div>
+          <div
+            v-for="(quiz, quiz_name) in showCourse.quizzes"
+          >
+          {{quiz.name}}
+          </div>
 
         </div>
       </div>
@@ -164,3 +175,4 @@
     head.insertBefore(scr, head.firstChild);
   </script>
 </body>
+</html>
