@@ -89,7 +89,31 @@
       closeCourseReport() {
         let app = this;
         app.showCourse = 'all';
-      }
+      },
+
+      calcAverageQuizAlpha(quiz) {
+        let questions = quiz.question_statistics;
+        let sum = 0;
+        let count = 0;
+        for (let q = 0; q < questions.length; q++) {
+          let stats = questions[q];
+          if (stats.alpha !== null) sum += stats.alpha; count += 1;
+        }
+        if (count > 0) return sum / count;
+        return 0;
+      },
+
+      calcAverageQuizDifficulty(quiz) {
+        let questions = quiz.question_statistics;
+        let sum = 0;
+        let count = 0;
+        for (let q = 0; q < questions.length; q++) {
+          let stats = questions[q];
+          if (stats.difficulty_index !== null) sum += stats.difficulty_index; count += 1;
+        }
+        if (count > 0) return sum / count;
+        return 0;
+      },
     }
   })
   
