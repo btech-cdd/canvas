@@ -66,7 +66,6 @@
               <strong>{{course.name}}</strong>
             </div>
             <div style="display: inline-block; width: 6rem; font-size: 1rem;">
-              <span>Progress</span>
               <span 
                   class="btech-pill-text" 
                   :style="{
@@ -74,7 +73,7 @@
                     'color': colors.white,
                   }"
                 >
-                {{Math.round(course.averageProgress * 100)}}
+                {{Math.round(course.average_progress * 100)}}
               </span>
             </div>
             <div style="display: inline-block; width: 6rem; font-size: 1rem;">
