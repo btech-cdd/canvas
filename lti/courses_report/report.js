@@ -106,7 +106,7 @@
           let stats = questions[q];
           if (stats.alpha !== null) sum += stats.alpha; count += 1;
         }
-        if (count > 0) return sum / count;
+        if (count > 0) return Math.round(sum / count * 100) / 100;
         return 0;
       },
 
@@ -118,7 +118,7 @@
           let stats = questions[q];
           if (stats.difficulty_index !== null) sum += stats.difficulty_index; count += 1;
         }
-        if (count > 0) return sum / count;
+        if (count > 0) return Math.round(sum / count * 100) / 100;
         return 0;
       },
     }
