@@ -222,7 +222,7 @@
           "translate(" + margin.left + "," + margin.top + ")");
 
       let data = graph.getData();
-      stackdata = ['active', 'completed', 'dropped'].map(function (c) {
+      var stackdata = ['active', 'completed', 'dropped'].map(function (c) {
         return data.map(function (d, i) {
           return {
             x: i,
