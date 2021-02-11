@@ -31,8 +31,7 @@
       app.loading = false;
     },
 
-    computed: {
-    },
+    computed: {},
 
     updated: function () {},
 
@@ -78,12 +77,15 @@
         let app = this;
         if (val < groups[0]) return app.colors.red;
         if (val < groups[1]) return app.colors.yellow;
-         return app.colors.green;
+        return app.colors.green;
       },
 
       openCourseReport() {
         let app = this;
-        app.$nextTick(()=>{let graph = new SubmissionsGraphBar(); graph._init();});
+        app.$nextTick(() => {
+          let graph = new SubmissionsGraphBar();
+          graph._init();
+        });
       },
 
       closeCourseReport() {
@@ -103,7 +105,7 @@
         if (hours < 10) hours = "0" + hours;
         if (minutes < 10) minutes = "0" + minutes;
         if (seconds < 10) seconds = "0" + seconds;
-        return hours + ":"  + minutes + ":" + seconds; 
+        return hours + ":" + minutes + ":" + seconds;
       },
 
       calcAverageQuizAlpha(quiz) {
@@ -112,7 +114,8 @@
         let count = 0;
         for (let q = 0; q < questions.length; q++) {
           let stats = questions[q];
-          if (stats.alpha !== null && stats.alpha !== undefined) sum += stats.alpha; count += 1;
+          if (stats.alpha !== null && stats.alpha !== undefined) sum += stats.alpha;
+          count += 1;
         }
         if (count > 0) return Math.round(sum / count * 100) / 100;
         return "N/A";
@@ -124,7 +127,8 @@
         let count = 0;
         for (let q = 0; q < questions.length; q++) {
           let stats = questions[q];
-          if (stats.difficulty_index !== null && stats.difficulty_index !== undefined) sum += stats.difficulty_index; count += 1;
+          if (stats.difficulty_index !== null && stats.difficulty_index !== undefined) sum += stats.difficulty_index;
+          count += 1;
         }
         if (count > 0) return Math.round(sum / count * 100) / 100;
         return "N/A";
@@ -144,7 +148,7 @@
       }
     }
   })
-  
+
   class SubmissionsGraphBar {
     constructor() {
       let graph = this;
@@ -161,7 +165,7 @@
       }
     }
 
-    async _init(app=APP, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 240) {
+    async _init(app = APP, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 240) {
       this.app = app;
       let graph = this;
 
@@ -178,15 +182,31 @@
         right: 20,
       };
       console.log(app.showCourse);
-      console.log(Object.keys(app.showCourse.enrollments));
+      let subgroups = Object.keys(app.showCourse.enrollments);
 
-      let submissions = app.showCourse.module_assignments;
-        let moduleItems = [];
-        console.log(submissions)
-        for (let s = 0; s < submissions.length; s++) {
-            let submission = submissions[s];
-            moduleItems.push({name: s+'. '+submission.name, submissions:submission.submissions});
+      let moduleAssignments = app.showCourse.module_assignments;
+      let moduleItems = [];
+      console.log(moduleAssignments);
+      for (let a = 0; a < moduleAssignments.length; a++) {
+        let submittedUsers = moduleAssignments[a].submitted_users;
+        let submissionGroups = {};
+        for (let type in app.showCourse.enrollments) {
+          let users = app.showCourse.enrollments[type];
+          submissionGroups[type] = 0;
+          for (let i = 0; i < submittedUsers.length; i) {
+            let user_id = users[i];
+            if (user_id in users) submissionGroups[type] += 1;
+          }
         }
+        moduleItems.push({
+          name: s + '. ' + submission.name,
+          submissions: submissionGroups 
+        });
+      }
+      let stackedData = d3.stack()
+        .keys(subgroups)
+        (moduleItems);
+
       //Begin setting up the graph
       let barColor = graph.getBarColor();
       let el = $('#' + graphElId);
@@ -196,13 +216,15 @@
       var height = h - graph.graphSettings.margin.top - graph.graphSettings.margin.bottom;
 
       var x = d3.scaleBand()
-      .domain(moduleItems.map(function(d) { return d.name;}))
+        .domain(moduleItems.map(function (d) {
+          return d.name;
+        }))
         .range([0, width])
-      .padding(0.1);
+        .padding(0.1);
       graph.graphSettings.x = x;
 
-      var y = d3.scaleLinear()
-        .domain([0, d3.max(moduleItems, function(d) { return d.submissions; })])
+      var y = d3.scaleOrdinal()
+        .domain(subgroups)
         .range([height, 0]);
 
       graph.graphSettings.y = y;
@@ -224,12 +246,12 @@
         .call(
           d3.axisBottom(x)
         )
-          .selectAll("text")
-          .attr("y", 0)
-          .attr("x", 9)
-          .attr("dy", ".35em")
-          .attr("transform", "rotate(75)")
-          .style("text-anchor", "start");;
+        .selectAll("text")
+        .attr("y", 0)
+        .attr("x", 9)
+        .attr("dy", ".35em")
+        .attr("transform", "rotate(75)")
+        .style("text-anchor", "start");;
 
       chart.append('g')
         .classed('y axis', true)
@@ -240,7 +262,7 @@
 
       graph.svg
         .selectAll("whatever")
-        .data(moduleItems)
+        .data(stackedData)
         .enter()
         .append("rect")
         .attr("x", function (d) {
