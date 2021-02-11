@@ -195,7 +195,7 @@
       console.log(moduleItems);
       let data = moduleItems;
       let subgroups = Object.keys(app.showCourse.enrollments);
-      data.columns = subgroups;
+      data.columns = ['name', 'active', 'completed', 'dropped'];
       return data;
     }
 
