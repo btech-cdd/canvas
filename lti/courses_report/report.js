@@ -129,6 +129,19 @@
         if (count > 0) return Math.round(sum / count * 100) / 100;
         return "N/A";
       },
+
+      sumEnrollments(course) {
+        let enrollments = course.enrollments;
+        let all = [];
+        for (let type in enrollments) {
+          let enrollmentGroup = enrollments[type];
+          for (let e = 0; e < enrollmentGroup.length; e++) {
+            let id = enrollmentGroup[e];
+            if (!(id in all)) all.push(id);
+          }
+        }
+        return all.length;
+      }
     }
   })
   
