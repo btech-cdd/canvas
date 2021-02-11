@@ -224,7 +224,7 @@
       console.log(data);
 
       // List of groups = species here = value of the first column called group -> I show them on the X axis
-      let groups = moduleItems.map(function (d) {
+      let groups = data.map(function (d) {
         return d.name;
       });
       console.log(groups);
