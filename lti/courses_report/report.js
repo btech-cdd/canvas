@@ -187,7 +187,6 @@
 
       let moduleAssignments = app.showCourse.module_assignments;
       let moduleItems = [];
-      console.log(moduleAssignments);
       for (let a = 0; a < moduleAssignments.length; a++) {
         let moduleAssignment = moduleAssignments[a];
         let submittedUsers = moduleAssignment.submitted_users;
@@ -206,6 +205,8 @@
           moduleItemData
         );
       }
+      console.log(moduleItems);
+
       let stackedData = d3.stack()
         .keys(subgroups)
         (moduleItems);
