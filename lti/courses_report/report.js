@@ -194,6 +194,8 @@
       }
       console.log(moduleItems);
       let data = moduleItems;
+      let subgroups = Object.keys(app.showCourse.enrollments);
+      data.columns = subgroups;
       return data;
     }
 
@@ -220,13 +222,13 @@
           "translate(" + margin.left + "," + margin.top + ")");
 
       let data = graph.getData();
-      let subgroups = Object.keys(app.showCourse.enrollments);
       console.log(data);
+      var subgroups = data.columns.slice(1)
 
       // List of groups = species here = value of the first column called group -> I show them on the X axis
-      let groups = data.map(function (d) {
-        return d.name;
-      });
+      var groups = d3.map(data, function (d) {
+        return (d.name)
+      }).keys()
       console.log(groups);
       // Add X axis
       var x = d3.scaleBand()
