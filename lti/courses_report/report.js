@@ -189,9 +189,10 @@
       let moduleItems = [];
       console.log(moduleAssignments);
       for (let a = 0; a < moduleAssignments.length; a++) {
-        let submittedUsers = moduleAssignments[a].submitted_users;
+        let moduleAssignment = moduleAssignments[a];
+        let submittedUsers = moduleAssignment.submitted_users;
         let moduleItemData = {
-          name: a + '. ' + moduleItem.name
+          name: a + '. ' + moduleAssignment.name
         };
         for (let type in app.showCourse.enrollments) {
           let users = app.showCourse.enrollments[type];
