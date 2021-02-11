@@ -203,10 +203,12 @@
           console.log(userId);
           for (let type in app.showCourse.enrollments) {
             console.log(type);
-            let users = app.showCourse.enrollments[type];
-            console.log(users);
-            console.log(userId in users);
-            if (userId in users) moduleItemData[type] += 1;
+            let enrollments = app.showCourse.enrollments[type];
+            for (let j = 0; j < enrollments.length; j ++) {
+              enrollmentUserId = enrollments[j];
+              console.log(userId + " === " + enrollmentUserId + " = " (userId===enrollmentUserId));
+              if (enrollmentUserId === userId) moduleItemData[type] += 1;
+            }
           }
         }
         moduleItems.push(
