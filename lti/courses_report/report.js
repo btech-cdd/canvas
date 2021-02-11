@@ -197,7 +197,7 @@
         for (let type in app.showCourse.enrollments) {
           let users = app.showCourse.enrollments[type];
           moduleItemData[type] = 0;
-          for (let i = 0; i < submittedUsers.length; i) {
+          for (let i = 0; i < submittedUsers.length; i++) {
             let user_id = users[i];
             if (user_id in users) moduleItemData[type] += 1;
           }
