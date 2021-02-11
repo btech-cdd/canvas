@@ -198,7 +198,6 @@
           completed: 0,
           dropped: 0
         };
-        moduleItemData[type] = 0;
         for (let i = 0; i < submittedUsers.length; i++) {
           let userId = submittedUsers[i];
           console.log(userId);
