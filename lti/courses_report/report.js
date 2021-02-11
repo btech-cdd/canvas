@@ -220,7 +220,7 @@
           "translate(" + margin.left + "," + margin.top + ")");
 
       let data = graph.getData();
-      var subgroups = data.columns.slice(1)
+      let subgroups = Object.keys(app.showCourse.enrollments);
       console.log(data);
 
       // List of groups = species here = value of the first column called group -> I show them on the X axis
