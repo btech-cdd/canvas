@@ -193,16 +193,20 @@
         let submittedUsers = moduleAssignment.submitted_users;
         console.log(submittedUsers);
         let moduleItemData = {
-          name: a + '. ' + moduleAssignment.name
+          name: a + '. ' + moduleAssignment.name,
+          active: 0,
+          completed: 0,
+          dropped: 0
         };
-        for (let type in app.showCourse.enrollments) {
-          console.log(type);
-          let users = app.showCourse.enrollments[type];
-          console.log(users);
-          moduleItemData[type] = 0;
-          for (let i = 0; i < submittedUsers.length; i++) {
-            let userId = submittedUsers[i];
-            console.log(userId)
+        moduleItemData[type] = 0;
+        for (let i = 0; i < submittedUsers.length; i++) {
+          let userId = submittedUsers[i];
+          console.log(userId);
+          for (let type in app.showCourse.enrollments) {
+            console.log(type);
+            let users = app.showCourse.enrollments[type];
+            console.log(users);
+            console.log(userId in users);
             if (userId in users) moduleItemData[type] += 1;
           }
         }
