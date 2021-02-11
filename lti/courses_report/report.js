@@ -177,8 +177,8 @@
         left: 50,
         right: 20,
       };
-      console.log(showCourse);
-      console.log(Object.keys(showCours.enrollments));
+      console.log(app.showCourse);
+      console.log(Object.keys(app.showCourse.enrollments));
 
       let submissions = showCourse.module_assignments;
         let moduleItems = [];
