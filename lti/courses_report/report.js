@@ -224,9 +224,9 @@
       console.log(data);
 
       // List of groups = species here = value of the first column called group -> I show them on the X axis
-      var groups = d3.map(data, function (d) {
-        return (d.name)
-      }).keys()
+      let groups = moduleItems.map(function (d) {
+        return d.name;
+      });
       console.log(groups);
       // Add X axis
       var x = d3.scaleBand()
