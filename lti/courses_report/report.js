@@ -165,7 +165,7 @@
         right: 20,
       };
 
-      let submissions = app.json.courses_data.courses[app.showCourse.name].module_assignments;
+      let submissions = app.json.courses_data.years['2020'].courses[app.showCourse.name].module_assignments;
         let moduleItems = [];
         console.log(submissions)
         for (let s = 0; s < submissions.length; s++) {
