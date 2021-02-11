@@ -181,6 +181,7 @@
         left: 50,
         right: 20,
       };
+
       console.log(app.showCourse);
       let subgroups = Object.keys(app.showCourse.enrollments);
 
@@ -189,19 +190,20 @@
       console.log(moduleAssignments);
       for (let a = 0; a < moduleAssignments.length; a++) {
         let submittedUsers = moduleAssignments[a].submitted_users;
-        let submissionGroups = {};
+        let moduleItemData = {
+          name: s + '. ' + moduleItem.name
+        };
         for (let type in app.showCourse.enrollments) {
           let users = app.showCourse.enrollments[type];
-          submissionGroups[type] = 0;
+          moduleItemData[type] = 0;
           for (let i = 0; i < submittedUsers.length; i) {
             let user_id = users[i];
-            if (user_id in users) submissionGroups[type] += 1;
+            if (user_id in users) moduleItemData[type] += 1;
           }
         }
-        moduleItems.push({
-          name: s + '. ' + submission.name,
-          submissions: submissionGroups 
-        });
+        moduleItems.push(
+          moduleItemData
+        );
       }
       let stackedData = d3.stack()
         .keys(subgroups)
