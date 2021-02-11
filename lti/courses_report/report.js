@@ -166,6 +166,7 @@
     }
 
     async getData() {
+      let app = this.app;
       let moduleAssignments = app.showCourse.module_assignments;
       let moduleItems = [];
       for (let a = 0; a < moduleAssignments.length; a++) {
