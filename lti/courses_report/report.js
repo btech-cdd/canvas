@@ -189,9 +189,7 @@
       let moduleItems = [];
       for (let a = 0; a < moduleAssignments.length; a++) {
         let moduleAssignment = moduleAssignments[a];
-        console.log(moduleAssignment.name);
         let submittedUsers = moduleAssignment.submitted_users;
-        console.log(submittedUsers);
         let moduleItemData = {
           name: a + '. ' + moduleAssignment.name,
           active: 0,
@@ -200,13 +198,10 @@
         };
         for (let i = 0; i < submittedUsers.length; i++) {
           let userId = submittedUsers[i];
-          console.log(userId);
           for (let type in app.showCourse.enrollments) {
-            console.log(type);
             let enrollments = app.showCourse.enrollments[type];
             for (let j = 0; j < enrollments.length; j ++) {
               let enrollmentUserId = enrollments[j];
-              console.log(userId + " === " + enrollmentUserId + " = " + (userId===enrollmentUserId));
               if (enrollmentUserId === userId) moduleItemData[type] += 1;
             }
           }
