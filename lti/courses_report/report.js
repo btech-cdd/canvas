@@ -201,8 +201,9 @@
           console.log(users);
           moduleItemData[type] = 0;
           for (let i = 0; i < submittedUsers.length; i++) {
-            let user_id = users[i];
-            if (user_id in users) moduleItemData[type] += 1;
+            let userId = submittedUsers[i];
+            console.log(userId)
+            if (userId in users) moduleItemData[type] += 1;
           }
         }
         moduleItems.push(
