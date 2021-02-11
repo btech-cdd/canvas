@@ -177,8 +177,10 @@
         left: 50,
         right: 20,
       };
+      console.log(showCourse);
+      console.log(Object.keys(showCours.enrollments));
 
-      let submissions = app.json.courses_data.years['2020'].courses[app.showCourse.name].module_assignments;
+      let submissions = showCourse.module_assignments;
         let moduleItems = [];
         console.log(submissions)
         for (let s = 0; s < submissions.length; s++) {
