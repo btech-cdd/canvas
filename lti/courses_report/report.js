@@ -194,6 +194,8 @@
       }
       console.log(moduleItems);
       let data = moduleItems;
+      // data.columns = ['name', 'active', 'completed', 'dropped'];
+      // ['active', 'completed', 'dropped'];
       return data;
     }
 
@@ -220,7 +222,7 @@
           "translate(" + margin.left + "," + margin.top + ")");
 
       let data = graph.getData();
-      stackdata = ["gold", "silver"].map(function (c) {
+      stackdata = ['active', 'completed', 'dropped'].map(function (c) {
         return data.map(function (d, i) {
           return {
             x: i,
@@ -234,7 +236,7 @@
       // Data, stacked
       stack(stackdata)
       // gold silver colors
-      var colors = ["gold", "silver"]
+      var colors = ['active', 'completed', 'dropped'];
       // Add a group for each row of data
       var groups = svg.selectAll("g")
         .data(stackdata)
