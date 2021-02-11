@@ -206,7 +206,7 @@
             let enrollments = app.showCourse.enrollments[type];
             for (let j = 0; j < enrollments.length; j ++) {
               let enrollmentUserId = enrollments[j];
-              console.log(userId + " === " + enrollmentUserId + " = " (userId===enrollmentUserId));
+              console.log(userId + " === " + enrollmentUserId + " = " + (userId===enrollmentUserId));
               if (enrollmentUserId === userId) moduleItemData[type] += 1;
             }
           }
