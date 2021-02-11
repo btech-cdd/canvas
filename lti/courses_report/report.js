@@ -180,7 +180,7 @@
       console.log(app.showCourse);
       console.log(Object.keys(app.showCourse.enrollments));
 
-      let submissions = showCourse.module_assignments;
+      let submissions = app.showCourse.module_assignments;
         let moduleItems = [];
         console.log(submissions)
         for (let s = 0; s < submissions.length; s++) {
