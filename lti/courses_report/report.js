@@ -199,7 +199,7 @@
       return data;
     }
 
-    async _init(app = APP, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 240) {
+    _init(app = APP, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 240) {
       this.app = app;
       let graph = this;
       // List of subgroups = header of the csv files = soil condition here
