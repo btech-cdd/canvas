@@ -189,12 +189,16 @@
       let moduleItems = [];
       for (let a = 0; a < moduleAssignments.length; a++) {
         let moduleAssignment = moduleAssignments[a];
+        console.log(moduleAssignment.name);
         let submittedUsers = moduleAssignment.submitted_users;
+        console.log(submittedUsers);
         let moduleItemData = {
           name: a + '. ' + moduleAssignment.name
         };
         for (let type in app.showCourse.enrollments) {
+          console.log(type);
           let users = app.showCourse.enrollments[type];
+          console.log(users);
           moduleItemData[type] = 0;
           for (let i = 0; i < submittedUsers.length; i++) {
             let user_id = users[i];
