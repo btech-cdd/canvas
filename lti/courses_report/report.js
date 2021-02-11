@@ -232,7 +232,7 @@
       })
 
       // Set up stack method
-      var stack = d3.layout.stack()
+      var stack = d3.stack()
       // Data, stacked
       stack(stackdata)
       // gold silver colors
