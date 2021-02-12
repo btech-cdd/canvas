@@ -263,6 +263,7 @@
         })
         .attr("width", 24)
     }
+
     async _init(app = APP, graphElId = 'btech-department-report-student-submissions-graph', w = 800, h = 240) {
       this.app = app;
       let graph = this;
@@ -328,8 +329,8 @@
         .padding(0.1);
       graph.graphSettings.x = x;
 
-      var y = d3.scaleOrdinal()
-        .domain(subgroups)
+      var y = d3.scaleLinear()
+        .domain([0, graph.graphSettings.maxY])
         .range([height, 0]);
 
       graph.graphSettings.y = y;
@@ -337,8 +338,8 @@
 
       graph.svg = d3.select('#' + graphElId).append('svg')
         .attr('class', 'chart')
-        .attr('width', w + 50)
-        .attr('height', h + 150);
+        .attr('width', w)
+        .attr('height', h);
 
       var chart = graph.svg.append('g')
         .classed('graph', true)
@@ -350,14 +351,9 @@
         .attr("transform", "translate(0, " + height + ")")
         .call(
           d3.axisBottom(x)
-        )
-        .selectAll("text")
-        .attr("y", 0)
-        .attr("x", 9)
-        .attr("dy", ".35em")
-        .attr("transform", "rotate(75)")
-        .style("text-anchor", "start");;
-
+          .tickFormat(d3.timeFormat("%Y-%m"))
+          .ticks(d3.timeMonth.every(1))
+        );
 
       chart.append('g')
         .classed('y axis', true)
@@ -366,19 +362,15 @@
 
       graph.graphSettings.barWidth = 5;
 
-      let stackedData = d3.stack()
-        .keys(subgroups)
-        (data);
-
       graph.svg
         .selectAll("whatever")
-        .data(stackedData)
+        .data(submissions)
         .enter()
         .append("rect")
         .attr("x", function (d) {
           return graph.xPlot(d, x)
         })
-        .attr("width", x.bandwidth())
+        .attr("width", graph.graphSettings.barWidth)
         .attr("y", function (d) {
           return graph.yPlot(d, y);
         })
@@ -386,6 +378,10 @@
           return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
         })
         .attr("fill", barColor);
+
+      graph.svg.append("text")
+        .attr("transform", "translate(" + (w / 2) + " ," + (h) + ")")
+        .style("text-anchor", "middle")
 
       graph.svg.append("text")
         .attr("transform", "rotate(-90)")
