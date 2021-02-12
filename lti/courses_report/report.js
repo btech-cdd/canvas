@@ -376,6 +376,23 @@
         })
         .attr("width", x.bandwidth())
         .attr("y", function (d) {
+          return graph.yPlot(d, y, 'dropped');
+        })
+        .attr("height", function (d) {
+          return height - graph.yPlot(d, y, 'dropped') + graph.graphSettings.margin.top;
+        })
+        .attr("fill", barColor);
+
+      graph.svg
+        .selectAll("whatever")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", function (d) {
+          return graph.xPlot(d, x)
+        })
+        .attr("width", x.bandwidth())
+        .attr("y", function (d) {
           return graph.yPlot(d, y, 'active');
         })
         .attr("height", function (d) {
