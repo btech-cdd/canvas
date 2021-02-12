@@ -339,7 +339,7 @@
       graph.svg = d3.select('#' + graphElId).append('svg')
         .attr('class', 'chart')
         .attr('width', w)
-        .attr('height', h);
+        .attr('height', height);
 
       var chart = graph.svg.append('g')
         .classed('graph', true)
