@@ -178,14 +178,21 @@
           completed: 0,
           dropped: 0
         };
-        for (let i = 0; i < submittedUsers.length; i++) {
-          let userId = submittedUsers[i];
-          for (let type in app.showCourse.enrollments) {
+        let enrollmentStates = ['completed', 'active', 'dropped'];
+        for (let s = 0; s < submittedUsers.length; s++) {
+          let userId = submittedUsers[s];
+          for (let type in enrollmentStates) {
             let enrollments = app.showCourse.enrollments[type];
-            for (let j = 0; j < enrollments.length; j++) {
-              let enrollmentUserId = enrollments[j];
-              if (enrollmentUserId === userId) moduleItemData[type] += 1;
+            let brk = false;
+            for (let e = 0; e < enrollments.length; e++) {
+              let enrollmentUserId = enrollments[e];
+              if (enrollmentUserId === userId) {
+                moduleItemData[type] += 1;
+                brk = true;
+                break;
+              }
             }
+            if (brk) break;
           }
         }
         moduleItems.push(
