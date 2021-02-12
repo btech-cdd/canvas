@@ -381,7 +381,7 @@
         .attr("height", function (d) {
           return height - graph.yPlot(d, y, 'dropped') + graph.graphSettings.margin.top;
         })
-        .attr("fill", barColor);
+        .attr("fill", app.colors.blue);
 
       graph.svg
         .selectAll("whatever")
@@ -398,7 +398,7 @@
         .attr("height", function (d) {
           return height - graph.yPlot(d, y, 'active') + graph.graphSettings.margin.top;
         })
-        .attr("fill", barColor);
+        .attr("fill", app.colors.green);
 
       graph.svg.append("text")
         .attr("transform", "translate(" + (w / 2) + " ," + (h) + ")")
