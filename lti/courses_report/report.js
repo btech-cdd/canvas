@@ -359,7 +359,7 @@
         .style("text-anchor", "start");;
 
       chart.append('g')
-        .call(d3.axisLeft(y);
+        .call(d3.axisLeft(y));
 
       graph.graphSettings.barWidth = 5;
 
