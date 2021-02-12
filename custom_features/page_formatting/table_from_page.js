@@ -2,6 +2,8 @@
   function dupStyle(to, from) {
     to.attr('style', from.attr('style'));
     to.attr('border', from.attr('border'));
+    to.attr('cellspacing', from.attr('cellspacing'));
+    to.attr('cellpadding', from.attr('cellpadding'));
   }
 
   let childTables = $('.btech-table-from-page');
