@@ -333,7 +333,7 @@
         .attr("height", function (d) {
           return height - graph.yPlot(d, y, ['dropped']);
         })
-        .attr("fill", app.colors.blue);
+        .attr("fill", app.colors.red);
 
       graph.svg
         .selectAll("whatever")
@@ -351,6 +351,23 @@
           return height - graph.yPlot(d, y, ['active']);
         })
         .attr("fill", app.colors.green);
+
+      graph.svg
+        .selectAll("whatever")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", function (d) {
+          return graph.xPlot(d, x)
+        })
+        .attr("width", x.bandwidth())
+        .attr("y", function (d) {
+          return graph.yPlot(d, y, ['completed', 'active', 'dropped']);
+        })
+        .attr("height", function (d) {
+          return height - graph.yPlot(d, y, ['completed']);
+        })
+        .attr("fill", app.colors.blue);
 
       //labels
       graph.svg.append('g')
