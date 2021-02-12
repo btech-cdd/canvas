@@ -413,6 +413,8 @@
     yPlot(d, y, type) {
       let app = this.app;
       let graph = this;
+      console.log(type);
+      console.log(d);
       let yVal = y(d[type]) + graph.graphSettings.margin.top;
       return yVal;
     }
