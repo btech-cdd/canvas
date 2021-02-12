@@ -343,7 +343,7 @@
 
       var chart = graph.svg.append('g')
         .classed('graph', true)
-        .attr('transform', 'translate(' + graph.graphSettings.margin.left + ',' + graph.graphSettings.margin.top + ')');
+        .attr('transform', 'translate(' + graph.graphSettings.margin.left + ',0)');
 
 
         chart.append('g')
