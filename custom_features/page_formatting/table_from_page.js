@@ -9,7 +9,7 @@
     let courseId = ENV.COURSE_ID;
     $.get('/api/v1/courses/' + courseId + '/pages/parts-list-master', function (data) {
       let pBody = $('<div class=".page-body">' + data.body + '</div>');
-      let sourceTable = pBody.find('.btech-table-from-page-source');
+      let sourceTable = pBody.find('table');
       rowRef = {};
       //set style of new table to style of source table
       sourceRows = sourceTable.find('tbody tr');
