@@ -358,12 +358,8 @@
         .attr("transform", "rotate(75)")
         .style("text-anchor", "start");;
 
-      /*
       chart.append('g')
-        .classed('y axis', true)
-        .call(d3.axisLeft(y)
-          .ticks(graph.graphSettings.maxY));
-      */
+        .call(d3.axisLeft(y);
 
       graph.graphSettings.barWidth = 5;
 
