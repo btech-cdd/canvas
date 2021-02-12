@@ -374,7 +374,7 @@
         .attr("x", function (d) {
           return graph.xPlot(d, x)
         })
-        .attr("width", graph.graphSettings.barWidth)
+        .attr("width", x.bandwidth())
         .attr("y", function (d) {
           return graph.yPlot(d, y);
         })
