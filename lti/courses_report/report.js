@@ -342,10 +342,10 @@
         .attr('height', h)
 
       var chart = graph.svg.append('g')
-        .attr("transform", "translate("+graph.graphSettings.margin.left+", " + graph.graphSettings.margin.top+ ")");
+        .attr("transform", "translate(" + graph.graphSettings.margin.left + ", " + graph.graphSettings.margin.top + ")");
 
 
-        chart.append('g')
+      chart.append('g')
         .classed('x axis', true)
         .attr("transform", "translate(0, " + height + ")")
         .call(
@@ -358,10 +358,12 @@
         .attr("transform", "rotate(75)")
         .style("text-anchor", "start");;
 
+      /*
       chart.append('g')
         .classed('y axis', true)
         .call(d3.axisLeft(y)
           .ticks(graph.graphSettings.maxY));
+      */
 
       graph.graphSettings.barWidth = 5;
 
@@ -399,6 +401,7 @@
         })
         .attr("fill", app.colors.green);
 
+      //labels
       graph.svg.append("text")
         .attr("transform", "translate(" + (w / 2) + " ," + (h) + ")")
         .style("text-anchor", "middle")
