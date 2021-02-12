@@ -376,7 +376,7 @@
         })
         .attr("width", x.bandwidth())
         .attr("y", function (d) {
-          return graph.yPlot(d, y);
+          return graph.yPlot(d, y, 'active');
         })
         .attr("height", function (d) {
           return height - graph.yPlot(d, y, 'active') + graph.graphSettings.margin.top;
