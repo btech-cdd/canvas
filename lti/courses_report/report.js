@@ -346,14 +346,18 @@
         .attr('transform', 'translate(' + graph.graphSettings.margin.left + ',' + graph.graphSettings.margin.top + ')');
 
 
-      chart.append('g')
+        chart.append('g')
         .classed('x axis', true)
         .attr("transform", "translate(0, " + height + ")")
         .call(
           d3.axisBottom(x)
-          .tickFormat(d3.timeFormat("%Y-%m"))
-          .ticks(d3.timeMonth.every(1))
-        );
+        )
+        .selectAll("text")
+        .attr("y", 0)
+        .attr("x", 9)
+        .attr("dy", ".35em")
+        .attr("transform", "rotate(75)")
+        .style("text-anchor", "start");;
 
       chart.append('g')
         .classed('y axis', true)
