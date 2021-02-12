@@ -181,7 +181,8 @@
         let enrollmentStates = ['completed', 'active', 'dropped'];
         for (let s = 0; s < submittedUsers.length; s++) {
           let userId = submittedUsers[s];
-          for (let type in enrollmentStates) {
+          for (let t = 0; t < enrollmentStates.length; t++) {
+            let type = enrollmentStates[t];
             let enrollments = app.showCourse.enrollments[type];
             let brk = false;
             for (let e = 0; e < enrollments.length; e++) {
