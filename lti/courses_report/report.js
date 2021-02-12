@@ -348,7 +348,7 @@
 
         chart.append('g')
         .classed('x axis', true)
-        .attr("transform", "translate(0, " + h + ")")
+        .attr("transform", "translate(0, " + height + ")")
         .call(
           d3.axisBottom(x)
         )
