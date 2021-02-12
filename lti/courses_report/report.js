@@ -328,10 +328,10 @@
         })
         .attr("width", x.bandwidth())
         .attr("y", function (d) {
-          return graph.yPlot(d, y, 'dropped');
+          return graph.yPlot(d, y, ['dropped']);
         })
         .attr("height", function (d) {
-          return height - graph.yPlot(d, y, 'dropped');
+          return height - graph.yPlot(d, y, ['dropped']);
         })
         .attr("fill", app.colors.blue);
 
@@ -345,10 +345,10 @@
         })
         .attr("width", x.bandwidth())
         .attr("y", function (d) {
-          return graph.yPlot(d, y, 'active') + graph.yPlot(d, y, 'dropped');
+          return graph.yPlot(d, y, 'active') + graph.yPlot(d, y, ['dropped']);
         })
         .attr("height", function (d) {
-          return height - graph.yPlot(d, y, 'active');
+          return height - graph.yPlot(d, y, ['active']);
         })
         .attr("fill", app.colors.green);
 
@@ -399,12 +399,15 @@
       return xVal;
     }
 
-    yPlot(d, y, type) {
+    yPlot(d, y, types) {
       let app = this.app;
       let graph = this;
-      console.log(type);
-      console.log(d);
-      let yVal = y(d[type]);
+      let sum = 0;
+      for (type in types) {
+        console.log(type);
+        sum += d[type];
+      }
+      let yVal = y(sum);
       return yVal;
     }
   }
