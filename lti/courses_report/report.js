@@ -284,33 +284,7 @@
       console.log(app.showCourse);
       let subgroups = Object.keys(app.showCourse.enrollments);
 
-      let moduleAssignments = app.showCourse.module_assignments;
-      let moduleItems = [];
-      for (let a = 0; a < moduleAssignments.length; a++) {
-        let moduleAssignment = moduleAssignments[a];
-        let submittedUsers = moduleAssignment.submitted_users;
-        let moduleItemData = {
-          name: a + '. ' + moduleAssignment.name,
-          active: 0,
-          completed: 0,
-          dropped: 0
-        };
-        for (let i = 0; i < submittedUsers.length; i++) {
-          let userId = submittedUsers[i];
-          for (let type in app.showCourse.enrollments) {
-            let enrollments = app.showCourse.enrollments[type];
-            for (let j = 0; j < enrollments.length; j++) {
-              let enrollmentUserId = enrollments[j];
-              if (enrollmentUserId === userId) moduleItemData[type] += 1;
-            }
-          }
-        }
-        moduleItems.push(
-          moduleItemData
-        );
-      }
-      console.log(moduleItems);
-      let data = moduleItems;
+      let data = app.graph.getData();
       let groups = moduleItems.map(function (d) {
         return d.name;
       });
@@ -345,8 +319,7 @@
         .attr("transform", "translate(" + graph.graphSettings.margin.left + ", " + graph.graphSettings.margin.top + ")");
 
 
-      chart.append('g')
-        .classed('x axis', true)
+      graph.svg.append('g')
         .attr("transform", "translate(0, " + height + ")")
         .call(
           d3.axisBottom(x)
@@ -358,7 +331,7 @@
         .attr("transform", "rotate(75)")
         .style("text-anchor", "start");;
 
-      chart.append('g')
+      graph.svg.append('g')
         .call(d3.axisLeft(y));
 
       graph.graphSettings.barWidth = 5;
