@@ -340,11 +340,10 @@
         .attr('class', 'chart')
         .attr('width', w)
         .attr('height', h)
-        .attr("transform", "translate(0, " + graph.graphSettings.margin.top+ ")");
+        .attr("transform", "translate("+graph.graphSettings.margin.left+", " + graph.graphSettings.margin.top+ ")");
 
       var chart = graph.svg.append('g')
-        .classed('graph', true)
-        .attr('transform', 'translate(' + graph.graphSettings.margin.left + ',0)');
+        .attr("transform", "translate("+graph.graphSettings.margin.left+", " + graph.graphSettings.margin.top+ ")");
 
 
         chart.append('g')
