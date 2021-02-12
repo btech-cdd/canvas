@@ -285,7 +285,7 @@
       let subgroups = Object.keys(app.showCourse.enrollments);
 
       let data = graph.getData();
-      let groups = moduleItems.map(function (d) {
+      let groups = data.map(function (d) {
         return d.name;
       });
 
