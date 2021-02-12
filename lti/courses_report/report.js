@@ -403,7 +403,8 @@
       let app = this.app;
       let graph = this;
       let sum = 0;
-      for (type in types) {
+      for (let t = 0; t < types.length; t++) {
+        let type = types[t];
         console.log(type);
         sum += d[type];
       }
