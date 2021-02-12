@@ -379,7 +379,7 @@
           return graph.yPlot(d, y, 'dropped');
         })
         .attr("height", function (d) {
-          return height - graph.yPlot(d, y, 'dropped') + graph.graphSettings.margin.top;
+          return height - graph.yPlot(d, y, 'dropped');
         })
         .attr("fill", app.colors.blue);
 
@@ -396,7 +396,7 @@
           return graph.yPlot(d, y, 'active') - graph.yPlot(d, y, 'dropped');
         })
         .attr("height", function (d) {
-          return height - graph.yPlot(d, y, 'active') + graph.graphSettings.margin.top;
+          return height - graph.yPlot(d, y, 'active');
         })
         .attr("fill", app.colors.green);
 
@@ -432,7 +432,7 @@
       let graph = this;
       console.log(type);
       console.log(d);
-      let yVal = y(d[type]) + graph.graphSettings.margin.top;
+      let yVal = y(d[type]);
       return yVal;
     }
   }
