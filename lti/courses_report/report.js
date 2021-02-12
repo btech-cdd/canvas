@@ -409,7 +409,7 @@
     yPlot(d, y) {
       let app = this.app;
       let graph = this;
-      let yVal = y(d.submissions) + graph.graphSettings.margin.top;
+      let yVal = y(d.active) + graph.graphSettings.margin.top;
       return yVal;
     }
   }
