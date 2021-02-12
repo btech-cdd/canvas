@@ -24,6 +24,7 @@
         //Set up table
         let newTable = $('<table></table>');
         dupStyle(newTable, sourceTable);
+        newTable.css('height', '');
 
         //pull head directly from source
         let thead = sourceTable.find('thead').clone();
