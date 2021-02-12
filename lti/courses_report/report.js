@@ -345,7 +345,7 @@
         })
         .attr("width", x.bandwidth())
         .attr("y", function (d) {
-          return graph.yPlot(d, y, 'active') - graph.yPlot(d, y, 'dropped');
+          return graph.yPlot(d, y, 'active') + graph.yPlot('dropped');
         })
         .attr("height", function (d) {
           return height - graph.yPlot(d, y, 'active');
