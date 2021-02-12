@@ -379,7 +379,7 @@
           return graph.yPlot(d, y);
         })
         .attr("height", function (d) {
-          return height - graph.yPlot(d, y) + graph.graphSettings.margin.top;
+          return height - graph.yPlot(d, y, 'active') + graph.graphSettings.margin.top;
         })
         .attr("fill", barColor);
 
@@ -410,10 +410,10 @@
       return xVal;
     }
 
-    yPlot(d, y) {
+    yPlot(d, y, type) {
       let app = this.app;
       let graph = this;
-      let yVal = y(d.active) + graph.graphSettings.margin.top;
+      let yVal = y(d[type]) + graph.graphSettings.margin.top;
       return yVal;
     }
   }
