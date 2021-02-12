@@ -364,7 +364,7 @@
 
       graph.svg
         .selectAll("whatever")
-        .data(submissions)
+        .data(data)
         .enter()
         .append("rect")
         .attr("x", function (d) {
