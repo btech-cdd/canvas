@@ -395,7 +395,7 @@
     xPlot(d, x) {
       let app = this.app;
       let graph = this;
-      let xVal = x(d.name) + graph.graphSettings.margin.left;
+      let xVal = x(d.name);
       return xVal;
     }
 
