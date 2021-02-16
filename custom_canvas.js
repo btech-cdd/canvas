@@ -333,6 +333,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             feature("page_formatting/image_formatting", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             feature("quizzes/duplicate_bank_item", {}, /\/courses\/([0-9]+)\/question_banks\/([0-9]+)/);
             feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
+            if (!IS_CDD) feature('hide_inactive_students', {}, /\/courses\/([0-9]+))\/users/);
             if (IS_BLUEPRINT) feature('blueprint_association_links');
             feature('modules/convert_to_page');
 

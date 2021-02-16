@@ -18,7 +18,6 @@
       sourceRows.each(function () {
         let row = $(this);
         let key = $(row.find('td')[0]).text().toLowerCase();
-        console.log(key);
         rowRef[key] = row;
       });
 
@@ -33,7 +32,7 @@
         newTable.append(thead);
 
         //Create a new body and duplicate style from source
-        let tbody = $("<tbody></tbody>")
+        let tbody = $("<tbody></tbody>");
         dupStyle(tbody, sourceTable.find('tbody'));
         newTable.append(tbody);
 
@@ -43,7 +42,6 @@
         childRows.each(function () {
           let row = $(this);
           let key = $(row.find('td')[0]).text().toLowerCase();
-          console.log(key);
           if (key in rowRef) {
             tbody.append(rowRef[key].clone());
           }
