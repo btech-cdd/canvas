@@ -27,7 +27,6 @@
       let app = this;
       let dept = '' + CURRENT_DEPARTMENT;
       await app.loadJsonFile('dept_data/3820');
-      console.log(app.json.courses_data);
       app.loading = false;
     },
 
@@ -114,8 +113,8 @@
         let count = 0;
         for (let q = 0; q < questions.length; q++) {
           let stats = questions[q];
-          if (stats.alpha !== null && stats.alpha !== undefined) sum += stats.alpha;
-          count += 1;
+          if (stats.alpha !== null && stats.alpha !== undefined) sum += (stats.alpha * stats.answered_student_count);
+          count += stats.answered_student_count;
         }
         if (count > 0) return Math.round(sum / count * 100) / 100;
         return "N/A";
@@ -200,7 +199,6 @@
           moduleItemData
         );
       }
-      console.log(moduleItems);
       let data = moduleItems;
       // data.columns = ['name', 'active', 'completed', 'dropped'];
       // ['active', 'completed', 'dropped'];
@@ -288,14 +286,12 @@
         right: 20,
       };
 
-      console.log(app.showCourse);
       let subgroups = Object.keys(app.showCourse.enrollments);
 
       let data = graph.getData();
       let groups = data.map(function (d) {
         return d.name;
       });
-      console.log(groups);
 
       //Begin setting up the graph
       let barColor = graph.getBarColor();
