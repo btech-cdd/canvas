@@ -39,6 +39,7 @@
     "Extensive Skill Experience (3+ years)",
     "Relevant Degree",
     "Concrete Example of Competency",
+    "Project Management",
     "Other (include note)",
     "Other (include note)",
     "Other (include note)"
