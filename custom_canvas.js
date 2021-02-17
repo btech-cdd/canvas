@@ -333,7 +333,8 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             feature("page_formatting/image_formatting", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             feature("quizzes/duplicate_bank_item", {}, /\/courses\/([0-9]+)\/question_banks\/([0-9]+)/);
             feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
-            if (!IS_CDD) feature('hide_inactive_students', {}, /\/courses\/([0-9]+))\/users/);
+            feature("rubrics/sortable", {}, [/\/rubrics/, /\/assignments\//]);
+            if (!IS_CDD) feature('hide_inactive_students', {}, /^\/courses\/([0-9]+)\/users$/);
             if (IS_BLUEPRINT) feature('blueprint_association_links');
             feature('modules/convert_to_page');
 
@@ -372,7 +373,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             if (departmentId === 3819 || departmentId === 3832) { // AMAR && ELEC
               feature("modules/points_to_hours_header");
               feature("department_specific/amar_elec_add_module_items");
-              feature("rubrics/sortable");
             }
             if (departmentId === 3847) { //meats
               feature("previous-enrollment-data/previous_enrollment_period_grades", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
@@ -388,7 +388,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
               feature("department_specific/esthetics_cosmetology_services");
             }
             if (departmentId === 3848) { //Interior Design
-              feature("rubrics/sortable");
             }
             if (departmentId === 3820) { //Web & Mobile
               externalFeature("https://bridgerland-web-dev.github.io/html_practice/html_practice.js", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/)
@@ -396,7 +395,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           }
 
           //CDD ONLY
-          featureCDD("rubrics/sortable", {}, [/\/rubrics/, /\/assignments\//]);
           feature("quizzes/question_bank_sorter", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/);
           //featureCDD("previous-enrollment-data/previous_enrollment_period_grades");
           // featureCDD("help_tab");

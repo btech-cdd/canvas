@@ -32,7 +32,7 @@
     }
   }
   let criteria = [
-    "Canvas Experience",
+    "Canvas or Other LMS Experience",
     "General ID Experience",
     "Extensive ID Experience (3+ years)",
     "Desired Skill Experience",
