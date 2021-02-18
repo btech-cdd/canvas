@@ -50,6 +50,7 @@
           yellow: 'rgb(240, 173, 78)',
           green: 'rgb(92, 184, 92)',
           blue: 'rgb(91, 192, 222)',
+          purple: 'rgb(170, 90, 185)',
           gray: '#E0E0E0',
           noProgress: '#E0E0E0',
           complete: '#5BC0DE',

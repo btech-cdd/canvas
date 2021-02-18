@@ -129,7 +129,8 @@
       >
         <!--Heading-->
         <div>
-          <div class="btech-pill-text print-hide"
+          <div 
+            class="btech-pill-text print-hide"
             :style="{'background-color': colors.red, 'color': '#fff', 'width': '1rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}"
             @click="closeCourseReport()">
             X
@@ -144,6 +145,15 @@
             class="btech-data-title"
           >
             <strong>{{showCourse.name}}</strong>
+          </div>
+          <br>
+          <div
+            class="btech-pill-text print-hide"
+            :style="{'background-color': colors.purple, 'color': '#fff', 'width': '1rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}"
+            >
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeU0mnBMpfcDLPfIuNN_C2IhlH2edjIKUiggWK64DWjP8s3Fw/viewform?usp=pp_url&entry.214302978=">
+              Eval
+            </a>
           </div>
         </div>
         <!--Submissions Graph-->
