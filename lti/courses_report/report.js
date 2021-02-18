@@ -97,9 +97,7 @@
         time = Math.round(time);
         let hours = Math.floor(time / 3600)
         time -= (hours * 3600);
-        console.log(time);
         let minutes = Math.floor(time / 60);
-        console.log(minutes);
         time -= (minutes * 60);
         let seconds = time;
         if (hours < 10) hours = "0" + hours;
@@ -427,7 +425,6 @@
       let sum = 0;
       for (let t = 0; t < types.length; t++) {
         let type = types[t];
-        console.log(type);
         sum += d[type];
       }
       let yVal = y(sum);
