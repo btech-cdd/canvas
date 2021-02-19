@@ -95,14 +95,14 @@
                 </span>
               </div>
               <div style="display: inline-block; width: 6rem; font-size: 1rem;">
-                <span>Active</span>
+                <span>Enrollments</span>
                 <span 
                   class="btech-pill-text" 
                   :style="{
                     'background-color': colors.blue,
                     'color': colors.white,
                   }">
-                  {{course.enrollments.active.length}}
+                  {{sumEnrollments(course)}}
                 </span>
               </div>
               <div style="display: inline-block; width: 8rem; font-size: 1rem;">
