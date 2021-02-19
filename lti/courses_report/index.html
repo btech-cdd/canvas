@@ -137,14 +137,19 @@
           </div>
           <div class="btech-pill-text print-hide"
             title="You may have to enable printing background graphics for everything to appear."
-            :style="{'background-color': colors.gray, 'color': '#000', 'width': '2.5rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}"
+            :style="{'background-color': colors.gray, 'color': '#000', 'widh': '2.5rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}"
             @click="print()">
             Print
           </div>
           <div
             class="btech-data-title"
           >
-            <strong><a :href="'https://btech.instructure.com/courses/'+showCourse.canvas_id">{{showCourse.name}}</a></strong>
+            <strong><a 
+              style="text-decoration: none;"
+              :href="'https://btech.instructure.com/courses/'+showCourse.canvas_id"
+            >
+              {{showCourse.name}}
+            </a></strong>
           </div>
           <br>
             <a 
