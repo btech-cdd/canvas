@@ -129,17 +129,40 @@
       >
         <!--Heading-->
         <div>
-          <div 
-            class="btech-pill-text print-hide"
-            :style="{'background-color': colors.red, 'color': '#fff', 'width': '1rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}"
-            @click="closeCourseReport()">
-            X
-          </div>
-          <div class="btech-pill-text print-hide"
-            title="You may have to enable printing background graphics for everything to appear."
-            :style="{'background-color': colors.gray, 'color': '#000', 'widh': '2.5rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}"
-            @click="print()">
-            Print
+          <div
+            style='float: right;'
+          >
+            <div 
+              class="btech-pill-text print-hide"
+              :style="{'background-color': colors.red, 'color': '#fff', 'width': '1rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}"
+              @click="closeCourseReport()">
+              X
+            </div>
+            <div class="btech-pill-text print-hide"
+              title="You may have to enable printing background graphics for everything to appear."
+              :style="{'background-color': colors.gray, 'color': '#000', 'widh': '2.5rem', 'float': 'right', 'text-align': 'center', 'cursor': 'pointer'}"
+              @click="print()">
+              Print
+            </div>
+            <br>
+            <a 
+              style="text-decoration: none; color: #fff; float: right;"
+              target="_blank"
+              :href="'https://docs.google.com/forms/d/e/1FAIpQLSeU0mnBMpfcDLPfIuNN_C2IhlH2edjIKUiggWK64DWjP8s3Fw/viewform?usp=pp_url&entry.214302978=' + showCourse.sis_id">
+              <div
+                class="btech-pill-text print-hide"
+                :style="{
+                  'background-color': colors.purple, 
+                  'color': '#fff', 
+                  'width': '3rem', 
+                  'float': 'right', 
+                  'text-align': 'center', 
+                  'cursor': 'pointer'
+                }"
+                >
+                  Eval
+              </div>
+            </a>
           </div>
           <div
             class="btech-data-title"
@@ -150,26 +173,19 @@
             >
               {{showCourse.name}}
             </a></strong>
+            <br>
+            <div style="display: inline-block; width: 6rem; font-size: 1rem;">
+              <span>Active</span>
+              <span 
+                class="btech-pill-text" 
+                :style="{
+                  'background-color': colors.blue,
+                  'color': colors.white,
+                }">
+                {{showCourse.enrollments.active.length}}
+              </span>
+            </div>
           </div>
-          <br>
-            <a 
-              style="text-decoration: none; color: #fff; float: right;"
-              target="_blank"
-              :href="'https://docs.google.com/forms/d/e/1FAIpQLSeU0mnBMpfcDLPfIuNN_C2IhlH2edjIKUiggWK64DWjP8s3Fw/viewform?usp=pp_url&entry.214302978=' + showCourse.sis_id">
-          <div
-            class="btech-pill-text print-hide"
-            :style="{
-              'background-color': colors.purple, 
-              'color': '#fff', 
-              'width': '3rem', 
-              'float': 'right', 
-              'text-align': 'center', 
-              'cursor': 'pointer'
-            }"
-            >
-              Eval
-          </div>
-            </a>
         </div>
         <!--Submissions Graph-->
         <div id="btech-department-report-student-submissions-graph">Loading...</div>
