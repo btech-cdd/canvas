@@ -313,7 +313,7 @@
 
       graph.svg = d3.select('#' + graphElId).append('svg')
         .attr('width', w)
-        .attr('height', h)
+        .attr('height', h * 1.5)
         .append('g')
         .attr("transform", "translate(" + graph.graphSettings.margin.left + ", " + graph.graphSettings.margin.top + ")");
 
