@@ -286,7 +286,7 @@
       };
 
       let subgroups = Object.keys(app.showCourse.enrollments);
-
+      let sumEnrollments = app.sumEnrollments(app.showCourse);
       let data = graph.getData();
       let groups = data.map(function (d) {
         return d.name;
@@ -307,9 +307,7 @@
 
       var y = d3.scaleLinear()
         .range([height, 0])
-        .domain([0, d3.max(data, function (d) {
-          return graph.sumSubmissions(d)
-        })]);
+        .domain([0, sumEnrollments]);
 
       graph.svg = d3.select('#' + graphElId).append('svg')
         .attr('width', w)
