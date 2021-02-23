@@ -400,8 +400,8 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           // featureCDD("help_tab");
           featureCDD("rubrics/add_criteria_from_csv", {}, new RegExp('/(rubrics|assignments\/)'));
           featureCDD("rubrics/create_rubric_from_csv", {}, new RegExp('^/(course|account)s/([0-9]+)/rubrics$'));
-          featureCDD("editor_toolbar/tables", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           featureCDD("editor_toolbar/images", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+          featureCDD("editor_toolbar/tables", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           featureCDD("surveys");
           featureCDD("survey/survey", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           featureCDD("editor_toolbar/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
