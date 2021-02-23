@@ -4,14 +4,14 @@
   if (TOOLBAR.checkEditorPage()) {
     await TOOLBAR.checkReady();
 
-    TOOLBAR.addButton("Grading Scheme", async function () {
+    TOOLBAR.addButtonIcon("icon-gradebook", "Grading Scheme", async function () {
       let editor = TOOLBAR.editor;
       editor.execCommand("mceInsertContent", false, `
         <p class="btech-grading-scheme btech-hidden" style="border: 1px solid black;">This will be replaced by a table populated with the course Grading Scheme.</p>
       `);
     });
 
-    TOOLBAR.addButton("Assignment Groups", async function () {
+    TOOLBAR.addButtonIcon("icon-assignment", "Assignment Groups", async function () {
       let editor = TOOLBAR.editor;
       editor.execCommand("mceInsertContent", false, `
         <p class="btech-assignment-groups btech-hidden" style="border: 1px solid black;">This will be replaced by a table populated with the course Assignment Groups.</p>
