@@ -229,10 +229,10 @@
     </datalist>
     `);
 
-  TOOLBAR.addButtonIcon("far fa-bullhorn", "Insert an information box. Can be used for warnings, examples, etc.", exampleBox);
-  TOOLBAR.addButtonIcon("far fa-quote-right", "Insert a citation.", citation);
-  TOOLBAR.addButtonIcon("far fa-hand-point-up", "Hide text. Reveal on mouse hover.", hideOnHover);
-  TOOLBAR.addButtonIcon("far fa-comment-alt-lines", "Insert text which is shown on mouse hover.", hoverDefinition);
+  TOOLBAR.addButtonIcon("icon-unmuted", "Insert an information box. Can be used for warnings, examples, etc.", exampleBox);
+  TOOLBAR.addButtonIcon("icon-compose", "Insert a citation.", citation);
+  TOOLBAR.addButtonIcon("icon-off", "Hide text. Reveal on mouse hover.", hideOnHover);
+  TOOLBAR.addButtonIcon("icon-student-view", "Insert text which is shown on mouse hover.", hoverDefinition);
   //TOOLBAR.addButtonIcon("far fa-swatchbook", "Create a theme for the page. The template will be inserted at the top of the page. Edit the template to apply changes throughout the page.", addCustomThemeParent);
-  TOOLBAR.addButtonIcon("far fa-stream", "Auto format the page to break the page into sections. Sections are determined by the top level heading.", formatPage);
+  TOOLBAR.addButtonIcon("icon-materials-required", "Auto format the page to break the page into sections. Sections are determined by the top level heading.", formatPage);
 })();
