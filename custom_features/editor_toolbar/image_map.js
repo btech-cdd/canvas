@@ -86,7 +86,7 @@
   }
 
   await TOOLBAR.checkReady();
-  TOOLBAR.addButtonIcon("far fa-star", "Convert an image to an Image Map.", imageMapCreate);
+  TOOLBAR.addButtonIcon("icon-star", "Convert an image to an Image Map.", imageMapCreate);
   //set up all existing image maps
   let imgs = tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByClassName("btech-image-map-image");
   for (let i = 0; i < imgs.length; i++) {
