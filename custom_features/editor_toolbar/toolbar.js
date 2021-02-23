@@ -127,7 +127,7 @@ TOOLBAR = {
     if (tinymce.majorVersion === "4") {
       topPart = await getElement(".mce-top-part");
     } else if (tinymce.majorVersion === "5") {
-      topPart = await getElement(".edit-header");
+      topPart = await getElement(".tox-editor-header");
     }
     if (topPart !== null && $("#btech-custom-editor-buttons-container").length === 0) {
       // this.editor.addShortcut("ctrl+alt+h", "The highlighted font will be hidden until the reader highlights it.", hideOnHover);
