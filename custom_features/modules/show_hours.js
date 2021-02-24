@@ -7,7 +7,7 @@
 		else clearHours();
 	});
 	$("#external-tool-mount-point").append(checkbox);
-	let course_id = 502362;
+	let course_id = ENV.course_id;
 	async function clearHours() {
 		$('.btech-sum-hours').each(function() {
 			$(this).remove();
