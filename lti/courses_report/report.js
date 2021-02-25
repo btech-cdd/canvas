@@ -78,6 +78,7 @@
         });
         if (name.includes('dept_data')) name = 'courses_data'
         app.json[name] = jsonData;
+        return jsonData;
       },
 
       getBGColor(val, groups) {
