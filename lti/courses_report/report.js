@@ -37,7 +37,8 @@
 
     data: function () {
       return {
-        currentDepartment: '3820',
+        currentDepartmentId: '3820',
+        currentDepartment: {},
         loading: true,
         json: {},
         showCourse: 'all',
@@ -66,8 +67,9 @@
     methods: {
       async loadDepartmentCourses() {
         let app = this;
-        console.log(app.currentDepartment);
-        await app.loadJsonFile('dept_data/' + app.currentDepartment);
+        console.log(app.currentDepartmentId);
+        await app.loadJsonFile('dept_data/' + app.currentDepartmentId);
+        app
       },
       async loadJsonFile(name) {
         let app = this;
@@ -76,8 +78,8 @@
         await $.post(jsonUrl, function (data) {
           jsonData = data;
         });
-        if (name.includes('dept_data')) name = 'courses_data'
-        app.json[name] = jsonData;
+        // if (name.includes('dept_data')) name = 'courses_data'
+        app.currentDepartment = jsonData;
         return jsonData;
       },
 

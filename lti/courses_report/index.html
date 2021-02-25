@@ -53,7 +53,7 @@
       <div
         v-if="showCourse==='all'"
         >
-        <select @change="loadDepartmentCourses" v-model="currentDepartment">
+        <select @change="loadDepartmentCourses" v-model="currentDepartmentId">
           <option v-for="(department_name, acct_id) in json['canv_acct_name']" :value="acct_id">
             {{department_name}}
           </option>
@@ -239,7 +239,7 @@
     </div>
   </div>
   <script>
-    const CURRENT_DEPARTMENT = getCookie('currentDepartment');
+    const CURRENT_DEPARTMENT = getCookie('currentDepartmentId');
     var scr = document.createElement('script'),
       head = document.head || document.getElementsByTagName('head')[0];
     scr.src = '/canvas/lti/courses_report/report.js';
