@@ -54,7 +54,7 @@
         v-if="showCourse==='all'"
         >
         <select @change="loadDepartmentCourses" v-model="currentDepartment">
-          <option v-for="(acct_id, department_name) in json['canv_acct_name']" :value="acct_id">
+          <option v-for="(department_name, acct_id) in json['canv_acct_name']" :value="acct_id">
             {{department_name}}
           </option>
         </select>
