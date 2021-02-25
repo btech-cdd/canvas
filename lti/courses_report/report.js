@@ -66,6 +66,7 @@
     methods: {
       async loadDepartmentCourses() {
         let app = this;
+        await app.loadJsonFile('dept_data/' + app.currentDepartment);
         console.log(app.currentDepartment);
       },
       async loadJsonFile(name) {
