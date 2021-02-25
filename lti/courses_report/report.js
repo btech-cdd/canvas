@@ -26,6 +26,7 @@
       });
       let app = this;
       let dept = '' + CURRENT_DEPARTMENT;
+      await app.loadJsonFile('canv_acct_name');
       await app.loadJsonFile('dept_data/3820');
       app.loading = false;
     },

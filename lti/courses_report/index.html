@@ -53,6 +53,11 @@
       <div
         v-if="showCourse==='all'"
         >
+        <select @change="loadDepartmentCourses" v-model="currentDepartment">
+          <option v-for="(acct_id, department_name) in app.json['canv_acct_name']" :value="acct_id">
+            {{department_name}}
+          </option>
+        </select>
         <div 
             v-for="course in json.courses_data.years['2020'].courses"
           >
