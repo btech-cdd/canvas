@@ -79,7 +79,8 @@
           jsonData = data;
         });
         // if (name.includes('dept_data')) name = 'courses_data'
-        app.currentDepartment = jsonData;
+        console.log(jsonData);
+        app.currentDepartment = jsonData['2020'];
         return jsonData;
       },
 
