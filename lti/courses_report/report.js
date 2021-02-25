@@ -37,6 +37,7 @@
 
     data: function () {
       return {
+        currentDepartment: '3820',
         loading: true,
         json: {},
         showCourse: 'all',
@@ -63,6 +64,9 @@
       }
     },
     methods: {
+      async loadDepartmentCourses() {
+        console.log(currentDepartment);
+      },
       async loadJsonFile(name) {
         let app = this;
         let jsonUrl = 'https://jhveem.xyz/lti/report_data/' + name;
