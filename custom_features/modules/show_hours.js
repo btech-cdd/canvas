@@ -18,7 +18,7 @@
     let hours = 0;
     await $.get("/api/v1/courses/" + course_id, function (data) {
       console.log(data);
-      let regex = /([A-Z]{4} [0-9]{4}) .*?([0-9]{4})(CS|HS|ST)/
+      let regex = /([A-Z]{4} [0-9]{4}).*?([0-9]{4})(CS|HS|ST)/
       let sis_id = data.sis_course_id;
       if (sis_id != None) {
         let match = sis_id.match(regex);
