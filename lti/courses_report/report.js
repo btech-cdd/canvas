@@ -80,7 +80,7 @@
         });
         // if (name.includes('dept_data')) name = 'courses_data'
         console.log(jsonData);
-        app.currentDepartment = jsonData.courses['2020'];
+        app.currentDepartment = jsonData;
         return jsonData;
       },
 
