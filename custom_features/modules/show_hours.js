@@ -20,6 +20,7 @@
       console.log(data);
       let regex = /([A-Z]{4} [0-9]{4}).*?([0-9]{4})(CS|HS|ST)/
       let sis_id = data.sis_course_id;
+      console.log(sis_id)
       if (sis_id != undefined) {
         let match = sis_id.match(regex);
         console.log(match);
