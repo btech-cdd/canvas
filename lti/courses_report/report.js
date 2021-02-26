@@ -334,6 +334,7 @@
 
       graph.graphSettings.barWidth = 5;
 
+      //ADD IN A HOVER OPTION TO SHOW EXACT COUNT
       graph.svg
         .selectAll("whatever")
         .data(data)
