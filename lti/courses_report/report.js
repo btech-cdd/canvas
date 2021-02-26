@@ -398,7 +398,7 @@
           return graph.yPlot(d, y, ['completed_hs', 'completed', 'active', 'dropped']);
         })
         .attr("height", function (d) {
-          return height - graph.yPlot(d, y, ['completed']);
+          return height - graph.yPlot(d, y, ['completed_hs']);
         })
         .attr("fill", app.colors.purple);
 
