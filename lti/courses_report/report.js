@@ -188,9 +188,10 @@
           name: a + '. ' + moduleAssignment.name,
           active: 0,
           completed: 0,
-          dropped: 0
+          dropped: 0,
+          completed_hs: 0
         };
-        let enrollmentStates = ['completed', 'active', 'dropped'];
+        let enrollmentStates = ['completed', 'active', 'dropped', 'completed_hs'];
         for (let s = 0; s < submittedUsers.length; s++) {
           let userId = submittedUsers[s];
           for (let t = 0; t < enrollmentStates.length; t++) {
@@ -241,7 +242,7 @@
           "translate(" + margin.left + "," + margin.top + ")");
 
       let data = graph.getData();
-      var stackdata = ['active', 'completed', 'dropped'].map(function (c) {
+      var stackdata = ['active', 'completed', 'dropped', 'completed_hs'].map(function (c) {
         return data.map(function (d, i) {
           return {
             x: i,
@@ -255,7 +256,7 @@
       // Data, stacked
       stack(stackdata)
       // gold silver colors
-      var colors = ['active', 'completed', 'dropped'];
+      var colors = ['active', 'completed', 'dropped', 'completed_hs'];
       // Add a group for each row of data
       var groups = svg.selectAll("g")
         .data(stackdata)
@@ -383,6 +384,23 @@
           return height - graph.yPlot(d, y, ['completed']);
         })
         .attr("fill", app.colors.blue);
+
+      graph.svg
+        .selectAll("whatever")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", function (d) {
+          return graph.xPlot(d, x)
+        })
+        .attr("width", x.bandwidth())
+        .attr("y", function (d) {
+          return graph.yPlot(d, y, ['completed_hs', 'completed', 'active', 'dropped']);
+        })
+        .attr("height", function (d) {
+          return height - graph.yPlot(d, y, ['completed']);
+        })
+        .attr("fill", app.colors.purple);
 
       //labels
       graph.svg.append('g')
