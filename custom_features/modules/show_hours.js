@@ -74,6 +74,8 @@
           if (item.title in assignments) {
             let assignment = assignments[item.title];
             let weightedPoints = assignment.points_possible;
+            console.log(totalPoints);
+            console.log(weightedPoints);
             if (useAssignmentGroupWeights) weightedPoints = (weightedPoints / groups[assignment.group_name].sum) * groups[assignment.group_name].weight * .01;
             else weightedPoitns = weightedPoints / totalPoints;
             let pointsToHours = weightedPoints * hours;
