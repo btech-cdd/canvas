@@ -2,7 +2,6 @@
   let checkbox = $('<input type="checkbox"><label>Show Hours</label>');
   checkbox.change(function () {
     let checked = $(this).is(':checked')
-    console.log(checked);
     if (checked) addHours();
     else clearHours();
   });
@@ -17,19 +16,14 @@
     //get course hours
     let hours = 0;
     await $.get("/api/v1/courses/" + course_id, function (data) {
-      console.log(data);
       let regex = /([A-Z]{4} [0-9]{4}).*?([0-9]{4})(CS|HS|ST)/
       let sis_id = data.sis_course_id;
-      console.log(sis_id)
       if (sis_id != undefined) {
         let match = sis_id.match(regex);
-        console.log(match);
         if (match.length > 0) {
           let course_code = match[1];
           let year = match[2];
           hours = COURSE_HOURS[year][course_code];
-          console.log(course_code);
-          console.log(hours);
         }
       }
     });
@@ -40,8 +34,6 @@
     let totalPoints = 0;
     await $.get("/api/v1/courses/" + course_id, function (data) {
       let course = data;
-      console.log(course);
-      console.log(course.apply_assignment_group_weights);
       useAssignmentGroupWeights = course.apply_assignment_group_weights;
     })
 
@@ -53,7 +45,6 @@
         for (let j = 0; j < group.assignments.length; j++) {
           let assignment = group.assignments[j];
           if (assignment.published) {
-            console.log(assignment);
             sum += assignment.points_possible;
             totalPoints += assignment.points_possible;
             assignment.group_name = group.name;
@@ -67,10 +58,8 @@
       }
     }
 
-    console.log(assignments);
     let sumPointsToHours = 0;
     let modulesData = await canvasGet("/api/v1/courses/" + course_id + "/modules?include[]=items");
-    //console.log(data);
     for (let i = 0; i < modulesData.length; i++) {
       let module = modulesData[i];
       for (let j = 0; j < module.items.length; j++) {
