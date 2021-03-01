@@ -71,6 +71,7 @@
         let module = data[i];
         for (let j = 0; j < module.items.length; j++) {
           let item = module.items[j];
+          console.log(item);
           if (item.title in assignments) {
             let assignment = assignments[item.title];
             let weightedPoints = assignment.points_possible;
