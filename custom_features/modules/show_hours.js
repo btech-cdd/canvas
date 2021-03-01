@@ -52,6 +52,7 @@
         let sum = 0;
         for (let j = 0; j < group.assignments.length; j++) {
           let assignment = group.assignments[j];
+          console.log(assignment);
           sum += assignment.points_possible;
           totalPoints += assignment.points_possible;
           assignment.group_name = group.name;
