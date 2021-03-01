@@ -78,7 +78,8 @@
             console.log(weightedPoints);
             console.log(hours);
             if (useAssignmentGroupWeights) weightedPoints = (weightedPoints / groups[assignment.group_name].sum) * groups[assignment.group_name].weight * .01;
-            else weightedPoitns = weightedPoints / totalPoints;
+            else weightedPoints = weightedPoints / totalPoints;
+            console.log(weightedPoints);
             let pointsToHours = weightedPoints * hours;
             sumPointsToHours += pointsToHours;
             let li = $('#context_module_item_' + item.id);
