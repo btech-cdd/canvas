@@ -36,10 +36,17 @@
 
     let assignments = {};
     let groups = {};
+    let useAssignmentGroupWeights = true;
+    await $.get("/api/v1/courses/" + course_id, function(data) {
+      let course = data;
+      console.log(course);
+      console.log(course.apply_assignment_group_weights);
+      useAssignmentGroupWeights = course.apply_assignment_group_weights;
+    })
     await $.get("/api/v1/courses/" + course_id + "/assignment_groups?include[]=assignments", function (data) {
       for (let i = 0; i < data.length; i++) {
         let group = data[i];
-        if (group.group_weight > 0) {
+        if (group.group_weight > 0 || !useAssignmentGroupWeights) {
           let sum = 0;
           for (let j = 0; j < group.assignments.length; j++) {
             let assignment = group.assignments[j];
