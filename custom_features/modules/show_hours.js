@@ -38,59 +38,59 @@
     let groups = {};
     let useAssignmentGroupWeights = true;
     let totalPoints = 0;
-    await $.get("/api/v1/courses/" + course_id, function(data) {
+    await $.get("/api/v1/courses/" + course_id, function (data) {
       let course = data;
       console.log(course);
       console.log(course.apply_assignment_group_weights);
       useAssignmentGroupWeights = course.apply_assignment_group_weights;
     })
-    await $.get("/api/v1/courses/" + course_id + "/assignment_groups?include[]=assignments", function (data) {
-      for (let i = 0; i < data.length; i++) {
-        let group = data[i];
-        if (group.group_weight > 0 || !useAssignmentGroupWeights) {
-          let sum = 0;
-          for (let j = 0; j < group.assignments.length; j++) {
-            let assignment = group.assignments[j];
-            sum += assignment.points_possible;
-            totalPoints += assignment.points_possible;
-            assignment.group_name = group.name;
-            assignments[assignment.name] = assignment;
-          }
-          groups[group.name] = {
-            sum: sum,
-            weight: group.group_weight
-          };
+
+    let assignmentGroupsData = await canvasGet("/api/v1/courses/" + course_id + "/assignment_groups?include[]=assignments")
+    for (let i = 0; i < assignmentGroupsData.length; i++) {
+      let group = assignmentGroupsData[i];
+      if (group.group_weight > 0 || !useAssignmentGroupWeights) {
+        let sum = 0;
+        for (let j = 0; j < group.assignments.length; j++) {
+          let assignment = group.assignments[j];
+          sum += assignment.points_possible;
+          totalPoints += assignment.points_possible;
+          assignment.group_name = group.name;
+          assignments[assignment.name] = assignment;
         }
+        groups[group.name] = {
+          sum: sum,
+          weight: group.group_weight
+        };
       }
-    });
+    }
+
     console.log(assignments);
     let sumPointsToHours = 0;
-    await $.get("/api/v1/courses/" + course_id + "/modules?include[]=items", function (data) {
-      //console.log(data);
-      for (let i = 0; i < data.length; i++) {
-        let module = data[i];
-        for (let j = 0; j < module.items.length; j++) {
-          let item = module.items[j];
-          console.log(item);
-          if (item.title in assignments) {
-            let assignment = assignments[item.title];
-            let weightedPoints = assignment.points_possible;
-            console.log(totalPoints);
-            console.log(weightedPoints);
-            console.log(hours);
-            if (useAssignmentGroupWeights) weightedPoints = (weightedPoints / groups[assignment.group_name].sum) * groups[assignment.group_name].weight * .01;
-            else weightedPoints = weightedPoints / totalPoints;
-            console.log(weightedPoints);
-            let pointsToHours = weightedPoints * hours;
-            sumPointsToHours += pointsToHours;
-            let li = $('#context_module_item_' + item.id);
-            li.css({
-              'position': 'relative'
-            });
-            li.prepend('<div class="btech-sum-hours" style="position: absolute; left: -4rem; padding: 4px; border-radius: 10px; font-size: .75rem; background-color: rgb(91, 192, 222); color: #fff;">' + (Math.round(sumPointsToHours * 10) / 10) + ' HRS</div>');
-          }
+    let modulesData = await canvasGet("/api/v1/courses/" + course_id + "/modules?include[]=items");
+    //console.log(data);
+    for (let i = 0; i < modulesData.length; i++) {
+      let module = modulesData[i];
+      for (let j = 0; j < module.items.length; j++) {
+        let item = module.items[j];
+        console.log(item);
+        if (item.title in assignments) {
+          let assignment = assignments[item.title];
+          let weightedPoints = assignment.points_possible;
+          console.log(totalPoints);
+          console.log(weightedPoints);
+          console.log(hours);
+          if (useAssignmentGroupWeights) weightedPoints = (weightedPoints / groups[assignment.group_name].sum) * groups[assignment.group_name].weight * .01;
+          else weightedPoints = weightedPoints / totalPoints;
+          console.log(weightedPoints);
+          let pointsToHours = weightedPoints * hours;
+          sumPointsToHours += pointsToHours;
+          let li = $('#context_module_item_' + item.id);
+          li.css({
+            'position': 'relative'
+          });
+          li.prepend('<div class="btech-sum-hours" style="position: absolute; left: -4rem; padding: 4px; border-radius: 10px; font-size: .75rem; background-color: rgb(91, 192, 222); color: #fff;">' + (Math.round(sumPointsToHours * 10) / 10) + ' HRS</div>');
         }
       }
-    });
+    }
   }
 })();
