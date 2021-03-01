@@ -37,6 +37,7 @@
     let assignments = {};
     let groups = {};
     let useAssignmentGroupWeights = true;
+    let totalPoints = 0;
     await $.get("/api/v1/courses/" + course_id, function(data) {
       let course = data;
       console.log(course);
@@ -51,6 +52,7 @@
           for (let j = 0; j < group.assignments.length; j++) {
             let assignment = group.assignments[j];
             sum += assignment.points_possible;
+            totalPoints += assignment.points_possible;
             assignment.group_name = group.name;
             assignments[assignment.name] = assignment;
           }
@@ -71,7 +73,10 @@
           let item = module.items[j];
           if (item.title in assignments) {
             let assignment = assignments[item.title];
-            let pointsToHours = (assignment.points_possible / groups[assignment.group_name].sum) * groups[assignment.group_name].weight * .01 * hours;
+            let weightedPoints = assignment.points_possible;
+            if (useAssignmentGroupWeights) weightedPoints = (weightedPoints / groups[assignment.group_name].sum) * groups[assignment.group_name].weight * .01;
+            else weightedPoitns = weightedPoints / totalPoints;
+            let pointsToHours = weightedPoints * hours;
             sumPointsToHours += pointsToHours;
             let li = $('#context_module_item_' + item.id);
             li.css({
