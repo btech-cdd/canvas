@@ -72,16 +72,11 @@
       let module = modulesData[i];
       for (let j = 0; j < module.items.length; j++) {
         let item = module.items[j];
-        console.log(item);
         if (item.title in assignments) {
           let assignment = assignments[item.title];
           let weightedPoints = assignment.points_possible;
-          console.log(totalPoints);
-          console.log(weightedPoints);
-          console.log(hours);
           if (useAssignmentGroupWeights) weightedPoints = (weightedPoints / groups[assignment.group_name].sum) * groups[assignment.group_name].weight * .01;
           else weightedPoints = weightedPoints / totalPoints;
-          console.log(weightedPoints);
           let pointsToHours = weightedPoints * hours;
           sumPointsToHours += pointsToHours;
           let li = $('#context_module_item_' + item.id);
