@@ -125,7 +125,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
     //https://script.google.com/a/btech.edu/d/1rPsTLhKjtzcL9W1-hy3yuHglTAgiJPBovljYd52CGTa4X0N0uaLSfwrb/edit
     if (formId !== "") {
       //Check if already submitted
-      let canvasSubmitButton = $.get('.submit_assignment_link');
+      let canvasSubmitButton = $('.submit_assignment_link');
       if (canvasSubmitButton.text() === 'Submit') {
         var url = "https://script.google.com/a/btech.edu/macros/s/AKfycbwIgHHMYbih2XnJf7mjDw8g3grdeHhn9s6JIvH6Qg7mfZ0ElbWr/exec?formId=" + formId;
         let formData = null;
