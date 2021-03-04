@@ -126,7 +126,8 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
     if (formId !== "") {
       //Check if already submitted
       let canvasSubmitButton = $('.submit_assignment_link');
-      if (canvasSubmitButton.text().trim() === 'Submit') {
+      canvasSubmitButton.hide();
+      if (canvasSubmitButton.text().trim() === 'Submit Assignment') {
         var url = "https://script.google.com/a/btech.edu/macros/s/AKfycbwIgHHMYbih2XnJf7mjDw8g3grdeHhn9s6JIvH6Qg7mfZ0ElbWr/exec?formId=" + formId;
         let formData = null;
         await jQuery.ajax({
@@ -199,14 +200,12 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
             }
           }
         }
-
         addSubmitButton();
       } else {
         container.empty();
         container.append("<p>Survey already completed</p>");
         console.log(canvasSubmitButton.text().trim());
       }
-      canvasSubmitButton.hide();
     }
   }
 })();
