@@ -1,4 +1,6 @@
-//need a breakdown of which user ids are active, concluded, and dropped. This will allow a breakdown in the submissions graph to show which assignments aren't being completed by dropped students
+//Average retakes, how many people are dropping and retaking, so doesn't count as a full drop, but still shows there may be some concern
+//Quiz analytics
+//rubric breakdown
 (async function () {
   async function delay(ms) {
     // return await for better async stack trace support in case of errors.

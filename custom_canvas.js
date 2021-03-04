@@ -334,7 +334,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             feature("quizzes/duplicate_bank_item", {}, /\/courses\/([0-9]+)\/question_banks\/([0-9]+)/);
             feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
             feature("rubrics/sortable", {}, [/\/rubrics/, /\/assignments\//]);
-            if (!IS_CDD) feature('hide_inactive_students', {}, /^\/courses\/([0-9]+)\/users$/);
+            feature("survey/survey", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             if (IS_BLUEPRINT) feature('blueprint_association_links');
             feature('modules/convert_to_page');
 
@@ -403,8 +403,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           featureCDD("editor_toolbar/images", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           featureCDD("editor_toolbar/tables", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           featureCDD("modules/show_hours", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
-          featureCDD("surveys");
-          featureCDD("survey/survey", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           featureCDD("editor_toolbar/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           // featureCDD('date_display/add_current_year_speed_grader', {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
           feature('date_display/add_current_year', {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);

@@ -85,6 +85,12 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
   function addSubmitButton() {
     let submit = $('<input style="float: right;" type="submit" name="submit" value="Submit" id="m_8914134288611702631ss-submit">');
     submit.click(function () {
+      await $.post('/api/v1/courses/' + ENV.COURSE_ID + '/assignments/' + ENV.ASSIGNMENT_ID + '/submissions', {
+        submission: {
+          submission_type: 'online_text_entry',
+          body: 'Survey Submitted'
+        }
+      });
       location.reload(true);
     })
     form.append('<br><br>');
