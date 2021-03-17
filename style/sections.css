@@ -22,5 +22,6 @@
   font-size: 1.5rem;
 }
 .btech-sections .btech-sections-header .btech-sections-header-content-icon i::before {
+  top: 5px;
   font-size: 1.5rem;
 }
