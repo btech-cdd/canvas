@@ -15,9 +15,9 @@
   top: -40px; 
   background-color: #ffffff;
   color: #000000;
-  padding: 5px 15px;
-  border-radius: 10px;
-  box-shadow: 0 4px 2px -2px #888;
+  padding: 15px 15px;
+  border-radius: 20px;
+  /* box-shadow: 0 4px 2px -2px #888; */
   font-size: 1.5rem;
 }
 .btech-sections .btech-sections-header .btech-sections-header-content-icon i::before {
