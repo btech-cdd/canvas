@@ -22,8 +22,15 @@
   font-size: 1.5rem;
 }
 
-h2.icon-header {
- border: 1px solid #e0e0e0;
+.h2.icon-header:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-top: 1px solid black;
+  background: black;
+  width: 100%;
+  transform: translateY(-50%);
 }
 h2.icon-header span {
   position: relative; 
