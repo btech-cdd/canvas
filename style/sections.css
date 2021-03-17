@@ -21,6 +21,29 @@
   /* box-shadow: 0 4px 2px -2px #888; */
   font-size: 1.5rem;
 }
+
+h2.icon-header {
+ border: 1px solid #e0e0e0;
+}
+h2.icon-header span {
+  position: relative; 
+  top: -40px; 
+  background-color: #ffffff;
+  color: #000000;
+  padding: 10px 10px;
+  border-radius: 40px;
+  border: 1px solid #e0e0e0;
+  /* box-shadow: 0 4px 2px -2px #888; */
+  font-size: 1.5rem;
+
+}
+h2.icon-header span i {
+  vertical-align: middle;
+}
+h2.icon-header span i::before {
+  font-size: 1.5rem;
+}
+
 .btech-sections .btech-sections-header .btech-sections-header-content-icon i {
   vertical-align: middle;
 }
