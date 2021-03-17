@@ -10,7 +10,7 @@
   border-radius: 10px;
   box-shadow: 0 4px 2px -2px #888;
 }
-.btech-sections .btech-sections-header .btech-sections-header-content-empty {
+.btech-sections .btech-sections-header .btech-sections-header-content-icon {
   position: relative; 
   top: -40px; 
   background-color: #ffffff;
@@ -18,7 +18,8 @@
   padding: 5px 15px;
   border-radius: 10px;
   box-shadow: 0 4px 2px -2px #888;
+  font-size: 1.5rem;
 }
-.btech-sections .btech-sections-header .btech-sections-header-content-empty i::before {
-  font-size: 4rem;
+.btech-sections .btech-sections-header .btech-sections-header-content-icon i::before {
+  font-size: 1.5rem;
 }
