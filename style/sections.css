@@ -22,7 +22,12 @@
   font-size: 1.5rem;
 }
 
-h2.icon-header span::before {
+h2.icon-header {
+  position: relative;
+  text-align: center;
+}
+
+h2.icon-header::before {
   content: '';
   position: absolute;
   top: 50%;
