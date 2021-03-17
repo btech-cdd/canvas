@@ -1,7 +1,7 @@
 .btech-sections .sections-header {
   text-align: center;
 }
-.btech-sections .btech-sections-header .btech-sections-header-content{
+.btech-sections .btech-sections-header .btech-sections-header-content {
   position: relative; 
   top: -40px; 
   padding: 5px 15px;
@@ -9,4 +9,16 @@
   color: var(--btech-theme-header-color);
   border-radius: 10px;
   box-shadow: 0 4px 2px -2px #888;
+}
+.btech-sections .btech-sections-header .btech-sections-header-content-empty {
+  position: relative; 
+  top: -40px; 
+  background-color: #ffffff;
+  color: #000000;
+  padding: 5px 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 2px -2px #888;
+}
+.btech-sections .btech-sections-header .btech-sections-header-content-empty i::before {
+  font-size: 4rem;
 }
