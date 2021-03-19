@@ -73,9 +73,17 @@ body {
   color: #fff;
 }
 
+#canvas-department-report-vue .btech-department-report-student-avatar {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
 #canvas-department-report-vue .btech-department-report-student-hours {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-flow:row;
 }
 #canvas-department-report-vue .btech-department-report-student-hours .data-item {
   margin-bottom: 1rem;
