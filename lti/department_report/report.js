@@ -185,8 +185,9 @@
             if (sis_id in app.json['users']) {
               let user = app.json['users'][sis_id]
               let name = user.sortable_name;
+              let avatarUrl = user.avatar_url;
+              console.log(user);
               if (name !== '') {
-
                 let courses = user.courses;
                 let entryDate = new Date(user.entry_date);
                 let core = [];
@@ -227,6 +228,7 @@
                 userList.push({
                   'name': name,
                   'id': sis_id,
+                  'avatar_url': avatarUrl,
                   'core': core,
                   'elective': elective,
                   'other': other,
