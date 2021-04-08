@@ -372,7 +372,8 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             }
             if (departmentId === 3819 || departmentId === 3832) { // AMAR && ELEC
               feature("modules/points_to_hours_header");
-              feature("department_specific/amar_elec_add_module_items");
+              feature("speed_grader/resize_submitted_video");
+              feature("department_specific/amar_elec_add_module_items", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
             }
             if (departmentId === 3847) { //meats
               feature("previous-enrollment-data/previous_enrollment_period_grades", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);

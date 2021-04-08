@@ -1,7 +1,7 @@
 .btech-sections .sections-header {
   text-align: center;
 }
-.btech-sections .btech-sections-header .btech-sections-header-content{
+.btech-sections .btech-sections-header .btech-sections-header-content {
   position: relative; 
   top: -40px; 
   padding: 5px 15px;
@@ -9,4 +9,36 @@
   color: var(--btech-theme-header-color);
   border-radius: 10px;
   box-shadow: 0 4px 2px -2px #888;
+}
+
+h2.icon-header {
+  position: relative;
+  text-align: center;
+}
+
+h2.icon-header::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-top: 1px solid #888;
+  width: 100%;
+  transform: translateY(-50%);
+}
+h2.icon-header span {
+  position: relative; 
+  background-color: #ffffff;
+  color: #000000;
+  padding: 10px 10px;
+  border-radius: 40px;
+  border: 1px solid #888;
+  /* box-shadow: 0 4px 2px -2px #888; */
+  font-size: 1.5rem;
+
+}
+h2.icon-header span i {
+  vertical-align: middle;
+}
+h2.icon-header span i::before {
+  font-size: 1.5rem;
 }
