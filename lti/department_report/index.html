@@ -314,9 +314,10 @@
   </div>
   <script>
     const CURRENT_DEPARTMENT = getCookie('currentDepartment');
+    const ROUTE_PATH = getCookie('routePath');
     var scr = document.createElement('script'),
       head = document.head || document.getElementsByTagName('head')[0];
-    scr.src = '/canvas/lti/department_report/report.js';
+    scr.src = '/canvas'+ROUTE_PATH+'/department_report/report.js';
     scr.async = false; // optionally
 
     head.insertBefore(scr, head.firstChild);
