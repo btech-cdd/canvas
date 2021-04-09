@@ -1,4 +1,6 @@
-
+//observes the side of the page where submission details are displayed and adjusts submission videos to fill the width of that space when the page resizes.
+//does not resize the video as soon as it appears. This could be the next step.
+//The final version should allow the instructor to just resize the video to whatever they want. Even better would be if it saved settings using Canvas's custom data to remember what size video the instructor prefers.
 function resizeVideo() {
     let container = $("#speedgrader_iframe").contents().find("#media_recording_box");
         container.width("100%");

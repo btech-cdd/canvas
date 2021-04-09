@@ -292,7 +292,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           }
           let rCheckInDepartment = /^\/accounts\/([0-9]+)/;
           if (rCheckInDepartment.test(window.location.pathname)) {
-            console.log(window.location.pathname);
             CURRENT_DEPARTMENT_ID = parseInt(window.location.pathname.match(rCheckInDepartment)[1]);
           }
           let rCheckInCourse = /^\/courses\/([0-9]+)/;
@@ -355,7 +354,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             }
             CURRENT_DEPARTMENT_ID = departmentId;
             if (departmentId === 3824) { // DENTAL
-              console.log("DENTAL");
               feature("highlighted_grades_page_items", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
               feature("rubrics/attempts_data", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
               feature("rubrics/gen_comment", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
