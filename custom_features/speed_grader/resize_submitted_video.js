@@ -33,3 +33,4 @@ let resizeObserver = new ResizeObserver(() => {
 }); 
     
 resizeObserver.observe(left);
+console.log("LOADED");
