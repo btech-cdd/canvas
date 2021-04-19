@@ -10,29 +10,29 @@
     return hash;
   }
 
-  function addHidden(inputId, value) {
-    form.append(`<input type="hidden" name="` + inputId + `" value="` + value + `">`);
+  function addHidden(questionId, value) {
+    form.append(`<input type="hidden" id="` + questionId + `" value="` + value + `">`);
   }
 
-  function addParagraphTextEntry(inputId, description) {
+  function addParagraphTextEntry(questionId, description) {
     form.append(`
 <p style='font-weight: bold;'>` + description + `</p>
-<textarea name="` + inputId + `" style="width:100%; box-sizing: border-box;"></textarea>
+<textarea id="` + questionId + `" style="width:100%; box-sizing: border-box;"></textarea>
 `)
   }
 
-  function addTextEntry(inputId, description) {
+  function addTextEntry(questionId, description) {
     form.append(`
 <p style='font-weight: bold;'>` + description + `</p>
-<input type="text" name="` + inputId + `" value="">
+<input type="text" id="` + questionId + `" value="">
 `)
   }
 
-  function addDropdown(inputId, description, list) {
+  function addDropdown(questionId, description, list) {
     let input = $(`<p style='font-weight: bold;'>` + description + `</p>`);
     let bodyRows = "";
     let select = $(`
-<select name='` + inputId + `'>
+<select id='` + questionId + `'>
 <option value="" disabled selected>Select your option</option>
 </select>
 `);
@@ -44,7 +44,7 @@
     form.append(input);
   }
 
-  function addButtons(inputId, description, list = [1, 2, 3, 4, "N/A"]) {
+  function addButtons(questionId, description, list = [1, 2, 3, 4, "N/A"]) {
     let buttonWidth = (100 - 10) / list.length;
     let headingRows = "";
     let bodyRows = "";
@@ -53,7 +53,7 @@
       bodyRows += `
 <td style="width:` + buttonWidth + `%;text-align:center;color:#666;border-bottom:1px solid #d3d8d3;padding:0">
 <label style="display:block">
-<div style="padding:.5em .25em"><input type="radio" name="` + inputId + `" value="` + list[i] + `" role="radio" aria-label="` + list[i] + `"></div>
+<div style="padding:.5em .25em"><input type="radio" id="` + questionId + `" value="` + list[i] + `" role="radio" aria-label="` + list[i] + `"></div>
 </label>
 </td>`;
     }
@@ -84,15 +84,16 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
 
 
   async function addSubmitButton() {
-    let submit = $('<input style="float: right;" type="submit" name="submit" value="Submit" id="m_8914134288611702631ss-submit">');
+    let submit = $('<input style="float: right;" type="submit" id="submit" value="Submit" id="m_8914134288611702631ss-submit">');
     submit.click(async function () {
+      // $.post(); //send data to google to be processed
       await $.post('/api/v1/courses/' + ENV.COURSE_ID + '/assignments/' + ENV.ASSIGNMENT_ID + '/submissions', {
         submission: {
           submission_type: 'online_text_entry',
           body: 'Survey Submitted'
         }
       });
-      // location.reload(true);
+      location.reload(true);
     })
     form.append('<br><br>');
     form.append(submit);
@@ -139,14 +140,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
           formData = res;
         });
         console.log(formData);
-        form = $(`
-        <form
-          method="POST" id="m_8914134288611702631ss-form"
-          action="https://docs.google.com/forms/u/0/d/e/` + formData[0].responseId + `/formResponse"
-          target="formSubmitFrame">
-        </form>
-        <br>
-      `);
+        let items = formData.items;
         //could grab any since they all have the responseId, but getting 0 for consistency sake
         //grab some default data
         let courseId = ENV.COURSE_ID;
@@ -155,10 +149,6 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
           courseSisId = data.sis_course_id;
         });
         let userId = ENV.current_user.id;
-        container.append(form);
-        //add the iframe which will hold the submission
-        container.append("<iframe name='formSubmitFrame' title='holds submitted form data' rel='nofollow' class='btech-hidden'></iframe>");
-
         //get a list of instructors
         //MAKE THIS REQUEST CONDITIONAL ON WHETHER OR NOT IT IS EVEN NEEDED
         let instructors = [];
@@ -173,31 +163,31 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
         loading.remove();
 
         //Add in the survey data
-        for (let i = 0; i < formData.length; i++) {
-          let item = formData[i];
+        for (let i = 0; i < items.length; i++) {
+          let item = items[i];
           //Set up prefilled hidden items
-          if (item.title == "COURSE") addHidden(item.entry[0], courseSisId); //course
-          else if (item.title == "USER") addHidden(item.entry[0], hashId(userId)); //course
-          else if (item.title == "PROGRAM") addHidden(item.entry[0], CURRENT_DEPARTMENT_ID); //course
-          else if (item.title == "INSTRUCTOR") addDropdown(item.entry[0], "Select the name of your instructor.", instructors);
+          if (item.title == "COURSE") addHidden(courseSisId); //course
+          else if (item.title == "USER") addHidden(hashId(userId)); //course
+          else if (item.title == "PROGRAM") addHidden(CURRENT_DEPARTMENT_ID); //course
+          else if (item.title == "INSTRUCTOR") addDropdown("Select the name of your instructor.", instructors);
           //add based on question type
           //MUST MANUALLY ADD IN EACH QUESTION TYPE HERE AND ALSO MAKE SURE IT IS SET UP IN THE GOOGLE SCRIPTS PAGE OR THE DATA WON'T GET SENT
           else {
-            for (let e = 0; e < item.entry.length; e++) {
-              let entry = item.entry[e];
+            for (let e = 0; e < item.entries.length; e++) {
+              let entry = item.entries[e];
               console.log(item.type);
               switch (item.type) {
                 case "TEXT":
-                  addTextEntry(entry, item.title);
+                  addTextEntry(item.id, item.title);
                   break;
                 case "PARAGRAPH_TEXT":
-                  addParagraphTextEntry(entry, item.title);
+                  addParagraphTextEntry(item.id, item.title);
                   break;
                 case "GRID":
-                  addButtons(entry, item.title, item.answers);
+                  addButtons(item.id, item.title, item.answers);
                   break;
                 case "MULTIPLE_CHOICE":
-                  addButtons(entry, item.title, item.answers);
+                  addButtons(item.id, item.title, item.answers);
                   break;
               }
             }
