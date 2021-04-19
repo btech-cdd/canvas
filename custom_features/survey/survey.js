@@ -127,7 +127,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
       //Check if already submitted
       let canvasSubmitButton = $('.submit_assignment_link');
       canvasSubmitButton.hide();
-      if (canvasSubmitButton.text().trim() === 'Submit Assignment') {
+      if (canvasSubmitButton.text().trim().includes('Assignment')) {
         var url = "https://script.google.com/a/btech.edu/macros/s/AKfycbwIgHHMYbih2XnJf7mjDw8g3grdeHhn9s6JIvH6Qg7mfZ0ElbWr/exec?formId=" + formId;
         let formData = null;
         await jQuery.ajax({
@@ -151,6 +151,10 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
         //could grab any since they all have the responseId, but getting 0 for consistency sake
         //grab some default data
         let courseId = ENV.COURSE_ID;
+        let courseSisId = courseId;
+        await $.get("/api/v1/courses/" + courseId).done(function(data) {
+          courseSisId = data.sis_course_id;
+        });
         let userId = ENV.current_user.id;
         container.append(form);
         //add the iframe which will hold the submission
@@ -173,7 +177,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
         for (let i = 0; i < formData.length; i++) {
           let item = formData[i];
           //Set up prefilled hidden items
-          if (item.title == "COURSE") addHidden(item.entry[0], CURRENT_COURSE_ID); //course
+          if (item.title == "COURSE") addHidden(item.entry[0], courseSisId); //course
           else if (item.title == "USER") addHidden(item.entry[0], hashId(userId)); //course
           else if (item.title == "PROGRAM") addHidden(item.entry[0], CURRENT_DEPARTMENT_ID); //course
           else if (item.title == "INSTRUCTOR") addDropdown(item.entry[0], "Select the name of your instructor.", instructors);

@@ -24,8 +24,8 @@ if (window.location.href.includes("btech.beta.instructure.com")) {
 }
 var CDDIDS = [
   1893418, //Josh 
+  2023384, //Dani
   1864953, //Danni
-  1891741, //Katie
   1638854, //Mason
   1922029, //Makenzie
   1807337, //Jon
