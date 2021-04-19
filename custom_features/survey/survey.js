@@ -83,10 +83,17 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
   }
 
 
-  async function addSubmitButton() {
-    let submit = $('<input style="float: right;" type="submit" id="submit" value="Submit" id="m_8914134288611702631ss-submit">');
+  async function addSubmitButton(formData) {
+    let items = formData.items;
+    let submit = $('<input style="float: right;" type="submit" id="submit" value="Submit">');
     submit.click(async function () {
       // $.post(); //send data to google to be processed
+      for (let i = 0; i < items.length; i++) {
+        let item = items[i];
+        let itemEl = $("#" + item.id);
+        let value = itemEl.val();
+        console.log(value);
+      }
       await $.post('/api/v1/courses/' + ENV.COURSE_ID + '/assignments/' + ENV.ASSIGNMENT_ID + '/submissions', {
         submission: {
           submission_type: 'online_text_entry',
@@ -111,18 +118,6 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
     container.append(loading);
     container.append(form);
     form.hide();
-    let classes = container.attr('class').split(/\s+/);
-
-    //get the form id
-    let formId = "";
-    for (var c = 0; c < classes.length; c++) {
-      try {
-        formId = classes[c].match(/^form\-(.*)/)[1];
-      } catch (e) {}
-    }
-    //Create form
-    //the id is temporary I think, but it needs to match id in the submit button
-
     //request the form data
     //script found here:
     //https://script.google.com/a/btech.edu/d/1rPsTLhKjtzcL9W1-hy3yuHglTAgiJPBovljYd52CGTa4X0N0uaLSfwrb/edit
@@ -196,7 +191,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
             }
           }
         }
-        addSubmitButton();
+        addSubmitButton(formData);
       } else {
         container.empty();
         container.append("<p>Survey already completed</p>");
