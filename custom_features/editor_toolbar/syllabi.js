@@ -33,7 +33,6 @@
     $('body').append(iframe);
     iframe.load(function () {
       let e = $(this)[0].contentWindow.ENV;
-      console.log(e);
       let data = e.grading_scheme;
       $(this).remove();
       let schemeDiv = $(".btech-grading-scheme");
