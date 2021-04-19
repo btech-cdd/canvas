@@ -102,13 +102,15 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
   //Can probably get rid of the ids
   //get the container
   let container = $('.btech-survey');
-  let form = null;
+  let form = $("<div id='google-form-container'></div>");
   if (container.length > 0) {
 
     container.removeClass('btech-hidden'); //make it not hidden
     let loading = $("<p>Loading Survey...</p>");
     container.empty();
     container.append(loading);
+    container.append(form);
+    form.hide();
     let classes = container.attr('class').split(/\s+/);
 
     //get the form id
@@ -161,6 +163,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
 
         //done loading
         loading.remove();
+        form.show();
 
         //Add in the survey data
         for (let i = 0; i < items.length; i++) {
