@@ -174,7 +174,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
         for (let i = 0; i < items.length; i++) {
           let item = items[i];
           //Set up prefilled hidden items
-          if (item.title == "COURSE") addHidden(item.id, courseSisId); //course
+          if (item.title == "COURSE") addHidden(item.id, courseName); //course
           else if (item.title == "USER") addHidden(item.id, hashId(userId)); //course
           else if (item.title == "PROGRAM") addHidden(item.id, CURRENT_DEPARTMENT_ID); //course
           else if (item.title == "INSTRUCTOR") addDropdown(item.id, "Select the name of your instructor.", instructors);
