@@ -127,7 +127,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
       //Check if already submitted
       let canvasSubmitButton = $('.submit_assignment_link');
       canvasSubmitButton.hide();
-      if (canvasSubmitButton.text().trim().includes('Assignment')) {
+      if (canvasSubmitButton.text().trim().includes('Assignment') || true) {
         var url = "https://script.google.com/a/btech.edu/macros/s/AKfycbwIgHHMYbih2XnJf7mjDw8g3grdeHhn9s6JIvH6Qg7mfZ0ElbWr/exec?formId=" + formId;
         let formData = null;
         await jQuery.ajax({
@@ -139,10 +139,9 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
           formData = res;
         });
         console.log(formData);
-        console.log(formData[0]);
         form = $(`
         <form
-          method="POST" id="m_`+formId+`-form"
+          method="POST" id="m_8914134288611702631ss-form"
           action="https://docs.google.com/forms/u/0/d/e/` + formData[0].responseId + `/formResponse"
           target="formSubmitFrame">
         </form>
