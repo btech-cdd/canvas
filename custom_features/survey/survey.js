@@ -118,83 +118,95 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
     container.append(loading);
     container.append(form);
     form.hide();
+    let classes = container.attr('class').split(/\s+/);
+
+    //get the google form id
+    let formId = "";
+    for (var c = 0; c < classes.length; c++) {
+      try {
+        formId = classes[c].match(/^form\-(.*)/)[1];
+      } catch (e) {}
+    }
+
     //request the form data
     //script found here:
     //https://script.google.com/a/btech.edu/d/1rPsTLhKjtzcL9W1-hy3yuHglTAgiJPBovljYd52CGTa4X0N0uaLSfwrb/edit
-    //Check if already submitted
-    let canvasSubmitButton = $('.submit_assignment_link');
-    canvasSubmitButton.hide();
-    if (canvasSubmitButton.text().trim().includes('Assignment') || true) {
-      var url = "https://script.google.com/a/btech.edu/macros/s/AKfycbwIgHHMYbih2XnJf7mjDw8g3grdeHhn9s6JIvH6Qg7mfZ0ElbWr/exec?formId=" + formId;
-      let formData = null;
-      await jQuery.ajax({
-        crossDomain: true,
-        url: url,
-        method: "GET",
-        dataType: "jsonp"
-      }).done(function (res) {
-        formData = res;
-      });
-      console.log(formData);
-      let items = formData.items;
-      //could grab any since they all have the responseId, but getting 0 for consistency sake
-      //grab some default data
-      let courseId = ENV.COURSE_ID;
-      let courseSisId = courseId;
-      await $.get("/api/v1/courses/" + courseId).done(function (data) {
-        courseSisId = data.sis_course_id;
-      });
-      let userId = ENV.current_user.id;
-      //get a list of instructors
-      //MAKE THIS REQUEST CONDITIONAL ON WHETHER OR NOT IT IS EVEN NEEDED
-      let instructors = [];
-      await $.get("/api/v1/courses/" + courseId + "/enrollments?type[]=TeacherEnrollment&type[]=TaEnrollment").done(function (data) {
-        for (let i = 0; i < data.length; i++) {
-          let enrollment = data[i];
-          instructors.push(enrollment.user.name);
-        }
-      });
+    if (formId !== "") {
+      //Check if already submitted
+      let canvasSubmitButton = $('.submit_assignment_link');
+      canvasSubmitButton.hide();
+      if (canvasSubmitButton.text().trim().includes('Assignment') || true) {
+        var url = "https://script.google.com/a/btech.edu/macros/s/AKfycbwIgHHMYbih2XnJf7mjDw8g3grdeHhn9s6JIvH6Qg7mfZ0ElbWr/exec?formId=" + formId;
+        let formData = null;
+        await jQuery.ajax({
+          crossDomain: true,
+          url: url,
+          method: "GET",
+          dataType: "jsonp"
+        }).done(function (res) {
+          formData = res;
+        });
+        console.log(formData);
+        let items = formData.items;
+        //could grab any since they all have the responseId, but getting 0 for consistency sake
+        //grab some default data
+        let courseId = ENV.COURSE_ID;
+        let courseSisId = courseId;
+        await $.get("/api/v1/courses/" + courseId).done(function(data) {
+          courseSisId = data.sis_course_id;
+        });
+        let userId = ENV.current_user.id;
+        //get a list of instructors
+        //MAKE THIS REQUEST CONDITIONAL ON WHETHER OR NOT IT IS EVEN NEEDED
+        let instructors = [];
+        await $.get("/api/v1/courses/" + courseId + "/enrollments?type[]=TeacherEnrollment&type[]=TaEnrollment").done(function (data) {
+          for (let i = 0; i < data.length; i++) {
+            let enrollment = data[i];
+            instructors.push(enrollment.user.name);
+          }
+        });
 
-      //done loading
-      loading.remove();
-      form.show();
+        //done loading
+        loading.remove();
+        form.show();
 
-      //Add in the survey data
-      for (let i = 0; i < items.length; i++) {
-        let item = items[i];
-        //Set up prefilled hidden items
-        if (item.title == "COURSE") addHidden(courseSisId); //course
-        else if (item.title == "USER") addHidden(hashId(userId)); //course
-        else if (item.title == "PROGRAM") addHidden(CURRENT_DEPARTMENT_ID); //course
-        else if (item.title == "INSTRUCTOR") addDropdown("Select the name of your instructor.", instructors);
-        //add based on question type
-        //MUST MANUALLY ADD IN EACH QUESTION TYPE HERE AND ALSO MAKE SURE IT IS SET UP IN THE GOOGLE SCRIPTS PAGE OR THE DATA WON'T GET SENT
-        else {
-          for (let e = 0; e < item.entries.length; e++) {
-            let entry = item.entries[e];
-            console.log(item.type);
-            switch (item.type) {
-              case "TEXT":
-                addTextEntry(item.id, item.title);
-                break;
-              case "PARAGRAPH_TEXT":
-                addParagraphTextEntry(item.id, item.title);
-                break;
-              case "GRID":
-                addButtons(item.id, item.title, item.answers);
-                break;
-              case "MULTIPLE_CHOICE":
-                addButtons(item.id, item.title, item.answers);
-                break;
+        //Add in the survey data
+        for (let i = 0; i < items.length; i++) {
+          let item = items[i];
+          //Set up prefilled hidden items
+          if (item.title == "COURSE") addHidden(courseSisId); //course
+          else if (item.title == "USER") addHidden(hashId(userId)); //course
+          else if (item.title == "PROGRAM") addHidden(CURRENT_DEPARTMENT_ID); //course
+          else if (item.title == "INSTRUCTOR") addDropdown("Select the name of your instructor.", instructors);
+          //add based on question type
+          //MUST MANUALLY ADD IN EACH QUESTION TYPE HERE AND ALSO MAKE SURE IT IS SET UP IN THE GOOGLE SCRIPTS PAGE OR THE DATA WON'T GET SENT
+          else {
+            for (let e = 0; e < item.entries.length; e++) {
+              let entry = item.entries[e];
+              console.log(item.type);
+              switch (item.type) {
+                case "TEXT":
+                  addTextEntry(item.id, item.title);
+                  break;
+                case "PARAGRAPH_TEXT":
+                  addParagraphTextEntry(item.id, item.title);
+                  break;
+                case "GRID":
+                  addButtons(item.id, item.title, item.answers);
+                  break;
+                case "MULTIPLE_CHOICE":
+                  addButtons(item.id, item.title, item.answers);
+                  break;
+              }
             }
           }
         }
+        addSubmitButton(formData);
+      } else {
+        container.empty();
+        container.append("<p>Survey already completed</p>");
+        console.log(canvasSubmitButton.text().trim());
       }
-      addSubmitButton(formData);
-    } else {
-      container.empty();
-      container.append("<p>Survey already completed</p>");
-      console.log(canvasSubmitButton.text().trim());
     }
   }
 })();
