@@ -153,6 +153,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
         let courseId = ENV.COURSE_ID;
         let courseSisId = courseId;
         await $.get("/api/v1/courses/" + courseId).done(function(data) {
+          console.log(data);
           courseSisId = data.sis_course_id;
         });
         let userId = ENV.current_user.id;
