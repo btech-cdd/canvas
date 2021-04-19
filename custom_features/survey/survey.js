@@ -174,10 +174,10 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
         for (let i = 0; i < items.length; i++) {
           let item = items[i];
           //Set up prefilled hidden items
-          if (item.title == "COURSE") addHidden(courseSisId); //course
-          else if (item.title == "USER") addHidden(hashId(userId)); //course
-          else if (item.title == "PROGRAM") addHidden(CURRENT_DEPARTMENT_ID); //course
-          else if (item.title == "INSTRUCTOR") addDropdown("Select the name of your instructor.", instructors);
+          if (item.title == "COURSE") addHidden(item.id, courseSisId); //course
+          else if (item.title == "USER") addHidden(item.id, hashId(userId)); //course
+          else if (item.title == "PROGRAM") addHidden(item.id, CURRENT_DEPARTMENT_ID); //course
+          else if (item.title == "INSTRUCTOR") addDropdown(item.id, "Select the name of your instructor.", instructors);
           //add based on question type
           //MUST MANUALLY ADD IN EACH QUESTION TYPE HERE AND ALSO MAKE SURE IT IS SET UP IN THE GOOGLE SCRIPTS PAGE OR THE DATA WON'T GET SENT
           else {
