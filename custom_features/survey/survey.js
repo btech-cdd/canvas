@@ -92,7 +92,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
           body: 'Survey Submitted'
         }
       });
-      location.reload(true);
+      // location.reload(true);
     })
     form.append('<br><br>');
     form.append(submit);
