@@ -99,6 +99,13 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
       console.log(formData);
       var url = "https://script.google.com/a/btech.edu/macros/s/AKfycbwIgHHMYbih2XnJf7mjDw8g3grdeHhn9s6JIvH6Qg7mfZ0ElbWr/exec";
       console.log(url);
+      $.post(url, {
+          formData: formData,
+          formId: formId
+        }, function(res) {
+          console.log(res);
+        });
+        /*
       await jQuery.ajax({
         crossDomain: true,
         url: url,
@@ -111,6 +118,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
       }).done(function (res) {
         console.log(res);
       });
+      */
       /*
       await $.post('/api/v1/courses/' + ENV.COURSE_ID + '/assignments/' + ENV.ASSIGNMENT_ID + '/submissions', {
         submission: {
