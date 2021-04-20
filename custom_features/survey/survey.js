@@ -97,6 +97,18 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
         console.log(value);
       }
       console.log(formData);
+      await jQuery.ajax({
+        crossDomain: true,
+        url: url,
+        data: {
+          formData: formData,
+          formId: formId
+        },
+        method: "POST",
+        dataType: "jsonp"
+      }).done(function (res) {
+        console.log(res);
+      });
       await $.post('/api/v1/courses/' + ENV.COURSE_ID + '/assignments/' + ENV.ASSIGNMENT_ID + '/submissions', {
         submission: {
           submission_type: 'online_text_entry',
@@ -154,9 +166,9 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
         //could grab any since they all have the responseId, but getting 0 for consistency sake
         //grab some default data
         let courseId = ENV.COURSE_ID;
-        let courseName = courseId;
+        let courseName = "UNKNOWN";
         await $.get("/api/v1/courses/" + courseId).done(function(data) {
-          courseName = data.name + " (" + courseId + ")";
+          courseName = data.name;
         });
         let userId = ENV.current_user.id;
         //get a list of instructors
@@ -177,7 +189,9 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
         for (let i = 0; i < items.length; i++) {
           let item = items[i];
           //Set up prefilled hidden items
-          if (item.title == "COURSE") addHidden(item.id, courseName); //course
+          if (item.title == "COURSE_CODE") addHidden(item.id, courseName); //course
+          if (item.title == "COURSE_NAME") addHidden(item.id, courseName); //course
+          if (item.title == "COURSE_ID") addHidden(item.id, courseId); //course
           else if (item.title == "USER") addHidden(item.id, hashId(userId)); //course
           else if (item.title == "PROGRAM") addHidden(item.id, CURRENT_DEPARTMENT_ID); //course
           else if (item.title == "INSTRUCTOR") addDropdown(item.id, "Select the name of your instructor.", instructors);
