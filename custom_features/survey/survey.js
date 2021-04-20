@@ -190,6 +190,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
         //Add in the survey data
         for (let i = 0; i < items.length; i++) {
           let item = items[i];
+          console.log(item.title);
           //Set up prefilled hidden items
           if (item.title == "COURSE_CODE") addHidden(item.id, courseCode); //course
           if (item.title == "COURSE_NAME") addHidden(item.id, courseName); //course
