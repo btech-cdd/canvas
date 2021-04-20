@@ -83,17 +83,20 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
   }
 
 
-  async function addSubmitButton(formData) {
+  async function addSubmitButton(formId, formData) {
     let items = formData.items;
     let submit = $('<input style="float: right;" type="submit" id="submit" value="Submit">');
     submit.click(async function () {
       // $.post(); //send data to google to be processed
+      console.log(formId);
       for (let i = 0; i < items.length; i++) {
         let item = items[i];
         let itemEl = $("#" + item.id);
         let value = itemEl.val();
+        formData.items[i].response = value;
         console.log(value);
       }
+      console.log(formData);
       await $.post('/api/v1/courses/' + ENV.COURSE_ID + '/assignments/' + ENV.ASSIGNMENT_ID + '/submissions', {
         submission: {
           submission_type: 'online_text_entry',
@@ -153,7 +156,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
         let courseId = ENV.COURSE_ID;
         let courseName = courseId;
         await $.get("/api/v1/courses/" + courseId).done(function(data) {
-          courseName = data.name + "(" + courseId + ")";
+          courseName = data.name + " (" + courseId + ")";
         });
         let userId = ENV.current_user.id;
         //get a list of instructors
@@ -201,7 +204,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
             }
           }
         }
-        addSubmitButton(formData);
+        addSubmitButton(formId, formData);
       } else {
         container.empty();
         container.append("<p>Survey already completed</p>");
