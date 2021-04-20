@@ -167,8 +167,10 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
         //grab some default data
         let courseId = ENV.COURSE_ID;
         let courseName = "UNKNOWN";
+        let courseCode = "UNKNOWN";
         await $.get("/api/v1/courses/" + courseId).done(function(data) {
           courseName = data.name;
+          courseCode = data.course_code;
         });
         let userId = ENV.current_user.id;
         //get a list of instructors
@@ -189,7 +191,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
         for (let i = 0; i < items.length; i++) {
           let item = items[i];
           //Set up prefilled hidden items
-          if (item.title == "COURSE_CODE") addHidden(item.id, courseName); //course
+          if (item.title == "COURSE_CODE") addHidden(item.id, courseCode); //course
           if (item.title == "COURSE_NAME") addHidden(item.id, courseName); //course
           if (item.title == "COURSE_ID") addHidden(item.id, courseId); //course
           else if (item.title == "USER") addHidden(item.id, hashId(userId)); //course
