@@ -190,11 +190,10 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
         //Add in the survey data
         for (let i = 0; i < items.length; i++) {
           let item = items[i];
-          console.log(item.title);
           //Set up prefilled hidden items
           if (item.title == "COURSE_CODE") addHidden(item.id, courseCode); //course
-          if (item.title == "COURSE_NAME") addHidden(item.id, courseName); //course
-          if (item.title == "COURSE_ID") addHidden(item.id, courseId); //course
+          else if (item.title == "COURSE_NAME") addHidden(item.id, courseName); //course
+          else if (item.title == "COURSE_ID") addHidden(item.id, courseId); //course
           else if (item.title == "USER") addHidden(item.id, hashId(userId)); //course
           else if (item.title == "PROGRAM") addHidden(item.id, CURRENT_DEPARTMENT_ID); //course
           else if (item.title == "INSTRUCTOR") addDropdown(item.id, "Select the name of your instructor.", instructors);
