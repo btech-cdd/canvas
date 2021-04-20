@@ -97,6 +97,7 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
         console.log(value);
       }
       console.log(formData);
+      var url = "https://script.google.com/a/btech.edu/macros/s/AKfycbwIgHHMYbih2XnJf7mjDw8g3grdeHhn9s6JIvH6Qg7mfZ0ElbWr/exec";
       await jQuery.ajax({
         crossDomain: true,
         url: url,
