@@ -1,4 +1,5 @@
 CANVAS_FLAGS = {};
+console.log('test');
 (async function () {
   let canvasbody = $("#application");
   /*
