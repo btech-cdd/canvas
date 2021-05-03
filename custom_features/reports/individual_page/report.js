@@ -22,6 +22,7 @@
     IMPORTED_FEATURE = {
       initiated: false,
       async _init(params = {}) {
+        let app = this;
         let vueString = '';
         await $.get(SOURCE_URL + '/custom_features/reports/individual_page/template.vue', null, function (html) {
           vueString = html.replace("<template>", "").replace("</template>", "");
@@ -958,7 +959,7 @@
         })
         gen_report_button.click(function () {
           let modal = $('#canvas-individual-report-vue');
-          this.APP.refreshHSEnrollmentTerms();
+          app.APP.refreshHSEnrollmentTerms();
           modal.show();
         });
       },
