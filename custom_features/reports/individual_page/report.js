@@ -45,11 +45,6 @@
         gen_report_button.appendTo(menu_bar);
         let modal = $('#canvas-individual-report-vue');
         modal.hide();
-        gen_report_button.click(function () {
-          let modal = $('#canvas-individual-report-vue');
-          this.APP.refreshHSEnrollmentTerms();
-          modal.show();
-        });
         this.APP = new Vue({
           el: '#canvas-individual-report-vue',
           mounted: async function () {
@@ -961,6 +956,11 @@
 
           }
         })
+        gen_report_button.click(function () {
+          let modal = $('#canvas-individual-report-vue');
+          this.APP.refreshHSEnrollmentTerms();
+          modal.show();
+        });
       },
       APP: {}
     }
