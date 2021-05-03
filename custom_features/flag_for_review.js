@@ -1,6 +1,7 @@
 CANVAS_FLAGS = {};
-console.log('test');
 (async function () {
+  //essentially disabled until can get the new server with all subdomains ssl certified
+  return
   let canvasbody = $("#application");
   /*
   lots of options for sorting / filtering flags
