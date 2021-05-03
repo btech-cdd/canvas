@@ -47,6 +47,7 @@
         modal.hide();
         gen_report_button.click(function () {
           let modal = $('#canvas-individual-report-vue');
+          this.APP.refreshHSEnrollmentTerms();
           modal.show();
         });
         this.APP = new Vue({
@@ -62,9 +63,6 @@
             } else {
               this.userId = ENV.current_user_id;
             }
-            //pull in data from hs database
-            app.refreshHSEnrollmentTerms();
-
             this.courses = await this.getCourseData();
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {

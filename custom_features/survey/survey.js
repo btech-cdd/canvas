@@ -106,7 +106,8 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
           formData: formData,
           formId: formId
         },
-        method: "POST"
+        method: "POST",
+        dataType: "jsonp"
       }).done(function (res) {
         console.log(res);
       });
