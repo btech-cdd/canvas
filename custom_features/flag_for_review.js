@@ -204,7 +204,7 @@ Look into quill editor
         app.courseId = match[1];
         app.itemType = match[2];
         app.itemId = match[3];
-        await $.get("https://jhveem.xyz/api/flags/courses/" + app.courseId + "/" + app.itemType + "/" + app.itemId, function (data) {
+        await $.get("https://flags.jhveem.xyz/api/flags/courses/" + app.courseId + "/" + app.itemType + "/" + app.itemId, function (data) {
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
             flag = app.initFlag(flag);
@@ -220,7 +220,7 @@ Look into quill editor
         let flags = [];
         let match = url.match(rInCourse);
         app.courseId = match[1];
-        await $.get("https://jhveem.xyz/api/flags/courses/" + app.courseId, function (data) {
+        await $.get("https://flags.jhveem.xyz/api/flags/courses/" + app.courseId, function (data) {
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
             flag = app.initFlag(flag);
@@ -235,7 +235,7 @@ Look into quill editor
       else {
         app.pageType = 'other';
         let flags = [];
-        await $.get("https://jhveem.xyz/api/flags", function (data) {
+        await $.get("https://flags.jhveem.xyz/api/flags", function (data) {
           for (let i = 0; i < data.length; i++) {
             let flag = data[i];
             flag = app.initFlag(flag);
@@ -378,17 +378,17 @@ Look into quill editor
       },
       loadSettings() {
         let app = this;
-        $.get("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, function (data) {
+        $.get("https://flags.jhveem.xyz/api/flag_settings/" + ENV.current_user_id, function (data) {
           if (data.length === 0) {
             let settings = app.prepareSettingsPacket();
-            $.post("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, {
+            $.post("https://flags.jhveem.xyz/api/flag_settings/" + ENV.current_user_id, {
               settings: JSON.stringify(settings)
             }, function (data) {
               console.log(data);
             });
           } else {
             if (data[0].settings === undefined) {
-              $.delete("https://jhveem.xyz/api/flag_settings/" + data[0]._id)
+              $.delete("https://flags.jhveem.xyz/api/flag_settings/" + data[0]._id)
             } else {
               let settings = JSON.parse(data[0].settings);
               for (let s in settings) {
@@ -401,7 +401,7 @@ Look into quill editor
       updateSettings() {
         let app = this;
         let settings = app.prepareSettingsPacket();
-        $.put("https://jhveem.xyz/api/flag_settings/" + ENV.current_user_id, {
+        $.put("https://flags.jhveem.xyz/api/flag_settings/" + ENV.current_user_id, {
           settings: JSON.stringify(settings)
         }, function (data) {
           console.log(data);
@@ -435,7 +435,7 @@ Look into quill editor
       },
       async submitFlag() {
         let app = this;
-        $.post('https://jhveem.xyz/api/flags', {
+        $.post('https://flags.jhveem.xyz/api/flags', {
           'courseId': app.courseId,
           'createdBy': ENV.current_user_id,
           'assignedTo': JSON.stringify([app.flagAssigned]),
@@ -455,7 +455,7 @@ Look into quill editor
       },
       async deleteFlag(flag) {
         let app = this;
-        await $.delete('https://jhveem.xyz/api/flags/' + flag._id);
+        await $.delete('https://flags.jhveem.xyz/api/flags/' + flag._id);
         let ind = app.flags.indexOf(flag);
         if (ind > -1) {
           app.flags.splice(ind, 1);
@@ -472,7 +472,7 @@ Look into quill editor
       },
       async updateFlag(flag, changes) {
         let app = this;
-        await $.put('https://jhveem.xyz/api/flags/' + flag._id, changes);
+        await $.put('https://flags.jhveem.xyz/api/flags/' + flag._id, changes);
       },
       async editFlag(flag) {
         let app = this;
@@ -502,7 +502,7 @@ Look into quill editor
       },
       async createDepartmentElement(department) {
         let departmentId = department.data.id;
-        $.post("https://jhveem.xyz/api/departments", {
+        $.post("https://flags.jhveem.xyz/api/departments", {
           departmentId: departmentId,
           elX: department.elX,
           elY: department.elY
@@ -510,7 +510,7 @@ Look into quill editor
       },
       async saveDepartmentElement(department) {
         let departmentId = department.data.id;
-        $.put("https://jhveem.xyz/api/departments/" + departmentId, {
+        $.put("https://flags.jhveem.xyz/api/departments/" + departmentId, {
           departmentId: departmentId,
           elX: department.elX,
           elY: department.elY
@@ -518,7 +518,7 @@ Look into quill editor
       },
       async saveTopicElement(topic) {
         let topicId = topic._id;
-        $.put("https://jhveem.xyz/api/topics/" + topicId, {
+        $.put("https://flags.jhveem.xyz/api/topics/" + topicId, {
           title: topic.title,
           elX: topic.elX,
           elY: topic.elY
