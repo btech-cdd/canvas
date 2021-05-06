@@ -22,6 +22,7 @@
     IMPORTED_FEATURE = {
       initiated: false,
       async _init(params = {}) {
+        let app = this;
         let vueString = '';
         await $.get(SOURCE_URL + '/custom_features/reports/individual_page/template.vue', null, function (html) {
           vueString = html.replace("<template>", "").replace("</template>", "");
@@ -45,10 +46,6 @@
         gen_report_button.appendTo(menu_bar);
         let modal = $('#canvas-individual-report-vue');
         modal.hide();
-        gen_report_button.click(function () {
-          let modal = $('#canvas-individual-report-vue');
-          modal.show();
-        });
         this.APP = new Vue({
           el: '#canvas-individual-report-vue',
           mounted: async function () {
@@ -62,9 +59,6 @@
             } else {
               this.userId = ENV.current_user_id;
             }
-            //pull in data from hs database
-            app.refreshHSEnrollmentTerms();
-
             this.courses = await this.getCourseData();
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
@@ -963,6 +957,11 @@
 
           }
         })
+        gen_report_button.click(function () {
+          let modal = $('#canvas-individual-report-vue');
+          app.APP.refreshHSEnrollmentTerms();
+          modal.show();
+        });
       },
       APP: {}
     }

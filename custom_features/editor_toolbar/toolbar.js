@@ -71,8 +71,6 @@ TOOLBAR = {
 
   async addSelect(name, description) {
     let feature = this;
-    console.log("NAME");
-    console.log(name);
     feature.selects[name] = {};
     let customButtonsContainer = $("#btech-custom-editor-buttons-container");
     let id = this.selectNameToId(name);
@@ -80,7 +78,6 @@ TOOLBAR = {
     customButtonsContainer.append(select);
     $("#" + id).change(function () {
       let value = $(this).val();
-      console.log(value);
       let func = feature.selects[name][value];
       if (func !== undefined) {
         func();
@@ -92,8 +89,6 @@ TOOLBAR = {
   async addSelectOption(name, selectName, description, func, className) {
     let feature = this;
     let selectId = this.selectNameToId(selectName);
-    console.log("SELECT NAME");
-    console.log(selectName);
     feature.selects[selectName][name] = func;
     let select = $("#" + selectId);
     let option = $("<option title='" + description + "' class='" + className + "' value='" + name + "'>" + name + "</option>");

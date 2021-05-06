@@ -24,8 +24,12 @@ if (window.location.href.includes("btech.beta.instructure.com")) {
 }
 var CDDIDS = [
   1893418, //Josh 
-  1864953, //Danni
   2023384, //Dani
+  1864953, //Danni
+<<<<<<< HEAD
+  2023384, //Dani
+=======
+>>>>>>> 4d1cf15070aaa26d020aeef78d2dc685f686eab1
   1638854, //Mason
   1922029, //Makenzie
   1807337, //Jon
@@ -292,7 +296,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           }
           let rCheckInDepartment = /^\/accounts\/([0-9]+)/;
           if (rCheckInDepartment.test(window.location.pathname)) {
-            console.log(window.location.pathname);
             CURRENT_DEPARTMENT_ID = parseInt(window.location.pathname.match(rCheckInDepartment)[1]);
           }
           let rCheckInCourse = /^\/courses\/([0-9]+)/;
@@ -355,7 +358,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             }
             CURRENT_DEPARTMENT_ID = departmentId;
             if (departmentId === 3824) { // DENTAL
-              console.log("DENTAL");
               feature("highlighted_grades_page_items", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
               feature("rubrics/attempts_data", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
               feature("rubrics/gen_comment", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
@@ -372,7 +374,8 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             }
             if (departmentId === 3819 || departmentId === 3832) { // AMAR && ELEC
               feature("modules/points_to_hours_header");
-              feature("department_specific/amar_elec_add_module_items");
+              feature("speed_grader/resize_submitted_video");
+              feature("department_specific/amar_elec_add_module_items", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
             }
             if (departmentId === 3847) { //meats
               feature("previous-enrollment-data/previous_enrollment_period_grades", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
@@ -408,11 +411,10 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           feature('date_display/add_current_year', {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
           if (IS_ME) {
             feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
+            featureCDD('flag_for_review');
           } else {
             feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
           }
-          // featureCDD('department_progress');
-          featureCDD('flag_for_review');
 
           // if (IS_ME) $.getScript("https://jhveem.xyz/collaborator/import.js");
           //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
