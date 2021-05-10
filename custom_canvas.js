@@ -133,7 +133,7 @@ function feature(f, data = {}, regex = "") {
   }
 }
 
-function externalFeature(url, regex) {
+function externalFeature(url, regex = "") {
   let check = false;
   if (regex === "") {
     check = true;
@@ -405,9 +405,9 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           featureCDD("editor_toolbar/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           // featureCDD('date_display/add_current_year_speed_grader', {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
           feature('date_display/add_current_year', {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
+          if (IS_CDD) externalFeature('https://flags.bridgetools.dev/main.js');
           if (IS_ME) {
             feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
-            featureCDD('flag_for_review');
           } else {
             feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
           }
