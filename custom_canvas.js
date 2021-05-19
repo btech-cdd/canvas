@@ -26,10 +26,7 @@ var CDDIDS = [
   1893418, //Josh 
   2023384, //Dani
   1864953, //Danni
-<<<<<<< HEAD
   2023384, //Dani
-=======
->>>>>>> 4d1cf15070aaa26d020aeef78d2dc685f686eab1
   1638854, //Mason
   1807337, //Jon
   1869288, //Alan
