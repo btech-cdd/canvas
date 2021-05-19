@@ -156,7 +156,6 @@
                   term = app.terms[i];
                 }
               }
-              console.log(term);
               app.selectedTerm = term;
               app.submissionDatesStart = app.dateToHTMLDate(term.startDate);
               app.submissionDatesEnd = app.dateToHTMLDate(term.endDate);
@@ -180,7 +179,6 @@
               for (let c in this.courses) {
                 let course = this.courses[c];
                 let progress = this.progressBetweenDates[course.course_id];
-                console.log(course.hours);
                 let hours = course.hours;
                 if (hours == "N/A") hours = 0;
                 if (progress > 0 && hours > 0) {
@@ -954,7 +952,6 @@
                 }),
               }, function (data) {
                 app.refreshHSEnrollmentTerms();
-                console.log(data);
               })
             }
 
