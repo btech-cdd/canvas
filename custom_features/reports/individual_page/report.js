@@ -180,8 +180,11 @@
               for (let c in this.courses) {
                 let course = this.courses[c];
                 let progress = this.progressBetweenDates[course.course_id];
-                if (progress > 0) {
-                  sum += Math.round(progress * course.hours) * .01;
+                console.log(course.hours);
+                let hours = course.hours;
+                if (hours == "N/A") hours = 0;
+                if (progress > 0 && hours > 0) {
+                  sum += Math.round(progress * hours) * .01;
                 }
               }
               let output = parseFloat(sum.toFixed(2));
@@ -196,7 +199,6 @@
                 let course = this.courses[c];
                 let progress = this.progressBetweenDates[course.course_id];
                 let grade = this.gradesBetweenDates[course.course_id];
-                console.log(grade);
                 if (progress !== undefined && grade !== undefined && grade != "N/A") {
                   let weightedGrade = grade * (progress / totalProgress);
                   totalWeightedGrade += weightedGrade;
@@ -215,7 +217,6 @@
                 let progress = this.progressBetweenDates[course.course_id];
                 let grade = this.gradesBetweenDates[course.course_id];
                 if (progress !== undefined && grade !== undefined && grade != "N/A") {
-                  console.log(grade);
                   let hoursCompleted = this.getHoursCompleted(course);
                   let weightedGrade = grade;
                   //have some check to not = 0 if total hours completed is 0
