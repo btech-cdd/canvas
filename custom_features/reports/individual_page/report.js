@@ -196,7 +196,8 @@
                 let course = this.courses[c];
                 let progress = this.progressBetweenDates[course.course_id];
                 let grade = this.gradesBetweenDates[course.course_id];
-                if (progress !== undefined && grade !== undefined) {
+                console.log(grade);
+                if (progress !== undefined && grade !== undefined && grade != "N/A") {
                   let weightedGrade = grade * (progress / totalProgress);
                   totalWeightedGrade += weightedGrade;
                 }
