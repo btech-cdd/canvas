@@ -12,4 +12,6 @@ try {
 } catch(e) {
   console.log(e);
 }
-if (currentGrade > 0) console.log(finalGrade / currentGrade);
+let progress = 0;
+if (currentGrade > 0) progress = finalGrade / currentGrade;
+console.log(progress.toFixed(2) + "%");
