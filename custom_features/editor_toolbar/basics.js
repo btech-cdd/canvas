@@ -49,11 +49,11 @@
       <tbody>
       <tr style="height: 30px;">
       <td style="background-color: `+color+`; color: #ffffff; text-align: center; width: 1%; white-space: nowrap;">Note</td>
-      <td style="background: linear-gradient(to bottom right, #d22232 49.5%, #f0f0f0 50.5%);"></td>
+      <td style="background: linear-gradient(to bottom right, `+color+` 49.5%, #f0f0f0 50.5%);"></td>
       <td style="background-color: #f0f0f0; color: #000000;">
         {$selection}
       </td>
-      <td style="background: linear-gradient(to bottom right, #f0f0f0 49.5%, #d22232 50.5%);"></td>
+      <td style="background: linear-gradient(to bottom right, #f0f0f0 49.5%, `+color+` 50.5%);"></td>
       </tr>
       </tbody>
     </table>
