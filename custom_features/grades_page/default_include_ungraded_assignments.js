@@ -20,7 +20,7 @@ if (checked) {
   let progress = 0;
   if (currentGrade > 0) {
     progress = Math.round(finalGrade / currentGrade * 10000) / 100;
-    gradesEl.parent().after("<div>~"+progress+"% of course completed</div>")
+    gradesEl.parent().after("<div>Progress: ~"+progress+"%</div><div>This grades treats unsubmitted assignments as 0.</div>")
   }
   console.log(progress + "%");
 }
