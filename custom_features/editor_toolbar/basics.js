@@ -47,7 +47,7 @@
     editor.execCommand("mceReplaceContent", false, `
     <table style="width: 90%; border-collapse: collapse; border-color: gray; margin-left: auto; margin-right: auto;" border="0" cellpadding="10">
       <tbody>
-      <tr style="height: 30px;">
+      <tr>
       <td style="background-color: `+color+`; color: #ffffff; text-align: center; width: 1%; white-space: nowrap;">Note</td>
       <td style="background: linear-gradient(to bottom right, `+color+` 49.5%, #f0f0f0 50.5%);"></td>
       <td style="background-color: #f0f0f0; color: #000000;">
