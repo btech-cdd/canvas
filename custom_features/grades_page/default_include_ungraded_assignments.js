@@ -1,0 +1,1 @@
+$("#only_consider_graded_assignments_wrapper").find('label').click();

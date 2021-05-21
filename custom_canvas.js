@@ -388,6 +388,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
               feature("department_specific/esthetics_cosmetology_services");
             }
             if (departmentId === 3848) { //Interior Design
+              feature("grades_page/default_include_ungraded_assignments", {}, /^\/courses\/[0-9]+\/grades/);
             }
             if (departmentId === 3820) { //Web & Mobile
               externalFeature("https://bridgerland-web-dev.github.io/html_practice/html_practice.js", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/)
