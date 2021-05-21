@@ -25,7 +25,10 @@ if (checked) {
     checkbox.click(function() {
       let checked = checkbox.is(":checked");
       console.log(checked);
-      if (!checked) $("#btech-grade-disclaimer").show();
+      if (!checked) {
+        gradesEl.append("*");
+        $("#btech-grade-disclaimer").show();
+      }
       if (checked) $("#btech-grade-disclaimer").hide();
     });
   }
