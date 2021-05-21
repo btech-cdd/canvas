@@ -13,5 +13,5 @@ try {
   console.log(e);
 }
 let progress = 0;
-if (currentGrade > 0) progress = finalGrade / currentGrade;
-console.log(progress.toFixed(2) + "%");
+if (currentGrade > 0) progress = Math.round(finalGrade / currentGrade * 10000) / 100;
+console.log(progress + "%");
