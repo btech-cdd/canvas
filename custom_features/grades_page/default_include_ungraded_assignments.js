@@ -5,6 +5,7 @@ try {
 } catch(e) {
   console.log(e);
 }
+console.log(currentGrade);
 $("#only_consider_graded_assignments_wrapper").find('label').click();
 let finalGrade = 0;
 try {
@@ -12,6 +13,7 @@ try {
 } catch(e) {
   console.log(e);
 }
+console.log(finalGrade);
 let progress = 0;
 if (currentGrade > 0) {
   progress = Math.round(finalGrade / currentGrade * 10000) / 100;
