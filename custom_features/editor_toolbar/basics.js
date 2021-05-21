@@ -19,22 +19,61 @@
     let selection = editor.selection;
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#FFFFFF";
-    editor.execCommand("mceReplaceContent", false, `<table class="btech-example-table" style="width: 90%; border-collapse: collapse; border-color: gray; margin-left: auto; margin-right: auto; height: 62px;" border="0" cellpadding="10">
+    editor.execCommand("mceReplaceContent", false, `
+      <table class="btech-example-table" style="width: 90%; border-collapse: collapse; border-color: gray; margin-left: auto; margin-right: auto; height: 62px;" border="0" cellpadding="10">
+        <tbody>
+        <tr style="background-color: ` + color + `;">
+        <td style="width: 1%; height: 32px;"><span style="font-size: 14pt;"><strong><span style="color: #ffffff;">&nbsp;</span></strong></span></td>
+        <td style="width: 98%; height: 32px;"><span style="font-size: 14pt;"><strong><span style="color: #ffffff;">&nbsp;Title</span></strong></span></td>
+        <td style="width: 1%; height: 32px;"><span style="font-size: 14pt;"><strong><span style="color: #ffffff;">&nbsp;</span></strong></span></td>
+        </tr>
+        <tr style="height: 30px; background-color: #fff; color: #000;">
+        <td style="height: 30px;"><span>&nbsp;</span></td>
+        <td style="height: 30px;">
+        {$selection}
+        </td>
+        <td style="height: 30px;"><span>&nbsp;</span></td>
+        </tr>
+        </tbody>
+      </table>
+      `);
+  }
+  
+  async function exampleBoxSmall() {
+    let editor = TOOLBAR.editor;
+    let selection = editor.selection;
+    let color = $("#btech-custom-editor-buttons-color").val();
+    let fontColor = "#FFFFFF";
+    editor.execCommand("mceReplaceContent", false, `
+    <table style="width: 90%; border-collapse: collapse; border-color: gray; margin-left: auto; margin-right: auto;" border="0" cellpadding="10">
       <tbody>
-      <tr style="background-color: ` + color + `;">
-      <td style="width: 1%; height: 32px;"><span style="font-size: 14pt;"><strong><span style="color: #ffffff;">&nbsp;</span></strong></span></td>
-      <td style="width: 98%; height: 32px;"><span style="font-size: 14pt;"><strong><span style="color: #ffffff;">&nbsp;Title</span></strong></span></td>
-      <td style="width: 1%; height: 32px;"><span style="font-size: 14pt;"><strong><span style="color: #ffffff;">&nbsp;</span></strong></span></td>
-      </tr>
-      <tr style="height: 30px; background-color: #fff; color: #000;">
-      <td style="height: 30px;"><span>&nbsp;</span></td>
-      <td style="height: 30px;">
-      {$selection}
+      <tr style="height: 30px;">
+      <td style="background-color: #{$color}; color: #ffffff; text-align: center; width: 1%; white-space: nowrap;">Note</td>
+      <td style="background: linear-gradient(to bottom right, #d22232 49.5%, #f0f0f0 50.5%);"></td>
+      <td style="background-color: #f0f0f0; color: #000000;">
+        {$selection}
       </td>
-      <td style="height: 30px;"><span>&nbsp;</span></td>
+      <td style="background: linear-gradient(to bottom right, #f0f0f0 49.5%, #d22232 50.5%);"></td>
       </tr>
       </tbody>
-      </table>`);
+    </table>
+      <table class="btech-example-table" style="width: 90%; border-collapse: collapse; border-color: gray; margin-left: auto; margin-right: auto; height: 62px;" border="0" cellpadding="10">
+        <tbody>
+        <tr style="background-color: ` + color + `;">
+        <td style="width: 1%; height: 32px;"><span style="font-size: 14pt;"><strong><span style="color: #ffffff;">&nbsp;</span></strong></span></td>
+        <td style="width: 98%; height: 32px;"><span style="font-size: 14pt;"><strong><span style="color: #ffffff;">&nbsp;Title</span></strong></span></td>
+        <td style="width: 1%; height: 32px;"><span style="font-size: 14pt;"><strong><span style="color: #ffffff;">&nbsp;</span></strong></span></td>
+        </tr>
+        <tr style="height: 30px; background-color: #fff; color: #000;">
+        <td style="height: 30px;"><span>&nbsp;</span></td>
+        <td style="height: 30px;">
+        {$selection}
+        </td>
+        <td style="height: 30px;"><span>&nbsp;</span></td>
+        </tr>
+        </tbody>
+      </table>
+      `);
   }
 
   function citationInsert(bg) {
@@ -230,6 +269,7 @@
     `);
 
   TOOLBAR.addButtonIcon("icon-unmuted", "Insert an information box. Can be used for warnings, examples, etc.", exampleBox);
+  TOOLBAR.addButtonIcon("icon-flag", "Insert an information box. Can be used for warnings, examples, etc.", exampleBoxSmall);
   TOOLBAR.addButtonIcon("icon-compose", "Insert a citation.", citation);
   TOOLBAR.addButtonIcon("icon-off", "Hide text. Reveal on mouse hover.", hideOnHover);
   TOOLBAR.addButtonIcon("icon-student-view", "Insert text which is shown on mouse hover.", hoverDefinition);
