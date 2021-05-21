@@ -1,4 +1,4 @@
-let gradesEl = $(".final_grade .grade");
+let gradesEl = $("#right-side-wrapper .final_grade .grade");
 let currentGrade = 0;
 try {
   currentGrade = parseFloat(gradesEl.text().match(/([0-9]+(\.[0-9]+){0,1})%/)[1]);
