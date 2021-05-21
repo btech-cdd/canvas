@@ -13,5 +13,8 @@ try {
   console.log(e);
 }
 let progress = 0;
-if (currentGrade > 0) progress = Math.round(finalGrade / currentGrade * 10000) / 100;
+if (currentGrade > 0) {
+  progress = Math.round(finalGrade / currentGrade * 10000) / 100;
+  gradesEl.after("<div>Approximately "+progress+"% of course completed.</div>")
+}
 console.log(progress + "%");
