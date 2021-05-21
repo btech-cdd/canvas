@@ -1,4 +1,4 @@
-let gradesEl = $("#student_grades_right_content .final_grade");
+let gradesEl = $(".final_grade .grade");
 console.log(gradesEl.text());
 let currentGrade = gradesEl.text().match(/([0-9]+(\.[0-9]+){0,1}%)/)[1];
 console.log(currentGrade);
