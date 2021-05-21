@@ -20,7 +20,8 @@ if (checked) {
   let progress = 0;
   if (currentGrade > 0) {
     progress = Math.round(finalGrade / currentGrade * 10000) / 100;
-    gradesEl.parent().after("<div>Progress: ~"+progress+"%</div><div id=\"btech-grade-disclaimer\">This grade treats unsubmitted assignments as 0.</div>")
+    gradesEl.append("*");
+    gradesEl.parent().after("<div>Progress: ~"+progress+"%</div><div id=\"btech-grade-disclaimer\">*This grade treats unsubmitted assignments as 0.</div>")
     checkbox.click(function() {
       let checked = checkbox.is(":checked");
       console.log(checked);
