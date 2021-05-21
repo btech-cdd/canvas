@@ -24,8 +24,8 @@ if (checked) {
     checkbox.click(function() {
       let checked = checkbox.is(":checked");
       console.log(checked);
-      if (checked) $("#btech-grade-disclaimer").show();
-      if (!checked) $("#btech-grade-disclaimer").hide();
+      if (!checked) $("#btech-grade-disclaimer").show();
+      if (checked) $("#btech-grade-disclaimer").hide();
     });
   }
   console.log(progress + "%");
