@@ -40,7 +40,7 @@
   let select = TOOLBAR.addSelect("headers", "Insert a header with an icon.");
   for (let i = 0; i < headerOptions.length; i++) {
     let className = headerOptions[i];
-    let optionName = className.replace("icon-", "").replace("-", " ");
+    let optionName = '<i class="' + className + '"></i>' + className.replace("icon-", "").replace("-", " ");
     let option = await TOOLBAR.addSelectOption(optionName, 'headers', '', function () {
       insertHeader(className);
     }, 'btech-header-insert-option');
