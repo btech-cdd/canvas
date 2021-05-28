@@ -41,15 +41,10 @@
   for (let i = 0; i < headerOptions.length; i++) {
     let className = headerOptions[i];
     let optionName = className.replace("icon-", "").replace("-", " ");
-    let option = await TOOLBAR.addSelectOption(optionName, 'tables', '', function () {
+    let option = await TOOLBAR.addSelectOption(optionName, 'headers', '', function () {
       insertHeader(className);
     }, 'btech-header-insert-option');
     console.log(optionName);
     option.attr('id', className + '-option');
   }
-
-  //whenever you click in the editor, see if it's selected a table with one of the classes
-  tinymce.activeEditor.on("click", function () {
-    resetTableButtons();
-  });
 })();
