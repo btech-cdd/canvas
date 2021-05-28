@@ -1,5 +1,5 @@
 (async function () {
-  tableOptions = [
+  headerOptions = [
     'icon-stats',
     'icon-media',
     'icon-student-view',
