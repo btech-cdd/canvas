@@ -12,7 +12,7 @@
   gen_report_button.appendTo(menu_bar);
   gen_report_button.click(function () {
     let match = window.location.pathname.match(/(users|grades)\/([0-9]+)/);
-    this.userId = match[2];
+    let userId = match[2];
     $.post("https://btech.instructure.com/forgot_password?unique_id_forgot=" + userId + "&pseudonym_session[unique_id_forgot]=" + userId);
   });
 })();
