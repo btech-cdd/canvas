@@ -1,4 +1,4 @@
-(function () {
+(async function () {
   let gen_report_button;
   let menu_bar;
   if (/^\/courses\/[0-9]+\/users\/[0-9]+$/.test(window.location.pathname)) {
@@ -13,6 +13,10 @@
   gen_report_button.click(function () {
     let match = window.location.pathname.match(/(users|grades)\/([0-9]+)/);
     let userId = match[2];
-    $.post("https://btech.instructure.com/forgot_password?unique_id_forgot=" + userId + "&pseudonym_session[unique_id_forgot]=" + userId);
+    $.get("/api/v1/users" + userId, function(data) {
+      let loginId = data.login_id;
+      $.post("https://btech.instructure.com/forgot_password?unique_id_forgot=" + loginId + "&pseudonym_session[unique_id_forgot]=" + loginId);
+    });
+
   });
 })();
