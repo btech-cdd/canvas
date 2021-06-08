@@ -290,6 +290,14 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
               /^\/courses\/[0-9]+\/grades\/[0-9]+/
             ]);
           }
+          if (IS_CDD) {
+            feature("password_reset", {}, [
+              /^\/courses\/[0-9]+\/users\/[0-9]+$/,
+              /^\/accounts\/[0-9]+\/users\/[0-9]+$/,
+              /^\/users\/[0-9]+$/,
+              /^\/courses\/[0-9]+\/grades\/[0-9]+/
+            ]);
+          }
           let rCheckInDepartment = /^\/accounts\/([0-9]+)/;
           if (rCheckInDepartment.test(window.location.pathname)) {
             CURRENT_DEPARTMENT_ID = parseInt(window.location.pathname.match(rCheckInDepartment)[1]);
