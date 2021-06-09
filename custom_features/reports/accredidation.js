@@ -7,8 +7,8 @@
   //PUT INSTRUCTIONS FOR ADDING TO A DEPARTMENT HERE
   //Try adding it to the whole school at some point
   //https://btech.instructure.com/courses/498455/accredidation
-  //https://jhveem.xyz/accredidation/lti.xml
-  if (document.title === "BTECH Accredidation") {
+  //https://jhveem.xyz/accreditation/lti.xml
+  if (document.title === "BTECH Accreditation") {
     //abort if this has already been run on the page
     if ($('#accredidation').length > 0) return;
 
