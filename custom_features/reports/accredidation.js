@@ -325,6 +325,8 @@
             let app = this;
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
             let commentEl = app.getComments(data.submission);
+            if (commentEl == "") return; //break if no comments
+
             content.show();
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
