@@ -294,6 +294,13 @@
                 'assignment': assignment
               });
               needsToWait = true;
+            } else {
+              let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
+              await app.createIframe(url, app.downloadComments, {
+                'submission': submission,
+                'assignment': assignment
+              });
+              needsToWait = true;
             }
             if (types.includes("online_upload")) {
               let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
@@ -313,6 +320,31 @@
             if (needsToWait === false) {
               app.preparingDocument = false;
             }
+          },
+          async downloadComments(iframe, content, data) {
+            let app = this;
+            let title = data.assignment.name + "-" + data.submission.user.name + " submission"
+            let commentEl = app.getComments(data.submission);
+            content.find("#rubric_holder").show();
+            content.find("#rubric_holder").prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
+            content.find("#rubric_holder").prepend("<div>Student:" + data.submission.user.name + "</div>");
+            content.find("#rubric_holder").prepend("<div>Assignment:" + data.assignment.name + "</div>");
+            content.find("#rubric_holder").append(commentEl);
+            content.find("#rubric_holder").css({
+              'max-height': '',
+              'overflow': 'visible'
+            });
+            let ogTitle = $('title').text();
+            $('title').text(title);
+            content.find("#rubric_holder").printThis({
+              pageTitle: title,
+              afterPrint: function () {
+                $('title').text(ogTitle);
+                app.preparingDocument = false;
+                iframe.remove();
+              }
+            });
+            return;
           },
           async downloadRubric(iframe, content, data) {
             let app = this;
