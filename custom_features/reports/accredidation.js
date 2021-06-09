@@ -325,18 +325,14 @@
             let app = this;
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
             let commentEl = app.getComments(data.submission);
-            content.find("#rubric_holder").show();
-            content.find("#rubric_holder").prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
-            content.find("#rubric_holder").prepend("<div>Student:" + data.submission.user.name + "</div>");
-            content.find("#rubric_holder").prepend("<div>Assignment:" + data.assignment.name + "</div>");
-            content.find("#rubric_holder").append(commentEl);
-            content.find("#rubric_holder").css({
-              'max-height': '',
-              'overflow': 'visible'
-            });
+            content.show();
+            content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
+            content.prepend("<div>Student:" + data.submission.user.name + "</div>");
+            content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
+            content.append(commentEl);
             let ogTitle = $('title').text();
             $('title').text(title);
-            content.find("#rubric_holder").printThis({
+            content.printThis({
               pageTitle: title,
               afterPrint: function () {
                 $('title').text(ogTitle);
