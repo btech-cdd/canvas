@@ -40,7 +40,11 @@
         let table = $("<table></table>");
         let rows = [];
         if (data.length > 0) {
-          let header = $("<tr><th style='border: 1px solid black; padding: 4px 8px;'>Rating</th><th style='border: 1px solid black; padding: 4px 8px;'>Percent</th></tr>")
+          if (CURRENT_DEPARTMENT_ID === 3827) {
+            let header = $("<tr><th style='border: 0px solid black; padding: 4px 8px;'>Rating</th><th style='border: 0px solid black; padding: 4px 8px;'>Percent</th></tr>")
+          } else {
+            let header = $("<tr><th style='border: 1px solid black; padding: 4px 8px;'>Rating</th><th style='border: 1px solid black; padding: 4px 8px;'>Percent</th></tr>")
+          }
           table.append(header);
           //It's possible that there can be more than one grading standard, in which case I'll have to figure out how to find the set one or current one
           //previous cell list for increasing the row span of the previously used cell if the same name
@@ -52,7 +56,11 @@
             let names = line[0].split("/");
             for (let i = 0; i < names.length; i++) {
               let name = names[i].trim();
-              let cell = $("<td style='border: 1px solid black; padding: 4px 8px;' rowspan='1'>" + name + "</td>");
+              if (CURRENT_DEPARTMENT_ID === 3827) {
+                let cell = $("<td style='border: 0px solid black; padding: 4px 8px;' rowspan='1'>" + name + "</td>");
+              } else {
+                let cell = $("<td style='border: 1px solid black; padding: 4px 8px;' rowspan='1'>" + name + "</td>");
+              }
               if (s === 0) {
                 row.append(cell);
               } else {
@@ -79,7 +87,7 @@
                 pCells[i] = tds[i];
               }
               if (CURRENT_DEPARTMENT_ID === 3827) {
-                value = "100% - " + Math.ceil((line[1]) * 100) + "%";
+                value = Math.ceil((line[1]) * 100) + "% - 100%";
               } else {
                 value = "100% - " + (line[1] * 100) + "%";
               }
@@ -91,7 +99,7 @@
               }
             } else {
               if (CURRENT_DEPARTMENT_ID === 3827) {
-                value = "" + Math.floor(data[s - 1][1] * 100) + "% - " + Math.ceil(line[1] * 100) + "%";
+                value =  Math.ceil(line[1] * 100) + "% - " + Math.floor(data[s - 1][1] * 100) + "%";
               } else {
                 value = "<" + (data[s - 1][1] * 100) + "% - " + (line[1] * 100) + "%";
               }
