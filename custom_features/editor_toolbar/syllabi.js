@@ -78,11 +78,23 @@
               for (let i = 0; i < tds.length; i++) {
                 pCells[i] = tds[i];
               }
-              value = "100% - " + (line[1] * 100) + "%";
+              if (CURRENT_DEPARTMENT_ID === 3827) {
+                value = "100% - " + Math.ceil((line[1]) * 100) + "%";
+              } else {
+                value = "100% - " + (line[1] * 100) + "%";
+              }
             } else if (s === data.length - 1) { 
-              value = "<" + (data[s - 1][1] * 100) + "%";
+              if (CURRENT_DEPARTMENT_ID === 3827) {
+                value = "Below " + Math.ceil((data[s - 1][1] * 100)) + "%";
+              } else {
+                value = "<" + (data[s - 1][1] * 100) + "%";
+              }
             } else {
-              value = "<" + (data[s - 1][1] * 100) + "% - " + (line[1] * 100) + "%";
+              if (CURRENT_DEPARTMENT_ID === 3827) {
+                value = "" + Math.floor(Math.data[s - 1][1] * 100) + "% - " + Math.ceil(line[1] * 100) + "%";
+              } else {
+                value = "<" + (data[s - 1][1] * 100) + "% - " + (line[1] * 100) + "%";
+              }
             }
             row.append("<td style='border: 1px solid black; padding: 4px 8px;'>" + value + "</td>");
             rows.push(row);
