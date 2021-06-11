@@ -40,10 +40,11 @@
         let table = $("<table></table>");
         let rows = [];
         if (data.length > 0) {
+          let header;
           if (CURRENT_DEPARTMENT_ID === 3827) {
-            let header = $("<tr><th style='border: 0px solid black; padding: 4px 8px;'>Rating</th><th style='border: 0px solid black; padding: 4px 8px;'>Percent</th></tr>")
+            header = $("<tr><th style='border: 0px solid black; padding: 4px 8px;'>Rating</th><th style='border: 0px solid black; padding: 4px 8px;'>Percent</th></tr>")
           } else {
-            let header = $("<tr><th style='border: 1px solid black; padding: 4px 8px;'>Rating</th><th style='border: 1px solid black; padding: 4px 8px;'>Percent</th></tr>")
+            header = $("<tr><th style='border: 1px solid black; padding: 4px 8px;'>Rating</th><th style='border: 1px solid black; padding: 4px 8px;'>Percent</th></tr>")
           }
           table.append(header);
           //It's possible that there can be more than one grading standard, in which case I'll have to figure out how to find the set one or current one
@@ -56,10 +57,11 @@
             let names = line[0].split("/");
             for (let i = 0; i < names.length; i++) {
               let name = names[i].trim();
+              let cell;
               if (CURRENT_DEPARTMENT_ID === 3827) {
-                let cell = $("<td style='border: 0px solid black; padding: 4px 8px;' rowspan='1'>" + name + "</td>");
+                cell = $("<td style='border: 0px solid black; padding: 4px 8px;' rowspan='1'>" + name + "</td>");
               } else {
-                let cell = $("<td style='border: 1px solid black; padding: 4px 8px;' rowspan='1'>" + name + "</td>");
+                cell = $("<td style='border: 1px solid black; padding: 4px 8px;' rowspan='1'>" + name + "</td>");
               }
               if (s === 0) {
                 row.append(cell);
