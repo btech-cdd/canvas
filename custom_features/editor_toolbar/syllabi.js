@@ -91,8 +91,7 @@
               }
             } else {
               if (CURRENT_DEPARTMENT_ID === 3827) {
-                value = "<" + (data[s - 1][1] * 100) + "% - " + (line[1] * 100) + "%";
-                // value = "" + Math.floor(Math.data[s - 1][1] * 100) + "% - " + Math.ceil(line[1] * 100) + "%";
+                value = "" + Math.floor(data[s - 1][1] * 100) + "% - " + Math.ceil(line[1] * 100) + "%";
               } else {
                 value = "<" + (data[s - 1][1] * 100) + "% - " + (line[1] * 100) + "%";
               }
