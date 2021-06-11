@@ -96,6 +96,7 @@
                 value = "<" + (data[s - 1][1] * 100) + "% - " + (line[1] * 100) + "%";
               }
             }
+            console.log(value);
             row.append("<td style='border: 1px solid black; padding: 4px 8px;'>" + value + "</td>");
             rows.push(row);
             table.append(row);
