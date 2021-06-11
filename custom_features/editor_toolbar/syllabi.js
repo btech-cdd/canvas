@@ -107,7 +107,11 @@
               }
             }
             console.log(value);
-            row.append("<td style='border: 1px solid black; padding: 4px 8px;'>" + value + "</td>");
+            if (CURRENT_DEPARTMENT_ID === 3827) {
+              row.append("<td style='border: 0px solid black; padding: 4px 8px;'>" + value + "</td>");
+            } else {
+              row.append("<td style='border: 1px solid black; padding: 4px 8px;'>" + value + "</td>");
+            }
             rows.push(row);
             table.append(row);
           }
