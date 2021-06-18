@@ -185,7 +185,7 @@
             let submittedAssignments = [];
             for (let i = 0; i < assignments.length; i++) {
               let assignment = assignments[i];
-              if (assignment.has_submitted_submissions) {
+              if (assignment.has_submitted_submissions ||  assignment.has_overrides) {
                 submittedAssignments.push(assignment);
               }
             }
