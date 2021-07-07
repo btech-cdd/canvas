@@ -328,6 +328,7 @@
                 let courseId = course.course_id;
                 includedAssignments[courseId] = {
                   name: course.name,
+                  id: courseId,
                   include: true,
                   groups: {}
                 };
@@ -356,6 +357,7 @@
                     let group = assignmentGroups[g]
                     includedAssignments[courseId].groups[g] = {
                       name: group.name,
+                      id: group.id,
                       group_weight: group.group_weight,
                       include: true,
                       assignments: {}
