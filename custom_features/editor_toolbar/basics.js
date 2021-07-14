@@ -237,6 +237,51 @@
       existingTheme.remove();
     }
   }
+
+  function kalturaInfo() {
+    let editor = TOOLBAR.editor;
+    let selection = editor.selection.getNode();
+    let iframe = $(selection);
+    let src = iframe.attr("src");
+    let kalturaSrc = src.includes("kaltura");
+    let kid = "";
+    let pid = "";
+    if (kalturaSrc) {
+        let kidMatch = src.match(/entryid\/([0-9]_[0-9A-Za-z]+)/);
+        if (kidMatch) kid = kidMatch[1];
+
+        let pidMatch = src.match(/playerSkin\/([0-9]+)/);
+        if (pidMatch) pid = pidMatch[1];
+    } else {
+        kid = iframe.attr("kentryid");
+        pid = iframe.attr("kuiconfid");
+    }
+    let width = iframe.width();
+    let height = iframe.height();
+    if (kid == "" && pid == "") return;
+
+    let bg = TOOLBAR.addBackground();
+    bg.append(`
+      <div id='kaltura-video-info-container' style='
+      width: 500px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      position:fixed;
+      top: 50%;
+      z-index:1000;
+      transition: 0.5s;
+      background-color: #FFF;
+      border: 2px solid #888;
+      padding: 10px 20px;
+      color: #000;
+      border-radius: 5px;'>
+      Kaltura Video Id: ` + kid + `<br>
+      Kaltura Skin Id: ` + pid + `<br>
+      Width: ` + width + `<br>
+      Height: ` + height + `
+      </div>
+      </div>`);
+}
   await TOOLBAR.checkReady();
 
   //Add in option to change color of exampleBox. IE, you click in it, it figures out he color selected, if you change the color, it changes the box
@@ -259,4 +304,5 @@
   TOOLBAR.addButtonIcon("icon-student-view", "Insert text which is shown on mouse hover.", hoverDefinition);
   //TOOLBAR.addButtonIcon("far fa-swatchbook", "Create a theme for the page. The template will be inserted at the top of the page. Edit the template to apply changes throughout the page.", addCustomThemeParent);
   TOOLBAR.addButtonIcon("icon-materials-required", "Auto format the page to break the page into sections. Sections are determined by the top level heading.", formatPage);
+  TOOLBAR.addButtonIcon("icon-info", "Display Kaltura video information.", kalturaInfo);
 })();
