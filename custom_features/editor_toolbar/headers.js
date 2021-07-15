@@ -59,7 +59,7 @@
     option.attr('id', className + '-option');
   }
   console.log("RUNNING");
-  $("#btech-custom-editor-select-headers").select2();
+  select.select2();
   /*
   select.select2({
     templateSelection: iconFormat,
