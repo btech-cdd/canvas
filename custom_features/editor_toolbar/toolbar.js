@@ -92,6 +92,7 @@ TOOLBAR = {
     feature.selects[selectName][name] = func;
     let select = $("#" + selectId);
     let option = $("<option title='" + description + "' class='" + className + "' value='" + name + "'>" + name + "</option>");
+    console.log(data);
     for (let d in data) {
       option.data(d, data[d]);
     }
