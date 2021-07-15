@@ -59,9 +59,9 @@
     option.attr('id', className + '-option');
   }
   console.log("RUNNING");
-  console.log("#" + $(select).attr("id"));
+  console.log();
   console.log($("#btech-custom-editor-select-headers"));
-  select.select2();
+  $("#" + $(select).attr("id")).select2();
   /*
   select.select2({
     templateSelection: iconFormat,
