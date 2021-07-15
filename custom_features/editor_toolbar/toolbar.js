@@ -93,8 +93,6 @@ TOOLBAR = {
     let select = $("#" + selectId);
     let option = $("<option title='" + description + "' class='" + className + "' value='" + name + "'>" + name + "</option>");
     for (let d in data) {
-      console.log(d);
-      console.log(data[d]);
       option.attr("data-" + d, data[d]);
     }
     select.append(option);

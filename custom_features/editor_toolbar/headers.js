@@ -37,7 +37,7 @@
 
   function iconFormat(icon) {
     var originalOption = icon.element;
-    return $('<span><i class="fa ' + $(originalOption).data('icon') + '"></i> ' + icon.text + '</span>');
+    return $('<span><i class="fa ' + $(originalOption).attr('data-icon') + '"></i> ' + icon.text + '</span>');
   }
 
   await TOOLBAR.checkReady();
@@ -53,14 +53,11 @@
         'icon': className
       }
     );
-    console.log(optionName);
     option.attr('id', className + '-option');
   }
-  console.log(select);
-  console.log(select.attr('id'));
   select.select2({
     templateSelection: iconFormat,
     templateResult: iconFormat,
     allowHTML: true
-  })
+  });
 })();
