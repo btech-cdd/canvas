@@ -29,7 +29,7 @@
     let fontColor = "#000000";
     editor.execCommand("mceReplaceContent", false, `
     <h2 class="icon-header" style="text-align: center;">
-      <span><strong><i class="`+className+`"></i> <span class="btech-hidden">#ICON#</span> </strong></span>
+      <span><strong><i class="` + className + `"></i> <span class="btech-hidden">#ICON#</span> </strong></span>
     </h2>
     <h2 style="text-align: center;">HEADING</h2>
       `);
@@ -43,7 +43,10 @@
     let optionName = className.replace("icon-", "").replace("-", " ");
     let option = await TOOLBAR.addSelectOption(optionName, 'headers', '', function () {
       insertHeader(className);
-    }, 'btech-header-insert-option');
+    }, 
+    'btech-header-insert-option',
+    {'icon': className}
+    );
     console.log(optionName);
     option.attr('id', className + '-option');
   }

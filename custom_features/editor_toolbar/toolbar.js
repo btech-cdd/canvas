@@ -86,12 +86,15 @@ TOOLBAR = {
     return select;
   },
 
-  async addSelectOption(name, selectName, description, func, className) {
+  async addSelectOption(name, selectName, description, func, className, data={}) {
     let feature = this;
     let selectId = this.selectNameToId(selectName);
     feature.selects[selectName][name] = func;
     let select = $("#" + selectId);
     let option = $("<option title='" + description + "' class='" + className + "' value='" + name + "'>" + name + "</option>");
+    for (let d in data) {
+      option.data(d, data[d]);
+    }
     select.append(option);
     return option;
   },
