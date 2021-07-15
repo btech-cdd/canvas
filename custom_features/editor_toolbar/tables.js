@@ -147,7 +147,7 @@
   await TOOLBAR.checkReady();
   //TOOLBAR.addButtonIcon("far fa-file-spreadsheet", "Insert a table which will be linked to a google sheet. You will need the google sheet id.", googleSheetsTable);
   TOOLBAR.addButtonIcon("icon-ms-excel", "Insert a table which will be linked to a source table on a Canvas page. You will need the page id as it appears in the page URL.", tableFromPage);
-  let select = TOOLBAR.addSelect("tables", "Convert tables to other display options.");
+  let select = await TOOLBAR.addSelect("tables", "Convert tables to other display options.");
   for (let i = 0; i < tableOptions.length; i++) {
     let className = tableOptions[i];
     let optionName = className.replace("btech-", "").replace("-table", "");
