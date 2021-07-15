@@ -58,9 +58,6 @@
   }
   console.log("RUNNING");
   select.select2({
-    templateSelection: iconFormat,
-    templateResult: iconFormat,
-    allowHTML: true
   });
   console.log("RUNNED");
 })();
