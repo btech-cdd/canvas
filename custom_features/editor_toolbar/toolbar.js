@@ -95,7 +95,7 @@ TOOLBAR = {
     for (let d in data) {
       console.log(d);
       console.log(data[d]);
-      option.data(d, data[d]);
+      option.attr("data-" + d, data[d]);
     }
     select.append(option);
     return option;
