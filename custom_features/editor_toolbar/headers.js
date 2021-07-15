@@ -42,7 +42,7 @@
 
   await TOOLBAR.checkReady();
   //TOOLBAR.addButtonIcon("far fa-file-spreadsheet", "Insert a table which will be linked to a google sheet. You will need the google sheet id.", googleSheetsTable);
-  let select = await TOOLBAR.addSelect("headers", "Insert a header with an icon.");
+  let select = $(await TOOLBAR.addSelect("headers", "Insert a header with an icon."));
   for (let i = 0; i < headerOptions.length; i++) {
     let className = headerOptions[i];
     let optionName = className.replace("icon-", "").replace("-", " ");
