@@ -38,9 +38,9 @@
   function iconFormat(icon) {
     var originalOption = icon.element;
     console.log(originalOption);
-    let icon = $(originalOption).attr("data-icon");
-    console.log(icon);
-    return $('<span><i class="icon-' + icon + '"></i> ' + icon.text + '</span>');
+    let iconName = $(originalOption).attr("data-icon");
+    console.log(iconName);
+    return $('<span><i class="icon-' + iconName + '"></i> ' + icon.text + '</span>');
   }
 
   await TOOLBAR.checkReady();
