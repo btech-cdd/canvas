@@ -40,7 +40,7 @@
     console.log(originalOption);
     let iconName = $(originalOption).attr("data-icon");
     console.log(iconName);
-    return $('<span><i class="icon-' + iconName + '"></i> ' + icon.text + '</span>');
+    return $('<span><i class="' + iconName + '"></i> ' + icon.text + '</span>');
   }
 
   await TOOLBAR.checkReady();
@@ -58,13 +58,9 @@
     );
     option.attr('id', className + '-option');
   }
-  console.log("RUNNING");
-  console.log();
-  console.log($("#btech-custom-editor-select-headers"));
   $("#" + $(select).attr("id")).select2({
     templateSelection: iconFormat,
     templateResult: iconFormat,
     allowHTML: true
   });
-  console.log("RUNNED");
 })();
