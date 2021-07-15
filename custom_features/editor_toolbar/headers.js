@@ -35,6 +35,11 @@
       `);
   }
 
+  function iconFormat(icon) {
+    var originalOption = icon.element;
+    return $('<span><i class="fa ' + $(originalOption).data('icon') + '"></i> ' + icon.text + '</span>');
+  }
+
   await TOOLBAR.checkReady();
   //TOOLBAR.addButtonIcon("far fa-file-spreadsheet", "Insert a table which will be linked to a google sheet. You will need the google sheet id.", googleSheetsTable);
   let select = TOOLBAR.addSelect("headers", "Insert a header with an icon.");
@@ -42,12 +47,18 @@
     let className = headerOptions[i];
     let optionName = className.replace("icon-", "").replace("-", " ");
     let option = await TOOLBAR.addSelectOption(optionName, 'headers', '', function () {
-      insertHeader(className);
-    }, 
-    'btech-header-insert-option',
-    {'icon': className}
+        insertHeader(className);
+      },
+      'btech-header-insert-option', {
+        'icon': className
+      }
     );
     console.log(optionName);
     option.attr('id', className + '-option');
   }
+  select.select2({
+    templateSelection: iconFormat,
+    templateResult: iconFormat,
+    allowHTML: true
+  })
 })();
