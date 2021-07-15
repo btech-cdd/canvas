@@ -61,13 +61,10 @@
   console.log("RUNNING");
   console.log();
   console.log($("#btech-custom-editor-select-headers"));
-  $("#" + $(select).attr("id")).select2();
-  /*
-  select.select2({
+  $("#" + $(select).attr("id")).select2({
     templateSelection: iconFormat,
     templateResult: iconFormat,
     allowHTML: true
   });
-  */
   console.log("RUNNED");
 })();
