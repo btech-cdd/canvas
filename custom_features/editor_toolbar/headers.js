@@ -56,6 +56,8 @@
     console.log(optionName);
     option.attr('id', className + '-option');
   }
+  console.log(select);
+  console.log(select.attr('id'));
   select.select2({
     templateSelection: iconFormat,
     templateResult: iconFormat,
