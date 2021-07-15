@@ -159,6 +159,7 @@
     console.log(optionName);
     option.attr('id', className + '-option');
   }
+  $("#" + $(select).attr("id")).select2();
 
   //whenever you click in the editor, see if it's selected a table with one of the classes
   tinymce.activeEditor.on("click", function () {
