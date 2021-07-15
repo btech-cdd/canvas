@@ -36,6 +36,7 @@
   }
 
   function iconFormat(icon) {
+    console.log(icon);
     var originalOption = icon.element;
     return $('<span><i class="fa ' + $(originalOption).attr('data-icon') + '"></i> ' + icon.text + '</span>');
   }
@@ -55,9 +56,11 @@
     );
     option.attr('id', className + '-option');
   }
+  console.log("RUNNING");
   select.select2({
     templateSelection: iconFormat,
     templateResult: iconFormat,
     allowHTML: true
   });
+  console.log("RUNNED");
 })();
