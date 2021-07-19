@@ -2,6 +2,7 @@
   headerOptions = [
     'icon-stats',
     'icon-media',
+    'icon-rubric',
     'icon-student-view',
     'icon-copy-course',
     'icon-discussion',
