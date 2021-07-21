@@ -15,7 +15,6 @@
     buttonRef = ".quiz-header .buttons";
   }
   if (pageType == "") return;
-  console.log(pageType);
   if (pageType == "quizzes") {
     let questions = $(".display_question");
     questions.each(function () {
@@ -30,7 +29,6 @@
       question.find('.header .question_name').after(playButton);
     });
   }
-  console.log(pageType);
   speechSynthesis.cancel(); //clear from existing utterances
   speechSynthesis.pause(); //pause so it doesn't start off playing.
   var isPaused = true; //speechSynthesis paused property doesn't work. Using custom variable until it does work.
@@ -40,7 +38,6 @@
 
   function reset() {
     let els = $(".user_content").children();
-    console.log(els);
     setCurrentEl($(els[0]));
   }
 
@@ -111,7 +108,6 @@
     //set up as a promise so can await before starting the next line
     return new Promise(resolve => {
       speak.onend = function () {
-        console.log("resolve");
         resolve();
       };
     });
@@ -129,7 +125,6 @@
       for (let l = 0; l < lines.length; l++) {
         let line = lines[l].trim();
         if (line !== "") {
-          console.log(line);
           await nextLine(line);
         }
       }
