@@ -292,6 +292,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             ]);
           }
           if (IS_CDD) {
+            feature("accessibility/reader", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/)
             feature("password_reset", {}, [
               /^\/courses\/[0-9]+\/users\/[0-9]+$/,
               /^\/accounts\/[0-9]+\/users\/[0-9]+$/,
