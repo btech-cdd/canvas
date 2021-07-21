@@ -1,6 +1,7 @@
 (async function () {
   let pageType = "";
   let buttonRef = "";
+  if (location.pathname.includes("\/edit")) return;
   if (location.pathname.includes("\/pages\/")) {
     pageType = "page";
     buttonRef = ".buttons";
