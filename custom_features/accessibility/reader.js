@@ -143,27 +143,6 @@
   }
 
   //set up the controls
-  let readerControls = $(`
-        <div
-            style='
-              width: 110px;
-              margin-right: -140px;
-              position:fixed;
-              bottom: 20px;
-              z-index:1000;
-              transition: 0.5s;
-              background-color: #A00012;
-              border: 2px solid #D61310;
-              padding: 10px 20px;
-              color: #FFF;
-              border-radius: 5px;
-              cursor: pointer;
-              user-select: none;
-              right: 110px;
-            '
-          >
-          </div>
-          `);
   let playButton = $('<a class="btn" href="#" onclick="return;"><i class="icon-audio"></i></a>');
   playButton.click(function () {
     if (isPaused) {
