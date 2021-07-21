@@ -173,9 +173,9 @@
   });
   //I don't think this is necessary atm. Cand add it in if that changes. Also uncomment where it gets added to the controls.
   //let restart = $('<a class="btn" href="#"><i class="icon-refresh""></i></a>');
-  $(buttonRef).prepend(prevButton);
-  $(buttonRef).prepend(playButton);
   $(buttonRef).prepend(nextButton);
+  $(buttonRef).prepend(playButton);
+  $(buttonRef).prepend(prevButton);
 
   $('body').append(readerControls);
 
