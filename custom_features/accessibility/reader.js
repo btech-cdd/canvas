@@ -177,7 +177,5 @@
   $(buttonRef).prepend(playButton);
   $(buttonRef).prepend(prevButton);
 
-  $('body').append(readerControls);
-
   reset();
 })();
