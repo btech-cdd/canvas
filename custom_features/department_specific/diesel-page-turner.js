@@ -1,10 +1,11 @@
 (async function () {
   window.addEventListener('load', function () {
+    console.log("imgs")
     let imgs = $("#content img");
     imgs.each(function () {
       let img = $(this);
       let src = img.attr('src');
-      let reg = /cdxsite\.com.*?([0-9]{4})\.jpg/;
+      let reg = /(cdxsite\.com|cdxmedia\.info).*?([0-9]{4})\.jpg/;
       let numPieces = src.match(reg);
 
       if (numPieces) {
@@ -16,7 +17,7 @@
 
           let src = img.attr('src');
           let numPieces = src.match(reg);
-          let pageNumString = numPieces[1];
+          let pageNumString = numPieces[2];
           let pageNum = parseInt(pageNumString);
 
           if (pageNum > 1 && x < quart) {

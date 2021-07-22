@@ -1,6 +1,7 @@
 (async function () {
   let pageType = "";
   let buttonRef = "";
+  //this is kind of a lazy way of doing this, since a page called editor would also trigger this. Change when you're not feeling like a lazy punk.
   if (location.pathname.includes("\/edit")) return;
   if (location.pathname.includes("\/pages\/")) {
     pageType = "page";
