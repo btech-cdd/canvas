@@ -2,6 +2,7 @@
   if (!IS_ME) return;
   let pageType = "";
   let buttonRef = "";
+  var currentSpeak;
   //this is kind of a lazy way of doing this, since a page called editor would also trigger this. Change when you're not feeling like a lazy punk.
   if (location.pathname.includes("\/edit")) return;
   if (location.pathname.includes("\/pages\/")) {
@@ -46,8 +47,8 @@
   }
 
   function play() {
-    console.log(speechSynthesis.elapsedTime);
-    console.log(speechSynthesis.charIndex);
+    console.log(currentSpeak.elapsedTime);
+    console.log(currentSpeak.charIndex);
     speechSynthesis.resume();
     currentEl.css('background-color', playingColor);
     isPaused = false;
@@ -83,7 +84,6 @@
       speechSynthesis.pause();
     }
   }, 10000);
-  var currentSpeak;
   async function nextLine(line) {
     console.log("Add Line")
     console.log(line);
