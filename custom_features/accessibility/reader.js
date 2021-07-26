@@ -46,6 +46,8 @@
   }
 
   function play() {
+    console.log(speechSynthesis.elapsedTime);
+    console.log(speechSynthesis.charIndex);
     speechSynthesis.resume();
     currentEl.css('background-color', playingColor);
     isPaused = false;
