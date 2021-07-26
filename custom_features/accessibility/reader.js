@@ -82,6 +82,8 @@
   }, 10000);
   var currentSpeak;
   async function nextLine(line) {
+    console.log("Add Line")
+    console.log(line);
     var speak = new SpeechSynthesisUtterance();
     currentSpeak = speak;
     speak.text = line;
