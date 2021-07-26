@@ -78,6 +78,7 @@
       console.log("Playing?");
       speechSynthesis.resume();
       speechSynthesis.pause();
+      speechSynthesis.pause();
     }
   }, 10000);
   var currentSpeak;
