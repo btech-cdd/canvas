@@ -75,9 +75,8 @@
   //can be set as high as 14000, currently have less just to be safe.
   var synthesisInterval = setInterval(() => {
     if (isPaused) {
-      console.log("Playing?");
+      console.log(speechSynthesis);
       speechSynthesis.resume();
-      speechSynthesis.pause();
       speechSynthesis.pause();
     }
   }, 10000);
