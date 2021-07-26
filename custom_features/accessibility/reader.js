@@ -76,7 +76,6 @@
   var synthesisInterval = setInterval(() => {
     if (isPaused) {
       console.log(speechSynthesis);
-      speechSynthesis.resume();
       speechSynthesis.pause();
     }
   }, 10000);
