@@ -128,6 +128,7 @@
     }
 
     if (lines !== null && el.is(":visible")) {
+      console.log(lines);
       for (let l = 0; l < lines.length; l++) {
         let line = lines[l].trim();
         if (line !== "") {
