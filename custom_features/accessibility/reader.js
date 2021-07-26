@@ -1,4 +1,5 @@
 (async function () {
+  if (!IS_ME) return;
   let pageType = "";
   let buttonRef = "";
   //this is kind of a lazy way of doing this, since a page called editor would also trigger this. Change when you're not feeling like a lazy punk.
