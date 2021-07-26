@@ -39,6 +39,7 @@
   var playingColor = "#00CCFF"; //a little bright atm, but this is the color a el gets highlighted in if it is playing.
 
   function reset() {
+    speechSynthesis.cancel(); //clear from existing utterances
     let els = $(".user_content").children();
     setCurrentEl($(els[0]));
   }
