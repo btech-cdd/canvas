@@ -410,6 +410,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
 
           //CDD ONLY
           feature("quizzes/question_bank_sorter", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/);
+          feature("sort_assignment_groups", {}, /assignments$/)
           //featureCDD("previous-enrollment-data/previous_enrollment_period_grades");
           // featureCDD("help_tab");
           featureCDD("rubrics/add_criteria_from_csv", {}, new RegExp('/(rubrics|assignments\/)'));

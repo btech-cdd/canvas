@@ -103,6 +103,7 @@
     };
 
     //init speaking
+    speechSynthesis.cancel();
     speechSynthesis.speak(speak);
 
     //if this isn't done, then the interval above will start playing each line every <interval value> seconds.
