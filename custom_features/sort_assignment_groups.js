@@ -51,6 +51,7 @@
           $.post("/courses/"+ENV.COURSE_ID+"/assignment_groups/" + groupId + "/reorder", {
               order: newOrder
           });
+          location.reload();
       });
       menu.append(menuItem);
   });
