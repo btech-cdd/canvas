@@ -292,7 +292,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             ]);
           }
           if (IS_CDD) {
-            feature("accessibility/reader", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/)
+            //feature("accessibility/reader", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/)
             feature("password_reset", {}, [
               /^\/courses\/[0-9]+\/users\/[0-9]+$/,
               /^\/accounts\/[0-9]+\/users\/[0-9]+$/,
@@ -418,6 +418,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           featureCDD("editor_toolbar/images", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           featureCDD("editor_toolbar/tables", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           featureCDD("editor_toolbar/headers", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+          featureCDD("page_formatting/print_rubric", {}, /^\/courses\/[0-9]+\/(assignments)/);
           featureCDD("modules/show_hours", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
           featureCDD("editor_toolbar/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           // featureCDD('date_display/add_current_year_speed_grader', {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
