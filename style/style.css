@@ -203,3 +203,24 @@
 .btech-self-graded-rubric .buttons .submit:hover {
   background-color: #14892c;
 }
+
+.btech-popup-message {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+
+}
+.btech-popup-message .closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btech-popup-message .closebtn:hover {
+  color: black;
+}
