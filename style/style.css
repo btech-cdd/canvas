@@ -208,7 +208,11 @@
   padding: 20px;
   background-color: #f44336;
   color: white;
-
+  position: fixed;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 .btech-popup-message .closebtn {
   margin-left: 15px;
