@@ -215,10 +215,10 @@
   width: 100%;
 }
 .btech-popup-message .closebtn {
-  margin-left: 15px;
+  margin-right: 15px;
+  float: right;
   color: white;
   font-weight: bold;
-  right: -2rem;
   font-size: 22px;
   line-height: 20px;
   cursor: pointer;
