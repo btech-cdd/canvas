@@ -43,7 +43,6 @@ function showReservation(appointment) {
       for (let s in signups) {
         let signup = signups[s];
         if (ENV.QUIZ.title.includes(signup.title)) {
-          console.log(signup.url);
           let appointmentGroupData = await canvasGet(signup.url, {
             include: ["appointments"]
           });
@@ -51,7 +50,6 @@ function showReservation(appointment) {
           for (let a in appointments) {
             let appointment = appointments[a];
             let reserved = appointment.reserved;
-            console.log(reserved);
             let start = Date.parse(appointment.start_at);
             let formattedDate = formatDate(start);
             let signupButton = $('<div class="btn">' + formattedDate + '</div>');
@@ -60,9 +58,6 @@ function showReservation(appointment) {
             signupButton.click(function () {
               let reserve = confirm("Reserve the following lab time? " + formattedDate);
               if (reserve) {
-                $.post(appointment.reserve_url, function (data) {
-                  console.log(data);
-                });
                 showReservation(appointment);
               }
             });
@@ -70,7 +65,6 @@ function showReservation(appointment) {
               signedup = true;
               showReservation(appointment);
             }
-            console.log(formattedDate);
           }
         }
         if (!signedup) signupContainer.show();
