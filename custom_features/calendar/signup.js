@@ -2,7 +2,7 @@
   //have currently commented out all of the cancel options. If have the time, implement option to cancel appointments on the page as well.
   let signupContainers = $(".btech-appointment-signup");
   if (signupContainers.length > 0) {
-    signupContainers.each(function () {
+    signupContainers.each(async function () {
       let signupContainer = $(this);
       let signedupContainer = $('<div class="btech-appointment-signedup"></div>');
       let cancelButton = $('<div class="btn"></div>');
