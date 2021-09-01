@@ -344,6 +344,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
             feature("rubrics/sortable", {}, [/\/rubrics/, /\/assignments\//]);
             feature("survey/survey", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+            feature("calendar/signup", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             if (IS_BLUEPRINT) feature('blueprint_association_links');
             feature('modules/convert_to_page');
 
@@ -391,9 +392,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             if (departmentId === 3837) { //auto collision
               feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
               feature("rubrics/self_graded", {}, [/^\/courses\/[0-9]+\/gradebook\/speed_grader/, /courses\/([0-9]+)\/assignments\/([0-9]+)/]);
-            }
-            if (departmentId === 3834) {
-              feature("calendar/signup", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             }
             if (departmentId === 3840 || departmentId === 3839) { //media design & drafting
             }
