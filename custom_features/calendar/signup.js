@@ -1,3 +1,23 @@
+function formatDate(date) {
+  return new Intl.DateTimeFormat('en-GB', {
+    dateStyle: 'full',
+    timeStyle: 'short'
+  }).format(date)
+}
+
+function showReservation(appointment) {
+  let start = Date.parse(appointment.start_at);
+  let formattedDate = formatDate(start);
+  signedupContainer.html(`<p> You have an appointment scheduled for the following time:</p>
+            <p>` + formattedDate + `</p>
+            <p>If you would like to cancel your appointment, please cancel it through your calendar.</p>`);
+  /*
+  cancelButton.text(formattedDate);
+  cancelUrl = appointment.url;
+  */
+  signedupContainer.show();
+  signupContainer.hide();
+}
 (async function () {
   //have currently commented out all of the cancel options. If have the time, implement option to cancel appointments on the page as well.
   let signupContainers = $(".btech-appointment-signup");
@@ -20,19 +40,6 @@
       let signedup = false;
       let signups = await canvasGet("/api/v1/appointment_groups?context_codes[]=course_" + ENV.COURSE_ID);
 
-      function showReservation(appointment) {
-        let start = Date.parse(appointment.start_at);
-        let formattedDate = formatDate(start);
-        signedupContainer.html(`<p> You have an appointment scheduled for the following time:</p>
-          <p>` + formattedDate + `</p>
-          <p>If you would like to cancel your appointment, please cancel it through your calendar.</p>`);
-        /*
-        cancelButton.text(formattedDate);
-        cancelUrl = appointment.url;
-        */
-        signedupContainer.show();
-        signupContainer.hide();
-      }
       for (let s in signups) {
         let signup = signups[s];
         if (ENV.QUIZ.title.includes(signup.title)) {
