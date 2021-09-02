@@ -261,6 +261,9 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
   let currentUser = parseInt(ENV.current_user.id);
   IS_ME = (currentUser === 1893418);
   const IS_CDD = (CDDIDS.includes(currentUser))
+  if (IS_CDD) {
+    externalFeature("https://cdn.datacamp.com/datacamp-light-latest.min.js", /^\/courses\/540246\/(pages|assignments|quizzes|discussion_topics)/);
+  }
   /*
   https://btech.instructure.com/accounts/3/theme_editor
   */
