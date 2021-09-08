@@ -275,174 +275,176 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
     feature('modules/course_features');
   }
   add_javascript_library(SOURCE_URL + "/custom_canvas_import.js");
-  add_javascript_library("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js");
-  $.getScript("https://cdn.jsdelivr.net/npm/vue").done(function () {
+  $.getScript("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js").done(function () {
+
     $.getScript(SOURCE_URL + "/custom_features/editor_toolbar/toolbar.js").done(() => {
-      $.getScript(SOURCE_URL + "/course_data/course_list.js").done(() => {
-        $.getScript(SOURCE_URL + "/course_data/course_hours.js").done(() => {
-          //GENERAL FEATURES
-          if (!IS_TEACHER) {
-            feature("reports/individual_page/report", {}, [/^\/$/]);
-          }
-          if (IS_TEACHER) {
-            feature("reports/grades_page/report", {}, /^\/courses\/[0-9]+\/gradebook$/);
-            feature("hs/enroll", {}, /^\/accounts\/[0-9]+\/enrollhs$/);
-            feature("reports/individual_page/report", {}, [
-              /^\/courses\/[0-9]+\/users\/[0-9]+$/,
-              /^\/accounts\/[0-9]+\/users\/[0-9]+$/,
-              /^\/users\/[0-9]+$/,
-              /^\/courses\/[0-9]+\/grades\/[0-9]+/
-            ]);
-          }
-          if (IS_CDD) {
-            //feature("accessibility/reader", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/)
-            feature("password_reset", {}, [
-              /^\/courses\/[0-9]+\/users\/[0-9]+$/,
-              /^\/accounts\/[0-9]+\/users\/[0-9]+$/,
-              /^\/users\/[0-9]+$/,
-              /^\/courses\/[0-9]+\/grades\/[0-9]+/
-            ]);
-          }
-          let rCheckInDepartment = /^\/accounts\/([0-9]+)/;
-          if (rCheckInDepartment.test(window.location.pathname)) {
-            CURRENT_DEPARTMENT_ID = parseInt(window.location.pathname.match(rCheckInDepartment)[1]);
-          }
-          let rCheckInCourse = /^\/courses\/([0-9]+)/;
-          if (rCheckInCourse.test(window.location.pathname)) {
-            IS_BLUEPRINT = !(ENV.BLUEPRINT_COURSES_DATA === undefined)
-            CURRENT_COURSE_ID = parseInt(window.location.pathname.match(rCheckInCourse)[1]);
-            let courseData = null;
-            $.get('/api/v1/courses/' + CURRENT_COURSE_ID, function (data) {
-              courseData = data;
-              let year = null;
-              let dateData = courseData.start_at;
+      feature("editor_toolbar/basics", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
+      feature("editor_toolbar/syllabi", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature('page_formatting/dropdown_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature('page_formatting/tabs_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature('page_formatting/expandable_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature('page_formatting/google_sheets_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature('page_formatting/table_from_page', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature("page_formatting/tinymce_font_size", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
+      feature("page_formatting/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature("page_formatting/image_formatting", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+    });
+  });
+  $.getScript("https://cdn.jsdelivr.net/npm/vue").done(function () {
+    $.getScript(SOURCE_URL + "/course_data/course_list.js").done(() => {
+      $.getScript(SOURCE_URL + "/course_data/course_hours.js").done(() => {
+        //GENERAL FEATURES
+        if (!IS_TEACHER) {
+          feature("reports/individual_page/report", {}, [/^\/$/]);
+        }
+        if (IS_TEACHER) {
+          feature("reports/grades_page/report", {}, /^\/courses\/[0-9]+\/gradebook$/);
+          feature("hs/enroll", {}, /^\/accounts\/[0-9]+\/enrollhs$/);
+          feature("reports/individual_page/report", {}, [
+            /^\/courses\/[0-9]+\/users\/[0-9]+$/,
+            /^\/accounts\/[0-9]+\/users\/[0-9]+$/,
+            /^\/users\/[0-9]+$/,
+            /^\/courses\/[0-9]+\/grades\/[0-9]+/
+          ]);
+        }
+        if (IS_CDD) {
+          //feature("accessibility/reader", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/)
+          feature("password_reset", {}, [
+            /^\/courses\/[0-9]+\/users\/[0-9]+$/,
+            /^\/accounts\/[0-9]+\/users\/[0-9]+$/,
+            /^\/users\/[0-9]+$/,
+            /^\/courses\/[0-9]+\/grades\/[0-9]+/
+          ]);
+        }
+        let rCheckInDepartment = /^\/accounts\/([0-9]+)/;
+        if (rCheckInDepartment.test(window.location.pathname)) {
+          CURRENT_DEPARTMENT_ID = parseInt(window.location.pathname.match(rCheckInDepartment)[1]);
+        }
+        let rCheckInCourse = /^\/courses\/([0-9]+)/;
+        if (rCheckInCourse.test(window.location.pathname)) {
+          IS_BLUEPRINT = !(ENV.BLUEPRINT_COURSES_DATA === undefined)
+          CURRENT_COURSE_ID = parseInt(window.location.pathname.match(rCheckInCourse)[1]);
+          let courseData = null;
+          $.get('/api/v1/courses/' + CURRENT_COURSE_ID, function (data) {
+            courseData = data;
+            let year = null;
+            let dateData = courseData.start_at;
 
-              if (dateData !== null) {
+            if (dateData !== null) {
 
-                let yearData = dateData.trim().match(/^(2[0-9]{3})-([0-9]+)/);
-                if (yearData != null) {
-                  year = parseInt(yearData[1]);
-                  month = parseInt(yearData[2]);
-                  if (month < 6) {
-                    year -= 1;
-                  }
-                  let crsCode = courseData.course_code;
-                  CURRENT_COURSE_HOURS = COURSE_HOURS[year][crsCode];
+              let yearData = dateData.trim().match(/^(2[0-9]{3})-([0-9]+)/);
+              if (yearData != null) {
+                year = parseInt(yearData[1]);
+                month = parseInt(yearData[2]);
+                if (month < 6) {
+                  year -= 1;
                 }
+                let crsCode = courseData.course_code;
+                CURRENT_COURSE_HOURS = COURSE_HOURS[year][crsCode];
               }
-            })
+            }
+          })
 
-            //AVAILABLE TO EVERYONE
-            feature("editor_toolbar/basics", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
-            feature("editor_toolbar/syllabi", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-            feature('page_formatting/dropdown_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-            feature('page_formatting/tabs_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-            feature('page_formatting/expandable_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-            feature('page_formatting/google_sheets_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-            feature('page_formatting/table_from_page', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-            feature("page_formatting/tinymce_font_size", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
-            feature("page_formatting/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-            feature("page_formatting/image_formatting", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-            feature("quizzes/duplicate_bank_item", {}, /\/courses\/([0-9]+)\/question_banks\/([0-9]+)/);
-            feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
-            feature("rubrics/sortable", {}, [/\/rubrics/, /\/assignments\//]);
-            feature("survey/survey", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-            feature("calendar/signup", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-            if (IS_BLUEPRINT) feature('blueprint_association_links');
-            feature('modules/convert_to_page');
+          //AVAILABLE TO EVERYONE
+          feature("quizzes/duplicate_bank_item", {}, /\/courses\/([0-9]+)\/question_banks\/([0-9]+)/);
+          feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
+          feature("rubrics/sortable", {}, [/\/rubrics/, /\/assignments\//]);
+          feature("survey/survey", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+          feature("calendar/signup", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+          if (IS_BLUEPRINT) feature('blueprint_association_links');
+          feature('modules/convert_to_page');
 
-            featureBeta('rubrics/gen_comment');
-            // feature('instructional/glossary');
-            let courseId = CURRENT_COURSE_ID;
-            //COURSE SPECIFIC FEATURES
-            featurePilot("rubrics/gen_comment", courseId, [489089]); //Micro Controllers I
-            featurePilot("previous-enrollment-data/previous_enrollment_period_grades", courseId, [511596]); //Business High School Summer
-            //DEPARTMENT SPECIFIC IMPORTS
-            let departmentId = 0;
-            //DETERMINE CURRENT DEPARTMENT FROM DEPARTMENT LIST
-            for (let d in COURSE_LIST) {
-              if (COURSE_LIST[d].includes(courseId)) {
-                departmentId = parseInt(d);
-                break;
-              }
+          featureBeta('rubrics/gen_comment');
+          // feature('instructional/glossary');
+          let courseId = CURRENT_COURSE_ID;
+          //COURSE SPECIFIC FEATURES
+          featurePilot("rubrics/gen_comment", courseId, [489089]); //Micro Controllers I
+          featurePilot("previous-enrollment-data/previous_enrollment_period_grades", courseId, [511596]); //Business High School Summer
+          //DEPARTMENT SPECIFIC IMPORTS
+          let departmentId = 0;
+          //DETERMINE CURRENT DEPARTMENT FROM DEPARTMENT LIST
+          for (let d in COURSE_LIST) {
+            if (COURSE_LIST[d].includes(courseId)) {
+              departmentId = parseInt(d);
+              break;
             }
-            CURRENT_DEPARTMENT_ID = departmentId;
-            if (departmentId === 3824) { // DENTAL
-              feature("grades_page/highlighted_grades_page_items", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
-              feature("grades_page/attempts", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
-              feature("rubrics/attempts_data", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
-              feature("rubrics/gen_comment", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
-              feature("highlight_comments_same_date", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
-              //This is currently disabled because it was decided it might be more confusing for students to see a grade that was only part of their final grade.
-              // feature("previous-enrollment-data/previous_enrollment_period_grades", {}, /^\/courses\/[0-9]+\/grades/);
-              if (IS_TEACHER) {
-                feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
-              }
-            }
-            if (departmentId === 3833) { //business
-              feature("department_specific/business_hs");
-              feature("previous-enrollment-data/previous_enrollment_period_grades");
-            }
-            if (departmentId === 3819 || departmentId === 3832) { // AMAR && ELEC
-              feature("modules/points_to_hours_header");
-              feature("speed_grader/resize_submitted_video");
-              feature("department_specific/amar_elec_add_module_items", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
-            }
-            if (departmentId === 3847) { //meats
-              feature("previous-enrollment-data/previous_enrollment_period_grades", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
+          }
+          CURRENT_DEPARTMENT_ID = departmentId;
+          if (departmentId === 3824) { // DENTAL
+            feature("grades_page/highlighted_grades_page_items", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
+            feature("grades_page/attempts", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
+            feature("rubrics/attempts_data", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
+            feature("rubrics/gen_comment", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
+            feature("highlight_comments_same_date", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
+            //This is currently disabled because it was decided it might be more confusing for students to see a grade that was only part of their final grade.
+            // feature("previous-enrollment-data/previous_enrollment_period_grades", {}, /^\/courses\/[0-9]+\/grades/);
+            if (IS_TEACHER) {
               feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
             }
-            if (departmentId === 3837) { //auto collision
-              feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
-              feature("rubrics/self_graded", {}, [/^\/courses\/[0-9]+\/gradebook\/speed_grader/, /courses\/([0-9]+)\/assignments\/([0-9]+)/]);
-            }
-            if (departmentId === 3840 || departmentId === 3839) { //media design & drafting
-            }
-            if (departmentId === 3841 || departmentId === 3947) { //cosmetology && master esthetics
-              feature("department_specific/esthetics_cosmetology_services");
-            }
-            if (departmentId === 3848) { //Interior Design
-              feature("grades_page/default_include_ungraded_assignments", {}, /^\/courses\/[0-9]+\/grades/);
-            }
-            if (departmentId === 3820) { //Web & Mobile
-              externalFeature("https://bridgerland-web-dev.github.io/html_practice/html_practice.js", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/)
-            }
-            if (departmentId === 3883) { //Diesel
-              feature("department_specific/diesel-page-turner", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-            }
           }
-
-          //CDD ONLY
-          feature("quizzes/question_bank_sorter", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/);
-          feature("sort_assignment_groups", {}, /assignments$/)
-          //featureCDD("previous-enrollment-data/previous_enrollment_period_grades");
-          // featureCDD("help_tab");
-          featureCDD("rubrics/add_criteria_from_csv", {}, new RegExp('/(rubrics|assignments\/)'));
-          featureCDD("rubrics/create_rubric_from_csv", {}, new RegExp('^/(course|account)s/([0-9]+)/rubrics$'));
-          featureCDD("editor_toolbar/images", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-          featureCDD("editor_toolbar/tables", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-          featureCDD("editor_toolbar/headers", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-          featureCDD("page_formatting/print_rubric", {}, /^\/courses\/[0-9]+\/(assignments)/);
-          featureCDD("modules/show_hours", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
-          featureCDD("editor_toolbar/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-          // featureCDD('date_display/add_current_year_speed_grader', {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
-          feature('date_display/add_current_year', {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
-          if (IS_CDD) externalFeature('https://flags.bridgetools.dev/main.js');
-          if (IS_ME) {
-            feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
-          } else {
-            feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
+          if (departmentId === 3833) { //business
+            feature("department_specific/business_hs");
+            feature("previous-enrollment-data/previous_enrollment_period_grades");
           }
-
-          // if (IS_ME) $.getScript("https://jhveem.xyz/collaborator/import.js");
-          //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
-          feature("welcome_banner", {}, /^\/$/);
-
-          //Survey
-          if (currentUser === 1507313) { //Lisa Balling
-            feature("survey/survey", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+          if (departmentId === 3819 || departmentId === 3832) { // AMAR && ELEC
+            feature("modules/points_to_hours_header");
+            feature("speed_grader/resize_submitted_video");
+            feature("department_specific/amar_elec_add_module_items", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
           }
-        });
+          if (departmentId === 3847) { //meats
+            feature("previous-enrollment-data/previous_enrollment_period_grades", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
+            feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
+          }
+          if (departmentId === 3837) { //auto collision
+            feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
+            feature("rubrics/self_graded", {}, [/^\/courses\/[0-9]+\/gradebook\/speed_grader/, /courses\/([0-9]+)\/assignments\/([0-9]+)/]);
+          }
+          if (departmentId === 3840 || departmentId === 3839) { //media design & drafting
+          }
+          if (departmentId === 3841 || departmentId === 3947) { //cosmetology && master esthetics
+            feature("department_specific/esthetics_cosmetology_services");
+          }
+          if (departmentId === 3848) { //Interior Design
+            feature("grades_page/default_include_ungraded_assignments", {}, /^\/courses\/[0-9]+\/grades/);
+          }
+          if (departmentId === 3820) { //Web & Mobile
+            externalFeature("https://bridgerland-web-dev.github.io/html_practice/html_practice.js", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/)
+          }
+          if (departmentId === 3883) { //Diesel
+            feature("department_specific/diesel-page-turner", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+          }
+        }
+
+        //CDD ONLY
+        feature("quizzes/question_bank_sorter", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/);
+        feature("sort_assignment_groups", {}, /assignments$/)
+        //featureCDD("previous-enrollment-data/previous_enrollment_period_grades");
+        // featureCDD("help_tab");
+        featureCDD("rubrics/add_criteria_from_csv", {}, new RegExp('/(rubrics|assignments\/)'));
+        featureCDD("rubrics/create_rubric_from_csv", {}, new RegExp('^/(course|account)s/([0-9]+)/rubrics$'));
+        featureCDD("editor_toolbar/images", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+        featureCDD("editor_toolbar/tables", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+        featureCDD("editor_toolbar/headers", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+        featureCDD("page_formatting/print_rubric", {}, /^\/courses\/[0-9]+\/(assignments)/);
+        featureCDD("modules/show_hours", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
+        featureCDD("editor_toolbar/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+        // featureCDD('date_display/add_current_year_speed_grader', {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
+        feature('date_display/add_current_year', {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
+        if (IS_CDD) externalFeature('https://flags.bridgetools.dev/main.js');
+        if (IS_ME) {
+          feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
+        } else {
+          feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
+        }
+
+        // if (IS_ME) $.getScript("https://jhveem.xyz/collaborator/import.js");
+        //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
+        feature("welcome_banner", {}, /^\/$/);
+
+        //Survey
+        if (currentUser === 1507313) { //Lisa Balling
+          feature("survey/survey", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+        }
       });
     });
   });

@@ -18,7 +18,8 @@
     'icon-folder',
     'icon-lti',
     'icon-heart',
-    'icon-star'
+    'icon-star',
+    'icon-upload'
   ];
   //escape if not on the editor page
   if (!TOOLBAR.checkEditorPage()) return;
