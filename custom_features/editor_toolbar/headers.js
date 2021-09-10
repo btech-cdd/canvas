@@ -39,9 +39,7 @@
 
   function iconFormat(icon) {
     var originalOption = icon.element;
-    console.log(originalOption);
     let iconName = $(originalOption).attr("data-icon");
-    console.log(iconName);
     return $('<span><i class="' + iconName + '"></i> ' + icon.text + '</span>');
   }
 

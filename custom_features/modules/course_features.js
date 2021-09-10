@@ -18,7 +18,7 @@
             feature.settingsEl.html(data.body);
           });
         } catch (e) {
-          console.log(e);
+          console.log("No course available");
         }
         return;
       },

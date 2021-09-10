@@ -1,6 +1,9 @@
 //THIS MUST BE UPDATED IN THE THEMES SECTION OF CANVAS
 //check for custom theme info, will probably only run on pages, quizzes, and assignments, but who knows
 //Might be worth moving all of this into the custom-settings page instead of an individual div on each page, then wait to load any of the features involving this custom settings until after that page has loaded
+
+//9/8/2021, seeing if disabling this breaks anything. Shouldn't...
+/*
 var themeParent = $('#btech-theme-parent');
 if (themeParent.length === 1) {
   let header = themeParent.find('.btech-theme-header');
@@ -15,6 +18,7 @@ if (themeParent.length === 1) {
     document.documentElement.style.setProperty('--btech-theme-header-hover-color', headerHover.css('color'));
   }
 }
+*/
 
 var BETA = false;
 if (window.location.href.includes("btech.beta.instructure.com")) {
@@ -34,6 +38,10 @@ var CDDIDS = [
 ];
 
 var CURRENT_COURSE_ID = null;
+var rCheckInCourse = /^\/courses\/([0-9]+)/;
+if (rCheckInCourse.test(window.location.pathname)) {
+  CURRENT_COURSE_ID = parseInt(window.location.pathname.match(rCheckInCourse)[1]);
+}
 var CURRENT_DEPARTMENT_ID = null;
 var CURRENT_COURSE_HOURS = null;
 var IS_BLUEPRINT = null;
@@ -269,14 +277,12 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
   */
   feature("login_page", {}, /^\/login/);
 
-  let rCheckInCourse = /^\/courses\/([0-9]+)/;
   //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA
   if (rCheckInCourse.test(window.location.pathname)) {
     feature('modules/course_features');
   }
   add_javascript_library(SOURCE_URL + "/custom_canvas_import.js");
   $.getScript("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js").done(function () {
-
     $.getScript(SOURCE_URL + "/custom_features/editor_toolbar/toolbar.js").done(() => {
       feature("editor_toolbar/basics", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
       feature("editor_toolbar/syllabi", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
@@ -288,8 +294,13 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
       feature("page_formatting/tinymce_font_size", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
       feature("page_formatting/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
       feature("page_formatting/image_formatting", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      featureCDD("editor_toolbar/images", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      featureCDD("editor_toolbar/tables", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      featureCDD("editor_toolbar/headers", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      featureCDD("page_formatting/print_rubric", {}, /^\/courses\/[0-9]+\/(assignments)/);
     });
   });
+
   $.getScript("https://cdn.jsdelivr.net/npm/vue").done(function () {
     $.getScript(SOURCE_URL + "/course_data/course_list.js").done(() => {
       $.getScript(SOURCE_URL + "/course_data/course_hours.js").done(() => {
@@ -320,10 +331,8 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
         if (rCheckInDepartment.test(window.location.pathname)) {
           CURRENT_DEPARTMENT_ID = parseInt(window.location.pathname.match(rCheckInDepartment)[1]);
         }
-        let rCheckInCourse = /^\/courses\/([0-9]+)/;
         if (rCheckInCourse.test(window.location.pathname)) {
           IS_BLUEPRINT = !(ENV.BLUEPRINT_COURSES_DATA === undefined)
-          CURRENT_COURSE_ID = parseInt(window.location.pathname.match(rCheckInCourse)[1]);
           let courseData = null;
           $.get('/api/v1/courses/' + CURRENT_COURSE_ID, function (data) {
             courseData = data;
@@ -359,7 +368,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           let courseId = CURRENT_COURSE_ID;
           //COURSE SPECIFIC FEATURES
           featurePilot("rubrics/gen_comment", courseId, [489089]); //Micro Controllers I
-          featurePilot("previous-enrollment-data/previous_enrollment_period_grades", courseId, [511596]); //Business High School Summer
           //DEPARTMENT SPECIFIC IMPORTS
           let departmentId = 0;
           //DETERMINE CURRENT DEPARTMENT FROM DEPARTMENT LIST
@@ -371,7 +379,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           }
           CURRENT_DEPARTMENT_ID = departmentId;
           if (departmentId === 3824) { // DENTAL
-            feature("grades_page/highlighted_grades_page_items", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
+            feature("grades_page/highlighted_grades_page_items_dental", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
             feature("grades_page/attempts", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
             feature("rubrics/attempts_data", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
             feature("rubrics/gen_comment", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
@@ -393,6 +401,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           }
           if (departmentId === 3847) { //meats
             feature("previous-enrollment-data/previous_enrollment_period_grades", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
+            feature("grades_page/highlighted_grades_page_items", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
             feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
           }
           if (departmentId === 3837) { //auto collision
@@ -422,12 +431,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
         // featureCDD("help_tab");
         featureCDD("rubrics/add_criteria_from_csv", {}, new RegExp('/(rubrics|assignments\/)'));
         featureCDD("rubrics/create_rubric_from_csv", {}, new RegExp('^/(course|account)s/([0-9]+)/rubrics$'));
-        featureCDD("editor_toolbar/images", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-        featureCDD("editor_toolbar/tables", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-        featureCDD("editor_toolbar/headers", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-        featureCDD("page_formatting/print_rubric", {}, /^\/courses\/[0-9]+\/(assignments)/);
         featureCDD("modules/show_hours", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
-        featureCDD("editor_toolbar/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
         // featureCDD('date_display/add_current_year_speed_grader', {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
         feature('date_display/add_current_year', {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
         if (IS_CDD) externalFeature('https://flags.bridgetools.dev/main.js');
