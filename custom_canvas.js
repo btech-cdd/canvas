@@ -419,6 +419,9 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           if (departmentId === 3820) { //Web & Mobile
             externalFeature("https://bridgerland-web-dev.github.io/html_practice/html_practice.js", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/)
           }
+          if (departmentId === 3834) {
+            feature("appointment_signup", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+          }
           if (departmentId === 3883) { //Diesel
             feature("department_specific/diesel-page-turner", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           }
