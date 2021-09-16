@@ -5,7 +5,7 @@ function formatDate(date) {
   }).format(date)
 }
 
-function showReservation(appointment) {
+function showReservation(appointment, signedupContainer) {
   let start = Date.parse(appointment.start_at);
   let formattedDate = formatDate(start);
   signedupContainer.html(`<p> You have an appointment scheduled for the following time:</p>
@@ -58,12 +58,12 @@ function showReservation(appointment) {
             signupButton.click(function () {
               let reserve = confirm("Reserve the following lab time? " + formattedDate);
               if (reserve) {
-                showReservation(appointment);
+                showReservation(appointment, signedupContainer);
               }
             });
             if (reserved) {
               signedup = true;
-              showReservation(appointment);
+              showReservation(appointment, signedupContainer);
             }
           }
         }
