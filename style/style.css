@@ -228,3 +228,8 @@
 .btech-popup-message .closebtn:hover {
   color: black;
 }
+
+code.webm-code {
+  color: darkblue;
+  font-size: .9rem;
+}
