@@ -269,9 +269,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
   let currentUser = parseInt(ENV.current_user.id);
   IS_ME = (currentUser === 1893418);
   const IS_CDD = (CDDIDS.includes(currentUser))
-  if (IS_CDD) {
-    externalFeature("https://cdn.datacamp.com/datacamp-light-latest.min.js", /^\/courses\/540246\/(pages|assignments|quizzes|discussion_topics)/);
-  }
   /*
   https://btech.instructure.com/accounts/3/theme_editor
   */
@@ -355,6 +352,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           })
 
           //AVAILABLE TO EVERYONE
+          externalFeature("https://cdn.datacamp.com/datacamp-light-latest.min.js", /^\/courses\/540246\/(pages|assignments|quizzes|discussion_topics)/); //really just available to data analytics
           feature("quizzes/duplicate_bank_item", {}, /\/courses\/([0-9]+)\/question_banks\/([0-9]+)/);
           feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
           feature("rubrics/sortable", {}, [/\/rubrics/, /\/assignments\//]);
