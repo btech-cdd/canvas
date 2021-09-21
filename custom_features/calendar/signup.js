@@ -8,7 +8,9 @@ function formatDate(date) {
 function showReservation(appointment, signupContainer, signedupContainer) {
   let start = Date.parse(appointment.start_at);
   let formattedDate = formatDate(start);
-  signedupContainer.html(`<p> You have an appointment scheduled for the following time:</p>
+  signedupContainer.html(`
+            <h3>Your Current Lab Booking</h3>
+            <p> You have an appointment scheduled for the following time:</p>
             <p>` + formattedDate + `</p>
             <p>If you would like to cancel your appointment, please cancel it through your calendar.</p>`);
   /*
@@ -27,7 +29,6 @@ function showReservation(appointment, signupContainer, signedupContainer) {
       signupContainer.empty();
       signupContainer.append('<h3>Sign Up For a Lab Time Here</h3>');
       let signedupContainer = $('<div class="btech-appointment-signedup"></div>');
-      signedupContainer.append('<h3>Your Current Lab Booking</h3>')
       let cancelButton = $('<div class="btn"></div>');
       signedupContainer.append(cancelButton);
       /*
