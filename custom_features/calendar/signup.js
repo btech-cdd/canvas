@@ -42,7 +42,7 @@ function showReservation(appointment, signupContainer, signedupContainer) {
 
       for (let s in signups) {
         let signup = signups[s];
-        let signupTitle = signup.title.replace(" - Instructor/Group Lab", "");
+        let signupTitle = signup.title.replace(" - Instructor/Group Lab", ""); //to allow for IT naming convention
         if (ENV.QUIZ.title.includes(signupTitle)) {
           let appointmentGroupData = await canvasGet(signup.url, {
             include: ["appointments"]
