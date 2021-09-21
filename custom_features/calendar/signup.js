@@ -24,7 +24,10 @@ function showReservation(appointment, signupContainer, signedupContainer) {
   if (signupContainers.length > 0) {
     signupContainers.each(async function () {
       let signupContainer = $(this);
+      signupContainer.empty();
+      signupContainer.append('<h3>Sign Up For a Lab Time Here</h3>');
       let signedupContainer = $('<div class="btech-appointment-signedup"></div>');
+      signedupContainer.append('<h3>Your Current Lab Booking</h3>')
       let cancelButton = $('<div class="btn"></div>');
       signedupContainer.append(cancelButton);
       /*
