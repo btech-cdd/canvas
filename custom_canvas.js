@@ -65,7 +65,7 @@ if (/^\/courses\/[0-9]+$/.test(window.location.pathname)) {
               output += module.name + "\n";
               for (let j in module.items) {
                   let item = module.items[j];    
-                  output += item.title + "\n";
+                  output += item.title + "\t" + item.type + "\n";
               }
           }
           copyStringToClipboard(output);
@@ -389,7 +389,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           })
 
           //AVAILABLE TO EVERYONE
-          externalFeature("https://cdn.datacamp.com/datacamp-light-latest.min.js", /^\/courses\/540246\/(pages|assignments|quizzes|discussion_topics)/); //really just available to data analytics
           feature("quizzes/duplicate_bank_item", {}, /\/courses\/([0-9]+)\/question_banks\/([0-9]+)/);
           feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
           feature("rubrics/sortable", {}, [/\/rubrics/, /\/assignments\//]);
@@ -413,6 +412,9 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             }
           }
           CURRENT_DEPARTMENT_ID = departmentId;
+          if (departmentId == 4218) { // DATA ANALYTICS
+            externalFeature("https://cdn.datacamp.com/datacamp-light-latest.min.js", /^\/courses\/([0-9]+)\/(pages|assignments|quizzes|discussion_topics)/); //really just available to data analytics
+          }
           if (departmentId === 3824) { // DENTAL
             feature("grades_page/highlighted_grades_page_items_dental", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
             feature("grades_page/attempts", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
