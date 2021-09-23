@@ -37,6 +37,43 @@ var CDDIDS = [
   2000557, //Charlotte
 ];
 
+if (/^\/courses\/[0-9]+$/.test(window.location.pathname)) {
+  if (CDDIDS.includes(parseInt(ENV.current_user.id))) {
+    function copyStringToClipboard (str) {
+      // Create new element
+      var el = document.createElement('textarea');
+      // Set value (string to be copied)
+      el.value = str;
+      // Set non-editable to avoid focus and move outside of view
+      el.setAttribute('readonly', '');
+      el.style = {position: 'absolute', left: '-9999px'};
+      document.body.appendChild(el);
+      // Select text inside element
+      el.select();
+      // Copy text to clipboard
+      document.execCommand('copy');
+      // Remove temporary element
+      document.body.removeChild(el);
+    }
+    let btn = $(`<button class="btn" >Copy Structure</button>`);
+    $(".header-bar-right__buttons .add_module_link").before(btn);
+    btn.click(function() {
+      $.get("/api/v1/courses/536669/modules?per_page=100&include[]=items", (data)=>{
+          output = "";
+          for (let i in data) {
+              let module = data[i];
+              output += module.name + "\n";
+              for (let j in module.items) {
+                  let item = module.items[j];    
+                  output += item.title + "\n";
+              }
+          }
+          copyStringToClipboard(output);
+      });
+    });
+  }
+}
+
 var CURRENT_COURSE_ID = null;
 var rCheckInCourse = /^\/courses\/([0-9]+)/;
 if (rCheckInCourse.test(window.location.pathname)) {
