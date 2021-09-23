@@ -55,7 +55,7 @@ if (/^\/courses\/[0-9]+$/.test(window.location.pathname)) {
       // Remove temporary element
       document.body.removeChild(el);
     }
-    let btn = $(`<button class="btn" >Copy Structure</button>`);
+    let btn = $(`<button class="btn">Copy Structure</button>`);
     $(".header-bar-right__buttons .add_module_link").before(btn);
     btn.click(function() {
       $.get("/api/v1/courses/"+ENV.COURSE_ID+"/modules?per_page=100&include[]=items", (data)=>{
