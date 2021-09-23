@@ -58,7 +58,7 @@ if (/^\/courses\/[0-9]+$/.test(window.location.pathname)) {
     let btn = $(`<button class="btn" >Copy Structure</button>`);
     $(".header-bar-right__buttons .add_module_link").before(btn);
     btn.click(function() {
-      $.get("/api/v1/courses/536669/modules?per_page=100&include[]=items", (data)=>{
+      $.get("/api/v1/courses/"+ENV.COURSE_ID+"/modules?per_page=100&include[]=items", (data)=>{
           output = "";
           for (let i in data) {
               let module = data[i];
