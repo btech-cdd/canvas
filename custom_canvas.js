@@ -51,7 +51,7 @@ if (/^\/courses\/[0-9]+$/.test(window.location.pathname)) {
       // Select text inside element
       el.select();
       // Copy text to clipboard
-      document.execCommand('copy');
+      navigator.clipboard.writeText(str);
       // Remove temporary element
       document.body.removeChild(el);
     }
