@@ -373,8 +373,10 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
         let courseId = CURRENT_COURSE_ID;
         let departmentId = 0;
         await $.get('/api/v1/courses/' + CURRENT_COURSE_ID, function (data) {
+          console.log("COURSE DATA");
           courseData = data;
           departmentId = courseData.account_id;
+          console.log(departmentId);
           let year = null;
           let dateData = courseData.start_at;
 
