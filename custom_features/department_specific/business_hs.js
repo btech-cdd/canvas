@@ -142,7 +142,6 @@ console.log("LOAD?");
                 container = await getElement("div.submission-details-frame");
               }
               container.prepend(vueString);
-              const HS_COURSES_ELEMENT = await getElement("#app-hs-courses");
               new Vue({
                 el: '#app-hs-courses',
                 data: function () {
@@ -171,7 +170,7 @@ console.log("LOAD?");
                 },
                 mounted: async function () {
                   console.log("VUE INIT");
-                  console.log(HS_COURSES_ELEMENT.css('display'));
+                  console.log($("#app-hs-courses").css('display'));
                   let app = this;
                   let pieces = (window.location.pathname + window.location.search).match(rPieces);
                   this.courseId = parseInt(pieces[1]);
