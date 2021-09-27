@@ -182,8 +182,11 @@ console.log("LOAD?");
                   console.log("Awaiting...")
                   console.log($("#app-hs-courses").css('display'));
                   await $.get(url).done(function (data) {
+                    console.log($("#app-hs-courses").css('display'));
                     $(data).find("#content .courses a").each(function () {
                       let name = $(this).find('span.name').text().trim();
+                      console.log(name);
+                      console.log($("#app-hs-courses").css('display'));
                       let term = $($(this).find('span.subtitle')[0]).text().trim();
                       let href = $(this).attr('href');
                       let match = href.match(/courses\/([0-9]+)\/users/);
