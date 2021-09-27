@@ -95,7 +95,7 @@
                   <div v-if="menu == 'courses'">
                     <div v-if="loading==true">Loading Content...</div>
                     <div v-else>
-                      <h3>Select a course, enter the grade, and submit to add the course the the list of courses to be averaged for this term.</h3>
+                      <h3>Select a course, enter the grade, and submit to add the course to the list of courses to be averaged for this term.</h3>
                       <select v-model="selectedCourse" @change="onCourseSelect()">
                         <option value="" disabled>-Select Course-</option>
                         <option v-for="course in courses" :value="course.course_id">{{course.name}} ({{course.term}})</option>
