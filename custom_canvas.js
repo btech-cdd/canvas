@@ -396,7 +396,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           feature("quizzes/duplicate_bank_item", {}, /\/courses\/([0-9]+)\/question_banks\/([0-9]+)/);
           feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
           feature("rubrics/sortable", {}, [/\/rubrics/, /\/assignments\//]);
-          feature("survey/survey", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           feature("calendar/signup", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           if (IS_BLUEPRINT) feature('blueprint_association_links');
           feature('modules/convert_to_page');
@@ -464,7 +463,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
       featureCDD("rubrics/create_rubric_from_csv", {}, new RegExp('^/(course|account)s/([0-9]+)/rubrics$'));
       featureCDD("modules/show_hours", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
       // featureCDD('date_display/add_current_year_speed_grader', {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
-      feature('date_display/add_current_year', {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
+      //feature('date_display/add_current_year', {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
       if (IS_CDD) externalFeature('https://flags.bridgetools.dev/main.js');
       if (IS_ME) {
         feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
@@ -475,11 +474,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
       // if (IS_ME) $.getScript("https://jhveem.xyz/collaborator/import.js");
       //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
       feature("welcome_banner", {}, /^\/$/);
-
-      //Survey
-      if (currentUser === 1507313) { //Lisa Balling
-        feature("survey/survey", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-      }
     });
   });
 }
