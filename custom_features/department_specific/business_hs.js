@@ -37,11 +37,13 @@ console.log("LOAD?");
     });
   }
 
+  console.log("CHECK IF SPEEDGRADER");
   let rPieces = /^\/courses\/([0-9]+)\/assignments\/([0-9]+)\/submissions\/([0-9]+)/;
   let IS_SPEED_GRADER = false;
   if (window.location.pathname.includes("speed_grader")) {
     rPieces = /^\/courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/
     IS_SPEED_GRADER = true;
+    console.log("IS SPEED GRADER");
   }
 
   //GRADING VIEW
@@ -134,6 +136,7 @@ console.log("LOAD?");
               let container;
               if (IS_SPEED_GRADER) {
                 container = $("#submissions_container");
+                console.log("FOUND YOU CONTAINER");
               } else {
                 container = $("div.submission-details-frame");
               }
