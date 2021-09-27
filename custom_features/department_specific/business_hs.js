@@ -142,6 +142,7 @@ console.log("LOAD?");
                 container = await getElement("div.submission-details-frame");
               }
               container.prepend(vueString);
+              console.log($("#app-hs-courses").css('display'));
               new Vue({
                 el: '#app-hs-courses',
                 data: function () {
@@ -179,6 +180,7 @@ console.log("LOAD?");
                   let url = window.location.origin + "/users/" + this.studentId;
                   let list = [];
                   console.log("Awaiting...")
+                  console.log($("#app-hs-courses").css('display'));
                   await $.get(url).done(function (data) {
                     $(data).find("#content .courses a").each(function () {
                       let name = $(this).find('span.name').text().trim();
@@ -202,9 +204,11 @@ console.log("LOAD?");
                     app.accessDenied = true;
                   });
                   console.log("awaited");
+                  console.log($("#app-hs-courses").css('display'));
                   app.courses = list;
                   this.comments = await this.getComments();
                   console.log("awaited again")
+                  console.log($("#app-hs-courses").css('display'));
                   this.processComments(this.comments);
                   this.loading = false;
                   console.log($("#app-hs-courses").css('display'));
