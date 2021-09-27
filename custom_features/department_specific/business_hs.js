@@ -1,4 +1,5 @@
 //https://btech.beta.instructure.com/courses/470598
+console.log("LOAD?");
 window.addEventListener('load', async function () {
   console.log("FOR EMILY");
   console.log("Load");
