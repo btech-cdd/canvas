@@ -179,6 +179,7 @@ console.log("LOAD?");
                   this.assignmentId = parseInt(pieces[2]);
                   let url = window.location.origin + "/users/" + this.studentId;
                   let list = [];
+                  console.log("Awaiting...")
                   await $.get(url).done(function (data) {
                     $(data).find("#content .courses a").each(function () {
                       let name = $(this).find('span.name').text().trim();
@@ -201,10 +202,13 @@ console.log("LOAD?");
                     console.log(e);
                     app.accessDenied = true;
                   });
+                  console.log("awaited");
                   app.courses = list;
                   this.comments = await this.getComments();
+                  console.log("awaited again")
                   this.processComments(this.comments);
                   this.loading = false;
+                  console.log(HS_COURSES_ELEMENT.css('display'));
                 },
                 computed: {},
                 methods: {
