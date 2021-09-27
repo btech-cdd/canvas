@@ -1,5 +1,5 @@
 //https://btech.beta.instructure.com/courses/470598
-(async function () {
+window.addEventListener('load', async function () {
   IMPORTED_FEATURE = {};
   //IF the editor, add the ability to add services
   if (TOOLBAR.checkEditorPage()) {
@@ -346,4 +346,4 @@
       }
     }
   }
-})();
+});
