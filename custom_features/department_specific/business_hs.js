@@ -208,7 +208,7 @@ console.log("LOAD?");
                   console.log("awaited again")
                   this.processComments(this.comments);
                   this.loading = false;
-                  console.log(HS_COURSES_ELEMENT.css('display'));
+                  console.log($("#app-hs-courses").css('display'));
                 },
                 computed: {},
                 methods: {
