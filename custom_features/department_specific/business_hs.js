@@ -1,7 +1,5 @@
 //https://btech.beta.instructure.com/courses/470598
-console.log("LOAD?");
 (async function () {
-  console.log("LOAD");
   IMPORTED_FEATURE = {};
   //IF the editor, add the ability to add services
   if (TOOLBAR.checkEditorPage()) {
@@ -37,13 +35,11 @@ console.log("LOAD?");
     });
   }
 
-  console.log("CHECK IF SPEEDGRADER");
   let rPieces = /^\/courses\/([0-9]+)\/assignments\/([0-9]+)\/submissions\/([0-9]+)/;
   let IS_SPEED_GRADER = false;
   if (window.location.pathname.includes("speed_grader")) {
     rPieces = /^\/courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/
     IS_SPEED_GRADER = true;
-    console.log("IS SPEED GRADER");
   }
 
   //GRADING VIEW
@@ -136,13 +132,10 @@ console.log("LOAD?");
               let container;
               if (IS_SPEED_GRADER) {
                 container = await getElement("#submissions_container");
-                console.log("FOUND YOU CONTAINER");
-                console.log(container);
               } else {
                 container = await getElement("div.submission-details-frame");
               }
               container.prepend(vueString);
-              console.log($("#app-hs-courses").css('display'));
               new Vue({
                 el: '#app-hs-courses',
                 data: function () {
@@ -170,8 +163,6 @@ console.log("LOAD?");
                   }
                 },
                 mounted: async function () {
-                  console.log("VUE INIT");
-                  console.log($("#app-hs-courses").css('display'));
                   let app = this;
                   let pieces = (window.location.pathname + window.location.search).match(rPieces);
                   this.courseId = parseInt(pieces[1]);
@@ -179,14 +170,9 @@ console.log("LOAD?");
                   this.assignmentId = parseInt(pieces[2]);
                   let url = window.location.origin + "/users/" + this.studentId;
                   let list = [];
-                  console.log("Awaiting...")
-                  console.log($("#app-hs-courses").css('display'));
                   await $.get(url).done(function (data) {
-                    console.log($("#app-hs-courses").css('display'));
                     $(data).find("#content .courses a").each(function () {
                       let name = $(this).find('span.name').text().trim();
-                      console.log(name);
-                      console.log($("#app-hs-courses").css('display'));
                       let term = $($(this).find('span.subtitle')[0]).text().trim();
                       let href = $(this).attr('href');
                       let match = href.match(/courses\/([0-9]+)\/users/);
@@ -206,15 +192,11 @@ console.log("LOAD?");
                     console.log(e);
                     app.accessDenied = true;
                   });
-                  console.log("awaited");
-                  console.log($("#app-hs-courses").css('display'));
                   app.courses = list;
                   this.comments = await this.getComments();
-                  console.log("awaited again")
-                  console.log($("#app-hs-courses").css('display'));
                   this.processComments(this.comments);
                   this.loading = false;
-                  console.log($("#app-hs-courses").css('display'));
+                  $("#app-hs-courses").css('display', 'block');
                 },
                 computed: {},
                 methods: {
