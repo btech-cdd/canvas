@@ -1,8 +1,7 @@
 //https://btech.beta.instructure.com/courses/470598
 console.log("LOAD?");
-window.addEventListener('load', async function () {
-  console.log("FOR EMILY");
-  console.log("Load");
+(async function () {
+  console.log("LOAD");
   IMPORTED_FEATURE = {};
   //IF the editor, add the ability to add services
   if (TOOLBAR.checkEditorPage()) {
@@ -349,4 +348,4 @@ window.addEventListener('load', async function () {
       }
     }
   }
-});
+})();
