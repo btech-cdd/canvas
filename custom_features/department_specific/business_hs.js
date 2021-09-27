@@ -170,6 +170,7 @@ console.log("LOAD?");
                   }
                 },
                 mounted: async function () {
+                  console.log("VUE INIT");
                   let app = this;
                   let pieces = (window.location.pathname + window.location.search).match(rPieces);
                   this.courseId = parseInt(pieces[1]);
