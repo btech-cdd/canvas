@@ -135,10 +135,11 @@ console.log("LOAD?");
             if (rPieces.test(window.location.pathname + window.location.search)) {
               let container;
               if (IS_SPEED_GRADER) {
-                container = $("#submissions_container");
+                container = await getElement("#submissions_container");
                 console.log("FOUND YOU CONTAINER");
+                console.log(container);
               } else {
-                container = $("div.submission-details-frame");
+                container = await getElement("div.submission-details-frame");
               }
               container.prepend(vueString);
               await getElement("#app-hs-courses");
