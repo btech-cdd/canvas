@@ -33,6 +33,10 @@
         gen_report_button.click(function () {
           let modal = $('#canvas-grades-report-vue');
           modal.show();
+          $.post("https://tracking.bridgetools.dev/api/hit", {
+            "tool": "reports-grades_page",
+            "canvasId": ENV.current_user_id
+          });
         });
         this.APP = new Vue({
           el: '#canvas-grades-report-vue',
