@@ -131,6 +131,7 @@
           getFilteredSubmissions(submissions) {
             let app = this;
             let startDate = app.startDate;
+            console.log(startDate);
             let endDate = app.endDate;
             let sectionId = app.section;
             let selectedSection = null;
