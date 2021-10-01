@@ -263,6 +263,7 @@
             //vanilla quizzes
             //need to append comments to this
             if (assignment.is_quiz_assignment) {
+              console.log("Flagged as quiz");
               let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
               await app.createIframe(url, app.downloadQuiz, {
                 'submission': submission,
@@ -288,6 +289,7 @@
 
             //rubrics
             if (assignment.rubric != undefined) {
+              console.log("Has a rubric")
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               await app.createIframe(url, app.downloadRubric, {
                 'submission': submission,
@@ -295,6 +297,7 @@
               });
               needsToWait = true;
             } else {
+              console.log("No rubric, get comments")
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               await app.createIframe(url, app.downloadComments, {
                 'submission': submission,
@@ -302,7 +305,9 @@
               });
               needsToWait = true;
             }
+
             if (types.includes("online_upload")) {
+              console.log("Get upload")
               let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               let assignmentsData = null;
               await $.get(url, function (data) {
