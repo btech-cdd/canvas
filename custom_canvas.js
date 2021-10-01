@@ -466,9 +466,9 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
       //feature('date_display/add_current_year', {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
       if (IS_CDD) externalFeature('https://flags.bridgetools.dev/main.js');
       if (IS_ME) {
-        feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
+        feature('reports/accreditation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
       } else {
-        feature('reports/accredidation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
+        feature('reports/accreditation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
       }
 
       // if (IS_ME) $.getScript("https://jhveem.xyz/collaborator/import.js");
