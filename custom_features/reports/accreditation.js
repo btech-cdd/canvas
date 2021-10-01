@@ -124,6 +124,7 @@
             endDate: null,
             sections: [],
             section: '',
+            needsToWait: false,
           }
         },
         methods: {
@@ -258,7 +259,7 @@
             app.preparingDocument = true;
 
             //this needs to be set or it will flip preparing Document to false at the end, IE if it will be pulling up a print screen, set this to true
-            needsToWait = false;
+            app.needsToWait = false;
 
             //vanilla quizzes
             //need to append comments to this
@@ -269,7 +270,7 @@
                 'submission': submission,
                 'assignment': assignment
               });
-              needsToWait = true;
+              app.needsToWait = true;
             }
 
             //new quizzes :(
@@ -280,7 +281,7 @@
                 'submission': submission,
                 'assignment': assignment
               });
-              needsToWait = true;
+              app.needsToWait = true;
             }
             */
 
@@ -295,15 +296,15 @@
                 'submission': submission,
                 'assignment': assignment
               });
-              needsToWait = true;
+              app.needsToWait = true;
             } else {
               console.log("No rubric, get comments")
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
+              app.needsToWait = true;
               await app.createIframe(url, app.downloadComments, {
                 'submission': submission,
                 'assignment': assignment
               });
-              needsToWait = true;
             }
 
             if (types.includes("online_upload")) {
@@ -322,7 +323,7 @@
             if (false) {
               console.log('assignment type undefined');
             }
-            if (needsToWait === false) {
+            if (app.needsToWait === false) {
               app.preparingDocument = false;
             }
           },
@@ -330,7 +331,10 @@
             let app = this;
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
             let commentEl = app.getComments(data.submission);
-            if (commentEl == "") return; //break if no comments
+            if (commentEl == "") {
+              app.needsToWait = false;
+              return; //break if no comments
+            }
 
             content.show();
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
