@@ -131,7 +131,6 @@
           getFilteredSubmissions(submissions) {
             let app = this;
             let startDate = app.startDate;
-            console.log(startDate);
             let endDate = app.endDate;
             let sectionId = app.section;
             let selectedSection = null;
@@ -184,7 +183,6 @@
           getSubmittedAssignments(assignments) {
             let app = this;
             let submittedAssignments = [];
-            console.log(assignments);
             for (let i = 0; i < assignments.length; i++) {
               let assignment = assignments[i];
               if (assignment.has_submitted_submissions ||  assignment.has_overrides) {
@@ -209,7 +207,6 @@
               packet['assignment_ids'] = [assignmentId];
             }
             let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/students/submissions", packet);
-            console.log(submissions);
             for (let s = 0; s < submissions.length; s++) {
               let submission = submissions[s];
               if (submissionsByAssignment[submission.assignment_id] === undefined) {
@@ -219,7 +216,9 @@
             }
             for (let g = 0; g < app.assignmentGroups.length; g++) {
               let group = app.assignmentGroups[g];
+              console.log(group);
               let assignments = group.assignments;
+              console.log(assignments);
               let submittedAssignments = app.getSubmittedAssignments(assignments);
               for (let a = 0; a < submittedAssignments.length; a++) {
                 let assignment = submittedAssignments[a];
