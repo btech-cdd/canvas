@@ -185,7 +185,7 @@
             let submittedAssignments = [];
             for (let i = 0; i < assignments.length; i++) {
               let assignment = assignments[i];
-              if (assignment.has_submitted_submissions ||  assignment.has_overrides) {
+              if (true || assignment.has_submitted_submissions ||  assignment.has_overrides) { //not working, assignments with submissions has_submitted_submissions is still false
                 submittedAssignments.push(assignment);
               }
             }
@@ -220,6 +220,7 @@
               let assignments = group.assignments;
               console.log(assignments);
               let submittedAssignments = app.getSubmittedAssignments(assignments);
+              console.log(submittedAssignments);
               for (let a = 0; a < submittedAssignments.length; a++) {
                 let assignment = submittedAssignments[a];
                 if (assignment.id === assignmentId || assignmentId === '') {
