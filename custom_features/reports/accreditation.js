@@ -332,7 +332,7 @@
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
             let commentEl = app.getComments(data.submission);
             if (commentEl == "") {
-              app.needsToWait = false;
+              app.preparingDocument = false;
               return; //break if no comments
             }
 
@@ -357,6 +357,7 @@
             let app = this;
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
             let commentEl = app.getComments(data.submission);
+            app.preparingDocument = true;
             content.find("#rubric_holder").show();
             content.find("#rubric_holder").prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.find("#rubric_holder").prepend("<div>Student:" + data.submission.user.name + "</div>");
