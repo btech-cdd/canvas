@@ -342,7 +342,7 @@
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
-            content.append(commentEl);
+            //content.append(commentEl);
             let ogTitle = $('title').text();
             $('title').text(title);
             content.printThis({
