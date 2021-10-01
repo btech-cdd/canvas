@@ -184,6 +184,7 @@
           getSubmittedAssignments(assignments) {
             let app = this;
             let submittedAssignments = [];
+            console.log(assignments);
             for (let i = 0; i < assignments.length; i++) {
               let assignment = assignments[i];
               if (assignment.has_submitted_submissions ||  assignment.has_overrides) {
