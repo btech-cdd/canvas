@@ -207,6 +207,7 @@
               packet['assignment_ids'] = [assignmentId];
             }
             let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/students/submissions", packet);
+            console.log(submissions);
             for (let s = 0; s < submissions.length; s++) {
               let submission = submissions[s];
               if (submissionsByAssignment[submission.assignment_id] === undefined) {
