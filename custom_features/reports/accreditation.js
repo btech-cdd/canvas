@@ -95,7 +95,6 @@
           app.getAllSubmissions();
 
           let sections = await canvasGet("/api/v1/courses/" + app.courseId + "/sections?include[]=students")
-          console.log(sections);
           app.sections = sections;
           /* unused as far as I can tell
           let enrollments = await canvasGet("/api/v1/courses/" + app.courseId + "/enrollments", {
@@ -216,11 +215,8 @@
             }
             for (let g = 0; g < app.assignmentGroups.length; g++) {
               let group = app.assignmentGroups[g];
-              console.log(group);
               let assignments = group.assignments;
-              console.log(assignments);
               let submittedAssignments = app.getSubmittedAssignments(assignments);
-              console.log(submittedAssignments);
               for (let a = 0; a < submittedAssignments.length; a++) {
                 let assignment = submittedAssignments[a];
                 if (assignment.id === assignmentId || assignmentId === '') {
@@ -256,6 +252,7 @@
 
           //THIS IS WHERE EVERYTHING GETS SORTED OUT AND ALL THE DOWNLOADS ARE INITIATED
           async downloadSubmission(assignment, submission) {
+            console.log(submission);
             let app = this;
             let types = assignment.submission_types;
             app.preparingDocument = true;
