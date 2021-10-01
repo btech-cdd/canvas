@@ -331,16 +331,18 @@
             let app = this;
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
             let commentEl = app.getComments(data.submission);
+            /*
             if (commentEl == "") {
               app.preparingDocument = false;
               return; //break if no comments
             }
+            */
 
             content.show();
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
-            // content.append(commentEl);
+            content.append(commentEl);
             let ogTitle = $('title').text();
             $('title').text(title);
             content.printThis({
@@ -357,7 +359,6 @@
             let app = this;
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
             let commentEl = app.getComments(data.submission);
-            app.preparingDocument = true;
             content.find("#rubric_holder").show();
             content.find("#rubric_holder").prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.find("#rubric_holder").prepend("<div>Student:" + data.submission.user.name + "</div>");
