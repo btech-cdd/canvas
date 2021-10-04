@@ -1,3 +1,5 @@
+const { env } = require("process");
+
 let iframes = $("iframe");
 iframes.each(function () {
   let iframe = $(this);
@@ -21,11 +23,19 @@ iframes.each(function () {
     `);
     wrapDiv.append(kalturaInfoIconEl);
     let kalturaInfoEl = $(`
-                <div>
-                <p><strong>Player ID:</strong> ${playerId}</p>
-                <p><strong>Video ID: </strong> ${entryId}</p>
-                </div>
-                `);
+      <div>
+      </div>
+    `);
+    kalturaInfoEl.append(`
+      <p><strong>Player ID:</strong> ${playerId}</p>
+      <p><strong>Video ID: </strong> ${entryId}</p>
+    `)
+    let addToMyMediaButton = $(`<a class="btn">Add to Media Gallery</a>`)
+    kalturaInfoEl.append(addToMyMediaButton);
+    addToMyMediaButton.click(function() {
+      $.post("https://kaltura.bridgetools.dev/api/mymedia/"+ENV.course_id+"/entry/" + entryId);
+      alert("Media has been added to this course's Media Gallery. It may take a few minutes for the media to appear.")
+    });
     wrapDiv.append(kalturaInfoEl);
     kalturaInfoEl.dialog({
       autoOpen: false,
