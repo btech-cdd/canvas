@@ -329,11 +329,11 @@
           },
           getDiscussionEntries(submission) {
             let returnString = "";
-            if (assignment.discussion_entries != undefined) {
-              let entries = assignment.discussion_entries;
+            if (submission.discussion_entries != undefined) {
+              let entries = submission.discussion_entries;
               for (let e in entries) {
                 let entry = entries[e];
-                if (entry.user_id == assignment.user_id) {
+                if (entry.user_id == submission.user_id) {
                   returnString += `
                   ${entry.message}
                   <p>Created: <i>${entry.created_at}</i></p>
