@@ -31,7 +31,7 @@ iframes.each(function () {
     let addToMyMediaButton = $(`<a class="btn">Add to Media Gallery</a>`)
     kalturaInfoEl.append(addToMyMediaButton);
     addToMyMediaButton.click(function() {
-      $.post("https://kaltura.bridgetools.dev/api/mymedia/"+ENV.course_id+"/entry/" + entryId);
+      $.post("https://kaltura.bridgetools.dev/api/mymedia/"+ENV.COURSE_ID+"/entry/" + entryId);
       alert("Media has been added to this course's Media Gallery. It may take a few minutes for the media to appear.")
     });
     wrapDiv.append(kalturaInfoEl);
