@@ -312,12 +312,19 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
   /*
   https://btech.instructure.com/accounts/3/theme_editor
   */
+
+
   feature("login_page", {}, /^\/login/);
 
-  //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA
+  //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
   if (rCheckInCourse.test(window.location.pathname)) {
     feature('modules/course_features');
+    if (IS_TEACHER) {
+      feature("kaltura/showInfo", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+    }
   }
+
+  //TOOLBAR FEATURES
   add_javascript_library(SOURCE_URL + "/custom_canvas_import.js");
   $.getScript("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js").done(function () {
     $.getScript(SOURCE_URL + "/custom_features/editor_toolbar/toolbar.js").done(() => {
@@ -338,6 +345,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
     });
   });
 
+  //OTHER FEATURES
   $.getScript("https://cdn.jsdelivr.net/npm/vue").done(function () {
     $.getScript(SOURCE_URL + "/course_data/course_hours.js").done(() => {
       //GENERAL FEATURES
