@@ -330,13 +330,15 @@
           getDiscussionEntries(submission) {
             let returnString = "";
             if (submission.discussion_entries != undefined) {
+              returnString += "<div style='page-break-before: always;' class='btech-accredidation-comments'></div>"
+              returnString += "<h2>User Discussion Entries</h2>"
               let entries = submission.discussion_entries;
               for (let e in entries) {
                 let entry = entries[e];
                 if (entry.user_id == submission.user_id) {
                   returnString += `
                   ${entry.message}
-                  <p>Created: <i>${entry.created_at}</i></p>
+                  <p style="float: right;">Created: <i>${entry.created_at}</i></p>
                   <p></p>
                   `
                 }
