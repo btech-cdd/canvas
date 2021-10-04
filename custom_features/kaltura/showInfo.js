@@ -8,7 +8,7 @@ iframes.each(function () {
     if (playerIdMatch) {
       let playerId = playerIdMatch[1];
       //get video id
-      let entryIdMatch = iframe.attr("src").match(/entry_id=([0-9]_[a-zA-Z0-9]+)/);
+      let entryIdMatch = iframe.attr("src").match(/entry[_]{0,1}id[=|\/]([0-9]_[a-zA-Z0-9]+)/);
       let entryId = entryIdMatch[1];
 
       let wrapDiv = $(`<div style="position: relative; display: inline-block;"></div>`);
