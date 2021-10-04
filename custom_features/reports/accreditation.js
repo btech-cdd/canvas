@@ -327,10 +327,28 @@
               app.preparingDocument = false;
             }
           },
+          getDiscussionEntries(submission) {
+            let returnString = "";
+            if (assignment.discussion_entries != undefined) {
+              let entries = assignment.discussion_entries;
+              for (let e in entries) {
+                let entry = entries[e];
+                if (entry.user_id == assignment.user_id) {
+                  returnString += `
+                  ${entry.message}
+                  <p>Created: <i>${entry.created_at}</i></p>
+                  <p></p>
+                  `
+                }
+              }
+            }
+            return returnString;
+          },
           async downloadComments(iframe, content, data) {
             let app = this;
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
             let commentEl = app.getComments(data.submission);
+            let discussionEl = app.getDiscussionEntries(data.submission);
             /*
             if (commentEl == "") {
               app.preparingDocument = false;
@@ -342,7 +360,9 @@
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
-            //content.append(commentEl);
+
+            //content.append(commentEl); //Comments already show up with this download method. Only need to be appended for rubrics
+            content.append(discussionEl);
             let ogTitle = $('title').text();
             $('title').text(title);
             content.printThis({
