@@ -1,5 +1,3 @@
-const { env } = require("process");
-
 let iframes = $("iframe");
 iframes.each(function () {
   let iframe = $(this);
