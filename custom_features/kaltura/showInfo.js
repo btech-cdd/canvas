@@ -4,7 +4,7 @@ iframes.each(function () {
   let src = iframe.attr("src");
   if (src.includes("kaltura")) {
     console.log("KALTURA!");
-    let playerIdMatch = id.match(/playerSkin\/([0-9]+)/);
+    let playerIdMatch = src.match(/playerSkin\/([0-9]+)/);
     let playerId = playerIdMatch[1];
     //get video id
     let entryIdMatch = src.match(/entry[_]{0,1}id[=|\/]([0-9]_[a-zA-Z0-9]+)/);
