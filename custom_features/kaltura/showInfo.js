@@ -46,7 +46,7 @@ iframes.each(function () {
       title: "Kaltura Info"
     });
     kalturaInfoIconEl.click(function () {
-      $.get(`https://kaltura.bridgetools.dev/api/mymedia/_${entryId}`, function(data) {
+      $.get(`https://kaltura.bridgetools.dev/api/mymedia/${entryId}`, function(data) {
         console.log(data);
         $(`#kalturaOwnerId_${entryId}`).html(data.user_id);
       });
