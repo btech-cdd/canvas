@@ -25,8 +25,9 @@ iframes.each(function () {
       </div>
     `);
     kalturaInfoEl.append(`
-      <p><strong>Player ID:</strong> ${playerId}</p>
-      <p><strong>Video ID: </strong> ${entryId}</p>
+      <p><strong>Player ID: </strong><span id="kalturaPlayerId_${entryId}">${playerId}</span></p>
+      <p><strong>Video ID: </strong><span id="kalturaEntryId_${entryId}">${entryId}</span></p>
+      <p><strong>Owner ID: </strong><span id="kalturaOwnerId_${entryId}"></span></p>
     `)
     let addToMyMediaButton = $(`<a class="btn">Add to Media Gallery</a>`)
     kalturaInfoEl.append(addToMyMediaButton);
@@ -45,6 +46,9 @@ iframes.each(function () {
       title: "Kaltura Info"
     });
     kalturaInfoIconEl.click(function () {
+      $.get(`https://kaltura.bridgetools.dev/api/mymedia/_${entryId}`, function(data) {
+        $(`#kalturaOwnerId_${entryId}`).html(data.user_id);
+      });
       kalturaInfoEl.dialog("open");
     });
   }
