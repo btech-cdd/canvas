@@ -49,7 +49,7 @@ iframes.each(function () {
       console.log(`https://kaltura.bridgetools.dev/api/mymedia/${entryId}`);
       $.get(`https://kaltura.bridgetools.dev/api/mymedia/${entryId}`, function(data) {
         console.log(data);
-        $(`#kalturaOwnerId_${entryId}`).html(data.userId);
+        $(`#kalturaOwnerId_${entryId}`).html(`<a href="https://btech.instructure.com/accounts/3/users?search_term=${data.userId}">${data.userId}</a>`);
       });
       kalturaInfoEl.dialog("open");
     });
