@@ -47,6 +47,7 @@ iframes.each(function () {
     });
     kalturaInfoIconEl.click(function () {
       $.get(`https://kaltura.bridgetools.dev/api/mymedia/_${entryId}`, function(data) {
+        console.log(data);
         $(`#kalturaOwnerId_${entryId}`).html(data.user_id);
       });
       kalturaInfoEl.dialog("open");
