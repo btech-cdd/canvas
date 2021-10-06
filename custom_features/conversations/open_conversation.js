@@ -4,7 +4,7 @@
   const urlParams = new URLSearchParams(window.location.hash);
   let conversationId = urlParams.get('conversation');
   console.log(conversationId);
-  if (conversationId) {
+  if (conversationId !== null) {
     let abort = false; //when flipped to true, will stop scrolling and return to top
 
     //Send an async request to check if this conversation even exists. 
