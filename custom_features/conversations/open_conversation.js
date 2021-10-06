@@ -1,4 +1,5 @@
 console.log(window.location);
+console.log(document.referrer);
 const urlParams = new URLSearchParams(window.location.hash);
 let conversationId = urlParams.get('conversation');
 console.log(conversationId);
