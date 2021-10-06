@@ -1,8 +1,8 @@
 console.log("CONVERSATION");
 const urlParams = new URLSearchParams(window.location.hash);
 let conversationId = urlParams.get('conversation');
-/*
 console.log(conversationId);
+/*
 if (conversationId != undefined) {
   let abort = false; //when flipped to true, will stop scrolling and return to top
 
