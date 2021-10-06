@@ -319,6 +319,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
   //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
   if (rCheckInCourse.test(window.location.pathname)) {
     feature('modules/course_features');
+    feature('conversations/open_conversation', {}, /^\/conversations.*conversation=[0-9]+/);
     if (IS_TEACHER) {
       feature("kaltura/showInfo", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
     }
