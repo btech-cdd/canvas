@@ -3,8 +3,7 @@ console.log(document.referrer);
 const urlParams = new URLSearchParams(window.location.hash);
 let conversationId = urlParams.get('conversation');
 console.log(conversationId);
-/*
-if (conversationId != undefined) {
+if (conversationId) {
   let abort = false; //when flipped to true, will stop scrolling and return to top
 
   //Send an async request to check if this conversation even exists. 
@@ -26,4 +25,3 @@ if (conversationId != undefined) {
       el.find("input").trigger("click"); //open it
   }
 }
-*/
