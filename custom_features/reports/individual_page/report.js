@@ -61,7 +61,8 @@
               this.userId = ENV.current_user_id;
             }
             //load data from bridgetools
-            let user = app.loadUser(app.userId);
+            let user = await app.loadUser(app.userId);
+            app.user = user;
             console.log(user);
             console.log(app.user.name);
             console.log(app.tree.name);
@@ -1001,6 +1002,7 @@
                 console.log(data);
                 user = data;
               });
+              app.user = user;
               console.log(user);
               app.tree = await app.loadTree(user.dept, user.year);
               let tree = app.tree;
