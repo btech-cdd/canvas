@@ -1081,7 +1081,7 @@
         console.log("GEN ID");
         await $.put("https://reports.bridgetools.dev/gen_uuid?requester_id=" + ENV.current_user_id);
         console.log("LOAD VUE STUFF");
-        app.loadCSS("https://reports.bridgetools.dev/department_report/style/main.css");
+        //app.loadCSS("https://reports.bridgetools.dev/department_report/style/main.css");
         $.getScript("https://d3js.org/d3.v6.min.js").done(function () {
           $.getScript("https://cdnjs.cloudflare.com/ajax/libs/print-js/1.5.0/print.js").done(function () {
             $.getScript("https://reports.bridgetools.dev/department_report/components/courseProgressBarInd.js").done(function () {
