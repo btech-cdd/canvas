@@ -27,7 +27,6 @@
                 <show-student-ind
                     v-if="user.name !== undefined && tree.name !== undefined"
                     id="printable-report" 
-                    class="btech-modal"
                     style="display: inline-block; background-color: #fff; padding: 0.5rem;"
                     :colors="colors"
                     :user="user"
