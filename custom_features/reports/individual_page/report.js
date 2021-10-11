@@ -25,7 +25,9 @@
         let app = this;
         let vueString = '';
         //gen an initial uuid
+        console.log("GEN ID");
         await $.put("https://reports.bridgetools.dev/gen_uuid?requester_id=" + ENV.current_user_id);
+        console.log("LOAD VUE STUFF");
         await $.ajax({
           url: 'https://reports.bridgetools.dev/showStudentInd.js',
           async: false,
