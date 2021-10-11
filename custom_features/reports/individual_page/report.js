@@ -1003,9 +1003,11 @@
               let authCode = '';
               await $.get(reqUrl, data => {authCode = data.data.auth_code;});
               await $.get("https://reports.bridgetools.dev/api/students/" + userId  + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function(data) {
+                console.log(data);
                 user = data;
               });
               console.log(user);
+              await app.loadTree(user.dept, user.year);
               let tree = app.tree;
               console.log(tree);
                 let courses = user.courses;
