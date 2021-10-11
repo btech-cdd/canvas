@@ -27,7 +27,7 @@
                 <show-student-ind
                     v-if="user.name !== undefined && tree.name !== undefined"
                     id="printable-report" 
-                    style="display: inline-block; background-color: #fff; padding: 0.5rem;"
+                    style="display: inline-block; background-color: #fff; padding: 0.5rem; box-sizing: border-box; width: 100%;"
                     :colors="colors"
                     :user="user"
                     :student-tree="tree"
