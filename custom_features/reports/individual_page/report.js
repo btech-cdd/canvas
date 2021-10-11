@@ -1105,10 +1105,10 @@
         });
         console.log("LOADED");
       },
-      loadCSS(ROUTE_PATH, url) {
+      loadCSS(url) {
         var style = document.createElement('link'),
           head = document.head || document.getElementsByTagName('head')[0];
-        style.href = ROUTE_PATH + url;
+        style.href = url;
         style.type = 'text/css';
         style.rel = "stylesheet";
         style.media = "screen,print";
