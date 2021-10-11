@@ -10,10 +10,6 @@
         </ul>
       </div>
       <div class='btech-modal-content-inner'>
-        <div v-if='loading'>
-          <p>Loading...</p>
-        </div>
-        <div v-else>
           <div v-if="accessDenied">
             <p>
               <b>ERROR:</b> You are not authorized to see all of this student's courses. This often occurs when the
@@ -202,7 +198,6 @@
             </div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </template>
