@@ -21,19 +21,10 @@
   if (true) {
     IMPORTED_FEATURE = {
       initiated: false,
-      async _init(params = {}) {
+      async postLoad(params = {}) {
         let app = this;
         let vueString = '';
         //gen an initial uuid
-        console.log("GEN ID");
-        await $.put("https://reports.bridgetools.dev/gen_uuid?requester_id=" + ENV.current_user_id);
-        console.log("LOAD VUE STUFF");
-        await $.ajax({
-          url: 'https://reports.bridgetools.dev/department_report/components/showStudentInd.js',
-          async: false,
-          dataType: "script",
-        });
-        console.log("LOADED");
         await $.get(SOURCE_URL + '/custom_features/reports/individual_page/template.vue', null, function (html) {
           vueString = html.replace("<template>", "").replace("</template>", "");
         }, 'text');
@@ -1082,6 +1073,31 @@
           });
           modal.show();
         });
+      },
+      _init() {
+        let app = this;
+        console.log("GEN ID");
+        await $.put("https://reports.bridgetools.dev/gen_uuid?requester_id=" + ENV.current_user_id);
+        console.log("LOAD VUE STUFF");
+
+        $.getScript("https://d3js.org/d3.v6.min.js").done(function () {
+          $.getScript("https://cdnjs.cloudflare.com/ajax/libs/print-js/1.5.0/print.js").done(function () {
+            $.getScript("https://reports.bridgetools.dev/department_report/components/courseProgressBarInd.js").done(function () {
+              $.getScript("https://reports.bridgetools.dev/department_report/components/courseRowInd.js").done(function () {
+                $.getScript("https://reports.bridgetools.dev/department_report/components/menuStatus.js").done(function () {
+                  $.getScript("https://reports.bridgetools.dev/department_report/components/menuInfo.js").done(function () {
+                    $.getScript("https://reports.bridgetools.dev/department_report/components/showStudentInd.js").done(function () {
+                      $.getScript("https://reports.bridgetools.dev/department_report/graphs.js").done(function () {
+                        app.postLoad();
+                      });
+                    });
+                  });
+                });
+              });
+            });
+          });
+        });
+        console.log("LOADED");
       },
       APP: {}
     }
