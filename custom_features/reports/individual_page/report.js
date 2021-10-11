@@ -29,7 +29,7 @@
         await $.put("https://reports.bridgetools.dev/gen_uuid?requester_id=" + ENV.current_user_id);
         console.log("LOAD VUE STUFF");
         await $.ajax({
-          url: 'https://reports.bridgetools.dev/showStudentInd.js',
+          url: 'https://reports.bridgetools.dev/components/showStudentInd.js',
           async: false,
           dataType: "script",
         });
