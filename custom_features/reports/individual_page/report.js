@@ -33,6 +33,7 @@
           async: false,
           dataType: "script",
         });
+        console.log("LOADED");
         await $.get(SOURCE_URL + '/custom_features/reports/individual_page/template.vue', null, function (html) {
           vueString = html.replace("<template>", "").replace("</template>", "");
         }, 'text');
