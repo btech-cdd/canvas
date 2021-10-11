@@ -26,8 +26,6 @@
         let vueString = '';
         //gen an initial uuid
         await $.put("https://reports.bridgetools.dev/gen_uuid?requester_id=" + ENV.current_user_id);
-        let user = app.loadUser(app.user_id);
-        console.log(user);
         await $.ajax({
           url: 'https://reports.bridgetools.dev/showStudentInd.js',
           async: false,
@@ -59,6 +57,9 @@
           el: '#canvas-individual-report-vue',
           mounted: async function () {
             let app = this;
+            //load data from bridgetools
+            let user = app.loadUser(app.user_id);
+            console.log(user);
             this.IS_TEACHER = IS_TEACHER;
             // if (!IS_TEACHER) this.menu = 'period';
             let gradesBetweenDates = {};
@@ -985,7 +986,7 @@
               let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
               let authCode = '';
               await $.get(reqUrl, data => {authCode = data.data.auth_code;});
-              await $.get("/api/trees?dept_code=" + deptCode + "&year=" + deptYear + "&requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function(data) {
+              await $.get("https://reports.bridgetools.dev/api/trees?dept_code=" + deptCode + "&year=" + deptYear + "&requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function(data) {
                 tree = data[0];
               });
               console.log(tree);
@@ -998,7 +999,7 @@
               let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
               let authCode = '';
               await $.get(reqUrl, data => {authCode = data.data.auth_code;});
-              await $.get("/api/students/" + userId  + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function(data) {
+              await $.get("https://reports.bridgetools.dev/api/students/" + userId  + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function(data) {
                 user = data;
               });
               console.log(user);
