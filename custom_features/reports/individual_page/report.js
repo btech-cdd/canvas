@@ -1074,7 +1074,7 @@
           modal.show();
         });
       },
-      _init() {
+      async _init() {
         let app = this;
         console.log("GEN ID");
         await $.put("https://reports.bridgetools.dev/gen_uuid?requester_id=" + ENV.current_user_id);
