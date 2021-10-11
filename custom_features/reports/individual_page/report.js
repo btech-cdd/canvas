@@ -76,6 +76,8 @@
               });
             }
             this.loadingAssignments = false;
+            console.log(app.user.name);
+            console.log(app.tree.name);
           },
 
           data: function () {
