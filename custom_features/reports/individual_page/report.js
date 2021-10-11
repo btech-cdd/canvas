@@ -66,7 +66,6 @@
             console.log(user);
             console.log(app.user.name);
             console.log(app.tree.name);
-            /*
             this.courses = await this.getCourseData();
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
@@ -80,7 +79,6 @@
               });
             }
             this.loadingAssignments = false;
-            */
           },
 
           data: function () {
