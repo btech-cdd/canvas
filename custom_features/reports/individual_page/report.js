@@ -24,6 +24,15 @@
       async _init(params = {}) {
         let app = this;
         let vueString = '';
+        //gen an initial uuid
+        await $.put("https://reports.bridgetools.dev/gen_uuid?requester_id=" + ENV.current_user_id);
+        let user = app.loadUser(app.user_id);
+        console.log(user);
+        await $.ajax({
+          url: 'https://reports.bridgetools.dev/showStudentInd.js',
+          async: false,
+          dataType: "script",
+        });
         await $.get(SOURCE_URL + '/custom_features/reports/individual_page/template.vue', null, function (html) {
           vueString = html.replace("<template>", "").replace("</template>", "");
         }, 'text');
@@ -77,6 +86,20 @@
           data: function () {
             return {
               userId: null,
+              user: {},
+              tree: {},
+              colors: {
+                base: '#334',
+                black: '#000000',
+                white: '#ffffff',
+                red: 'rgb(190, 65, 60)',
+                orange: 'rgb(229, 128, 79)',
+                yellow: 'rgb(240, 173, 78)',
+                green: 'rgb(70, 175, 70)',
+                blue: 'rgb(70, 170, 210)',
+                fadedBlue: 'rgb(180, 230, 255)',
+                gray: '#E0E0E0',
+              },
               terms: [],
               currentTerm: {},
               selectedTermId: '',
@@ -955,6 +978,91 @@
               }, function (data) {
                 app.refreshHSEnrollmentTerms();
               })
+            },
+
+            async loadTree(deptCode, deptYear) {
+              let tree;
+              let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
+              let authCode = '';
+              await $.get(reqUrl, data => {authCode = data.data.auth_code;});
+              await $.get("/api/trees?dept_code=" + deptCode + "&year=" + deptYear + "&requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function(data) {
+                tree = data[0];
+              });
+              console.log(tree);
+              return tree;
+            },
+
+            async loadUser(userId) {
+              let app = this;
+              let user;
+              let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
+              let authCode = '';
+              await $.get(reqUrl, data => {authCode = data.data.auth_code;});
+              await $.get("/api/students/" + userId  + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function(data) {
+                user = data;
+              });
+              console.log(user);
+              let tree = app.tree;
+              console.log(tree);
+                let courses = user.courses;
+                console.log(courses);
+                if (courses == undefined) user.courses = [];
+                let entryDate = "N/A";
+                if (user.entry_date != undefined) entryDate = new Date(user.entry_date);
+                let lastLogin = "N/A";
+                if (user.last_login != undefined) lastLogin = new Date(user.last_login);
+                let core = [];
+                let elective = [];
+                let other = [];
+                // let completedHours = user.graded_hours;
+                let enrolledHours = user.enrolled_hours;
+                let completedHours = 0;
+                for (let courseCode in courses) {
+                let course = courses[courseCode];
+                let programCourseData;
+                let courseHours = course.hours;
+                if (courseHours == undefined) {
+                    if (courseCode in program.courses.core) programCourseData = tree.courses.core[courseCode];
+                    else if (courseCode in program.courses.elective) programCourseData = tree.courses.core[courseCode];
+                    if (programCourseData !== undefined) courseHours = programCourseData.hours;
+                }
+                courseHours = parseInt(courseHours);
+                if (course.registered_hours !== undefined || user.enrollment_type == 'HS') {
+                    // enrolledHours += course.registered_hours;
+                    if (course.progress >= 100) {
+                    completedHours += courseHours;
+                    } else {
+                    let courseCompletedHours = courseHours * (course.progress * .01);
+                    completedHours += courseCompletedHours;
+                    }
+                }
+
+                let courseData = {
+                    'code': courseCode,
+                    'course_id': course.canvas_id,
+                    'last_activity': course.last_activity,
+                    'progress': parseFloat(course.progress),
+                    'start': new Date(course.start),
+                    'hours': courseHours
+                }
+                if (courseCode in tree.courses.core) {
+                    core.push(courseData);
+                } else if (courseCode in tree.courses.elective) {
+                    elective.push(courseData);
+                } else {
+                    other.push(courseData);
+                }
+
+                }
+                user.enrolledHours = Math.round(enrolledHours);
+                user.completedHours = Math.round(completedHours);
+                user.treeCourses = {
+                core: core,
+                elective: elective,
+                other: other
+                }
+              console.log(user);
+              return user;
             }
 
           }

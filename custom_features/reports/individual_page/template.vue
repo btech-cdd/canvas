@@ -27,40 +27,18 @@
 
           <div v-else>
             <div v-if="menu=='report'">
-              <h5 style='text-align: center;'>Click on column headers to sort by that column.</h5>
-              <h5 style='text-align: center;'>Hover over column headers for a description of the information displayed
-                in
-                that
-                column.</h5>
-              <div class='btech-report-columns-toggle'>
-                <div class='btech-report-column-toggle' style='display: inline-block;' v-for='column in columns'
-                  :key='column.name'>
-                  <div v-if="column.hideable">
-                    <input type="checkbox" v-model="column.visible"><label>{{column.name}}</label>
-                  </div>
-                </div>
+              <div class="btech-canvas-report">
+                <show-student-ind
+                    v-if="user.name !== undefined && tree.name !== undefined"
+                    id="printable-report" 
+                    class="btech-modal"
+                    style="display: inline-block; background-color: #fff; padding: 0.5rem;"
+                    :colors="colors"
+                    :user="user"
+                    :student-tree="tree"
+                    v-on:close=""
+                ></show-student-ind>
               </div>
-              <table class='btech-report-table' border='1'>
-                <thead border='1'>
-                  <tr>
-                    <th v-for='column in visibleColumns' :key='column.name' :class='column.sortable_type'
-                      @click="sortColumn(column.name);">{{column.name}}</th>
-                  </tr>
-                </thead>
-                <tbody border='1'>
-                  <tr v-if="loading">
-                    <td :colspan='visibleColumns.length'>{{loadingMessage}}</td>
-                  </tr>
-                  <tr v-for='course in courses' :key='course.course_id'>
-                    <td v-for='column in visibleColumns' :key='column.name'>
-                      <span v-html="getColumnText(column, course)"></span>
-                    </td>
-                  </tr>
-                </tbody>
-                <tfoot border='1'>
-
-                </tfoot>
-              </table>
             </div>
 
             <div v-if="menu=='period'">
