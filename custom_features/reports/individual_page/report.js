@@ -1007,7 +1007,7 @@
                 user = data;
               });
               console.log(user);
-              await app.loadTree(user.dept, user.year);
+              app.tree = await app.loadTree(user.dept, user.year);
               let tree = app.tree;
               console.log(tree);
                 let courses = user.courses;
