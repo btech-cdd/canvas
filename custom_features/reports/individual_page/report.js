@@ -60,9 +60,6 @@
           el: '#canvas-individual-report-vue',
           mounted: async function () {
             let app = this;
-            //load data from bridgetools
-            let user = app.loadUser(app.user_id);
-            console.log(user);
             this.IS_TEACHER = IS_TEACHER;
             // if (!IS_TEACHER) this.menu = 'period';
             let gradesBetweenDates = {};
@@ -72,6 +69,9 @@
             } else {
               this.userId = ENV.current_user_id;
             }
+            //load data from bridgetools
+            let user = app.loadUser(app.userId);
+            console.log(user);
             this.courses = await this.getCourseData();
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
