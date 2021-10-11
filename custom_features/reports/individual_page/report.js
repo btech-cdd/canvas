@@ -63,6 +63,9 @@
             //load data from bridgetools
             let user = app.loadUser(app.userId);
             console.log(user);
+            console.log(app.user.name);
+            console.log(app.tree.name);
+            /*
             this.courses = await this.getCourseData();
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
@@ -76,8 +79,7 @@
               });
             }
             this.loadingAssignments = false;
-            console.log(app.user.name);
-            console.log(app.tree.name);
+            */
           },
 
           data: function () {
