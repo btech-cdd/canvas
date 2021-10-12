@@ -1030,7 +1030,7 @@
                     let current_score = enrollment.grades.current_score;
                     if (current_score === undefined || current_score === null) current_score = 0;
                     let progress = 0;
-                    if (current_score !== 0) progress = (fina_score / current_score) * 100;
+                    if (current_score !== 0) progress = (final_score / current_score) * 100;
                     let courseCode = "";
                     let courseCodeM = enrollment.sis_course_id.match(/([A-Z]{4} [0-9]{4})/);
                     if (courseCodeM) courseCode = courseCodeM[1];
