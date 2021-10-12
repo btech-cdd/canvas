@@ -1009,20 +1009,20 @@
               app.tree = await app.loadTree(user.dept, user.year);
               let tree = app.tree;
               console.log(tree);
-                let courses = user.courses;
-                console.log(courses);
-                if (courses == undefined) user.courses = [];
-                let entryDate = "N/A";
-                if (user.entry_date != undefined) entryDate = new Date(user.entry_date);
-                let lastLogin = "N/A";
-                if (user.last_login != undefined) lastLogin = new Date(user.last_login);
-                let core = [];
-                let elective = [];
-                let other = [];
-                // let completedHours = user.graded_hours;
-                let enrolledHours = user.enrolled_hours;
-                let completedHours = 0;
-                for (let courseCode in courses) {
+              let courses = user.courses;
+              console.log(courses);
+              if (courses == undefined) user.courses = [];
+              let entryDate = "N/A";
+              if (user.entry_date != undefined) entryDate = new Date(user.entry_date);
+              let lastLogin = "N/A";
+              if (user.last_login != undefined) lastLogin = new Date(user.last_login);
+              let core = [];
+              let elective = [];
+              let other = [];
+              // let completedHours = user.graded_hours;
+              let enrolledHours = user.enrolled_hours;
+              let completedHours = 0;
+              for (let courseCode in courses) {
                 let course = courses[courseCode];
                 let programCourseData;
                 let courseHours = course.hours;
@@ -1058,14 +1058,15 @@
                     other.push(courseData);
                 }
 
-                }
-                user.enrolledHours = Math.round(enrolledHours);
-                user.completedHours = Math.round(completedHours);
-                user.treeCourses = {
+              }
+              console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++")
+              user.enrolledHours = Math.round(enrolledHours);
+              user.completedHours = Math.round(completedHours);
+              user.treeCourses = {
                 core: core,
                 elective: elective,
                 other: other
-                }
+              }
               console.log(user);
               return user;
             }
