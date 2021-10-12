@@ -1052,6 +1052,7 @@
                     'start': new Date(course.start),
                     'hours': courseHours
                 }
+                console.log(tree);
                 if (courseCode in tree.courses.core) {
                     core.push(courseData);
                 } else if (courseCode in tree.courses.elective) {
