@@ -64,9 +64,6 @@
             let user = await app.loadUser(app.userId);
             app.user = user;
 
-            console.log(app.user);
-            console.log(app.tree);
-
             this.courses = await this.getCourseData();
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
@@ -987,13 +984,11 @@
               let authCode = '';
               await $.get(reqUrl, data => {authCode = data.data.auth_code;});
               await $.get("https://reports.bridgetools.dev/api/trees?dept_code=" + deptCode + "&year=" + deptYear + "&requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function(data) {
-                console.log(data);
                 tree = data[0];
               });
               if (tree.courses.core === undefined) tree.courses.core = {};
               if (tree.courses.elective === undefined) tree.courses.elective = {};
               if (tree.courses.other === undefined) tree.courses.other = {};
-              console.log(tree);
               return tree;
             },
 
@@ -1002,13 +997,10 @@
               let user, tree;
               let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
               let authCode = '';
-              console.log(userId);
               await $.get(reqUrl, data => {authCode = data.data.auth_code;});
               await $.get("https://reports.bridgetools.dev/api/students/" + userId  + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function(data) {
-                console.log(data);
                 user = data;
               });
-              console.log(user);
               if (user === "") {
                 console.log("BLANK USER");
                 await $.get("/api/v1/users/" + userId, function(data) {
@@ -1040,7 +1032,6 @@
                     if (current_score !== 0) progress = (fina_score / current_score) * 100;
                     let courseCode = "";
                     let courseCodeM = enrollment.sis_course_id.match(/([A-Z]{4} [0-9]{4})/);
-                    console.log(courseCodeM);
                     if (courseCodeM) courseCode = courseCodeM[1];
                     if (courseCode !== "") {
                       let courseData = {
@@ -1060,6 +1051,7 @@
                     }
                   }
                 })
+                console.log(user);
                 tree = {
                   hours: 0,
                   name: "",
@@ -1111,7 +1103,6 @@
                     'start': new Date(course.start),
                     'hours': courseHours
                 }
-                console.log(tree);
                 if (courseCode in tree.courses.core) {
                     core.push(courseData);
                 } else if (courseCode in tree.courses.elective) {
@@ -1131,7 +1122,6 @@
                 elective: elective,
                 other: other
               }
-              console.log(user);
               app.user = user;
               app.tree = tree;
               return user;
@@ -1151,9 +1141,7 @@
       },
       async _init() {
         let app = this;
-        console.log("GEN ID");
         await $.put("https://reports.bridgetools.dev/gen_uuid?requester_id=" + ENV.current_user_id);
-        console.log("LOAD VUE STUFF");
         app.loadCSS("https://reports.bridgetools.dev/department_report/style/main.css");
         $.getScript("https://d3js.org/d3.v6.min.js").done(function () {
           $.getScript("https://cdnjs.cloudflare.com/ajax/libs/print-js/1.5.0/print.js").done(function () {
@@ -1172,7 +1160,6 @@
             });
           });
         });
-        console.log("LOADED");
       },
       loadCSS(url) {
         var style = document.createElement('link'),
