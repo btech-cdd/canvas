@@ -1058,7 +1058,7 @@
                 tree = {
                   hours: 0,
                   name: "",
-                  course: {
+                  courses: {
                     core: {},
                     elective: {}
                   }
