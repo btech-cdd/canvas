@@ -1007,6 +1007,7 @@
                 console.log(data);
                 user = data;
               });
+              console.log(typeof user);
               app.user = user;
               console.log(user);
               let tree = await app.loadTree(user.dept, user.year);
