@@ -83,7 +83,9 @@
             return {
               userId: null,
               user: {},
-              tree: {},
+              tree: {
+                other: {}
+              },
               colors: {
                 base: '#334',
                 black: '#000000',
@@ -982,6 +984,7 @@
               let authCode = '';
               await $.get(reqUrl, data => {authCode = data.data.auth_code;});
               await $.get("https://reports.bridgetools.dev/api/trees?dept_code=" + deptCode + "&year=" + deptYear + "&requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function(data) {
+                console.log(data);
                 tree = data[0];
               });
               console.log(tree);
