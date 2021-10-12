@@ -1022,6 +1022,7 @@
                   }
                 });
                 await $.get("/api/v1/users/" + userId + "/enrollments", function(data) {
+                  console.log(data);
                   for (let e in data) {
                     let enrollment = data[e];
                     let final_score = enrollment.final_score;
