@@ -987,6 +987,9 @@
                 console.log(data);
                 tree = data[0];
               });
+              if (tree.core === undefined) tree.core = {};
+              if (tree.elective === undefined) tree.elective = {};
+              if (tree.other === undefined) tree.other = {};
               console.log(tree);
               return tree;
             },
