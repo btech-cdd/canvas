@@ -1011,7 +1011,7 @@
               console.log(user);
               if (user === "") {
                 console.log("BLANK USER");
-                await $.get("/api/v1/users/" + ENV.USER_ID, function(data) {
+                await $.get("/api/v1/users/" + userId, function(data) {
                   user = {
                     name: data.name,
                     sis_id: data.sis_user_id,
@@ -1027,7 +1027,7 @@
                     }
                   }
                 });
-                await $.get("/api/v1/users/" + ENV.USER_ID + "/enrollments", function(data) {
+                await $.get("/api/v1/users/" + userId + "/enrollments", function(data) {
                   for (let e in data) {
                     let enrollment = data[e];
                     let final_score = enrollment.final_score;
