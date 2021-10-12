@@ -999,7 +999,7 @@
 
             async loadUser(userId) {
               let app = this;
-              let user;
+              let user, tree,
               let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
               let authCode = '';
               await $.get(reqUrl, data => {authCode = data.data.auth_code;});
@@ -1007,13 +1007,32 @@
                 console.log(data);
                 user = data;
               });
-              console.log(typeof user);
-              app.user = user;
-              console.log(user);
-              let tree = await app.loadTree(user.dept, user.year);
-              console.log(tree);
+              if (user === "") {
+                user = {
+                  name: ENV.current_user.display_name,
+                  id: "",
+                  canvas_id: ENV.current_user.id,
+                  enrollment_type: "",
+                  last_login: "",
+                  enrolledHours: 0,
+                  completedHours: 0,
+                  avatar_url: "",
+                  courses: {},
+                  treeCourses: { 
+                    other: []
+                  }
+                }
+                tree = {
+                  hours: 0,
+                  course: {
+                    core: {},
+                    elective: {}
+                  }
+                }
+              } else {
+                tree = await app.loadTree(user.dept, user.year);
+              }
               let courses = user.courses;
-              console.log(courses);
               if (courses == undefined) user.courses = [];
               let entryDate = "N/A";
               if (user.entry_date != undefined) entryDate = new Date(user.entry_date);
@@ -1063,7 +1082,6 @@
                 }
 
               }
-              console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++")
               user.enrolledHours = Math.round(enrolledHours);
               user.completedHours = Math.round(completedHours);
               user.treeCourses = {
@@ -1072,6 +1090,7 @@
                 other: other
               }
               console.log(user);
+              app.user = user;
               app.tree = tree;
               return user;
             }
