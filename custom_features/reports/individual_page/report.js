@@ -1119,6 +1119,9 @@
                 }
 
               }
+              if (isNaN(enrolledHours)) enrolledHours = 0;
+              user.enrolledHours = Math.round(enrolledHours);
+              if (isNaN(completedHours)) completedHours = 0;
               user.enrolledHours = Math.round(enrolledHours);
               user.completedHours = Math.round(completedHours);
               user.treeCourses = {
