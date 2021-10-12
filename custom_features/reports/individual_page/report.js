@@ -1021,43 +1021,44 @@
                     submissions: [],
                   }
                 });
-                await $.get("/api/v1/users/" + userId + "/enrollments?state[]=active&state[]=completed&state[]=inactive", async function(data) {
-                  console.log(data);
-                  for (let e in data) {
-                    let enrollment = data[e];
-                    let courseName = "";
-                    await $.get("/api/v1/courses/" + enrollment.course_id, function(data) {
-                      courseName = data.name;
-                    })
-                    let final_score = enrollment.grades.final_score;
-                    if (final_score === undefined || final_score === null) final_score = 0;
-                    let current_score = enrollment.grades.current_score;
-                    if (current_score === undefined || current_score === null) current_score = 0;
-                    let progress = 0;
-                    if (current_score !== 0) progress = (final_score / current_score) * 100;
-                    let courseCode = "";
-                    let courseCodeM = enrollment.sis_course_id.match(/([A-Z]{4} [0-9]{4})/);
-                    if (courseCodeM) courseCode = courseCodeM[1];
-                    console.log(courseCode);
-                    console.log(courseCodeM);
-                    if (courseCode !== "") {
-                      let courseData = {
-                        code: courseCode,
-                        course_id: enrollment.course_id,
-                        hours: 0,
-                        last_activity: enrollment.last_activity_at,
-                        start: enrollment.created_at,
-                        progress: progress,
-                        state: enrollment.enrollment_state,
-                        enabled: true,
-                        name: courseName,
-                        score: current_score
-                      }
-                      user.courses[courseCode] = courseData;
-                      user.treeCourses.other.push(courseData)
+                let enrollmentData = {};
+                await $.get("/api/v1/users/" + userId + "/enrollments?state[]=active&state[]=completed&state[]=inactive", function(data) {
+                  enrollmentData = data;
+                });
+                for (let e in enrollmentData) {
+                  let enrollment = data[e];
+                  let courseName = "";
+                  await $.get("/api/v1/courses/" + enrollment.course_id, function(data) {
+                    courseName = data.name;
+                  })
+                  let final_score = enrollment.grades.final_score;
+                  if (final_score === undefined || final_score === null) final_score = 0;
+                  let current_score = enrollment.grades.current_score;
+                  if (current_score === undefined || current_score === null) current_score = 0;
+                  let progress = 0;
+                  if (current_score !== 0) progress = (final_score / current_score) * 100;
+                  let courseCode = "";
+                  let courseCodeM = enrollment.sis_course_id.match(/([A-Z]{4} [0-9]{4})/);
+                  if (courseCodeM) courseCode = courseCodeM[1];
+                  console.log(courseCode);
+                  console.log(courseCodeM);
+                  if (courseCode !== "") {
+                    let courseData = {
+                      code: courseCode,
+                      course_id: enrollment.course_id,
+                      hours: 0,
+                      last_activity: enrollment.last_activity_at,
+                      start: enrollment.created_at,
+                      progress: progress,
+                      state: enrollment.enrollment_state,
+                      enabled: true,
+                      name: courseName,
+                      score: current_score
                     }
+                    user.courses[courseCode] = courseData;
+                    user.treeCourses.other.push(courseData)
                   }
-                })
+                }
                 console.log(user);
                 tree = {
                   hours: 0,
