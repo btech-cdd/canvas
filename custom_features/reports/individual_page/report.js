@@ -1008,27 +1008,60 @@
                 user = data;
               });
               if (user === "") {
-                user = {
-                  name: ENV.current_user.display_name,
-                  id: "",
-                  canvas_id: ENV.current_user.id,
-                  enrollment_type: "",
-                  last_login: "",
-                  enrolledHours: 0,
-                  completedHours: 0,
-                  avatar_url: "",
-                  courses: {},
-                  treeCourses: { 
-                    other: []
+                await $.get("/api/v1/users/" + ENV.USER_ID, function(data) {
+                  user = {
+                    name: data.name,
+                    sis_id: data.sis_user_id,
+                    canvas_id: data.id,
+                    enrollment_type: "",
+                    last_login: "",
+                    enrolledHours: 0,
+                    completedHours: 0,
+                    avatar_url: data.avatar_url,
+                    courses: {},
+                    treeCourses: { 
+                      other: []
+                    }
                   }
-                }
-                tree = {
-                  hours: 0,
-                  course: {
-                    core: {},
-                    elective: {}
+                  await $.get("/api/v1/users/" + ENV.USER_ID + "/enrollments", function(data) {
+                    for (let e in data) {
+                      let enrollment = data[e];
+                      let final_score = enrollment.final_score;
+                      if (final_score === undefined || final_score === null) final_score = 0;
+                      let current_score = enrollment.current_score;
+                      if (current_score === undefined || current_score === null) current_score = 0;
+                      let progress = 0;
+                      if (current_score !== 0) progress = (fina_score / current_score) * 100;
+                      let courseCode = "";
+                      let courseCodeM = enrollment.sis_course_id.match(/([A-Z]{4} [0-9]{4})/);
+                      console.log(courseCodeM);
+                      if (courseCodeM) courseCode = courseCodeM[1];
+                      if (courseCode !== "") {
+                        let courseData = {
+                          code: courseCode,
+                          course_id: enrollment.course_id,
+                          hours: 0,
+                          last_activity: enrollment.last_activity_at,
+                          start: enrollment.created_at,
+                          progress: progress,
+                          state: enrollment.enrollment_state,
+                          enabled: true,
+                          name: "",
+                          score: enrollment.current_score
+                        }
+                        user.courses[courseCode] = courseData;
+                        user.treeCourses.other.push(courseData)
+                      }
+                    }
+                  })
+                  tree = {
+                    hours: 0,
+                    course: {
+                      core: {},
+                      elective: {}
+                    }
                   }
-                }
+                });
               } else {
                 tree = await app.loadTree(user.dept, user.year);
               }
