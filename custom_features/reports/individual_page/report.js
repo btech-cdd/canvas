@@ -1021,7 +1021,7 @@
                     submissions: [],
                   }
                 });
-                await $.get("/api/v1/users/" + userId + "/enrollments", function(data) {
+                await $.get("/api/v1/users/" + userId + "/enrollments?state[]=active&state[]=concluded&state[]=inactive", function(data) {
                   console.log(data);
                   for (let e in data) {
                     let enrollment = data[e];
