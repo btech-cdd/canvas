@@ -990,9 +990,9 @@
                 console.log(data);
                 tree = data[0];
               });
-              if (tree.core === undefined) tree.core = {};
-              if (tree.elective === undefined) tree.elective = {};
-              if (tree.other === undefined) tree.other = {};
+              if (tree.courses.core === undefined) tree.courses.core = {};
+              if (tree.courses.elective === undefined) tree.courses.elective = {};
+              if (tree.courses.other === undefined) tree.coureses.other = {};
               console.log(tree);
               return tree;
             },
