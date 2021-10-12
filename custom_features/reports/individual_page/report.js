@@ -1026,7 +1026,7 @@
                   enrollmentData = data;
                 });
                 for (let e in enrollmentData) {
-                  let enrollment = data[e];
+                  let enrollment = enrollmentData[e];
                   let courseName = "";
                   await $.get("/api/v1/courses/" + enrollment.course_id, function(data) {
                     courseName = data.name;
