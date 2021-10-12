@@ -64,6 +64,9 @@
             let user = await app.loadUser(app.userId);
             app.user = user;
 
+            console.log(app.user);
+            console.log(app.tree);
+
             this.courses = await this.getCourseData();
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
