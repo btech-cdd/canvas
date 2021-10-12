@@ -1033,6 +1033,8 @@
                     let courseCode = "";
                     let courseCodeM = enrollment.sis_course_id.match(/([A-Z]{4} [0-9]{4})/);
                     if (courseCodeM) courseCode = courseCodeM[1];
+                    console.log(courseCode);
+                    console.log(courseCodeM);
                     if (courseCode !== "") {
                       let courseData = {
                         code: courseCode,
