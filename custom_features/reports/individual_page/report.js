@@ -1025,6 +1025,10 @@
                   console.log(data);
                   for (let e in data) {
                     let enrollment = data[e];
+                    let courseName = "";
+                    await $.get("/api/v1/courses/" + enrollment.course_id, function(data) {
+                      courseName = data.name;
+                    })
                     let final_score = enrollment.grades.final_score;
                     if (final_score === undefined || final_score === null) final_score = 0;
                     let current_score = enrollment.grades.current_score;
@@ -1046,7 +1050,7 @@
                         progress: progress,
                         state: enrollment.enrollment_state,
                         enabled: true,
-                        name: "",
+                        name: courseName,
                         score: current_score
                       }
                       user.courses[courseCode] = courseData;
