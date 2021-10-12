@@ -1007,7 +1007,9 @@
                 console.log(data);
                 user = data;
               });
+              console.log(user);
               if (user === "") {
+                console.log("BLANK USER");
                 await $.get("/api/v1/users/" + ENV.USER_ID, function(data) {
                   user = {
                     name: data.name,
