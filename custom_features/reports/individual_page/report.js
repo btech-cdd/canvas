@@ -1006,8 +1006,7 @@
               });
               app.user = user;
               console.log(user);
-              app.tree = await app.loadTree(user.dept, user.year);
-              let tree = app.tree;
+              let tree = await app.loadTree(user.dept, user.year);
               console.log(tree);
               let courses = user.courses;
               console.log(courses);
@@ -1068,6 +1067,7 @@
                 other: other
               }
               console.log(user);
+              app.tree = tree;
               return user;
             }
 
