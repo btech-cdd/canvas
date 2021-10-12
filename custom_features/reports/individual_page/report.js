@@ -1025,9 +1025,9 @@
                   console.log(data);
                   for (let e in data) {
                     let enrollment = data[e];
-                    let final_score = enrollment.final_score;
+                    let final_score = enrollment.grades.final_score;
                     if (final_score === undefined || final_score === null) final_score = 0;
-                    let current_score = enrollment.current_score;
+                    let current_score = enrollment.grades.current_score;
                     if (current_score === undefined || current_score === null) current_score = 0;
                     let progress = 0;
                     if (current_score !== 0) progress = (fina_score / current_score) * 100;
@@ -1047,7 +1047,7 @@
                         state: enrollment.enrollment_state,
                         enabled: true,
                         name: "",
-                        score: enrollment.current_score
+                        score: current_score
                       }
                       user.courses[courseCode] = courseData;
                       user.treeCourses.other.push(courseData)
