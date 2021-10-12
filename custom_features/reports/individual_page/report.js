@@ -1024,7 +1024,8 @@
                     courses: {},
                     treeCourses: { 
                       other: []
-                    }
+                    },
+                    submissions: [],
                   }
                 });
                 await $.get("/api/v1/users/" + userId + "/enrollments", function(data) {
