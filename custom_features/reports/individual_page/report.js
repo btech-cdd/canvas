@@ -35,7 +35,12 @@
         let menu_bar;
         if (/^\/$/.test(window.location.pathname)) {
           gen_report_button = $('<a class="btn button-sidebar-wide" id="canvas-individual-report-vue-gen"></a>');
-          menu_bar = $("#right-side div").last();
+          let plannerHeader = $(".PlannerHeader");
+          if (plannerHeader.length > 0) {
+            menu_bar = plannerHeader;
+          } else {
+            menu_bar = $("#right-side div").last();
+          }
         } else if (/^\/courses\/[0-9]+\/users\/[0-9]+$/.test(window.location.pathname)) {
           gen_report_button = $('<a style="cursor: pointer;" id="canvas-individual-report-vue-gen"></a>');
           menu_bar = $("#right-side div").first();
