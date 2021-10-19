@@ -1093,8 +1093,8 @@
                 let programCourseData;
                 let courseHours = course.hours;
                 if (courseHours == undefined) {
-                    if (courseCode in program.courses.core) programCourseData = tree.courses.core[courseCode];
-                    else if (courseCode in program.courses.elective) programCourseData = tree.courses.core[courseCode];
+                    if (courseCode in tree.courses.core) programCourseData = tree.courses.core[courseCode];
+                    else if (courseCode in tree.courses.elective) programCourseData = tree.courses.core[courseCode];
                     if (programCourseData !== undefined) courseHours = programCourseData.hours;
                 }
                 courseHours = parseInt(courseHours);
