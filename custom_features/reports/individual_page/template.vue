@@ -24,6 +24,10 @@
           <div v-else>
             <div v-if="menu=='report'">
               <div class="btech-canvas-report" style="background-color: #ffffff;">
+                <menu-info
+                  :colors="colors"
+                  :current-report="'students'"
+                ></menu-info>
                 <show-student-ind
                     v-if="user.name !== undefined && tree.name !== undefined"
                     id="printable-report" 
