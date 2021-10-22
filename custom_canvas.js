@@ -29,12 +29,11 @@ if (window.location.href.includes("btech.beta.instructure.com")) {
 var CDDIDS = [
   1893418, //Josh 
   2023384, //Dani
-  1864953, //Danni
-  2023384, //Dani
   1638854, //Mason
   1807337, //Jon
   1869288, //Alan
   2000557, //Charlotte
+  2048150, //Tiffany
 ];
 
 if (/^\/courses\/[0-9]+$/.test(window.location.pathname)) {
