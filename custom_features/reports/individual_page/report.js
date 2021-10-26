@@ -457,6 +457,7 @@
 
                   for (let groupId in course.groups) {
                     let group = course.groups[groupId];
+                    console.log(group);
                     if (app.checkIncludeGroup(group) && group.include) {
                       if (group.group_weight > 0 || sumGroupWeights === 0) {
                         let currentPoints = 0; //points earned
