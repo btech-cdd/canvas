@@ -364,6 +364,7 @@
                   let subData = {};
                   for (let s = 0; s < subs.length; s++) {
                     let sub = subs[s];
+                    console.log(sub);
                     if (sub.posted_at != null) {
                       subData[sub.assignment_id] = sub;
                     }
