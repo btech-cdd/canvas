@@ -131,7 +131,7 @@
                               <input @change="calcGradesFromIncludedAssignments" type="checkbox"
                                 :id="course.id + '-' + group.id + '-checkbox'"
                                 v-model="group.include" :disabled="!course.include">
-                              <b>{{group.name}}</b></h4>
+                              <b>{{group.name}} ({{group.group_weight * 100}}%)</b></h4>
                             <div v-if='group.include'>
                               <div v-for='assignment in group.assignments' :key='assignment.id'>
                                 <div v-if='checkIncludeAssignment(assignment)'>
