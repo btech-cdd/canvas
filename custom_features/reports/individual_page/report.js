@@ -365,7 +365,8 @@
                   for (let s = 0; s < subs.length; s++) {
                     let sub = subs[s];
                     console.log(sub);
-                    if (sub.posted_at != null) {
+                    //if (sub.posted_at != null) { //used to check if posted
+                    if (sub.score !== null) { //trying out including anything with a score
                       subData[sub.assignment_id] = sub;
                     }
                   }
