@@ -128,6 +128,9 @@
                         <div v-for='group in course.groups' :key='group.name'>
                           <div v-if='checkIncludeGroup(group)'>
                             <h4>
+                              <input @change="calcGradesFromIncludedAssignments" type="checkbox"
+                                :id="course.id + '-' + group.id + '-' + assignment.id + '-checkbox'"
+                                v-model="group.include" :disabled="!course.include">
                               <b>{{group.name}}</b></h4>
                             <div v-if='group.include'>
                               <div v-for='assignment in group.assignments' :key='assignment.id'>

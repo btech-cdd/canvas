@@ -450,7 +450,9 @@
                   let sumGroupWeights = 0; //used to check if group weights are even used
                   for (let groupId in course.groups) {
                     let group = course.groups[groupId];
-                    sumGroupWeights += group.group_weight;
+                    if (group.include) {
+                      sumGroupWeights += group.group_weight;
+                    }
                   }
 
                   for (let groupId in course.groups) {
