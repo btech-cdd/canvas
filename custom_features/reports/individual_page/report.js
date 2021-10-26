@@ -897,7 +897,7 @@
             checkIncludeGroup(group) {
               let app = this;
               console.log(group);
-              if (group.weight > 0) return true;
+              if (group.group_weight > 0) return true;
               /*
               for (let a in group.assignments) {
                 let assignment = group.assignments[a];
