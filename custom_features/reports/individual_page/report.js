@@ -512,6 +512,9 @@
                     if (!isNaN(weightedGrade)) {
                       output = weightedGrade;
                     }
+                    console.log(totalCurrentPoints);
+                    console.log(totalTotalPoints);
+                    console.log(output);
                     gradesBetweenDates[courseId] = output;
 
                     //display progress
