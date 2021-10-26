@@ -476,6 +476,7 @@
                         }
                         //update info for the submission/earned points values
                         if (possiblePoints > 0) {
+                          console.log(group.name);
                           let groupScore = currentPoints / possiblePoints;
                           if (sumGroupWeights > 0) {
                             currentWeighted += groupScore * group.group_weight;
