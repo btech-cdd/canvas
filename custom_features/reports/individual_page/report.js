@@ -504,6 +504,7 @@
                     let weightedGrade;
                     //dispaly grade
                     if (sumGroupWeights > 0) {
+                      console.log("Weighted");
                       weightedGrade = Math.round(currentWeighted / totalWeightsSubmitted * 10000) / 100;
                     } else {
                       weightedGrade = Math.round(totalCurrentPoints / totalTotalPoints * 10000) / 100;
