@@ -498,6 +498,8 @@
                   }
                   //if there are any points possible in this course, put out some summary grades data
                   if (totalWeights > 0 || sumGroupWeights === 0) {
+                    console.log(totalWeights);
+                    console.log(sumGroupWeights);
                     let output;
                     let weightedGrade;
                     //dispaly grade
