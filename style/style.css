@@ -253,9 +253,9 @@
   background-color: #B20B0F;
   border-color: #82080A;
   color: #FFFFFF;
+  cursor: pointer;
 }
 #content #accreditation .icon-container i {
-  cursor: pointer;
   vertical-align: middle;
   color: #FFFFFF;
 }
