@@ -76,7 +76,7 @@
                     </a>
                   </div>
                   <span>
-                    {{submission.user.name}} ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%)
+                    {{submission.user.name}} ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%) - {{getSubmissionDate(submission)}}
                   </span>
                 </div>
                 <div v-else>
@@ -143,6 +143,13 @@
           }
         },
         methods: {
+          getSubmissionDate(submission) {
+            let date = submission.submitted_at;
+            if (date === null) {
+              date = submission.graded_at;
+            }
+            return date;
+          },
           getFilteredSubmissions(submissions) {
             let app = this;
             let startDate = app.startDate;
@@ -171,10 +178,7 @@
               let submission = submissions[s];
               //date filter
               let checkDate = false;
-              let date = submission.submitted_at;
-              if (date === null) {
-                date = submission.graded_at;
-              }
+              let date = app.getSubmissionDate(submission);
               if (date !== null) {
                 if ((date >= startDate || startDate === null) && (date <= endDate || endDate === null)) {
                   checkDate = true;
@@ -368,7 +372,7 @@
 
             //Prepend in reverse order of the order you want it to appear at the top5rp
             content.show();
-            content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
+            content.prepend("<div>Submitted:" + app.getSubmissionDate(data.submission) + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
             content.prepend("<div>Course:" + app.courseData.name + " (" + app.courseData.course_code + ")" + "</div>");
