@@ -81,6 +81,10 @@
         mounted: async function () {
           let app = this;
           app.courseId = CURRENT_COURSE_ID;
+          await $.get("/api/v1/courses/" + app.courseId).done(function (data) {
+            console.log(data);
+            app.courseData = data;
+          });
           await $.get("/api/v1/courses/" + app.courseId + "/assignment_groups?include[]=assignments&per_page=100").done(function (data) {
             for (let i = 0; i < data.length; i++) {
               let group = data[i];
@@ -113,6 +117,7 @@
         data: function () {
           return {
             assignmentGroups: {},
+            courseData: {},
             enrollments: [],
             courseId: null,
             currentUser: '',
@@ -358,10 +363,13 @@
             }
             */
 
+
+            //Prepend in reverse order of the order you want it to appear at the top5rp
             content.show();
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
+            content.prepend("<div>Course:" + app.courseData.name + " (" + app.courseData.course_code + ")" + "</div>");
 
             //content.append(commentEl); //Comments already show up with this download method. Only need to be appended for rubrics
             content.append(discussionEl);
@@ -373,6 +381,7 @@
                 $('title').text(ogTitle);
                 app.preparingDocument = false;
                 iframe.remove();
+             ;
               }
             });
             return;
@@ -403,7 +412,7 @@
             return;
           },
           //Not currently working because of CORS
-          async downloadNewQuiz(iframe, content, data) {
+          async downloadNewQuiz(ifraame, content, data) {
             let app = this;
             let elId = iframe.attr('id');
             let id = elId.replace('btech-content-', '');
