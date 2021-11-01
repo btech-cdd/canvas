@@ -233,3 +233,20 @@
   color: darkblue;
   font-size: .9rem;
 }
+
+#content #accreditation .icon-container {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 1rem;
+  vertical-align: center;
+  text-align: center;
+  display: inline-block;
+  padding: .25rem;
+  background-color: #B20B0F;
+  border-color: #82080A;
+  color: #FFFFFF;
+}
+#content #accreditation .icon-container i {
+  cursor: pointer;
+  vertical-align: middle;
+}

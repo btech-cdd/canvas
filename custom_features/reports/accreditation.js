@@ -6,11 +6,12 @@
 
   //PUT INSTRUCTIONS FOR ADDING TO A DEPARTMENT HERE
   //Try adding it to the whole school at some point
-  //https://btech.instructure.com/courses/498455/accredidation
+  //https://btech.instructure.com/courses/498455/accreditation
   //https://jhveem.xyz/accreditation/lti.xml
   if (document.title === "BTECH Accreditation") {
     //abort if this has already been run on the page
-    if ($('#accredidation').length > 0) return;
+    //If you change id name, you'll have to update the css
+    if ($('#accreditation').length > 0) return;
 
     let rCheckInCourse = /^\/courses\/([0-9]+)/;
     if (rCheckInCourse.test(window.location.pathname)) {
@@ -27,7 +28,7 @@
       let CURRENT_COURSE_ID = parseInt(window.location.pathname.match(rCheckInCourse)[1]);
       //add in a selector for all students with their grade then only show assignments they've submitted so far???
       $("#content").html(`
-      <div id='accredidation'>
+      <div id='accreditation'>
         <div class='date-input'>
           <input type='date' v-model='startDate'>
           <input type='date' v-model='endDate'>
@@ -64,20 +65,28 @@
               <h2><a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id">{{currentAssignment.name}}</a></h2>
               <div v-if='getFilteredSubmissions(submissions).length > 0'>
                 <div v-for='submission in getFilteredSubmissions(submissions)'>
-                  <i class='icon-download' style='cursor: pointer;' @click='downloadSubmission(currentAssignment, submission)'></i>
-                  <a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id+'/submissions/'+submission.user.id">{{submission.user.name}} ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%)</a>
+                  <div class='icon-container'>
+                    <i class='icon-download' @click='downloadSubmission(currentAssignment, submission)'></i>
+                  </div>
+                  <div class='icon-container'>
+                    <a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id+'/submissions/'+submission.user.id">
+                      <i class='icon-student-view'></i>
+                    </a>
+                  </div>
+                  <span>
+                    {{submission.user.name}} ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%)
+                  </span>
+                </div>
+                <div v-else>
+                  No graded submissions found. There may be submissions pending grading.
                 </div>
               </div>
-              <div v-else>
-                No graded submissions found. There may be submissions pending grading.
-              </div>
-            </div>
           </div>
         </div>
       </div>`);
       await $.getScript("https://cdn.jsdelivr.net/npm/vue");
       new Vue({
-        el: "#accredidation",
+        el: "#accreditation",
         mounted: async function () {
           let app = this;
           app.courseId = CURRENT_COURSE_ID;
@@ -241,11 +250,11 @@
             let comments = submission.submission_comments;
             let el = "";
             if (comments.length > 0) {
-              el = $("<div style='page-break-before: always;' class='btech-accredidation-comments'></div>")
+              el = $("<div style='page-break-before: always;' class='btech-accreditation-comments'></div>")
               el.append("<h2>Comments</h2>")
               for (let i = 0; i < comments.length; i++) {
                 let comment = comments[i];
-                let commentEl = $(`<div class='btech-accredidation-comment' style='border-bottom: 1px solid #000;'>
+                let commentEl = $(`<div class='btech-accreditation-comment' style='border-bottom: 1px solid #000;'>
                   <p>` + comment.comment + `</p>
                   <p style='text-align: right;'><i>-` + comment.author_name + `, ` + comment.created_at + `</i></p>
                 </div>`);
@@ -335,7 +344,7 @@
           getDiscussionEntries(submission) {
             let returnString = "";
             if (submission.discussion_entries != undefined) {
-              returnString += "<div style='page-break-before: always;' class='btech-accredidation-comments'></div>"
+              returnString += "<div style='page-break-before: always;' class='btech-accreditation-comments'></div>"
               returnString += "<h2>User Discussion Entries</h2>"
               let entries = submission.discussion_entries;
               for (let e in entries) {
