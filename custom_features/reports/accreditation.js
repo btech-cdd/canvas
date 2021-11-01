@@ -60,7 +60,7 @@
         </div>
         <div v-if='showModal && !preparingDocument' @click="if(!preparingDocument) showModal = false;" class='btech-modal' style='display: inline-block;'>
           <div class='btech-modal-content' @click.stop>
-            <div class="icon-container" style='float: right; margin-right: .5rem;' v-on:click='close()'>
+            <div class="icon-container" style='float: right; margin-right: .5rem; margin-top: .5rem;' v-on:click='close()'>
               <i class="icon-end"></i> 
             </div>
             <div class='btech-modal-content-inner'>
