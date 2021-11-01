@@ -242,10 +242,6 @@
   color: #383140;
 }
 
-#content #accreditation a:before {
-  content: "";
-}
-
 #content #accreditation .icon-container {
   width: 1.5rem;
   height: 1.5rem;
