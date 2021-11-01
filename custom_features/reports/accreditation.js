@@ -59,7 +59,7 @@
           </div>
         </div>
         <div v-if='showModal && !preparingDocument' @click="if(!preparingDocument) showModal = false;" class='btech-modal' style='display: inline-block;'>
-          <div class='btech-modal-content'>
+          <div class='btech-modal-content' @click.stop>
             <div style='float: right; cursor: pointer;' v-on:click='close()'>X</div>
             <div class='btech-modal-content-inner'>
               <h2><a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id">{{currentAssignment.name}}</a></h2>
