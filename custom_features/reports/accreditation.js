@@ -58,7 +58,7 @@
             </div>
           </div>
         </div>
-        <div v-if='showModal && !preparingDocument' class='btech-modal' style='display: inline-block;'>
+        <div v-if='showModal && !preparingDocument' @click="if(!preparingDocument) showModal = false;" class='btech-modal' style='display: inline-block;'>
           <div class='btech-modal-content'>
             <div style='float: right; cursor: pointer;' v-on:click='close()'>X</div>
             <div class='btech-modal-content-inner'>
