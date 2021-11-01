@@ -64,7 +64,7 @@
             <div class='btech-modal-content-inner'>
               <h2><a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id">{{currentAssignment.name}}</a></h2>
               <div v-if='getFilteredSubmissions(submissions).length > 0'>
-                <div v-for='submission in getFilteredSubmissions(submissions)'>
+                <div class="submission-row" v-for='submission in getFilteredSubmissions(submissions)'>
                   <div class='icon-container'>
                     <i class='icon-download' @click='downloadSubmission(currentAssignment, submission)'></i>
                   </div>
