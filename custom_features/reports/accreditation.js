@@ -76,7 +76,7 @@
                     </a>
                   </div>
                   <span>
-                    {{submission.user.name}} ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%)
+                    {{submission.user.name}} ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%) - {{getSubmissionDate(submission)}}
                   </span>
                 </div>
                 <div v-else>
@@ -93,7 +93,6 @@
           let app = this;
           app.courseId = CURRENT_COURSE_ID;
           await $.get("/api/v1/courses/" + app.courseId).done(function (data) {
-            console.log(data);
             app.courseData = data;
           });
           await $.get("/api/v1/courses/" + app.courseId + "/assignment_groups?include[]=assignments&per_page=100").done(function (data) {
@@ -144,6 +143,13 @@
           }
         },
         methods: {
+          getSubmissionDate(submission) {
+            let date = submission.submitted_at;
+            if (date === null) {
+              date = submission.graded_at;
+            }
+            return date;
+          },
           getFilteredSubmissions(submissions) {
             let app = this;
             let startDate = app.startDate;
@@ -172,10 +178,7 @@
               let submission = submissions[s];
               //date filter
               let checkDate = false;
-              let date = submission.submitted_at;
-              if (date === null) {
-                date = submission.graded_at;
-              }
+              let date = app.getSubmissionDate(submission);
               if (date !== null) {
                 if ((date >= startDate || startDate === null) && (date <= endDate || endDate === null)) {
                   checkDate = true;
@@ -269,7 +272,6 @@
 
           //THIS IS WHERE EVERYTHING GETS SORTED OUT AND ALL THE DOWNLOADS ARE INITIATED
           async downloadSubmission(assignment, submission) {
-            console.log(submission);
             let app = this;
             let types = assignment.submission_types;
             app.preparingDocument = true;
@@ -280,7 +282,6 @@
             //vanilla quizzes
             //need to append comments to this
             if (assignment.is_quiz_assignment) {
-              console.log("Flagged as quiz");
               let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
               await app.createIframe(url, app.downloadQuiz, {
                 'submission': submission,
@@ -306,7 +307,6 @@
 
             //rubrics
             if (assignment.rubric != undefined) {
-              console.log("Has a rubric")
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               await app.createIframe(url, app.downloadRubric, {
                 'submission': submission,
@@ -314,7 +314,6 @@
               });
               app.needsToWait = true;
             } else {
-              console.log("No rubric, get comments")
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               app.needsToWait = true;
               await app.createIframe(url, app.downloadComments, {
@@ -324,7 +323,6 @@
             }
 
             if (types.includes("online_upload")) {
-              console.log("Get upload")
               let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               let assignmentsData = null;
               await $.get(url, function (data) {
@@ -336,9 +334,6 @@
               }
             }
             //check if nothing has been gotten
-            if (false) {
-              console.log('assignment type undefined');
-            }
             if (app.needsToWait === false) {
               app.preparingDocument = false;
             }
@@ -377,7 +372,7 @@
 
             //Prepend in reverse order of the order you want it to appear at the top5rp
             content.show();
-            content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
+            content.prepend("<div>Submitted:" + app.getSubmissionDate(data.submission) + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
             content.prepend("<div>Course:" + app.courseData.name + " (" + app.courseData.course_code + ")" + "</div>");
