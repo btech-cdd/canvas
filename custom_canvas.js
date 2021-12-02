@@ -462,11 +462,17 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           }
 
           //DISTANCE APPROVED DEPARTMENTS
+          //ids below dept name are sub accounts
           let IS_DISTANCE = [
             3820, //WEBM
+            3880,
             3834, //IT
+            3868,
+            4215,
+            4216,
             4218, //DATA
             3833, //BTEC
+            3871,
            ];
           if (IS_DISTANCE.includes(CURRENT_DEPARTMENT_ID)) {
             feature("distance/approved-button", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
