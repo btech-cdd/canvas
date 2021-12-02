@@ -25,9 +25,9 @@
                   }
               }
               let color = contentNotApprovedColor;
+              if (IS_CDD && approved) color = contentApprovedColor;
               let distanceApprovedButton = $(`<span class="ig-distance-approved" style="cursor: pointer; float: right; color: ` + color + `"><i class="fas fa-laptop-house" aria-hidden="true"></i></span>`);
               if (IS_CDD) {
-                  if (approved) color = contentApprovedColor;
                   distanceApprovedButton.click(function() {
                       let currentColor = $(this).css("color");
                       console.log(currentColor);
