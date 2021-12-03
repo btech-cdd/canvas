@@ -52,6 +52,7 @@
         gen_report_button.appendTo(menu_bar);
         let modal = $('#canvas-individual-report-vue');
         modal.hide();
+
         this.APP = new Vue({
           el: '#canvas-individual-report-vue',
           mounted: async function () {
