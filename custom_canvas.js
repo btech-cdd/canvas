@@ -86,6 +86,7 @@ var CURRENT_COURSE_HOURS = null;
 var IS_BLUEPRINT = null;
 var IS_TEACHER = null;
 var IS_ME = false;
+var IS_CDD = false;
 var COURSE_HOURS, COURSE_LIST;
 //Now, if testing in beta, will pull from beta instance of all these tools
 //Should start experimenting with branching in github
@@ -307,7 +308,7 @@ $.delete = function (url, data) {
 if (window.self === window.top) { //Make sure this is only run on main page, and not every single iframe on the page. For example, Kaltura videos all load in a Canvas iframe
   let currentUser = parseInt(ENV.current_user.id);
   IS_ME = (currentUser === 1893418);
-  const IS_CDD = (CDDIDS.includes(currentUser))
+  IS_CDD = (CDDIDS.includes(currentUser))
   /*
   https://btech.instructure.com/accounts/3/theme_editor
   */
@@ -413,7 +414,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           //DEPARTMENT SPECIFIC IMPORTS
 
           if (CURRENT_DEPARTMENT_ID == 4218) { // DATA ANALYTICS
-            externalFeature("https://cdn.datacamp.com/datacamp-light-latest.min.js", /^\/courses\/([0-9]+)\/(pages|assignments|quizzes|discussion_topics)/); //really just available to data analytics
+            externalFeature("https://cdn.datacamp.com/datacamp-light-latest.min.js", /^\/courses\/([0-9]+)\/(pages|assignments|quizzes|discussion_topics)\/[0-9]+(\?|$)/); //really just available to data analytics
           }
           if (CURRENT_DEPARTMENT_ID === 3824) { // DENTAL
             feature("grades_page/highlighted_grades_page_items_dental", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
@@ -458,6 +459,23 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           }
           if (CURRENT_DEPARTMENT_ID === 3883) { //Diesel
             feature("department_specific/diesel-page-turner", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+          }
+
+          //DISTANCE APPROVED DEPARTMENTS
+          //ids below dept name are sub accounts
+          let IS_DISTANCE = [
+            3820, //WEBM
+            3880,
+            3834, //IT
+            3868,
+            4215,
+            4216,
+            4218, //DATA
+            3833, //BTEC
+            3871,
+           ];
+          if (IS_DISTANCE.includes(CURRENT_DEPARTMENT_ID)) {
+            feature("distance/approved-button", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
           }
         })
       }
