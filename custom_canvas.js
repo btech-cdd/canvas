@@ -511,7 +511,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
 (function() {
   window.prontoInit = {"ixn":"canvas","cid":203,"version":"1.0"};
   var script = document.createElement('script');
-  script.src = `https://chat.trypronto.com/js/embedded.js?cb=${Math.round(new Date().getTime() / 1000)}`;
+  script.src = `https://chat.pronto.io/js/embedded.js?cb=${Math.round(new Date().getTime() / 1000)}`;
   document.body.appendChild(script);
 })();
 
