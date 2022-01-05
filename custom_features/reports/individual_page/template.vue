@@ -10,7 +10,7 @@
         </ul>
       </div>
       <div class='btech-modal-content-inner'>
-          <div v-if="accessDenied || menu=='report'">
+          <div v-if="(accessDenied || menu=='report')">
             <p>
               <b>ERROR:</b> You are not authorized to see all of this student's courses. This often occurs when the
               student
