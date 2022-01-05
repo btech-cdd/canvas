@@ -10,7 +10,7 @@
         </ul>
       </div>
       <div class='btech-modal-content-inner'>
-          <div v-if="false">
+          <div v-if="(accessDenied || menu=='report')">
             <p>
               <b>ERROR:</b> You are not authorized to see all of this student's courses. This often occurs when the
               student
@@ -21,7 +21,7 @@
             </p>
           </div>
 
-          <div>
+          <div v-else>
             <div v-if="menu=='report'">
               <div class="btech-canvas-report" style="background-color: #ffffff;">
                 <menu-info
