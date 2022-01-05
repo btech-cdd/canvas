@@ -4,7 +4,7 @@
   They only need the View Enrollments level access to be able to see the report.
   Show which tab you're on
 */
-console.log("IND REPORT UPDATE")
+console.log("IND REPORT UPDATE");
 (function () {
   class Column {
     constructor(name, description, average, sort_type, percent, hideable = true) {
