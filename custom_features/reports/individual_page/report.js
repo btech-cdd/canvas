@@ -397,6 +397,7 @@
                     };
                     if (group.group_weight > 0 || sumWeights === 0) {
                       //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
+                      console.log(group);
                       for (let a = 0; a < group.assignments.length; a++) {
                         let assignment = group.assignments[a];
                         if (assignment.published) {
@@ -425,7 +426,6 @@
                   }
                 }
               }
-              console.log(includedAssignments);
               app.includedAssignments = JSON.parse(JSON.stringify(includedAssignments));
               app.calcGradesFromIncludedAssignments();
             },
