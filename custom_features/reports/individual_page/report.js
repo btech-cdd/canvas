@@ -356,6 +356,7 @@
               for (let i = 0; i < app.courses.length; i++) {
                 let course = app.courses[i];
                 let courseId = course.course_id;
+                console.log(courseId);
                 includedAssignments[courseId] = {
                   name: course.name,
                   id: courseId,
@@ -373,6 +374,7 @@
                       subData[sub.assignment_id] = sub;
                     }
                   }
+                  console.log(subData);
 
                   let assignmentGroups = this.courseAssignmentGroups[courseId];
 
@@ -382,6 +384,7 @@
                     let group = assignmentGroups[g];
                     sumWeights += group.group_weight;
                   }
+                  console.log(sumWeights);
 
                   //weight grades based on assignment group weighting and hours completed in the course
                   for (let g = 0; g < assignmentGroups.length; g++) {
