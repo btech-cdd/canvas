@@ -76,8 +76,6 @@
             for (let i = 0; i < this.courses.length; i++) {
               let courseId = this.courses[i].course_id;
               this.submissionData[courseId] = await this.getSubmissionData(courseId);
-              console.log(courseId);
-              console.log(this.submissionData[courseId]);
               //get assignment group data
               this.courseAssignmentGroups[this.courses[i].course_id] = await canvasGet("/api/v1/courses/" + this.courses[i].course_id + "/assignment_groups", {
                 'include': [
@@ -356,7 +354,9 @@
               for (let i = 0; i < app.courses.length; i++) {
                 let course = app.courses[i];
                 let courseId = course.course_id;
-                console.log(courseId);
+                if (courseId == 502023) {
+                  console.log(courseId);
+                }
                 includedAssignments[courseId] = {
                   name: course.name,
                   id: courseId,
@@ -374,7 +374,9 @@
                       subData[sub.assignment_id] = sub;
                     }
                   }
-                  console.log(subData);
+                  if (courseId == 502023) {
+                    console.log(subData);
+                  }
 
                   let assignmentGroups = this.courseAssignmentGroups[courseId];
 
@@ -384,7 +386,9 @@
                     let group = assignmentGroups[g];
                     sumWeights += group.group_weight;
                   }
-                  console.log(sumWeights);
+                  if (courseId == 502023) {
+                    console.log(sumWeights);
+                  }
 
                   //weight grades based on assignment group weighting and hours completed in the course
                   for (let g = 0; g < assignmentGroups.length; g++) {
