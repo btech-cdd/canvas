@@ -376,6 +376,7 @@
 
                   let assignmentGroups = this.courseAssignmentGroups[courseId];
                   console.log(assignmentGroups);
+                  console.log(subData);
 
                   //calc sum weights, if zero, then don't check weights to include
                   let sumWeights = 0;
@@ -403,6 +404,7 @@
                         if (assignment.published) {
 
                           if (assignment.id in subData) {
+                            console.log("IN SUB DATA");
                             let sub = subData[assignment.id];
                             let subDateString = sub.submitted_at;
                             if (subDateString === null) subDateString = sub.graded_at;
