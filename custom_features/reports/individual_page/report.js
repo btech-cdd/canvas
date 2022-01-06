@@ -429,12 +429,12 @@
                           }
                         }
                       }
-                      console.log(includedAssignments[courseId])
                     }
                   }
                 }
               }
               app.includedAssignments = JSON.parse(JSON.stringify(includedAssignments));
+              console.log(app.includedAssignments[502023]);
               app.calcGradesFromIncludedAssignments();
             },
 
