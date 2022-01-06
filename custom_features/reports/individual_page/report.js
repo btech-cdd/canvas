@@ -465,7 +465,6 @@
 
                   for (let groupId in course.groups) {
                     let group = course.groups[groupId];
-                    console.log(group);
                     if (app.checkIncludeGroup(group) && group.include) {
                       if (group.group_weight > 0 || sumGroupWeights === 0) {
                         let currentPoints = 0; //points earned
@@ -484,7 +483,6 @@
                         }
                         //update info for the submission/earned points values
                         if (possiblePoints > 0) {
-                          console.log(group.name);
                           let groupScore = currentPoints / possiblePoints;
                           if (sumGroupWeights > 0) {
                             currentWeighted += groupScore * group.group_weight;
@@ -508,13 +506,10 @@
                   }
                   //if there are any points possible in this course, put out some summary grades data
                   if (totalWeights > 0 || sumGroupWeights === 0) {
-                    console.log(totalWeights);
-                    console.log(sumGroupWeights);
                     let output;
                     let weightedGrade;
                     //dispaly grade
                     if (sumGroupWeights > 0) {
-                      console.log("Weighted");
                       weightedGrade = Math.round(currentWeighted / totalWeightsSubmitted * 10000) / 100;
                     } else {
                       weightedGrade = Math.round(totalCurrentPoints / totalTotalPoints * 10000) / 100;
@@ -523,9 +518,6 @@
                     if (!isNaN(weightedGrade)) {
                       output = weightedGrade;
                     }
-                    console.log(currentWeighted);
-                    console.log(totalWeightsSubmitted);
-                    console.log(output);
                     gradesBetweenDates[courseId] = output;
 
                     //display progress
