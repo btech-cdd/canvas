@@ -70,14 +70,12 @@
             let user = await app.loadUser(app.userId);
             app.user = user;
 
+            
             this.courses = await this.getCourseData();
             this.loading = false;
-            /*
             for (let i = 0; i < this.courses.length; i++) {
               let courseId = this.courses[i].course_id;
               this.submissionData[courseId] = await this.getSubmissionData(courseId);
-              console.log(courseId);
-              console.log(this.submissionData[courseId]);
               //get assignment group data
               this.courseAssignmentGroups[this.courses[i].course_id] = await canvasGet("/api/v1/courses/" + this.courses[i].course_id + "/assignment_groups", {
                 'include': [
@@ -85,7 +83,6 @@
                 ]
               });
             }
-            */
             this.loadingAssignments = false;
           },
 
@@ -363,7 +360,9 @@
                   include: true,
                   groups: {}
                 };
+                console.log(courseId);
                 let subs = this.submissionData[courseId];
+                console.log(subs);
                 if (subs !== undefined) {
                   //get the data for all submissions
                   let subData = {};
@@ -820,12 +819,10 @@
               let user_id = app.userId;
               //I think this one works better, but it apparently doesn't work for all students??? Might be related to status. The one it didn't work on was inactive
               // let url = "/api/v1/courses/" + course_id + "/analytics/users/" + user_id + "/assignments";
-              console.log(course_id);
               let url = "/api/v1/courses/" + course_id + "/students/submissions?student_ids[]=" + user_id + "&include=assignment";
               if (enrollment === undefined) return;
               try {
                 let submissions = await canvasGet(url);
-                console.log(submissions);
                 course.assignments = submissions;
                 let total_points_possible = 0;
                 let current_points_possible = 0;
@@ -1028,7 +1025,6 @@
                 user = data;
               });
               if (user === "") {
-                console.log("BLANK USER");
                 await $.get("/api/v1/users/" + userId, function(data) {
                   user = {
                     name: data.name,
@@ -1066,8 +1062,6 @@
                   let courseCode = "";
                   let courseCodeM = enrollment.sis_course_id.match(/([A-Z]{4} [0-9]{4})/);
                   if (courseCodeM) courseCode = courseCodeM[1];
-                  console.log(courseCode);
-                  console.log(courseCodeM);
                   if (courseCode !== "") {
                     let courseData = {
                       code: courseCode,
@@ -1085,7 +1079,6 @@
                     user.treeCourses.other.push(courseData)
                   }
                 }
-                console.log(user);
                 tree = {
                   hours: 0,
                   name: "",
