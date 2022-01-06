@@ -76,6 +76,8 @@
             for (let i = 0; i < this.courses.length; i++) {
               let courseId = this.courses[i].course_id;
               this.submissionData[courseId] = await this.getSubmissionData(courseId);
+              console.log(courseId);
+              console.log(this.submissionData[courseId]);
               //get assignment group data
               this.courseAssignmentGroups[this.courses[i].course_id] = await canvasGet("/api/v1/courses/" + this.courses[i].course_id + "/assignment_groups", {
                 'include': [
