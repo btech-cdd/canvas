@@ -397,11 +397,16 @@
                       assignments: {}
                     };
                     if (group.group_weight > 0 || sumWeights === 0) {
-                      console.log(group);
+                      if (courseId === 502023) {
+                        console.log(group);
+                      }
                       //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
                       for (let a = 0; a < group.assignments.length; a++) {
                         let assignment = group.assignments[a];
                         if (assignment.published) {
+                          if (courseId === 502023) {
+                            console.log(group);
+                          }
 
                           if (assignment.id in subData) {
                             if (courseId === 502023) {
