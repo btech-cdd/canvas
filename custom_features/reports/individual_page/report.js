@@ -362,7 +362,6 @@
                 };
                 console.log(courseId);
                 let subs = this.submissionData[courseId];
-                console.log(subs);
                 if (subs !== undefined) {
                   //get the data for all submissions
                   let subData = {};
@@ -375,6 +374,7 @@
                   }
 
                   let assignmentGroups = this.courseAssignmentGroups[courseId];
+                  console.log(assignmentGroups);
 
                   //calc sum weights, if zero, then don't check weights to include
                   let sumWeights = 0;
@@ -382,6 +382,7 @@
                     let group = assignmentGroups[g];
                     sumWeights += group.group_weight;
                   }
+                  console.log(sumWeights);
 
                   //weight grades based on assignment group weighting and hours completed in the course
                   for (let g = 0; g < assignmentGroups.length; g++) {
@@ -423,6 +424,7 @@
                   }
                 }
               }
+              console.log(includedAssignments);
               app.includedAssignments = JSON.parse(JSON.stringify(includedAssignments));
               app.calcGradesFromIncludedAssignments();
             },
