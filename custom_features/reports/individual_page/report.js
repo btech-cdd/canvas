@@ -951,7 +951,7 @@
             async refreshHSEnrollmentTerms() {
               let app = this;
               let terms;
-              await $.get("https://bridgetools.dev/api/enroll_hs/" + app.userId, function (data) {
+              await $.get("https://canvas.bridgetools.dev/api/enroll_hs/" + app.userId, function (data) {
                 terms = data;
               });
               app.terms = terms
@@ -975,7 +975,7 @@
             },
             async deleteHSEnrollmentTerm(term) {
               let app = this;
-              await $.delete('https://bridgetools.dev/api/enroll_hs/' + term._id, {});
+              await $.delete('https://canvas.bridgetools.dev/api/enroll_hs/' + term._id, {});
               for (let i = 0; i < app.terms.length; i++) {
                 if (app.terms[i]._id === term._id) {
                   app.terms.splice(i, 1);
@@ -986,7 +986,7 @@
 
             async enrollHS() {
               let app = this;
-              await $.post('https://bridgetools.dev/api/enroll_hs', {
+              await $.post('https://canvas.bridgetools.dev/api/enroll_hs', {
                 'students': JSON.stringify([app.userId]),
                 'term_data': JSON.stringify({
                   hours: app.enrollment_tab.saveTerm.hours,
