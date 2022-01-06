@@ -362,9 +362,7 @@
                   include: true,
                   groups: {}
                 };
-                console.log(courseId);
                 let subs = this.submissionData[courseId];
-                console.log(subs);
                 if (subs !== undefined) {
                   //get the data for all submissions
                   let subData = {};
@@ -377,8 +375,6 @@
                   }
 
                   let assignmentGroups = this.courseAssignmentGroups[courseId];
-                  console.log(assignmentGroups);
-                  console.log(subData);
 
                   //calc sum weights, if zero, then don't check weights to include
                   let sumWeights = 0;
@@ -386,7 +382,6 @@
                     let group = assignmentGroups[g];
                     sumWeights += group.group_weight;
                   }
-                  console.log(sumWeights);
 
                   //weight grades based on assignment group weighting and hours completed in the course
                   for (let g = 0; g < assignmentGroups.length; g++) {
@@ -400,13 +395,11 @@
                     };
                     if (group.group_weight > 0 || sumWeights === 0) {
                       //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
-                      console.log(group);
                       for (let a = 0; a < group.assignments.length; a++) {
                         let assignment = group.assignments[a];
                         if (assignment.published) {
 
                           if (assignment.id in subData) {
-                            console.log("IN SUB DATA");
                             let sub = subData[assignment.id];
                             let subDateString = sub.submitted_at;
                             if (subDateString === null) subDateString = sub.graded_at;
@@ -421,7 +414,6 @@
                             };
                             let subDate = new Date(subDateString);
                             if (subDate >= startDate && subDate <= endDate) {
-                              console.log("INCLUDE!")
                               includedAssignments[courseId].groups[g].assignments[assignment.id].include = true;
                             }
                           }
