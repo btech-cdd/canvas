@@ -409,14 +409,7 @@
                       for (let a = 0; a < group.assignments.length; a++) {
                         let assignment = group.assignments[a];
                         if (assignment.published) {
-                          if (courseId == 502023) {
-                            console.log(group);
-                          }
-
                           if (assignment.id in subData) {
-                            if (courseId == 502023) {
-                              console.log(assignment);
-                            }
                             let sub = subData[assignment.id];
                             let subDateString = sub.submitted_at;
                             if (subDateString === null) subDateString = sub.graded_at;
@@ -436,6 +429,7 @@
                           }
                         }
                       }
+                      console.log(includedAssignments[courseId])
                     }
                   }
                 }
