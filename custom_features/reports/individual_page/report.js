@@ -72,6 +72,7 @@
 
             this.courses = await this.getCourseData();
             this.loading = false;
+            /*
             for (let i = 0; i < this.courses.length; i++) {
               let courseId = this.courses[i].course_id;
               this.submissionData[courseId] = await this.getSubmissionData(courseId);
@@ -84,6 +85,7 @@
                 ]
               });
             }
+            */
             this.loadingAssignments = false;
           },
 
