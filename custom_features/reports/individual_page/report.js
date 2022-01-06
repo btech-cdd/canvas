@@ -417,6 +417,7 @@
                             };
                             let subDate = new Date(subDateString);
                             if (subDate >= startDate && subDate <= endDate) {
+                              console.log("INCLUDE!")
                               includedAssignments[courseId].groups[g].assignments[assignment.id].include = true;
                             }
                           }
