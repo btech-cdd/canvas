@@ -143,7 +143,7 @@
 
             //create list of ids and send it to server to find existing terms for those students
             let studentList = app.studentListFromStudents(studentsFound); 
-            await $.post('https://jhveem.xyz/api/enroll_hs/get_list', {
+            await $.post('https://bridgetools.dev/api/enroll_hs/get_list', {
               students: JSON.stringify(studentList)
             }, function (data) {
               let terms = data;
@@ -185,7 +185,7 @@
           },
           async deleteTerm(term) {
             let app = this;
-            await $.delete('https://jhveem.xyz/api/enroll_hs/' + term._id, {
+            await $.delete('https://bridgetools.dev/api/enroll_hs/' + term._id, {
             });
             for (let i = 0; i < app.managedStudent.terms.length; i++) {
               if (app.managedStudent.terms[i]._id === term._id) {
@@ -208,7 +208,7 @@
           async enroll() {
             let app = this;
             let studentList = app.studentListFromStudents(app.studentsFound);
-            await $.post('https://jhveem.xyz/api/enroll_hs', {
+            await $.post('https://bridgetools.dev/api/enroll_hs', {
               'students': JSON.stringify(studentList),
               'term_data': JSON.stringify({
                 hours: app.saveTerm.hours,

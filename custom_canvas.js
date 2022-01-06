@@ -90,9 +90,9 @@ var IS_CDD = false;
 var COURSE_HOURS, COURSE_LIST;
 //Now, if testing in beta, will pull from beta instance of all these tools
 //Should start experimenting with branching in github
-var SOURCE_URL = 'https://jhveem.xyz/canvas'
+var SOURCE_URL = 'https://bridgetools.dev/canvas'
 if (BETA) {
-  SOURCE_URL = 'https://jhveem.xyz/canvas-beta'
+  SOURCE_URL = 'https://bridgetools.dev/canvas-beta'
 }
 if (ENV.current_user_roles !== null) {
   IS_TEACHER = (ENV.current_user_roles.includes("teacher") || ENV.current_user_roles.includes("admin"));
@@ -497,7 +497,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
         feature('reports/accreditation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
       }
 
-      // if (IS_ME) $.getScript("https://jhveem.xyz/collaborator/import.js");
+      // if (IS_ME) $.getScript("https://bridgetools.dev/collaborator/import.js");
       //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
       feature("welcome_banner", {}, /^\/$/);
     });

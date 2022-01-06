@@ -35,9 +35,9 @@
           let quart = pWidth / 4;
           var x = e.pageX - pOffset.left;
           if (x < quart) {
-            img.css('cursor', 'url(https://jhveem.xyz/canvas/media/arrow-prev-page-icon.png), auto');
+            img.css('cursor', 'url(https://bridgetools.dev/canvas/media/arrow-prev-page-icon.png), auto');
           } else if (x > quart * 3) {
-            img.css('cursor', 'url(https://jhveem.xyz/canvas/media/arrow-next-page-icon.png), auto');
+            img.css('cursor', 'url(https://bridgetools.dev/canvas/media/arrow-next-page-icon.png), auto');
           } else {
             img.css('cursor', 'auto');
           }
