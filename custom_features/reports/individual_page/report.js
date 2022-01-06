@@ -454,6 +454,7 @@
 
               for (let courseId in app.includedAssignments) {
                 let course = app.includedAssignments[courseId];
+                console.log(courseId);
                 if (app.checkIncludeCourse(course) && course.include) {
                   let currentWeighted = 0;
                   let totalWeights = 0; //sum of all weight values for assignment groups
@@ -914,7 +915,7 @@
 
             checkIncludeGroup(group) {
               let app = this;
-              if (group.group_weight > 0) return true;
+              if (group.include) return true;
               /*
               for (let a in group.assignments) {
                 let assignment = group.assignments[a];
