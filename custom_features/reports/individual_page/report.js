@@ -524,6 +524,7 @@
                       weightedGrade = Math.round(currentWeighted / totalWeightsSubmitted * 10000) / 100;
                     } else {
                       console.log(totalCurrentPoints + " / " + totalTotalPoints);
+                      console.log(totalWeightsSubmitted);
                       weightedGrade = Math.round(totalCurrentPoints / totalTotalPoints * 10000) / 100;
                     }
                     output = "";
