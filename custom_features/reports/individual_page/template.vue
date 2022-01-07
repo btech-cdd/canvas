@@ -68,7 +68,7 @@
                     </tr>
                     <tr v-for='course in courses' :key='course.course_id'>
                       <td>
-                        {{course.name}}
+                        <a :href="'/courses/' + course.course_id">{{course.name}}</a>
                       </td>
 
                       <td>{{getGradesBetweenDates(course.course_id)}}</td>

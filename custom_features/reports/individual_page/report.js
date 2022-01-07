@@ -72,6 +72,7 @@
 
             
             this.courses = await this.getCourseData();
+            console.log(courses);
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
               let courseId = this.courses[i].course_id;
