@@ -539,7 +539,7 @@
                     if (totalWeights > 0) {
                       progress = Math.round((totalProgress / totalWeights) * 10000) / 100;
                     } else {
-                      progress = Math.round((totalPossiblePoints / totalTotalPoints) * 10000) / 100;
+                      progress = Math.round((possiblePoints / totalPossiblePoints) * 10000) / 100;
                     }
                     output = "";
                     if (!isNaN(progress)) {
