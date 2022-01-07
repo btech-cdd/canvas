@@ -525,7 +525,7 @@
                     } else {
                       console.log(totalCurrentPoints + " / " + totalTotalPoints);
                       console.log(totalWeightsSubmitted);
-                      weightedGrade = Math.round(totalCurrentPoints / totalTotalPoints * 10000) / 100;
+                      weightedGrade = Math.round(totalCurrentPoints / totalWeightsSubmitted * 10000) / 100;
                     }
                     output = "";
                     if (!isNaN(weightedGrade)) {
