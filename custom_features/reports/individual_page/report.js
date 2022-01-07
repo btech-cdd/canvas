@@ -519,15 +519,18 @@
                     let output;
                     let weightedGrade;
                     //dispaly grade
+                    console.log(sumGroupWeights);
                     if (sumGroupWeights > 0) {
                       weightedGrade = Math.round(currentWeighted / totalWeightsSubmitted * 10000) / 100;
                     } else {
+                      console.log(totalCurrentPoints + " / " + totalTotalPoints);
                       weightedGrade = Math.round(totalCurrentPoints / totalTotalPoints * 10000) / 100;
                     }
                     output = "";
                     if (!isNaN(weightedGrade)) {
                       output = weightedGrade;
                     }
+                    console.log(output);
                     gradesBetweenDates[courseId] = output;
 
                     //display progress
