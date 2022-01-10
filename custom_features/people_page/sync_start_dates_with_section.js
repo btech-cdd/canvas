@@ -4,7 +4,7 @@
     <a href="#" class="btn btn-primary pull-right icon-plus" style="margin-right: .5rem;" id="syncSectionDates" role="button" title="Add People" aria-label="Add People">Sync Section Dates</a>
   `)
   addPeopleButton.before(syncButton);
-  syncButton.click(function() {
+  syncButton.click(async function() {
     let sections = await canvasGet("/api/v1/courses/" + CURRENT_COURSE_ID + "/sections", {include: ["students"]});
     for (let s in sections) {
         let section = sections[s];
