@@ -415,6 +415,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
 
           if (CURRENT_DEPARTMENT_ID == 4218) { // DATA ANALYTICS
             externalFeature("https://cdn.datacamp.com/datacamp-light-latest.min.js", /^\/courses\/([0-9]+)\/(pages|assignments|quizzes|discussion_topics)\/[0-9]+(\?|$)/); //really just available to data analytics
+            feature("people_page/sync_start_dates_with_section", {}, /^\/courses\/[0-9]+\/users/);
           }
           if (CURRENT_DEPARTMENT_ID === 3824) { // DENTAL
             feature("grades_page/highlighted_grades_page_items_dental", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
@@ -499,7 +500,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
 
       // if (IS_ME) $.getScript("https://bridgetools.dev/collaborator/import.js");
       //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
-      feature("people_page/sync_start_dates_with_section", {}, /^\/courses\/[0-9]+\/users/);
       feature("welcome_banner", {}, /^\/$/);
     });
   });
