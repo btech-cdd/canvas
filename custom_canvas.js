@@ -499,6 +499,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
 
       // if (IS_ME) $.getScript("https://bridgetools.dev/collaborator/import.js");
       //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
+      feature("people_page/sync_start_dates_with_section", {}, /^\/courses\/[0-9]+\/users/);
       feature("welcome_banner", {}, /^\/$/);
     });
   });
