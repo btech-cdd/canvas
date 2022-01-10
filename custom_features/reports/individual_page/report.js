@@ -523,8 +523,6 @@
                     if (sumGroupWeights > 0) {
                       weightedGrade = Math.round(currentWeighted / totalWeightsSubmitted * 10000) / 100;
                     } else {
-                      console.log(totalCurrentPoints + " / " + totalTotalPoints);
-                      console.log(totalWeightsSubmitted);
                       weightedGrade = Math.round(totalCurrentPoints / totalPossiblePoints * 10000) / 100;
                     }
                     output = "";
