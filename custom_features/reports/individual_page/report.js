@@ -1056,6 +1056,7 @@
                 await $.get("/api/v1/users/" + userId + "/enrollments?state[]=active&state[]=completed&state[]=inactive", function(data) {
                   enrollmentData = data;
                 });
+                console.log(enrollmentData);
                 for (let e in enrollmentData) {
                   let enrollment = enrollmentData[e];
                   let courseName = "";
