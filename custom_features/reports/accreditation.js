@@ -7,7 +7,7 @@
   //PUT INSTRUCTIONS FOR ADDING TO A DEPARTMENT HERE
   //Try adding it to the whole school at some point
   //https://btech.instructure.com/courses/498455/accreditation
-  //https://jhveem.xyz/accreditation/lti.xml
+  //https://bridgetools.dev/accreditation/lti.xml
   if (document.title === "BTECH Accreditation") {
     //abort if this has already been run on the page
     //If you change id name, you'll have to update the css

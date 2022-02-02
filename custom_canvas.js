@@ -90,9 +90,9 @@ var IS_CDD = false;
 var COURSE_HOURS, COURSE_LIST;
 //Now, if testing in beta, will pull from beta instance of all these tools
 //Should start experimenting with branching in github
-var SOURCE_URL = 'https://jhveem.xyz/canvas'
+var SOURCE_URL = 'https://bridgetools.dev/canvas'
 if (BETA) {
-  SOURCE_URL = 'https://jhveem.xyz/canvas-beta'
+  SOURCE_URL = 'https://bridgetools.dev/canvas-beta'
 }
 if (ENV.current_user_roles !== null) {
   IS_TEACHER = (ENV.current_user_roles.includes("teacher") || ENV.current_user_roles.includes("admin"));
@@ -415,6 +415,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
 
           if (CURRENT_DEPARTMENT_ID == 4218) { // DATA ANALYTICS
             externalFeature("https://cdn.datacamp.com/datacamp-light-latest.min.js", /^\/courses\/([0-9]+)\/(pages|assignments|quizzes|discussion_topics)\/[0-9]+(\?|$)/); //really just available to data analytics
+            feature("people_page/sync_start_dates_with_section", {}, /^\/courses\/[0-9]+\/users/);
           }
           if (CURRENT_DEPARTMENT_ID === 3824) { // DENTAL
             feature("grades_page/highlighted_grades_page_items_dental", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
@@ -434,8 +435,8 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           }
           if (CURRENT_DEPARTMENT_ID === 3819 || CURRENT_DEPARTMENT_ID === 3832) { // AMAR && ELEC
             feature("modules/points_to_hours_header");
-            feature("speed_grader/resize_submitted_video");
-            feature("department_specific/amar_elec_add_module_items", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
+            feature("speed_grader/resize_submitted_video", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
+            // feature("department_specific/amar_elec_add_module_items"); //don't think this is used anymore
           }
           if (CURRENT_DEPARTMENT_ID === 3847) { //meats
             feature("previous-enrollment-data/previous_enrollment_period_grades", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
@@ -497,12 +498,25 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
         feature('reports/accreditation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
       }
 
-      // if (IS_ME) $.getScript("https://jhveem.xyz/collaborator/import.js");
+      // if (IS_ME) $.getScript("https://bridgetools.dev/collaborator/import.js");
       //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
       feature("welcome_banner", {}, /^\/$/);
     });
   });
 }
+
+
+/*
+* PRONTO
+*/
+/*
+(function() {
+  window.prontoInit = {"ixn":"canvas","cid":203,"version":"1.0"};
+  var script = document.createElement('script');
+  script.src = `https://chat.pronto.io/js/embedded.js?cb=${Math.round(new Date().getTime() / 1000)}`;
+  document.body.appendChild(script);
+})();
+*/
 
 //FROM https://github.com/jeresig/jquery.hotkeys
 /*jslint browser: true*/

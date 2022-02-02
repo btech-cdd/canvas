@@ -70,7 +70,9 @@
             let user = await app.loadUser(app.userId);
             app.user = user;
 
+            
             this.courses = await this.getCourseData();
+            console.log(this.courses);
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
               let courseId = this.courses[i].course_id;
@@ -100,7 +102,9 @@
                 orange: 'rgb(229, 128, 79)',
                 yellow: 'rgb(240, 173, 78)',
                 green: 'rgb(70, 175, 70)',
+                cyan: 'rgb(60, 128, 155)',
                 blue: 'rgb(70, 170, 210)',
+                purple: 'rgb(128, 60, 150)',
                 fadedBlue: 'rgb(180, 230, 255)',
                 gray: '#E0E0E0',
               },
@@ -353,6 +357,9 @@
               for (let i = 0; i < app.courses.length; i++) {
                 let course = app.courses[i];
                 let courseId = course.course_id;
+                if (courseId == 502023) {
+                  console.log(courseId);
+                }
                 includedAssignments[courseId] = {
                   name: course.name,
                   id: courseId,
@@ -370,6 +377,9 @@
                       subData[sub.assignment_id] = sub;
                     }
                   }
+                  if (courseId == 502023) {
+                    console.log(subData);
+                  }
 
                   let assignmentGroups = this.courseAssignmentGroups[courseId];
 
@@ -378,6 +388,9 @@
                   for (let g = 0; g < assignmentGroups.length; g++) {
                     let group = assignmentGroups[g];
                     sumWeights += group.group_weight;
+                  }
+                  if (courseId == 502023) {
+                    console.log(sumWeights);
                   }
 
                   //weight grades based on assignment group weighting and hours completed in the course
@@ -391,11 +404,14 @@
                       assignments: {}
                     };
                     if (group.group_weight > 0 || sumWeights === 0) {
+                      if (courseId == 502023) {
+                        console.log(group);
+                        console.log(group.assignments.length);
+                      }
                       //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
                       for (let a = 0; a < group.assignments.length; a++) {
                         let assignment = group.assignments[a];
                         if (assignment.published) {
-
                           if (assignment.id in subData) {
                             let sub = subData[assignment.id];
                             let subDateString = sub.submitted_at;
@@ -421,6 +437,7 @@
                 }
               }
               app.includedAssignments = JSON.parse(JSON.stringify(includedAssignments));
+              console.log(app.includedAssignments[502023]);
               app.calcGradesFromIncludedAssignments();
             },
 
@@ -440,6 +457,7 @@
 
               for (let courseId in app.includedAssignments) {
                 let course = app.includedAssignments[courseId];
+                console.log(courseId);
                 if (app.checkIncludeCourse(course) && course.include) {
                   let currentWeighted = 0;
                   let totalWeights = 0; //sum of all weight values for assignment groups
@@ -459,7 +477,6 @@
 
                   for (let groupId in course.groups) {
                     let group = course.groups[groupId];
-                    console.log(group);
                     if (app.checkIncludeGroup(group) && group.include) {
                       if (group.group_weight > 0 || sumGroupWeights === 0) {
                         let currentPoints = 0; //points earned
@@ -478,7 +495,6 @@
                         }
                         //update info for the submission/earned points values
                         if (possiblePoints > 0) {
-                          console.log(group.name);
                           let groupScore = currentPoints / possiblePoints;
                           if (sumGroupWeights > 0) {
                             currentWeighted += groupScore * group.group_weight;
@@ -502,23 +518,19 @@
                   }
                   //if there are any points possible in this course, put out some summary grades data
                   if (totalWeights > 0 || sumGroupWeights === 0) {
-                    console.log(totalWeights);
-                    console.log(sumGroupWeights);
                     let output;
                     let weightedGrade;
                     //dispaly grade
+                    console.log(sumGroupWeights);
                     if (sumGroupWeights > 0) {
-                      console.log("Weighted");
                       weightedGrade = Math.round(currentWeighted / totalWeightsSubmitted * 10000) / 100;
                     } else {
-                      weightedGrade = Math.round(totalCurrentPoints / totalTotalPoints * 10000) / 100;
+                      weightedGrade = Math.round(totalCurrentPoints / totalPossiblePoints * 10000) / 100;
                     }
                     output = "";
                     if (!isNaN(weightedGrade)) {
                       output = weightedGrade;
                     }
-                    console.log(currentWeighted);
-                    console.log(totalWeightsSubmitted);
                     console.log(output);
                     gradesBetweenDates[courseId] = output;
 
@@ -908,7 +920,7 @@
 
             checkIncludeGroup(group) {
               let app = this;
-              if (group.group_weight > 0) return true;
+              if (group.include) return true;
               /*
               for (let a in group.assignments) {
                 let assignment = group.assignments[a];
@@ -949,7 +961,7 @@
             async refreshHSEnrollmentTerms() {
               let app = this;
               let terms;
-              await $.get("https://jhveem.xyz/api/enroll_hs/" + app.userId, function (data) {
+              await $.get("https://canvas.bridgetools.dev/api/enroll_hs/" + app.userId, function (data) {
                 terms = data;
               });
               app.terms = terms
@@ -973,7 +985,7 @@
             },
             async deleteHSEnrollmentTerm(term) {
               let app = this;
-              await $.delete('https://jhveem.xyz/api/enroll_hs/' + term._id, {});
+              await $.delete('https://canvas.bridgetools.dev/api/enroll_hs/' + term._id, {});
               for (let i = 0; i < app.terms.length; i++) {
                 if (app.terms[i]._id === term._id) {
                   app.terms.splice(i, 1);
@@ -984,7 +996,7 @@
 
             async enrollHS() {
               let app = this;
-              await $.post('https://jhveem.xyz/api/enroll_hs', {
+              await $.post('https://canvas.bridgetools.dev/api/enroll_hs', {
                 'students': JSON.stringify([app.userId]),
                 'term_data': JSON.stringify({
                   hours: app.enrollment_tab.saveTerm.hours,
@@ -1022,7 +1034,6 @@
                 user = data;
               });
               if (user === "") {
-                console.log("BLANK USER");
                 await $.get("/api/v1/users/" + userId, function(data) {
                   user = {
                     name: data.name,
@@ -1045,6 +1056,7 @@
                 await $.get("/api/v1/users/" + userId + "/enrollments?state[]=active&state[]=completed&state[]=inactive", function(data) {
                   enrollmentData = data;
                 });
+                console.log(enrollmentData);
                 for (let e in enrollmentData) {
                   let enrollment = enrollmentData[e];
                   let courseName = "";
@@ -1058,10 +1070,11 @@
                   let progress = 0;
                   if (current_score !== 0) progress = (final_score / current_score) * 100;
                   let courseCode = "";
-                  let courseCodeM = enrollment.sis_course_id.match(/([A-Z]{4} [0-9]{4})/);
-                  if (courseCodeM) courseCode = courseCodeM[1];
-                  console.log(courseCode);
-                  console.log(courseCodeM);
+                  let courseCodeM = "";
+                  if (enrollment.sis_course_id != null) {
+                    courseCodeM = enrollment.sis_course_id.match(/([A-Z]{4} [0-9]{4})/);
+                    if (courseCodeM) courseCode = courseCodeM[1];
+                  }
                   if (courseCode !== "") {
                     let courseData = {
                       code: courseCode,
@@ -1079,7 +1092,6 @@
                     user.treeCourses.other.push(courseData)
                   }
                 }
-                console.log(user);
                 tree = {
                   hours: 0,
                   name: "",

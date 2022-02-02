@@ -10,11 +10,10 @@
         </ul>
       </div>
       <div class='btech-modal-content-inner'>
-          <div v-if="accessDenied">
+          <div v-if="(accessDenied && menu!=='report')">
             <p>
               <b>ERROR:</b> You are not authorized to see all of this student's courses. This often occurs when the
-              student
-              is not enrolled in any courses in which you have admin rights to View Enrollments.
+              student is not enrolled in any courses in which you have admin rights to View Enrollments.
             </p>
             <p>
               Reach out to your Canvas Administrator if you have received this message in error
@@ -69,7 +68,12 @@
                     </tr>
                     <tr v-for='course in courses' :key='course.course_id'>
                       <td>
-                        {{course.name}}
+                        <a 
+                          :href="'/courses/' + course.course_id"
+                          target="_blank"
+                        >
+                          {{course.name}}
+                        </a>
                       </td>
 
                       <td>{{getGradesBetweenDates(course.course_id)}}</td>
