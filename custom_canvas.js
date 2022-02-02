@@ -481,6 +481,10 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
         })
       }
 
+      if (ENV.current_user_roles.includes('root_admin')) {
+        feature("remove_former_employees", {}, /^\/accounts\/3\/users\/[0-9]+/)
+      }
+
       //CDD ONLY
       feature("quizzes/question_bank_sorter", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/);
       feature("sort_assignment_groups", {}, /assignments$/)
