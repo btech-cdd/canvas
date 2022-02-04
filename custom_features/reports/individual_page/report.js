@@ -633,6 +633,7 @@
               let app = this;
               let courses = [];
               let courseList = await this.getCourses();
+              console.log(courseList);
               if (app.IS_TEACHER) {
                 for (let c = 0; c < courseList.length; c++) {
                   let course = await app.newCourse(courseList[c].course_id, courseList[c].state, courseList[c].name, courseList[c].year);
