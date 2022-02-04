@@ -1015,7 +1015,6 @@
               let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
               let authCode = '';
               await $.get(reqUrl, data => {authCode = data.data.auth_code;});
-              console.log(authCode);
               //figure out if any params exist then add autho code depending on set up.
               if (!url.includes("?")) url += "?auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
               else url += "&auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
@@ -1023,6 +1022,7 @@
               await $.get(url, function(data) {
                 output = data;
               });
+              return output;
             },
 
             async loadTree(deptCode, deptYear) {
