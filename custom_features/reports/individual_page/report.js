@@ -57,7 +57,6 @@
           el: '#canvas-individual-report-vue',
           mounted: async function () {
             let app = this;
-            app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/2032939");
             this.IS_TEACHER = IS_TEACHER;
             // if (!IS_TEACHER) this.menu = 'period';
             let gradesBetweenDates = {};
@@ -668,7 +667,7 @@
               let app = this;
               let list = [];
               let dates = {};
-              let enrollments = await canvasGet("/api/v1/users/" + app.userId + "/enrollments?state[]=current_and_concluded");
+              let enrollments = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
               let enrollment_data = {};
               for (let e = 0; e < enrollments.length; e++) {
                 let enrollment = enrollments[e];
@@ -737,6 +736,8 @@
             async getCourses() {
               let app = this;
               let list = [];
+              list = app.processCoursePageStudentView();
+              /*
               if (IS_TEACHER) { //possible change this to just do a check for the .courses class
                 let url = window.location.origin + "/users/" + app.userId;
                 await $.get(url).done(function (data) {
@@ -747,6 +748,7 @@
               } else {
                 list = app.processCoursePageStudentView();
               }
+              */
               return list;
             },
 
