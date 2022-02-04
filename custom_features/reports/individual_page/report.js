@@ -675,6 +675,7 @@
               for (let e = 0; e < enrollments.length; e++) {
                 let enrollment = enrollments[e];
                 if (enrollment.role == "StudentEnrollment") {
+                  console.log(enrollment);
                   let startDate = new Date(enrollment.updated_at);
                   let year = startDate.getFullYear();
                   let month = startDate.getMonth();
