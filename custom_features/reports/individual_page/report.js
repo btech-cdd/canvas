@@ -1033,9 +1033,9 @@
                   });
                 } catch(err) {
                   user = {
-                    name: data.name,
-                    sis_id: data.sis_user_id,
-                    canvas_id: data.id,
+                    name: "",
+                    sis_id: "",
+                    canvas_id: app.userId,
                     enrollment_type: "",
                     last_login: "",
                     enrolled_hours: 0,
