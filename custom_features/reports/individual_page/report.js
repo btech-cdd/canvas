@@ -1029,10 +1029,7 @@
                     submissions: [],
                   }
                 });
-                let enrollmentData = {};
-                await $.get("/api/v1/users/" + userId + "/enrollments?state[]=active&state[]=completed&state[]=inactive", function(data) {
-                  enrollmentData = data;
-                });
+                let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
                 console.log(enrollmentData);
                 for (let e in enrollmentData) {
                   let enrollment = enrollmentData[e];
