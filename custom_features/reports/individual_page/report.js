@@ -1041,7 +1041,7 @@
                     enrolled_hours: 0,
                     enrolledHours: 0,
                     completedHours: 0,
-                    avatar_url: data.avatar_url,
+                    avatar_url: "",
                     courses: {},
                     treeCourses: { 
                       other: []
