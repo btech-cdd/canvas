@@ -57,6 +57,7 @@
           el: '#canvas-individual-report-vue',
           mounted: async function () {
             let app = this;
+            app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/2032939");
             this.IS_TEACHER = IS_TEACHER;
             // if (!IS_TEACHER) this.menu = 'period';
             let gradesBetweenDates = {};
