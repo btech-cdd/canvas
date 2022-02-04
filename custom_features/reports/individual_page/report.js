@@ -748,6 +748,7 @@
               }
               return list;
             },
+
             calcPointsProgress(grade, final_grade) {
               let points = "N/A";
               if (!isNaN(parseInt(grade)) && !isNaN(parseInt(final_grade))) {
@@ -1010,14 +1011,24 @@
               })
             },
 
-            async loadTree(deptCode, deptYear) {
-              let tree;
+            async bridgetoolsReq(url) {
               let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
               let authCode = '';
               await $.get(reqUrl, data => {authCode = data.data.auth_code;});
-              await $.get("https://reports.bridgetools.dev/api/trees?dept_code=" + deptCode + "&year=" + deptYear + "&requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function(data) {
-                tree = data[0];
+              //figure out if any params exist then add autho code depending on set up.
+              if (!url.includes("?")) url += "?auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
+              else url += "&auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
+              let output;
+              await $.get(url, function(data) {
+                output = data;
               });
+            },
+
+            async loadTree(deptCode, deptYear) {
+              let tree;
+              let url = "https://reports.bridgetools.dev/api/trees?dept_code=" + deptCode + "&year=" + deptYear;
+              let data = await this.bridgetoolsReq(url);
+              let tree = data[0];
               if (tree.courses.core === undefined) tree.courses.core = {};
               if (tree.courses.elective === undefined) tree.courses.elective = {};
               if (tree.courses.other === undefined) tree.courses.other = {};
