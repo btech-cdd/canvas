@@ -1012,7 +1012,26 @@
               });
               if (user === "") {
                 console.log("get User");
-                await $.get("/api/v1/users/" + userId, function(data) {
+                try {
+                  await $.get("/api/v1/users/" + userId, function(data) {
+                    user = {
+                      name: data.name,
+                      sis_id: data.sis_user_id,
+                      canvas_id: data.id,
+                      enrollment_type: "",
+                      last_login: "",
+                      enrolled_hours: 0,
+                      enrolledHours: 0,
+                      completedHours: 0,
+                      avatar_url: data.avatar_url,
+                      courses: {},
+                      treeCourses: { 
+                        other: []
+                      },
+                      submissions: [],
+                    }
+                  });
+                } catch(err) {
                   user = {
                     name: data.name,
                     sis_id: data.sis_user_id,
@@ -1029,7 +1048,7 @@
                     },
                     submissions: [],
                   }
-                });
+                }
 
                 console.log("get Enrollments");
                 let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
