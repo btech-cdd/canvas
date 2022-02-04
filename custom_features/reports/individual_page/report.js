@@ -1011,6 +1011,7 @@
                 user = data;
               });
               if (user === "") {
+                console.log("get User");
                 await $.get("/api/v1/users/" + userId, function(data) {
                   user = {
                     name: data.name,
@@ -1029,6 +1030,8 @@
                     submissions: [],
                   }
                 });
+
+                console.log("get Enrollments");
                 let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
                 console.log(enrollmentData);
                 for (let e in enrollmentData) {
