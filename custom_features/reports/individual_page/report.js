@@ -1015,6 +1015,7 @@
               let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
               let authCode = '';
               await $.get(reqUrl, data => {authCode = data.data.auth_code;});
+              console.log(authCode);
               //figure out if any params exist then add autho code depending on set up.
               if (!url.includes("?")) url += "?auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
               else url += "&auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
@@ -1025,8 +1026,9 @@
             },
 
             async loadTree(deptCode, deptYear) {
+              let app = this;
               let url = "https://reports.bridgetools.dev/api/trees?dept_code=" + deptCode + "&year=" + deptYear;
-              let data = await this.bridgetoolsReq(url);
+              let data = await app.bridgetoolsReq(url);
               console.log(data);
               let tree = data[0];
               if (tree.courses.core === undefined) tree.courses.core = {};
