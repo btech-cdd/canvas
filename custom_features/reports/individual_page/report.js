@@ -664,7 +664,7 @@
               }
               return courses;
             },
-            async processCoursePageStudentView() {
+            async processCourses() {
               let app = this;
               let list = [];
               let dates = {};
@@ -679,67 +679,25 @@
                   let year = startDate.getFullYear();
                   let month = startDate.getMonth();
                   if (month < 6) year -= 1;
+                  let course = await $.get("/api/v1/courses/" + enrollment.course_id);
+                  console.log(course);
                   dates[enrollment.course_id] = year;
                   enrollment_data[enrollment.course_id] = enrollment;
-                }
-              }
-              await $.get("/courses", function (data) {
-                let page = $(data);
-                let courseTables = {};
-                courseTables['active'] = page.find('#my_courses_table');
-                courseTables['completed'] = page.find('#past_enrollments_table');
-                for (let state in courseTables) {
-                  let table = courseTables[state];
-                  table.find("tr.course-list-table-row a").each(function () {
-                    let name = $(this).text().trim();
-                    let href = $(this).attr('href');
-                    let match = href.match(/courses\/([0-9]+)/);
-                    if (match) {
-                      let course_id = match[1];
-                      list.push({
-                        name: name,
-                        course_id: course_id,
-                        state: state, //need to fix getting this info
-                        year: dates[course_id], //need to fix getting this info
-                        enrollment: enrollment_data[course_id]
-                      });
-                    }
+                  list.push({
+                    name: course.name,
+                    course_id: enrollment.course_id,
+                    state: enrollment.enrollment_state, //need to fix getting this info
+                    year: year, //need to fix getting this info
+                    enrollment: enrollment 
                   });
                 }
-              })
-              return list;
-            },
-            async processCoursePageTeacherView(pageData) {
-              let list = [];
-              $(pageData).find("#content .courses a").each(function () {
-                let name = $(this).find('span.name').text().trim();
-                let href = $(this).attr('href');
-                let match = href.match(/courses\/([0-9]+)\/users/);
-                if (match) {
-                  let text = $(this).text().trim();
-                  let course_id = match[1];
-                  let state = "";
-                  let stateMatch = text.match(/([A-Z|a-z]+),[\s]+?Enrolled as a Student/);
-                  if (stateMatch !== null) {
-                    state = stateMatch[1];
-                    let year = null;
-                    let yearData = $(this).find('span.subtitle').text().trim().match(/(2[0-9]{3}) /);
-                    if (yearData != null) year = yearData[1];
-                    list.push({
-                      name: name,
-                      course_id: course_id,
-                      state: state,
-                      year: year
-                    });
-                  }
-                }
-              });
+              }
               return list;
             },
             async getCourses() {
               let app = this;
               let list = [];
-              list = app.processCoursePageStudentView();
+              list = app.processCourses();
               /*
               if (IS_TEACHER) { //possible change this to just do a check for the .courses class
                 let url = window.location.origin + "/users/" + app.userId;
