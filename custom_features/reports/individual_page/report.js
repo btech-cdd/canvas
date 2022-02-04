@@ -668,8 +668,9 @@
               let app = this;
               let list = [];
               let dates = {};
+              console.log(app.userId);
               let enrollments = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
-              console.log(enrollments);
+
               let enrollment_data = {};
               for (let e = 0; e < enrollments.length; e++) {
                 let enrollment = enrollments[e];
@@ -1034,7 +1035,6 @@
               let app = this;
               let url = "https://reports.bridgetools.dev/api/trees?dept_code=" + deptCode + "&year=" + deptYear;
               let data = await app.bridgetoolsReq(url);
-              console.log(data);
               let tree = data[0];
               if (tree.courses.core === undefined) tree.courses.core = {};
               if (tree.courses.elective === undefined) tree.courses.elective = {};
