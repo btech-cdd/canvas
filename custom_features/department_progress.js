@@ -76,7 +76,7 @@
 `;
   canvasbody.after('<div id="btech-course-status-vue"></div>');
   $("#btech-course-status-vue").append(vueString);
-  this.APP = Vue.createApp({
+  this.APP = new Vue({
     el: '#btech-course-status-vue',
     mounted: async function () {
       let app = this;

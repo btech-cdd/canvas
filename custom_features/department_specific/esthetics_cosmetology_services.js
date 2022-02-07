@@ -135,7 +135,7 @@
                 $("div.submission-details-frame iframe").hide();
                 $("div.submission-details-frame").append(vueString);
                 await getElement("#app-services");
-                Vue.createApp({
+                new Vue({
                   el: '#app-services',
                   data: function () {
                     return {

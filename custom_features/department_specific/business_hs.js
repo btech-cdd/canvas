@@ -136,7 +136,7 @@
                 container = await getElement("div.submission-details-frame");
               }
               container.prepend(vueString);
-              Vue.createApp({
+              new Vue({
                 el: '#app-hs-courses',
                 data: function () {
                   return {
