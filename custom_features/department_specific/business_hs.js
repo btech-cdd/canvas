@@ -170,28 +170,8 @@
                   this.assignmentId = parseInt(pieces[2]);
                   let url = window.location.origin + "/users/" + this.studentId;
                   let list = [];
-                  await $.get(url).done(function (data) {
-                    $(data).find("#content .courses a").each(function () {
-                      let name = $(this).find('span.name').text().trim();
-                      let term = $($(this).find('span.subtitle')[0]).text().trim();
-                      let href = $(this).attr('href');
-                      let match = href.match(/courses\/([0-9]+)\/users/);
-                      if (match) {
-                        let text = $(this).text().trim();
-                        let course_id = match[1];
-                        let state = text.match(/([A-Z|a-z]+),[\s]+?Enrolled as a Student/)[1];
-                        list.push({
-                          name: name,
-                          term: term,
-                          course_id: course_id,
-                          state: state
-                        });
-                      }
-                    });
-                  }).fail(function (e) {
-                    console.log(e);
-                    app.accessDenied = true;
-                  });
+                  let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
+                  console.log(enrollmentData);
                   app.courses = list;
                   this.comments = await this.getComments();
                   this.processComments(this.comments);
@@ -200,6 +180,19 @@
                 },
                 computed: {},
                 methods: {
+                  async bridgetoolsReq(url) {
+                    let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
+                    let authCode = '';
+                    await $.get(reqUrl, data => {authCode = data.data.auth_code;});
+                    //figure out if any params exist then add autho code depending on set up.
+                    if (!url.includes("?")) url += "?auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
+                    else url += "&auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
+                    let output;
+                    await $.get(url, function(data) {
+                      output = data;
+                    });
+                    return output;
+                  },
                   removeCourse: async function (course) {
                     for (let c = 0; c < this.courseGrades.length; c++) {
                       if (this.courseGrades[c].course === course.course) {
