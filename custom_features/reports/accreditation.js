@@ -87,7 +87,7 @@
         </div>
       </div>`);
       await $.getScript("https://cdn.jsdelivr.net/npm/vue");
-      new Vue({
+      Vue.createApp({
         el: "#accreditation",
         mounted: async function () {
           let app = this;

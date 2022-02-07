@@ -348,6 +348,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
 
   //OTHER FEATURES
   $.getScript("https://cdn.jsdelivr.net/npm/vue").done(function () {
+    console.log(Vue);
     $.getScript(SOURCE_URL + "/course_data/course_hours.js").done(() => {
       //GENERAL FEATURES
       if (!IS_TEACHER) {
@@ -495,7 +496,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
       featureCDD("modules/show_hours", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
       // featureCDD('date_display/add_current_year_speed_grader', {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
       //feature('date_display/add_current_year', {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
-      //if (IS_CDD) externalFeature('https://flags.bridgetools.dev/main.js');
+      if (IS_CDD) externalFeature('https://flags.bridgetools.dev/main.js');
       if (IS_ME) {
         feature('reports/accreditation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
       } else {

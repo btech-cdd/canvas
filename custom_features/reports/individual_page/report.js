@@ -53,7 +53,7 @@
         let modal = $('#canvas-individual-report-vue');
         modal.hide();
 
-        this.APP = new Vue({
+        this.APP = Vue.createApp({
           el: '#canvas-individual-report-vue',
           mounted: async function () {
             let app = this;
