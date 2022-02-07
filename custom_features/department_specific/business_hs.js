@@ -136,7 +136,7 @@
                 container = await getElement("div.submission-details-frame");
               }
               container.prepend(vueString);
-              new Vue({
+              Vue.createApp({
                 el: '#app-hs-courses',
                 data: function () {
                   return {
@@ -165,12 +165,12 @@
                 mounted: async function () {
                   let app = this;
                   let pieces = (window.location.pathname + window.location.search).match(rPieces);
-                  this.courseId = parseInt(pieces[1]);
-                  this.studentId = parseInt(pieces[3]);
-                  this.assignmentId = parseInt(pieces[2]);
-                  let url = window.location.origin + "/users/" + this.studentId;
+                  app.courseId = parseInt(pieces[1]);
+                  app.studentId = parseInt(pieces[3]);
+                  app.assignmentId = parseInt(pieces[2]);
+                  let url = window.location.origin + "/users/" + app.studentId;
                   let list = [];
-                  let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
+                  let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.studentId);
                   console.log(enrollmentData);
                   app.courses = list;
                   this.comments = await this.getComments();

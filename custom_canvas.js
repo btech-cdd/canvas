@@ -494,8 +494,9 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
       featureCDD("rubrics/add_criteria_from_csv", {}, new RegExp('/(rubrics|assignments\/)'));
       featureCDD("rubrics/create_rubric_from_csv", {}, new RegExp('^/(course|account)s/([0-9]+)/rubrics$'));
       featureCDD("modules/show_hours", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
-      // featureCDD('date_display/add_current_year_speed_grader', {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
-      //feature('date_display/add_current_year', {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
+
+      //Don't turn on flags unless figure out a way to not display the flag tool by default.
+      ////Ran into issue where Vue wasn't loading properly so nobody could do anything.
       //if (IS_CDD) externalFeature('https://flags.bridgetools.dev/main.js');
       if (IS_ME) {
         feature('reports/accreditation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
