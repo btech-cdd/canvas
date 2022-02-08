@@ -126,8 +126,8 @@
               </div>
             </div>`;
           let pieces = (window.location.pathname + window.location.search).match(rPieces);
+          console.log(pieces);
           let courseId = parseInt(pieces[1]);
-          let studentId = parseInt(pieces[3]);
           let assignmentId = parseInt(pieces[2]);
           let description = '';
           await $.get("/api/v1/courses/" + courseId + "/assignments/" + assignmentId, function (data) {
