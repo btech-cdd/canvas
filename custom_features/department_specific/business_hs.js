@@ -61,25 +61,24 @@
           if (IS_SPEED_GRADER) {
             console.log("SPEED GRADER")
             feature.oldHref = document.location.href,
-              window.onload = function () {
-                console.log("ONLOAD");
-                var
-                  bodyList = document.querySelector("#right_side"),
-                  observer = new MutationObserver(function (mutations) {
-                    console.log("MUTATION");
-                    mutations.forEach(function (mutation) {
-                      if (feature.oldHref !== document.location.href) {
-                        feature.oldHref = document.location.href;
-                        feature.createApp();
-                      }
-                    });
-                  });
-                var config = {
-                  childList: true,
-                  subtree: true
-                };
-                observer.observe(bodyList, config);
-              };
+            await getElement("#right_side");
+            console.log("ONLOAD");
+            var
+              bodyList = document.querySelector("#right_side"),
+              observer = new MutationObserver(function (mutations) {
+                console.log("MUTATION");
+                mutations.forEach(function (mutation) {
+                  if (feature.oldHref !== document.location.href) {
+                    feature.oldHref = document.location.href;
+                    feature.createApp();
+                  }
+                });
+              });
+            var config = {
+              childList: true,
+              subtree: true
+            };
+            observer.observe(bodyList, config);
           }
           feature.createApp();
         },
