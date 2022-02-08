@@ -36,9 +36,11 @@
   }
 
   let rPieces = /^\/courses\/([0-9]+)\/assignments\/([0-9]+)\/submissions\/([0-9]+)/;
+  let rPiecesInitial = /^\/courses\/([0-9]+)\/assignments\/([0-9]+)\/submissions\/([0-9]+)/;
   let IS_SPEED_GRADER = false;
   if (window.location.pathname.includes("speed_grader")) {
     rPieces = /^\/courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/
+    rPiecesInitial = /^\/courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)/
     IS_SPEED_GRADER = true;
     console.log("SPEED GRADER");
   }
@@ -46,7 +48,7 @@
   //GRADING VIEW
   //This one has to come first so it doesn't have the submission view run on the grading page
   console.log(window.location.pathname + window.location.search);
-  if (rPieces.test(window.location.pathname + window.location.search)) {
+  if (rPiecesInitial.test(window.location.pathname + window.location.search)) {
     console.log("MATCH");
     if (ENV.current_user_roles.includes("teacher")) {
       console.log("TEACHER");
