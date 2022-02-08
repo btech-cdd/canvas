@@ -180,13 +180,17 @@
                   let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.studentId);
                   for (let e in enrollmentData) {
                     let enrollment = enrollmentData[e];
-                    let course = (await canvasGet("/api/v1/courses/" + enrollment.course_id))[0];
-                    list.push({
-                      name: course.name,
-                      grade: enrollment.grades.current_score,
-                      term: terms[course.enrollment_term_id].name,
-                      course_id: course.id
-                    });
+                    try {
+                      let course = (await canvasGet("/api/v1/courses/" + enrollment.course_id))[0];
+                      list.push({
+                        name: course.name,
+                        grade: enrollment.grades.current_score,
+                        term: terms[course.enrollment_term_id].name,
+                        course_id: course.id
+                      });
+                    } catch {
+                      console.log("ERROR PULLING COURSE " + course.id);
+                    }
                   }
                   app.courses = list;
                   this.comments = await this.getComments();
