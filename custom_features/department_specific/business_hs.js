@@ -59,6 +59,7 @@
           ////Allow the color themes to affect the color of the buttons and display in both teacher view and student view
           let feature = this;
           if (IS_SPEED_GRADER) {
+            console.log("SPEED GRADER")
             feature.oldHref = document.location.href,
               window.onload = function () {
                 var
