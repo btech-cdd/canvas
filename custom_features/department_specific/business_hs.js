@@ -170,8 +170,15 @@
                   app.assignmentId = parseInt(pieces[2]);
                   let url = window.location.origin + "/users/" + app.studentId;
                   let list = [];
+                  let terms = canvasGet("/api/v1/accounts/3/terms")
+                  console.log(terms);
                   let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.studentId);
                   console.log(enrollmentData);
+                  for (let e in enrollmentData) {
+                    let enrolment = enrollmentData[e];
+                    let course = canvasGet("/api/v1/courses/" + enrollmentData.course_id);
+                    console.log(course);
+                  }
                   app.courses = list;
                   this.comments = await this.getComments();
                   this.processComments(this.comments);
@@ -181,6 +188,7 @@
                 computed: {},
                 methods: {
                   async bridgetoolsReq(url) {
+
                     let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
                     let authCode = '';
                     await $.get(reqUrl, data => {authCode = data.data.auth_code;});
