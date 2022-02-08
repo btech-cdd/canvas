@@ -188,7 +188,8 @@
                     list.push({
                       name: course.name,
                       grade: enrollment.grades.current_score,
-                      term: terms[course.enrollment_term_id].name
+                      term: terms[course.enrollment_term_id].name,
+                      course_id: course.id
                     });
                     console.log(course);
                   }
