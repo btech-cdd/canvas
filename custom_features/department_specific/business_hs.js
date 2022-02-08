@@ -62,6 +62,7 @@
             console.log("SPEED GRADER")
             feature.oldHref = document.location.href,
               window.onload = function () {
+                console.log("ONLOAD");
                 var
                   bodyList = document.querySelector("#right_side"),
                   observer = new MutationObserver(function (mutations) {
