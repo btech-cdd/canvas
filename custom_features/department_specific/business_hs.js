@@ -170,6 +170,7 @@
                   console.log("mounted");
                   let app = this;
                   let pieces = (window.location.pathname + window.location.search).match(rPieces);
+                  console.log(window.location.pathname + window.location.search);
                   app.courseId = parseInt(pieces[1]);
                   app.studentId = parseInt(pieces[3]);
                   app.assignmentId = parseInt(pieces[2]);
