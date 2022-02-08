@@ -65,6 +65,7 @@
                 var
                   bodyList = document.querySelector("#right_side"),
                   observer = new MutationObserver(function (mutations) {
+                    console.log("MUTATION");
                     mutations.forEach(function (mutation) {
                       if (feature.oldHref !== document.location.href) {
                         feature.oldHref = document.location.href;
