@@ -125,7 +125,7 @@
                 </div>
               </div>
             </div>`;
-          let pieces = (window.location.pathname + window.location.search).match(rPieces);
+          let pieces = (window.location.pathname + window.location.search).match(rPiecesInitial);
           console.log(pieces);
           let courseId = parseInt(pieces[1]);
           let assignmentId = parseInt(pieces[2]);
