@@ -170,8 +170,14 @@
                   app.assignmentId = parseInt(pieces[2]);
                   let url = window.location.origin + "/users/" + app.studentId;
                   let list = [];
-                  let termsList = await canvasGet("/api/v1/accounts/3/terms")
-                  let terms = termsList[0].enrollment_terms;
+                  let termsData = await canvasGet("/api/v1/accounts/3/terms")
+                  let termsList = termsData[0].enrollment_terms;
+                  let terms = {};
+
+                  for (let t in termsList) {
+                    let term = termsList[t];
+                    terms[term.id] = term;
+                  }
                   console.log(terms);
                   let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.studentId);
                   console.log(enrollmentData);
@@ -179,6 +185,11 @@
                     let enrollment = enrollmentData[e];
 
                     let course = await canvasGet("/api/v1/courses/" + enrollment.course_id);
+                    list.push({
+                      name: course.name,
+                      grade: enrollment.grades.current_score,
+                      term: terms[course.enrollment_term_id].name
+                    });
                     console.log(course);
                   }
                   app.courses = list;
