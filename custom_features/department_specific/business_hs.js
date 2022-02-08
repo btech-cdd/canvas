@@ -189,7 +189,7 @@
                         course_id: course.id
                       });
                     } catch {
-                      console.log("ERROR PULLING COURSE " + course.id);
+                      console.log("ERROR PULLING COURSE " + enrollment.course_id);
                     }
                   }
                   app.courses = list;
