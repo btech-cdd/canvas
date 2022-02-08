@@ -183,6 +183,7 @@
                     let enrollment = enrollmentData[e];
                     console.log(enrollment);
                     let course = await canvasGet("/api/v1/courses/" + enrollment.course_id);
+                    console.log(course);
                     console.log(course.enrollment_term_id);
                     list.push({
                       name: course.name,
