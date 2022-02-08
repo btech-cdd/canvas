@@ -45,6 +45,7 @@
 
   //GRADING VIEW
   //This one has to come first so it doesn't have the submission view run on the grading page
+  console.log(window.location.pathname + window.location.search);
   if (rPieces.test(window.location.pathname + window.location.search)) {
     console.log("MATCH");
     if (ENV.current_user_roles.includes("teacher")) {
