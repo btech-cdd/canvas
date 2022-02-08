@@ -184,17 +184,13 @@
                   let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.studentId);
                   for (let e in enrollmentData) {
                     let enrollment = enrollmentData[e];
-                    console.log(enrollment);
                     let course = (await canvasGet("/api/v1/courses/" + enrollment.course_id))[0];
-                    console.log(course);
-                    console.log(course.enrollment_term_id);
                     list.push({
                       name: course.name,
                       grade: enrollment.grades.current_score,
                       term: terms[course.enrollment_term_id].name,
                       course_id: course.id
                     });
-                    console.log(course);
                   }
                   app.courses = list;
                   this.comments = await this.getComments();
