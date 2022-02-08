@@ -40,6 +40,7 @@
   if (window.location.pathname.includes("speed_grader")) {
     rPieces = /^\/courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/
     IS_SPEED_GRADER = true;
+    console.log("SPEED GRADER");
   }
 
   //GRADING VIEW
@@ -59,6 +60,7 @@
           ////Allow the color themes to affect the color of the buttons and display in both teacher view and student view
           let feature = this;
           if (IS_SPEED_GRADER) {
+            console.log("INIT");
             feature.oldHref = document.location.href,
             await getElement("#right_side");
             var
