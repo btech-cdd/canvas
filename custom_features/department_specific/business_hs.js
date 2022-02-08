@@ -59,14 +59,11 @@
           ////Allow the color themes to affect the color of the buttons and display in both teacher view and student view
           let feature = this;
           if (IS_SPEED_GRADER) {
-            console.log("SPEED GRADER")
             feature.oldHref = document.location.href,
             await getElement("#right_side");
-            console.log("ONLOAD");
             var
               bodyList = document.querySelector("#right_side"),
               observer = new MutationObserver(function (mutations) {
-                console.log("MUTATION");
                 mutations.forEach(function (mutation) {
                   if (feature.oldHref !== document.location.href) {
                     feature.oldHref = document.location.href;
