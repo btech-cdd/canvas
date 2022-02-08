@@ -162,6 +162,7 @@
                   }
                 },
                 mounted: async function () {
+                  console.log("mounted");
                   let app = this;
                   let pieces = (window.location.pathname + window.location.search).match(rPieces);
                   app.courseId = parseInt(pieces[1]);
