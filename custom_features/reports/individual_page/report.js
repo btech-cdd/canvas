@@ -72,7 +72,6 @@
 
             
             this.courses = await this.getCourseData();
-            console.log(this.courses);
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
               let courseId = this.courses[i].course_id;
@@ -358,9 +357,6 @@
               for (let i = 0; i < app.courses.length; i++) {
                 let course = app.courses[i];
                 let courseId = course.course_id;
-                if (courseId == 502023) {
-                  console.log(courseId);
-                }
                 includedAssignments[courseId] = {
                   name: course.name,
                   id: courseId,
@@ -378,9 +374,6 @@
                       subData[sub.assignment_id] = sub;
                     }
                   }
-                  if (courseId == 502023) {
-                    console.log(subData);
-                  }
 
                   let assignmentGroups = this.courseAssignmentGroups[courseId];
 
@@ -389,9 +382,6 @@
                   for (let g = 0; g < assignmentGroups.length; g++) {
                     let group = assignmentGroups[g];
                     sumWeights += group.group_weight;
-                  }
-                  if (courseId == 502023) {
-                    console.log(sumWeights);
                   }
 
                   //weight grades based on assignment group weighting and hours completed in the course
@@ -405,10 +395,6 @@
                       assignments: {}
                     };
                     if (group.group_weight > 0 || sumWeights === 0) {
-                      if (courseId == 502023) {
-                        console.log(group);
-                        console.log(group.assignments.length);
-                      }
                       //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
                       for (let a = 0; a < group.assignments.length; a++) {
                         let assignment = group.assignments[a];
@@ -438,7 +424,6 @@
                 }
               }
               app.includedAssignments = JSON.parse(JSON.stringify(includedAssignments));
-              console.log(app.includedAssignments[502023]);
               app.calcGradesFromIncludedAssignments();
             },
 
@@ -458,7 +443,6 @@
 
               for (let courseId in app.includedAssignments) {
                 let course = app.includedAssignments[courseId];
-                console.log(courseId);
                 if (app.checkIncludeCourse(course) && course.include) {
                   let currentWeighted = 0;
                   let totalWeights = 0; //sum of all weight values for assignment groups
@@ -522,7 +506,6 @@
                     let output;
                     let weightedGrade;
                     //dispaly grade
-                    console.log(sumGroupWeights);
                     if (sumGroupWeights > 0) {
                       weightedGrade = Math.round(currentWeighted / totalWeightsSubmitted * 10000) / 100;
                     } else {
@@ -532,7 +515,6 @@
                     if (!isNaN(weightedGrade)) {
                       output = weightedGrade;
                     }
-                    console.log(output);
                     gradesBetweenDates[courseId] = output;
 
                     //display progress
@@ -634,7 +616,6 @@
               let app = this;
               let courses = [];
               let courseList = await this.getCourses();
-              console.log(courseList);
               if (app.IS_TEACHER) {
                 for (let c = 0; c < courseList.length; c++) {
                   let course = await app.newCourse(courseList[c].course_id, courseList[c].state, courseList[c].name, courseList[c].year);
@@ -669,20 +650,17 @@
               let app = this;
               let list = [];
               let dates = {};
-              console.log(app.userId);
               let enrollments = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
 
               let enrollment_data = {};
               for (let e = 0; e < enrollments.length; e++) {
                 let enrollment = enrollments[e];
                 if (enrollment.role == "StudentEnrollment") {
-                  console.log(enrollment);
                   let startDate = new Date(enrollment.updated_at);
                   let year = startDate.getFullYear();
                   let month = startDate.getMonth();
                   if (month < 6) year -= 1;
                   let course = await $.get("/api/v1/courses/" + enrollment.course_id);
-                  console.log(course);
                   dates[enrollment.course_id] = year;
                   enrollment_data[enrollment.course_id] = enrollment;
                   list.push({
