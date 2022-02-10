@@ -206,7 +206,7 @@
 
             async loadSettings() {
               let app = this;
-              let settings = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/settings/" + app.userId);
+              let settings = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/settings/" + ENV.current_user_id);
               if (settings.individualReport == undefined) {
                 settings.individualReport = {
                 }
