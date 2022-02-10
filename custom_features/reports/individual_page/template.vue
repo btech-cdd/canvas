@@ -27,6 +27,7 @@
                   :colors="colors"
                   :current-report="'students'"
                 ></menu-info>
+                <!--Select dept, especially if dual enrolled or hs student-->
                 <select>
                   <option v-for="dept in user.depts">{{dept.dept}} ({{dept.year}})</option>
                 </select>
