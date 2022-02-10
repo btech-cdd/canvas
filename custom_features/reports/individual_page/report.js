@@ -1095,7 +1095,7 @@
                   }
                 }
               } else {
-                tree = await app.loadTree(user.dept, user.year);
+                tree = await app.loadTree(user.depts[0].dept, user.year);
               }
               let courses = user.courses;
               if (courses == undefined) user.courses = [];
