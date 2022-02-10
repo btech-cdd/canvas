@@ -86,7 +86,7 @@
           </div>
         </div>
       </div>`);
-      await $.getScript("https://cdn.jsdelivr.net/npm/vue");
+      await $.getScript("https://cdn.jsdelivr.net/npm/vue@2.6.12");
       new Vue({
         el: "#accreditation",
         mounted: async function () {

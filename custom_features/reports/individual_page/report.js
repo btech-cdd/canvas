@@ -66,11 +66,14 @@
             } else {
               this.userId = ENV.current_user_id;
             }
+            let settings = await app.loadSettings();
+            app.settings = settings;
+
             //load data from bridgetools
             let user = await app.loadUser(app.userId);
             app.user = user;
 
-            
+
             this.courses = await this.getCourseData();
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
@@ -108,6 +111,7 @@
                 fadedBlue: 'rgb(180, 230, 255)',
                 gray: '#E0E0E0',
               },
+              settings: {},
               terms: [],
               currentTerm: {},
               selectedTermId: '',
@@ -179,6 +183,31 @@
           },
 
           methods: {
+            /*
+            updateSettings(settings) {
+              let app = this;
+              app.settings = settings;
+              this.saveSettings();
+            },
+            async saveSettings(setting = null) {
+              let app = this;
+              let settings = app.settings;
+
+              //to only update a specific setting, just pass the name of the setting
+              if (setting !== null) {
+                settings = {};
+                settings[setting] = app.settings[setting];
+              }
+              await $.post("/api/settings/" + app.userId, settings);
+              return
+            },
+            */
+
+            async loadSettings() {
+              let app = this;
+              let settings = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/settings/" + app.userId);
+              return settings;
+            },
             updateDatesToSelectedTerm() {
               let app = this;
               let term;
@@ -668,7 +697,7 @@
                     course_id: enrollment.course_id,
                     state: enrollment.enrollment_state, //need to fix getting this info
                     year: year, //need to fix getting this info
-                    enrollment: enrollment 
+                    enrollment: enrollment
                   });
                 }
               }
@@ -925,7 +954,7 @@
               let day = '' + date.getDate();
               if (day.length === 1) day = '0' + day;
 
-              let formattedDate =  month + "/" + day + "/" + date.getFullYear();
+              let formattedDate = month + "/" + day + "/" + date.getFullYear();
               return formattedDate;
             },
             async deleteHSEnrollmentTerm(term) {
@@ -958,12 +987,14 @@
             async bridgetoolsReq(url) {
               let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
               let authCode = '';
-              await $.get(reqUrl, data => {authCode = data.data.auth_code;});
+              await $.get(reqUrl, data => {
+                authCode = data.data.auth_code;
+              });
               //figure out if any params exist then add autho code depending on set up.
               if (!url.includes("?")) url += "?auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
               else url += "&auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
               let output;
-              await $.get(url, function(data) {
+              await $.get(url, function (data) {
                 output = data;
               });
               return output;
@@ -987,14 +1018,16 @@
               let user, tree;
               let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
               let authCode = '';
-              await $.get(reqUrl, data => {authCode = data.data.auth_code;});
-              await $.get("https://reports.bridgetools.dev/api/students/" + userId  + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function(data) {
+              await $.get(reqUrl, data => {
+                authCode = data.data.auth_code;
+              });
+              await $.get("https://reports.bridgetools.dev/api/students/" + userId + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function (data) {
                 user = data;
               });
               console.log(user);
               if (user === "") {
                 try {
-                  await $.get("/api/v1/users/" + userId, function(data) {
+                  await $.get("/api/v1/users/" + userId, function (data) {
                     user = {
                       name: data.name,
                       sis_id: data.sis_user_id,
@@ -1006,13 +1039,13 @@
                       completedHours: 0,
                       avatar_url: data.avatar_url,
                       courses: {},
-                      treeCourses: { 
+                      treeCourses: {
                         other: []
                       },
                       submissions: [],
                     }
                   });
-                } catch(err) {
+                } catch (err) {
                   user = {
                     name: "",
                     sis_id: "",
@@ -1024,7 +1057,7 @@
                     completedHours: 0,
                     avatar_url: "",
                     courses: {},
-                    treeCourses: { 
+                    treeCourses: {
                       other: []
                     },
                     submissions: [],
@@ -1035,7 +1068,7 @@
                 for (let e in enrollmentData) {
                   let enrollment = enrollmentData[e];
                   let courseName = "";
-                  await $.get("/api/v1/courses/" + enrollment.course_id, function(data) {
+                  await $.get("/api/v1/courses/" + enrollment.course_id, function (data) {
                     courseName = data.name;
                   })
                   let final_score = enrollment.grades.final_score;
@@ -1088,7 +1121,7 @@
               }
 
               user = app.updateUserCourseInfo(user, tree);
-              
+
               return user;
             },
 
@@ -1121,35 +1154,35 @@
                 let programCourseData;
                 let courseHours = course.hours;
                 if (courseHours == undefined) {
-                    if (courseCode in tree.courses.core) programCourseData = tree.courses.core[courseCode];
-                    else if (courseCode in tree.courses.elective) programCourseData = tree.courses.core[courseCode];
-                    if (programCourseData !== undefined) courseHours = programCourseData.hours;
+                  if (courseCode in tree.courses.core) programCourseData = tree.courses.core[courseCode];
+                  else if (courseCode in tree.courses.elective) programCourseData = tree.courses.core[courseCode];
+                  if (programCourseData !== undefined) courseHours = programCourseData.hours;
                 }
                 courseHours = parseInt(courseHours);
                 if (course.registered_hours !== undefined || user.enrollment_type == 'HS') {
-                    // enrolledHours += course.registered_hours;
-                    if (course.progress >= 100) {
+                  // enrolledHours += course.registered_hours;
+                  if (course.progress >= 100) {
                     completedHours += courseHours;
-                    } else {
+                  } else {
                     let courseCompletedHours = courseHours * (course.progress * .01);
                     completedHours += courseCompletedHours;
-                    }
+                  }
                 }
 
                 let courseData = {
-                    'code': courseCode,
-                    'course_id': course.canvas_id,
-                    'last_activity': course.last_activity,
-                    'progress': parseFloat(course.progress),
-                    'start': new Date(course.start),
-                    'hours': courseHours
+                  'code': courseCode,
+                  'course_id': course.canvas_id,
+                  'last_activity': course.last_activity,
+                  'progress': parseFloat(course.progress),
+                  'start': new Date(course.start),
+                  'hours': courseHours
                 }
                 if (courseCode in tree.courses.core) {
-                    core.push(courseData);
+                  core.push(courseData);
                 } else if (courseCode in tree.courses.elective) {
-                    elective.push(courseData);
+                  elective.push(courseData);
                 } else {
-                    other.push(courseData);
+                  other.push(courseData);
                 }
 
               }
