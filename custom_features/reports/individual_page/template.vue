@@ -27,6 +27,9 @@
                   :colors="colors"
                   :current-report="'students'"
                 ></menu-info>
+                <select>
+                  <option v-for="dept in user.depts">{{dept.dept}} ({{dept.year}})</option>
+                </select>
                 <show-student-ind
                     v-if="user.name !== undefined && tree.name !== undefined"
                     id="printable-report" 
