@@ -1080,7 +1080,7 @@
                   if (a.year == b.year) {
                     return (a.dept.toLowerCase() > b.dept.toLowerCase()) ? 1 : ((a.dept.toLowerCase() < b.dept.toLowerCase()) ? -1 : 0)
                   }
-                  return (a.year > b.year) ? 1 : ((a.year < b.year) ? -1 : 0)
+                  return (a.year > b.year) ? -1 : ((a.year < b.year) ? 1 : 0)
                 })
                 console.log(user.depts);
                 app.currentDepartment = user.depts[0];
