@@ -1078,7 +1078,7 @@
               } else {
                 user.depts.sort((a, b) => {
                   if (a.year == b.year) {
-                    return a.dept.toLowerCase() > b.dept.toLowerCase();
+                    return (a.dept.toLowerCase() > b.dept.toLowerCase()) ? 1 : ((a.dept.toLowerCase() < b.dept.toLowerCase()) ? -1 : 0)
                   }
                   return a.year > b.year;
                 })
