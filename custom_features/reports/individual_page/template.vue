@@ -28,8 +28,8 @@
                   :current-report="'students'"
                 ></menu-info>
                 <!--Select dept, especially if dual enrolled or hs student-->
-                <select>
-                  <option @change="loadTree(dept.dept, dept.year)" v-for="dept in user.depts">{{dept.dept}} ({{dept.year}})</option>
+                <select @change="loadTree(currentDepartment.dept, currentDepartment.year)" v-model="currentDepartment">
+                  <option v-for="dept in user.depts" :value="dept">{{dept.dept}} ({{dept.year}})</option>
                 </select>
                 <show-student-ind
                     v-if="user.name !== undefined && tree.name !== undefined"
