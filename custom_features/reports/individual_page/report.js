@@ -68,6 +68,7 @@
             }
             let settings = await app.loadSettings();
             app.settings = settings;
+            console.log(settings);
 
             //load data from bridgetools
             let user = await app.loadUser(app.userId);
