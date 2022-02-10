@@ -1088,7 +1088,7 @@
             async changeTree(user) {
               let app = this;
               console.log(app.currentDepartment);
-              let tree = await loadTree(app.currentDepartment.dept, app.currentDepartment.year);
+              let tree = await app.loadTree(app.currentDepartment.dept, app.currentDepartment.year);
               console.log(tree);
               user = app.updateUserCourseInfo(user, tree);
               console.log(user);
