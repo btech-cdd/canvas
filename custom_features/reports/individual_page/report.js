@@ -1107,6 +1107,7 @@
               return user;
             },
             updateUserCourseInfo(user, tree) {
+              let app = this;
               let courses = user.courses;
               if (courses == undefined) user.courses = [];
               let entryDate = "N/A";
