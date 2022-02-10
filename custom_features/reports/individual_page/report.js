@@ -1078,10 +1078,11 @@
               } else {
                 user.depts.sort((a, b) => {
                   if (a.year == b.year) {
-                    return a.dept > b.dept;
+                    return a.dept < b.dept;
                   }
                   return a.year > b.year;
                 })
+                console.log(user.depts);
                 app.currentDepartment = user.depts[0];
                 tree = await app.loadTree(user.depts[0].dept, user.depts[0].year);
               }
