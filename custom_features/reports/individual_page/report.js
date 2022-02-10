@@ -1106,6 +1106,14 @@
               
               return user;
             },
+
+            async changeTree(user, dept, year) {
+              let app = this;
+              let tree = await loadTree(app.currentDepartment.dept, app.currentDepartment.year);
+              user = app.updateUserCourseInfo(user, tree);
+              app.user = user;
+            },
+
             updateUserCourseInfo(user, tree) {
               let app = this;
               let courses = user.courses;

@@ -28,7 +28,7 @@
                   :current-report="'students'"
                 ></menu-info>
                 <!--Select dept, especially if dual enrolled or hs student-->
-                <select @change="updateUserCourseInfo(user, await loadTree(currentDepartment.dept, currentDepartment.year))" v-model="currentDepartment">
+                <select @change="updateUserCourseInfo(user)" v-model="currentDepartment">
                   <option v-for="dept in user.depts" :value="dept">{{dept.dept}} ({{dept.year}})</option>
                 </select>
                 <show-student-ind
