@@ -1010,8 +1010,8 @@
               await $.get("https://reports.bridgetools.dev/api/students/" + userId  + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function(data) {
                 user = data;
               });
+              console.log(user);
               if (user === "") {
-                console.log("get User");
                 try {
                   await $.get("/api/v1/users/" + userId, function(data) {
                     user = {
@@ -1050,9 +1050,7 @@
                   }
                 }
 
-                console.log("get Enrollments");
                 let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
-                console.log(enrollmentData);
                 for (let e in enrollmentData) {
                   let enrollment = enrollmentData[e];
                   let courseName = "";
