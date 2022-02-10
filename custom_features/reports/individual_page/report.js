@@ -1111,6 +1111,7 @@
               let app = this;
               let tree = await loadTree(app.currentDepartment.dept, app.currentDepartment.year);
               user = app.updateUserCourseInfo(user, tree);
+              console.log(user);
               app.user = user;
             },
 
