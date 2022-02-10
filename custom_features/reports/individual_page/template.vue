@@ -29,7 +29,7 @@
                 ></menu-info>
                 <!--Select dept, especially if dual enrolled or hs student-->
                 <select>
-                  <option v-for="dept in user.depts">{{dept.dept}} ({{dept.year}})</option>
+                  <option @change="loadTree(dept.dept, dept.year)" v-for="dept in user.depts">{{dept.dept}} ({{dept.year}})</option>
                 </select>
                 <show-student-ind
                     v-if="user.name !== undefined && tree.name !== undefined"
