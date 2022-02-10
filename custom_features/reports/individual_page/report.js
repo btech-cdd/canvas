@@ -89,6 +89,7 @@
 
           data: function () {
             return {
+              currentDepartment: null,
               userId: null,
               user: {},
               tree: {
@@ -1095,6 +1096,7 @@
                   }
                 }
               } else {
+                app.currentDepartment = user.depts[0];
                 tree = await app.loadTree(user.depts[0].dept, user.depts[0].year);
               }
               let courses = user.courses;
