@@ -207,6 +207,19 @@
             async loadSettings() {
               let app = this;
               let settings = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/settings/" + app.userId);
+              if (settings.individualReport == undefined) {
+                settings.individualReport = {
+                }
+              }
+              if (settings.individualReport.attendanceCutoffs == undefined) {
+                settings.individualReport.attendanceCutoffs = {
+                  good: 90,
+                  checkIn: 80,
+                  critical: 0,
+                  show: false
+                }
+                //app.saveSettings("individualReport");
+              }
               return settings;
             },
             updateDatesToSelectedTerm() {
