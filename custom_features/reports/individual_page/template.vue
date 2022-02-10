@@ -44,15 +44,18 @@
             </div>
 
             <div v-if="menu=='hours'">
-              <show-student-hours
-                v-if="user.name !== undefined && tree.name !== undefined"
-                class="btech-modal"
-                :colors="colors"
-                :user="user"
-                :settings="settings"
-                :student-tree="tree"
-                v-on:close=""
-              ></show-student-hours>
+              <div class="btech-canvas-report" style="background-color: #ffffff;">
+                <show-student-hours
+                  v-if="user.name !== undefined && tree.name !== undefined"
+                  style="display: inline-block; background-color: #fff; padding: 0.5rem; box-sizing: border-box; width: 100%;"
+                  class="btech-modal"
+                  :colors="colors"
+                  :user="user"
+                  :settings="settings"
+                  :student-tree="tree"
+                  v-on:close=""
+                ></show-student-hours>
+              </div>
             </div>
 
             <div v-if="menu=='period'">
