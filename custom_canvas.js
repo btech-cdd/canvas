@@ -326,7 +326,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
   }
 
   //TOOLBAR FEATURES
-  add_javascript_library(SOURCE_URL + "/custom_canvas_import.js");
   $.getScript("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js").done(function () {
     $.getScript(SOURCE_URL + "/custom_features/editor_toolbar/toolbar.js").done(() => {
       feature("editor_toolbar/basics", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);

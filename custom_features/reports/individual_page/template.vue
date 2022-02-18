@@ -52,6 +52,7 @@
                   :user="user"
                   :settings="settings"
                   :student-tree="tree"
+                  :manual-hours-perc="true"
                   v-on:close=""
                 ></show-student-hours>
               </div>
