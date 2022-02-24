@@ -1,3 +1,5 @@
+const { execPath } = require("process");
+
 /*
   If someone cannot view this report, they needed to be added under the sub-account via:
   Settings->Admins->Add Account Admins
@@ -703,16 +705,20 @@
                   let year = startDate.getFullYear();
                   let month = startDate.getMonth();
                   if (month < 6) year -= 1;
-                  let course = await $.get("/api/v1/courses/" + enrollment.course_id);
-                  dates[enrollment.course_id] = year;
-                  enrollment_data[enrollment.course_id] = enrollment;
-                  list.push({
-                    name: course.name,
-                    course_id: enrollment.course_id,
-                    state: enrollment.enrollment_state, //need to fix getting this info
-                    year: year, //need to fix getting this info
-                    enrollment: enrollment
-                  });
+                  try {
+                    let course = await $.get("/api/v1/courses/" + enrollment.course_id);
+                    dates[enrollment.course_id] = year;
+                    enrollment_data[enrollment.course_id] = enrollment;
+                    list.push({
+                      name: course.name,
+                      course_id: enrollment.course_id,
+                      state: enrollment.enrollment_state, //need to fix getting this info
+                      year: year, //need to fix getting this info
+                      enrollment: enrollment
+                    });
+                  } catch {
+                    console.log("COULD NOT LOAD COURSE " + enrollment.course_id);
+                  }
                 }
               }
               return list;
