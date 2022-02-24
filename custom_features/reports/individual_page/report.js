@@ -1,5 +1,3 @@
-const { execPath } = require("process");
-
 /*
   If someone cannot view this report, they needed to be added under the sub-account via:
   Settings->Admins->Add Account Admins
