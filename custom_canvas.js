@@ -404,6 +404,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           //AVAILABLE TO EVERYONE
           feature("quizzes/duplicate_bank_item", {}, /\/courses\/([0-9]+)\/question_banks\/([0-9]+)/);
           feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
+          feature('speed_grader/answer_key', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
           feature("rubrics/sortable", {}, [/\/rubrics/, /\/assignments\//]);
           feature("calendar/signup", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
           if (IS_BLUEPRINT) feature('blueprint_association_links');
