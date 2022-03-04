@@ -27,7 +27,7 @@
           let item = module.items[i];
           if (item.url !== undefined && item.content_id > 0) {
               let itemLiElId = "context_module_item_" + item.id;
-              let titleEl = $("#" + itemLiElId + " div.module-item-title");
+              let titleEl = $("#" + itemLiElId + " div.ig-info");
               let approved = false;
               for (let a = 0; a < approvals.length; a++) {
                   let approval = approvals[a];
@@ -57,7 +57,7 @@
                   });
               }
               if (approved || IS_CDD) {
-                titleEl.prepend(distanceApprovedButton);
+                titleEl.after(distanceApprovedButton);
               }
               let item_url = item.url.replace('/api/v1', '');
           }
