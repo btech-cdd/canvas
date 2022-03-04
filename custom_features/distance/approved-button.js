@@ -32,14 +32,13 @@
               if (IS_CDD && approved) color = contentApprovedColor;
               let distanceApprovedButton = $(`<span class="ig-distance-approved" style="cursor: pointer; float: right; color: ` + color + `">` + workFromHomeIcon + `</span>`);
               if (IS_CDD) {
-              console.log("APPEND");
                   distanceApprovedButton.click(function() {
                       let currentColor = $(this).css("fill");
                       let approved = (currentColor == contentApprovedColor);
                       approved = !approved;
                       if (approved) $(this).css("fill", contentApprovedColor);
                       if (!approved) $(this).css("fill", contentNotApprovedColor);
-                                                  $.post("https://distance.bridgetools.dev/api/courses/" + ENV.COURSE_ID + "/approval", {
+                      $.post("https://distance.bridgetools.dev/api/courses/" + ENV.COURSE_ID + "/approval", {
                           title: item.title,
                           type: item.type,
                           content_id: item.content_id,
@@ -48,7 +47,8 @@
                   });
               }
               if (approved || IS_CDD) {
-                  titleEl.prepend(distanceApprovedButton);
+                console.log("APPROVED!")
+                titleEl.prepend(distanceApprovedButton);
               }
               let item_url = item.url.replace('/api/v1', '');
           }
