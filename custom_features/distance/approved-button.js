@@ -30,6 +30,7 @@
               }
               let color = contentNotApprovedColor;
               if (IS_CDD && approved) color = contentApprovedColor;
+              console.log("APPEND");
               let distanceApprovedButton = $(`<span class="ig-distance-approved" style="cursor: pointer; float: right; color: ` + color + `">` + workFromHomeIcon + `</span>`);
               if (IS_CDD) {
                   distanceApprovedButton.click(function() {
