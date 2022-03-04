@@ -47,7 +47,7 @@
                   });
               }
               if (approved || IS_CDD) {
-                console.log("APPROVED!")
+                console.log(distanceApprovedButton);
                 titleEl.prepend(distanceApprovedButton);
               }
               let item_url = item.url.replace('/api/v1', '');
