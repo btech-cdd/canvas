@@ -477,6 +477,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             3833, //BTEC
             3871,
            ];
+
           if (IS_DISTANCE.includes(CURRENT_DEPARTMENT_ID)) {
             feature("distance/approved-button", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
           }
