@@ -15,8 +15,8 @@
   await $.get("https://distance.bridgetools.dev/api/courses/" + ENV.COURSE_ID + "/approval", data => {approvals = data});
 
   let items = await canvasGet('/api/v1/courses/' + ENV.COURSE_ID + '/modules?include[]=items&include[]=content_details');
-  let contentNotApprovedColor = "#0b874b";
-  let contentApprovedColor = "rgb(11, 178, 15)";
+  let contentNotApprovedColor = "rgb(76, 88, 96)";
+  let contentApprovedColor = "#0b874b";
 
   $('.ig-distance-approved').each(function () {
     $(this).remove();
