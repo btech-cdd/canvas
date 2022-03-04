@@ -16,7 +16,7 @@
 
   let items = await canvasGet('/api/v1/courses/' + ENV.COURSE_ID + '/modules?include[]=items&include[]=content_details');
   let contentNotApprovedColor = "rgb(76, 88, 96)";
-  let contentApprovedColor = "#0b874b";
+  let contentApprovedColor = "rgb(11, 135, 75)";
 
   $('.ig-distance-approved').each(function () {
     $(this).remove();
