@@ -1,6 +1,8 @@
 (async function() {
   let workFromHomeIcon = `
-  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+  <svg 
+    style="width: 1rem; height: 1rem;"
+    version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
     <g>
       <g transform="translate(0.000000,511.000000) scale(0.100000,-0.100000)">
         <path d="M4913.7,4844c-30.7-19.2-1106.3-1087.1-2389-2371.7C-88.6-146.9,103.1,66,103.1-229.3c0-126.6,7.7-172.6,49.9-262.7c151.5-324,542.6-462.1,862.8-301c57.5,26.8,686.4,642.3,2034.3,1988.3L5000,3145.2l1951.8-1949.9C8318.9-169.9,8926.7-766.2,8984.2-794.9c320.2-159.2,713.3-19.2,862.8,302.9c42.2,90.1,49.9,136.1,49.9,262.7c0,295.3,191.7,80.5-2431.2,2711.1c-1380.5,1382.4-2366,2356.4-2402.4,2371.7C4984.7,4888.1,4982.7,4888.1,4913.7,4844z"/>
