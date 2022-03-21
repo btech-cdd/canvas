@@ -662,9 +662,7 @@
               if (app.IS_TEACHER) {
                 for (let c = 0; c < courseList.length; c++) {
                   let course = await app.newCourse(courseList[c].course_id, courseList[c].state, courseList[c].name, courseList[c].year);
-                  let state = course.state.toLowerCase();
-                  if (state === "completed") state = "active";
-                  let gradesData = await app.getCourseGrades(course.course_id, course.state);
+                  let gradesData = await app.getCourseGrades(course.course_id);
                   course.grade_to_date = gradesData.grade;
                   course.final_grade = gradesData.final_grade;
                   course.points = gradesData.points;
@@ -748,13 +746,13 @@
               }
               return points;
             },
-            async getCourseGrades(course_id, state) {
+            async getCourseGrades(course_id) {
               let output = {
                 found: false
               };
               let app = this;
               let user_id = app.userId;
-              let url = "/api/v1/courses/" + course_id + "/search_users?user_ids[]=" + user_id + "&enrollment_state[]=" + state.toLowerCase() + "&include[]=enrollments";
+              let url = "/api/v1/courses/" + course_id + "/search_users?user_ids[]=" + user_id + "&include[]=enrollments";
               await $.get(url, function (data) {
                 if (data.length > 0) {
                   output.found = true;
@@ -764,8 +762,7 @@
                   if (grades !== undefined) {
                     let grade = grades.current_score;
                     if (grade == null) {
-                      if (state == "active") grade = 0;
-                      else grade = "N/A";
+                      grade = 0;
                     }
                     output.grade = grade;
 
@@ -780,9 +777,6 @@
                   }
                 }
               });
-              if (output.found === false && state === "active") {
-                output = await app.getCourseGrades(course_id, 'completed');
-              }
               return output;
             },
 
