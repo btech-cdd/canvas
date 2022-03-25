@@ -241,6 +241,7 @@
                     let courseCount = this.courseGrades.length;
                     for (let c = 0; c < courseCount; c++) {
                       let courseData = this.courseGrades[c];
+                      console.log(parseInt(courseData['grade']));
                       coursePointsTotal += parseInt(courseData['grade']);
                     }
                     let average = Math.round((coursePointsTotal / courseCount) * 10) * .1
