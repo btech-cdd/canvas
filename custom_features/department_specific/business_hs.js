@@ -244,7 +244,7 @@
                       console.log(parseFloat(courseData['grade']));
                       coursePointsTotal += parseFloat(courseData['grade']);
                     }
-                    let average = Math.round((coursePointsTotal / courseCount) * 10) * .1
+                    let average = (Math.round((coursePointsTotal / courseCount) * 10) / 10).toFixed(1);
                     console.log(average);
                     return average;
                   },
