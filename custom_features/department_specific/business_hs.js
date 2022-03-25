@@ -277,15 +277,14 @@
                     return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
                   },
                   async submitCourseGrade() {
-                    let course = this.selectedCourse;
+                    let course = '' + this.selectedCourse;
                     console.log(course);
                     let grade = this.selectedGrade;
                     console.log(grade);
                     let found = false
                     if (course != "" && grade != "") {
                       for (let c = 0; c < this.courseGrades.length; c++) {
-                        console.log(this.courseGrades[c].course);
-                        if (this.courseGrades[c].course === course) {
+                        if (('' + this.courseGrades[c].course) === course) {
                           console.log("MATCH");
                           this.courseGrades[c].grade = grade;
                           found = true;
