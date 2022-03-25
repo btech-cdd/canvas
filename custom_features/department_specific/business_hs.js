@@ -243,7 +243,9 @@
                       let courseData = this.courseGrades[c];
                       coursePointsTotal += parseInt(courseData['grade']);
                     }
-                    return Math.round((coursePointsTotal / courseCount) * 10) * .1;
+                    let average = Math.round((coursePointsTotal / courseCount) * 10) * .1
+                    console.log(average);
+                    return average;
                   },
                   minToHoursString: function (minutes) {
                     let hours = Math.floor(minutes / 60);
