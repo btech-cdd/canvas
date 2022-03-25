@@ -126,7 +126,6 @@
               </div>
             </div>`;
           let pieces = (window.location.pathname + window.location.search).match(rPiecesInitial);
-          console.log(pieces);
           let courseId = parseInt(pieces[1]);
           let assignmentId = parseInt(pieces[2]);
           let description = '';
@@ -169,10 +168,8 @@
                   }
                 },
                 mounted: async function () {
-                  console.log("mounted");
                   let app = this;
                   let pieces = (window.location.pathname + window.location.search).match(rPieces);
-                  console.log(window.location.pathname + window.location.search);
                   app.courseId = parseInt(pieces[1]);
                   app.studentId = parseInt(pieces[3]);
                   app.assignmentId = parseInt(pieces[2]);
@@ -287,6 +284,7 @@
                       for (let c = 0; c < this.courseGrades.length; c++) {
                         if (this.courseGrades[c].course === course) {
                           this.courseGrades[c].grade = grade;
+                          found = true;
                           await $.delete(window.location.origin + "/submission_comments/" + this.courseGrades[c].comment_id);
                         }
                       }
