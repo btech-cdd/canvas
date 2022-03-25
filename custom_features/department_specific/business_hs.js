@@ -243,7 +243,7 @@
                       let courseData = this.courseGrades[c];
                       coursePointsTotal += parseInt(courseData['grade']);
                     }
-                    return (coursePointsTotal / courseCount).toFixed(1);
+                    return Math.round((coursePointsTotal / courseCount) * 10) * .1;
                   },
                   minToHoursString: function (minutes) {
                     let hours = Math.floor(minutes / 60);
