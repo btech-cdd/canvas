@@ -284,7 +284,9 @@
                     let found = false
                     if (course != "" && grade != "") {
                       for (let c = 0; c < this.courseGrades.length; c++) {
+                        console.log(this.courseGrades[c].course);
                         if (this.courseGrades[c].course === course) {
+                          console.log("MATCH");
                           this.courseGrades[c].grade = grade;
                           found = true;
                           await $.delete(window.location.origin + "/submission_comments/" + this.courseGrades[c].comment_id);
@@ -307,7 +309,7 @@
                           posted_grade: averageScore
                         }
                       });
-                      location.reload(true);
+                      //location.reload(true);
                     }
                   },
                   async getComments() {
