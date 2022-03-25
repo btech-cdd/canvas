@@ -278,7 +278,9 @@
                   },
                   async submitCourseGrade() {
                     let course = this.selectedCourse;
+                    console.log(course);
                     let grade = this.selectedGrade;
+                    console.log(grade);
                     let found = false
                     if (course != "" && grade != "") {
                       for (let c = 0; c < this.courseGrades.length; c++) {
