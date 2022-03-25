@@ -308,7 +308,7 @@
                           posted_grade: averageScore
                         }
                       });
-                      //location.reload(true);
+                      location.reload(true);
                     }
                   },
                   async getComments() {
