@@ -1235,7 +1235,7 @@
               $.getScript("https://reports.bridgetools.dev/department_report/components/courseRowInd.js").done(function () {
                 $.getScript("https://reports.bridgetools.dev/department_report/components/menuStatus.js").done(function () {
                   $.getScript("https://reports.bridgetools.dev/department_report/components/menuInfo.js").done(function () {
-                    $.getScript("https://reports.bridgetools.dev/department_report/components/showStudentInd.js").done(function () {
+                    $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentInd.js").done(function () {
                       $.getScript("https://reports.bridgetools.dev/department_report/components/showStudentHours.js").done(function () {
                         $.getScript("https://reports.bridgetools.dev/department_report/graphs.js").done(function () {
                           app.postLoad();
