@@ -318,10 +318,11 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
 
   //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
   feature('conversations/open_conversation', {}, /^\/conversations/);
-  feature('quizzes/show_analytics', {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+/);
   if (rCheckInCourse.test(window.location.pathname)) {
     feature('modules/course_features');
     if (IS_TEACHER) {
+      feature('quizzes/show_analytics', {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+/);
+      feature("modules/show_undelete", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
       feature("kaltura/showInfo", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
     }
   }
