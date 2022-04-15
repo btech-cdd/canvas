@@ -318,6 +318,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
 
   //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
   feature('conversations/open_conversation', {}, /^\/conversations/);
+  feature('quizzes/show_analytics', {}, /^\/conversations/);
   if (rCheckInCourse.test(window.location.pathname)) {
     feature('modules/course_features');
     if (IS_TEACHER) {
@@ -513,18 +514,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
   });
 }
 
-
-/*
-* PRONTO
-*/
-/*
-(function() {
-  window.prontoInit = {"ixn":"canvas","cid":203,"version":"1.0"};
-  var script = document.createElement('script');
-  script.src = `https://chat.pronto.io/js/embedded.js?cb=${Math.round(new Date().getTime() / 1000)}`;
-  document.body.appendChild(script);
-})();
-*/
 
 //FROM https://github.com/jeresig/jquery.hotkeys
 /*jslint browser: true*/
