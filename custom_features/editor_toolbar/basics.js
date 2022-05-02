@@ -90,7 +90,7 @@
         citationString += (publisher + ". ")
       }
       if (url !== "") {
-        citationString = `<a href="${url}">${citaitonString}</a>`;
+        citationString = `<a href="${url}">${citationString}</a>`;
       }
       citationString = "<p class='btech-citation' style='text-align: right;'>" + citationString + "</p>";
       editor.execCommand("mceReplaceContent", false, `<p>`+citationString+`</p>`);
