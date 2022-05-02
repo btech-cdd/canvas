@@ -1,3 +1,4 @@
+/*
 tableOptions = [
   'btech-tabs-table',
   'btech-dropdown-table'
@@ -204,7 +205,6 @@ async function googleSheetsTable() {
 </tr>
 </tbody>
 </table>`);
-      //*/
       bg.remove();
     }
     event.stopPropagation();
@@ -390,3 +390,4 @@ async function _init() {
   }
 }
 if (window.location.pathname.includes("edit")) _init();
+*/
