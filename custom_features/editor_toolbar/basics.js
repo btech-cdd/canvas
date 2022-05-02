@@ -68,28 +68,32 @@
     let date = $("#citation-date-accessed").val();
     let url = $("#citation-url").val();
     if (name != "" && authorLast != "") {
-      let citationString = "";
-      $(".citation-author").each(function () {
+      let citationString = ""; 
+      $(".citation-author").each(function() {
         let authorEl = $(this);
         let last = authorEl.find(".last-name").val();
         let first = authorEl.find(".first-name").val();
         if (last !== "") {
-          citationString += (last + ", " + first.charAt(0) + ". ")
+          if (first !== "") {
+            citationString += (last + ", " + first.charAt(0) + ". ")
+          } else {
+            citationString += last + ". "
+          }
         }
       })
       if (date !== "") {
-        citationString += ("(" + date.slice(0, 4) + "). ");
+        citationString += ("(" + date.slice(0,4) + "). ");
       }
-
-      citationString += ("<i>" + name + "</i>. ");
+      
+      citationString += ("<i>" +name + "</i>. ");
       if (publisher !== "") {
         citationString += (publisher + ". ")
       }
       if (url !== "") {
-        citationString += ("Retrieved from " + url);
+        citationString += ("Retrieved from "+url);
       }
-      citationString = "<p class='btech-citation'>" + citationString + "</p>";
-      editor.execCommand("mceReplaceContent", false, `<p>` + citationString + `</p>`);
+      citationString = "<p class='btech-citation' style='text-align: right;'>" + citationString + "</p>";
+      editor.execCommand("mceReplaceContent", false, `<p>`+citationString+`</p>`);
       bg.remove();
     }
   }
@@ -104,7 +108,10 @@
     });
   }
   async function citation() {
-    let bg = TOOLBAR.addBackground();
+    let bg = TOOLBAR.addBackground(false);
+    let close = $(`<span class="btech-pill-text" style="background-color: position: absolute; right: 2rem;">Close</span>`);
+    close.click(() => {bg.remove();});
+    bg.find('$background-container').append(close);
     bg.find('#background-container').append(`
     <p>Name of Image, Book, Article, Video, etc.*</p>
     <input style='width: 100%; height: 40px; box-sizing: border-box;' type="text" class="citation-information" id="citation-name">
@@ -260,7 +267,7 @@
     let height = iframe.height();
     if (kid == "" && pid == "") return;
 
-    let bg = TOOLBAR.addBackground();
+    let bg = TOOLBAR.addBackground(true);
     bg.append(`
       <div id='kaltura-video-info-container' style='
       width: 500px;
