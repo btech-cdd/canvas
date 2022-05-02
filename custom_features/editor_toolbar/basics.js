@@ -65,7 +65,7 @@
     let name = $("#citation-name").val();
     let authorLast = $("#citation-author-last").val();
     let publisher = $("#citation-publisher").val();
-    let date = $("#citation-date-accessed").val();
+    let date = $("#citation-year-published").val();
     let url = $("#citation-url").val();
     if (name != "" && authorLast != "") {
       let citationString = ""; 
@@ -82,7 +82,7 @@
         }
       })
       if (date !== "") {
-        citationString += ("(" + date.slice(0,4) + "). ");
+        citationString += ("(" + date + "). ");
       }
       
       citationString += ("<i>" +name + "</i>. ");
@@ -123,8 +123,8 @@
       </div>
     </div>
     <a class='btn' id="citation-add-author">Add Author</a>
-    <p>Date Published</p>
-    <input style='width: 100%; height: 40px; box-sizing: border-box;' type="date" class="citation-information" id="citation-date-accessed">
+    <p>Year Published</p>
+    <input style='width: 100%; height: 40px; box-sizing: border-box;' type="number" class="citation-information" id="citation-year-published">
     <p>Publisher</p>
     <input style='width: 100%; height: 40px; box-sizing: border-box;' type="text" class="citation-information" id="citation-publisher">
     <p>URL (If Applicable)</p>
