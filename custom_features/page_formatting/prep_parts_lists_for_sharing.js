@@ -18,13 +18,8 @@ partsListRows.each(function () {
   rowRef[key] = row;
 });
 
-let pages = await canvasGet("/api/v1/courses/" + ENV.COURSE_ID + "/pages");
-for (let p in pages) {
-  let pData = pages[p];
-  let page = await canvasGet("/api/v1/courses/" + ENV.COURSE_ID + "/pages/" + pData.url);
-  page = page[0];
-  console.log(page);
-  let newPageBody = $('<div class=".new-page-body">' + page.body + '</div>');
+function updateContent(content) {
+  let newPageBody = $('<div class=".new-page-body">' + content + '</div>');
   let childTables = newPageBody.find('.btech-table-from-page');
   if (childTables.length > 0) {
       childTables.each(function () {
@@ -56,11 +51,34 @@ for (let p in pages) {
           //add the newly created table to the page
           childTable.after(newTable);
           childTable.remove();
-      })
-      $.put("/api/v1/courses/" + ENV.COURSE_ID + "/pages/" + pData.url, {
-          wiki_page: {
-              body: $(newPageBody[0]).html()
-          }
       });
   }
+    return $(newPageBody[0]).html();
+}
+
+let assignments = await canvasGet("/api/v1/courses/" + ENV.COURSE_ID + "/assignments");
+for (let a in assignments) {
+    let assignment = assignments[a];
+    console.log(assignment);
+    let newContent = updateContent(assignment.description);
+    $.put("/api/v1/courses/" + ENV.COURSE_ID + "/assignments/" + assignment.id, {
+      assignment: {
+          description: newContent
+      }
+    });
+    
+}
+
+let pages = await canvasGet("/api/v1/courses/" + ENV.COURSE_ID + "/pages");
+for (let p in pages) {
+  let pData = pages[p];
+  let page = await canvasGet("/api/v1/courses/" + ENV.COURSE_ID + "/pages/" + pData.url);
+    console.log(page);
+  page = page[0];
+  let newContent = updateContent(page.body);
+  $.put("/api/v1/courses/" + ENV.COURSE_ID + "/pages/" + pData.url, {
+      wiki_page: {
+          body: newContent
+      }
+  });
 }
