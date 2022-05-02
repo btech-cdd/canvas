@@ -109,7 +109,7 @@
   }
   async function citation() {
     let bg = TOOLBAR.addBackground(false);
-    let close = $(`<span class="btech-pill-text" style="background-color: red; color: white; cursor: pointer; user-select: none; position: absolute; right: 2rem;">Close</span>`);
+    let close = $(`<span class="btech-pill-text" style="background-color: black; color: white; cursor: pointer; user-select: none; position: absolute; right: 2rem;">Close</span>`);
     close.click(() => {bg.remove();});
     bg.find('#background-container').append(close);
     bg.find('#background-container').append(`
