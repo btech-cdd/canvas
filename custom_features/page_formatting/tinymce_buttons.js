@@ -131,7 +131,9 @@ async function citationKeypress(bg) {
 }
 async function citation() {
   let bg = addBackground(false);
-  let close = $(`<span style="position: absolute; right: 2rem;">Close</span>`)
+  let close = $(`<span class="btech-pill-text" style="background-color: position: absolute; right: 2rem;">Close</span>`);
+  close.click(() => {bg.remove();});
+  bg.find('$background-container').append(close);
   bg.find('#background-container').append(`
     <p>Name of Image, Book, Article, Video, etc.*</p>
     <input style='width: 100%; height: 40px; box-sizing: border-box;' type="text" class="citation-information" id="citation-name">
