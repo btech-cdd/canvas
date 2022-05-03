@@ -36,6 +36,9 @@ var CDDIDS = [
   2048150, //Tiffany
 ];
 
+//No idead what this was going to be for, but it looks interesting, so I'm not deleting it yet.
+//5/3/22
+/*
 if (/^\/courses\/[0-9]+$/.test(window.location.pathname)) {
   if (CDDIDS.includes(parseInt(ENV.current_user.id))) {
     function copyStringToClipboard(str) {
@@ -75,6 +78,7 @@ if (/^\/courses\/[0-9]+$/.test(window.location.pathname)) {
     });
   }
 }
+*/
 
 var CURRENT_COURSE_ID = null;
 var rCheckInCourse = /^\/courses\/([0-9]+)/;
