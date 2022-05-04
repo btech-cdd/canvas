@@ -86,7 +86,6 @@ if (rCheckInCourse.test(window.location.pathname)) {
   CURRENT_COURSE_ID = parseInt(window.location.pathname.match(rCheckInCourse)[1]);
 }
 var CURRENT_DEPARTMENT_ID = null;
-var CURRENT_COURSE_HOURS = null;
 var IS_BLUEPRINT = null;
 var IS_TEACHER = null;
 var IS_ME = false;
@@ -183,6 +182,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           CURRENT_DEPARTMENT_ID = parseInt(window.location.pathname.match(rCheckInDepartment)[1]);
         }
         if (rCheckInCourse.test(window.location.pathname)) {
+          feature("distance/approved-button", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
           IS_BLUEPRINT = !(ENV.BLUEPRINT_COURSES_DATA === undefined)
           $.get('/api/v1/courses/' + CURRENT_COURSE_ID, function (courseData) {
             CURRENT_DEPARTMENT_ID = courseData.account_id;
@@ -248,8 +248,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
               feature("department_specific/diesel-page-turner", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             }
 
-            feature("distance/approved-button", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
-          })
+          });
         }
 
         if (ENV.current_user_roles.includes('root_admin')) {

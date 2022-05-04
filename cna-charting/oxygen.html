@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CNA Charting</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="/scripts/index.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Charting Assignment</h1>
+        <h2>"Scenario"</h2>
+        <p>Resident's Name / ID# / Date</p>
+    </header>
+
+    <nav>
+        <a href="/index.html">ADL</a>
+        <a href="/activity.html">Activity</a>
+        <a href="/vital_signs.html">Vital signs</a>
+        <a href="/fluid.html">Fluid I/O</a>
+        <a href="/pain_level.html">Pain level</a>
+        <a href="/oxygen.html" class="--active">Oxygen</a>
+        <a href="/restraints.html">Restraints</a>
+        <a href="/safety.html">Safety</a>
+    </nav>
+
+    <main role="main">
+        <form id="oxygen">
+            <h3>Oxygen</h3>
+            <section>
+                <input type="number" name="liters" max="21"><span> LPM</span>
+
+                <br><label for="nasal_cannula">per nasal cannula</label>
+                <input id="nasal_cannula" type="radio" name="delivery" value="nasal_cannula">
+
+                <label for="mask">per mask</label>
+                <input id="mask" type="radio" name="delivery" value="mask">
+
+                <label for="refused">refused to wear</label>
+                <input id="refused" type="radio" name="delivery" value="refused">
+            </section>
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CNA Charting</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="/scripts/index.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Charting Assignment</h1>
+        <h2>"Scenario"</h2>
+        <p>Resident's Name / ID# / Date</p>
+    </header>
+
+    <nav>
+        <a href="/index.html">ADL</a>
+        <a href="/activity.html">Activity</a>
+        <a href="/vital_signs.html">Vital signs</a>
+        <a href="/fluid.html">Fluid I/O</a>
+        <a href="/pain_level.html" class="--active">Pain level</a>
+        <a href="/oxygen.html">Oxygen</a>
+        <a href="/restraints.html">Restraints</a>
+        <a href="/safety.html">Safety</a>
+    </nav>
+
+    <main role="main">
+        <form>
+            <h3>Pain Level</h3>
+            <label for="pain_level">Score</label>
+            <input id="pain_level" type="number" min="0" max="10" name="pain_level"><span> / 10</span>
+
+            <br><label for="reported">Reported to nurse?</label>
+            <input id="reported" type="checkbox" name="reported">
+        </form>
+    </main>
+</body>
+</html>

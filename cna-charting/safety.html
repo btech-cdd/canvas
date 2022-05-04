@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CNA Charting</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="/scripts/index.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Charting Assignment</h1>
+        <h2>"Scenario"</h2>
+        <p>Resident's Name / ID# / Date</p>
+    </header>
+
+    <nav>
+        <a href="/index.html">ADL</a>
+        <a href="/activity.html">Activity</a>
+        <a href="/vital_signs.html">Vital signs</a>
+        <a href="/fluid.html">Fluid I/O</a>
+        <a href="/pain_level.html">Pain level</a>
+        <a href="/oxygen.html">Oxygen</a>
+        <a href="/restraints.html">Restraints</a>
+        <a href="/safety.html" class="--active">Safety</a>
+    </nav>
+
+    <main role="main">
+        <form id="safety">
+            <h3>Safety</h3>
+
+            <section>
+                <label for="call_light">Call light in reach</label>
+                <input id="call_light" type="checkbox" name="call_light"><br>
+
+                <label for="bed_low">Bed low</label>
+                <input id="bed_low" type="checkbox" name="bed_low"><br>
+
+                <label for="brakes">Brakes on</label>
+                <input id="brakes" type="checkbox" name="brakes"><br>
+
+                <label for="falls">Falls</label>
+                <input id="falls" type="text" name="falls" placeholder="please explain"><br>
+
+                <label for="nausea">Nausea</label>
+                <input id="nausea" type="text" name="nausea" placeholder="please explain"><br>
+
+                <label for="vomiting">Vomiting</label>
+                <input id="vomiting" type="text" name="vomiting" placeholder="please explain"><br>
+
+                <label for="confusion">Confusion</label>
+                <input id="confusion" type="text" name="confusion" placeholder="please explain"><br>
+
+                <label for="combative">Combative</label>
+                <input id="combative" type="text" name="combative" placeholder="please explain"><br>
+
+                <label for="other">Other</label>
+                <input id="other" type="text" name="other" placeholder="please explain">
+            </section>
+        </form>
+    </main>
+</body>
+</html>
