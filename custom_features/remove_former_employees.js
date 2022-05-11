@@ -7,8 +7,8 @@
             <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
             <div class='btech-modal-content' style='max-width: 500px;'>
                 <div class='btech-modal-content-inner'>
-                    <div>Unenrolling user. Do <strong>NOT</strong> close the page.</div>
-                    <div id='unenroll-progress-bar'>You are about to unenroll this user from all courses in which they are a Teacher or a TA. Are you sure this is what you want to do?</div>
+                    <div id="unenroll-progress-message">Unenrolling user. Do <strong>NOT</strong> close the page.</div>
+                    <div id="unenroll-progress-bar">You are about to unenroll this user from all courses in which they are a Teacher or a TA. Are you sure this is what you want to do?</div>
  <div id='unenroll-progress-bar-buttons' style='width: 100%; text-align: center;'><button class='yes btn button-sidebar-wide'>Yes</button><button class='no btn button-sidebar-wide'>No</button></div>
                 </div>
             </div>
@@ -17,19 +17,18 @@
 
         $("body").append(loadBar);
         $("#unenroll-progress-bar-buttons button.no").click(async function() {
-            console.log("NO!");
             $(loadBar).remove();
         });
         $("#unenroll-progress-bar-buttons button.yes").click(async function() {
-            console.log("NO!");
             $("#unenroll-progress-bar").empty();
             $("#unenroll-progress-bar-buttons").remove();
             $("#unenroll-progress-bar").progressbar({
                 value: 0
             })
             let enrollments = await canvasGet("/api/v1/users/" + ENV.USER_ID + "/enrollments?state[]=active&state[]=inactive&state[]=invited&state[]=rejected&state[]=completed&type[]=TeacherEnrollment&type[]=TaEnrollment");
+            let adminRights = await canvasGet("/api/v1/manageable_accounts?as_user_id=" + ENV.USER_ID);
             let finishedCount = 0;
-            let totalCount = enrollments.length;
+            let totalCount = enrollments.length + adminRights.length;
             for (let e in enrollments) {
                 let enrollment = enrollments[e];
                 await $.delete("/api/v1/courses/" + enrollment.course_id + "/enrollments/" + enrollment.id +"?task=deactivate");
@@ -37,6 +36,15 @@
                 $("#unenroll-progress-bar").progressbar({
                     value: (finishedCount / totalCount) * 100
                 })
+            }
+
+            for (let a in adminRights) {
+              let account = adminRights[a].id;
+              await $.delete(`/api/v1/accounts/${account}/admins/${ENV.USER_ID}`);
+              finishedCount += 1;
+              $("#unenroll-progress-bar").progressbar({
+                  value: (finishedCount / totalCount) * 100
+              })
             }
             $.post("/api/v1/conversations", {
                 recipients: [1893418],
