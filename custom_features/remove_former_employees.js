@@ -7,7 +7,7 @@
             <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
             <div class='btech-modal-content' style='max-width: 500px;'>
                 <div class='btech-modal-content-inner'>
-                    <div id="unenroll-progress-message">Unenrolling user. Do <strong>NOT</strong> close the page.</div>
+                    <div id="unenroll-progress-message"></div>
                     <div id="unenroll-progress-bar">You are about to unenroll this user from all courses in which they are a Teacher or a TA. Are you sure this is what you want to do?</div>
  <div id='unenroll-progress-bar-buttons' style='width: 100%; text-align: center;'><button class='yes btn button-sidebar-wide'>Yes</button><button class='no btn button-sidebar-wide'>No</button></div>
                 </div>
