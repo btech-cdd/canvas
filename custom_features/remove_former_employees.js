@@ -41,7 +41,11 @@
             for (let a in adminRights) {
               let account = adminRights[a].id;
               console.log(account);
-              await $.delete(`/api/v1/accounts/${account}/admins/${ENV.USER_ID}`);
+              try {
+                await $.delete(`/api/v1/accounts/${account}/admins/${ENV.USER_ID}`);
+              } catch(e) {
+                console.log(`Probably not really in this account ${account}`);
+              }
               finishedCount += 1;
               $("#unenroll-progress-bar").progressbar({
                   value: (finishedCount / totalCount) * 100
