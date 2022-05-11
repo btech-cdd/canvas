@@ -29,6 +29,7 @@
             let adminRights = await canvasGet("/api/v1/manageable_accounts?as_user_id=" + ENV.USER_ID);
             let finishedCount = 0;
             let totalCount = enrollments.length + adminRights.length;
+            $("#unenroll-progress-message").html("Unenrolling user. Do <strong>NOT</strong> close the page.")
             for (let e in enrollments) {
                 let enrollment = enrollments[e];
                 await $.delete("/api/v1/courses/" + enrollment.course_id + "/enrollments/" + enrollment.id +"?task=deactivate");
@@ -38,6 +39,7 @@
                 })
             }
 
+            $("#unenroll-progress-message").html("Removing admin access. Do <strong>NOT</strong> close the page.")
             for (let a in adminRights) {
               let account = adminRights[a].id;
               console.log(account);
