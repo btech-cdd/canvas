@@ -40,6 +40,7 @@
 
             for (let a in adminRights) {
               let account = adminRights[a].id;
+              console.log(account);
               await $.delete(`/api/v1/accounts/${account}/admins/${ENV.USER_ID}`);
               finishedCount += 1;
               $("#unenroll-progress-bar").progressbar({

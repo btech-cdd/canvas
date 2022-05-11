@@ -69,11 +69,7 @@ function feature(f, data = {}, regex = "") {
         //make sure it hasn't already been called to avoid messing up the page
         if (feature.initiated === false) {
           feature.initiated = true;
-          try {
-            feature._init(data);
-          } catch(e) {
-            console.log(e);
-          }
+          feature._init(data);
         }
       }
     });
