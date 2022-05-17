@@ -125,6 +125,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
     feature('conversations/open_conversation', {}, /^\/conversations/);
     if (rCheckInCourse.test(window.location.pathname)) {
       feature('modules/course_features');
+      feature("kaltura/showInfo", {}, /^\/courses\/[0-9]+\/(assignments)/);
       if (IS_TEACHER) {
         feature('quizzes/show_analytics', {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+/);
         feature("modules/show_undelete", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
