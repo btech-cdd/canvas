@@ -43,7 +43,7 @@
             </div>
 
             <div v-if="menu=='hours'">
-              <div class="btech-canvas-report" style="background-color: #ffffff;">
+              <!-- <div class="btech-canvas-report" style="background-color: #ffffff;">
                 <show-student-hours
                   v-if="user.name !== undefined && tree.name !== undefined"
                   style="display: inline-block; background-color: #fff; padding: 0.5rem; box-sizing: border-box; width: 100%;"
@@ -52,9 +52,8 @@
                   :settings="settings"
                   :student-tree="tree"
                   :manual-hours-perc="true"
-                  v-on:close=""
                 ></show-student-hours>
-              </div>
+              </div> -->
             </div>
 
             <div v-if="menu=='period'">

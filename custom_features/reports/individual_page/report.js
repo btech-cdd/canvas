@@ -66,6 +66,7 @@
             } else {
               this.userId = ENV.current_user_id;
             }
+            console.log(this.userId);
             let settings = await app.loadSettings();
             app.settings = settings;
             console.log(settings);
@@ -426,6 +427,7 @@
                     let group = assignmentGroups[g];
                     sumWeights += group.group_weight;
                   }
+
                   //weight grades based on assignment group weighting and hours completed in the course
                   for (let g = 0; g < assignmentGroups.length; g++) {
                     let group = assignmentGroups[g]
