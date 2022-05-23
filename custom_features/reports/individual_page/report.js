@@ -694,13 +694,7 @@
               let app = this;
               let list = [];
               let dates = {};
-<<<<<<< HEAD
-              let enrollments = await canvasGet("/api/v1/users/" + app.userId + "/enrollments?state[]=current_and_concluded");
-              console.log(enrollments);
-=======
-              let enrollments = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
-
->>>>>>> 1b3f78c51e4808154a191c61b245be107e1f8704
+              let enrollments = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId)
               let enrollment_data = {};
               for (let e = 0; e < enrollments.length; e++) {
                 let enrollment = enrollments[e];
