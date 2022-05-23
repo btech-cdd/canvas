@@ -1016,8 +1016,6 @@
             },
 
             async loadTree(deptCode, deptYear) {
-              console.log(deptCode);
-              console.log(deptYear);
               let app = this;
               let url = "https://reports.bridgetools.dev/api/trees?dept_code=" + deptCode + "&year=" + deptYear;
               let data = await app.bridgetoolsReq(url);
@@ -1039,7 +1037,6 @@
               await $.get("https://reports.bridgetools.dev/api/students/" + userId + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function (data) {
                 user = data;
               });
-              console.log(user);
               if (user === "") {
                 try {
                   await $.get("/api/v1/users/" + userId, function (data) {
@@ -1130,7 +1127,6 @@
                   }
                   return (a.year > b.year) ? -1 : ((a.year < b.year) ? 1 : 0)
                 })
-                console.log(user.depts);
                 app.currentDepartment = user.depts[0];
                 tree = await app.loadTree(user.depts[0].dept, user.depts[0].year);
               }
@@ -1142,11 +1138,8 @@
 
             async changeTree(user) {
               let app = this;
-              console.log(app.currentDepartment);
               let tree = await app.loadTree(app.currentDepartment.dept, app.currentDepartment.year);
-              console.log(tree);
               user = app.updateUserCourseInfo(user, tree);
-              console.log(user);
               app.user = user;
             },
 
