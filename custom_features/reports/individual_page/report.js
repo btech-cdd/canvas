@@ -57,6 +57,7 @@
           el: '#canvas-individual-report-vue',
           mounted: async function () {
             let app = this;
+            app.loadingPercentage = 0;
             this.IS_TEACHER = IS_TEACHER;
             // if (!IS_TEACHER) this.menu = 'period';
             let gradesBetweenDates = {};
@@ -69,6 +70,7 @@
             this.loadingMessage = "Loading Settings";
             let settings = await app.loadSettings();
             app.settings = settings;
+            app.loadingPercentage += 10;
 
             //load data from bridgetools
             this.loadingMessage = "Loading User Data";
@@ -79,21 +81,27 @@
               console.log("FAILED TO LOAD USER");
               app.user = {};
             }
+            app.loadingPercentage += 10;
 
 
             this.loadingMessage = "Loading Courses";
             this.courses = await this.getCourseData();
+            app.loadingPercentage += 30;
+
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
               let courseId = this.courses[i].course_id;
               this.loadingMessage = "Loading Submissions for Course " + this.courses[i].course_id;
               this.submissionData[courseId] = await this.getSubmissionData(courseId);
+              app.loadingPercentage += (50 / this.courses.length) * 0.5;
               //get assignment group data
+              this.loadingMessage = "Loading Assignment Groups for Course " + this.courses[i].course_id;
               this.courseAssignmentGroups[this.courses[i].course_id] = await canvasGet("/api/v1/courses/" + this.courses[i].course_id + "/assignment_groups", {
                 'include': [
                   'assignments'
                 ]
               });
+              app.loadingPercentage += (50 / this.courses.length) * 0.5;
             }
             this.loadingAssignments = false;
           },
@@ -152,6 +160,7 @@
               loading: true,
               loadingAssignments: true,
               loadingMessage: "Loading Results...",
+              loadingPercentage: 0,
               accessDenied: false,
               menu: 'report',
               IS_TEACHER: false,

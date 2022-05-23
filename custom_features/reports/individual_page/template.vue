@@ -57,7 +57,14 @@
             </div>
 
             <div v-if="menu=='period'">
-              <div v-if='loadingAssignments'>{{loadingMessage}}</div>
+              <div v-if='loadingAssignments'>
+                <progress 
+                  id="load-progress" 
+                  :value="loadingProgress" 
+                  max="100"
+                ></progress>
+                {{loadingMessage}}
+              </div>
               <div v-else>
                 <div class='btech-report-submission-dates'>
                   <select @change='updateDatesToSelectedTerm()' v-model='selectedTermId'>
