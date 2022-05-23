@@ -77,10 +77,12 @@
               app.user = user;
               console.log(user);
             } catch(err) {
+              console.log("FAILED")
               app.user = {};
             }
 
 
+            console.log("LOAD COURSE");
             this.courses = await this.getCourseData();
             console.log(courses);
             this.loading = false;
