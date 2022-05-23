@@ -72,10 +72,14 @@
             console.log(settings);
 
             //load data from bridgetools
-            let user = await app.loadUser(app.userId);
-            app.user = user;
+            try {
+              let user = await app.loadUser(app.userId);
+              app.user = user;
+              console.log(user);
+            } catch(err) {
+              app.user = {};
+            }
 
-            console.log(user);
 
             this.courses = await this.getCourseData();
             console.log(courses);
