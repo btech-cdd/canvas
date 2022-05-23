@@ -23,12 +23,11 @@
 
           <div v-else>
             <div v-if="menu=='report'">
-              <div class="btech-canvas-report" style="background-color: #ffffff;">
+              <!-- <div class="btech-canvas-report" style="background-color: #ffffff;">
                 <menu-info
                   :colors="colors"
                   :current-report="'students'"
                 ></menu-info>
-                <!--Select dept, especially if dual enrolled or hs student-->
                 <select @change="changeTree(user)" v-model="currentDepartment">
                   <option v-for="dept in user.depts" :value="dept">{{dept.dept}} ({{dept.year}})</option>
                 </select>
@@ -40,7 +39,7 @@
                     :student-tree="tree"
                     v-on:close=""
                 ></show-student-ind>
-              </div>
+              </div> -->
             </div>
 
             <div v-if="menu=='hours'">
