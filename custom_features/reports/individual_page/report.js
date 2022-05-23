@@ -66,37 +66,30 @@
             } else {
               this.userId = ENV.current_user_id;
             }
-            console.log(this.userId);
             let settings = await app.loadSettings();
             app.settings = settings;
-            console.log(settings);
 
             //load data from bridgetools
             try {
               let user = await app.loadUser(app.userId);
               app.user = user;
-              console.log(user);
             } catch(err) {
-              console.log("FAILED")
+              console.log("FAILED TO LOAD USER");
               app.user = {};
             }
 
 
-            console.log("LOAD COURSE");
             this.courses = await this.getCourseData();
-            console.log(courses);
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
               let courseId = this.courses[i].course_id;
               this.submissionData[courseId] = await this.getSubmissionData(courseId);
-              console.log(this.submissionData[courseId]);
               //get assignment group data
               this.courseAssignmentGroups[this.courses[i].course_id] = await canvasGet("/api/v1/courses/" + this.courses[i].course_id + "/assignment_groups", {
                 'include': [
                   'assignments'
                 ]
               });
-              console.log(this.courseAssignmentGroups[this.courses[i].course_id]);
             }
             this.loadingAssignments = false;
           },
