@@ -66,10 +66,12 @@
             } else {
               this.userId = ENV.current_user_id;
             }
+            this.loadingMessage = "Loading Settings";
             let settings = await app.loadSettings();
             app.settings = settings;
 
             //load data from bridgetools
+            this.loadingMessage = "Loading User Data";
             try {
               let user = await app.loadUser(app.userId);
               app.user = user;
@@ -79,10 +81,12 @@
             }
 
 
+            this.loadingMessage = "Loading Courses";
             this.courses = await this.getCourseData();
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
               let courseId = this.courses[i].course_id;
+              this.loadingMessage = "Loading Submissions for Course " + this.courses[i].course_id;
               this.submissionData[courseId] = await this.getSubmissionData(courseId);
               //get assignment group data
               this.courseAssignmentGroups[this.courses[i].course_id] = await canvasGet("/api/v1/courses/" + this.courses[i].course_id + "/assignment_groups", {
