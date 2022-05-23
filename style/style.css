@@ -259,3 +259,9 @@
   vertical-align: middle;
   color: #FFFFFF;
 }
+
+span.btech-pill-text {
+  padding: 4px;
+  border-radius: 10px;
+  font-size: .75rem;
+}

@@ -36,16 +36,22 @@
   }
 
   let rPieces = /^\/courses\/([0-9]+)\/assignments\/([0-9]+)\/submissions\/([0-9]+)/;
+  let rPiecesInitial = /^\/courses\/([0-9]+)\/assignments\/([0-9]+)\/submissions\/([0-9]+)/;
   let IS_SPEED_GRADER = false;
   if (window.location.pathname.includes("speed_grader")) {
     rPieces = /^\/courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/
+    rPiecesInitial = /^\/courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)/
     IS_SPEED_GRADER = true;
+    console.log("SPEED GRADER");
   }
 
   //GRADING VIEW
   //This one has to come first so it doesn't have the submission view run on the grading page
-  if (rPieces.test(window.location.pathname + window.location.search)) {
+  console.log(window.location.pathname + window.location.search);
+  if (rPiecesInitial.test(window.location.pathname + window.location.search)) {
+    console.log("MATCH");
     if (ENV.current_user_roles.includes("teacher")) {
+      console.log("TEACHER");
       IMPORTED_FEATURE = {
         initiated: false,
         oldHref: "",
@@ -59,24 +65,24 @@
           ////Allow the color themes to affect the color of the buttons and display in both teacher view and student view
           let feature = this;
           if (IS_SPEED_GRADER) {
+            console.log("INIT");
             feature.oldHref = document.location.href,
-              window.onload = function () {
-                var
-                  bodyList = document.querySelector("#right_side"),
-                  observer = new MutationObserver(function (mutations) {
-                    mutations.forEach(function (mutation) {
-                      if (feature.oldHref !== document.location.href) {
-                        feature.oldHref = document.location.href;
-                        feature.createApp();
-                      }
-                    });
-                  });
-                var config = {
-                  childList: true,
-                  subtree: true
-                };
-                observer.observe(bodyList, config);
-              };
+            await getElement("#right_side");
+            var
+              bodyList = document.querySelector("#right_side"),
+              observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
+                  if (feature.oldHref !== document.location.href) {
+                    feature.oldHref = document.location.href;
+                    feature.createApp();
+                  }
+                });
+              });
+            var config = {
+              childList: true,
+              subtree: true
+            };
+            observer.observe(bodyList, config);
           }
           feature.createApp();
         },
@@ -119,9 +125,8 @@
                 </div>
               </div>
             </div>`;
-          let pieces = (window.location.pathname + window.location.search).match(rPieces);
+          let pieces = (window.location.pathname + window.location.search).match(rPiecesInitial);
           let courseId = parseInt(pieces[1]);
-          let studentId = parseInt(pieces[3]);
           let assignmentId = parseInt(pieces[2]);
           let description = '';
           await $.get("/api/v1/courses/" + courseId + "/assignments/" + assignmentId, function (data) {
@@ -165,33 +170,34 @@
                 mounted: async function () {
                   let app = this;
                   let pieces = (window.location.pathname + window.location.search).match(rPieces);
-                  this.courseId = parseInt(pieces[1]);
-                  this.studentId = parseInt(pieces[3]);
-                  this.assignmentId = parseInt(pieces[2]);
-                  let url = window.location.origin + "/users/" + this.studentId;
+                  app.courseId = parseInt(pieces[1]);
+                  app.studentId = parseInt(pieces[3]);
+                  app.assignmentId = parseInt(pieces[2]);
+                  let url = window.location.origin + "/users/" + app.studentId;
                   let list = [];
-                  await $.get(url).done(function (data) {
-                    $(data).find("#content .courses a").each(function () {
-                      let name = $(this).find('span.name').text().trim();
-                      let term = $($(this).find('span.subtitle')[0]).text().trim();
-                      let href = $(this).attr('href');
-                      let match = href.match(/courses\/([0-9]+)\/users/);
-                      if (match) {
-                        let text = $(this).text().trim();
-                        let course_id = match[1];
-                        let state = text.match(/([A-Z|a-z]+),[\s]+?Enrolled as a Student/)[1];
-                        list.push({
-                          name: name,
-                          term: term,
-                          course_id: course_id,
-                          state: state
-                        });
-                      }
-                    });
-                  }).fail(function (e) {
-                    console.log(e);
-                    app.accessDenied = true;
-                  });
+                  let termsData = await canvasGet("/api/v1/accounts/3/terms")
+                  let termsList = termsData[0].enrollment_terms;
+                  let terms = {};
+
+                  for (let t in termsList) {
+                    let term = termsList[t];
+                    terms[term.id] = term;
+                  }
+                  let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.studentId);
+                  for (let e in enrollmentData) {
+                    let enrollment = enrollmentData[e];
+                    try {
+                      let course = (await canvasGet("/api/v1/courses/" + enrollment.course_id))[0];
+                      list.push({
+                        name: course.name,
+                        grade: enrollment.grades.current_score,
+                        term: terms[course.enrollment_term_id].name,
+                        course_id: course.id
+                      });
+                    } catch {
+                      console.log("ERROR PULLING COURSE " + enrollment.course_id);
+                    }
+                  }
                   app.courses = list;
                   this.comments = await this.getComments();
                   this.processComments(this.comments);
@@ -200,6 +206,20 @@
                 },
                 computed: {},
                 methods: {
+                  async bridgetoolsReq(url) {
+
+                    let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
+                    let authCode = '';
+                    await $.get(reqUrl, data => {authCode = data.data.auth_code;});
+                    //figure out if any params exist then add autho code depending on set up.
+                    if (!url.includes("?")) url += "?auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
+                    else url += "&auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
+                    let output;
+                    await $.get(url, function(data) {
+                      output = data;
+                    });
+                    return output;
+                  },
                   removeCourse: async function (course) {
                     for (let c = 0; c < this.courseGrades.length; c++) {
                       if (this.courseGrades[c].course === course.course) {
@@ -221,9 +241,12 @@
                     let courseCount = this.courseGrades.length;
                     for (let c = 0; c < courseCount; c++) {
                       let courseData = this.courseGrades[c];
-                      coursePointsTotal += parseInt(courseData['grade']);
+                      console.log(parseFloat(courseData['grade']));
+                      coursePointsTotal += parseFloat(courseData['grade']);
                     }
-                    return (coursePointsTotal / courseCount).toFixed(1);
+                    let average = (Math.round((coursePointsTotal / courseCount) * 10) / 10).toFixed(1);
+                    console.log(average);
+                    return average;
                   },
                   minToHoursString: function (minutes) {
                     let hours = Math.floor(minutes / 60);
@@ -257,13 +280,17 @@
                     return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
                   },
                   async submitCourseGrade() {
-                    let course = this.selectedCourse;
+                    let course = '' + this.selectedCourse;
+                    console.log(course);
                     let grade = this.selectedGrade;
+                    console.log(grade);
                     let found = false
                     if (course != "" && grade != "") {
                       for (let c = 0; c < this.courseGrades.length; c++) {
-                        if (this.courseGrades[c].course === course) {
+                        if (('' + this.courseGrades[c].course) === course) {
+                          console.log("MATCH");
                           this.courseGrades[c].grade = grade;
+                          found = true;
                           await $.delete(window.location.origin + "/submission_comments/" + this.courseGrades[c].comment_id);
                         }
                       }
@@ -284,6 +311,7 @@
                           posted_grade: averageScore
                         }
                       });
+                      console.log(averageScore);
                       location.reload(true);
                     }
                   },

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CNA Charting</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="/scripts/index.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Charting Assignment</h1>
+        <h2>"Scenario"</h2>
+        <p>Resident's Name / ID# / Date</p>
+    </header>
+
+    <nav>
+        <a href="/index.html">ADL</a>
+        <a href="/activity.html">Activity</a>
+        <a href="/vital_signs.html" class="--active">Vital signs</a>
+        <a href="/fluid.html">Fluid I/O</a>
+        <a href="/pain_level.html">Pain level</a>
+        <a href="/oxygen.html">Oxygen</a>
+        <a href="/restraints.html">Restraints</a>
+        <a href="/safety.html">Safety</a>
+    </nav>
+
+    <main role="main">
+        <form id="vital_signs">
+            <h3>Vital Signs</h3>
+
+            <section>
+                <label for="temperature">Temperature</label>
+                <input id="temperature" type="number" name="temperature">
+
+                <label for="temperature_celsius">&deg;C</label>
+                <input id="temperature_celsius" type="radio" name="temperature_units" value="celsius" min="30" max="110">
+                <label for="temperature_fahrenheit">&deg;F</label>
+                <input id="temperature_fahrenheit" type="radio" name="temperature_units" value="fahrenheit">
+
+                <br><label for="pulse">Pulse</label>
+                <input id="pulse" type="number" name="pulse" max="250"><span> BPM</span>
+
+                <br><label for="respirations">Respirations</label>
+                <input id="respirations" type="number" name="respirations"><span> / min</span>
+
+                <br><label for="blood_pressure">Blood pressure</label>
+                <input id="blood_pressure" type="number" name="blood_pressure_numerator"><span> / </span><input type="number" name="blood_pressure_denominator">
+
+                <br><label for="weight">Weight</label>
+                <input id="weight" type="number" name="weight">
+
+                <label for="weight_lbs">LBS</label>
+                <input id="weight_lbs" type="radio" name="weight_units" value="kg" min="30" max="110">
+                <label for="weight_kg">KG</label>
+                <input id="weight_kg" type="radio" name="weight_units" value="lbs">
+            </section>
+        </form>
+    </main>
+</body>
+</html>

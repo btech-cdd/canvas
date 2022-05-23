@@ -65,31 +65,35 @@
     let name = $("#citation-name").val();
     let authorLast = $("#citation-author-last").val();
     let publisher = $("#citation-publisher").val();
-    let date = $("#citation-date-accessed").val();
+    let date = $("#citation-year-published").val();
     let url = $("#citation-url").val();
     if (name != "" && authorLast != "") {
-      let citationString = "";
-      $(".citation-author").each(function () {
+      let citationString = ""; 
+      $(".citation-author").each(function() {
         let authorEl = $(this);
         let last = authorEl.find(".last-name").val();
         let first = authorEl.find(".first-name").val();
         if (last !== "") {
-          citationString += (last + ", " + first.charAt(0) + ". ")
+          if (first !== "") {
+            citationString += (last + ", " + first.charAt(0) + ". ")
+          } else {
+            citationString += last + ". "
+          }
         }
       })
       if (date !== "") {
-        citationString += ("(" + date.slice(0, 4) + "). ");
+        citationString += ("(" + date + "). ");
       }
-
-      citationString += ("<i>" + name + "</i>. ");
+      
+      citationString += ("<i>" +name + "</i>. ");
       if (publisher !== "") {
         citationString += (publisher + ". ")
       }
       if (url !== "") {
-        citationString += ("Retrieved from " + url);
+        citationString = `<a href="${url}">${citationString}</a>`;
       }
-      citationString = "<p class='btech-citation'>" + citationString + "</p>";
-      editor.execCommand("mceReplaceContent", false, `<p>` + citationString + `</p>`);
+      citationString = "<p class='btech-citation' style='text-align: right;'>" + citationString + "</p>";
+      editor.execCommand("mceReplaceContent", false, `<p>`+citationString+`</p>`);
       bg.remove();
     }
   }
@@ -104,7 +108,10 @@
     });
   }
   async function citation() {
-    let bg = TOOLBAR.addBackground();
+    let bg = TOOLBAR.addBackground(false);
+    let close = $(`<span class="btech-pill-text" style="background-color: black; color: white; cursor: pointer; user-select: none; position: absolute; right: 2rem;">Close</span>`);
+    close.click(() => {bg.remove();});
+    bg.find('#background-container').append(close);
     bg.find('#background-container').append(`
     <p>Name of Image, Book, Article, Video, etc.*</p>
     <input style='width: 100%; height: 40px; box-sizing: border-box;' type="text" class="citation-information" id="citation-name">
@@ -116,8 +123,8 @@
       </div>
     </div>
     <a class='btn' id="citation-add-author">Add Author</a>
-    <p>Date Published</p>
-    <input style='width: 100%; height: 40px; box-sizing: border-box;' type="date" class="citation-information" id="citation-date-accessed">
+    <p>Year Published</p>
+    <input style='width: 100%; height: 40px; box-sizing: border-box;' type="number" class="citation-information" id="citation-year-published">
     <p>Publisher</p>
     <input style='width: 100%; height: 40px; box-sizing: border-box;' type="text" class="citation-information" id="citation-publisher">
     <p>URL (If Applicable)</p>
@@ -238,50 +245,6 @@
     }
   }
 
-  function kalturaInfo() {
-    let editor = TOOLBAR.editor;
-    let selection = editor.selection.getNode();
-    let iframe = $(selection);
-    let src = iframe.attr("src");
-    let kalturaSrc = src.includes("kaltura");
-    let kid = "";
-    let pid = "";
-    if (kalturaSrc) {
-        let kidMatch = src.match(/entryid\/([0-9]_[0-9A-Za-z]+)/);
-        if (kidMatch) kid = kidMatch[1];
-
-        let pidMatch = src.match(/playerSkin\/([0-9]+)/);
-        if (pidMatch) pid = pidMatch[1];
-    } else {
-        kid = iframe.attr("kentryid");
-        pid = iframe.attr("kuiconfid");
-    }
-    let width = iframe.width();
-    let height = iframe.height();
-    if (kid == "" && pid == "") return;
-
-    let bg = TOOLBAR.addBackground();
-    bg.append(`
-      <div id='kaltura-video-info-container' style='
-      width: 500px;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      position:fixed;
-      top: 50%;
-      z-index:1000;
-      transition: 0.5s;
-      background-color: #FFF;
-      border: 2px solid #888;
-      padding: 10px 20px;
-      color: #000;
-      border-radius: 5px;'>
-      Kaltura Video Id: ` + kid + `<br>
-      Kaltura Skin Id: ` + pid + `<br>
-      Width: ` + width + `<br>
-      Height: ` + height + `
-      </div>
-      </div>`);
-}
   await TOOLBAR.checkReady();
 
   //Add in option to change color of exampleBox. IE, you click in it, it figures out he color selected, if you change the color, it changes the box
@@ -304,5 +267,4 @@
   TOOLBAR.addButtonIcon("icon-student-view", "Insert text which is shown on mouse hover.", hoverDefinition);
   //TOOLBAR.addButtonIcon("far fa-swatchbook", "Create a theme for the page. The template will be inserted at the top of the page. Edit the template to apply changes throughout the page.", addCustomThemeParent);
   TOOLBAR.addButtonIcon("icon-materials-required", "Auto format the page to break the page into sections. Sections are determined by the top level heading.", formatPage);
-  TOOLBAR.addButtonIcon("icon-info", "Display Kaltura video information.", kalturaInfo);
 })();

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CNA Charting</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="/scripts/index.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Charting Assignment</h1>
+        <h2>"Scenario"</h2>
+        <p>Resident's Name / ID# / Date</p>
+    </header>
+
+    <nav>
+        <a href="/index.html">ADL</a>
+        <a href="/activity.html">Activity</a>
+        <a href="/vital_signs.html">Vital signs</a>
+        <a href="/fluid.html">Fluid I/O</a>
+        <a href="/pain_level.html">Pain level</a>
+        <a href="/oxygen.html">Oxygen</a>
+        <a href="/restraints.html" class="--active">Restraints</a>
+        <a href="/safety.html">Safety</a>
+    </nav>
+
+    <main role="main">
+        <form>
+            <h3>Restraints</h3>
+            <section>
+                <label for="side_rails_2">Side rails X2</label>
+                <input id="side_rails_2" type="radio" name="restraint_type" value="side_rails_2">
+
+                <label for="side_rails_4">Side rails X4</label>
+                <input id="side_rails_4" type="radio" name="restraint_type" value="side_rails_4">
+
+                <label for="soft">Soft</label>
+                <input id="soft" type="radio" name="restraint_type" value="soft">
+
+                <label for="none">None</label>
+                <input id="none" type="radio" name="restraint_type" value="none">
+            </section>
+        </form>
+    </main>
+</body>
+</html>

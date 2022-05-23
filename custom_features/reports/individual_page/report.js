@@ -66,13 +66,16 @@
             } else {
               this.userId = ENV.current_user_id;
             }
+            let settings = await app.loadSettings();
+            app.settings = settings;
+            console.log(settings);
+
             //load data from bridgetools
             let user = await app.loadUser(app.userId);
             app.user = user;
 
-            
+
             this.courses = await this.getCourseData();
-            console.log(this.courses);
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
               let courseId = this.courses[i].course_id;
@@ -89,6 +92,7 @@
 
           data: function () {
             return {
+              currentDepartment: null,
               userId: null,
               user: {},
               tree: {
@@ -108,6 +112,7 @@
                 fadedBlue: 'rgb(180, 230, 255)',
                 gray: '#E0E0E0',
               },
+              settings: {},
               terms: [],
               currentTerm: {},
               selectedTermId: '',
@@ -179,6 +184,44 @@
           },
 
           methods: {
+            /*
+            updateSettings(settings) {
+              let app = this;
+              app.settings = settings;
+              this.saveSettings();
+            },
+            async saveSettings(setting = null) {
+              let app = this;
+              let settings = app.settings;
+
+              //to only update a specific setting, just pass the name of the setting
+              if (setting !== null) {
+                settings = {};
+                settings[setting] = app.settings[setting];
+              }
+              await $.post("/api/settings/" + app.userId, settings);
+              return
+            },
+            */
+
+            async loadSettings() {
+              let app = this;
+              let settings = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/settings/" + ENV.current_user_id);
+              if (settings.individualReport == undefined) {
+                settings.individualReport = {
+                }
+              }
+              if (settings.individualReport.attendanceCutoffs == undefined) {
+                settings.individualReport.attendanceCutoffs = {
+                  good: 90,
+                  checkIn: 80,
+                  critical: 0,
+                  show: false
+                }
+                //app.saveSettings("individualReport");
+              }
+              return settings;
+            },
             updateDatesToSelectedTerm() {
               let app = this;
               let term;
@@ -383,6 +426,10 @@
                     let group = assignmentGroups[g];
                     sumWeights += group.group_weight;
                   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1b3f78c51e4808154a191c61b245be107e1f8704
                   //weight grades based on assignment group weighting and hours completed in the course
                   for (let g = 0; g < assignmentGroups.length; g++) {
                     let group = assignmentGroups[g]
@@ -423,7 +470,6 @@
                 }
               }
               app.includedAssignments = JSON.parse(JSON.stringify(includedAssignments));
-              console.log(app.includedAssignments[502023]);
               app.calcGradesFromIncludedAssignments();
             },
 
@@ -443,7 +489,6 @@
 
               for (let courseId in app.includedAssignments) {
                 let course = app.includedAssignments[courseId];
-                console.log(courseId);
                 if (app.checkIncludeCourse(course) && course.include) {
                   let currentWeighted = 0;
                   let totalWeights = 0; //sum of all weight values for assignment groups
@@ -507,7 +552,6 @@
                     let output;
                     let weightedGrade;
                     //dispaly grade
-                    console.log(sumGroupWeights);
                     if (sumGroupWeights > 0) {
                       weightedGrade = Math.round(currentWeighted / totalWeightsSubmitted * 10000) / 100;
                     } else {
@@ -517,7 +561,6 @@
                     if (!isNaN(weightedGrade)) {
                       output = weightedGrade;
                     }
-                    console.log(output);
                     gradesBetweenDates[courseId] = output;
 
                     //display progress
@@ -622,9 +665,7 @@
               if (app.IS_TEACHER) {
                 for (let c = 0; c < courseList.length; c++) {
                   let course = await app.newCourse(courseList[c].course_id, courseList[c].state, courseList[c].name, courseList[c].year);
-                  let state = course.state.toLowerCase();
-                  if (state === "completed") state = "active";
-                  let gradesData = await app.getCourseGrades(course.course_id, course.state);
+                  let gradesData = await app.getCourseGrades(course.course_id);
                   course.grade_to_date = gradesData.grade;
                   course.final_grade = gradesData.final_grade;
                   course.points = gradesData.points;
@@ -649,12 +690,17 @@
               }
               return courses;
             },
-            async processCoursePageStudentView() {
+            async processCourses() {
               let app = this;
               let list = [];
               let dates = {};
+<<<<<<< HEAD
               let enrollments = await canvasGet("/api/v1/users/" + app.userId + "/enrollments?state[]=current_and_concluded");
               console.log(enrollments);
+=======
+              let enrollments = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
+
+>>>>>>> 1b3f78c51e4808154a191c61b245be107e1f8704
               let enrollment_data = {};
               for (let e = 0; e < enrollments.length; e++) {
                 let enrollment = enrollments[e];
@@ -663,66 +709,29 @@
                   let year = startDate.getFullYear();
                   let month = startDate.getMonth();
                   if (month < 6) year -= 1;
-                  dates[enrollment.course_id] = year;
-                  enrollment_data[enrollment.course_id] = enrollment;
-                }
-              }
-              await $.get("/courses", function (data) {
-                let page = $(data);
-                let courseTables = {};
-                courseTables['active'] = page.find('#my_courses_table');
-                courseTables['completed'] = page.find('#past_enrollments_table');
-                for (let state in courseTables) {
-                  let table = courseTables[state];
-                  table.find("tr.course-list-table-row a").each(function () {
-                    let name = $(this).text().trim();
-                    let href = $(this).attr('href');
-                    let match = href.match(/courses\/([0-9]+)/);
-                    if (match) {
-                      let course_id = match[1];
-                      list.push({
-                        name: name,
-                        course_id: course_id,
-                        state: state, //need to fix getting this info
-                        year: dates[course_id], //need to fix getting this info
-                        enrollment: enrollment_data[course_id]
-                      });
-                    }
-                  });
-                }
-              })
-              return list;
-            },
-            async processCoursePageTeacherView(pageData) {
-              let list = [];
-              $(pageData).find("#content .courses a").each(function () {
-                let name = $(this).find('span.name').text().trim();
-                let href = $(this).attr('href');
-                let match = href.match(/courses\/([0-9]+)\/users/);
-                if (match) {
-                  let text = $(this).text().trim();
-                  let course_id = match[1];
-                  let state = "";
-                  let stateMatch = text.match(/([A-Z|a-z]+),[\s]+?Enrolled as a Student/);
-                  if (stateMatch !== null) {
-                    state = stateMatch[1];
-                    let year = null;
-                    let yearData = $(this).find('span.subtitle').text().trim().match(/(2[0-9]{3}) /);
-                    if (yearData != null) year = yearData[1];
+                  try {
+                    let course = await $.get("/api/v1/courses/" + enrollment.course_id);
+                    dates[enrollment.course_id] = year;
+                    enrollment_data[enrollment.course_id] = enrollment;
                     list.push({
-                      name: name,
-                      course_id: course_id,
-                      state: state,
-                      year: year
+                      name: course.name,
+                      course_id: enrollment.course_id,
+                      state: enrollment.enrollment_state, //need to fix getting this info
+                      year: year, //need to fix getting this info
+                      enrollment: enrollment
                     });
+                  } catch {
+                    console.log("COULD NOT LOAD COURSE " + enrollment.course_id);
                   }
                 }
-              });
+              }
               return list;
             },
             async getCourses() {
               let app = this;
               let list = [];
+              list = app.processCourses();
+              /*
               if (IS_TEACHER) { //possible change this to just do a check for the .courses class
                 let url = window.location.origin + "/users/" + app.userId;
                 await $.get(url).done(function (data) {
@@ -733,8 +742,10 @@
               } else {
                 list = app.processCoursePageStudentView();
               }
+              */
               return list;
             },
+
             calcPointsProgress(grade, final_grade) {
               let points = "N/A";
               if (!isNaN(parseInt(grade)) && !isNaN(parseInt(final_grade))) {
@@ -743,13 +754,13 @@
               }
               return points;
             },
-            async getCourseGrades(course_id, state) {
+            async getCourseGrades(course_id) {
               let output = {
                 found: false
               };
               let app = this;
               let user_id = app.userId;
-              let url = "/api/v1/courses/" + course_id + "/search_users?user_ids[]=" + user_id + "&enrollment_state[]=" + state.toLowerCase() + "&include[]=enrollments";
+              let url = "/api/v1/courses/" + course_id + "/search_users?user_ids[]=" + user_id + "&include[]=enrollments";
               await $.get(url, function (data) {
                 if (data.length > 0) {
                   output.found = true;
@@ -759,8 +770,7 @@
                   if (grades !== undefined) {
                     let grade = grades.current_score;
                     if (grade == null) {
-                      if (state == "active") grade = 0;
-                      else grade = "N/A";
+                      grade = 0;
                     }
                     output.grade = grade;
 
@@ -775,9 +785,6 @@
                   }
                 }
               });
-              if (output.found === false && state === "active") {
-                output = await app.getCourseGrades(course_id, 'completed');
-              }
               return output;
             },
 
@@ -967,7 +974,7 @@
               let day = '' + date.getDate();
               if (day.length === 1) day = '0' + day;
 
-              let formattedDate =  month + "/" + day + "/" + date.getFullYear();
+              let formattedDate = month + "/" + day + "/" + date.getFullYear();
               return formattedDate;
             },
             async deleteHSEnrollmentTerm(term) {
@@ -997,14 +1004,29 @@
               })
             },
 
-            async loadTree(deptCode, deptYear) {
-              let tree;
+            async bridgetoolsReq(url) {
               let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
               let authCode = '';
-              await $.get(reqUrl, data => {authCode = data.data.auth_code;});
-              await $.get("https://reports.bridgetools.dev/api/trees?dept_code=" + deptCode + "&year=" + deptYear + "&requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function(data) {
-                tree = data[0];
+              await $.get(reqUrl, data => {
+                authCode = data.data.auth_code;
               });
+              //figure out if any params exist then add autho code depending on set up.
+              if (!url.includes("?")) url += "?auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
+              else url += "&auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
+              let output;
+              await $.get(url, function (data) {
+                output = data;
+              });
+              return output;
+            },
+
+            async loadTree(deptCode, deptYear) {
+              console.log(deptCode);
+              console.log(deptYear);
+              let app = this;
+              let url = "https://reports.bridgetools.dev/api/trees?dept_code=" + deptCode + "&year=" + deptYear;
+              let data = await app.bridgetoolsReq(url);
+              let tree = data[0];
               if (tree.courses.core === undefined) tree.courses.core = {};
               if (tree.courses.elective === undefined) tree.courses.elective = {};
               if (tree.courses.other === undefined) tree.courses.other = {};
@@ -1016,38 +1038,57 @@
               let user, tree;
               let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
               let authCode = '';
-              await $.get(reqUrl, data => {authCode = data.data.auth_code;});
-              await $.get("https://reports.bridgetools.dev/api/students/" + userId  + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function(data) {
+              await $.get(reqUrl, data => {
+                authCode = data.data.auth_code;
+              });
+              await $.get("https://reports.bridgetools.dev/api/students/" + userId + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function (data) {
                 user = data;
               });
+              console.log(user);
               if (user === "") {
-                await $.get("/api/v1/users/" + userId, function(data) {
+                try {
+                  await $.get("/api/v1/users/" + userId, function (data) {
+                    user = {
+                      name: data.name,
+                      sis_id: data.sis_user_id,
+                      canvas_id: data.id,
+                      enrollment_type: "",
+                      last_login: "",
+                      enrolled_hours: 0,
+                      enrolledHours: 0,
+                      completedHours: 0,
+                      avatar_url: data.avatar_url,
+                      courses: {},
+                      treeCourses: {
+                        other: []
+                      },
+                      submissions: [],
+                    }
+                  });
+                } catch (err) {
                   user = {
-                    name: data.name,
-                    sis_id: data.sis_user_id,
-                    canvas_id: data.id,
+                    name: "",
+                    sis_id: "",
+                    canvas_id: app.userId,
                     enrollment_type: "",
                     last_login: "",
                     enrolled_hours: 0,
                     enrolledHours: 0,
                     completedHours: 0,
-                    avatar_url: data.avatar_url,
+                    avatar_url: "",
                     courses: {},
-                    treeCourses: { 
+                    treeCourses: {
                       other: []
                     },
                     submissions: [],
                   }
-                });
-                let enrollmentData = {};
-                await $.get("/api/v1/users/" + userId + "/enrollments?state[]=active&state[]=completed&state[]=inactive", function(data) {
-                  enrollmentData = data;
-                });
-                console.log(enrollmentData);
+                }
+
+                let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
                 for (let e in enrollmentData) {
                   let enrollment = enrollmentData[e];
                   let courseName = "";
-                  await $.get("/api/v1/courses/" + enrollment.course_id, function(data) {
+                  await $.get("/api/v1/courses/" + enrollment.course_id, function (data) {
                     courseName = data.name;
                   })
                   let final_score = enrollment.grades.final_score;
@@ -1088,8 +1129,34 @@
                   }
                 }
               } else {
-                tree = await app.loadTree(user.dept, user.year);
+                user.depts.sort((a, b) => {
+                  if (a.year == b.year) {
+                    return (a.dept.toLowerCase() > b.dept.toLowerCase()) ? 1 : ((a.dept.toLowerCase() < b.dept.toLowerCase()) ? -1 : 0)
+                  }
+                  return (a.year > b.year) ? -1 : ((a.year < b.year) ? 1 : 0)
+                })
+                console.log(user.depts);
+                app.currentDepartment = user.depts[0];
+                tree = await app.loadTree(user.depts[0].dept, user.depts[0].year);
               }
+
+              user = app.updateUserCourseInfo(user, tree);
+
+              return user;
+            },
+
+            async changeTree(user) {
+              let app = this;
+              console.log(app.currentDepartment);
+              let tree = await app.loadTree(app.currentDepartment.dept, app.currentDepartment.year);
+              console.log(tree);
+              user = app.updateUserCourseInfo(user, tree);
+              console.log(user);
+              app.user = user;
+            },
+
+            updateUserCourseInfo(user, tree) {
+              let app = this;
               let courses = user.courses;
               if (courses == undefined) user.courses = [];
               let entryDate = "N/A";
@@ -1107,35 +1174,35 @@
                 let programCourseData;
                 let courseHours = course.hours;
                 if (courseHours == undefined) {
-                    if (courseCode in tree.courses.core) programCourseData = tree.courses.core[courseCode];
-                    else if (courseCode in tree.courses.elective) programCourseData = tree.courses.core[courseCode];
-                    if (programCourseData !== undefined) courseHours = programCourseData.hours;
+                  if (courseCode in tree.courses.core) programCourseData = tree.courses.core[courseCode];
+                  else if (courseCode in tree.courses.elective) programCourseData = tree.courses.core[courseCode];
+                  if (programCourseData !== undefined) courseHours = programCourseData.hours;
                 }
                 courseHours = parseInt(courseHours);
                 if (course.registered_hours !== undefined || user.enrollment_type == 'HS') {
-                    // enrolledHours += course.registered_hours;
-                    if (course.progress >= 100) {
+                  // enrolledHours += course.registered_hours;
+                  if (course.progress >= 100) {
                     completedHours += courseHours;
-                    } else {
+                  } else {
                     let courseCompletedHours = courseHours * (course.progress * .01);
                     completedHours += courseCompletedHours;
-                    }
+                  }
                 }
 
                 let courseData = {
-                    'code': courseCode,
-                    'course_id': course.canvas_id,
-                    'last_activity': course.last_activity,
-                    'progress': parseFloat(course.progress),
-                    'start': new Date(course.start),
-                    'hours': courseHours
+                  'code': courseCode,
+                  'course_id': course.canvas_id,
+                  'last_activity': course.last_activity,
+                  'progress': parseFloat(course.progress),
+                  'start': new Date(course.start),
+                  'hours': courseHours
                 }
                 if (courseCode in tree.courses.core) {
-                    core.push(courseData);
+                  core.push(courseData);
                 } else if (courseCode in tree.courses.elective) {
-                    elective.push(courseData);
+                  elective.push(courseData);
                 } else {
-                    other.push(courseData);
+                  other.push(courseData);
                 }
 
               }
@@ -1152,7 +1219,7 @@
               app.user = user;
               app.tree = tree;
               return user;
-            }
+            },
 
           }
         })
@@ -1176,9 +1243,11 @@
               $.getScript("https://reports.bridgetools.dev/department_report/components/courseRowInd.js").done(function () {
                 $.getScript("https://reports.bridgetools.dev/department_report/components/menuStatus.js").done(function () {
                   $.getScript("https://reports.bridgetools.dev/department_report/components/menuInfo.js").done(function () {
-                    $.getScript("https://reports.bridgetools.dev/department_report/components/showStudentInd.js").done(function () {
-                      $.getScript("https://reports.bridgetools.dev/department_report/graphs.js").done(function () {
-                        app.postLoad();
+                    $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentInd.js").done(function () {
+                      $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentHours.js").done(function () {
+                        $.getScript("https://reports.bridgetools.dev/department_report/graphs.js").done(function () {
+                          app.postLoad();
+                        });
                       });
                     });
                   });

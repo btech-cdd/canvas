@@ -28,4 +28,15 @@
         }
     }
   })
+  /*
+  $.post("/api/v1/courses/536725/enrollments", {
+    enrollment: {
+        start_at: new Date("2022-02-08"),
+        user_id: 2052387,
+        type: "StudentEnrollment",
+        enrollment_state: "active",
+        notify: false
+    }
+  });
+*/
 })();

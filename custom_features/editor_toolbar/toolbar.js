@@ -21,7 +21,7 @@ TOOLBAR = {
     }
   },
 
-  addBackground() {
+  addBackground(remove) {
     let bg = $(`
       <div style="
         overflow: auto; 
@@ -51,7 +51,7 @@ TOOLBAR = {
       </div>
       `);
     $("body").append(bg);
-    this.addBackgroundClosing(bg);
+    if (remove) this.addBackgroundClosing(bg);
     return bg;
   },
 

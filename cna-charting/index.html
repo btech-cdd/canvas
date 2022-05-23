@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CNA Charting</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="/scripts/index.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Charting Assignment</h1>
+        <h2>"Scenario"</h2>
+        <p>Resident's Name / ID# / Date</p>
+    </header>
+
+    <nav>
+        <a href="/index.html" class="--active">ADL</a>
+        <a href="/activity.html">Activity</a>
+        <a href="/vital_signs.html">Vital signs</a>
+        <a href="/fluid.html">Fluid I/O</a>
+        <a href="/pain_level.html">Pain level</a>
+        <a href="/oxygen.html">Oxygen</a>
+        <a href="/restraints.html">Restraints</a>
+        <a href="/safety.html">Safety</a>
+    </nav>
+
+    <main role="main">
+        <form id="adl">
+            <h3>Activities of Daily Life</h3>
+            <section>
+                <h4>Oral Care</h4>
+                <label for="oral_care_independent">Independent</label>
+                <input id="oral_care_independent" type="radio" name="oral_care" value="oral_care_independent">
+
+                <label for="oral_care_assisted">Assisted</label>
+                <input id="oral_care_assisted" type="radio" name="oral_care" value="oral_care_assisted">
+
+                <label for="oral_care_total_dependent">Totally Dependent</label>
+                <input id="oral_care_total_dependent" type="radio" name="oral_care" value="oral_care_total_dependent">
+
+                <br><label for="dentures_upper">Upper dentures</label>
+                <input id="dentures_upper" type="checkbox" name="oral_care" value="dentures_upper">
+
+                <label for="dentures_lower">Lower Dentures</label>
+                <input id="dentures_lower" type="checkbox" name="oral_care" value="dentures_lower">
+                <hr>
+            </section>
+
+            <section>
+                <h4>Bathing</h4>
+                <label for="bathing_shower">Shower</label>
+                <input id="bathing_shower" type="radio" name="bathing" value="shower">
+
+                <label for="bathing_tub">Tub</label>
+                <input id="bathing_tub" type="radio" name="bathing" value="tub">
+
+                <label for="bathing_partial">Partial</label>
+                <input id="bathing_partial" type="radio" name="bathing" value="partial">
+
+                <label for="bathing_bed_bath">Bed bath</label>
+                <input id="bathing_bed_bath" type="radio" name="bathing" value="bed_bath">
+
+                <label for="bathing_specialty">Specialty (Sitz, Therapy)</label>
+                <input id="bathing_specialty" type="radio" name="bathing" value="specialty">
+
+                <!-- IF SELECTED UNCHECK ABOVE RADIO BOXES -->
+                <br><label for="bathing_other">Other</label>
+                <input onfocus="deselectRadios('bathing')" id="bathing_other" type="text" name="bathing" placeholder="please explain">
+                <hr>
+            </section>
+
+            <section>
+                <h4>Toileting</h4>
+
+                <label for="toileting_independent">Independent</label>
+                <input id="toileting_independent" type="radio" name="toileting_assistance" value="independent">
+
+                <label for="toileting_assisted">Assisted</label>
+                <input id="toileting_assisted" type="radio" name="toileting_assistance" value="assisted">
+
+                <br><label for="toileting_commode">Commode</label>
+                <input id="toileting_commode" type="radio" name="toileting_method" value="commode">
+
+                <label for="toileting_bedpan">Bed pan</label>
+                <input id="toileting_bedpan" type="radio" name="toileting_method" value="bedpan">
+
+                <label for="toileting_catheter">Catheter</label>
+                <input id="toileting_catheter" type="radio" name="toileting_method" value="catheter">
+                <hr>
+
+                <label for="brief_change">Brief Change</label>
+                <input id="brief_change" type="checkbox" name="brief_change">
+
+                <br><label for="perineal_care">Perineal / Anal Care</label>
+                <input id="perineal_care" type="checkbox" name="perineal_care">
+
+                <br><label for="catheter">Catheter Care</label>
+                <input id="catheter" type="checkbox" name="catheter">
+
+                <br><label for="skin_care">Skin Care</label>
+                <input id="skin_care" type="text" name="skin_care" placeholder="please explain">
+                <hr>
+            </section>
+
+            <section>
+                <h4>Dressing</h4>
+                <label for="dressing_am">Morning (AM)</label>
+                <input id="dressing_am" type="radio" name="dressing_time" value="am">
+
+                <label for="dressing_pm">Evening (PM)</label>
+                <input id="dressing_pm" type="radio" name="dressing_time" value="pm"><br>
+
+
+                <label for="dressing_independent">Independent</label>
+                <input id="dressing_independent" type="radio" name="dressing_assistance" value="independent">
+
+                <label for="dressing_assisted">Assisted</label>
+                <input id="dressing_assisted" type="radio" name="dressing_assistance" value="assisted">
+
+                <label for="dressing_total_care">Total Care</label>
+                <input id="dressing_total_care" type="radio" name="dressing_assistance" value="total care">
+                <hr>
+            </section>
+
+            <section>
+                <h4>Meals</h4>
+                <label for="meals_breakfast">Breakfast</label>
+                <input id="meals_breakfast" type="radio" name="meals" value="breakfast">
+
+                <label for="meals_lunch">Lunch</label>
+                <input id="meals_lunch" type="radio" name="meals" value="lunch">
+
+                <label for="meals_dinner">Dinner</label>
+                <input id="meals_dinner" type="radio" name="meals" value="dinner">
+
+                <label for="meals_snack">Snack</label>
+                <input id="meals_snack" type="radio" name="meals" value="snack">
+
+                <br><label for="meals_consumed">Percent Consumed</label>
+                <input id="meals_consumed" type="number" min="0" max="100">
+                <span> %</span>
+            </section>
+        </form>
+    </main>
+</body>
+</html>

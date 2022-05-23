@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CNA Charting</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="/scripts/index.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Charting Assignment</h1>
+        <h2>"Scenario"</h2>
+        <p>Resident's Name / ID# / Date</p>
+    </header>
+
+    <nav>
+        <a href="/index.html">ADL</a>
+        <a href="/activity.html" class="--active">Activity</a>
+        <a href="/vital_signs.html">Vital signs</a>
+        <a href="/fluid.html">Fluid I/O</a>
+        <a href="/pain_level.html">Pain level</a>
+        <a href="/oxygen.html">Oxygen</a>
+        <a href="/restraints.html">Restraints</a>
+        <a href="/safety.html">Safety</a>
+    </nav>
+
+    <main role="main">
+        <form id="activity">
+            <h3>Activity</h3>
+
+            <section>
+                <h4>Range of motion</h4>
+                <label for="passive">Passive</label>
+                <input id="passive" type="radio" name="rom" value="passive">
+
+                <label for="active">Active</label>
+                <input id="active" type="radio" name="rom" value="active">
+
+                <label for="combination">Combination</label>
+                <input id="combination" type="radio" name="rom" value="combination">
+                <hr>
+            </section>
+
+            <section>
+                <label for="antiembolic_stockings">Antiembolic stockings</label>
+                <input id="antiembolic_stockings" type="checkbox" name="antiembolic_stockings">
+                <hr>
+            </section>
+
+            <section>
+                <label for="position_change">Turn or position change</label>
+                <input id="position_change" type="checkbox" name="position_change">
+                <hr>
+            </section>
+
+            <section>
+                <h4>Ambulation</h4>
+                <label for="ambulation_chair">Chair</label>
+                <input id="ambulation_chair" type="radio" name="ambulation" value="chair">
+
+                <label for="ambulation_room">Up in Room</label>
+                <input id="ambulation_room" type="radio" name="ambulation" value="room">
+
+                <label for="ambulation_hall">Ambulate in hall</label>
+                <input id="ambulation_hall" type="radio" name="ambulation" value="hall">
+
+                <label for="ambulation_pt">To PT</label>
+                <input id="ambulation_pt" type="radio" name="ambulation" value="pt">
+
+
+                <br><label for="ambulation_independant">Independent</label>
+                <input id="ambulation_independant" type="radio" name="ambulation_assistance" value="independant">
+
+                <label for="ambulation_assist_one_belt">1 assist with gait belt</label>
+                <input id="ambulation_assist_one_belt" type="radio" name="ambulation_assistance" value="1 assist with gait belt">
+
+                <label for="ambulation_assist_two">2 assist</label>
+                <input id="ambulation_assist_two" type="radio" name="ambulation_assistance" value="2 assist">
+
+                <label for="ambulation_assist_lift">Lift</label>
+                <input id="ambulation_assist_lift" type="radio" name="ambulation_assistance" value="lift">
+                <hr>
+            </section>
+
+            <section>
+                <h4>Devices used</h4>
+
+                <label for="device_walker">walker</label>
+                <input id="device_walker" type="radio" name="device" value="walker">
+
+                <label for="device_crutches">crutches</label>
+                <input id="device_crutches" type="radio" name="device" value="crutches">
+
+                <label for="device_wheelchair">wheelchair</label>
+                <input id="device_wheelchair" type="radio" name="device" value="wheelchair">
+
+                <label for="device_other">other</label>
+                <input id="device_other" type="text" name="device" onfocus="deselectRadios('device')" placeholder="please explain">
+
+                <label for="device_none">none</label>
+                <input id="device_none" type="radio" name="device" value="none">
+            </section>
+        </form>
+    </main>
+</body>
+</html>

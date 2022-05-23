@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>CNA Charting</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="/scripts/index.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Charting Assignment</h1>
+        <h2>"Scenario"</h2>
+        <p>Resident's Name / ID# / Date</p>
+    </header>
+
+    <nav>
+        <a href="/index.html">ADL</a>
+        <a href="/activity.html">Activity</a>
+        <a href="/vital_signs.html">Vital signs</a>
+        <a href="/fluid.html" class="--active">Fluid I/O</a>
+        <a href="/pain_level.html">Pain level</a>
+        <a href="/oxygen.html">Oxygen</a>
+        <a href="/restraints.html">Restraints</a>
+        <a href="/safety.html">Safety</a>
+    </nav>
+
+    <main role="main">
+        <form id="fluid_intake">
+            <h3>Fluid Intake</h3>
+            <section>
+                <label for="fluid">Fluid</label>
+                <input id="fluid" type="text" name="fluid" placeholder="e.g. water">
+
+                <label for="amount">Amount</label>
+                <input id="amount" type="number" name="amount"><span> mL</span>
+
+                <br><label for="fluid_npo">NPO</label>
+                <input id="fluid_npo" type="checkbox" name="fluid_npo">
+            </section>
+        </form>
+
+        <form id="fluid_output">
+            <h3>Fluid Output</h3>
+
+            <section>
+                <h4>Urine</h4>
+                <label>Color</label>
+                <label for="urine_color_yellow">Yellow</label>
+                <input id="urine_color_yellow" type="radio" name="urine_color" value="yellow">
+
+                <label for="urine_color_darkyellow">Dark Yellow</label>
+                <input id="urine_color_darkyellow" type="radio" name="urine_color" value="dark yellow">
+
+                <label for="urine_color_brown">Brown</label>
+                <input id="urine_color_brown" type="radio" name="urine_color" value="brown">
+
+                <label for="urine_color_other">Other</label>
+                <input id="urine_color_other" type="text" name="urine_color" onfocus="deselectRadios('urine_color')" placeholder="e.g. red">
+
+                <br><label for="urine_amount">Amount</label>
+                <input id="urine_amount" type="number" name="urine_amount"><span> mL</span>
+            </section>
+            <hr>
+            <section>
+                <h4>Emesis</h4>
+                <label for="emesis_color_other">Color</label>
+                <input id="emesis_color_other" type="text" name="emesis_color">
+
+                <br><label for="emesis_amount">Amount</label>
+                <input id="emesis_amount" type="number" name="emesis_amount"><span> mL</span>
+            </section>
+            <hr>
+            <section>
+                <h4>BM</h4>
+                <label for="bm_color_other">Color</label>
+                <input id="bm_color_other" type="text" name="bm_color">
+
+                <br><label>Consistency</label>
+                <label for="bm_consistency_soft">Soft</label>
+                <input id="bm_consistency_soft" type="radio" name="bm_consistency" value="soft">
+
+                <label for="bm_consistency_hard">Hard</label>
+                <input id="bm_consistency_hard" type="radio" name="bm_consistency" value="hard">
+
+                <label for="bm_consistency_liquid">Liquid</label>
+                <input id="bm_consistency_liquid" type="radio" name="bm_consistency" value="liquid">
+
+                <label for="bm_consistency_formed">Formed</label>
+                <input id="bm_consistency_formed" type="radio" name="bm_consistency" value="formed">
+
+
+                <br><label for="bm_amount">Amount</label>
+                <label for="bm_amount_small">Small</label>
+                <input id="bm_amount_small" type="radio" name="bm_amount" value="small">
+
+                <label for="bm_amount_medium">Medium</label>
+                <input id="bm_amount_medium" type="radio" name="bm_amount" value="medium">
+
+                <label for="bm_amount_large">Large</label>
+                <input id="bm_amount_large" type="radio" name="bm_amount" value="large">
+            </section>
+        </form>
+    </main>
+</body>
+</html>

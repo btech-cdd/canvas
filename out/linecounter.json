@@ -1,0 +1,1544 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "c:\\Users\\JoshuaH\\Desktop\\dev\\canvas",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2022-01-14 07:25:52",
+            "filesum": 228,
+            "codesum": 15463,
+            "commentsum": 1291,
+            "blanksum": 886,
+            "statistics": {
+                ".html": {
+                    "code": 8,
+                    "comment": 0,
+                    "blank": 1
+                },
+                ".js": {
+                    "code": 12827,
+                    "comment": 1216,
+                    "blank": 743
+                },
+                ".css": {
+                    "code": 645,
+                    "comment": 49,
+                    "blank": 95
+                },
+                ".svg": {
+                    "code": 1749,
+                    "comment": 1,
+                    "blank": 1
+                },
+                ".vue": {
+                    "code": 58,
+                    "comment": 0,
+                    "blank": 1
+                },
+                ".py": {
+                    "code": 130,
+                    "comment": 23,
+                    "blank": 35
+                },
+                ".bat": {
+                    "code": 10,
+                    "comment": 0,
+                    "blank": 9
+                },
+                ".xml": {
+                    "code": 9,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".log": {
+                    "code": 4,
+                    "comment": 0,
+                    "blank": 0
+                },
+                "": {
+                    "code": 5,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".manifest": {
+                    "code": 8,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".json": {
+                    "code": 10,
+                    "comment": 2,
+                    "blank": 1
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": ".gitignore"
+                },
+                {
+                    "filename": "course_data\\chromedriver 86.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\86.0.4240.75.manifest"
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\chrome.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\chrome_100_percent.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\chrome_200_percent.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\chrome_elf.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\chrome_pwa_launcher.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\d3dcompiler_47.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\eventlog_provider.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 2,
+                    "comment": 2,
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Extensions\\external_extensions.json"
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\icudtl.dat",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Installer\\chrome.7z",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Installer\\setup.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\libEGL.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\libGLESv2.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\am.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\ar.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\bg.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\bn.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\ca.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\cs.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\da.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\de.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\el.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\en-GB.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\en-US.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\es-419.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\es.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\et.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\fa.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\fi.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\fil.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\fr.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\gu.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\he.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\hi.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\hr.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\hu.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\id.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\it.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\ja.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\kn.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\ko.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\lt.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\lv.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\ml.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\mr.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\ms.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\nb.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\nl.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\pl.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\pt-BR.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\pt-PT.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\ro.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\ru.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\sk.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\sl.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\sr.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\sv.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\sw.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\ta.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\te.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\th.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\tr.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\uk.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\vi.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\zh-CN.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\Locales\\zh-TW.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\MEIPreload\\manifest.json"
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\MEIPreload\\preloaded_data.pb",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\mojo_core.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\nacl_irt_x86_64.nexe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\notification_helper.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\resources.pak",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\settings.dat",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\swiftshader\\libEGL.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\swiftshader\\libGLESv2.dll",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\v8_context_snapshot.bin",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\VisualElements\\Logo.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\86.0.4240.75\\VisualElements\\SmallLogo.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\chrome.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "course_data\\chromium-binary-86\\chrome.VisualElementsManifest.xml"
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\chrome_proxy.exe",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "course_data\\chromium-binary-86\\debug.log"
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\Dictionaries\\en-US-9-0.bdic",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\SetupMetrics.pma",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "course_data\\chromium-binary-86\\SetupMetrics\\20210310124137.pma",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "course_data\\course_hours.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "course_data\\course_list.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "course_data\\get_course_data.bat"
+                },
+                {
+                    "blank": 10,
+                    "code": 28,
+                    "comment": 3,
+                    "filename": "course_data\\get_course_hours.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 23,
+                    "comment": 1,
+                    "filename": "course_data\\get_courses_by_subaccount.py"
+                },
+                {
+                    "blank": 25,
+                    "code": 79,
+                    "comment": 19,
+                    "filename": "course_data\\get_degree_data.py"
+                },
+                {
+                    "blank": 32,
+                    "code": 138,
+                    "comment": 32,
+                    "filename": "custom_canvas.css"
+                },
+                {
+                    "blank": 63,
+                    "code": 565,
+                    "comment": 131,
+                    "filename": "custom_canvas.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "custom_canvas_app.js"
+                },
+                {
+                    "blank": 11,
+                    "code": 70,
+                    "comment": 31,
+                    "filename": "custom_canvas_import.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 125,
+                    "comment": 22,
+                    "filename": "custom_canvas_import_beta.js"
+                },
+                {
+                    "blank": 9,
+                    "code": 64,
+                    "comment": 73,
+                    "filename": "custom_canvas_import_test.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 66,
+                    "comment": 4,
+                    "filename": "custom_features\\_unused\\custom_column_highschool.js"
+                },
+                {
+                    "blank": 14,
+                    "code": 157,
+                    "comment": 26,
+                    "filename": "custom_features\\accessibility\\reader.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 2,
+                    "filename": "custom_features\\blueprint_association_links.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 67,
+                    "comment": 12,
+                    "filename": "custom_features\\calendar\\signup.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "custom_features\\cdd_trail\\game.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "custom_features\\cdd_trail\\game.vue"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "custom_features\\change_2019_to_2019-2020.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 24,
+                    "comment": 10,
+                    "filename": "custom_features\\conversations\\open_conversation.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 32,
+                    "comment": 3,
+                    "filename": "custom_features\\date_display\\add_current_year.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 39,
+                    "comment": 1,
+                    "filename": "custom_features\\date_display\\add_current_year_speed_grader.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 217,
+                    "comment": 0,
+                    "filename": "custom_features\\department_progress.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 132,
+                    "comment": 0,
+                    "filename": "custom_features\\department_specific\\amar_elec_add_module_items.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 330,
+                    "comment": 11,
+                    "filename": "custom_features\\department_specific\\business_hs.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 45,
+                    "comment": 2,
+                    "filename": "custom_features\\department_specific\\diesel-page-turner.js"
+                },
+                {
+                    "blank": 11,
+                    "code": 301,
+                    "comment": 39,
+                    "filename": "custom_features\\department_specific\\esthetics_cosmetology_services.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 27,
+                    "comment": 1,
+                    "filename": "custom_features\\department_specific\\hide_modules_TOSA.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 106,
+                    "comment": 2,
+                    "filename": "custom_features\\department_specific\\self_evaluation.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 52,
+                    "comment": 0,
+                    "filename": "custom_features\\department_specific\\test.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 50,
+                    "comment": 0,
+                    "filename": "custom_features\\distance\\approved-button.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 187,
+                    "comment": 4,
+                    "filename": "custom_features\\editor_toolbar\\basics.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 60,
+                    "comment": 2,
+                    "filename": "custom_features\\editor_toolbar\\headers.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 58,
+                    "comment": 13,
+                    "filename": "custom_features\\editor_toolbar\\html_practice.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 89,
+                    "comment": 26,
+                    "filename": "custom_features\\editor_toolbar\\image_map.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 52,
+                    "comment": 4,
+                    "filename": "custom_features\\editor_toolbar\\images.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 156,
+                    "comment": 11,
+                    "filename": "custom_features\\editor_toolbar\\syllabi.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 122,
+                    "comment": 14,
+                    "filename": "custom_features\\editor_toolbar\\tables.js"
+                },
+                {
+                    "blank": 10,
+                    "code": 103,
+                    "comment": 6,
+                    "filename": "custom_features\\editor_toolbar\\toolbar.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "custom_features\\grades_page\\attempts.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 34,
+                    "comment": 0,
+                    "filename": "custom_features\\grades_page\\default_include_ungraded_assignments.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 1,
+                    "filename": "custom_features\\grades_page\\highlighted_grades_page_items.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 42,
+                    "comment": 14,
+                    "filename": "custom_features\\grades_page\\highlighted_grades_page_items_dental.js"
+                },
+                {
+                    "blank": 10,
+                    "code": 176,
+                    "comment": 1,
+                    "filename": "custom_features\\help_tab.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 6,
+                    "filename": "custom_features\\hide_inactive_students.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 44,
+                    "comment": 0,
+                    "filename": "custom_features\\highlight_comments_same_date.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 223,
+                    "comment": 2,
+                    "filename": "custom_features\\hs\\enroll.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "custom_features\\hs\\enroll.vue"
+                },
+                {
+                    "blank": 2,
+                    "code": 154,
+                    "comment": 13,
+                    "filename": "custom_features\\instructional\\glossary.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 55,
+                    "comment": 3,
+                    "filename": "custom_features\\kaltura\\showInfo.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "custom_features\\modules\\convert_to_page.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 116,
+                    "comment": 20,
+                    "filename": "custom_features\\modules\\course_features.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 70,
+                    "comment": 0,
+                    "filename": "custom_features\\modules\\points_to_hours_header.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 79,
+                    "comment": 1,
+                    "filename": "custom_features\\modules\\show_hours.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 121,
+                    "comment": 5,
+                    "filename": "custom_features\\modules_mark_completed_assignments.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 42,
+                    "comment": 7,
+                    "filename": "custom_features\\page_formatting\\dropdown_from_table.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 35,
+                    "comment": 3,
+                    "filename": "custom_features\\page_formatting\\expandable_from_table.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 106,
+                    "comment": 0,
+                    "filename": "custom_features\\page_formatting\\google_sheets_table.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 25,
+                    "comment": 2,
+                    "filename": "custom_features\\page_formatting\\image_formatting.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 90,
+                    "comment": 0,
+                    "filename": "custom_features\\page_formatting\\image_map.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 51,
+                    "comment": 2,
+                    "filename": "custom_features\\page_formatting\\print_rubric.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 44,
+                    "comment": 6,
+                    "filename": "custom_features\\page_formatting\\table_from_page.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 55,
+                    "comment": 3,
+                    "filename": "custom_features\\page_formatting\\tabs_from_table.js"
+                },
+                {
+                    "blank": 10,
+                    "code": 330,
+                    "comment": 11,
+                    "filename": "custom_features\\page_formatting\\tinymce_buttons.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 38,
+                    "comment": 2,
+                    "filename": "custom_features\\page_formatting\\tinymce_font_size.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "custom_features\\password_reset.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "custom_features\\people_page\\sync_start_dates_with_section.js"
+                },
+                {
+                    "blank": 16,
+                    "code": 266,
+                    "comment": 27,
+                    "filename": "custom_features\\previous-enrollment-data\\previous_enrollment_period_grades.js"
+                },
+                {
+                    "blank": 7,
+                    "code": 106,
+                    "comment": 0,
+                    "filename": "custom_features\\previous-enrollment-data\\set_hours_form.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 18,
+                    "comment": 1,
+                    "filename": "custom_features\\previous-enrollment-data\\unused\\display_previous_enrollments_on_grades_page.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 73,
+                    "comment": 3,
+                    "filename": "custom_features\\previous-enrollment-data\\unused\\display_previous_enrollments_on_grades_page_old.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 102,
+                    "comment": 3,
+                    "filename": "custom_features\\previous-enrollment-data\\unused\\save_on_conclude.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "custom_features\\previous-enrollment-data\\unused\\save_on_conclude_old.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 23,
+                    "comment": 2,
+                    "filename": "custom_features\\properly_formed_get_req_with_pagination.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "custom_features\\quizzes\\duplicate_bank_item.js"
+                },
+                {
+                    "blank": 3,
+                    "code": 68,
+                    "comment": 2,
+                    "filename": "custom_features\\quizzes\\question_bank_sorter.js"
+                },
+                {
+                    "blank": 22,
+                    "code": 439,
+                    "comment": 68,
+                    "filename": "custom_features\\reports\\accreditation.js"
+                },
+                {
+                    "blank": 13,
+                    "code": 344,
+                    "comment": 12,
+                    "filename": "custom_features\\reports\\grades_page\\report.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 43,
+                    "comment": 0,
+                    "filename": "custom_features\\reports\\grades_page\\template.vue"
+                },
+                {
+                    "blank": 66,
+                    "code": 1097,
+                    "comment": 70,
+                    "filename": "custom_features\\reports\\individual_page\\report.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "custom_features\\reports\\individual_page\\template.vue"
+                },
+                {
+                    "blank": 27,
+                    "code": 762,
+                    "comment": 19,
+                    "filename": "custom_features\\rubrics\\add_criteria_from_csv.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 117,
+                    "comment": 9,
+                    "filename": "custom_features\\rubrics\\attempts_data.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 70,
+                    "comment": 0,
+                    "filename": "custom_features\\rubrics\\attempts_data_old.js"
+                },
+                {
+                    "blank": 27,
+                    "code": 777,
+                    "comment": 18,
+                    "filename": "custom_features\\rubrics\\create_rubric_from_csv.js"
+                },
+                {
+                    "blank": 11,
+                    "code": 167,
+                    "comment": 12,
+                    "filename": "custom_features\\rubrics\\gen_comment.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 168,
+                    "comment": 10,
+                    "filename": "custom_features\\rubrics\\self_graded.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 95,
+                    "comment": 3,
+                    "filename": "custom_features\\rubrics\\sortable.js"
+                },
+                {
+                    "blank": 23,
+                    "code": 266,
+                    "comment": 107,
+                    "filename": "custom_features\\side_menu\\main.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 54,
+                    "comment": 0,
+                    "filename": "custom_features\\sort_assignment_groups.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 1,
+                    "filename": "custom_features\\speed_grader\\move_rubric_points.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "custom_features\\speed_grader\\next_submitted_assignment.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 32,
+                    "comment": 3,
+                    "filename": "custom_features\\speed_grader\\resize_submitted_video.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 1,
+                    "filename": "custom_features\\speed_grader\\split_screen.js"
+                },
+                {
+                    "blank": 14,
+                    "code": 194,
+                    "comment": 34,
+                    "filename": "custom_features\\survey\\survey.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "custom_features\\surveys.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "custom_features\\syllabus\\review.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 6,
+                    "filename": "custom_features\\TEMPLATE.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 60,
+                    "comment": 1,
+                    "filename": "custom_features\\transfer_sections.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "custom_features\\welcome_banner.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "default_canvas.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "default_canvas.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "default_canvas_app.js"
+                },
+                {
+                    "blank": 92,
+                    "code": 451,
+                    "comment": 52,
+                    "filename": "external-libraries\\jquery-accordion.js"
+                },
+                {
+                    "blank": 47,
+                    "code": 339,
+                    "comment": 121,
+                    "filename": "external-libraries\\sorttable.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "index.html"
+                },
+                {
+                    "filename": "media\\arrow-next-page-icon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "media\\arrow-next-page.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "media\\arrow-prev-page-icon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "media\\arrow-prev-page.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "media\\brijerland-logo.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "media\\btech_logo.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "media\\it-will-all-be-fine.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1427,
+                    "comment": 0,
+                    "filename": "media\\it-will-all-be-fine.svg"
+                },
+                {
+                    "filename": "media\\map-marker.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "media\\map-marker.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "media\\mother-goose.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "media\\small_orientation_banner.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 8,
+                    "code": 123,
+                    "comment": 28,
+                    "filename": "non-canvas\\applicant_pro.js"
+                },
+                {
+                    "blank": 23,
+                    "code": 360,
+                    "comment": 4,
+                    "filename": "reports\\grades_report.js"
+                },
+                {
+                    "blank": 16,
+                    "code": 302,
+                    "comment": 7,
+                    "filename": "reports\\individual_grades_report.js"
+                },
+                {
+                    "blank": 17,
+                    "code": 314,
+                    "comment": 7,
+                    "filename": "reports\\individual_grades_report_test.js"
+                },
+                {
+                    "blank": 10,
+                    "code": 101,
+                    "comment": 0,
+                    "filename": "reports\\reports_functions.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 74,
+                    "comment": 8,
+                    "filename": "style\\ArrowTabs.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "style\\custom-fonts.css"
+                },
+                {
+                    "blank": 3,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "style\\department-report.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "style\\flags.css"
+                },
+                {
+                    "filename": "style\\fonts\\Y145-2018.eot",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 322,
+                    "comment": 1,
+                    "filename": "style\\fonts\\Y145-2018.svg"
+                },
+                {
+                    "filename": "style\\fonts\\Y145-2018.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "style\\fonts\\Y145-2018.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "style\\fonts\\Y145-2018.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 2,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "style\\glossary.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "style\\graphic-content.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "style\\reports.css"
+                },
+                {
+                    "blank": 3,
+                    "code": 40,
+                    "comment": 1,
+                    "filename": "style\\sections.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 31,
+                    "comment": 1,
+                    "filename": "style\\side-menu.css"
+                },
+                {
+                    "blank": 38,
+                    "code": 216,
+                    "comment": 7,
+                    "filename": "style\\style.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "style\\webm-classes.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 32,
+                    "filename": "unused.js"
+                }
+            ]
+        }
+    ]
+}

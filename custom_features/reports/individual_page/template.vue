@@ -4,6 +4,7 @@
       <div class="btech-tabs">
         <ul>
           <li @click="menu='report'">Student Course Report</li>
+          <li @click="menu='hours'">Student Hours Report</li>
           <li @click="menu='period'">Grades Between Dates</li>
           <li @click="menu='enroll'">HS Enrollment Periods</li>
           <li style='float: right;' v-on:click='close()'>X</li>
@@ -27,15 +28,33 @@
                   :colors="colors"
                   :current-report="'students'"
                 ></menu-info>
+                <!--Select dept, especially if dual enrolled or hs student-->
+                <select @change="changeTree(user)" v-model="currentDepartment">
+                  <option v-for="dept in user.depts" :value="dept">{{dept.dept}} ({{dept.year}})</option>
+                </select>
                 <show-student-ind
                     v-if="user.name !== undefined && tree.name !== undefined"
-                    id="printable-report" 
                     style="display: inline-block; background-color: #fff; padding: 0.5rem; box-sizing: border-box; width: 100%;"
                     :colors="colors"
                     :user="user"
                     :student-tree="tree"
                     v-on:close=""
                 ></show-student-ind>
+              </div>
+            </div>
+
+            <div v-if="menu=='hours'">
+              <div class="btech-canvas-report" style="background-color: #ffffff;">
+                <show-student-hours
+                  v-if="user.name !== undefined && tree.name !== undefined"
+                  style="display: inline-block; background-color: #fff; padding: 0.5rem; box-sizing: border-box; width: 100%;"
+                  :colors="colors"
+                  :user="user"
+                  :settings="settings"
+                  :student-tree="tree"
+                  :manual-hours-perc="true"
+                  v-on:close=""
+                ></show-student-hours>
               </div>
             </div>
 
