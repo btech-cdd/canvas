@@ -357,9 +357,6 @@
               for (let i = 0; i < app.courses.length; i++) {
                 let course = app.courses[i];
                 let courseId = course.course_id;
-                if (courseId == 502023) {
-                  console.log(courseId);
-                }
                 includedAssignments[courseId] = {
                   name: course.name,
                   id: courseId,
@@ -377,9 +374,6 @@
                       subData[sub.assignment_id] = sub;
                     }
                   }
-                  if (courseId == 502023) {
-                    console.log(subData);
-                  }
 
                   let assignmentGroups = this.courseAssignmentGroups[courseId];
 
@@ -389,10 +383,6 @@
                     let group = assignmentGroups[g];
                     sumWeights += group.group_weight;
                   }
-                  if (courseId == 502023) {
-                    console.log(sumWeights);
-                  }
-
                   //weight grades based on assignment group weighting and hours completed in the course
                   for (let g = 0; g < assignmentGroups.length; g++) {
                     let group = assignmentGroups[g]
@@ -404,10 +394,6 @@
                       assignments: {}
                     };
                     if (group.group_weight > 0 || sumWeights === 0) {
-                      if (courseId == 502023) {
-                        console.log(group);
-                        console.log(group.assignments.length);
-                      }
                       //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
                       for (let a = 0; a < group.assignments.length; a++) {
                         let assignment = group.assignments[a];
@@ -668,6 +654,7 @@
               let list = [];
               let dates = {};
               let enrollments = await canvasGet("/api/v1/users/" + app.userId + "/enrollments?state[]=current_and_concluded");
+              console.log(enrollments);
               let enrollment_data = {};
               for (let e = 0; e < enrollments.length; e++) {
                 let enrollment = enrollments[e];
