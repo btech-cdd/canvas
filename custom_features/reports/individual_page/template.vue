@@ -23,7 +23,7 @@
 
           <div v-else>
             <div v-if="menu=='report'">
-              <!-- <div class="btech-canvas-report" style="background-color: #ffffff;">
+              <div class="btech-canvas-report" style="background-color: #ffffff;">
                 <menu-info
                   :colors="colors"
                   :current-report="'students'"
@@ -37,13 +37,12 @@
                     :colors="colors"
                     :user="user"
                     :student-tree="tree"
-                    v-on:close=""
                 ></show-student-ind>
-              </div> -->
+              </div>
             </div>
 
             <div v-if="menu=='hours'">
-              <!-- <div class="btech-canvas-report" style="background-color: #ffffff;">
+              <div class="btech-canvas-report" style="background-color: #ffffff;">
                 <show-student-hours
                   v-if="user.name !== undefined && tree.name !== undefined"
                   style="display: inline-block; background-color: #fff; padding: 0.5rem; box-sizing: border-box; width: 100%;"
@@ -53,7 +52,7 @@
                   :student-tree="tree"
                   :manual-hours-perc="true"
                 ></show-student-hours>
-              </div> -->
+              </div>
             </div>
 
             <div v-if="menu=='period'">
