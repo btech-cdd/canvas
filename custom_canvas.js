@@ -256,12 +256,11 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
           feature("remove_former_employees", {}, /^\/accounts\/3\/users\/[0-9]+/)
         }
 
-        //CDD ONLY
         feature("quizzes/question_bank_sorter", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/);
         feature("sort_assignment_groups", {}, /assignments$/)
-        // featureCDD("help_tab");
-        featureCDD("rubrics/add_criteria_from_csv", {}, new RegExp('/(rubrics|assignments\/)'));
-        featureCDD("rubrics/create_rubric_from_csv", {}, new RegExp('^/(course|account)s/([0-9]+)/rubrics$'));
+        feature("rubrics/add_criteria_from_csv", {}, new RegExp('/(rubrics|assignments\/)'));
+        feature("rubrics/create_rubric_from_csv", {}, new RegExp('^/(course|account)s/([0-9]+)/rubrics$'));
+        //CDD ONLY
         featureCDD("modules/show_hours", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
 
         //Don't turn on flags unless figure out a way to not display the flag tool by default.
