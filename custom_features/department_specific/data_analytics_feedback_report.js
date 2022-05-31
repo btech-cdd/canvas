@@ -1,10 +1,10 @@
 (async function() {
   let button = $(`<button class="btn">DATA Feedback</button>`);
   let background = TOOLBAR.addBackground(true);
-  let container = background.find("#background-container");
-  container.append("Loading");
   $(".header-bar-right__buttons").prepend(button);
   button.click(async function() {
+    let container = background.find("#background-container");
+    container.append("Loading");
     let report = $("<div></div>");
     let assignments = await canvasGet(`/api/v1/courses/${ENV.course_id}/assignments`);
     assignments.sort(function(a, b) {
