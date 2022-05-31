@@ -28,7 +28,6 @@
                   :colors="colors"
                   :current-report="'students'"
                 ></menu-info>
-                <!--Select dept, especially if dual enrolled or hs student-->
                 <select @change="changeTree(user)" v-model="currentDepartment">
                   <option v-for="dept in user.depts" :value="dept">{{dept.dept}} ({{dept.year}})</option>
                 </select>
@@ -38,7 +37,6 @@
                     :colors="colors"
                     :user="user"
                     :student-tree="tree"
-                    v-on:close=""
                 ></show-student-ind>
               </div>
             </div>
@@ -53,13 +51,19 @@
                   :settings="settings"
                   :student-tree="tree"
                   :manual-hours-perc="true"
-                  v-on:close=""
                 ></show-student-hours>
               </div>
             </div>
 
             <div v-if="menu=='period'">
-              <div v-if='loadingAssignments'>{{loadingMessage}}</div>
+              <div v-if='loadingAssignments'>
+                <progress 
+                  id="load-progress" 
+                  :value="loadingProgress" 
+                  max="100"
+                ></progress>
+                {{loadingMessage}}
+              </div>
               <div v-else>
                 <div class='btech-report-submission-dates'>
                   <select @change='updateDatesToSelectedTerm()' v-model='selectedTermId'>

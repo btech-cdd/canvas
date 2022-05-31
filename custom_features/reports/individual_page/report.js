@@ -57,6 +57,7 @@
           el: '#canvas-individual-report-vue',
           mounted: async function () {
             let app = this;
+            app.loadingProgress = 0;
             this.IS_TEACHER = IS_TEACHER;
             // if (!IS_TEACHER) this.menu = 'period';
             let gradesBetweenDates = {};
@@ -66,26 +67,41 @@
             } else {
               this.userId = ENV.current_user_id;
             }
+            this.loadingMessage = "Loading Settings";
             let settings = await app.loadSettings();
             app.settings = settings;
-            console.log(settings);
+            app.loadingProgress += 10;
 
             //load data from bridgetools
-            let user = await app.loadUser(app.userId);
-            app.user = user;
+            this.loadingMessage = "Loading User Data";
+            try {
+              let user = await app.loadUser(app.userId);
+              app.user = user;
+            } catch(err) {
+              console.log("FAILED TO LOAD USER");
+              app.user = {};
+            }
+            app.loadingProgress += 10;
 
 
+            this.loadingMessage = "Loading Courses";
             this.courses = await this.getCourseData();
+            app.loadingProgress += 30;
+
             this.loading = false;
             for (let i = 0; i < this.courses.length; i++) {
               let courseId = this.courses[i].course_id;
+              this.loadingMessage = "Loading Submissions for Course " + this.courses[i].course_id;
               this.submissionData[courseId] = await this.getSubmissionData(courseId);
+              app.loadingProgress += (50 / this.courses.length) * 0.5;
               //get assignment group data
+              this.loadingMessage = "Loading Assignment Groups for Course " + this.courses[i].course_id;
               this.courseAssignmentGroups[this.courses[i].course_id] = await canvasGet("/api/v1/courses/" + this.courses[i].course_id + "/assignment_groups", {
                 'include': [
                   'assignments'
                 ]
               });
+              app.loadingProgress += (50 / this.courses.length) * 0.5;
             }
             this.loadingAssignments = false;
           },
@@ -144,6 +160,7 @@
               loading: true,
               loadingAssignments: true,
               loadingMessage: "Loading Results...",
+              loadingProgress: 0,
               accessDenied: false,
               menu: 'report',
               IS_TEACHER: false,
@@ -691,8 +708,7 @@
               let app = this;
               let list = [];
               let dates = {};
-              let enrollments = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
-
+              let enrollments = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId)
               let enrollment_data = {};
               for (let e = 0; e < enrollments.length; e++) {
                 let enrollment = enrollments[e];
@@ -1013,8 +1029,6 @@
             },
 
             async loadTree(deptCode, deptYear) {
-              console.log(deptCode);
-              console.log(deptYear);
               let app = this;
               let url = "https://reports.bridgetools.dev/api/trees?dept_code=" + deptCode + "&year=" + deptYear;
               let data = await app.bridgetoolsReq(url);
@@ -1036,7 +1050,6 @@
               await $.get("https://reports.bridgetools.dev/api/students/" + userId + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function (data) {
                 user = data;
               });
-              console.log(user);
               if (user === "") {
                 try {
                   await $.get("/api/v1/users/" + userId, function (data) {
@@ -1127,7 +1140,6 @@
                   }
                   return (a.year > b.year) ? -1 : ((a.year < b.year) ? 1 : 0)
                 })
-                console.log(user.depts);
                 app.currentDepartment = user.depts[0];
                 tree = await app.loadTree(user.depts[0].dept, user.depts[0].year);
               }
@@ -1139,11 +1151,8 @@
 
             async changeTree(user) {
               let app = this;
-              console.log(app.currentDepartment);
               let tree = await app.loadTree(app.currentDepartment.dept, app.currentDepartment.year);
-              console.log(tree);
               user = app.updateUserCourseInfo(user, tree);
-              console.log(user);
               app.user = user;
             },
 
