@@ -1,5 +1,6 @@
 (async function() {
   let button = $(`<button class="btn">DATA Feedback</button>`);
+  let background = TOOLBAR.addBackground(true);
   $(".header-bar-right__buttons").prepend(button);
   button.click(async function() {
     let report = $("<div></div>");
@@ -25,7 +26,6 @@
             report.append(list);
         }
     }
-    let background = TOOLBAR.addBackground(true);
     background.find("#background-container").append(report.html());
     $("#background-container").css({"overflow-y": "scroll", "height": "90vh", "width": "90vw"});
   });
