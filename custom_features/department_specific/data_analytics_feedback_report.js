@@ -1,4 +1,4 @@
-let button = $(`<button class="btn"></button>`);
+let button = $(`<button class="btn">DATA Feedback</button>`);
 $(".header-bar-right__buttons").prepend(button);
 button.click(function() {
   let report = $("<div></div>");
