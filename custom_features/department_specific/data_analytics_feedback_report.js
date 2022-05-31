@@ -1,7 +1,7 @@
 (async function() {
   let button = $(`<button class="btn">DATA Feedback</button>`);
   $(".header-bar-right__buttons").prepend(button);
-  button.click(function() {
+  button.click(async function() {
     let report = $("<div></div>");
     let assignments = await canvasGet(`/api/v1/courses/${ENV.course_id}/assignments`);
     assignments.sort(function(a, b) {
