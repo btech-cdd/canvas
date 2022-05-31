@@ -28,7 +28,7 @@
             report.append(list);
         }
     }
-    container.clear();
+    container.empty();
     container.append(report.html());
     $("#background-container").css({"overflow-y": "scroll", "height": "90vh", "width": "90vw"});
   });
