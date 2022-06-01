@@ -1247,7 +1247,7 @@
                     $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentInd.js").done(function () {
                       $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentHours.js").done(function () {
                         $.getScript("https://reports.bridgetools.dev/department_report/graphs.js").done(function () {
-                          $.getScript("https://reports.bridgetools.dev/department_report/script.js").done(function () {
+                          $.getScript("https://reports.bridgetools.dev/department_report/scripts.js").done(function () {
                             app.postLoad();
                           });
                         });
