@@ -148,7 +148,7 @@ function addToModuleMenu(name, description, func, icon = "icon-plus") {
       liTag.append(aTag);
       menu.append(liTag);
       aTag.click(function () {
-        func(courseId, moduleId, item, modTitle)
+        func(courseId, moduleId, item)
       });
     });
   });
