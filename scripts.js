@@ -143,8 +143,8 @@ function addToModuleMenu(name, description, func, icon = "icon-plus") {
     module.find("div.ig-header-admin").each(function () {
       let item = $(this);
       let menu = item.find("ul.al-options");
-      let liTag = $(`<li style="cursor: pointer; user-select: none;"></li>`);
-      let aTag = $(`<a title="${description}"><i class="${icon}"></i>${name}</a>`);
+      let liTag = $(`<li role="presentation" class="module_group_menu ui-menu-item"></li>`);
+      let aTag = $(`<a title="${description}" class="menu_tray_tool_link ui-corner-all" role="menuitem"><i class="${icon}"></i>${name}</a>`);
       liTag.append(aTag);
       menu.append(liTag);
       aTag.click(function (event) {
