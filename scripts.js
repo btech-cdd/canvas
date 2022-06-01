@@ -124,7 +124,7 @@ function addToModuleItemMenu(name, description, func, type = "all") {
       if (itemType === type || type === "all") {
         let menu = item.find("ul.al-options");
         let liTag = $("<li></li>");
-        let aTag = $(`<a href="" title="` + description + `"><i class="icon-forward"></i>` + name + `</a>`);
+        let aTag = $(`<a href="" title="${description}"><i class="icon-forward"></i>${name}</a>`);
         liTag.append(aTag);
         menu.append(liTag);
         aTag.click(function () {
@@ -142,20 +142,14 @@ function addToModuleMenu(name, description, func, icon = "icon-plus") {
     let moduleId = $(this).attr("data-module-id");
     module.find("div.ig-header-admin").each(function () {
       let item = $(this);
-      let rTitle = /Module ([0-9]+)/;
-      let title = item.find('.name').text();
-      let titleMatch = title.match(rTitle);
-      if (titleMatch !== null) {
-        let modTitle = "Module " + titleMatch[1];
-        let menu = item.find("ul.al-options");
-        let liTag = $("<li></li>");
-        let aTag = $(`<a href="" title="` + description + `"><i class="` + icon + `"></i>` + name + `</a>`);
-        liTag.append(aTag);
-        menu.append(liTag);
-        aTag.click(function () {
-          func(courseId, moduleId, item, modTitle)
-        });
-      }
+      let menu = item.find("ul.al-options");
+      let liTag = $("<li></li>");
+      let aTag = $(`<a href="" title="${description}"><i class="${icon}"></i>${name}</a>`);
+      liTag.append(aTag);
+      menu.append(liTag);
+      aTag.click(function () {
+        func(courseId, moduleId, item, modTitle)
+      });
     });
   });
 }
