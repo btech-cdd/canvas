@@ -24,7 +24,7 @@
             $("#unenroll-progress-bar-buttons").remove();
             $("#unenroll-progress-bar").progressbar({
                 value: 0
-            })
+            });
             let enrollments = await canvasGet("/api/v1/users/" + ENV.USER_ID + "/enrollments?state[]=active&state[]=inactive&state[]=invited&state[]=rejected&state[]=completed&type[]=TeacherEnrollment&type[]=TaEnrollment");
             let adminRights = await canvasGet("/api/v1/manageable_accounts?as_user_id=" + ENV.USER_ID);
             let finishedCount = 0;
