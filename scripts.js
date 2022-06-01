@@ -123,7 +123,7 @@ function addToModuleItemMenu(name, description, func, type = "all") {
       let itemType = item.find(".type_icon").attr("title");
       if (itemType === type || type === "all") {
         let menu = item.find("ul.al-options");
-        let liTag = $("<li></li>");
+        let liTag = $(`<li styl="cursor: point; user-select: none;"></li>`);
         let aTag = $(`<a title="${description}"><i class="icon-forward"></i>${name}</a>`);
         liTag.append(aTag);
         menu.append(liTag);
@@ -143,7 +143,7 @@ function addToModuleMenu(name, description, func, icon = "icon-plus") {
     module.find("div.ig-header-admin").each(function () {
       let item = $(this);
       let menu = item.find("ul.al-options");
-      let liTag = $("<li></li>");
+      let liTag = $(`<li styl="cursor: point; user-select: none;"></li>`);
       let aTag = $(`<a title="${description}"><i class="${icon}"></i>${name}</a>`);
       liTag.append(aTag);
       menu.append(liTag);
