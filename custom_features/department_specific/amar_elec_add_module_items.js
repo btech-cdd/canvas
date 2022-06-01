@@ -1,5 +1,5 @@
 (function () {
-  async function addItems(courseId, moduleId, item) {
+  async function addItems(event, courseId, moduleId, item) {
     event.preventDefault();
     let rTitle = /Module ([0-9]+)/;
     let title = item.find('.name').text();

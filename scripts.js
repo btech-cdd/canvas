@@ -147,8 +147,8 @@ function addToModuleMenu(name, description, func, icon = "icon-plus") {
       let aTag = $(`<a title="${description}"><i class="${icon}"></i>${name}</a>`);
       liTag.append(aTag);
       menu.append(liTag);
-      aTag.click(function () {
-        func(courseId, moduleId, item)
+      aTag.click(function (event) {
+        func(event, courseId, moduleId, item)
       });
     });
   });
