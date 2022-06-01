@@ -1,3 +1,4 @@
+console.log("DELETE MOD ITEMS");
 addToModuleMenu("Delete Content", "Delete all content from the course.", async (event, courseId, moduleId, item) => {  
   event.preventDefault(); 
   let loadBar = $(`
