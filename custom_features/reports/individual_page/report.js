@@ -114,20 +114,7 @@
               tree: {
                 other: {}
               },
-              colors: {
-                base: '#334',
-                black: '#000000',
-                white: '#ffffff',
-                red: 'rgb(190, 65, 60)',
-                orange: 'rgb(229, 128, 79)',
-                yellow: 'rgb(240, 173, 78)',
-                green: 'rgb(70, 175, 70)',
-                cyan: 'rgb(60, 128, 155)',
-                blue: 'rgb(70, 170, 210)',
-                purple: 'rgb(128, 60, 150)',
-                fadedBlue: 'rgb(180, 230, 255)',
-                gray: '#E0E0E0',
-              },
+              colors: bridgetools.colors,
               settings: {},
               terms: [],
               currentTerm: {},
@@ -1144,7 +1131,7 @@
                 tree = await app.loadTree(user.depts[0].dept, user.depts[0].year);
               }
 
-              user = app.updateUserCourseInfo(user, tree);
+              user = bridgetools.processUserData(user, tree);
 
               return user;
             },
@@ -1154,72 +1141,6 @@
               let tree = await app.loadTree(app.currentDepartment.dept, app.currentDepartment.year);
               user = app.updateUserCourseInfo(user, tree);
               app.user = user;
-            },
-
-            updateUserCourseInfo(user, tree) {
-              let app = this;
-              let courses = user.courses;
-              if (courses == undefined) user.courses = [];
-              let entryDate = "N/A";
-              if (user.entry_date != undefined) entryDate = new Date(user.entry_date);
-              let lastLogin = "N/A";
-              if (user.last_login != undefined) lastLogin = new Date(user.last_login);
-              let core = [];
-              let elective = [];
-              let other = [];
-              // let completedHours = user.graded_hours;
-              let enrolledHours = user.enrolled_hours;
-              let completedHours = 0;
-              for (let courseCode in courses) {
-                let course = courses[courseCode];
-                let programCourseData;
-                let courseHours = course.hours;
-                if (courseHours == undefined) {
-                  if (courseCode in tree.courses.core) programCourseData = tree.courses.core[courseCode];
-                  else if (courseCode in tree.courses.elective) programCourseData = tree.courses.core[courseCode];
-                  if (programCourseData !== undefined) courseHours = programCourseData.hours;
-                }
-                courseHours = parseInt(courseHours);
-                if (course.registered_hours !== undefined || user.enrollment_type == 'HS') {
-                  // enrolledHours += course.registered_hours;
-                  if (course.progress >= 100) {
-                    completedHours += courseHours;
-                  } else {
-                    let courseCompletedHours = courseHours * (course.progress * .01);
-                    completedHours += courseCompletedHours;
-                  }
-                }
-
-                let courseData = {
-                  'code': courseCode,
-                  'course_id': course.canvas_id,
-                  'last_activity': course.last_activity,
-                  'progress': parseFloat(course.progress),
-                  'start': new Date(course.start),
-                  'hours': courseHours
-                }
-                if (courseCode in tree.courses.core) {
-                  core.push(courseData);
-                } else if (courseCode in tree.courses.elective) {
-                  elective.push(courseData);
-                } else {
-                  other.push(courseData);
-                }
-
-              }
-              if (isNaN(enrolledHours)) enrolledHours = 0;
-              user.enrolledHours = Math.round(enrolledHours);
-              if (isNaN(completedHours)) completedHours = 0;
-              user.enrolledHours = Math.round(enrolledHours);
-              user.completedHours = Math.round(completedHours);
-              user.treeCourses = {
-                core: core,
-                elective: elective,
-                other: other
-              }
-              app.user = user;
-              app.tree = tree;
-              return user;
             },
 
           }
