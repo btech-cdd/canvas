@@ -43,7 +43,7 @@
 
         this.APP = new Vue({
           el: '#canvas-individual-report-vue',
-          mounted: async function () {
+          created: async function () {
             let app = this;
             app.loadingProgress = 0;
             this.IS_TEACHER = IS_TEACHER;
