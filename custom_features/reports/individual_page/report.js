@@ -224,7 +224,6 @@
               if (tree.courses.elective === undefined) tree.courses.elective = {};
               if (tree.courses.other === undefined) tree.courses.other = {};
 
-              this.tree = tree.courses;
               return tree;
             },
 
@@ -334,6 +333,7 @@
               }
 
               user = app.updateUserCourseInfo(user, tree);
+              this.tree = user.courses;
               return user;
             },
 
