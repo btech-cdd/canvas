@@ -56,8 +56,8 @@
               :style="{'width': visibleColumns[4].width + 'rem'}"
             >
               <course-progress-bar-ind
-                :progress="25"
-                :barwidth="'10rem'"
+                :progress="student.points"
+                :barwidth="10"
                 :colors="colors"
               ></course-progress-bar-ind>
             </div>
