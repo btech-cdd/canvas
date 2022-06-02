@@ -211,7 +211,7 @@ Vue.component('show-grades-between-dates', {
   mounted: async function () {
     console.log("LOADING?");
     console.log(this.user);
-    this.userId = this.user.id;
+    this.userId = this.user.canvas_id;
     this.loadingProgress = 0;
     this.loadingMessage = "Loading Courses";
     this.courses = await this.getCourseData();
