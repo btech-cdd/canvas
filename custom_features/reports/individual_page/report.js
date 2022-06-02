@@ -384,7 +384,9 @@
                               $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentHours.js").done(function () {
                                 $.getScript("https://reports.bridgetools.dev/department_report/graphs.js").done(function () {
                                   $.getScript("https://reports.bridgetools.dev/department_report/scripts.js").done(function () {
-                                    app.postLoad();
+                                    $.getScript(SOURCE_URL + '/custom_features/reports/individual_page/gradesBetweenDates.js').done(function () {
+                                      app.postLoad();
+                                    });
                                   });
                                 });
                               });
