@@ -210,8 +210,8 @@ Vue.component('show-grades-between-dates', {
   },
   mounted: async function () {
     console.log("LOADING?");
-    console.log(user);
-    this.userId = user.id;
+    console.log(this.user);
+    this.userId = this.user.id;
     this.loadingProgress = 0;
     this.loadingMessage = "Loading Courses";
     this.courses = await this.getCourseData();
