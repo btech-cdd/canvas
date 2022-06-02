@@ -30,19 +30,19 @@
           <div v-for='student in students' :key='student.user_id'>
             <!--Name-->
             <div 
-              style="display: inline-block"
+              style="display: inline-block; font-size: 1rem;"
               :style="{'width': visibleColumns[0].width + 'rem'}"
             >
               {{student.name }}
             </div>
             <div 
-              style="display: inline-block"
+              style="display: inline-block; font-size: 1rem;"
               :style="{'width': visibleColumns[1].width + 'rem'}"
             >
               {{student.section}}
             </div>
             <div 
-              style="display: inline-block"
+              style="display: inline-block; font-size: 1rem;"
               :style="{'width': visibleColumns[2].width + 'rem'}"
             >
               <span 
