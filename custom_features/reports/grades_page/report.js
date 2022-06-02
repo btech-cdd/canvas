@@ -15,7 +15,7 @@
   if (true) {
     IMPORTED_FEATURE = {
       initiated: false,
-      async _init(params = {}) {
+      async postLoad() {
         let vueString = '';
         await $.get(SOURCE_URL + '/custom_features/reports/grades_page/template.vue', null, function (html) {
           vueString = html.replace("<template>", "").replace("</template>", "");
@@ -38,7 +38,7 @@
             "canvasId": ENV.current_user_id
           });
         });
-        this.APP = new Vue({
+        new Vue({
           el: '#canvas-grades-report-vue',
           mounted: async function () {
             let app = this;
@@ -360,7 +360,21 @@
           }
         })
       },
-      APP: {}
+      _init() {
+        this.loadCSS("https://reports.bridgetools.dev/department_report/style/main.css");
+        $.getScript("https://reports.bridgetools.dev/department_report/scripts.js").done(function () {
+          this.postLoad();
+        });
+      },
+      loadCSS(url) {
+        var style = document.createElement('link'),
+          head = document.head || document.getElementsByTagName('head')[0];
+        style.href = url;
+        style.type = 'text/css';
+        style.rel = "stylesheet";
+        style.media = "screen,print";
+        head.insertBefore(style, head.firstChild);
+      },
     }
   }
 })();
