@@ -940,6 +940,21 @@ Vue.component('show-student-ind', {
       let htmlDate = date.getFullYear() + "-" + month + "-" + day;
       return htmlDate;
     },
+    async bridgetoolsReq(url) {
+      let reqUrl = "https://btech.instructure.com/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
+      let authCode = '';
+      await $.get(reqUrl, data => {
+        authCode = data.data.auth_code;
+      });
+      //figure out if any params exist then add autho code depending on set up.
+      if (!url.includes("?")) url += "?auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
+      else url += "&auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
+      let output;
+      await $.get(url, function (data) {
+        output = data;
+      });
+      return output;
+    },
   },
 
   destroyed: function () {}

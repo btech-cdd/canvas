@@ -207,7 +207,7 @@
             },
 
             async bridgetoolsReq(url) {
-              let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
+              let reqUrl = "https://btech.instructure.com/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
               let authCode = '';
               await $.get(reqUrl, data => {
                 authCode = data.data.auth_code;
