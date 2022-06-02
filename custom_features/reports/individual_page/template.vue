@@ -57,6 +57,7 @@
 
             <div v-if="menu=='period'">
               <show-grades-between-dates
+                :user="user"
                 :terms="terms"
                 :IS-TEACHER="IS_TEACHER"
               ></show-grades-between-dates>
