@@ -21,6 +21,7 @@
             style="
               display: grid;
               grid-template-columns: 12rem 10rem 3rem 3rem 12rem 3rem 3rem
+              font-size: 0.75rem;
             "
           >
             <div 
@@ -34,27 +35,25 @@
           <div 
             style="
               display: grid;
-              grid-template-columns: 12rem 10rem 3rem 3rem 12rem 3rem 3rem
+              grid-template-columns: 12rem 10rem 3rem 3rem 12rem 3rem 3rem;
+              font-size: 0.75rem;
             "
             v-for='student in students' 
             :key='student.user_id'
           >
             <!--Name-->
             <div 
-              style="display: inline-block; font-size: 1rem;"
-              :style="{'width': visibleColumns[0].width + 'rem'}"
+              style="display: inline-block;;"
             >
               {{student.name }}
             </div>
             <div 
-              style="display: inline-block; font-size: 1rem;"
-              :style="{'width': visibleColumns[1].width + 'rem'}"
+              style="display: inline-block;"
             >
               {{student.section}}
             </div>
             <div 
-              style="display: inline-block; font-size: 1rem;"
-              :style="{'width': visibleColumns[2].width + 'rem'}"
+              style="display: inline-block;"
             >
               <span 
                 class="btech-pill-text" 
@@ -67,13 +66,11 @@
             </div>
             <div 
               style="display: inline-block"
-              :style="{'width': visibleColumns[3].width + 'rem'}"
             >
               {{student.final_grade}}
             </div>
             <div 
               style="display: inline-block"
-              :style="{'width': visibleColumns[4].width + 'rem'}"
             >
               <course-progress-bar-ind
                 :progress="student.points"
