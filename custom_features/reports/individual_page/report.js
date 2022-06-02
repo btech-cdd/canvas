@@ -1145,6 +1145,7 @@
 
             updateUserCourseInfo(user, tree) {
               user = bridgetools.processUserData(user, tree);
+              console.log(user);
               return user;
             },
 
