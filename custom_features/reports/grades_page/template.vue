@@ -81,7 +81,7 @@
             >
               <course-progress-bar-ind
                 :progress="student.points"
-                :barwidth="10"
+                :barwidth="9"
                 :colors="colors"
               ></course-progress-bar-ind>
             </div>
