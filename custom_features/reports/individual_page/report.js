@@ -5,18 +5,6 @@
   Show which tab you're on
 */
 (function () {
-  class Column {
-    constructor(name, description, average, sort_type, percent, hideable = true) {
-      this.name = name;
-      this.description = description;
-      this.average = average;
-      this.sort_type = sort_type; //needs to be a result of typeof, probably mostly going to be string or number
-      this.sort_state = 0; //becomes 1 or -1 depending on asc or desc
-      this.visible = true;
-      this.percent = percent;
-      this.hideable = hideable;
-    }
-  }
   IMPORTED_FEATURE = {};
   if (true) {
     IMPORTED_FEATURE = {
@@ -60,6 +48,8 @@
             app.loadingProgress = 0;
             this.IS_TEACHER = IS_TEACHER;
             // if (!IS_TEACHER) this.menu = 'period';
+            this.refreshHSEnrollmentTerms();
+
             if (IS_TEACHER) { //also change this to ref the url and not whether or not is teacher
               let match = window.location.pathname.match(/(users|grades)\/([0-9]+)/);
               this.userId = match[2];

@@ -157,10 +157,15 @@ Vue.component('show-grades-between-dates', {
       type: Boolean,
       default: false 
     },
+    terms: {
+      type: Array,
+      default: [] 
+    },
     settings: {
       type: Object,
       default: () => ({})
     },
+    userId: "",
     user: {
       type: Object,
       default: () => ({})
@@ -209,9 +214,6 @@ Vue.component('show-grades-between-dates', {
     }
   },
   mounted: async function () {
-    console.log("LOADING?");
-    console.log(this.user);
-    this.userId = this.user.canvas_id;
     this.loadingProgress = 0;
     this.loadingMessage = "Loading Courses";
     this.courses = await this.getCourseData();
