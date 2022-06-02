@@ -43,9 +43,6 @@ Vue.component('show-grades-between-dates', {
             </tr>
           </thead>
           <tbody border='1'>
-            <tr v-if="loading">
-              <td :colspan='visibleColumns.length'>{{loadingMessage}}</td>
-            </tr>
             <tr v-for='course in courses' :key='course.course_id'>
               <td>
                 <a 
