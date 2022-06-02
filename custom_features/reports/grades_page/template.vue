@@ -57,7 +57,7 @@
             >
               <course-progress-bar-ind
                 :progress="25"
-                :bar-width="'10rem'"
+                :barwidth="'10rem'"
                 :colors="colors"
               ></course-progress-bar-ind>
             </div>
