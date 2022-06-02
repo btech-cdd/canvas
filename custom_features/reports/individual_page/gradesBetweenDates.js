@@ -1,3 +1,15 @@
+class Column {
+  constructor(name, description, average, sort_type, percent, hideable = true) {
+    this.name = name;
+    this.description = description;
+    this.average = average;
+    this.sort_type = sort_type; //needs to be a result of typeof, probably mostly going to be string or number
+    this.sort_state = 0; //becomes 1 or -1 depending on asc or desc
+    this.visible = true;
+    this.percent = percent;
+    this.hideable = hideable;
+  }
+}
 Vue.component('show-grades-between-dates', {
   template: ` 
     <div>
