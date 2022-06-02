@@ -46,10 +46,10 @@
           created: async function () {
             let app = this;
             app.loadingProgress = 0;
+            let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
+            this.enrollmentData = enrollmentData;
             this.IS_TEACHER = IS_TEACHER;
             // if (!IS_TEACHER) this.menu = 'period';
-            this.refreshHSEnrollmentTerms();
-
             if (IS_TEACHER) { //also change this to ref the url and not whether or not is teacher
               let match = window.location.pathname.match(/(users|grades)\/([0-9]+)/);
               this.userId = match[2];
@@ -274,8 +274,7 @@
                   }
                 }
 
-                let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
-                this.enrollmentData = enrollmentData;
+                let enrollmentData = this.enrollmentData;
                 for (let e in enrollmentData) {
                   let enrollment = enrollmentData[e];
                   let courseName = "";
