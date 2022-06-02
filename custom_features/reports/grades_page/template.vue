@@ -20,7 +20,7 @@
           <div
             style="
               display: grid;
-              grid-template-columns: 12rem 10rem 4rem 4rem 12rem 3rem 3rem
+              grid-template-columns: 12rem 10rem 4rem 4rem 12rem 7rem 5rem
               font-size: 0.75rem;
             "
           >
@@ -35,7 +35,7 @@
           <div 
             style="
               display: grid;
-              grid-template-columns: 12rem 10rem 4rem 4rem 12rem 3rem 3rem;
+              grid-template-columns: 12rem 10rem 4rem 4rem 12rem 7rem 5rem;
               font-size: 0.75rem;
             "
             v-for='student in students' 
@@ -94,7 +94,19 @@
                   'background-color': (student.days_since_last_submission >= 10) ? colors.red : (student.days_since_last_submission >= 7 ? colors.yellow : colors.green),
                   'color': colors.white,
                 }">
-                {{student.days_since_last_submission}}
+                {{student.days_since_last_submission}} days
+              </span>
+            </div>
+            <div 
+              style="display: inline-block;"
+            >
+              <span 
+                class="btech-pill-text" 
+                :style="{
+                  'background-color': colors.gray,
+                  'color': colors.black,
+                }">
+                {{student.days_in_course}} days
               </span>
             </div>
           </div>
