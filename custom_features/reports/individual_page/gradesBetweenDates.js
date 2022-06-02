@@ -941,7 +941,7 @@ Vue.component('show-student-ind', {
       return htmlDate;
     },
     async bridgetoolsReq(url) {
-      let reqUrl = "https://btech.instructure.com/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
+      let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
       let authCode = '';
       await $.get(reqUrl, data => {
         authCode = data.data.auth_code;
