@@ -1170,11 +1170,19 @@
               $.getScript("https://reports.bridgetools.dev/department_report/components/courseRowInd.js").done(function () {
                 $.getScript("https://reports.bridgetools.dev/department_report/components/menuStatus.js").done(function () {
                   $.getScript("https://reports.bridgetools.dev/department_report/components/menuInfo.js").done(function () {
-                    $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentInd.js").done(function () {
-                      $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentHours.js").done(function () {
-                        $.getScript("https://reports.bridgetools.dev/department_report/graphs.js").done(function () {
-                          $.getScript("https://reports.bridgetools.dev/department_report/scripts.js").done(function () {
-                            app.postLoad();
+                    $.getScript("https://reports.bridgetools.dev/department_report/components/menuFilters.js").done(function () {
+                      $.getScript("https://reports.bridgetools.dev/department_report/components/menuSettings.js").done(function () {
+                        $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/indGraphs.js").done(function () {
+                          $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/indHeader.js").done(function () {
+                            $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentInd.js").done(function () {
+                              $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentHours.js").done(function () {
+                                $.getScript("https://reports.bridgetools.dev/department_report/graphs.js").done(function () {
+                                  $.getScript("https://reports.bridgetools.dev/department_report/scripts.js").done(function () {
+                                    app.postLoad();
+                                  });
+                                });
+                              });
+                            });
                           });
                         });
                       });
