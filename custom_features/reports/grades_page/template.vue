@@ -35,6 +35,24 @@
             </div>
             <div 
               style="display: inline-block"
+              :style="{'width': visibleColumns[1].width + 'rem'}"
+            >
+              {{student.section}}
+            </div>
+            <div 
+              style="display: inline-block"
+              :style="{'width': visibleColumns[2].width + 'rem'}"
+            >
+              {{student.grade_to_date}}
+            </div>
+            <div 
+              style="display: inline-block"
+              :style="{'width': visibleColumns[3].width + 'rem'}"
+            >
+              {{student.final_grade}}
+            </div>
+            <div 
+              style="display: inline-block"
               :style="{'width': visibleColumns[0].width + 'rem'}"
             >
               <course-progress-bar-ind
