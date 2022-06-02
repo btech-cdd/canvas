@@ -1,6 +1,6 @@
 (function () {
   class Column {
-    constructor(name, description, average, sort_type, percent, hideable = true) {
+    constructor(name, description, width, average, sort_type, percent, hideable = true) {
       this.name = name;
       this.description = description;
       this.average = average;
@@ -56,15 +56,15 @@
               courseId: null,
               students: [],
               columns: [
-                new Column('Name', '', false, 'string', false, false),
-                new Column('Section', '', false, 'string', false),
-                new Column('Grade To Date', '', true, 'number', true),
-                new Column('Final Grade', '', true, 'number', true),
-                new Column('Points', '', true, 'number', true),
-                new Column('Submissions', '', true, 'number', true),
-                new Column('Days Since Last Submission', '', true, 'number', false),
-                new Column('Days in Course', '', true, 'number', false),
-                new Column('Ungraded', '', true, 'number', false)
+                new Column('Name', '', 6, false, 'string', false, false),
+                new Column('Section', '', 6, false, 'string', false),
+                new Column('Grade To Date', '', 3, true, 'number', true),
+                new Column('Final Grade', '', true, 3, 'number', true),
+                new Column('Points', '', true, 3, 'number', true),
+                new Column('Submissions', '', true, 3, 'number', true),
+                new Column('Days Since Last Submission', '', 3, true, 'number', false),
+                new Column('Days in Course', '', true, 3, 'number', false),
+                new Column('Ungraded', '', true, 3, 'number', false)
               ],
               sections: [],
               studentData: [],

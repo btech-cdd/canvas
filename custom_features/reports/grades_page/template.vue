@@ -16,6 +16,18 @@
             </div>
           </div>
         </div>
+        <div>
+          <div 
+            v-for='column in visibleColumns' 
+            style="display: inline-block;"
+            :width="column.width + 'rem'"
+            :key='column.name' 
+            :class='column.sortable_type'
+          >
+            <span><b>{{column.name}}</b></span>
+          </div>
+        </div>
+
         <table class='btech-report-table' border='1'>
           <thead border='1'>
             <tr>
