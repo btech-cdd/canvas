@@ -20,13 +20,13 @@
           <div
             style="
               display: grid;
-              grid-template-columns: 12rem 10rem 3rem 3rem 12rem 3rem 3rem
+              grid-template-columns: 12rem 10rem 4rem 4rem 12rem 3rem 3rem
               font-size: 0.75rem;
             "
           >
             <div 
               v-for='column in visibleColumns' 
-              style="display: inline-block; font-size: 1rem;"
+              style="display: inline-block;"
               :key='column.name' 
             >
               <span><b>{{column.name}}</b></span>
@@ -35,7 +35,7 @@
           <div 
             style="
               display: grid;
-              grid-template-columns: 12rem 10rem 3rem 3rem 12rem 3rem 3rem;
+              grid-template-columns: 12rem 10rem 4rem 4rem 12rem 3rem 3rem;
               font-size: 0.75rem;
             "
             v-for='student in students' 
@@ -62,6 +62,18 @@
                   'color': colors.white,
                 }">
                 {{student.grade_to_date}}%
+              </span>
+            </div>
+            <div 
+              style="display: inline-block;"
+            >
+              <span 
+                class="btech-pill-text" 
+                :style="{
+                  'background-color': (student.final_grade < 60) ? colors.red : (student.final_grade < 80 ? colors.yellow : colors.green),
+                  'color': colors.white,
+                }">
+                {{student.final_grade }}%
               </span>
             </div>
             <div 
