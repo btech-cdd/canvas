@@ -38,7 +38,7 @@
               :style="{'width': visibleColumns[0].width + 'rem'}"
             >
               <course-progress-bar-ind
-                :progress=""
+                :progress="25"
                 :colors="colors"
             </div>
           </div>
