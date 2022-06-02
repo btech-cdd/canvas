@@ -31,7 +31,14 @@
               <span><b>{{column.name}}</b></span>
             </div>
           </div>
-          <div v-for='student in students' :key='student.user_id'>
+          <div 
+            style="
+              display: grid;
+              grid-template-columns: 12rem 10rem 3rem 3rem 12rem 3rem 3rem
+            "
+            v-for='student in students' 
+            :key='student.user_id'
+          >
             <!--Name-->
             <div 
               style="display: inline-block; font-size: 1rem;"
