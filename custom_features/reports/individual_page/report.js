@@ -78,7 +78,7 @@
           data: function () {
             return {
               currentDepartment: null,
-              enrollmentData = undefined,
+              enrollmentData:  undefined,
               userId: null,
               user: {},
               tree: {
