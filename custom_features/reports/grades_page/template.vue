@@ -40,6 +40,7 @@
               <course-progress-bar-ind
                 :progress="25"
                 :colors="colors"
+              ></course-progress-bar-ind>
             </div>
           </div>
         </div>
