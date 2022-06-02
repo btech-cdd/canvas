@@ -31,7 +31,7 @@
               style="display: inline-block"
               :style="{'width': visibleColumns[0].width + 'rem'}"
             >
-              student.name 
+              {{student.name }}
             </div>
             <div 
               style="display: inline-block"
