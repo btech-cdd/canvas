@@ -53,10 +53,11 @@
             </div>
             <div 
               style="display: inline-block"
-              :style="{'width': visibleColumns[0].width + 'rem'}"
+              :style="{'width': visibleColumns[4].width + 'rem'}"
             >
               <course-progress-bar-ind
                 :progress="25"
+                :bar-width="'10rem'"
                 :colors="colors"
               ></course-progress-bar-ind>
             </div>
