@@ -171,7 +171,7 @@
               student.name = name;
               student.course_id = course_id;
               student.days_in_course = 0;
-              student.days_since_last_submission = 0;
+              student.days_since_last_submission = undefined;
               student.section = "";
               student.grade_to_date = "N/A";
               student.points = 0;
