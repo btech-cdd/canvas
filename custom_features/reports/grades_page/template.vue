@@ -81,6 +81,7 @@
               style="display: inline-block;"
             >
               <span 
+                v-if="days_since_last_submission !== undefined"
                 class="btech-pill-text" 
                 :style="{
                   'background-color': (student.days_since_last_submission >= 10) ? colors.red : (student.days_since_last_submission >= 7 ? colors.yellow : colors.green),
