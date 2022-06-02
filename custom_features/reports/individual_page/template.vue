@@ -55,9 +55,8 @@
               </div>
             </div>
 
-            <div v-if="menu=='period'">
+            <div v-if="menu=='period' && enrollmentData != undefined">
               <show-grades-between-dates
-                v-if="enrollmentData !== undefined"
                 :user="user"
                 :enrollments="enrollmentData"
                 :user-id="userId"
