@@ -43,16 +43,14 @@
               style="display: inline-block"
               :style="{'width': visibleColumns[2].width + 'rem'}"
             >
-              <div style="display: inline-block; width: 4rem; font-size: 1rem;">
-                <span 
-                  class="btech-pill-text" 
-                  :style="{
-                    'background-color': (student.grade_to_date < 60) ? colors.red : (student.grade_to_date < 80 ? colors.yellow : colors.green),
-                    'color': colors.white,
-                  }">
-                  {{student.grade_to_date}}%
-                </span>
-              </div>
+              <span 
+                class="btech-pill-text" 
+                :style="{
+                  'background-color': (student.grade_to_date < 60) ? colors.red : (student.grade_to_date < 80 ? colors.yellow : colors.green),
+                  'color': colors.white,
+                }">
+                {{student.grade_to_date}}%
+              </span>
             </div>
             <div 
               style="display: inline-block"
