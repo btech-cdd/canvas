@@ -55,7 +55,7 @@
           data: function () {
             return {
               courseId: null,
-              colors: colors,
+              colors: bridgetools.colors,
               students: [],
               columns: [
                 new Column('Name', '', 6, false, 'string', false, false),
