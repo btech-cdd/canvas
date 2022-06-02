@@ -17,14 +17,18 @@
           </div>
         </div>
         <div>
-          <div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 12rem 10rem 3rem 3rem 12rem 3rem 3rem
+            "
+          >
             <div 
               v-for='column in visibleColumns' 
               style="display: inline-block; font-size: 1rem;"
-              :style="{'width': column.width + 'rem'}"
               :key='column.name' 
             >
-              <span>{{column.name}}</span>
+              <span><b>{{column.name}}</b></span>
             </div>
           </div>
           <div v-for='student in students' :key='student.user_id'>
