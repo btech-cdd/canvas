@@ -20,7 +20,7 @@
           <div>
             <div 
               v-for='column in visibleColumns' 
-              style="display: inline-block;"
+              style="display: inline-block; font-size: 1rem;"
               :style="{'width': column.width + 'rem'}"
               :key='column.name' 
             >
