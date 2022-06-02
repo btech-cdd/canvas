@@ -62,7 +62,7 @@
                 new Column('Section', '', 10, false, 'string', false),
                 new Column('Grade To Date', '', 3, true, 'number', true),
                 new Column('Final Grade', '', 3, true, 'number', true),
-                new Column('', '', true, 12, 'number', true),
+                new Column('', '', 12, true, 'number', true),
                 new Column('Submissions', '', true, 3, 'number', true),
                 new Column('Last Submission', '', 3, true, 'number', false),
                 new Column('In Course', '', true, 3, 'number', false)
