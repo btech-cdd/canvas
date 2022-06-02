@@ -251,15 +251,16 @@ Vue.component('show-grades-between-dates', {
       let courseList = await this.getCourses();
       if (app.IS_TEACHER) {
         for (let c = 0; c < courseList.length; c++) {
-          this.loadingMessage = "Loading Course Data for Course " + this.courses[i].course_id;
-          let course = await app.newCourse(courseList[c].course_id, courseList[c].state, courseList[c].name, courseList[c].year);
+          let courseData = courseList[c];
+          this.loadingMessage = "Loading Course Data for Course " + courseData.course_id;
+          let course = await app.newCourse(courseData.course_id, courseData.state, courseData.name, courseData.year);
           let gradesData = await app.getCourseGrades(course.course_id);
           this.loadingProgress += (50 / courseList.length) * 0.5;
           course.grade_to_date = gradesData.grade;
           course.final_grade = gradesData.final_grade;
           course.points = gradesData.points;
 
-          this.loadingMessage = "Loading Assignment Data for Course " + this.courses[i].course_id;
+          this.loadingMessage = "Loading Assignment Data for Course " + courseData.course_id;
           await app.getAssignmentData(course, gradesData.enrollment);
           this.loadingProgress += (50 / courseList.length) * 0.5;
           courses.push(course);
@@ -267,15 +268,15 @@ Vue.component('show-grades-between-dates', {
       } else {
         for (let c = 0; c < courseList.length; c++) {
           let courseData = courseList[c];
-          this.loadingMessage = "Loading Course Data for Course " + this.courses[i].course_id;
-          let course = await app.newCourse(courseList[c].course_id, courseList[c].state, courseList[c].name, courseList[c].year);
+          this.loadingMessage = "Loading Course Data for Course " + courseData.course_id;
+          let course = await app.newCourse(courseData.course_id, courseData.state, courseData.name, courseData.year);
           this.loadingProgress += (50 / courseList.length) * 0.5;
           course.grade_to_date = courseData.enrollment.grades.current_score;
           if (course.grade_to_date == null) course.grade_to_date = "N/A";
           course.final_grade = courseData.enrollment.grades.final_score;
           if (course.final_grade == null) course.final_grade = "N/A";
-          course.points = app.calcPointsProgress(course.grade_to_date, course.final_grade);
-          this.loadingMessage = "Loading Assignment Data for Course " + this.courses[i].course_id;
+          course.points = app.calcPointsProgress(course.grade_to_date, courseData.final_grade);
+          this.loadingMessage = "Loading Assignment Data for Course " + course.course_id;
           await app.getAssignmentData(course, courseData.enrollment);
           this.loadingProgress += (50 / courseList.length) * 0.5;
           courses.push(course);
