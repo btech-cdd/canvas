@@ -333,7 +333,7 @@
               }
 
               user = app.updateUserCourseInfo(user, tree);
-              this.tree = user.courses;
+              this.tree = user.treeCourses;
               return user;
             },
 
