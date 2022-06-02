@@ -43,7 +43,17 @@
               style="display: inline-block"
               :style="{'width': visibleColumns[2].width + 'rem'}"
             >
-              {{student.grade_to_date}}
+              <div style="display: inline-block; width: 4rem; font-size: 1rem;">
+                <span 
+                  class="btech-pill-text" 
+                  v-show="course.score !== undefined"
+                  :style="{
+                    'background-color': student.grade_to_date < 60 ? colors.red : student.grade_to_date < 80 colors.yellow : colors.green,
+                    'color': colors.white,
+                  }">
+                  {{gradeText}}
+                </span>
+              </div>
             </div>
             <div 
               style="display: inline-block"

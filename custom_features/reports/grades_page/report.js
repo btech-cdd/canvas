@@ -60,10 +60,9 @@
               columns: [
                 new Column('Name', '', 10, false, 'string', false, false),
                 new Column('Section', '', 10, false, 'string', false),
-                new Column('Grade To Date', '', 3, true, 'number', true),
-                new Column('Final Grade', '', 3, true, 'number', true),
+                new Column('To Date', '', 3, true, 'number', true),
+                new Column('Final', '', 3, true, 'number', true),
                 new Column('', '', 12, true, 'number', true),
-                new Column('Submissions', '', true, 3, 'number', true),
                 new Column('Last Submission', '', 3, true, 'number', false),
                 new Column('In Course', '', true, 3, 'number', false)
                 // new Column('Ungraded', '', true, 3, 'number', false)
