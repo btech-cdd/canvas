@@ -94,7 +94,7 @@
                   'background-color': (student.days_since_last_submission >= 10) ? colors.red : (student.days_since_last_submission >= 7 ? colors.yellow : colors.green),
                   'color': colors.white,
                 }">
-                {{student.days_since_last_submission}}%
+                {{student.days_since_last_submission}}
               </span>
             </div>
           </div>
