@@ -362,7 +362,7 @@
       },
       _init() {
         this.loadCSS("https://reports.bridgetools.dev/department_report/style/main.css");
-        $.getScript("https://reports.bridgetools.dev/department_report/scripts.js").done(function () {
+        $.getScript("https://reports.bridgetools.dev/department_report/scripts.js").done(() => {
           this.postLoad();
         });
       },
