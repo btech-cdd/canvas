@@ -79,16 +79,23 @@
             <div 
               style="display: inline-block"
             >
-              {{student.final_grade}}
-            </div>
-            <div 
-              style="display: inline-block"
-            >
               <course-progress-bar-ind
                 :progress="student.points"
                 :barwidth="10"
                 :colors="colors"
               ></course-progress-bar-ind>
+            </div>
+            <div 
+              style="display: inline-block;"
+            >
+              <span 
+                class="btech-pill-text" 
+                :style="{
+                  'background-color': (days_since_last_submission.final_grade >= 10) ? colors.red : (student.days_since_last_submission >= 7 ? colors.yellow : colors.green),
+                  'color': colors.white,
+                }">
+                {{student.days_since_last_submission}}%
+              </span>
             </div>
           </div>
         </div>
