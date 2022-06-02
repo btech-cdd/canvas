@@ -1,5 +1,5 @@
 <template>
-  <div class='btech-modal' style='display: inline-block;'>
+  <div class='btech-modal btech-canvas-report' style='display: inline-block;'>
     <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
     <div class='btech-modal-content'>
       <div class='btech-modal-content-inner'>
