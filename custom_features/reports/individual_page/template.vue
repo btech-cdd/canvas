@@ -41,7 +41,7 @@
               </div>
             </div>
 
-            <div v-if="menu=='hours'">
+            <div v-show="menu=='hours'">
               <div class="btech-canvas-report" style="background-color: #ffffff;">
                 <show-student-hours
                   v-if="user.name !== undefined && tree.name !== undefined"
@@ -55,8 +55,9 @@
               </div>
             </div>
 
-            <div v-if="menu=='period' && enrollmentData != undefined">
+            <div v-show="menu=='period'">
               <show-grades-between-dates
+                v-if="enrollmentData != undefined"
                 :user="user"
                 :enrollments="enrollmentData"
                 :user-id="userId"
@@ -65,7 +66,7 @@
               ></show-grades-between-dates>
             </div>
 
-            <div v-if="menu=='enroll'">
+            <div v-show="menu=='enroll'">
               <div class='term-data-container'>
                 <span>Start Date</span>
                 <input type='date' v-model='enrollment_tab.saveTerm.startDate'>

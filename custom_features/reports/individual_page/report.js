@@ -62,6 +62,7 @@
 
             //load data from bridgetools
             this.loadingMessage = "Loading User Data";
+            //Pulled enrollment data out of loadUser func because it is ready to use for Grades between dates out of the box and doesn't need to wait on all of the other stuff loadUser does
             let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
             this.enrollmentData = enrollmentData;
             try {
