@@ -224,7 +224,7 @@
               if (tree.courses.elective === undefined) tree.courses.elective = {};
               if (tree.courses.other === undefined) tree.courses.other = {};
 
-              this.tree = tree;
+              this.tree = tree.courses;
               return tree;
             },
 
