@@ -3,6 +3,7 @@
     constructor(name, description, width, average, sort_type, percent, hideable = true) {
       this.name = name;
       this.description = description;
+      this.width = width;
       this.average = average;
       this.sort_type = sort_type; //needs to be a result of typeof, probably mostly going to be string or number
       this.sort_state = 0; //becomes 1 or -1 depending on asc or desc
@@ -60,11 +61,11 @@
                 new Column('Section', '', 6, false, 'string', false),
                 new Column('Grade To Date', '', 3, true, 'number', true),
                 new Column('Final Grade', '', true, 3, 'number', true),
-                new Column('Points', '', true, 3, 'number', true),
+                new Column('', '', true, 12, 'number', true),
                 new Column('Submissions', '', true, 3, 'number', true),
-                new Column('Days Since Last Submission', '', 3, true, 'number', false),
-                new Column('Days in Course', '', true, 3, 'number', false),
-                new Column('Ungraded', '', true, 3, 'number', false)
+                new Column('Last Submission', '', 3, true, 'number', false),
+                new Column('In Course', '', true, 3, 'number', false)
+                // new Column('Ungraded', '', true, 3, 'number', false)
               ],
               sections: [],
               studentData: [],

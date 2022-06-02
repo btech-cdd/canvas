@@ -26,6 +26,15 @@
           >
             <span><b>{{column.name}}</b></span>
           </div>
+          <div v-for='student in students' :key='student.user_id'>
+            <!--Name-->
+            <div 
+              style="display: inline-block"
+              :width="visibleColumns[0].width + 'rem'"
+            >
+              student.name 
+            </div>
+          </div>
         </div>
 
         <table class='btech-report-table' border='1'>
