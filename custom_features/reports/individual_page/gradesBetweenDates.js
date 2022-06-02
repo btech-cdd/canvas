@@ -158,7 +158,7 @@ Vue.component('show-grades-between-dates', {
       type: Array,
       default: [] 
     },
-    enrollmentData: {
+    enrollments: {
       type: Object,
       default: () => ({})
     },
@@ -294,7 +294,7 @@ Vue.component('show-grades-between-dates', {
       let app = this;
       let list = [];
       let dates = {};
-      let enrollments = this.enrollmentData; 
+      let enrollments = this.enrollments; 
       let enrollment_data = {};
       for (let e = 0; e < enrollments.length; e++) {
         let enrollment = enrollments[e];

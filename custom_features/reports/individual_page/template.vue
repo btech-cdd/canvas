@@ -59,7 +59,7 @@
               <show-grades-between-dates
                 v-if="enrollmentData !== undefined"
                 :user="user"
-                :enrollment-data="enrollmentData"
+                :enrollments="enrollmentData"
                 :user-id="userId"
                 :terms="terms"
                 :IS-TEACHER="IS_TEACHER"
