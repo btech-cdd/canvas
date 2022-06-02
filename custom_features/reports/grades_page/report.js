@@ -63,7 +63,7 @@
                 new Column('To Date', '', 3, true, 'number', true),
                 new Column('Final', '', 3, true, 'number', true),
                 new Column('', '', 12, true, 'number', true),
-                new Column('Last Submission', '', 3, true, 'number', false),
+                new Column('Last Submit', '', 3, true, 'number', false),
                 new Column('In Course', '', true, 3, 'number', false)
                 // new Column('Ungraded', '', true, 3, 'number', false)
               ],
@@ -172,7 +172,6 @@
               student.course_id = course_id;
               student.days_in_course = 0;
               student.days_since_last_submission = 0;
-              student.days_since_last_submission_color = "#fff";
               student.section = "";
               student.grade_to_date = "N/A";
               student.points = 0;
