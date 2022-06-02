@@ -43,7 +43,7 @@
 
         this.APP = new Vue({
           el: '#canvas-individual-report-vue',
-          created: async function () {
+          mounted: async function () {
             let app = this;
             app.loadingProgress = 0;
             let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);

@@ -214,7 +214,7 @@ Vue.component('show-grades-between-dates', {
       ],
     }
   },
-  mounted: async function () {
+  created: async function () {
     this.loadingProgress = 0;
     this.loadingMessage = "Loading Courses";
     this.courses = await this.getCourseData();
