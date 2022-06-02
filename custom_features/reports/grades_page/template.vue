@@ -17,13 +17,15 @@
           </div>
         </div>
         <div>
-          <div 
-            v-for='column in visibleColumns' 
-            style="display: inline-block;"
-            :style="{'width': column.width + 'rem'}"
-            :key='column.name' 
-          >
-            <span><b>{{column.name}}</b></span>
+          <div>
+            <div 
+              v-for='column in visibleColumns' 
+              style="display: inline-block;"
+              :style="{'width': column.width + 'rem'}"
+              :key='column.name' 
+            >
+              <span><b>{{column.name}}</b></span>
+            </div>
           </div>
           <div v-for='student in students' :key='student.user_id'>
             <!--Name-->
