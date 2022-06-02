@@ -1,4 +1,4 @@
-Vue.component('show-student-ind', {
+Vue.component('show-grades-between-dates', {
   template: ` 
     <div>
       <div v-if='loadingAssignments'>
