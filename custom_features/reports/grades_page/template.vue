@@ -51,7 +51,7 @@
                     'background-color': student.grade_to_date < 60 ? colors.red : student.grade_to_date < 80 colors.yellow : colors.green,
                     'color': colors.white,
                   }">
-                  {{gradeText}}
+                  {{student.grade_to_date}}%
                 </span>
               </div>
             </div>
