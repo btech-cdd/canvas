@@ -346,6 +346,7 @@
             },
 
             updateUserCourseInfo(user, tree) {
+              user = bridgetools.processUserData(user, tree); 
               return user;
             },
 
