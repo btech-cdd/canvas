@@ -78,6 +78,7 @@
           data: function () {
             return {
               currentDepartment: null,
+              enrollmentData = undefined,
               userId: null,
               user: {},
               tree: {
@@ -274,6 +275,7 @@
                 }
 
                 let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
+                this.enrollmentData = enrollmentData;
                 for (let e in enrollmentData) {
                   let enrollment = enrollmentData[e];
                   let courseName = "";

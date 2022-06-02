@@ -57,7 +57,9 @@
 
             <div v-if="menu=='period'">
               <show-grades-between-dates
+                v-if="enrollmentData !== undefined"
                 :user="user"
+                :enrollment-data="enrollmentData"
                 :user-id="userId"
                 :terms="terms"
                 :IS-TEACHER="IS_TEACHER"
