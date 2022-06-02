@@ -20,9 +20,8 @@
           <div 
             v-for='column in visibleColumns' 
             style="display: inline-block;"
-            :width="column.width + 'rem'"
+            :style="{'width': column.width + 'rem'}"
             :key='column.name' 
-            :class='column.sortable_type'
           >
             <span><b>{{column.name}}</b></span>
           </div>
@@ -30,9 +29,17 @@
             <!--Name-->
             <div 
               style="display: inline-block"
-              :width="visibleColumns[0].width + 'rem'"
+              :style="{'width': visibleColumns[0].width + 'rem'}"
             >
               student.name 
+            </div>
+            <div 
+              style="display: inline-block"
+              :style="{'width': visibleColumns[0].width + 'rem'}"
+            >
+              <course-progress-bar-ind
+                :progress=""
+                :colors="colors"
             </div>
           </div>
         </div>

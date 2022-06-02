@@ -55,6 +55,7 @@
           data: function () {
             return {
               courseId: null,
+              colors: colors,
               students: [],
               columns: [
                 new Column('Name', '', 6, false, 'string', false, false),
@@ -363,8 +364,10 @@
       },
       _init() {
         this.loadCSS("https://reports.bridgetools.dev/department_report/style/main.css");
-        $.getScript("https://reports.bridgetools.dev/department_report/scripts.js").done(() => {
-          this.postLoad();
+        $.getScript("https://reports.bridgetools.dev/department_report/components/courseProgressBarInd.js").done(function () {
+          $.getScript("https://reports.bridgetools.dev/department_report/scripts.js").done(() => {
+            this.postLoad();
+          });
         });
       },
       loadCSS(url) {
