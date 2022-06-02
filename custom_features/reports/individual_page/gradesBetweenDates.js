@@ -196,7 +196,7 @@ Vue.component('show-student-ind', {
       ],
     }
   },
-  mounted() {
+  mounted: async function () {
     this.loadingProgress = 0;
     this.loadingMessage = "Loading Courses";
     this.courses = await this.getCourseData();
