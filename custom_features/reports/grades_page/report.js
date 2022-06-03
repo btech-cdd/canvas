@@ -60,7 +60,7 @@
                 new Column('Section', '', 10, false, 'string'),
                 new Column('To Date', '', 3, true, 'number'),
                 new Column('Final', '', 3, true, 'number'),
-                new Column('', '', 12, true, 'number'),
+                new Column('Progress Estimate', '', 12, true, 'number'),
                 new Column('Last Submit', '', 3, true, 'number'),
                 new Column('In Course', '', true, 3, 'number')
                 // new Column('Ungraded', '', true, 3, 'number')
@@ -69,7 +69,8 @@
               studentData: [],
               studentsData: {},
               loading: false, //CHANGE: return this to true if this doesn't work
-              menu: ''
+              menu: '',
+              progress_method: "Points"
             }
           },
           computed: {
@@ -127,6 +128,7 @@
             },
             sortColumn(header) {
               let app = this;
+              if (header === "Progress Estimate") header = this.progress_method;
               let name = this.columnNameToCode(header);
               let sortState = 1;
               let sortType = '';
