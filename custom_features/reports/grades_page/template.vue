@@ -40,6 +40,9 @@
               grid-template-columns: 20% 20% 4.5rem 4.5rem 10rem 7rem 5rem;
               font-size: 0.75rem;
             "
+            :style="{
+              'background-color': (i % 2) ? 'white' : '#F8F8F8'
+            }"
             v-for='student, i in students' 
             :key='student.user_id'
           >
