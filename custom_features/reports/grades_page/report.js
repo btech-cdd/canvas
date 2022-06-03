@@ -259,7 +259,7 @@
 
               console.log(student);
               //there might need to be a check to see if this is a numbe
-              if (student.to_date > 0 && student.grade_to_date != null) {
+              if (student.to_date > 0 && student.to_date != null) {
                 student.points = Math.round(student.final / student.to_date * 100);
               }
             },
