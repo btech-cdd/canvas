@@ -9,6 +9,13 @@
         <h5 style='text-align: center;'>Hover over column headers for a description of the information displayed in that
           column.</h5>
         <div>
+          <select v-model="progress_method">
+            <option value="points_weighted">Points - Weighted (Preferred)</option>
+            <option value="points_raw">Points - Raw</option>
+            <option value="submissions">Submissions</option>
+          </select>
+        </div>
+        <div>
           <div
             style="
               display: grid;

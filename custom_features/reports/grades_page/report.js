@@ -70,7 +70,7 @@
               studentsData: {},
               loading: false, //CHANGE: return this to true if this doesn't work
               menu: '',
-              progress_method: "Points Weighted"
+              progress_method: "points_weighted",
             }
           },
           computed: {
