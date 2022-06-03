@@ -37,12 +37,12 @@
             <div 
               style="display: inline-block;;"
             >
-              {{student.name }}
+              {{(student.name.length < 21) ? student.name : student.name.slice(0, 18) + "..." }}
             </div>
             <div 
               style="display: inline-block;"
             >
-              {{student.section}}
+              {{(student.section.length < 21) ? student.section: student.section.slice(0, 18) + "..." }}
             </div>
             <div 
               style="display: inline-block;"
