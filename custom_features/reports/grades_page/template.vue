@@ -37,7 +37,7 @@
             <div 
               style="display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
             >
-              {{student.name.length < 25}}
+              {{student.name}}
             </div>
             <div 
               style="display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
