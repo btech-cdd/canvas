@@ -12,7 +12,7 @@
           <div
             style="
               display: grid;
-              grid-template-columns: 12rem 10rem 5rem 5rem 10rem 7rem 5rem
+              grid-template-columns: 10rem 10rem 5rem 5rem 10rem 7rem 5rem
               font-size: 0.75rem;
             "
           >
@@ -27,7 +27,7 @@
           <div 
             style="
               display: grid;
-              grid-template-columns: 12rem 10rem 5rem 5rem 10rem 7rem 5rem;
+              grid-template-columns: 10rem 10rem 5rem 5rem 10rem 7rem 5rem;
               font-size: 0.75rem;
             "
             v-for='student in students' 
@@ -37,12 +37,12 @@
             <div 
               style="display: inline-block;;"
             >
-              {{(student.name.length < 21) ? student.name : student.name.slice(0, 18) + "..." }}
+              {{(student.name.length < 25) ? student.name : student.name.slice(0, 22) + "..." }}
             </div>
             <div 
               style="display: inline-block;"
             >
-              {{(student.section.length < 21) ? student.section: student.section.slice(0, 18) + "..." }}
+              {{(student.section.length < 25) ? student.section: student.section.slice(0, 22) + "..." }}
             </div>
             <div 
               style="display: inline-block;"
