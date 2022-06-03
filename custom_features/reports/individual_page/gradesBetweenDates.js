@@ -46,7 +46,7 @@ Vue.component('show-grades-between-dates', {
             <tr v-for='course in courses' :key='course.course_id'>
               <td>
                 <a 
-                  :href="\`/courses/${course.course_id}\`"
+                  :href="\`/courses/\${course.course_id}\`"
                   target="_blank"
                 >
                   {{course.name}}
