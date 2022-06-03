@@ -9,7 +9,7 @@
         <h5 style='text-align: center;'>Hover over column headers for a description of the information displayed in that
           column.</h5>
         <div
-          style="display: inline-block; float: left;"
+          style="display: inline-block;"
         >
           <label>Progress Estimation Method</label>
           <select v-model="progress_method">
@@ -19,7 +19,7 @@
           </select>
         </div>
         <div
-          style="display: inline-block; float: left;"
+          style="display: inline-block;"
         >
           <label>Filter by Section</label>
           <select v-model="section_filter">
