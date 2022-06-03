@@ -27,7 +27,7 @@
           <div 
             style="
               display: grid;
-              grid-template-columns: 10rem 5rem 5rem 5rem 10rem 7rem 5rem;
+              grid-template-columns: 10rem 10rem 5rem 5rem 10rem 7rem 5rem;
               font-size: 0.75rem;
             "
             v-for='student in students' 
@@ -35,9 +35,9 @@
           >
             <!--Name-->
             <div 
-              style="display: inline-block;;"
+              style="display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
             >
-              {{(student.name.length < 25) ? student.name : student.name.slice(0, 22) + "..." }}
+              {{student.name.length < 25}}
             </div>
             <div 
               style="display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
