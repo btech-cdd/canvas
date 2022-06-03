@@ -128,8 +128,9 @@
             },
             sortColumn(header) {
               let app = this;
-              if (header === "Progress Estimate") header = this.progress_method;
-              let name = this.columnNameToCode(header);
+              let name;
+              if (header === "Progress Estimate") name = this.columnNameToCode(this.progress_method);
+              else name = this.columnNameToCode(header);
               let sortState = 1;
               let sortType = '';
               for (let c = 0; c < app.columns.length; c++) {
@@ -243,7 +244,6 @@
             },
 
             processEnrollment(student, enrollment) {
-              console.log(student);
               let start_date = Date.parse(enrollment.created_at);
               let now_date = Date.now();
               let diff_time = Math.abs(now_date - start_date);
@@ -259,7 +259,6 @@
               student.to_date = current_score;
               student.final = final_score;
 
-              console.log(student);
               //there might need to be a check to see if this is a numbe
               if (student.to_date > 0 && student.to_date != null) {
                 student.points = Math.round(student.final / student.to_date * 100);
