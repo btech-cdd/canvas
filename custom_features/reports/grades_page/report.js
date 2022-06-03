@@ -241,6 +241,7 @@
             },
 
             processEnrollment(student, enrollment) {
+              console.log(student);
               let start_date = Date.parse(enrollment.created_at);
               let now_date = Date.now();
               let diff_time = Math.abs(now_date - start_date);
@@ -255,6 +256,8 @@
               student.in_course = diff_days;
               student.to_date = current_score;
               student.final = final_score;
+
+              console.log(student);
               //there might need to be a check to see if this is a numbe
               if (student.to_date > 0 && student.grade_to_date != null) {
                 student.points = Math.round(student.final / student.to_date * 100);
