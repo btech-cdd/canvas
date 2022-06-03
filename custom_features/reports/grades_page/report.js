@@ -56,13 +56,13 @@
               colors: bridgetools.colors,
               students: [],
               columns: [
-                new Column('Name', '', 10, false, 'string'),
-                new Column('Section', '', 10, false, 'string'),
-                new Column('To Date', '', 3, true, 'number'),
-                new Column('Final', '', 3, true, 'number'),
-                new Column('Progress Estimate', '', 12, true, 'number'),
-                new Column('Last Submit', '', 3, true, 'number'),
-                new Column('In Course', '', true, 3, 'number')
+                new Column('Name', 'The student\'s name as it appears in Canvas.', 10, false, 'string'),
+                new Column('Section', 'The section in which the student is enrolled in this course.', 10, false, 'string'),
+                new Column('To Date', 'The student\'s grade based on assignments submitted to date.', 3, true, 'number'),
+                new Column('Final', 'The student\'s final grade. All unsubmitted assignments are graded as 0. This is their grade if they were to conclude the course right now.', 3, true, 'number'),
+                new Column('Progress Estimate', 'This is an estimate of the student\'s progress baed on the cirterion selected above.', 12, true, 'number'),
+                new Column('Last Submit', 'The number of days since the student\'s last submission.', 3, true, 'number'),
+                new Column('In Course', 'The number of days since the student began the course.', true, 3, 'number')
                 // new Column('Ungraded', '', true, 3, 'number')
               ],
               sections: [],
