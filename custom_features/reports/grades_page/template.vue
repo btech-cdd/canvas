@@ -89,7 +89,7 @@
               <div 
                 style="display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
               >
-                {{student.name}}
+                <a :href="`courses/${student.course_id}/users/${student.user_id}`">{{student.name}} </a>
               </div>
               <div 
                 style="display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
@@ -117,7 +117,7 @@
                     'background-color': (student.final < 60) ? colors.red : (student.final < 80 ? colors.yellow : colors.green),
                     'color': colors.white,
                   }">
-                  {{student.final }}%
+                  {{student.final}}%
                 </span>
               </div>
               <div 
