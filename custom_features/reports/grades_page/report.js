@@ -317,7 +317,7 @@
                   student.submissions = perc_submitted;
 
 
-                  let perc_points_raw = Math.round((poitns_raw / max_poinst_raw) * 100);
+                  let perc_points_raw = Math.round((poitns_raw / max_points_raw) * 100);
                   if (isNaN(perc_points_raw)) perc_points_raw = 0;
                   student.points_raw = perc_points_raw;
                 });
