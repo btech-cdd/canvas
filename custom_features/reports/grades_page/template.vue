@@ -20,6 +20,7 @@
               v-for='column in visibleColumns' 
               style="display: inline-block;"
               :key='column.name' 
+              @click="sortColumn(column.name)"
             >
               <span><b>{{column.name}}</b></span>
             </div>
@@ -53,7 +54,7 @@
                   'background-color': (student.grade_to_date < 60) ? colors.red : (student.grade_to_date < 80 ? colors.yellow : colors.green),
                   'color': colors.white,
                 }">
-                {{student.grade_to_date}}%
+                {{student.to_date}}%
               </span>
             </div>
             <div 
@@ -65,7 +66,7 @@
                   'background-color': (student.final_grade < 60) ? colors.red : (student.final_grade < 80 ? colors.yellow : colors.green),
                   'color': colors.white,
                 }">
-                {{student.final_grade }}%
+                {{student.final }}%
               </span>
             </div>
             <div 
@@ -81,13 +82,13 @@
               style="display: inline-block;"
             >
               <span 
-                v-if="student.days_since_last_submission !== undefined"
+                v-if="student.last_submit !== undefined"
                 class="btech-pill-text" 
                 :style="{
-                  'background-color': (student.days_since_last_submission >= 10) ? colors.red : (student.days_since_last_submission >= 7 ? colors.yellow : colors.green),
+                  'background-color': (student.last_submit >= 10) ? colors.red : (student.days_since_last_submission >= 7 ? colors.yellow : colors.green),
                   'color': colors.white,
                 }">
-                {{student.days_since_last_submission}} days
+                {{student.last_submit}} days
               </span>
             </div>
             <div 
@@ -99,7 +100,7 @@
                   'background-color': colors.gray,
                   'color': colors.black,
                 }">
-                {{student.days_in_course}} days
+                {{student.in_course}} days
               </span>
             </div>
           </div>

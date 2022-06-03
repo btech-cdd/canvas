@@ -1,6 +1,6 @@
 (function () {
   class Column {
-    constructor(name, description, width, average, sort_type, percent, hideable = true) {
+    constructor(name, description, width, average, sort_type) {
       this.name = name;
       this.description = description;
       this.width = width;
@@ -8,8 +8,6 @@
       this.sort_type = sort_type; //needs to be a result of typeof, probably mostly going to be string or number
       this.sort_state = 0; //becomes 1 or -1 depending on asc or desc
       this.visible = true;
-      this.percent = percent;
-      this.hideable = hideable;
     }
   }
   IMPORTED_FEATURE = {};
@@ -58,14 +56,14 @@
               colors: bridgetools.colors,
               students: [],
               columns: [
-                new Column('Name', '', 10, false, 'string', false, false),
-                new Column('Section', '', 10, false, 'string', false),
-                new Column('To Date', '', 3, true, 'number', true),
-                new Column('Final', '', 3, true, 'number', true),
-                new Column('', '', 12, true, 'number', true),
-                new Column('Last Submit', '', 3, true, 'number', false),
-                new Column('In Course', '', true, 3, 'number', false)
-                // new Column('Ungraded', '', true, 3, 'number', false)
+                new Column('Name', '', 10, false, 'string'),
+                new Column('Section', '', 10, false, 'string'),
+                new Column('To Date', '', 3, true, 'number'),
+                new Column('Final', '', 3, true, 'number'),
+                new Column('', '', 12, true, 'number'),
+                new Column('Last Submit', '', 3, true, 'number'),
+                new Column('In Course', '', true, 3, 'number')
+                // new Column('Ungraded', '', true, 3, 'number')
               ],
               sections: [],
               studentData: [],
@@ -170,12 +168,12 @@
               student.user_id = id;
               student.name = name;
               student.course_id = course_id;
-              student.days_in_course = 0;
-              student.days_since_last_submission = undefined;
+              student.in_course = 0;
+              student.last_submit = undefined;
               student.section = "";
-              student.grade_to_date = "N/A";
+              student.to_date = "N/A";
               student.points = 0;
-              student.final_grade = "N/A";
+              student.final = "N/A";
               student.section = "";
               student.ungraded = 0;
               student.submissions = 0;
@@ -241,36 +239,7 @@
             columnNameToCode(name) {
               return name.toLowerCase().replace(/ /g, "_");
             },
-            getColumnText(column, student) {
-              let text = student[this.columnNameToCode(column.name)];
-              if (column.name === "Name") {
-                text = student.nameHTML;
-              }
-              if (column.percent && !isNaN(text)) {
-                text += "%";
-              }
-              return text;
-            },
-            getBackgroundColor(column, val) {
-              color = "transparent";
-              if (column === "Ungraded") {
-                if (val >= 1 && val <= 10) {
-                  let g = 16 - Math.floor(((val) / 15) * 16);
-                  if (g < 6) g = 6;
-                  color = "#F" + g.toString(16) + "7";
-                }
-                if (val > 21) color = "#F67";
-              }
-              if (column === "Days Since Last Submission") {
-                if (val >= 7 && val <= 21) {
-                  let g = 16 - Math.floor(((val - 6) / 15) * 16);
-                  if (g < 6) g = 6;
-                  color = "#F" + g.toString(16) + "7";
-                }
-                if (val > 21) color = "#F67";
-              }
-              return color;
-            },
+
             processEnrollment(student, enrollment) {
               let start_date = Date.parse(enrollment.created_at);
               let now_date = Date.now();
@@ -283,12 +252,12 @@
               if (final_score === null) final_score = 0;
 
               //update values
-              student.days_in_course = diff_days;
-              student.grade_to_date = current_score;
-              student.final_grade = final_score;
+              student.in_course = diff_days;
+              student.to_date = current_score;
+              student.final = final_score;
               //there might need to be a check to see if this is a numbe
-              if (student.grade_to_date > 0 && student.grade_to_date != null) {
-                student.points = Math.round(student.final_grade / student.grade_to_date * 100);
+              if (student.to_date > 0 && student.grade_to_date != null) {
+                student.points = Math.round(student.final / student.to_date * 100);
               }
             },
 
@@ -340,7 +309,7 @@
                   for (let i = 0; i < progress_per_day_list.length; i++) {
                     sum_progress += progress_per_day_list[i];
                   }
-                  student.days_since_last_submission = most_recent_days;
+                  student.last_submit = most_recent_days;
 
                   let average_progress_per_day = sum_progress / progress_per_day_list.length;
                   let average_days_to_complete = Math.floor(100 / average_progress_per_day);
