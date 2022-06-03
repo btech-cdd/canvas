@@ -73,7 +73,7 @@
               style="display: inline-block"
             >
               <course-progress-bar-ind
-                :progress="student.points"
+                :progress="student[columnNameToCode(progress_method)]"
                 :barwidth="9"
                 :colors="colors"
               ></course-progress-bar-ind>
