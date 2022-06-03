@@ -70,7 +70,7 @@
               studentsData: {},
               loading: false, //CHANGE: return this to true if this doesn't work
               menu: '',
-              progress_method: "Points"
+              progress_method: "Points Weighted"
             }
           },
           computed: {
@@ -175,7 +175,8 @@
               student.last_submit = undefined;
               student.section = "";
               student.to_date = "N/A";
-              student.points = 0;
+              student.points_weighted = 0;
+              student.points_raw = 0;
               student.final = "N/A";
               student.section = "";
               student.ungraded = 0;
@@ -261,7 +262,7 @@
 
               //there might need to be a check to see if this is a numbe
               if (student.to_date > 0 && student.to_date != null) {
-                student.points = Math.round(student.final / student.to_date * 100);
+                student.points_weighted = Math.round(student.final / student.to_date * 100);
               }
             },
 
@@ -275,12 +276,11 @@
                   let most_recent = {};
                   let submitted = 0;
                   let max_submissions = 0;
-                  let progress_per_day = 0;
-                  let progress_per_day_list = [];
+                  let max_poinst_raw = 0;
+                  let points_raw = 0;
                   let start_date = Date.parse(enrollment.created_at);
                   let now_date = Date.now();
                   let diff_time = Math.abs(now_date - start_date);
-                  let diff_days = Math.ceil(diff_time / (1000 * 60 * 60 * 24));
                   let most_recent_time = diff_time;
                   let ungraded = 0;
 
@@ -289,9 +289,12 @@
                     if (assignment.submission !== undefined) {
                       let submitted_at = Date.parse(assignment.submission.submitted_at);
                       if (assignment.points_possible > 0) {
+
                         max_submissions += 1;
+                        max_points_raw += assignment.points_possible;
                         if (assignment.submission.score !== null) {
                           submitted += 1;
+                          points_raw += assignment.points_possible;
                         }
                       }
                       if (assignment.submission.score === null && assignment.submission.submitted_at !== null) {
@@ -304,23 +307,19 @@
                     }
                   }
 
-                  let points = student.points;
                   let most_recent_days = Math.ceil(most_recent_time / (1000 * 60 * 60 * 24));
 
-                  progress_per_day = points / diff_days;
-                  progress_per_day_list.push(progress_per_day);
-                  let sum_progress = 0;
-                  for (let i = 0; i < progress_per_day_list.length; i++) {
-                    sum_progress += progress_per_day_list[i];
-                  }
                   student.last_submit = most_recent_days;
 
-                  let average_progress_per_day = sum_progress / progress_per_day_list.length;
-                  let average_days_to_complete = Math.floor(100 / average_progress_per_day);
                   student.ungraded = ungraded;
                   let perc_submitted = Math.round((submitted / max_submissions) * 100);
                   if (isNaN(perc_submitted)) perc_submitted = 0;
                   student.submissions = perc_submitted;
+
+
+                  let perc_points_raw = Math.round((poitns_raw / max_poinst_raw) * 100);
+                  if (isNaN(perc_points_raw)) perc_points_raw = 0;
+                  student.points_raw = perc_points_raw;
                 });
               } catch (e) {
                 console.log(e);
