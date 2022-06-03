@@ -35,6 +35,7 @@
           </div>
           <div 
             style="
+              padding: .25rem .5rem;
               display: grid;
               grid-template-columns: 20% 20% 4.5rem 4.5rem 10rem 7rem 5rem;
               font-size: 0.75rem;
