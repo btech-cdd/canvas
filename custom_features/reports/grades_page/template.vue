@@ -89,7 +89,8 @@
               <div 
                 style="display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
               >
-                <a :href="`/courses/${student.course_id}/users/${student.user_id}`">{{student.name}} </a>
+                <a :href="`/courses/${student.course_id}/users/${student.user_id}`" target="_blank">{{student.name}} </a>
+                (<a :href="`/courses/${student.course_id}/grades/${student.user_id}`" target="_blank">grades</a>)
               </div>
               <div 
                 style="display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
