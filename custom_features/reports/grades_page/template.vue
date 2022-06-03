@@ -37,10 +37,11 @@
           <div 
             style="
               padding: .25rem .5rem;
-              display: grid;
-              grid-template-columns: 20% 20% 4.5rem 4.5rem 10rem 7rem 5rem;
+              display: flex;
+              flex: 20% 20% 4.5rem 4.5rem 10rem 7rem 5rem;
+              align-items: center;
+              justify-content: center;
               font-size: 0.75rem;
-              margin: auto;
             "
             :style="{
               'background-color': (i % 2) ? 'white' : '#F8F8F8'
