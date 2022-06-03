@@ -129,6 +129,8 @@
 
           methods: {
             close() {
+              console.log("close")
+              let modal = $('#canvas-individual-report-vue');
               modal.hide();
             },
             async loadSettings() {
