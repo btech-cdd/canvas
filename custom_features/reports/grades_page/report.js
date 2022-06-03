@@ -71,6 +71,8 @@
               loading: false, //CHANGE: return this to true if this doesn't work
               menu: '',
               progress_method: "points_weighted",
+              section_names: ['All'],
+              section_filter: 'All'
             }
           },
           computed: {
@@ -178,7 +180,6 @@
               student.points_weighted = 0;
               student.points_raw = 0;
               student.final = "N/A";
-              student.section = "";
               student.ungraded = 0;
               student.submissions = 0;
               //this will probably be deleted, but keeping for reference on how to format in vue
@@ -214,6 +215,9 @@
                 for (let i = 0; i < app.sections.length; i++) {
                   let section = app.sections[i];
                   let studentsData = section.students;
+                  if(app.section_names.contains(section.name) == false) {
+                    app.section_names.append(section.name);
+                  }
                   if (studentsData !== null) {
                     if (studentsData.length > 0) {
                       for (let j = 0; j < studentsData.length; j++) {
@@ -273,7 +277,6 @@
               try {
                 await $.get(url, function (data) {
                   let assignments = data;
-                  let most_recent = {};
                   let submitted = 0;
                   let max_submissions = 0;
                   let max_points_raw = 0;

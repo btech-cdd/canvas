@@ -17,6 +17,12 @@
           </select>
         </div>
         <div>
+          <label>Filter by Section</label>
+          <select v-model="section_filter">
+            <option v-for="section_name in section_names" :value="section_name">section_name</option>
+          </select>
+        </div>
+        <div>
           <div
             style="
               padding: .25rem .5rem;
