@@ -43,81 +43,85 @@
               <span><b>{{column.name}}</b></span>
             </div>
           </div>
-          <div 
-            style="
-              padding: .25rem .5rem;
-              display: grid;
-              grid-template-columns: 20% 20% 4.5rem 4.5rem 10rem 7rem 5rem;
-              align-items: center;
-              font-size: 0.75rem;
-            "
-            :style="{
-              'background-color': (i % 2) ? 'white' : '#F8F8F8'
-            }"
+          <div
             v-for='student, i in students' 
             :key='student.user_id'
           >
-            <!--Name-->
             <div 
-              style="display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
+              v-if="section_filter == 'All' || section_filter == student.section"
+              style="
+                padding: .25rem .5rem;
+                display: grid;
+                grid-template-columns: 20% 20% 4.5rem 4.5rem 10rem 7rem 5rem;
+                align-items: center;
+                font-size: 0.75rem;
+              "
+              :style="{
+                'background-color': (i % 2) ? 'white' : '#F8F8F8'
+              }"
             >
-              {{student.name}}
-            </div>
-            <div 
-              style="display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
-            >
-              {{student.section}}
-            </div>
-            <div 
-              style="display: inline-block;"
-            >
-              <span 
-                class="btech-pill-text" 
-                :style="{
-                  'background-color': (student.to_date < 60) ? colors.red : (student.to_date < 80 ? colors.yellow : colors.green),
-                  'color': colors.white,
-                }">
-                {{student.to_date}}%
-              </span>
-            </div>
-            <div 
-              style="display: inline-block;"
-            >
-              <span 
-                class="btech-pill-text" 
-                :style="{
-                  'background-color': (student.final < 60) ? colors.red : (student.final < 80 ? colors.yellow : colors.green),
-                  'color': colors.white,
-                }">
-                {{student.final }}%
-              </span>
-            </div>
-            <div 
-              style="display: inline-block"
-            >
-              <course-progress-bar-ind
-                :progress="student[columnNameToCode(progress_method)]"
-                :barwidth="9"
-                :colors="colors"
-              ></course-progress-bar-ind>
-            </div>
-            <div 
-              style="display: inline-block;"
-            >
-              <span 
-                v-if="student.last_submit !== undefined"
-                class="btech-pill-text" 
-                :style="{
-                  'background-color': (student.last_submit >= 10) ? colors.red : (student.last_submit >= 7 ? colors.yellow : colors.green),
-                  'color': colors.white,
-                }">
-                {{student.last_submit}} days
-              </span>
-            </div>
-            <div 
-              style="display: inline-block;"
-            >
-              {{student.in_course}} days
+              <!--Name-->
+              <div 
+                style="display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
+              >
+                {{student.name}}
+              </div>
+              <div 
+                style="display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
+              >
+                {{student.section}}
+              </div>
+              <div 
+                style="display: inline-block;"
+              >
+                <span 
+                  class="btech-pill-text" 
+                  :style="{
+                    'background-color': (student.to_date < 60) ? colors.red : (student.to_date < 80 ? colors.yellow : colors.green),
+                    'color': colors.white,
+                  }">
+                  {{student.to_date}}%
+                </span>
+              </div>
+              <div 
+                style="display: inline-block;"
+              >
+                <span 
+                  class="btech-pill-text" 
+                  :style="{
+                    'background-color': (student.final < 60) ? colors.red : (student.final < 80 ? colors.yellow : colors.green),
+                    'color': colors.white,
+                  }">
+                  {{student.final }}%
+                </span>
+              </div>
+              <div 
+                style="display: inline-block"
+              >
+                <course-progress-bar-ind
+                  :progress="student[columnNameToCode(progress_method)]"
+                  :barwidth="9"
+                  :colors="colors"
+                ></course-progress-bar-ind>
+              </div>
+              <div 
+                style="display: inline-block;"
+              >
+                <span 
+                  v-if="student.last_submit !== undefined"
+                  class="btech-pill-text" 
+                  :style="{
+                    'background-color': (student.last_submit >= 10) ? colors.red : (student.last_submit >= 7 ? colors.yellow : colors.green),
+                    'color': colors.white,
+                  }">
+                  {{student.last_submit}} days
+                </span>
+              </div>
+              <div 
+                style="display: inline-block;"
+              >
+                {{student.in_course}} days
+              </div>
             </div>
           </div>
         </div>
