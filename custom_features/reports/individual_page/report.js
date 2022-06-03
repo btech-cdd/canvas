@@ -128,6 +128,9 @@
           },
 
           methods: {
+            close() {
+              modal.hide();
+            },
             async loadSettings() {
               let app = this;
               let settings = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/settings/" + ENV.current_user_id);
