@@ -29,6 +29,7 @@
               v-for='column in visibleColumns' 
               style="display: inline-block;"
               :key='column.name' 
+              :title='column.description'
               @click="sortColumn(column.name)"
             >
               <span><b>{{column.name}}</b></span>
