@@ -40,7 +40,7 @@
               grid-template-columns: 20% 20% 4.5rem 4.5rem 10rem 7rem 5rem;
               font-size: 0.75rem;
             "
-            v-for='student in students' 
+            v-for='student, i in students' 
             :key='student.user_id'
           >
             <!--Name-->
