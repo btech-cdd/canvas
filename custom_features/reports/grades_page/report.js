@@ -216,7 +216,7 @@
                   let section = app.sections[i];
                   let studentsData = section.students;
                   if(app.section_names.includes(section.name) == false) {
-                    app.section_names.append(section.name);
+                    app.section_names.push(section.name);
                   }
                   if (studentsData !== null) {
                     if (studentsData.length > 0) {
