@@ -40,9 +40,9 @@
               {{(student.name.length < 25) ? student.name : student.name.slice(0, 22) + "..." }}
             </div>
             <div 
-              style="display: inline-block;"
+              style="display: inline-block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"
             >
-              {{(student.section.length < 25) ? student.section: student.section.slice(0, 22) + "..." }}
+              {{student.section}}
             </div>
             <div 
               style="display: inline-block;"
