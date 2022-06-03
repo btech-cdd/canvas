@@ -343,7 +343,7 @@ Vue.component('show-grades-between-dates', {
     updateDatesToSelectedTerm() {
       let app = this;
       let term;
-      for (let i = 0; i < app.nerms.length; i++) {
+      for (let i = 0; i < app.terms.length; i++) {
         if (app.terms[i]._id === app.selectedTermId) {
           term = app.terms[i];
         }
