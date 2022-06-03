@@ -8,7 +8,9 @@
         <h5 style='text-align: center;'>Click on column headers to sort by that column.</h5>
         <h5 style='text-align: center;'>Hover over column headers for a description of the information displayed in that
           column.</h5>
-        <div>
+        <div
+          style="display: inline-block; float: left;"
+        >
           <label>Progress Estimation Method</label>
           <select v-model="progress_method">
             <option value="points_weighted">Points - Weighted (Preferred)</option>
@@ -16,7 +18,9 @@
             <option value="submissions">Submissions</option>
           </select>
         </div>
-        <div>
+        <div
+          style="display: inline-block; float: left;"
+        >
           <label>Filter by Section</label>
           <select v-model="section_filter">
             <option v-for="section_name in section_names" :value="section_name">{{section_name}}</option>
