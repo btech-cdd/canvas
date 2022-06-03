@@ -111,14 +111,7 @@
             <div 
               style="display: inline-block;"
             >
-              <span 
-                class="btech-pill-text" 
-                :style="{
-                  'background-color': colors.gray,
-                  'color': colors.black,
-                }">
-                {{student.in_course}} days
-              </span>
+              {{student.in_course}} days
             </div>
           </div>
         </div>
