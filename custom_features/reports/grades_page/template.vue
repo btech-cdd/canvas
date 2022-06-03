@@ -68,7 +68,7 @@
               <span 
                 class="btech-pill-text" 
                 :style="{
-                  'background-color': (student.grade_to_date < 60) ? colors.red : (student.grade_to_date < 80 ? colors.yellow : colors.green),
+                  'background-color': (student.to_date < 60) ? colors.red : (student.to_date < 80 ? colors.yellow : colors.green),
                   'color': colors.white,
                 }">
                 {{student.to_date}}%
@@ -80,7 +80,7 @@
               <span 
                 class="btech-pill-text" 
                 :style="{
-                  'background-color': (student.final_grade < 60) ? colors.red : (student.final_grade < 80 ? colors.yellow : colors.green),
+                  'background-color': (student.final < 60) ? colors.red : (student.final < 80 ? colors.yellow : colors.green),
                   'color': colors.white,
                 }">
                 {{student.final }}%
@@ -102,7 +102,7 @@
                 v-if="student.last_submit !== undefined"
                 class="btech-pill-text" 
                 :style="{
-                  'background-color': (student.last_submit >= 10) ? colors.red : (student.days_since_last_submission >= 7 ? colors.yellow : colors.green),
+                  'background-color': (student.last_submit >= 10) ? colors.red : (student.last_submit >= 7 ? colors.yellow : colors.green),
                   'color': colors.white,
                 }">
                 {{student.last_submit}} days
