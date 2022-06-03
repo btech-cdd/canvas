@@ -40,7 +40,6 @@
               display: grid;
               grid-template-columns: 20% 20% 4.5rem 4.5rem 10rem 7rem 5rem;
               align-items: center;
-              justify-content: center;
               font-size: 0.75rem;
             "
             :style="{
