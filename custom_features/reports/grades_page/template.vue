@@ -27,7 +27,7 @@
           <div 
             style="
               display: grid;
-              grid-template-columns: 9rem 10rem 4rem 4rem 10rem 7rem 5rem;
+              grid-template-columns: 20% 20% 4rem 4rem 10rem 7rem 5rem;
               font-size: 0.75rem;
             "
             v-for='student in students' 
