@@ -276,7 +276,7 @@
                   let most_recent = {};
                   let submitted = 0;
                   let max_submissions = 0;
-                  let max_poinst_raw = 0;
+                  let max_points_raw = 0;
                   let points_raw = 0;
                   let start_date = Date.parse(enrollment.created_at);
                   let now_date = Date.now();
