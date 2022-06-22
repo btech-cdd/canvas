@@ -110,8 +110,8 @@
     </div>
   `;
   //gen an initial uuid
-  let canvasbody = $("#content");
-  canvasbody.before('<div id="canvas-banner-report-vue" style="padding: 1rem;"></div>');
+  let canvasbody = $("#dashboard_header_container");
+  canvasbody.after('<div id="canvas-banner-report-vue" style="padding: 1rem;"></div>');
   $("#canvas-banner-report-vue").append(vueString);
 
   new Vue({
