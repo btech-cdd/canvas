@@ -99,9 +99,9 @@
       <div
         @click="
           let modal = $('#canvas-individual-report-vue');
-          $.post("https://tracking.bridgetools.dev/api/hit", {
-            "tool": "reports-individual_page",
-            "canvasId": ENV.current_user_id
+          $.post('https://tracking.bridgetools.dev/api/hit', {
+            'tool': 'reports-individual_page',
+            'canvasId': ENV.current_user_id
           });
           modal.show();
         "
