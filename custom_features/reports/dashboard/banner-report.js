@@ -20,7 +20,7 @@
         display: grid;
         justify-items: center;
         align-items: center;
-        grid-template-columns: 9rem 9rem 9rem auto 15rem;
+        grid-template-columns: 9rem 9rem 9rem auto 10rem;
         padding: .25rem;
       "
     >
