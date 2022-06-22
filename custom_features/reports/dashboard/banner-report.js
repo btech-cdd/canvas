@@ -21,6 +21,7 @@
         justify-items: center;
         align-items: center;
         grid-template-columns: 20% 20% 20% 40%;
+        padding: .25rem;
       "
     >
       <div
@@ -111,7 +112,7 @@
   `;
   //gen an initial uuid
   let canvasbody = $("#dashboard_header_container");
-  canvasbody.after('<div id="canvas-banner-report-vue" style="padding: 1rem;"></div>');
+  canvasbody.after('<div id="canvas-banner-report-vue"></div>');
   $("#canvas-banner-report-vue").append(vueString);
 
   new Vue({
