@@ -85,7 +85,7 @@
         month: month
       }
 
-      console.log(user.days_since_last_submission);
+      console.log(this.user.days_since_last_submission);
     },
 
     data: function () {
