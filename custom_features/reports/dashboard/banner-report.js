@@ -25,7 +25,7 @@
       "
       class="survey-icon-pair"
       
-      :title="''"
+      :title="'This is your most recent official SAP. It is usually from the previous month.'"
     >
       <div 
         v-if="lastSAPPeriod.sap"
