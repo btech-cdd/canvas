@@ -35,7 +35,7 @@
           row-gap: 0.5rem;
         "
         class="survey-icon-pair"
-        :title="'This is your most recent official SAP. An SAP at or below 100% is preferred. Anything above 150% needs immediate attention.'"
+        :title="'This is your most recent official SAP. An SAP at or below 100% is preferred. Anything above 150% needs immediate attention. Multiple warnings may result in suspension from the program.'"
       >
         <div 
           style="text-align: center; font-size: 1.5rem; border-radius: 2rem; padding: .25rem; color: white;"
