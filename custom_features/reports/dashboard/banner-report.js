@@ -35,7 +35,7 @@
           row-gap: 0.5rem;
         "
         class="survey-icon-pair"
-        :title="'This is your most recent official SAP. It is usually from the previous month.'"
+        :title="'This is your most recent official SAP. An SAP at or below 100% is preferred. Anything above 150% needs immediate attention.'"
       >
         <div 
           style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
