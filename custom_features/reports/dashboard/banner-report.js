@@ -44,6 +44,7 @@
     mounted: async function () {
       try {
         let user = await app.loadUser(app.userId);
+        console.log(user);
         if (user !== "") {
           this.user = user;
         }
