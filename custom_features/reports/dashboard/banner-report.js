@@ -20,7 +20,7 @@
         display: grid;
         justify-items: center;
         align-items: center;
-        grid-template-columns: 20% 20% 20% 30% 10%;
+        grid-template-columns: 20% 20% 20% 10% 30%;
         padding: .25rem;
       "
     >
@@ -98,19 +98,6 @@
         >Days Since Last Submission</span>
       </div>
 
-      <a 
-        style="justify-self: end; align-self: start;"
-        class="btn button-sidebar-wide"
-        @click="
-          let modal = $('#canvas-individual-report-vue');
-          $.post('https://tracking.bridgetools.dev/api/hit', {
-            'tool': 'reports-individual_page',
-            'canvasId': ENV.current_user_id
-          });
-          modal.show();
-        "
-      >Progress Report</a>
-
       <span
         style="
           justify-self: end; 
@@ -125,6 +112,20 @@
           background-color: black;
         "
       >SAP?</span>
+
+      <a 
+        style="justify-self: end; align-self: start;"
+        class="btn button-sidebar-wide"
+        @click="
+          let modal = $('#canvas-individual-report-vue');
+          $.post('https://tracking.bridgetools.dev/api/hit', {
+            'tool': 'reports-individual_page',
+            'canvasId': ENV.current_user_id
+          });
+          modal.show();
+        "
+      >Progress Report</a>
+
     </div>
   `;
   //gen an initial uuid
