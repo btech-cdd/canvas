@@ -65,7 +65,6 @@
     el: '#canvas-banner-report-vue',
     mounted: async function () {
       try {
-        console.log(this.userId);
         let user = await this.loadUser(this.userId);
         this.user = user;
       } catch(err) {
@@ -85,7 +84,6 @@
         month: month
       }
 
-      console.log(this.user.days_since_last_submission);
     },
 
     data: function () {
@@ -112,7 +110,6 @@
 
     methods: {
       close() {
-        console.log("close")
         let modal = $('#canvas-individual-report-vue');
         modal.hide();
       },
@@ -227,7 +224,6 @@
         await $.get("https://reports.bridgetools.dev/api/students/" + userId + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function (data) {
           user = data;
         });
-        console.log(user);
         if (user !== "") {
           user.depts.sort((a, b) => {
             if (a.year == b.year) {
