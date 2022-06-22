@@ -56,7 +56,7 @@
   `;
   //gen an initial uuid
   let canvasbody = $("#content");
-  canvasbody.before('<div id="canvas-banner-report-vue"></div>');
+  canvasbody.before('<div id="canvas-banner-report-vue" style="padding: 1rem;"></div>');
   $("#canvas-banner-report-vue").append(vueString);
 
   new Vue({
