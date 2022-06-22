@@ -21,7 +21,6 @@
         justify-items: center;
         align-items: center;
         grid-template-columns: 20% 20% 20%;
-        row-gap: 0.5rem;
       "
     >
       <div
@@ -96,6 +95,17 @@
           style="text-align: center; width: 8rem;"
         >Days Since Last Submission</span>
       </div>
+
+      <div
+        @click="
+          let modal = $('#canvas-individual-report-vue');
+          $.post("https://tracking.bridgetools.dev/api/hit", {
+            "tool": "reports-individual_page",
+            "canvasId": ENV.current_user_id
+          });
+          modal.show();
+        "
+      >More Information?</div>
     </div>
   `;
   //gen an initial uuid
