@@ -45,13 +45,13 @@
       "
       class="survey-icon-pair"
       
-      :title="''"
+      :title="'This number is a combination of your current SAP and any unrecorded Canvas progress. Keep in mind, progress is only updated for your official SAP at 25% increments, so if you are 45% through a course, that progress will not count towards your SAP. Talk with your instructor for more information.'"
     >
       <div 
         style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
         :style="{'background-color': colors.red}"
       >{{user.sap}}</div>
-      <span>Estimated SAP</span>
+      <span>Estimated Current SAP</span>
     </div>
   `;
   //gen an initial uuid
