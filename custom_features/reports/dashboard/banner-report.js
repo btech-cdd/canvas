@@ -29,37 +29,14 @@
   new Vue({
     el: '#canvas-individual-report-vue',
     mounted: async function () {
-      let app = this;
-      app.loadingProgress = 0;
-      this.IS_TEACHER = IS_TEACHER;
-      // if (!IS_TEACHER) this.menu = 'period';
-      if (IS_TEACHER) { //also change this to ref the url and not whether or not is teacher
-        let match = window.location.pathname.match(/(users|grades)\/([0-9]+)/);
-        this.userId = match[2];
-      } else {
-        this.userId = ENV.current_user_id;
-      }
-
-      this.loadingMessage = "Loading Settings";
-      let settings = await app.loadSettings();
-      app.settings = settings;
-      app.loadingProgress += 10;
-
-      //load data from bridgetools
-      this.loadingMessage = "Loading User Data";
-      //Pulled enrollment data out of loadUser func because it is ready to use for Grades between dates out of the box and doesn't need to wait on all of the other stuff loadUser does
-      let enrollmentData = await app.bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + app.userId);
-      this.enrollmentData = enrollmentData;
       try {
         let user = await app.loadUser(app.userId);
-        app.user = user;
+        this.user = user;
+        console.log(user);
       } catch(err) {
         console.log("FAILED TO LOAD USER");
-        app.user = {};
+        this.user = {};
       }
-      app.loadingProgress += 10;
-      this.loading = false;
-      
     },
 
     data: function () {
