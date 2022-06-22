@@ -44,10 +44,7 @@
     mounted: async function () {
       try {
         let user = await app.loadUser(app.userId);
-        console.log(user);
-        if (user !== "") {
-          this.user = user;
-        }
+        this.user = user;
       } catch(err) {
         console.log("FAILED TO LOAD USER");
       }
