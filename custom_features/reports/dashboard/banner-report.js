@@ -30,7 +30,7 @@
       <div 
         style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
         :style="{'background-color': colors.red}"
-      >{{user.sap}}</div>
+      >{{lastSAPPeriod.sap}}%</div>
       <span>{{MONTH_NAMES_SHORT[lastSAPPeriod.month]}} SAP</span>
     </div>
 
@@ -50,7 +50,7 @@
       <div 
         style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
         :style="{'background-color': colors.red}"
-      >{{user.sap}}</div>
+      >{{user.sap}}%</div>
       <span>Estimated Current SAP</span>
     </div>
   `;
