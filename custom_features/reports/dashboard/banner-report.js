@@ -66,7 +66,7 @@
         "
         class="survey-icon-pair"
         
-        :title="'Current day submissions won't reflect in this number.'"
+        :title="'Current day submissions won\'t reflect in this number.'"
       >
         <div 
           style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
