@@ -92,7 +92,9 @@
           lastSubmission = date;
         }
       }
+      let daysAgo = today - lastSubmission;
       console.log(lastSubmission);
+      console.log(daysAgo);
     },
 
     data: function () {
