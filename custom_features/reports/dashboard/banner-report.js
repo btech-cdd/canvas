@@ -38,7 +38,7 @@
         :title="'This is your most recent official SAP. An SAP at or below 100% is preferred. Anything above 150% needs immediate attention.'"
       >
         <div 
-          style="text-align: center; font-size: 1rem; border-radius: 1rem; padding: .25rem; color: white;"
+          style="text-align: center; font-size: 1.5rem; border-radius: 2rem; padding: .25rem; color: white;"
           :style="{'background-color': lastSAPPeriod.sap >= 150 ? colors.red : lastSAPPeriod.sap > 100 ? colors.yellow : colors.green}"
         >{{lastSAPPeriod.sap}}%</div>
         <span 
@@ -60,7 +60,7 @@
         :title="'This number is a combination of your current SAP and any unrecorded Canvas progress. Keep in mind, progress is only updated for your official SAP at 25% increments, so if you are 20% through a course, that progress is rounded down to 0 for your official SAP. Talk with your instructor for more information.'"
       >
         <div 
-          style="text-align: center; font-size: 1rem; border-radius: 1rem; padding: .25rem; color: white;"
+          style="text-align: center; font-size: 1.5rem; border-radius: 2rem; padding: .25rem; color: white;"
           :style="{'background-color': colors.red}"
           :style="{'background-color': user.sap >= 150 ? colors.red : user.sap > 100 ? colors.yellow : colors.green}"
         >{{user.sap}}%</div>
@@ -86,8 +86,8 @@
           style="
             min-width: 2rem;
             text-align: center;
-            font-size: 1rem;
-            border-radius: 1rem;
+            font-size: 1.5rem;
+            border-radius: 2rem;
             padding: .25rem;
             color: white;
           "
