@@ -14,25 +14,21 @@
   loadCSS("https://reports.bridgetools.dev/style/main.css");
   await $.getScript("https://reports.bridgetools.dev/scripts.js");
   let vueString = `
-    <div
-      id="canvas-banner-report-vue"
+    <span
     >
-      <span
-      >
-      TEST
-      </span>
-      <div
-        style="cursor: help;"
-        class="survey-icon-pair"
-        :title="''"
-      >
-        <div 
-          style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
-          :style="{'background-color': colors.red}"
-        >{{user.sap}}</div>
-        <span>Estimated SAP</span>
-      </div>
-    </div> 
+    TEST
+    </span>
+    <div
+      style="cursor: help;"
+      class="survey-icon-pair"
+      :title="''"
+    >
+      <div 
+        style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
+        :style="{'background-color': colors.red}"
+      >{{user.sap}}</div>
+      <span>Estimated SAP</span>
+    </div>
   `;
   //gen an initial uuid
   let canvasbody = $("#content");
@@ -40,7 +36,7 @@
   $("#canvas-banner-report-vue").append(vueString);
 
   new Vue({
-    el: '#canvas-individual-report-vue',
+    el: '#canvas-banner-report-vue',
     mounted: async function () {
       try {
         let user = await app.loadUser(app.userId);
