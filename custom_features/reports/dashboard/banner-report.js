@@ -112,8 +112,9 @@
       >Progress Report</a>
 
       <span
-        style="justify-self: end; align-self: start;"
         style="
+          justify-self: end; 
+          align-self: start;
           cursor: help;
           min-width: 3rem;
           text-align: center;
