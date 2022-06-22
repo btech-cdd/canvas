@@ -57,7 +57,6 @@
 
       <div
         style="
-        min-width: 1rem;
         cursor: help;
         display: inline-grid;
         justify-items: center;
@@ -70,7 +69,14 @@
         title="Current day submissions won't reflect in this number."
       >
         <div 
-          style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
+          style="
+            min-width: 3rem;
+            text-align: center;
+            font-size: 2rem;
+            border-radius: 2rem;
+            padding: .25rem;
+            color: white;
+          "
           :style="{'background-color': colors.red}"
         >{{user.days_since_last_submission}}</div>
         <span>Days Since Last Submission</span>
