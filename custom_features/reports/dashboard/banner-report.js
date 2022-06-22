@@ -39,7 +39,7 @@
       >
         <div 
           style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
-          :style="{'background-color': colors.red}"
+          :style="{'background-color': lastSAPPeriod.sap >= 150 ? colors.red : lastSAPPeriod.sap > 100 ? colors.yellow : colors.green}"
         >{{lastSAPPeriod.sap}}%</div>
         <span 
           style="text-align: center; width: 8rem;"
@@ -62,6 +62,7 @@
         <div 
           style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
           :style="{'background-color': colors.red}"
+          :style="{'background-color': user.sap >= 150 ? colors.red : user.sap > 100 ? colors.yellow : colors.green}"
         >{{user.sap}}%</div>
         <span 
           style="text-align: center; width: 8rem;"
@@ -90,7 +91,7 @@
             padding: .25rem;
             color: white;
           "
-          :style="{'background-color': colors.red}"
+          :style="{'background-color': user.days_since_last_submission >= 10 ? colors.red : user.days_since_last_submission >= 7 ? colors.yellow : colors.green}"
         >{{user.days_since_last_submission}}</div>
         <span 
           style="text-align: center; width: 8rem;"
