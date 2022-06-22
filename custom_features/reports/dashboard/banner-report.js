@@ -66,12 +66,12 @@
         "
         class="survey-icon-pair"
         
-        :title="'This number is a combination of your current SAP and any unrecorded Canvas progress. Keep in mind, progress is only updated for your official SAP at 25% increments, so if you are 20% through a course, that progress is rounded down to 0 for your official SAP. Talk with your instructor for more information.'"
+        :title="'Current day submissions won't reflect in this number.'"
       >
         <div 
           style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
           :style="{'background-color': colors.red}"
-        >{{user.days_since_last_submission}}%</div>
+        >{{user.days_since_last_submission}}</div>
         <span>Days Since Last Submission</span>
       </div>
     </div>
