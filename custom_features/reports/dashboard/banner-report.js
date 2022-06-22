@@ -87,7 +87,7 @@
       return {
         currentDepartment: null,
         lastSAPPeriod: {},
-        userId: null,
+        userId: ENV.current_user_id,
         user: {
         },
         tree: {
