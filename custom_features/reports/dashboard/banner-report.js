@@ -22,8 +22,8 @@
     </div> 
   `;
   //gen an initial uuid
-  let canvasbody = $("#content-wrapper");
-  canvasbody.prepend('<div id="canvas-banner-report-vue"></div>');
+  let canvasbody = $("#content");
+  canvasbody.before('<div id="canvas-banner-report-vue"></div>');
   $("#canvas-banner-report-vue").append(vueString);
 
   new Vue({
