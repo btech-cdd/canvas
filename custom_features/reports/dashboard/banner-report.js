@@ -108,7 +108,18 @@
           });
           modal.show();
         "
-      >More Information?</a>
+      >Progress Report</a>
+      <a 
+        class="btn button-sidebar-wide"
+        @click="
+          let modal = $('#canvas-individual-report-vue');
+          $.post('https://tracking.bridgetools.dev/api/hit', {
+            'tool': 'reports-individual_page',
+            'canvasId': ENV.current_user_id
+          });
+          modal.show();
+        "
+      >What's SAP?</a>
     </div>
   `;
   //gen an initial uuid
