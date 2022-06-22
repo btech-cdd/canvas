@@ -96,7 +96,8 @@
         >Days Since Last Submission</span>
       </div>
 
-      <div
+      <a 
+        class="btn button-sidebar-wide"
         @click="
           let modal = $('#canvas-individual-report-vue');
           $.post('https://tracking.bridgetools.dev/api/hit', {
@@ -105,7 +106,7 @@
           });
           modal.show();
         "
-      >More Information?</div>
+      >More Information?</a>
     </div>
   `;
   //gen an initial uuid
