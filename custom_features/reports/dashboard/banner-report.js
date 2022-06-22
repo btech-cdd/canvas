@@ -50,7 +50,6 @@
         }
       } catch(err) {
         console.log("FAILED TO LOAD USER");
-        this.user = {};
       }
     },
 
