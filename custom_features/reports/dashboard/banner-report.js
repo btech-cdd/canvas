@@ -20,7 +20,7 @@
         display: grid;
         justify-items: center;
         align-items: center;
-        grid-template-columns: 20% 20% 20%;
+        grid-template-columns: 20% 20% 20% 40%;
       "
     >
       <div
