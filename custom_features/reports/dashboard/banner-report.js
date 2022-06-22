@@ -29,8 +29,8 @@
         style="
           cursor: help;
           display: inline-grid;
-          justify-items: center center center right top;
-          align-items: center center center top right;
+          justify-items: center;
+          align-items: center;
           grid-template-rows: 1 1;
           row-gap: 0.5rem;
         "
@@ -99,6 +99,7 @@
       </div>
 
       <a 
+        style="justify-self: end; align-self: top;"
         class="btn button-sidebar-wide"
         @click="
           let modal = $('#canvas-individual-report-vue');
