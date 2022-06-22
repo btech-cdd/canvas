@@ -89,10 +89,6 @@
         lastSAPPeriod: {},
         userId: null,
         user: {
-          sap: 110,
-          completed_hours: 500,
-          graded_hours: 492,
-
         },
         tree: {
           other: {}
