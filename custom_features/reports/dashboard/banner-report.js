@@ -14,10 +14,6 @@
   loadCSS("https://reports.bridgetools.dev/style/main.css");
   await $.getScript("https://reports.bridgetools.dev/scripts.js");
   let vueString = `
-    <span
-    >
-    TEST
-    </span>
     <div
       style="
       cursor: help;
@@ -48,8 +44,9 @@
     mounted: async function () {
       try {
         let user = await app.loadUser(app.userId);
-        this.user = user;
-        console.log(user);
+        if (user !== "") {
+          this.user = user;
+        }
       } catch(err) {
         console.log("FAILED TO LOAD USER");
         this.user = {};
