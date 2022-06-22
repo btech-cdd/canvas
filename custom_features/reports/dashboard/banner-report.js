@@ -1,7 +1,7 @@
 /*
 */
-console.log("BANNER REPORT")
 (function () {
+  console.log("BANNER REPORT")
   IMPORTED_FEATURE = {};
   if (true) {
     IMPORTED_FEATURE = {
