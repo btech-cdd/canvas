@@ -19,8 +19,16 @@
     TEST
     </span>
     <div
-      style="cursor: help;"
+      style="
+      cursor: help;
+      display: inline-grid;
+      justify-items: center;
+      align-items: center;
+      grid-template-rows: 1 1;
+      row-gap: 0.5rem;
+      "
       class="survey-icon-pair"
+      
       :title="''"
     >
       <div 
