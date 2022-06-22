@@ -80,7 +80,7 @@
         year -= 1;
       }
       this.lastSAPPeriod = {
-        sap: this?.user?.sap_history?.[year]?.[month],
+        sap: Math.round(this?.user?.sap_history?.[year]?.[month]),
         year: year,
         month: month
       }
