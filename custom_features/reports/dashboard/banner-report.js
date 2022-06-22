@@ -63,7 +63,7 @@
     el: '#canvas-banner-report-vue',
     mounted: async function () {
       try {
-        let user = await app.loadUser(app.userId);
+        let user = await this.loadUser(this.userId);
         this.user = user;
       } catch(err) {
         console.log("FAILED TO LOAD USER");
