@@ -14,7 +14,16 @@
   loadCSS("https://reports.bridgetools.dev/style/main.css");
   await $.getScript("https://reports.bridgetools.dev/scripts.js");
   let vueString = `
-    <div>
+    <div
+      v-if="user?.sap"
+      style="
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        grid-template-columns: 20% 20% 20%;
+        row-gap: 0.5rem;
+      "
+    >
       <div
         v-if="lastSAPPeriod.sap"
         style="
