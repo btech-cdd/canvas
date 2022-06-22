@@ -112,7 +112,7 @@
   `;
   //gen an initial uuid
   let canvasbody = $("#dashboard_header_container");
-  canvasbody.after('<div id="canvas-banner-report-vue" style="height:8rem;"></div>');
+  canvasbody.after('<div id="canvas-banner-report-vue"></div>');
   $("#canvas-banner-report-vue").append(vueString);
 
   new Vue({
