@@ -85,16 +85,7 @@
         month: month
       }
 
-      lastSubmission = new Date(this.user.analytics.submissions[0]);
-      for (let i in this.user.analytics.submissions) {
-        let date = new Date(this.user.analytics.submissions[i])
-        if (date > lastSubmission) {
-          lastSubmission = date;
-        }
-      }
-      let daysAgo = Math.round((today - lastSubmission) / (24 * 60 * 60 * 1000));
-      console.log(lastSubmission);
-      console.log(daysAgo);
+      console.log(user.days_since_last_submission);
     },
 
     data: function () {
