@@ -92,7 +92,7 @@
           lastSubmission = date;
         }
       }
-      let daysAgo = (today - lastSubmission) / (24 * 60 * 60 * 1000);
+      let daysAgo = Math.round((today - lastSubmission) / (24 * 60 * 60 * 1000));
       console.log(lastSubmission);
       console.log(daysAgo);
     },
