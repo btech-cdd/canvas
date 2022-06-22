@@ -112,9 +112,10 @@
 
       <span
         style="
+          cursor: help;
           min-width: 3rem;
           text-align: center;
-          font-size: 2rem;
+          font-size: 1rem;
           border-radius: 2rem;
           padding: .25rem;
           color: white;
