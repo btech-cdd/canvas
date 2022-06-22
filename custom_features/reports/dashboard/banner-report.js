@@ -29,8 +29,8 @@
         style="
           cursor: help;
           display: inline-grid;
-          justify-items: center center center top top;
-          align-items: center center center right right;
+          justify-items: center center center right top;
+          align-items: center center center top right;
           grid-template-rows: 1 1;
           row-gap: 0.5rem;
         "
