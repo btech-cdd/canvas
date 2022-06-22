@@ -42,7 +42,7 @@
           :style="{'background-color': lastSAPPeriod.sap >= 150 ? colors.red : lastSAPPeriod.sap > 100 ? colors.yellow : colors.green}"
         >{{lastSAPPeriod.sap}}%</div>
         <span 
-          style="text-align: center; width: 8rem;"
+          style="text-align: center; max-width: 8rem;"
         >{{MONTH_NAMES_SHORT[lastSAPPeriod.month]}} SAP (Official)</span>
       </div>
 
@@ -65,7 +65,7 @@
           :style="{'background-color': user.sap >= 150 ? colors.red : user.sap > 100 ? colors.yellow : colors.green}"
         >{{user.sap}}%</div>
         <span 
-          style="text-align: center; width: 8rem;"
+          style="text-align: center; max-width: 8rem;"
         >Current SAP (Estimate)</span>
       </div>
 
@@ -94,7 +94,7 @@
           :style="{'background-color': user.days_since_last_submission >= 10 ? colors.red : user.days_since_last_submission >= 7 ? colors.yellow : colors.green}"
         >{{user.days_since_last_submission}}</div>
         <span 
-          style="text-align: center; width: 8rem;"
+          style="text-align: center; max-width: 8rem;"
         >Days Since Last Submission</span>
       </div>
 
