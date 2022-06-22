@@ -28,6 +28,27 @@
       :title="''"
     >
       <div 
+        v-if="lastSAPPeriod.sap"
+        style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
+        :style="{'background-color': colors.red}"
+      >{{user.sap}}</div>
+      <span>{{MONTH_NAMES_SHORT[lastSAPPeriod.month]}} SAP</span>
+    </div>
+
+    <div
+      style="
+      cursor: help;
+      display: inline-grid;
+      justify-items: center;
+      align-items: center;
+      grid-template-rows: 1 1;
+      row-gap: 0.5rem;
+      "
+      class="survey-icon-pair"
+      
+      :title="''"
+    >
+      <div 
         style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
         :style="{'background-color': colors.red}"
       >{{user.sap}}</div>
@@ -48,11 +69,25 @@
       } catch(err) {
         console.log("FAILED TO LOAD USER");
       }
+      let today = new Date();
+      let year = today.getFullYear();
+      let month = today.getMonth();
+      month -= 1;
+      if (month < 0) {
+        month += 12;
+        year -= 1;
+      }
+      this.lastSAPPeriod = {
+        sap: this?.user?.sap_history?.[year]?.[month],
+        year: year,
+        month: month
+      }
     },
 
     data: function () {
       return {
         currentDepartment: null,
+        lastSAPPeriod: {},
         userId: null,
         user: {
           sap: 110,
