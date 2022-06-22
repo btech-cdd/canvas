@@ -6,7 +6,7 @@
           <li @click="menu='report'">Student Course Report</li>
           <li @click="menu='hours'">Student Hours Report</li>
           <li @click="menu='period'">Grades Between Dates</li>
-          <li @click="menu='enroll'">HS Enrollment Periods</li>
+          <li v-if="IS_TEACHER" @click="menu='enroll'">HS Enrollment Periods</li>
           <li style='float: right;' v-on:click='close()'>X</li>
         </ul>
       </div>
