@@ -84,6 +84,15 @@
         year: year,
         month: month
       }
+
+      lastSubmission = new Date(this.user.analytics.submissions[0]);
+      for (let i in this.user.analytics.submissions) {
+        let date = new Date(this.user.analytics.submissions[i])
+        if (date > lastSubmission) {
+          lastSubmission = date;
+        }
+      }
+      console.log(lastSubmission);
     },
 
     data: function () {
