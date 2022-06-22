@@ -15,20 +15,19 @@
   await $.getScript("https://reports.bridgetools.dev/scripts.js");
   let vueString = `
     <div
+      v-if="lastSAPPeriod.sap"
       style="
-      cursor: help;
-      display: inline-grid;
-      justify-items: center;
-      align-items: center;
-      grid-template-rows: 1 1;
-      row-gap: 0.5rem;
+        cursor: help;
+        display: inline-grid;
+        justify-items: center;
+        align-items: center;
+        grid-template-rows: 1 1;
+        row-gap: 0.5rem;
       "
       class="survey-icon-pair"
-      
       :title="'This is your most recent official SAP. It is usually from the previous month.'"
     >
       <div 
-        v-if="lastSAPPeriod.sap"
         style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
         :style="{'background-color': colors.red}"
       >{{user.sap}}</div>
