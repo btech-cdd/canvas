@@ -14,7 +14,9 @@
   loadCSS("https://reports.bridgetools.dev/style/main.css");
   await $.getScript("https://reports.bridgetools.dev/scripts.js");
   let vueString = `
-    <div>
+    <div
+      id="canvas-banner-report-vue"
+    >
       <span
       >
       TEST
