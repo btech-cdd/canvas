@@ -99,7 +99,7 @@
       </div>
 
       <a 
-        style="justify-self: end; align-self: top;"
+        style="justify-self: end; align-self: start;"
         class="btn button-sidebar-wide"
         @click="
           let modal = $('#canvas-individual-report-vue');
@@ -112,6 +112,7 @@
       >Progress Report</a>
 
       <span
+        style="justify-self: end; align-self: start;"
         style="
           cursor: help;
           min-width: 3rem;
