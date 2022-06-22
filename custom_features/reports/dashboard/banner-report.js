@@ -32,7 +32,9 @@
           style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
           :style="{'background-color': colors.red}"
         >{{lastSAPPeriod.sap}}%</div>
-        <span width="6rem">{{MONTH_NAMES_SHORT[lastSAPPeriod.month]}} SAP</span>
+        <span 
+          style="text-align: center; width: 6rem;"
+        >{{MONTH_NAMES_SHORT[lastSAPPeriod.month]}} SAP</span>
       </div>
 
       <div
@@ -52,7 +54,9 @@
           style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
           :style="{'background-color': colors.red}"
         >{{user.sap}}%</div>
-        <span width="6rem;">Estimated Current SAP</span>
+        <span 
+          style="text-align: center; width: 6rem;"
+        >Estimated Current SAP</span>
       </div>
 
       <div
@@ -79,7 +83,9 @@
           "
           :style="{'background-color': colors.red}"
         >{{user.days_since_last_submission}}</div>
-        <span widht="6rem">Days Since Last Submission</span>
+        <span 
+          style="text-align: center; width: 6rem;"
+        >Days Since Last Submission</span>
       </div>
     </div>
   `;
