@@ -19,6 +19,17 @@
       >
       TEST
       </span>
+      <div
+        style="cursor: help;"
+        class="survey-icon-pair"
+        :title="''"
+      >
+        <div 
+          style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
+          :style="{'background-color': colors.red}"
+        >{{user.sap}}</div>
+        <span>Estimated SAP</span>
+      </div>
     </div> 
   `;
   //gen an initial uuid
@@ -42,42 +53,17 @@
     data: function () {
       return {
         currentDepartment: null,
-        enrollmentData:  undefined,
         userId: null,
-        user: {},
+        user: {
+          sap: 110,
+          completed_hours: 500,
+          graded_hours: 492,
+
+        },
         tree: {
           other: {}
         },
         colors: bridgetools.colors,
-        settings: {},
-        terms: [],
-        sections: [],
-        loading: true,
-        loadingMessage: "Loading Results...",
-        loadingProgress: 0,
-        accessDenied: false,
-        menu: 'report',
-        IS_TEACHER: false,
-        enrollment_tab: {
-          managedStudent: {},
-          task: 'enroll',
-          schools: [
-            'Sky View',
-            'Cache High',
-            'Bear River',
-            'Box Elder',
-            'Mountain Crest',
-            'Green Canyon',
-            'Logan High',
-            'Ridgeline',
-            'Fast Forward'
-          ],
-          saveTerm: {},
-          studentIdInput: '',
-          studentsFound: [],
-          studentsNotFound: [],
-          dept: '',
-        }
       }
     },
 
