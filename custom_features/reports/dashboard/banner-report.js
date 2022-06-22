@@ -11,7 +11,7 @@
     head.insertBefore(style, head.firstChild);
   }
   await $.put("https://reports.bridgetools.dev/gen_uuid?requester_id=" + ENV.current_user_id);
-  app.loadCSS("https://reports.bridgetools.dev/style/main.css");
+  loadCSS("https://reports.bridgetools.dev/style/main.css");
   await $.getScript("https://reports.bridgetools.dev/scripts.js");
   let vueString = `
     <div>
