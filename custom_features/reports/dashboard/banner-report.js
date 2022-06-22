@@ -1,5 +1,6 @@
 /*
 */
+console.log("BANNER REPORT")
 (function () {
   IMPORTED_FEATURE = {};
   if (true) {
@@ -11,6 +12,7 @@
           <div>
             <span
             >
+            TEST
             </span>
           </div> 
         `;
