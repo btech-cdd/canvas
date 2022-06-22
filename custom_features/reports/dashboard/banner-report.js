@@ -57,6 +57,7 @@
 
       <div
         style="
+        min-width: 1rem;
         cursor: help;
         display: inline-grid;
         justify-items: center;
