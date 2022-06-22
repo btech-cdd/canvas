@@ -20,7 +20,7 @@
         display: grid;
         justify-items: center;
         align-items: center;
-        grid-template-columns: 20% 20% 20% 40%;
+        grid-template-columns: 20% 20% 20% 30% 10%;
         padding: .25rem;
       "
     >
@@ -98,31 +98,29 @@
         >Days Since Last Submission</span>
       </div>
 
-      <div>
-        <a 
-          class="btn button-sidebar-wide"
-          @click="
-            let modal = $('#canvas-individual-report-vue');
-            $.post('https://tracking.bridgetools.dev/api/hit', {
-              'tool': 'reports-individual_page',
-              'canvasId': ENV.current_user_id
-            });
-            modal.show();
-          "
-        >Progress Report</a>
-        <br>
-        <a 
-          class="btn button-sidebar-wide"
-          @click="
-            let modal = $('#canvas-individual-report-vue');
-            $.post('https://tracking.bridgetools.dev/api/hit', {
-              'tool': 'reports-individual_page',
-              'canvasId': ENV.current_user_id
-            });
-            modal.show();
-          "
-        >What's SAP?</a>
-      </div>
+      <a 
+        class="btn button-sidebar-wide"
+        @click="
+          let modal = $('#canvas-individual-report-vue');
+          $.post('https://tracking.bridgetools.dev/api/hit', {
+            'tool': 'reports-individual_page',
+            'canvasId': ENV.current_user_id
+          });
+          modal.show();
+        "
+      >Progress Report</a>
+
+      <span
+        style="
+          min-width: 3rem;
+          text-align: center;
+          font-size: 2rem;
+          border-radius: 2rem;
+          padding: .25rem;
+          color: white;
+          background-color: black;
+        "
+      >SAP?</span>
     </div>
   `;
   //gen an initial uuid
