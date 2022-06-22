@@ -3,8 +3,8 @@
     <div class='btech-modal-content'>
       <div class="btech-tabs">
         <ul>
-          <li @click="menu='report'">Student Course Report</li>
-          <li @click="menu='hours'">Student Hours Report</li>
+          <li @click="menu='report'">Progress Report</li>
+          <li @click="menu='hours'">Hours Report</li>
           <li @click="menu='period'">Grades Between Dates</li>
           <li v-if="IS_TEACHER" @click="menu='enroll'">HS Enrollment Periods</li>
           <li style='float: right;' v-on:click='close()'>X</li>
