@@ -14,44 +14,46 @@
   loadCSS("https://reports.bridgetools.dev/style/main.css");
   await $.getScript("https://reports.bridgetools.dev/scripts.js");
   let vueString = `
-    <div
-      v-if="lastSAPPeriod.sap"
-      style="
+    <div>
+      <div
+        v-if="lastSAPPeriod.sap"
+        style="
+          cursor: help;
+          display: inline-grid;
+          justify-items: center;
+          align-items: center;
+          grid-template-rows: 1 1;
+          row-gap: 0.5rem;
+        "
+        class="survey-icon-pair"
+        :title="'This is your most recent official SAP. It is usually from the previous month.'"
+      >
+        <div 
+          style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
+          :style="{'background-color': colors.red}"
+        >{{lastSAPPeriod.sap}}%</div>
+        <span>{{MONTH_NAMES_SHORT[lastSAPPeriod.month]}} SAP</span>
+      </div>
+
+      <div
+        style="
         cursor: help;
         display: inline-grid;
         justify-items: center;
         align-items: center;
         grid-template-rows: 1 1;
         row-gap: 0.5rem;
-      "
-      class="survey-icon-pair"
-      :title="'This is your most recent official SAP. It is usually from the previous month.'"
-    >
-      <div 
-        style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
-        :style="{'background-color': colors.red}"
-      >{{lastSAPPeriod.sap}}%</div>
-      <span>{{MONTH_NAMES_SHORT[lastSAPPeriod.month]}} SAP</span>
-    </div>
-
-    <div
-      style="
-      cursor: help;
-      display: inline-grid;
-      justify-items: center;
-      align-items: center;
-      grid-template-rows: 1 1;
-      row-gap: 0.5rem;
-      "
-      class="survey-icon-pair"
-      
-      :title="'This number is a combination of your current SAP and any unrecorded Canvas progress. Keep in mind, progress is only updated for your official SAP at 25% increments, so if you are 20% through a course, that progress is rounded down to 0 for your official SAP. Talk with your instructor for more information.'"
-    >
-      <div 
-        style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
-        :style="{'background-color': colors.red}"
-      >{{user.sap}}%</div>
-      <span>Estimated Current SAP</span>
+        "
+        class="survey-icon-pair"
+        
+        :title="'This number is a combination of your current SAP and any unrecorded Canvas progress. Keep in mind, progress is only updated for your official SAP at 25% increments, so if you are 20% through a course, that progress is rounded down to 0 for your official SAP. Talk with your instructor for more information.'"
+      >
+        <div 
+          style="text-align: center; font-size: 2rem; border-radius: 2rem; padding: .25rem; color: white;"
+          :style="{'background-color': colors.red}"
+        >{{user.sap}}%</div>
+        <span>Estimated Current SAP</span>
+      </div>
     </div>
   `;
   //gen an initial uuid
