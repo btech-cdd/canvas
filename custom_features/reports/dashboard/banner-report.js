@@ -111,6 +111,7 @@
           color: white;
           background-color: black;
         "
+        title="SAP is equal to the number of enrolled hours divided by the number of course hours completed. An SAP of 100% or below is preferred. 150% or above will result in a warning."
       >SAP?</span>
 
       <a 
