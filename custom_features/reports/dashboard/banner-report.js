@@ -43,7 +43,7 @@
         >{{lastSAPPeriod.sap}}%</div>
         <span 
           style="text-align: center; width: 8rem;"
-        >{{MONTH_NAMES_SHORT[lastSAPPeriod.month]}} SAP</span>
+        >{{MONTH_NAMES_SHORT[lastSAPPeriod.month]}} SAP (Official)</span>
       </div>
 
       <div
@@ -66,7 +66,7 @@
         >{{user.sap}}%</div>
         <span 
           style="text-align: center; width: 8rem;"
-        >Estimated Current SAP</span>
+        >Current SAP (Estimate)</span>
       </div>
 
       <div
