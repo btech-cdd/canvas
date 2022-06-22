@@ -110,6 +110,7 @@
             modal.show();
           "
         >Progress Report</a>
+        <br>
         <a 
           class="btn button-sidebar-wide"
           @click="
