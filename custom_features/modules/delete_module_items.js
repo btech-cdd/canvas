@@ -34,6 +34,11 @@ addToModuleMenu("Delete Content", "Delete all content from the course.", async (
               await $.delete(moduleItem.html_url.replace('module_item_redirect', `modules/${moduleItem.module_id}/items`));
               return;
           },
+          'ExternalTool': async (moduleItem) => {
+              //do nothing, this will get deleted when module is deleted
+              await $.delete(moduleItem.html_url);
+              return;
+          },
           'Page': async (moduleItem) => {
               await $.delete(moduleItem.url);
               return;
