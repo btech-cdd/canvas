@@ -7,7 +7,6 @@
 (function () {
   IMPORTED_FEATURE = {};
   if (true) {
-    console.log("report!")
     IMPORTED_FEATURE = {
       initiated: false,
       async postLoad() {
@@ -69,6 +68,25 @@
             try {
               let user = await app.loadUser(app.userId);
               app.user = user;
+              if (user.enrollment_type == 'HS') {
+                $("#content").prepend(`
+                  <div style="background-color: white; position:relative; left: 0; bottom: 0;" class="ic-notification ic-notification--danger">
+                    <div class="ic-notification__icon" role="presentation">
+                      <i class="icon-info"></i>
+                      <span class="screenreader-only">
+                        information
+                      </span>
+                    </div>
+                    <div class="ic-notification__content">
+                      <div class="ic-notification__message">
+                        <h4 class="ic-notification__title">
+                          High School Students!
+                        </h4>
+                        <span class="notification_message">The grade here may <strong>NOT</strong> be your final grade for the term. Your final grade will be based on only the assignments submitted during the term and may take into account other factors such as the ammount of work you completed. Contact your instructor if you have questions about how your grade will be calculated.</span></div>
+                    </div>
+                  </div>
+                `);
+              }
             } catch(err) {
               console.log("FAILED TO LOAD USER");
               app.user = {};
