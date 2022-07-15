@@ -7,10 +7,10 @@
 (function () {
   IMPORTED_FEATURE = {};
   if (true) {
+    console.log("report!")
     IMPORTED_FEATURE = {
       initiated: false,
       async postLoad() {
-        console.log("LOAD");
         let app = this;
         let vueString = '';
         //gen an initial uuid
