@@ -159,7 +159,10 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
         //GENERAL FEATURES
         // feature("reports/dashboard/banner-report", {}, /^\/$/);
         if (!IS_TEACHER) {
-          feature("reports/individual_page/report", {}, [/^\/$/]);
+          feature("reports/individual_page/report", {}, [
+            /^\/$/,
+            /^\/courses\/[0-9]+\/grades$/
+          ]);
         }
         if (IS_TEACHER) {
           feature("reports/grades_page/report", {}, /^\/courses\/[0-9]+\/gradebook$/);
