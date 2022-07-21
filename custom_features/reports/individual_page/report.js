@@ -348,6 +348,7 @@
     });
   }
   
+  //Confirm with Instructional Team before going live
   try {
     let user = await bridgetoolsReq(`https://reports.bridgetools.dev/api/students/${ENV.current_user_id}`);
     if (user?.enrollment_type == 'HS' && false) {
