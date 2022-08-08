@@ -28,7 +28,7 @@ function plusDivs(n) {
 }
 
 function showSlide() {
-  let x = document.getElementsByClassName("mySlides");
+  let x = document.getElementsByClassName("btech-banner-slide");
   for (let i = 0; i < x.length; i++) {
     x[i].style.display = "none";
   }
