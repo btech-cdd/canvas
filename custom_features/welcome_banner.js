@@ -20,19 +20,20 @@ main.prepend(`
   </div>
 `);
 var slideIndex = 1;
-showDivs(slideIndex);
+showSlide();
 
 function plusDivs(n) {
-  showDivs(slideIndex += n);
+  slideIndex += n;
+  showSlide();
 }
 
-function showDivs(n) {
+function showDivs() {
   var i;
-  var x = document.getElementsByClassName("btech-banner-slide");
-  if (n > x.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = x.length}
+  var x = document.getElementsByClassName("mySlides");
   for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
+    x[i].style.display = "none";
   }
-  x[slideIndex-1].style.display = "block";  
+  if (slideIndex > x.length) {slideIndex = 1}
+  x[slideIndex-1].style.display = "block";
+  setTimeout(() => { slideIndex += 1; showSlide(); }, 2000); // Change image every 2 seconds
 }
