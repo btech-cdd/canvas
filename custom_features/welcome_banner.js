@@ -6,9 +6,16 @@ main.prepend(`
     <div
       class="btech-banner-slide"
     >
-    <a href="/courses/480103" target="_blank">
-      <img src="` + SOURCE_URL + `/media/small_orientation_banner.png">
-    </a>
+      <a href="/courses/480103" target="_blank">
+        <img src="` + SOURCE_URL + `/media/small_orientation_banner.png">
+      </a>
+    </div>
+    <div
+      class="btech-banner-slide"
+    >
+      <a href="https://btech.edu/community-resource-page/" target="_blank">
+        <img src="` + SOURCE_URL + `/media/student-resources.png">
+      </a>
     </div>
   </div>
 `);
