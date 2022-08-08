@@ -35,5 +35,6 @@ function showSlide() {
   if (slideIndex > x.length) {slideIndex = 1}
   if (slideIndex < 0) {x.length - 1}
   x[slideIndex-1].style.display = "block";
+  if (IS_CDD)
   setTimeout(() => { slideIndex += 1; showSlide(); }, 5000); // Change image every 2 seconds
 }
