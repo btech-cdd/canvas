@@ -28,12 +28,12 @@ function plusDivs(n) {
 }
 
 function showDivs() {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  for (i = 0; i < x.length; i++) {
+  let x = document.getElementsByClassName("mySlides");
+  for (let i = 0; i < x.length; i++) {
     x[i].style.display = "none";
   }
   if (slideIndex > x.length) {slideIndex = 1}
+  if (slideIndex < 0) {x.length - 1}
   x[slideIndex-1].style.display = "block";
   setTimeout(() => { slideIndex += 1; showSlide(); }, 2000); // Change image every 2 seconds
 }
