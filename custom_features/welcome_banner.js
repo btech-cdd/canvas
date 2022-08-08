@@ -27,7 +27,7 @@ function plusDivs(n) {
   showSlide();
 }
 
-function showDivs() {
+function showSlide() {
   let x = document.getElementsByClassName("mySlides");
   for (let i = 0; i < x.length; i++) {
     x[i].style.display = "none";
