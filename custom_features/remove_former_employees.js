@@ -9,7 +9,7 @@
                 <div class='btech-modal-content-inner'>
                     <div id="unenroll-progress-message"></div>
                     <div id="unenroll-progress-bar">You are about to unenroll this user from all courses in which they are a Teacher or a TA. Are you sure this is what you want to do?</div>
- <div id='unenroll-progress-bar-buttons' style='width: 100%; text-align: center;'><button class='yes btn button-sidebar-wide'>Yes</button><button class='no btn button-sidebar-wide'>No</button></div>
+                    <div id='unenroll-progress-bar-buttons' style='width: 100%; text-align: center;'><button class='yes btn button-sidebar-wide'>Yes</button><button class='no btn button-sidebar-wide'>No</button></div>
                 </div>
             </div>
         </div>
@@ -32,7 +32,11 @@
             $("#unenroll-progress-message").html("Unenrolling user. Do <strong>NOT</strong> close the page.")
             for (let e in enrollments) {
                 let enrollment = enrollments[e];
-                await $.delete("/api/v1/courses/" + enrollment.course_id + "/enrollments/" + enrollment.id +"?task=deactivate");
+                try {
+                  await $.delete("/api/v1/courses/" + enrollment.course_id + "/enrollments/" + enrollment.id +"?task=deactivate");
+                } catch(err) {
+                  console.log(err);
+                }
                 finishedCount += 1;
                 $("#unenroll-progress-bar").progressbar({
                     value: (finishedCount / totalCount) * 100
