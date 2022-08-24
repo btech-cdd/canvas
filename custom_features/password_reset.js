@@ -30,7 +30,7 @@
     }
   });
 
-  tempPasswordSendButton.click(function() {
+  tempPasswordSendButton.click(async function() {
     let match = window.location.pathname.match(/(users|grades)\/([0-9]+)/);
     let userId = match[2];
     let users = await canvasGet(`/api/v1/users/${userId}`);
