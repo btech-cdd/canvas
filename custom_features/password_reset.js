@@ -57,7 +57,7 @@
       }
     });
     let res = await $.post("https://canvas.bridgetools.dev/api/temp_password", body);
-    if (res.status == 'success') alert("Temporary Password successfully sent. Remind user to check their spam.");
+    if (res.status == 'success') alert(`Temporary Password set to: ${password} Remind the user to check their spam.`);
     if (res.status == 'fail') alert("Failed to send!");
     console.log(res);
   });
