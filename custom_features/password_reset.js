@@ -51,6 +51,7 @@
         password: password
       }
     });
-    await $.post("https://canvas.bridgetools.dev/api/temp_password", body);
+    let res = await $.post("https://canvas.bridgetools.dev/api/temp_password", body);
+    console.log(res);
   });
 })();
