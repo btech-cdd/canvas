@@ -46,7 +46,11 @@
       username: login.unique_id,
       name: user.name
     }
-    await $.put(`/api/v1/accounts/3/logins/${login.id}?password=${password}`);
+    await $.put(`/api/v1/accounts/3/logins/${login.id}`, {
+      login: {
+        password: password
+      }
+    });
     await $.post("https://canvas.bridgetools.dev/api/temp_password", body);
   });
 })();
