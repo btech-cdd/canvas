@@ -15,9 +15,7 @@
     menu_bar = $("#right-side div").first();
   }
   passwordResetButton.append('<i class="icon-gradebook"></i>Password Reset');
-  tempPasswordSendButton.append('<i class="icon-forward"></i>Send Temp Password');
   passwordResetButton.appendTo(menu_bar);
-  tempPasswordSendButton.appendTo(menu_bar);
   passwordResetButton.click(function () {
     let resetPassword = confirm("Send this user a password reset email?");
     if (resetPassword) {
@@ -29,6 +27,11 @@
       });
     }
   });
+
+  if (IS_CDD) {
+    tempPasswordSendButton.append('<i class="icon-forward"></i>Send Temp Password');
+    tempPasswordSendButton.appendTo(menu_bar);
+  }
 
   tempPasswordSendButton.click(async function() {
     let match = window.location.pathname.match(/(users|grades)\/([0-9]+)/);
