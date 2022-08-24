@@ -31,6 +31,8 @@
   if (IS_CDD) {
     tempPasswordSendButton.append('<i class="icon-forward"></i>Send Temp Password');
     tempPasswordSendButton.appendTo(menu_bar);
+  } else {
+    tempPasswordSendButton.remove();
   }
 
   tempPasswordSendButton.click(async function() {
