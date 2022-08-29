@@ -351,7 +351,7 @@
   //Confirm with Instructional Team before going live
   try {
     let user = await bridgetoolsReq(`https://reports.bridgetools.dev/api/students/${ENV.current_user_id}`);
-    if (user?.enrollment_type == 'HS' && false) {
+    if (user?.enrollment_type == 'HS') {// && false) {
       $("#content").prepend(`
         <div style="background-color: white; position:relative; left: 0; bottom: 0;" class="ic-notification ic-notification--danger">
           <div class="ic-notification__icon" role="presentation">

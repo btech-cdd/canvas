@@ -200,7 +200,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             feature('modules/convert_to_page');
             // feature('instructional/glossary');
             //COURSE SPECIFIC FEATURES
-            featurePilot("rubrics/gen_comment", CURRENT_COURSE_ID, [489089]); //Micro Controllers I
             //DEPARTMENT SPECIFIC IMPORTS
 
             if (CURRENT_DEPARTMENT_ID == 4218) { // DATA ANALYTICS
@@ -235,18 +234,17 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             }
             if (CURRENT_DEPARTMENT_ID === 3837) { //auto collision
               feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
-              feature("rubrics/self_graded", {}, [/^\/courses\/[0-9]+\/gradebook\/speed_grader/, /courses\/([0-9]+)\/assignments\/([0-9]+)/]);
             }
             if (CURRENT_DEPARTMENT_ID === 3840 || CURRENT_DEPARTMENT_ID === 3839) { //media design & drafting
             }
             if (CURRENT_DEPARTMENT_ID === 3841 || CURRENT_DEPARTMENT_ID === 3947) { //cosmetology && master esthetics
-              feature("department_specific/esthetics_cosmetology_services");
+              // feature("department_specific/esthetics_cosmetology_services");
             }
             if (CURRENT_DEPARTMENT_ID === 3848) { //Interior Design
               feature("grades_page/default_include_ungraded_assignments", {}, /^\/courses\/[0-9]+\/grades/);
             }
             if (CURRENT_DEPARTMENT_ID === 3820) { //Web & Mobile
-              externalFeature("https://bridgerland-web-dev.github.io/html_practice/html_practice.js", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/)
+              // externalFeature("https://bridgerland-web-dev.github.io/html_practice/html_practice.js", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/)
             }
             if (CURRENT_DEPARTMENT_ID === 3883) { //Diesel
               feature("department_specific/diesel-page-turner", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
