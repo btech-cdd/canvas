@@ -35,20 +35,6 @@
     tempPasswordSendButton.remove();
   }
 
-  let loadBar = $(`
-  <div class='btech-modal' style='display: inline-block;'>
-      <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
-      <div class='btech-modal-content' style='max-width: 500px;'>
-          <div class='btech-modal-content-inner'>
-              <div id="unenroll-progress-message"></div>
-              <div id="unenroll-progress-bar">You are about to unenroll this user from all courses in which they are a Teacher or a TA. Are you sure this is what you want to do?</div>
-              <div id='unenroll-progress-bar-buttons' style='width: 100%; text-align: center;'><button class='yes btn button-sidebar-wide'>Yes</button><button class='no btn button-sidebar-wide'>No</button></div>
-          </div>
-      </div>
-  </div>
-  `);
-
-  $("body").append(loadBar);
   tempPasswordSendButton.click(async function() {
     let match = window.location.pathname.match(/(users|grades)\/([0-9]+)/);
     let userId = match[2];
