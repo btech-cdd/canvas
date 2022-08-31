@@ -117,9 +117,9 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
   */
 
 
-  feature("login_page", {}, /^\/login/);
 
   $.getScript("https://bridgetools.dev/canvas/scripts.js").done(function() {
+    feature("login_page", {}, /^\/login/);
 
     //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
     feature('conversations/open_conversation', {}, /^\/conversations/);
