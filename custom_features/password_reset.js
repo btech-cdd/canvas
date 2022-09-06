@@ -57,7 +57,7 @@
       }
     });
     window.open(`
-      mailto:${user.email}?subject=Temporary%3ACanvas%3APassword&body=Username%3A+${user.login.unique_id}%0D%0APassword%3A+${password}%0D%0APlease+reset+your+password+after+you+successfully+log+in.
+      mailto:${user.email}?subject=Temporary%3ACanvas%3APassword&body=Username%3A+${login.unique_id}%0D%0APassword%3A+${password}%0D%0APlease+reset+your+password+after+you+successfully+log+in.
     `)
     // let res = await $.post("https://canvas.bridgetools.dev/api/temp_password", body);
     // if (res.status == 'success') alert(`Temporary Password set to: ${password} Remind the user to check their spam.`);
