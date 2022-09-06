@@ -1,5 +1,6 @@
 .btech-sections .sections-header {
   text-align: center;
+  height: 0;
 }
 .btech-sections .btech-sections-header .btech-sections-header-content {
   position: relative; 
@@ -14,7 +15,6 @@
 h2.icon-header {
   position: relative;
   text-align: center;
-  height: 0;
 }
 
 h2.icon-header::before {
