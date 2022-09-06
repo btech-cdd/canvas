@@ -183,7 +183,7 @@
             //alternate background color
             let bgColor = "#fff";
             if (alt) {
-              bgColor = "#eaeaea";
+              bgColor = "#f6f6f6";
             }
             alt = !alt;
             let header = $(children[headerNum]);
