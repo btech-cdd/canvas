@@ -59,10 +59,11 @@
     window.open(`
       mailto:${user.email}?subject=Temporary Canvas Password&body=Username%3A ${login.unique_id}%0D%0APassword%3A ${password}%0D%0APlease reset your password after you successfully log in.
     `)
+    //Used to send an email from server, but was getting blocked even more than Canvas.
     // let res = await $.post("https://canvas.bridgetools.dev/api/temp_password", body);
     // if (res.status == 'success') alert(`Temporary Password set to: ${password} Remind the user to check their spam.`);
     // if (res.status == 'fail') alert("Failed to send!");
-    console.log(res);
+    // console.log(res);
   });
 
   let channels = await canvasGet(`/api/v1/users/${ENV.USER_ID}/communication_channels`);

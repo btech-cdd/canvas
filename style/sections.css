@@ -8,7 +8,7 @@
   background-color: var(--btech-theme-header-background-color);
   color: var(--btech-theme-header-color);
   border-radius: 10px;
-  box-shadow: 0 4px 2px -2px #888;
+  /* box-shadow: 0 4px 2px -2px #888; */
 }
 
 h2.icon-header {
