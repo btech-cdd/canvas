@@ -61,4 +61,23 @@
     if (res.status == 'fail') alert("Failed to send!");
     console.log(res);
   });
+
+  let channels = await canvasGet(`/api/v1/users/${ENV.USER_ID}/communication_channels`);
+
+  $("#name_and_email .user_details tr").each(function() {
+      let row = $(this);
+      let h = row.find("th").text().toLowerCase();
+      if (h.includes("email")) {
+          let emailCell = row.find("td")
+          let email = emailCell.text().toLowerCase();
+          for (let c in channels) {
+              let channel = channels[c];
+              if (email == channel.address.toLowerCase()) {
+                  if (channel.workflow_state == "unconfirmed") {
+                      emailCell.append(`<i title="Email unconfirmed. Contact CDD for help. If admin: confirm with user email is correct, then act as user and confirm email." style="cursor: help; color: red; padding-left: 1rem;" class="icon-warning"></i>`);
+                  }
+              }
+          }
+      }
+  });
 })();
