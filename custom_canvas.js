@@ -130,9 +130,10 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
         feature('quizzes/show_analytics', {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+/);
         feature("modules/show_undelete", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
         feature("kaltura/showInfo", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      } else {
+        feature("check_linked_item_completed", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
       }
     }
-    feature("check_linked_item_completed", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
 
     //TOOLBAR FEATURES
     $.getScript("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js").done(function () {
