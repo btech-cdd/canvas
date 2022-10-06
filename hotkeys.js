@@ -1,4 +1,31 @@
 //UNUSED
+//FROM https://github.com/jeresig/jquery.hotkeys
+/*jslint browser: true*/
+/*jslint jquery: true*/
+
+/*
+ * jQuery Hotkeys Plugin
+ * Copyright 2010, John Resig
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ *
+ * Based upon the plugin by Tzury Bar Yochay:
+ * https://github.com/tzuryby/jquery.hotkeys
+ *
+ * Original idea by:
+ * Binny V A, http://www.openjs.com/scripts/events/keyboard_shortcuts/
+ */
+
+/*
+ * One small change is: now keys are passed by object { keys: '...' }
+ * Might be useful, when you want to pass some other data to your handler
+ */
+
+
+/*
+ * CURRENTLY IN USE
+ * ctrl+shift+f : opens the create new flag modal in the flags feature
+ * 
+ */
 (function (jQuery) {
   jQuery.hotkeys = {
     version: "0.2.0",
