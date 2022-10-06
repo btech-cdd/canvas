@@ -67,6 +67,7 @@
             <div class='btech-modal-content-inner'>
               <h2><a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id">{{currentAssignment.name}}</a></h2>
               <div v-if='getFilteredSubmissions(submissions).length > 0'>
+                <div>
 
                 <div class="submission-row" v-for='submission in getFilteredSubmissions(submissions)'>
                   <div class='icon-container'>
@@ -78,7 +79,13 @@
                     </a>
                   </div>
                   <span>
-                    {{submission.user.name}} ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%) - {{getSubmissionDate(submission)}}
+                    {{submission.user.name}}
+                  </span>
+                  <span>
+                    ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%)
+                  </span>
+                  <span>
+                    {{getSubmissionDate(submission)}}
                   </span>
                 </div>
 
