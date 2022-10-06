@@ -81,6 +81,9 @@
                     <b>Score</b>
                   </span>
                   <span>
+                    <b>Has Rubric?</b>
+                  </span>
+                  <span>
                     <b>Date Submitted</b>
                   </span>
                 </div>
@@ -98,8 +101,11 @@
                     {{submission.user.name}}
                   </span>
                   <span>
-                    ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%)
+                    {{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%
                   </span>
+                  <div class='icon-container'>
+                    <i v-if="submission?.rubric_assessment" class='icon-check'></i>
+                  </div>
                   <span>
                     {{getSubmissionDate(submission)}}
                   </span>
