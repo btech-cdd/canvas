@@ -1,3 +1,4 @@
+  /*
 var BETA = false;
 if (window.location.href.includes("btech.beta.instructure.com")) {
   BETA = true;
@@ -47,10 +48,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
   let currentUser = parseInt(ENV.current_user.id);
   IS_ME = (currentUser === 1893418);
   IS_CDD = (CDDIDS.includes(currentUser))
-  /*
-  https://btech.instructure.com/accounts/3/theme_editor
-  */
-
+  // https://btech.instructure.com/accounts/3/theme_editor
 
   $.getScript("https://bridgetools.dev/canvas/scripts.js").done(function() {
     feature("login_page", {}, /^\/login/);
@@ -217,3 +215,5 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
     });
   });
 }
+
+  */
