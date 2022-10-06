@@ -237,7 +237,7 @@
 #content #accreditation .submission-row {
   padding: .25rem 0;
   display: grid;
-  grid-template-columns: 2rem 2rem 15rem 3rem 12rem;
+  grid-template-columns: 2rem 2rem 15rem 4rem 12rem;
 }
 
 #content #accreditation a {
