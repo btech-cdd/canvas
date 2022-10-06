@@ -1,4 +1,5 @@
 (async function() {
+  //load up groups data
   let groupsData = await canvasGet("/api/v1/courses/"+ENV.COURSE_ID+"/assignment_groups?include[]=assignments");
   let groups = {};
   for (let g in groupsData) {
@@ -14,6 +15,7 @@
       groups[groupId] = assignmentIds;
   }
 
+  //load up modules data for the new order
   let modules = await canvasGet("/api/v1/courses/"+ENV.COURSE_ID+"/modules?include[]=items&include[]=content_details");
   let moduleOrderAssignments = [];
   for (let m in modules) {
@@ -27,14 +29,17 @@
       }
   }
 
+  //iterate over group html elements to add click
   let groupContainers = $(".assignment_group");
   groupContainers.each(function() {
+      //General elements
       let groupContainer = $(this);
-
       let menu = groupContainer.find("ul.al-options");
-      let aTag = $(`<a class="reorder_group icon-collection ui-corner-all" aria-label="Sort Assignment Group" id="ui-id-7" tabindex="-1" role="menuitem">Sort Items</a>`);
-      let menuItem = $(`<li class="ui-menu-item" role="presentation"></li>`);
-      menuItem.append(aTag);
+
+      //reorder button
+      let aTagOrder = $(`<a class="reorder_group icon-collection ui-corner-all" aria-label="Sort Assignment Group" id="ui-id-7" tabindex="-1" role="menuitem">Sort Items</a>`);
+      let menuItemOrder = $(`<li class="ui-menu-item" role="presentation"></li>`);
+      menuItemOrder.append(aTagOrder);
 
       let groupId = groupContainer.attr("data-id");
       let group = groups[groupId];
@@ -46,13 +51,20 @@
               newOrder += group[assignmentId];
           }
       }
-      aTag.click(function() {
+      aTagOrder.click(function() {
           console.log("click");
           $.post("/courses/"+ENV.COURSE_ID+"/assignment_groups/" + groupId + "/reorder", {
               order: newOrder
           });
           location.reload();
       });
-      menu.append(menuItem);
+      menu.append(menuItemOrder);
+
+      //delete unpublished button
+      let aTagDelete = $(`<a class="reorder_group icon-collection ui-corner-all" aria-label="Sort Assignment Group" id="ui-id-7" tabindex="-1" role="menuitem">Sort Items</a>`);
+      let menuItemDelete = $(`<li class="ui-menu-item" role="presentation"></li>`);
+      menuItemDelete.append(aTagDelete);
+
+      menu.append(menuItemDelete);
   });
 })();
