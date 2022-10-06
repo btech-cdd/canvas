@@ -45,6 +45,7 @@ ul.btech-question-banks-sorter li.btech-bank-course.selected {
   background-color: #ccc;
 }
 
+
 /* end question bank organizer */
 
 /* pop up modals */
@@ -89,6 +90,11 @@ ul.btech-question-banks-sorter li.btech-bank-course.selected {
 	}
 }
 /* end of changes to course menu */
+
+#content .user_content {
+  max-width: 750px;
+  margin: auto;
+}
 
 /* collapsible divs */
 .btech-toggler {
