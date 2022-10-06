@@ -1,4 +1,3 @@
-  /*
 var BETA = false;
 if (window.location.href.includes("btech.beta.instructure.com")) {
   BETA = true;
@@ -215,5 +214,3 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
     });
   });
 }
-
-  */
