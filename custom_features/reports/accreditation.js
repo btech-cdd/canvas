@@ -272,6 +272,7 @@
 
           //THIS IS WHERE EVERYTHING GETS SORTED OUT AND ALL THE DOWNLOADS ARE INITIATED
           async downloadSubmission(assignment, submission) {
+            console.log(assignment);
             let app = this;
             let types = assignment.submission_types;
             app.preparingDocument = true;
