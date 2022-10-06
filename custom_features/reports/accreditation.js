@@ -58,6 +58,7 @@
             </div>
           </div>
         </div>
+
         <div v-if='showModal && !preparingDocument' @click="if(!preparingDocument) showModal = false;" class='btech-modal' style='display: inline-block;'>
           <div class='btech-modal-content' @click.stop>
             <div class="icon-container" style='float: right; margin-right: .5rem; margin-top: .5rem;' v-on:click='close()'>
@@ -66,6 +67,7 @@
             <div class='btech-modal-content-inner'>
               <h2><a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id">{{currentAssignment.name}}</a></h2>
               <div v-if='getFilteredSubmissions(submissions).length > 0'>
+
                 <div class="submission-row" v-for='submission in getFilteredSubmissions(submissions)'>
                   <div class='icon-container'>
                     <i class='icon-download' @click='downloadSubmission(currentAssignment, submission)'></i>
@@ -79,6 +81,7 @@
                     {{submission.user.name}} ({{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%) - {{getSubmissionDate(submission)}}
                   </span>
                 </div>
+
                 <div v-else>
                   No graded submissions found. There may be submissions pending grading.
                 </div>
@@ -140,6 +143,7 @@
             sections: [],
             section: '',
             needsToWait: false,
+            sortBy: "name",
           }
         },
         methods: {
