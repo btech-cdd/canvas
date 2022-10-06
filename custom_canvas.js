@@ -4,6 +4,7 @@ if (window.location.href.includes("btech.beta.instructure.com")) {
 } else {
   BETA = false;
 }
+BETA = false;
 var CDDIDS = [
   1893418, //Josh 
   2023384, //Dani
