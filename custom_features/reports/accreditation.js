@@ -282,7 +282,7 @@
 
             //vanilla quizzes
             //need to append comments to this
-            if (assignment.is_quiz_assignment) {
+            if (assignment?.quiz_id) {
               let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
               await app.createIframe(url, app.downloadQuiz, {
                 'submission': submission,
