@@ -67,7 +67,23 @@
             <div class='btech-modal-content-inner'>
               <h2><a target='#' v-bind:href="'/courses/'+courseId+'/assignments/'+currentAssignment.id">{{currentAssignment.name}}</a></h2>
               <div v-if='getFilteredSubmissions(submissions).length > 0'>
-                <div>
+                <div
+                  class="submission-row"
+                >
+                  <span>
+                  </span>
+                  <span>
+                  </span>
+                  <span>
+                    <b>Student Name</b>
+                  </span>
+                  <span>
+                    <b>Score</b>
+                  </span>
+                  <span>
+                    <b>Date Submitted</b>
+                  </span>
+                </div>
 
                 <div class="submission-row" v-for='submission in getFilteredSubmissions(submissions)'>
                   <div class='icon-container'>
@@ -158,6 +174,7 @@
             let date = submission.submitted_at;
             if (date === null) {
               date = submission.graded_at;
+
             }
             return date;
           },
