@@ -1,25 +1,3 @@
-//THIS MUST BE UPDATED IN THE THEMES SECTION OF CANVAS
-//check for custom theme info, will probably only run on pages, quizzes, and assignments, but who knows
-//Might be worth moving all of this into the custom-settings page instead of an individual div on each page, then wait to load any of the features involving this custom settings until after that page has loaded
-
-//9/8/2021, seeing if disabling this breaks anything. Shouldn't...
-/*
-var themeParent = $('#btech-theme-parent');
-if (themeParent.length === 1) {
-  let header = themeParent.find('.btech-theme-header');
-  if (header.length === 1) {
-    document.documentElement.style.setProperty('--btech-theme-header-background-color', header.css('background-color'));
-    document.documentElement.style.setProperty('--btech-theme-header-color', header.css('color'));
-  }
-
-  let headerHover = themeParent.find('.btech-theme-header-hover');
-  if (headerHover.length === 1) {
-    document.documentElement.style.setProperty('--btech-theme-header-hover-background-color', headerHover.css('background-color'));
-    document.documentElement.style.setProperty('--btech-theme-header-hover-color', headerHover.css('color'));
-  }
-}
-*/
-
 var BETA = false;
 if (window.location.href.includes("btech.beta.instructure.com")) {
   BETA = true;
@@ -36,49 +14,6 @@ var CDDIDS = [
   2048150, //Tiffany
 ];
 
-//No idea what this was going to be for, but it looks interesting, so I'm not deleting it yet.
-//5/3/22
-/*
-if (/^\/courses\/[0-9]+$/.test(window.location.pathname)) {
-  if (CDDIDS.includes(parseInt(ENV.current_user.id))) {
-    function copyStringToClipboard(str) {
-      // Create new element
-      var el = document.createElement('textarea');
-      // Set value (string to be copied)
-      el.value = str;
-      // Set non-editable to avoid focus and move outside of view
-      el.setAttribute('readonly', '');
-      el.style = {
-        position: 'absolute',
-        left: '-9999px'
-      };
-      document.body.appendChild(el);
-      // Select text inside element
-      el.select();
-      // Copy text to clipboard
-      navigator.clipboard.writeText(str);
-      // Remove temporary element
-      document.body.removeChild(el);
-    }
-    let btn = $(`<button class="btn">Copy Structure</button>`);
-    $(".header-bar-right__buttons .add_module_link").before(btn);
-    btn.click(function () {
-      $.get("/api/v1/courses/" + ENV.COURSE_ID + "/modules?per_page=100&include[]=items", (data) => {
-        output = "";
-        for (let i in data) {
-          let module = data[i];
-          output += module.name + "\n";
-          for (let j in module.items) {
-            let item = module.items[j];
-            output += item.title + "\t" + item.type + "\n";
-          }
-        }
-        copyStringToClipboard(output);
-      });
-    });
-  }
-}
-*/
 
 let CURRENT_COURSE_ID = null;
 var rCheckInCourse = /^\/courses\/([0-9]+)/;
@@ -117,7 +52,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
   */
 
 
-
+  /*
   $.getScript("https://bridgetools.dev/canvas/scripts.js").done(function() {
     feature("login_page", {}, /^\/login/);
 
@@ -282,6 +217,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
       });
     });
   });
+  */
 }
 
 
@@ -314,7 +250,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
  */
 
 (function (jQuery) {
-
+  /*
   jQuery.hotkeys = {
     version: "0.2.0",
 
@@ -495,5 +431,6 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
       add: keyHandler
     };
   });
+  */
 
 })(jQuery || this.jQuery || window.jQuery);
