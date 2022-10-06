@@ -103,9 +103,9 @@
                   <span>
                     {{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%
                   </span>
-                  <div class='icon-container'>
+                  <span>
                     <i v-if="submission?.rubric_assessment" class='icon-check'></i>
-                  </div>
+                  </span>
                   <span>
                     {{getSubmissionDate(submission)}}
                   </span>
