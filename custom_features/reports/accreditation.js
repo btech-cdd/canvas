@@ -248,7 +248,8 @@
               'workflow_state': 'graded',
               'include': [
                 'user',
-                'submission_comments'
+                'submission_comments',
+                'rubric_assessment'
               ]
             };
             if (assignmentId !== '') {
