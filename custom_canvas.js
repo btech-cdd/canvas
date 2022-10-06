@@ -265,7 +265,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
         feature("rubrics/create_rubric_from_csv", {}, new RegExp('^/(course|account)s/([0-9]+)/rubrics$'));
         //CDD ONLY
         featureCDD("modules/show_hours", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
-        // featureCDD("modules/delete_module_items", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
+        featureCDD("modules/delete_module_items", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
 
         //Don't turn on flags unless figure out a way to not display the flag tool by default.
         ////Ran into issue where Vue wasn't loading properly so nobody could do anything.
