@@ -201,11 +201,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
         //Don't turn on flags unless figure out a way to not display the flag tool by default.
         ////Ran into issue where Vue wasn't loading properly so nobody could do anything.
         //if (IS_CDD) externalFeature('https://flags.bridgetools.dev/main.js');
-        if (IS_ME) {
-          feature('reports/accreditation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
-        } else {
-          feature('reports/accreditation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
-        }
+        feature('reports/accreditation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
 
         // if (IS_ME) $.getScript("https://bridgetools.dev/collaborator/import.js");
         //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
