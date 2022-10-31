@@ -411,7 +411,7 @@
             content.show();
             content.prepend("<div>Submitted:" + app.getSubmissionDate(data.submission) + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
-            content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
+            content.prepend("<div>Title:" + data.assignment.name + "</div>");
             content.prepend("<div>Course:" + app.courseData.name + " (" + app.courseData.course_code + ")" + "</div>");
 
             //content.append(commentEl); //Comments already show up with this download method. Only need to be appended for rubrics
@@ -464,7 +464,7 @@
             let url = '/courses/' + app.courseId + '/assignments/' + data.assignment.id + '/submissions/' + data.submission.user.id + '?preview=1';
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
-            content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
+            content.prepend("<div>Title:" + data.assignment.name + "</div>");
             content.append(`<iframe src='`+url+`' 
                               width='100%' 
                               scrolling='no' 
@@ -496,7 +496,7 @@
             let commentEl = app.getComments(data.submission);
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
-            content.prepend("<div>Assignment:" + data.assignment.name + "</div>");
+            content.prepend("<div>Title:" + data.assignment.name + "</div>");
             content.append(commentEl);
             let ogTitle = $('title').text();
             $('title').text(title);
