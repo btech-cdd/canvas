@@ -92,13 +92,17 @@ ul.btech-question-banks-sorter li.btech-bank-course.selected {
 /* end of changes to course menu */
 
 #questions {
-  max-width: 750px;
+  max-width: 1050px;
   margin: auto;
 }
 
 #content .user_content {
-  max-width: 750px;
+  max-width: 850px;
   margin: auto;
+}
+
+.ic-DashboardCard__header_image .ic-DashboardCard__header_hero {
+  background:none !important;
 }
 
 /* collapsible divs */
