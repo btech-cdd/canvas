@@ -380,20 +380,24 @@
   loadCSS("https://reports.bridgetools.dev/style/main.css");
   $.getScript("https://d3js.org/d3.v6.min.js").done(function () {
     $.getScript("https://cdnjs.cloudflare.com/ajax/libs/print-js/1.5.0/print.js").done(function () {
-      $.getScript("https://reports.bridgetools.dev/department_report/components/courseProgressBarInd.js").done(function () {
-        $.getScript("https://reports.bridgetools.dev/department_report/components/courseRowInd.js").done(function () {
-          $.getScript("https://reports.bridgetools.dev/department_report/components/menuStatus.js").done(function () {
-            $.getScript("https://reports.bridgetools.dev/department_report/components/menuInfo.js").done(function () {
-              $.getScript("https://reports.bridgetools.dev/department_report/components/menuFilters.js").done(function () {
-                $.getScript("https://reports.bridgetools.dev/department_report/components/menuSettings.js").done(function () {
-                  $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/indGraphs.js").done(function () {
-                    $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/indHeader.js").done(function () {
-                      $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentInd.js").done(function () {
-                        $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentHours.js").done(function () {
-                          $.getScript("https://reports.bridgetools.dev/department_report/graphs.js").done(function () {
-                            $.getScript("https://reports.bridgetools.dev/scripts.js").done(function () {
-                              $.getScript(SOURCE_URL + '/custom_features/reports/individual_page/gradesBetweenDates.js').done(function () {
-                                postLoad();
+      $.getScript("https://reports.bridgetools.dev/components/icons/alert.js").done(function () {
+        $.getScript("https://reports.bridgetools.dev/components/icons/distance-approved.js").done(function () {
+          $.getScript("https://reports.bridgetools.dev/department_report/components/courseRowInd.js").done(function () {
+            $.getScript("https://reports.bridgetools.dev/department_report/components/courseRowInd.js").done(function () {
+              $.getScript("https://reports.bridgetools.dev/department_report/components/menuStatus.js").done(function () {
+                $.getScript("https://reports.bridgetools.dev/department_report/components/menuInfo.js").done(function () {
+                  $.getScript("https://reports.bridgetools.dev/department_report/components/menuFilters.js").done(function () {
+                    $.getScript("https://reports.bridgetools.dev/department_report/components/menuSettings.js").done(function () {
+                      $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/indGraphs.js").done(function () {
+                        $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/indHeader.js").done(function () {
+                          $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentInd.js").done(function () {
+                            $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentHours.js").done(function () {
+                              $.getScript("https://reports.bridgetools.dev/department_report/graphs.js").done(function () {
+                                $.getScript("https://reports.bridgetools.dev/scripts.js").done(function () {
+                                  $.getScript(SOURCE_URL + '/custom_features/reports/individual_page/gradesBetweenDates.js').done(function () {
+                                    postLoad();
+                                  });
+                                });
                               });
                             });
                           });
