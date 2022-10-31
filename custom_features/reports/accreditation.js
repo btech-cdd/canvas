@@ -436,7 +436,7 @@
             content.find("#rubric_holder").show();
             content.find("#rubric_holder").prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.find("#rubric_holder").prepend("<div>Student:" + data.submission.user.name + "</div>");
-            content.find("#rubric_holder").prepend("<div>Assignment:" + data.assignment.name + "</div>");
+            content.find("#rubric_holder").prepend("<div>Title:" + data.assignment.name + "</div>");
             content.find("#rubric_holder").append(commentEl);
             content.find("#rubric_holder").css({
               'max-height': '',
