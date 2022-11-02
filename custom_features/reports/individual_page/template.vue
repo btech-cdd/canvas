@@ -5,6 +5,7 @@
         <ul>
           <li @click="menu='report'">Progress Report</li>
           <li @click="menu='hours'">Hours Report</li>
+          <li @click="menu='employment skills'">Employment Skills</li>
           <li @click="menu='period'">Grades Between Dates</li>
           <li v-if="IS_TEACHER" @click="menu='enroll'">HS Enrollment Periods</li>
           <li style='float: right;' v-on:click='close()'>X</li>
