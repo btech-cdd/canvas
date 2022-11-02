@@ -55,6 +55,18 @@
               </div>
             </div>
 
+            <div v-show="menu=='employment skills'">
+              <div class="btech-canvas-report" style="background-color: #ffffff;">
+                <show-student-employment-skills
+                  v-if="user.name !== undefined && tree.name !== undefined"
+                  style="display: inline-block; background-color: #fff; padding: 0.5rem; box-sizing: border-box; width: 100%;"
+                  :colors="colors"
+                  :user="user"
+                  :settings="settings"
+                ></show-student-employment-skills>
+              </div>
+            </div>
+
             <div v-show="menu=='period'">
               <show-grades-between-dates
                 v-if="enrollmentData != undefined"
