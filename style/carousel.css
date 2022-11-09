@@ -34,6 +34,10 @@ section.btech-carousel .slides-item {
   width: 100%;
 }
 
+section.btech-carousel .slides-item .img{
+  height: 100%;
+}
+
 section.btech-carousel .carousel__nav {
   padding: 1.25rem .5rem;
 }
