@@ -23,7 +23,6 @@ section.btech-carousel .slides-item {
   display: flex;
   flex-shrink: 0;
   font-size: 100px;
-  height: 600px;
   justify-content: center;
   margin: 0 1rem;
   position: relative;
