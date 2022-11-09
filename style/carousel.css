@@ -35,7 +35,8 @@ section.btech-carousel .slides-item {
 }
 
 section.btech-carousel .slides-item .img{
-  height: 100%;
+  height: 500px;
+  width: auto;
 }
 
 section.btech-carousel .carousel__nav {
