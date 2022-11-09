@@ -1,5 +1,6 @@
 section.btech-carousel-container .carousel {
-  width: 500px; 
+  height: 500px; 
+  width: 100%;
   position: relative;
 }
 
@@ -19,8 +20,8 @@ section.btech-carousel-container .slide {
 
 section.btech-carousel-container .slide > img {
   display: block;
-  width: 500px;
-  height: auto;
+  height: 500px;
+  width: auto;
   object-fit: cover;
   object-position: center;
 }
