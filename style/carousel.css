@@ -21,7 +21,7 @@ section.btech-carousel-container .slide {
 section.btech-carousel-container .slide > img {
   display: block;
   width: 500px;
-  height: 100%;
+  height: auto;
   object-fit: cover;
   object-position: center;
 }
