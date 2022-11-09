@@ -16,9 +16,11 @@ section.btech-carousel-container .slide {
   opacity: 0;
   transition: 200ms opacity ease-in-out;
   transition-delay: 200ms;
+  display: flex;
 }
 
 section.btech-carousel-container .slide > img {
+  align-items: center;
   display: block;
   height: 500px;
   width: auto;
