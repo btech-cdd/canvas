@@ -17,15 +17,15 @@ section.btech-carousel-container .slide {
 }
 
 section.btech-carousel-container .slide > img {
-  margin: auto;
   display: block;
-  width: auto;
   object-fit: cover;
   object-position: center;
 }
 
 section.btech-carousel-container .slide img {
   height: 500px;
+  width: auto;
+  margin: auto;
 }
 
 section.btech-carousel-container .slide[data-active] {
