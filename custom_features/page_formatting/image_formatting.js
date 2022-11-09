@@ -26,6 +26,10 @@
     }
   });
 
+  $("section.btech-carousel-container. carousel").each(function() {
+    let el = $(this);
+    el.append(`<span class="carousel-button prev" data-carousel-button="prev">&lArr;</span> <span class="carousel-button next" data-carousel-button="next">&rArr;</span>`)
+  })
   const buttons = document.querySelectorAll("[data-carousel-button]")
 
   buttons.forEach(button => {
