@@ -19,7 +19,8 @@
     'icon-lti',
     'icon-heart',
     'icon-star',
-    'icon-upload'
+    'icon-upload',
+    'icon-ms-ppt'
   ];
   //escape if not on the editor page
   if (!TOOLBAR.checkEditorPage()) return;
