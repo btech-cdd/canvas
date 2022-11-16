@@ -384,7 +384,7 @@
       $.getScript("https://reports.bridgetools.dev/components/icons/alert.js").done(function () {
         $.getScript("https://reports.bridgetools.dev/components/icons/distance-approved.js").done(function () {
           $.getScript("https://reports.bridgetools.dev/department_report/components/courseRowInd.js").done(function () {
-            $.getScript("https://reports.bridgetools.dev/department_report/components/courseRowInd.js").done(function () {
+            $.getScript("https://reports.bridgetools.dev/department_report/components/courseProgressBarInd.js").done(function () {
               $.getScript("https://reports.bridgetools.dev/department_report/components/menuStatus.js").done(function () {
                 $.getScript("https://reports.bridgetools.dev/department_report/components/menuInfo.js").done(function () {
                   $.getScript("https://reports.bridgetools.dev/department_report/components/menuFilters.js").done(function () {
