@@ -239,6 +239,23 @@
   border: 1px solid #E1E1E1;
 }
 
+.btech-example-box {
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px #888;
+}
+
+.btech-example-table {
+  box-shadow: 3px 6px 6px #888;
+}
+
+.btech-example-table td {
+  padding: 2px;
+}
+
+.btech-example-table td p {
+  margin: 4px 0px 4px 0px;
+}
+
 #content code {
   color: darkblue;
   font-size: .9rem;
