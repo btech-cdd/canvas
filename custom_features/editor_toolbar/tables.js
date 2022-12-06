@@ -152,11 +152,9 @@
     let className = tableOptions[i];
     let optionName = className.replace("btech-", "").replace("-table", "");
     let option = await TOOLBAR.addSelectOption(optionName, 'tables', '', function () {
-      console.log("TEST");
       addClassToTable(className);
       resetTableButtons();
     }, 'btech-table-edit-option');
-    console.log(optionName);
     option.attr('id', className + '-option');
   }
   $("#" + $(select).attr("id")).select2();
