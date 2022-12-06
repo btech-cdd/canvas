@@ -241,6 +241,7 @@
 
 .btech-example-table {
   box-shadow: 5px 5px 10px #888;
+  border: 1px solid #E1E1E1;
 }
 
 .btech-example-table td {
