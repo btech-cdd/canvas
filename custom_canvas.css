@@ -97,8 +97,9 @@ ul.btech-question-banks-sorter li.btech-bank-course.selected {
   margin: auto;
 }
 
+/*update in tinymce_font_size*/
 #content .user_content {
-  max-width: 850px;
+  max-width: 900px;
   margin: auto;
 }
 

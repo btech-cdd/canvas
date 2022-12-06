@@ -15,7 +15,7 @@ async function _init() {
     background-color: #F1F1F1;
   }
   body {
-    max-width: 850px;
+    max-width: 900px;
     margin: auto;
     background-color: #FFFFFF;
   }
