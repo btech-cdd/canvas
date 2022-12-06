@@ -32,7 +32,7 @@
     let fontColor = "#000000";
     editor.execCommand("mceReplaceContent", false, `
     <h2 class="icon-header" style="text-align: center;">
-      <span><strong><i class="` + className + `"></i> <span class="btech-hidden">#ICON#</span> </strong></span>
+      <span><strong><i class="` + className + `"></i> <i class="btech-hidden">#</i> </strong></span>
     </h2>
     <h2 style="text-align: center;">HEADING</h2>
       `);
