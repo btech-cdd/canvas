@@ -273,7 +273,7 @@
 
   TOOLBAR.addButtonIcon("icon-unmuted", "Insert an information box. Can be used for warnings, examples, etc.", exampleBox);
   TOOLBAR.addButtonIcon("icon-flag", "Insert an information box. Can be used for warnings, examples, etc.", exampleBoxSmall);
-  TOOLBAR.addButtonIcon("icon-discussion", "Insert a gray callout box", calloutBox);
+  TOOLBAR.addButtonIcon("icon-note-light", "Insert a gray callout box", calloutBox);
   TOOLBAR.addButtonIcon("icon-compose", "Insert a citation.", citation);
   TOOLBAR.addButtonIcon("icon-off", "Hide text. Reveal on mouse hover.", hideOnHover);
   TOOLBAR.addButtonIcon("icon-student-view", "Insert text which is shown on mouse hover.", hoverDefinition);
