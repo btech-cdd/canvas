@@ -233,6 +233,8 @@
   background-color: #F1F1F1;
   border-radius: 5px;
   box-shadow: 5px 5px 15px #888;
+  padding: 0.5rem;
+  border: 1px solid #888;
 }
 
 #content code {
