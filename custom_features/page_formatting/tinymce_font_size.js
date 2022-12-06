@@ -36,10 +36,43 @@ async function _init() {
   .btech-callout-box {
     background-color: #F1F1F1;
     border-radius: 5px;
-    box-shadow: 5px 5px 15px #888;
+    box-shadow: 5px 5px 10px #888;
     padding: 0.5rem;
     margin-bottom: 1rem;
     border: 1px solid #E1E1E1;
+  }
+
+  /*the basic header*/
+  h2.icon-header {
+    position: relative;
+    text-align: center;
+  }
+
+  h2.icon-header::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    border-top: 1px solid #888;
+    width: 100%;
+    transform: translateY(-50%);
+  }
+  h2.icon-header span {
+    position: relative; 
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px 10px;
+    border-radius: 40px;
+    border: 1px solid #888;
+    /* box-shadow: 0 4px 2px -2px #888; */
+    font-size: 1.5rem;
+
+  }
+  h2.icon-header span i {
+    vertical-align: middle;
+  }
+  h2.icon-header span i::before {
+    font-size: 1.5rem;
   }
   `;
   if (tinymce.majorVersion === "4") {
