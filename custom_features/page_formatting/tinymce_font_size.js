@@ -11,9 +11,13 @@ async function _init() {
   //use rem instead of pixels because it messes everything up otherwise. 1.5, 1.2, 1 for h2, h3, h4 respectively
   //These should work out to 18, 14, and 12
   let additionalCSS = `
+  html {
+    background-color: #F1F1F1;
+  }
   body {
     max-width: 850px;
     margin: auto;
+    background-color: #FFFFFF;
   }
 
   h2 {font-size: 1.5rem;}
