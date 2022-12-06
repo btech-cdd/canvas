@@ -13,6 +13,17 @@
     editor.execCommand("mceReplaceContent", false, "<strong class='tooltip'>{$selection}<span class='tooltiptext'>-DEFINITION-</span></strong>");
   }
 
+  async function calloutBox() {
+    let editor = TOOLBAR.editor;
+    let selection = editor.selection;
+    let color = $("#btech-custom-editor-buttons-color").val();
+    let fontColor = "#FFFFFF";
+    editor.execCommand("mceReplaceContent", false, `
+      <div class="btech-callout-box">
+      ${selection}
+      </div>
+      `);
+  }
 
   async function exampleBox() {
     let editor = TOOLBAR.editor;
