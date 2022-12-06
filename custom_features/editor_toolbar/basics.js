@@ -16,7 +16,7 @@
   async function calloutBox() {
     let editor = TOOLBAR.editor;
     let selection = editor.selection;
-    console.log(selection);
+    console.log(selection.getContent());
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#FFFFFF";
     editor.execCommand("mceReplaceContent", false, `
@@ -42,7 +42,7 @@
         <tr style="height: 30px; background-color: #fff; color: #000;">
         <td style="height: 30px;"><span>&nbsp;</span></td>
         <td style="height: 30px;">
-        {$selection}
+        ${selection}
         </td>
         <td style="height: 30px;"><span>&nbsp;</span></td>
         </tr>
@@ -63,7 +63,7 @@
       <td style="background-color: `+color+`; color: #ffffff; text-align: center; width: 1%; white-space: nowrap;">Note</td>
       <td style="width: 1rem; background: linear-gradient(to bottom right, `+color+` 49.5%, #f0f0f0 50.5%);"></td>
       <td style="background-color: #f0f0f0; color: #000000;">
-        {$selection}
+        ${selection}
       </td>
       <td style="width: 1rem; background: linear-gradient(to bottom right, #f0f0f0 49.5%, `+color+` 50.5%);"></td>
       </tr>
