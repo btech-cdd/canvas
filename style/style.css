@@ -229,6 +229,12 @@
   color: black;
 }
 
+.btech-callout-box {
+  background-color: #F1F1F1;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px #888;
+}
+
 #content code {
   color: darkblue;
   font-size: .9rem;
