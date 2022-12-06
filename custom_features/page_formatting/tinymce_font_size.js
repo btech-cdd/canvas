@@ -32,6 +32,15 @@ async function _init() {
   img[style*="float: right"] {
     margin: 5px 0px 0px 15px;
   }
+
+  .btech-callout-box {
+    background-color: #F1F1F1;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px #888;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #E1E1E1;
+  }
   `;
   if (tinymce.majorVersion === "4") {
     tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[1].innerHTML = tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[1].innerHTML + additionalCSS;
