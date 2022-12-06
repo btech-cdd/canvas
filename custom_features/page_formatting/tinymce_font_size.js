@@ -12,8 +12,8 @@ async function _init() {
   //These should work out to 18, 14, and 12
   let additionalCSS = `
   html {
+    background-color: #F1F1F1;
   }
-  :
   body {
     max-width: 850px;
     margin: auto;
