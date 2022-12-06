@@ -16,6 +16,7 @@
   async function calloutBox() {
     let editor = TOOLBAR.editor;
     let selection = editor.selection;
+    console.log(selection);
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#FFFFFF";
     editor.execCommand("mceReplaceContent", false, `
