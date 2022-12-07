@@ -19,7 +19,7 @@
       let row = $(this);
       let cells = row.find("td");
       if (cells.length > 0) {
-        let tab = $(cells[0]).text();
+        let tab = $(cells[0].html());
         let li = $("<li>" + tab + "</li>");
         data[tab] = $(cells[1]).html();
         if (checkFirst === false) {
