@@ -21,7 +21,8 @@
     'icon-star',
     'icon-upload',
     'icon-ms-ppt',
-    'icon-info'
+    'icon-info',
+    'icon-materials-required'
   ];
   //escape if not on the editor page
   if (!TOOLBAR.checkEditorPage()) return;
