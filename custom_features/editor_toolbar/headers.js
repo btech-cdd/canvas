@@ -20,7 +20,8 @@
     'icon-heart',
     'icon-star',
     'icon-upload',
-    'icon-ms-ppt'
+    'icon-ms-ppt',
+    'icon-info'
   ];
   //escape if not on the editor page
   if (!TOOLBAR.checkEditorPage()) return;
