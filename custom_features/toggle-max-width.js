@@ -32,15 +32,11 @@ let expandButton = $(`<div title="Toggle between page content taking up the full
 expandButton.click(function() {
   let maxWidth = getCSSVar("--btech-max-width");
   if (maxWidth == "auto") {
-    $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=default`,  function(data) {
-      updateMaxWidth();
-    });
+    $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=default`);
+    setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
   } else {
-    console.log("Update");
-    $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=auto`,  function(data) {
-      console.log(data);
-      updateMaxWidth();
-    });
+    $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=auto`);
+    setCSSVar("--btech-max-width", "auto");
   }
 })
 
