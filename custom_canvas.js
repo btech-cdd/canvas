@@ -19,7 +19,7 @@ function getCSSVar(cssvar) {
     var r = document.querySelector(':root');
     var rs = getComputedStyle(r);
     console.log(`The value of ${cssvar} is: ` + rs.getPropertyValue(cssvar));
-    return rs.getPropertyPriority(cssVar);
+    return rs.getPropertyPriority(cssvar);
 }
 
 // Create a function for setting a variable value
