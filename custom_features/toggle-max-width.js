@@ -31,13 +31,14 @@ let expandButton = $(`<div title="Toggle between page content taking up the full
 
 expandButton.click(function() {
   let maxWidth = getCSSVar("--btech-max-width");
-  console.log(maxWidth);
   if (maxWidth == "auto") {
     $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=default`,  function(data) {
       updateMaxWidth();
     });
   } else {
+    console.log("Update");
     $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=auto`,  function(data) {
+      console.log(data);
       updateMaxWidth();
     });
   }
