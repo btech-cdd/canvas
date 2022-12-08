@@ -36,6 +36,8 @@ let expandButton = $(`<div title="Toggle between page content taking up the full
 
 </svg>
 </div>`)
+let maxWidth = getCSSVar("--btech-max-width");
+if (maxWidth == "auto") $(expandButton.find("svg")).attr("fill", "#888");
 
 expandButton.click(function() {
   let maxWidth = getCSSVar("--btech-max-width");
@@ -46,6 +48,7 @@ expandButton.click(function() {
     $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=auto`);
     setCSSVar("--btech-max-width", "auto");
   }
+  if (maxWidth == "auto") $(expandButton.find("svg")).attr("fill", "#888");
 })
 
 $("div.right-of-crumbs").append(expandButton);
