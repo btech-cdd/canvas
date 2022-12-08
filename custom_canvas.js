@@ -15,6 +15,38 @@ var CDDIDS = [
   2048150, //Tiffany
 ];
 
+function getCSSVar(cssvar) {
+    var r = document.querySelector(':root');
+    var rs = getComputedStyle(r);
+    alert(`The value of ${cssvar} is: ` + rs.getPropertyValue(cssvar));
+}
+
+// Create a function for setting a variable value
+function setCSSVar(cssvar, val) {
+    var r = document.querySelector(':root');
+    r.style.setProperty(cssvar, val);
+}
+
+const DEFAULT_MAX_WIDTH = "50rem";
+function updateMaxWidth() {
+  try {
+      $.get(`/api/v1/users/self/custom_data/page_width?ns=com.btech`, function(data) {
+        if (data.data == "default") {
+          setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
+        } else if (data.data == "auto") {
+          setCSSVar("--btech-max-width", "auto")
+        } else { //some kind of error?
+          setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
+          $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=default`,  function(data) {});
+        }
+      });
+  } catch(err) {
+      setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
+      $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=default`,  function(data) {});
+  }
+}
+updateMaxWidth();
+
 
 let CURRENT_COURSE_ID = null;
 var rCheckInCourse = /^\/courses\/([0-9]+)/;
