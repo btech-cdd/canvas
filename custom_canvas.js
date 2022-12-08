@@ -31,6 +31,7 @@ const DEFAULT_MAX_WIDTH = "50rem";
 function updateMaxWidth() {
   try {
       $.get(`/api/v1/users/self/custom_data/page_width?ns=com.btech`, function(data) {
+        console.log(data.data);
         if (data.data == "default") {
           setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
         } else if (data.data == "auto") {
