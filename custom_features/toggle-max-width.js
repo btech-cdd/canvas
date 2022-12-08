@@ -1,5 +1,13 @@
 let expandButton = $(`<div title="Toggle between page content taking up the full width or having a restricted width. Restricted width has been shown to improve readability." style="display: inline-flex; align-items: center;">
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="2rem" height="2rem">
+    <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" 
+    x="0px" y="0px" 
+    viewBox="0 0 512 512" 
+    style="enable-background:new 0 0 512 512;" 
+    xml:space="preserve" 
+    width="1.5rem" 
+    height="1.5rem">
 <g>
 	<g>
 		<path d="M0,0v512h512V0H0z M477.867,477.867H34.133V34.133h443.733V477.867z"></path>
