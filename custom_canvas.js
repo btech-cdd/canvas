@@ -162,6 +162,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             feature('speed_grader/assignment_page_link', {}, /^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/)
             feature("rubrics/sortable", {}, [/\/rubrics/, /\/assignments\//]);
             feature("calendar/signup", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+            feature("toggle-max-width", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             if (IS_BLUEPRINT) feature('blueprint_association_links');
             feature('modules/convert_to_page');
             // feature('instructional/glossary');
