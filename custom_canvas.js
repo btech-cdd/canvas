@@ -18,8 +18,9 @@ var CDDIDS = [
 function getCSSVar(cssvar) {
     var r = document.querySelector(':root');
     var rs = getComputedStyle(r);
-    console.log(`The value of ${cssvar} is: ` + rs.getPropertyValue(cssvar));
-    return rs.getPropertyPriority(cssvar);
+    let val = rs.getPropertyValue(cssvar)
+    console.log(`The value of ${cssvar} is: ` + val);
+    return val;
 }
 
 // Create a function for setting a variable value
