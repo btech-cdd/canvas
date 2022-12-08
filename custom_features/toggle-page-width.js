@@ -1,4 +1,4 @@
-let expandButton = $(`<div style="display: inline-flex; align-items: center;">
+let expandButton = $(`<div title="Toggle between page content taking up the full width or having a restricted width. Restricted width has been shown to improve readability." style="display: inline-flex; align-items: center;">
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="2rem" height="2rem">
 <g>
 	<g>
@@ -30,34 +30,16 @@ let expandButton = $(`<div style="display: inline-flex; align-items: center;">
 </div>`)
 
 expandButton.click(function() {
-  $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=800px`,  function(data) {
-      console.log(data);
-  });
+  let maxWidth = getCSSVar("--btech-max-width");
+  if (maxWidth == "auto") {
+    $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=default`,  function(data) {
+      updateMaxWidth();
+    });
+  } else {
+    $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=auto`,  function(data) {
+      updateMaxWidth();
+    });
+  }
 })
 
 $("div.right-of-crumbs").append(expandButton);
-
-function getCSSVar(cssvar) {
-    var r = document.querySelector(':root');
-    var rs = getComputedStyle(r);
-    alert(`The value of ${cssvar} is: ` + rs.getPropertyValue(cssvar));
-}
-
-// Create a function for setting a variable value
-function setCSSVar(cssvar, val) {
-    var r = document.querySelector(':root');
-    r.style.setProperty(cssvar, val);
-}
-try {
-    $.get(`/api/v1/users/self/custom_data/page_width?ns=com.btech`, function(data) {
-        setCSSVar("--btech-max-width", data.data);
-    });
-} catch(err) {
-    setCSSVar("--btech-max-width", "900px");
-    $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=900px`,  function(data) {
-        console.log(data);
-    });
-}
-$.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=800px`,  function(data) {
-    console.log(data);
-});

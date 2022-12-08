@@ -37,12 +37,12 @@ function updateMaxWidth() {
           setCSSVar("--btech-max-width", "auto")
         } else { //some kind of error?
           setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
-          $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=default`,  function(data) {});
+          $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=default`);
         }
       });
   } catch(err) {
       setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
-      $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=default`,  function(data) {});
+      $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=default`);
   }
 }
 updateMaxWidth();
