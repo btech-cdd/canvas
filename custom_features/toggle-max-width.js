@@ -1,4 +1,4 @@
-let expandButton = $(`<div title="Toggle between page content taking up the full width or having a restricted width. Restricted width has been shown to improve readability." style="display: inline-flex; align-items: center;">
+let expandButton = $(`<div title="Toggle between page content taking up the full width or having a restricted width. &#013;Restricted width has been shown to improve readability." style="display: inline-flex; align-items: center;">
     <svg 
     xmlns="http://www.w3.org/2000/svg" 
     xmlns:xlink="http://www.w3.org/1999/xlink" 
