@@ -25,7 +25,7 @@ function getCSSVar(cssvar) {
 function setCSSVar(cssvar, val) {
     var r = document.querySelector(':root');
     r.style.setProperty(cssvar, val);
-    console.log(`The value of ${cssvar} is: ` + rs.getPropertyValue(cssvar));
+    getCSSVar(cssvar);
 }
 
 const DEFAULT_MAX_WIDTH = "50rem";
