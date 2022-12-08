@@ -18,13 +18,14 @@ var CDDIDS = [
 function getCSSVar(cssvar) {
     var r = document.querySelector(':root');
     var rs = getComputedStyle(r);
-    alert(`The value of ${cssvar} is: ` + rs.getPropertyValue(cssvar));
+    console.log(`The value of ${cssvar} is: ` + rs.getPropertyValue(cssvar));
 }
 
 // Create a function for setting a variable value
 function setCSSVar(cssvar, val) {
     var r = document.querySelector(':root');
     r.style.setProperty(cssvar, val);
+    console.log(`The value of ${cssvar} is: ` + rs.getPropertyValue(cssvar));
 }
 
 const DEFAULT_MAX_WIDTH = "50rem";
