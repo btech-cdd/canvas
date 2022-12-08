@@ -10,12 +10,13 @@ async function _init() {
   let editor = await getEditor();
   //use rem instead of pixels because it messes everything up otherwise. 1.5, 1.2, 1 for h2, h3, h4 respectively
   //These should work out to 18, 14, and 12
+  let maxWidth = getCSSVar("--btech-max-width")
   let additionalCSS = `
   html {
     background-color: #F1F1F1;
   }
   body {
-    max-width: 900px;
+    max-width: ${maxWidth};
     margin: auto;
     background-color: #FFFFFF;
   }
