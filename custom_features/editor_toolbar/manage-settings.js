@@ -21,48 +21,67 @@
     },
     data: function () {
       return {
-        settings: {}
+        settings: {},
+        defaultSettings: {
+          misc: {
+            hoverreveal: true,
+            definition: true,
+          },
+          tables: {
+            excel: false,
+            tabs: true
+          },
+          iconcategories: {
+            canvas: true,
+            plumbing: true,
+          }
+        }
       }
     },
     methods: {
+      async parseCanvasData(settings) {
+        if (settings != undefined) {
+          for (let category in settings) {
+            let val = settings[category]
+            if (typeof val != "string") {
+              for (let bool in val) {
+                if (val[bool] == "true") val[bool] = true;
+                if (val[bool] == "false") val[bool] = false;
+              }
+            }
+          }
+        } else {
+          settings = {};
+          for (let i in this.defaultSettings) {
+            let ival = this.defaultSettings[i];
+            //if this setting doesn't exist, set it to the default
+            if (settings?.[i] == undefined) {
+              settings[i] = ival
+            } else {
+              console.log(typeof ival); //what is it, object, string, int, bool?
+              //else iterate
+              for (let j in this.defaultSettings) {
+                //fix this to infinite loop however deep it needs to go
+              }
+            }
+          }
+        }
+
+        await $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
+          data: settings
+        });
+      },
+
       async getSettings() {
         let settings;
         let v = 1.1;
         try {
           settings = await $.get(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`);
           settings = settings.data;
-          if (settings?.version !== '' + v) settings = undefined;
-          else {
-            for (let category in settings) {
-              let val = settings[category]
-              if (typeof val != "string") {
-                for (let bool in val) {
-                  if (val[bool] == "true") val[bool] = true;
-                  if (val[bool] == "false") val[bool] = false;
-                }
-              }
-            }
-          }
         } catch (err) {
           console.log(err);
         }
 
-        if (settings == undefined) {
-          settings = {
-            misc: {
-              hoverreveal: true,
-              definition: true,
-            },
-            iconcategories: {
-              canvas: true,
-              plumbing: true,
-            },
-            version: v
-          };
-          await $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
-            data: settings
-          });
-        }
 
         console.log(settings);
 
