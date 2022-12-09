@@ -1,6 +1,52 @@
 (async function() {
   console.log("TOOLBAR");
   $("#content").empty();
+  $("#content").html(`
+    <div
+      id="toolbar-settings"
+    >
+      <p>hello world</p>
+    </div>
+  `);
+  await $.getScript("https://cdn.jsdelivr.net/npm/vue@2.6.12");
+  new Vue({
+    el: "#toolbar-settings",
+    mounted: async function () {
+      
+    },
+    data: function () {
+      return {
+        settings: {}
+      }
+    },
+    methods: {
+      getSettings() {
+        let settings;
+        try {
+          settings = $.get(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`);
+        } catch (err) {
+          settings = {
+            hoverreveal: true,
+            definition: true,
+            iconcategories: {
+              canvas: true,
+              plumbing: true,
+            }
+          };
+          $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
+            data: settings
+          });
+        }
+
+      } 
+    }
+  });
+  let assignmentData = [];
+  for (let i = 0; i < assignmentData.length; i++) {
+    let group = assignmentData[i];
+    $("#content").append("<h2>" + group.name + " (" + group.group_weight + "%)</h2>");
+  }
+
   // expandButton.click(function() {
   //   let maxWidth = getCSSVar("--btech-max-width");
   //   if (maxWidth == "auto") {
