@@ -15,9 +15,9 @@
   font-family: 'btech-icons' !important;
 }
 
-.icon-b-faucet::before {
+.icon-b-faucet {
   content: "\e900";
 }
-.icon-b-fire::before {
+.icon-b-fire {
   content: "\e9a9";
 }
