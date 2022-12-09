@@ -31,12 +31,14 @@
         try {
           settings = await $.get(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`);
           settings = settings.data;
+          console.log(settings);
           if (settings?.version !== v) settings = undefined;
           console.log(settings);
         } catch (err) {
           console.log(err);
         }
         if (settings == undefined) {
+
           settings = {
             misc: {
               hoverreveal: true,
@@ -45,7 +47,8 @@
             iconcategories: {
               canvas: true,
               plumbing: true,
-            }
+            },
+            version: v
           };
           await $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
             data: settings
