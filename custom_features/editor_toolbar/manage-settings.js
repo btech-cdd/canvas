@@ -91,8 +91,9 @@
 
       },
 
-      updateSettings() {
-        $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
+      async updateSettings() {
+        console.log(this.settings);
+        await $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
           data: this.settings
         });
       }
