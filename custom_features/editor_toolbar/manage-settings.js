@@ -1,6 +1,6 @@
-console.log("TOOLBAR");
 (async function() {
   console.log("TOOLBAR");
+  $("#content").empty();
   expandButton.click(function() {
     let maxWidth = getCSSVar("--btech-max-width");
     if (maxWidth == "auto") {
