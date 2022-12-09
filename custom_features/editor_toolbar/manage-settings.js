@@ -5,6 +5,7 @@
     <div
       id="toolbar-settings"
     >
+      {{settings}}
       <div
         v-for="setting, val in settings.misc
       >
