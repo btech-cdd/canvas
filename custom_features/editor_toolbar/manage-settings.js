@@ -54,8 +54,7 @@
       },
 
       async parseCanvasData(settings) {
-        console.log(settings);
-        if (settings != undefined) {
+        if (settings != undefined || typeof settings !== "object") {
           for (let category in settings) {
             let val = settings[category]
             if (typeof val != "string") {
