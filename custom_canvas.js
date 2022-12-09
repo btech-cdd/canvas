@@ -86,7 +86,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
 
   $.getScript("https://bridgetools.dev/canvas/scripts.js").done(function() {
     feature("login_page", {}, /^\/login/);
-    feature("editor_toolbar/manager", {}, /^\/btech-toolbar/);
+    feature("editor_toolbar/manage-settings", {}, /^\/btech-toolbar/);
 
     //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
     feature('conversations/open_conversation', {}, /^\/conversations/);
