@@ -31,14 +31,23 @@
         try {
           settings = await $.get(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`);
           settings = settings.data;
-          console.log(settings);
           if (settings?.version !== '' + v) settings = undefined;
-          console.log(settings);
+          else {
+            for (let category in settings) {
+              let val = settings[category]
+              if (typeof val != "string") {
+                for (let bool in val) {
+                  if (val[bool] == "true") val[bool] = true;
+                  if (val[bool] == "false") val[bool] = false;
+                }
+              }
+            }
+          }
         } catch (err) {
           console.log(err);
         }
-        if (settings == undefined) {
 
+        if (settings == undefined) {
           settings = {
             misc: {
               hoverreveal: true,
@@ -54,6 +63,8 @@
             data: settings
           });
         }
+
+        console.log(settings);
 
       } 
     }
