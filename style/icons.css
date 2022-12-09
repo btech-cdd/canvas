@@ -24,9 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-b-faucet:before {
+.b-icon-faucet:before {
   content: "\e900";
 }
-.icon-b-fire:before {
+.b-icon-fire:before {
   content: "\e9a9";
 }
