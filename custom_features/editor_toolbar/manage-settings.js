@@ -9,7 +9,7 @@
       <div
         v-for="val, setting in settings.misc"
       >
-        <span>{{setting}}</span><input type="checkbox" :id="'misc-' + setting" v-model="val">
+        <span>{{setting}}</span><input @click="updateSettings" type="checkbox" :id="'misc-' + setting" v-model="val">
       </div>
       <p>hello world</p>
     </div>
@@ -89,7 +89,13 @@
 
         console.log(settings);
 
-      } 
+      },
+
+      updateSettings() {
+        $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
+          data: this.settings
+        });
+      }
     }
   });
   let assignmentData = [];
