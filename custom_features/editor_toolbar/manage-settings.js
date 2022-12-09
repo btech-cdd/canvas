@@ -26,6 +26,7 @@
           settings = await $.get(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`);
           console.log(settings);
         } catch (err) {
+          console.log(err);
           settings = {
             hoverreveal: true,
             definition: true,
