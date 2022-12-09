@@ -39,6 +39,19 @@
       }
     },
     methods: {
+      fillInDefault(current, preset) {
+        for (let i in preset) {
+          let val = preset[i];
+          //if this setting doesn't exist, set it to the default
+          if (current?.[i] == undefined) {
+            current[i] = val
+          } else if (typeof val == "object") {
+            current[i] = this.fillInDefault(current[i], val)
+          }
+        }
+        return current;
+      },
+
       async parseCanvasData(settings) {
         if (settings != undefined) {
           for (let category in settings) {
@@ -53,20 +66,7 @@
         } else {
           settings = {};
         }
-        for (let i in this.defaultSettings) {
-          let ival = this.defaultSettings[i];
-          //if this setting doesn't exist, set it to the default
-          if (settings?.[i] == undefined) {
-            settings[i] = ival
-          } else {
-            console.log(typeof ival); //what is it, object, string, int, bool?
-            //else iterate
-            for (let j in this.defaultSettings) {
-              //fix this to infinite loop however deep it needs to go
-            }
-          }
-        }
-
+        settings = this.fillInDefault(settings, this.defaultSettings);
         console.log(settings);
 
         // await $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
