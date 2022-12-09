@@ -27,17 +27,16 @@
     methods: {
       async getSettings() {
         let settings;
+        let v = 1.1;
         try {
           settings = await $.get(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`);
-          if (settings?.misc == undefined) {
-            settings.misc = {
-              hoverreveal: true,
-              definition: true,
-            }
-          }
-          console.log(settings.data);
+          settings = settings.data;
+          if (settings?.version !== v) settings = undefined;
+          console.log(settings);
         } catch (err) {
           console.log(err);
+        }
+        if (settings == undefined) {
           settings = {
             misc: {
               hoverreveal: true,
@@ -48,7 +47,7 @@
               plumbing: true,
             }
           };
-          $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
+          await $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
             data: settings
           });
         }
