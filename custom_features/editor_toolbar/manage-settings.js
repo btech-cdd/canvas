@@ -52,17 +52,17 @@
           }
         } else {
           settings = {};
-          for (let i in this.defaultSettings) {
-            let ival = this.defaultSettings[i];
-            //if this setting doesn't exist, set it to the default
-            if (settings?.[i] == undefined) {
-              settings[i] = ival
-            } else {
-              console.log(typeof ival); //what is it, object, string, int, bool?
-              //else iterate
-              for (let j in this.defaultSettings) {
-                //fix this to infinite loop however deep it needs to go
-              }
+        }
+        for (let i in this.defaultSettings) {
+          let ival = this.defaultSettings[i];
+          //if this setting doesn't exist, set it to the default
+          if (settings?.[i] == undefined) {
+            settings[i] = ival
+          } else {
+            console.log(typeof ival); //what is it, object, string, int, bool?
+            //else iterate
+            for (let j in this.defaultSettings) {
+              //fix this to infinite loop however deep it needs to go
             }
           }
         }
