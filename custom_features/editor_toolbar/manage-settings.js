@@ -9,7 +9,7 @@
       <div
         v-for="setting, val in settings.misc"
       >
-        <span>val</span><span>{{setting}}</span>
+        <span>{{val}}</span><span>{{setting}}</span>
       </div>
       <p>hello world</p>
     </div>
