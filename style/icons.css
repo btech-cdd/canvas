@@ -9,7 +9,7 @@
   font-display: block;
 }
 
-[class^="icon-b-"], [class*=" icon-b-"] {
+[class^="bcon-"], [class*=" bcon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'btech-icons' !important;
   speak: never;
@@ -24,9 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.b-icon-faucet:before {
+.bcon-faucet:before {
   content: "\e900";
 }
-.b-icon-fire:before {
+.bcon-fire:before {
   content: "\e9a9";
 }
