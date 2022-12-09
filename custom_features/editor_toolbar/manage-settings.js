@@ -94,6 +94,7 @@
       },
 
       updateSettings() {
+        console.log(JSON.stringify(this.settings));
         this.$nextTick(() => {
           console.log(JSON.stringify(this.settings));
           $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
