@@ -7,7 +7,7 @@
     >
       {{settings}}
       <div
-        v-for="setting in settings.misc
+        v-for="setting in settings.misc"
       >
         <span>{{setting}}</span>
       </div>
