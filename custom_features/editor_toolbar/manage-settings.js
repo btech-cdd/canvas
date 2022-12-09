@@ -67,9 +67,12 @@
           }
         }
 
-        await $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
-          data: settings
-        });
+        console.log(settings);
+
+        // await $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
+        //   data: settings
+        // });
+        return settings;
       },
 
       async getSettings() {
@@ -81,6 +84,7 @@
         } catch (err) {
           console.log(err);
         }
+        settings = this.parseCanvasData(settings);
 
 
         console.log(settings);
