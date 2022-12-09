@@ -22,7 +22,8 @@
     'icon-upload',
     'icon-ms-ppt',
     'icon-info',
-    'icon-materials-required'
+    'icon-materials-required',
+    'bcon-faucet'
   ];
   //escape if not on the editor page
   if (!TOOLBAR.checkEditorPage()) return;
