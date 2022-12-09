@@ -52,7 +52,7 @@
   let select = await TOOLBAR.addSelect("headers", "Insert a header with an icon.");
   for (let i = 0; i < headerOptions.length; i++) {
     let className = headerOptions[i];
-    let optionName = className.replace("icon-", "").replace("-", " ");
+    let optionName = className.replace("icon-", "").replace("bcon-", "").replace("-", " ");
     let option = await TOOLBAR.addSelectOption(optionName, 'headers', '', function () {
         insertHeader(className);
       },
