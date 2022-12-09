@@ -5,6 +5,11 @@
     <div
       id="toolbar-settings"
     >
+      <div
+        v-for="setting, val in settings.misc
+      >
+        <span>{{setting}}</span>
+      </div>
       <p>hello world</p>
     </div>
   `);
@@ -28,8 +33,10 @@
         } catch (err) {
           console.log(err);
           settings = {
-            hoverreveal: true,
-            definition: true,
+            misc: {
+              hoverreveal: true,
+              definition: true,
+            },
             iconcategories: {
               canvas: true,
               plumbing: true,
