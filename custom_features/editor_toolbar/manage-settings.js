@@ -32,7 +32,7 @@
           settings = await $.get(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`);
           settings = settings.data;
           console.log(settings);
-          if (settings?.version !== v) settings = undefined;
+          if (settings?.version !== '' + v) settings = undefined;
           console.log(settings);
         } catch (err) {
           console.log(err);
