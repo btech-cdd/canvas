@@ -24,7 +24,7 @@
         let settings;
         try {
           settings = await $.get(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`);
-          console.log(settings);
+          console.log(settings.data);
         } catch (err) {
           console.log(err);
           settings = {
