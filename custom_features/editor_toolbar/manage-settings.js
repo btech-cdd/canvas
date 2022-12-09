@@ -84,7 +84,7 @@
         } catch (err) {
           console.log(err);
         }
-        settings = this.parseCanvasData(settings);
+        settings = await this.parseCanvasData(settings);
 
 
         console.log(settings);
