@@ -94,10 +94,8 @@
       },
 
       updateSettings() {
-        this.$nextTick(() => {
-          $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
-            data: JSON.parse(JSON.stringify(this.settings))
-          });
+        $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
+          data: JSON.parse(JSON.stringify(this.settings))
         });
       },
 
