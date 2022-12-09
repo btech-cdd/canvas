@@ -9,7 +9,7 @@
       <div
         v-for="val, setting in settings.misc"
       >
-        <span>{{setting}}</span><span>{{val}}</span>
+        <span>{{setting}}</span><input type="checkbox" :id="'misc-' + setting" v-model="val">
       </div>
       <p>hello world</p>
     </div>
