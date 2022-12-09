@@ -12,7 +12,7 @@
   new Vue({
     el: "#toolbar-settings",
     mounted: async function () {
-      
+      this.getSettings();
     },
     data: function () {
       return {
