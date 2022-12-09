@@ -67,11 +67,7 @@
           settings = {};
         }
         settings = this.fillInDefault(settings, this.defaultSettings);
-        console.log(settings);
 
-        // await $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
-        //   data: settings
-        // });
         return settings;
       },
 
@@ -85,7 +81,10 @@
           console.log(err);
         }
         settings = await this.parseCanvasData(settings);
-
+        await $.put(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`, {
+          data: settings
+        });
+        this.settings = settings;
 
         console.log(settings);
 
