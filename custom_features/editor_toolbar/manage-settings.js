@@ -65,6 +65,7 @@
             }
           }
         } else {
+          console.log("ABORT");
           settings = {};
         }
         settings = this.fillInDefault(settings, this.defaultSettings);
