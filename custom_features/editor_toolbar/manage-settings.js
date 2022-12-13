@@ -76,7 +76,6 @@
 
       async getSettings() {
         let settings;
-        let v = 1.1;
         try {
           settings = await $.get(`/api/v1/users/self/custom_data/toolbarsettings?ns=com.btech`);
           settings = settings.data;
@@ -106,6 +105,7 @@
       }
     }
   });
+
   let assignmentData = [];
   for (let i = 0; i < assignmentData.length; i++) {
     let group = assignmentData[i];
