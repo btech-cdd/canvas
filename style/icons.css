@@ -26,6 +26,7 @@
 
 .bcon-fauctet1::before {
   content: "\e901";
+  color: rgb(240, 0, 0);
 }
 
 /* .bcon-faucet1 .path1::before {
