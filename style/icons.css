@@ -24,11 +24,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.bcon-faucet1::after {
+
+.bcon-faucet1::before {
   content: "\e901";
   color: rgb(240, 0, 0);
 }
-.bcon-faucet1::after(2) {
+.bcon-faucet1 {
   content: "\e902";
   margin-left: -1em;
   color: rgb(0, 0, 0);
