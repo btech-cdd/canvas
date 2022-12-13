@@ -24,18 +24,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.bcon-faucet1:after {
+.bcon-faucet1::after {
   content: "\e901";
   color: rgb(240, 0, 0);
 }
-.bcon-faucet1:after(2) {
+.bcon-faucet1::after(2) {
   content: "\e902";
   margin-left: -1em;
   color: rgb(0, 0, 0);
 }
-.bcon-faucet:before {
+.bcon-faucet::before {
   content: "\e900";
 }
-.bcon-fire:before {
+.bcon-fire::before {
   content: "\e9a9";
 }
