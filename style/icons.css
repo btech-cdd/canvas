@@ -25,10 +25,11 @@
 }
 
 .bcon-faucet1::before {
-  content: "\e901\e902";
+  content: "\e901";
   color: rgb(240, 0, 0);
 }
 .bcon-faucet1::first-letter::before {
+  content: "\e902";
   margin-left: -1em;
 }
 
