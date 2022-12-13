@@ -24,7 +24,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.bcon-faucet1:after {
+.bcon-faucet1:after(1) {
   content: "\e901";
   color: rgb(240, 0, 0);
 }
