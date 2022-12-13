@@ -28,7 +28,7 @@
   content: "\e901\e902";
   color: rgb(240, 0, 0);
 }
-.bcon-faucet1::before::first-letter {
+.bcon-faucet1::first-letter::before {
   margin-left: -1em;
 }
 
