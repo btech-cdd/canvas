@@ -57,7 +57,7 @@
   margin-left: -1em;
 }
 
-.bcon-faucet1 .path:nth-child(2)::before {
+.bcon-faucet .path:nth-child(2)::before {
   content: "\e902";
   margin-left: -2em;
 }
