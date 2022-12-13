@@ -24,6 +24,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.bcon-fauctet1 {
+  content: "\e901\e902";
+}
+
 .bcon-faucet1 .path1::before {
   content: "\e901";
   color: rgb(240, 0, 0);
