@@ -26,12 +26,13 @@
 
 .bcon-faucet1:before {
   content: "\e901";
+  content: "\e902";
 }
 
-.bcon-faucet1 .path1 {
+.bcon-faucet .path1 {
   color: rgb(240, 0, 0);
 }
-.bcon-faucet1 .path2 {
+.bcon-faucet .path2 {
   color: rgb(0, 0, 0);
 }
 .bcon-faucet:before {
