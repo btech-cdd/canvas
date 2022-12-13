@@ -25,7 +25,7 @@
 }
 
 .bcon-fauctet1::before {
-  content: "\e901\e902";
+  content: "\e901 \e902";
 }
 
 /* .bcon-faucet1 .path1::before {
