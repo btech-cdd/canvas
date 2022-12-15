@@ -45,10 +45,10 @@
         this.IS_TEACHER = IS_TEACHER;
         // if (!IS_TEACHER) this.menu = 'period';
         if (IS_TEACHER) { //also change this to ref the url and not whether or not is teacher
+          console.log("IS TEACHER");
           let match = window.location.pathname.match(/(users|grades)\/([0-9]+)/);
           this.userId = match[2];
         } else {
-          console.log("SELF");
           this.userId = ENV.current_user_id;
         }
 
