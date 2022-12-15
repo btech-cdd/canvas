@@ -225,6 +225,7 @@
           await $.get("https://reports.bridgetools.dev/api/students/" + userId + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function (data) {
             user = data;
           });
+          console.log(user);
           if (user === "") {
             try {
               await $.get("/api/v1/users/" + userId, function (data) {
