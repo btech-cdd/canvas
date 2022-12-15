@@ -48,6 +48,7 @@
           console.log("IS TEACHER");
           let match = window.location.pathname.match(/(users|grades)\/([0-9]+)/);
           this.userId = match[2];
+          console.log(match[2]);
         } else {
           this.userId = ENV.current_user_id;
         }
