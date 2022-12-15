@@ -48,6 +48,7 @@
           let match = window.location.pathname.match(/(users|grades)\/([0-9]+)/);
           this.userId = match[2];
         } else {
+          console.log("SELF");
           this.userId = ENV.current_user_id;
         }
 
