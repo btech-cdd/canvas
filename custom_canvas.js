@@ -126,7 +126,8 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
     $.getScript("https://cdn.jsdelivr.net/npm/vue@2.6.12").done(function () {
       $.getScript(SOURCE_URL + "/course_data/course_hours.js").done(() => {
         //GENERAL FEATURES
-        // feature("reports/dashboard/banner-report", {}, /^\/$/);
+        console.log("TEST");
+        feature("reports/dashboard/banner-report", {}, /^\/$/);
         if (!IS_TEACHER) {
           feature("reports/individual_page/report", {}, [
             /^\/$/,
