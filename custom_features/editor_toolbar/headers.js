@@ -13,6 +13,7 @@
     'icon-warning',
     'icon-quiz',
     'icon-clock',
+    'icon-calendar-month',
     'icon-hour-glass',
     'icon-tag',
     'icon-folder',

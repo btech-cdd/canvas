@@ -1,5 +1,4 @@
 (async function() {
-  console.log("TOOLBAR");
   $("#content").empty();
   $("#content").html(`
     <div
@@ -54,7 +53,6 @@
       },
 
       async parseCanvasData(settings) {
-        console.log(settings);
         if ((settings !== undefined) && (typeof settings == "object")) {
           for (let category in settings) {
             let val = settings[category]
@@ -66,7 +64,6 @@
             }
           }
         } else {
-          console.log("ABORT");
           settings = {};
         }
         settings = this.fillInDefault(settings, this.defaultSettings);
@@ -87,9 +84,6 @@
           data: settings
         });
         this.settings = settings;
-
-        console.log(settings);
-
       },
 
       updateSettings() {

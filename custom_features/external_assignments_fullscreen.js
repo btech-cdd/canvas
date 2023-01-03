@@ -22,7 +22,6 @@ expandButton.click(()=> {
         $("#content").css({
             'position': 'relative',
         });
-        console.log($("#content").offset());
         $(".tool_content_wrapper").css({
             'position': 'fixed',
             'width': 'calc(100% - ' + $(".ic-app-header__main-navigation").width() + 'px)',

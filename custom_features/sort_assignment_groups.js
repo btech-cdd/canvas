@@ -22,7 +22,6 @@
       let module = modules[m];
       for (let i in module.items) {
           let item = module.items[i];
-          console.log(item);
           if (item.content_id !== undefined) {
               moduleOrderAssignments.push(item.content_id);
           }
@@ -52,7 +51,6 @@
           }
       }
       aTagOrder.click(function() {
-          console.log("click");
           $.post("/courses/"+ENV.COURSE_ID+"/assignment_groups/" + groupId + "/reorder", {
               order: newOrder
           });

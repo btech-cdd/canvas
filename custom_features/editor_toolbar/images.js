@@ -10,7 +10,6 @@
     let bgColor = getComputedStyle(document.documentElement, null).getPropertyValue("--ic-brand-button--secondary-bgd-darkened-5");
     let node = tinyMCE.activeEditor.selection.getNode();
     let parent = tinyMCE.activeEditor.dom.getParent(node, "img");
-    console.log(parent);
     for (let c = 0; c < imgOptions.length; c++) {
       let className = imgOptions[c];
       let optionClassName = className + '-option';

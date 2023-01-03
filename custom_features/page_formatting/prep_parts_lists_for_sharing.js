@@ -59,7 +59,6 @@ function updateContent(content) {
 let assignments = await canvasGet("/api/v1/courses/" + ENV.COURSE_ID + "/assignments");
 for (let a in assignments) {
     let assignment = assignments[a];
-    console.log(assignment);
     let newContent = updateContent(assignment.description);
     $.put("/api/v1/courses/" + ENV.COURSE_ID + "/assignments/" + assignment.id, {
       assignment: {
@@ -73,7 +72,6 @@ let pages = await canvasGet("/api/v1/courses/" + ENV.COURSE_ID + "/pages");
 for (let p in pages) {
   let pData = pages[p];
   let page = await canvasGet("/api/v1/courses/" + ENV.COURSE_ID + "/pages/" + pData.url);
-    console.log(page);
   page = page[0];
   let newContent = updateContent(page.body);
   $.put("/api/v1/courses/" + ENV.COURSE_ID + "/pages/" + pData.url, {

@@ -1,4 +1,3 @@
-console.log("DELETE MOD ITEMS");
 addToModuleMenu("Delete Content", "Delete all content from the course.", async (event, courseId, moduleId, item) => {  
   event.preventDefault(); 
   let loadBar = $(`
@@ -26,7 +25,6 @@ addToModuleMenu("Delete Content", "Delete all content from the course.", async (
       $("#delete-items-progress-bar").progressbar({
           value: 0
       });
-      console.log(item);
       let moduleItems = await canvasGet(`/api/v1/courses/${courseId}/modules/${moduleId}/items?include[]=content_details`);
       let deleteFuncs = {
           'ExternalUrl': async (moduleItem) => {
@@ -58,12 +56,8 @@ addToModuleMenu("Delete Content", "Delete all content from the course.", async (
       }
       for (let m in moduleItems) {
           let moduleItem = moduleItems[m];
-          console.log(moduleItem);
           await deleteFuncs[moduleItem.type](moduleItem);
           $(`#context_module_item_${moduleItem.id}`).remove();
-          console.log(m);
-          console.log(moduleItems.length);
-          console.log(((parseInt(m) + 1) / moduleItems.length) * 100);
           $("#delete-items-progress-bar").progressbar({
                 value: ((m + 1) / (moduleItems.length + 1)) * 100
           })

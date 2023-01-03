@@ -7,11 +7,9 @@ $("#content a").each(async function() {
     let quizUrls = href.match(/(courses\/[0-9]+\/quizzes\/[0-9]+)/);
     if  (quizUrls) {
         let quizUrl = quizUrls[1];
-        console.log(quizUrl);
         let submissions = (await canvasGet("/api/v1/" + quizUrl + "/submission"))[0].quiz_submissions;
         if (submissions.length > 0) {
             let submission = submissions[0];
-            console.log(submission);
             el.after(`<i title="Quiz submitted ${submission.finished_at}" class="icon-publish icon-Solid" style="color: green;"></i>`);
         } else {
             el.after(`<i title="No submission on record" class="icon-warning icon-Solid" style="color: red;"></i>`);

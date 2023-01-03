@@ -4,9 +4,7 @@ function allignAssignments(reg="") {
   $(".assignment_section table tr").each(function() {
     let titleOriginal = $(this).find("th.title").text()
     let title = titleOriginal.replace(reg, "");
-    console.log(title);
     let select = $(this).find("select");
-    console.log(select);
     let options = select.find("option");
     let found = false;
     options.each(function() {
@@ -23,6 +21,5 @@ function allignAssignments(reg="") {
       noMatchList.push(titleOriginal);
     }
   });
-  console.log(noMatchList);
 }
 allignAssignments(/Module [0-9]+\.[0-9]+:\s*/);

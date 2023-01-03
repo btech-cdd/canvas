@@ -88,17 +88,13 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
     let submit = $('<input style="float: right;" type="submit" id="submit" value="Submit">');
     submit.click(async function () {
       // $.post(); //send data to google to be processed
-      console.log(formId);
       for (let i = 0; i < items.length; i++) {
         let item = items[i];
         let itemEl = $("#" + item.id);
         let value = itemEl.val();
         formData.items[i].response = value;
-        console.log(value);
       }
-      console.log(formData);
       var url = "https://script.google.com/a/btech.edu/macros/s/AKfycbwIgHHMYbih2XnJf7mjDw8g3grdeHhn9s6JIvH6Qg7mfZ0ElbWr/exec";
-      console.log(url);
       await jQuery.ajax({
         crossDomain: true,
         url: url,
@@ -165,7 +161,6 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
         }).done(function (res) {
           formData = res;
         });
-        console.log(formData);
         let items = formData.items;
         //could grab any since they all have the responseId, but getting 0 for consistency sake
         //grab some default data
@@ -206,7 +201,6 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
           else {
             for (let e = 0; e < item.entries.length; e++) {
               let entry = item.entries[e];
-              console.log(item.type);
               switch (item.type) {
                 case "TEXT":
                   addTextEntry(item.id, item.title);
@@ -228,7 +222,6 @@ style="text-align:left;color:#666;border-bottom:1px solid #d3d8d3;padding:0;min-
       } else {
         container.empty();
         container.append("<p>Survey already completed</p>");
-        console.log(canvasSubmitButton.text().trim());
       }
     }
   }

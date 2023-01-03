@@ -28,7 +28,6 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+/.test(window.location.pathname)) {
               }
           }
           if (!found) {
-              console.log(dates);
               processDates();
           }
       });
@@ -51,28 +50,17 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+/.test(window.location.pathname)) {
               let prevScore = 0;
               let prevFinalScore = 0;
               let prevProgress = 0;
-              console.log("CUR");
-              console.log(finalScore);
-              console.log(progress);
               if (d > 0) {
                   prevScore = dates[d-1].score;
                   prevFinalScore = dates[d-1].final_score;
                   prevProgress = prevFinalScore / prevScore;
-                  console.log("PREV");
-                  console.log(prevFinalScore);
-                  console.log(prevProgress);
               }
               let difScore = ((finalScore - prevFinalScore));
               let difProgress = (progress - prevProgress);
               if (difProgress == 0) {
                   difProgress = .001;
               }
-              console.log(difScore);
-              console.log(difProgress);
               let enrollmentTermScore = difScore / difProgress;
-              console.log("SURVEY SAYS...");
-              console.log(enrollmentTermScore);
-              console.log("");
               if (enrollmentTermScore != enrollmentTermScore.toFixed(2)) {
                   enrollmentTermScore = enrollmentTermScore.toFixed(2)
               }
@@ -101,7 +89,6 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+/.test(window.location.pathname)) {
       //get current grade info
       let url = "/api/v1/courses/"+courseId+"/users?user_ids[]=" + userId + "&include[]=enrollments";
       $.get(url, function(data) {
-          console.log(data);
           if (data.length > 0) {
               grades = data[0].enrollments[0].grades;
               current_score = grades.current_score;
@@ -121,7 +108,6 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+/.test(window.location.pathname)) {
               }
               //after collecting customColumnsData, go through each collumn and add lines to the table
               getColumnData(userId, courseId, customColumnsData);
-              console.log(customColumnsData);
           });
       });
   }

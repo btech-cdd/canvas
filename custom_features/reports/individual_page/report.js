@@ -45,7 +45,6 @@
         this.IS_TEACHER = IS_TEACHER;
         // if (!IS_TEACHER) this.menu = 'period';
         if (IS_TEACHER) { //also change this to ref the url and not whether or not is teacher
-          console.log("IS TEACHER");
           let match = window.location.pathname.match(/(users|grades)\/([0-9]+)/);
           this.userId = match[2];
         } else {
@@ -67,7 +66,6 @@
           let user = await app.loadUser(this.userId);
           this.user = user;
         } catch(err) {
-          console.log("FAILED TO LOAD USER");
           app.user = {};
         }
         app.loadingProgress += 10;
@@ -127,7 +125,6 @@
 
       methods: {
         close() {
-          console.log("close")
           let modal = $('#canvas-individual-report-vue');
           modal.hide();
         },
@@ -227,7 +224,6 @@
           await $.get("https://reports.bridgetools.dev/api/students/" + userId + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function (data) {
             user = data;
           });
-          console.log(user);
           if (user === "") {
             try {
               await $.get("/api/v1/users/" + userId, function (data) {
@@ -351,33 +347,7 @@
     });
   }
   
-  //Confirm with Instructional Team before going live
-  try {
-    let user = await bridgetoolsReq(`https://reports.bridgetools.dev/api/students/${ENV.current_user_id}`);
-    if (user?.enrollment_type == 'HS' && CURRENT_DEPARTMENT_ID === 3824) { //Dental testing this
-      if (/[0-9]+\/grades/.test(window.location.pathname)) {
-        $("#content").prepend(`
-          <div style="background-color: white; position:relative; left: 0; bottom: 0;" class="ic-notification ic-notification--danger">
-            <div class="ic-notification__icon" role="presentation">
-              <i class="icon-info"></i>
-              <span class="screenreader-only">
-                information
-              </span>
-            </div>
-            <div class="ic-notification__content">
-              <div class="ic-notification__message">
-                <h4 class="ic-notification__title">
-                  High School Students!
-                </h4>
-                <span class="notification_message">The grade here may <strong>NOT</strong> be your final grade for the term. Your final grade will be based on only the assignments submitted during the term and may take into account other factors such as the ammount of work you completed and/or work completed in other courses. Contact your instructor if you have questions about how your grade will be calculated.</span></div>
-            </div>
-          </div>
-        `);
-      }
-    }
-  } catch(err) {
-
-  }
+  
 
   await $.put("https://reports.bridgetools.dev/gen_uuid?requester_id=" + ENV.current_user_id);
   loadCSS("https://reports.bridgetools.dev/style/main.css");

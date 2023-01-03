@@ -217,14 +217,12 @@
     let externalLinks = [...bodyText.matchAll(/src=\"(.)+?courses\/([0-9]+)\/files\/([0-9]+)/g)];
     let courseId = parseInt(window.location.pathname.match(/courses\/([0-9]+)/)[1]);
     $.get("/api/v1/courses/" + courseId + "/folders").done(function (data) {
-      console.log(data);
       for (let d = 0; d < data.length; d++) {
         let folderData = data[d];
         if (folderData.name == "course files") {
 
           url = "/api/v1/folders/" + data[d].id + "/copy_file?source_file_id=" + 95008571 + "&on_duplicate=rename";
           $.post(url).done(function (data) {
-            console.log(data);
           });
           break;
         }

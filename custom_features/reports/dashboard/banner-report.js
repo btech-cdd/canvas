@@ -1,6 +1,7 @@
 /*
 */
 (async function () {
+  console.log("APPEND");
   function loadCSS(url) {
     var style = document.createElement('link'),
       head = document.head || document.getElementsByTagName('head')[0];

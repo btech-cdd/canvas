@@ -174,11 +174,6 @@
 
             app.xOffset = e.pageX - $(el).offset().left;
             app.yOffset = e.pageY - $(el).offset().top;
-            console.log($(el).offset());
-            console.log(app.xOffset);
-            console.log(app.yOffset);
-            console.log(e.pageX);
-            console.log(e.pageY);
             if (this.currentEl == null) {
               this.currentEl = el;
               this.currentData = data;

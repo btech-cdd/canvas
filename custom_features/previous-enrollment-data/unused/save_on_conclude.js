@@ -64,7 +64,6 @@ if (/^\/courses\/[0-9]+\/users\/[0-9]+/.test(window.location.pathname)) {
                     $.post(url, function(data) {
                         customColumnsData[""+currentColumn]=data;
                         customColumnsData.length = currentColumn;
-                        console.log(customColumnsData);
                     });
                     $(".conclude_enrollment_link").show();
                     $(".pending-data-collection").hide();
@@ -99,7 +98,6 @@ if (/^\/courses\/[0-9]+\/users\/[0-9]+/.test(window.location.pathname)) {
                     customColumnsData.length += 1;
                 }
             }
-            console.log(customColumnsData);
             return getColumnData(userId, courseId, customColumnsData);
         });
 

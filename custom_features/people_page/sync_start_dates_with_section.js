@@ -12,7 +12,6 @@
             let students = section.students;
             for (let st in students) {
                 let student = students[st];
-                console.log(student);
                 await $.post("/api/v1/courses/" + CURRENT_COURSE_ID + "/enrollments",
                   {enrollment: {
                         start_at: section.start_at,

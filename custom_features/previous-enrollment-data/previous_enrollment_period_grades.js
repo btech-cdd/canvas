@@ -172,9 +172,7 @@ if (/^\/courses\/[0-9]+\/grades/.test(window.location.pathname)) {
                     finalPoints += (sub.score * group.group_weight);
                     possiblePoints += assignment.points_possible;
                   }
-                } else {
-                  //console.log($("#submission_"+id).html());
-                }
+                } 
               }
             }
             

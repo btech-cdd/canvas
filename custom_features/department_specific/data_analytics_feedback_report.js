@@ -15,7 +15,6 @@
     for (let a in assignments) {
         let assignment = assignments[a];
         if (assignment.name.match(/Module [0-9]+ Feedback/)) {
-            console.log(assignment.name);
             report.append(`<h2>${assignment.name}</h2>`);
             let list = $("<ul></ul>");
             let submissions = await canvasGet(`/api/v1/courses/${ENV.course_id}/assignments/${assignment.id}/submissions`);

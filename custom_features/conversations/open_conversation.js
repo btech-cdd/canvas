@@ -1,9 +1,6 @@
 (async function () {
-  console.log(window.location);
-  console.log(document.referrer);
   const urlParams = new URLSearchParams(window.location.hash);
   let conversationId = urlParams.get('conversation');
-  console.log(conversationId);
   if (conversationId !== null) {
     let abort = false; //when flipped to true, will stop scrolling and return to top
 

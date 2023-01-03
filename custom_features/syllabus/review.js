@@ -256,7 +256,6 @@ function processSyllabusPage() {
             $(this).css('background-color', '#FAA');
         }
         if (!baseSyllabusHTML.includes(html)) {
-            console.log(html);
             $(this).css('background-color', '#FDD');
         }
     });

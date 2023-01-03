@@ -88,8 +88,6 @@ function elementsWithTheseIdsDontExist(ids) {
  */
 function elementsWithTheseClassesDontExist(classes) {
    for(var i = 0; i < classes.length; i++) {
-       console.log(classes[i]);
-       console.log(document.querySelectorAll('.'+classes[i]));
        if(document.querySelectorAll('.'+classes[i]).length!==0){
             return false; //it does exist
         }

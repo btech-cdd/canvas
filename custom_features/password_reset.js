@@ -43,8 +43,6 @@
     let logins = await canvasGet(`/api/v1/users/${userId}/logins`);
     let login = logins[0];
     let password = randomPassword();
-    console.log(user);
-    console.log(login);
     let body = {
       email: user.email,
       password: password,
@@ -63,7 +61,6 @@
     // let res = await $.post("https://canvas.bridgetools.dev/api/temp_password", body);
     // if (res.status == 'success') alert(`Temporary Password set to: ${password} Remind the user to check their spam.`);
     // if (res.status == 'fail') alert("Failed to send!");
-    // console.log(res);
   });
 
   let channels = await canvasGet(`/api/v1/users/${ENV.USER_ID}/communication_channels`);

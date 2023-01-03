@@ -106,7 +106,6 @@
                 value = "<" + (data[s - 1][1] * 100) + "% - " + (line[1] * 100) + "%";
               }
             }
-            console.log(value);
             if (CURRENT_DEPARTMENT_ID === 3827) {
               row.append("<td style='border: 0px solid black; padding: 4px 8px;'>" + value + "</td>");
             } else {

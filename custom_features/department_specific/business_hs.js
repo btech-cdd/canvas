@@ -42,16 +42,12 @@
     rPieces = /^\/courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/
     rPiecesInitial = /^\/courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)/
     IS_SPEED_GRADER = true;
-    console.log("SPEED GRADER");
   }
 
   //GRADING VIEW
   //This one has to come first so it doesn't have the submission view run on the grading page
-  console.log(window.location.pathname + window.location.search);
   if (rPiecesInitial.test(window.location.pathname + window.location.search)) {
-    console.log("MATCH");
     if (ENV.current_user_roles.includes("teacher")) {
-      console.log("TEACHER");
       IMPORTED_FEATURE = {
         initiated: false,
         oldHref: "",
@@ -65,7 +61,6 @@
           ////Allow the color themes to affect the color of the buttons and display in both teacher view and student view
           let feature = this;
           if (IS_SPEED_GRADER) {
-            console.log("INIT");
             feature.oldHref = document.location.href,
             await getElement("#right_side");
             var
@@ -241,11 +236,9 @@
                     let courseCount = this.courseGrades.length;
                     for (let c = 0; c < courseCount; c++) {
                       let courseData = this.courseGrades[c];
-                      console.log(parseFloat(courseData['grade']));
                       coursePointsTotal += parseFloat(courseData['grade']);
                     }
                     let average = (Math.round((coursePointsTotal / courseCount) * 10) / 10).toFixed(1);
-                    console.log(average);
                     return average;
                   },
                   minToHoursString: function (minutes) {
@@ -281,14 +274,11 @@
                   },
                   async submitCourseGrade() {
                     let course = '' + this.selectedCourse;
-                    console.log(course);
                     let grade = this.selectedGrade;
-                    console.log(grade);
                     let found = false
                     if (course != "" && grade != "") {
                       for (let c = 0; c < this.courseGrades.length; c++) {
                         if (('' + this.courseGrades[c].course) === course) {
-                          console.log("MATCH");
                           this.courseGrades[c].grade = grade;
                           found = true;
                           await $.delete(window.location.origin + "/submission_comments/" + this.courseGrades[c].comment_id);
@@ -311,7 +301,6 @@
                           posted_grade: averageScore
                         }
                       });
-                      console.log(averageScore);
                       location.reload(true);
                     }
                   },

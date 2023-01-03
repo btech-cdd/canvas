@@ -1,6 +1,5 @@
 (async function () {
   window.addEventListener('load', function () {
-    console.log("imgs")
     let imgs = $("#content img");
     imgs.each(function () {
       let img = $(this);

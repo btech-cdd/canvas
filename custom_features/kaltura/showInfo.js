@@ -2,9 +2,7 @@ let iframes = $("iframe");
 iframes.each(function () {
   let iframe = $(this);
   let src = iframe.attr("src");
-  console.log(src);
   if (src.includes("kaltura")) {
-    console.log("KALTURA!");
     let playerIdMatch = src.match(/[playerSkin\/|kaltura_player_]([0-9]+)/);
     let playerId = playerIdMatch[1];
     //get video id
@@ -47,9 +45,7 @@ iframes.each(function () {
       title: "Kaltura Info"
     });
     kalturaInfoIconEl.click(function () {
-      console.log(`https://kaltura.bridgetools.dev/api/mymedia/${entryId}`);
       $.get(`https://kaltura.bridgetools.dev/api/mymedia/${entryId}`, function(data) {
-        console.log(data);
         $(`#kalturaOwnerId_${entryId}`).html(`<a target="_blank" href="https://btech.instructure.com/accounts/3/users?search_term=${data.userId}">${data.userId}</a>`);
       });
       kalturaInfoEl.dialog("open");

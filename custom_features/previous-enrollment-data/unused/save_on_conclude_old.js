@@ -16,7 +16,6 @@ if (/^\/courses\/[0-9]+\/users\/[0-9]+/.test(window.location.pathname)) {
       async function run() {
           await delay(500);
           if ($(".unconclude_enrollment_link_holder").css("display") === "block") {
-              console.log("RUN");
               let url = "/api/v1/users/"+userId+"/custom_data/previous-enrollments/"+courseId+"/enrollments/"+DATE+"?ns=edu.btech&data[current_grade]="+STUDENT_CURRENT_SCORE+"&data[final_grade]="+STUDENT_FINAL_SCORE;
               $.put(url);
           }

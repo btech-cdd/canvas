@@ -41,8 +41,6 @@ let urlData = window.location.pathname.match(/courses\/([0-9]+)\/assignments\/([
 
     async function updateComment(criterionId, criterionValue) {
         savedCriteria[criterionId] = criterionValue;
-        console.log("SELF EVALUATION");
-        console.log(selfEvaluation);
         //Add in a try on the delete, if it fails break, wait, and then rerun the function a second later, rinse repeat
         if (selfEvaluation !== null) {
             await $.delete(window.location.origin + "/submission_comments/" + selfEvaluation.id);
@@ -65,14 +63,12 @@ let urlData = window.location.pathname.match(/courses\/([0-9]+)\/assignments\/([
     let savedCriteria = {};
     if (selfEvaluation !== null) {
         let lines = selfEvaluation.comment.match(/_[0-9]+: [0-9]+/g);
-        console.log(lines);
         for (let l = 0; l < lines.length; l++) {
             let line = lines[l];
             let parts = line.match(/(_[0-9]+): ([0-9]+)/);
             savedCriteria[parts[1]] = parseInt(parts[2]);
         }
     }
-    console.log(savedCriteria);
     let criteria = await getCriteria();
     $(".btech-self-graded-rubric").empty();
     let labels = {

@@ -7,7 +7,6 @@
       let label = el.attr('aria-label');
       modules[label] = el;
       if (label !== "Orientation") {
-          console.log(label);
           el.hide();
       }
   });
@@ -22,7 +21,6 @@
               }
           }
       }
-      console.log(data);
   });
   // Your code here...
 })();

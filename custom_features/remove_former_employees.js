@@ -46,7 +46,6 @@
             $("#unenroll-progress-message").html("Removing admin access. Do <strong>NOT</strong> close the page.")
             for (let a in adminRights) {
               let account = adminRights[a].id;
-              console.log(account);
               try {
                 await $.delete(`/api/v1/accounts/${account}/admins/${ENV.USER_ID}`);
               } catch(e) {
