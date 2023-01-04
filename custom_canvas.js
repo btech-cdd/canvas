@@ -215,6 +215,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
             }
             if (CURRENT_DEPARTMENT_ID === 3820) { //Web & Mobile
               // externalFeature("https://bridgerland-web-dev.github.io/html_practice/html_practice.js", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/)
+              externalFeature("https://static.codepen.io/assets/embed/ei.js", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             }
             if (CURRENT_DEPARTMENT_ID === 3883) { //Diesel
               feature("department_specific/diesel-page-turner", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
