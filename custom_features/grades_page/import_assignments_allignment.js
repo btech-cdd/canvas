@@ -1,3 +1,7 @@
+//Grades will NOT import if:
+////Student has not accepted their invite to the course
+////The section names do not match exactly
+
 //Need to add a button to run this on the allignment page
 function allignAssignments(reg="") {
   let noMatchList = [];
