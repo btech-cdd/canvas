@@ -201,14 +201,12 @@
 
 
         async loadTree(deptCode, deptYear) {
-          console.log(deptCode + " - " + deptYear);
           let url = "https://reports.bridgetools.dev/api/trees?dept_code=" + deptCode + "&year=" + deptYear;
           let data = await bridgetoolsReq(url);
           let tree = data[0];
           if (tree?.courses?.core === undefined) tree.courses.core = {};
           if (tree?.courses?.elective === undefined) tree.courses.elective = {};
           if (tree?.courses?.other === undefined) tree.courses.other = {};
-          console.log(tree);
 
           this.tree = tree;
           return tree;
@@ -296,7 +294,6 @@
                   name: courseName,
                   score: current_score
                 }
-                console.log(courseCode);
                 user.courses[courseCode] = courseData;
                 user.treeCourses.other.push(courseData)
               }
