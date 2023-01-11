@@ -315,7 +315,7 @@
               return (a.year > b.year) ? -1 : ((a.year < b.year) ? 1 : 0)
             })
             app.currentDepartment = user.depts[0];
-            console.log(user);
+            console.log(user.depts[0]);
             tree = await app.loadTree(user.depts[0].dept, user.depts[0].year);
           }
 
@@ -325,6 +325,7 @@
 
         async changeTree(user) {
           let app = this;
+          console.log(user);
           let tree = await app.loadTree(app.currentDepartment.dept, app.currentDepartment.year);
           user = app.updateUserCourseInfo(user, tree);
           app.user = user;
