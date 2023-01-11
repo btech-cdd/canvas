@@ -227,6 +227,7 @@
           if (user === "") {
             try {
               await $.get("/api/v1/users/" + userId, function (data) {
+                console.log(data);
                 user = {
                   name: data.name,
                   sis_id: data.sis_user_id,
@@ -326,7 +327,6 @@
 
         async changeTree(user) {
           let app = this;
-          console.log(user);
           let tree = await app.loadTree(app.currentDepartment.dept, app.currentDepartment.year);
           user = app.updateUserCourseInfo(user, tree);
           app.user = user;
