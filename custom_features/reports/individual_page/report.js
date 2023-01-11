@@ -227,6 +227,7 @@
           if (user === "") {
             try {
               await $.get("/api/v1/users/" + userId, function (data) {
+                console.log("USER FOUND")
                 console.log(data);
                 user = {
                   name: data.name,
