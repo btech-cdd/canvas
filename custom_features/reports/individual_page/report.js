@@ -315,6 +315,7 @@
               return (a.year > b.year) ? -1 : ((a.year < b.year) ? 1 : 0)
             })
             app.currentDepartment = user.depts[0];
+            console.log(user);
             console.log(user.depts[0]);
             tree = await app.loadTree(user.depts[0].dept, user.depts[0].year);
           }
