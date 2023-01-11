@@ -314,6 +314,7 @@
             let month = date.getMonth() + 1;
             if (month <= 6) maxyear -= 1;
 
+            console.log(maxyear);
             user.depts = user.depts.filter((dept) => dept.year <= maxyear);
             user.depts.sort((a, b) => {
               if (a.year == b.year) {
@@ -321,6 +322,7 @@
               }
               return (a.year > b.year) ? -1 : ((a.year < b.year) ? 1 : 0)
             });
+            console.log("Filtered")
             app.currentDepartment = user.depts[0];
             console.log(user);
             console.log(user.depts[0]);
