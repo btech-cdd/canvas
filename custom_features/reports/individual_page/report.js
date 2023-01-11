@@ -208,6 +208,7 @@
           if (tree?.courses?.core === undefined) tree.courses.core = {};
           if (tree?.courses?.elective === undefined) tree.courses.elective = {};
           if (tree?.courses?.other === undefined) tree.courses.other = {};
+          console.log(tree);
 
           this.tree = tree;
           return tree;
@@ -308,17 +309,11 @@
               }
             }
           } else {
-            console.log("GETTING DEPT");
             let date = new Date();
-            console.log("GETTING DEPT");
             let maxyear = date.getFullYear();
-            console.log("GETTING DEPT");
             let month = date.getMonth() + 1;
-            console.log("GETTING DEPT");
             if (month <= 6) maxyear -= 1;
-            console.log("GETTING DEPT");
 
-            console.log(maxyear);
             user.depts = user.depts.filter((dept) => dept.year <= maxyear);
             user.depts.sort((a, b) => {
               if (a.year == b.year) {
@@ -326,10 +321,7 @@
               }
               return (a.year > b.year) ? -1 : ((a.year < b.year) ? 1 : 0)
             });
-            console.log("Filtered")
             app.currentDepartment = user.depts[0];
-            console.log(user);
-            console.log(user.depts[0]);
             tree = await app.loadTree(user.depts[0].dept, user.depts[0].year);
           }
 
