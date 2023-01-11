@@ -222,8 +222,6 @@
             authCode = data.data.auth_code;
           });
           await $.get("https://reports.bridgetools.dev/api/students/" + userId + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function (data) {
-            console.log("USER FOUND!")
-            console.log(JSON.stringify(data));
             user = data;
           });
           if (user === "") {
@@ -247,8 +245,6 @@
                 }
               });
             } catch (err) {
-              console.log("USER NOT FOUND")
-              console.log(err);
               user = {
                 name: "",
                 sis_id: "",
