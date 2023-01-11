@@ -308,6 +308,7 @@
               }
             }
           } else {
+            console.log("GETTING DEPT");
             let date = new Date(date);
             let maxyear = date.getFullYear();
             let month = date.getMonth() + 1;
