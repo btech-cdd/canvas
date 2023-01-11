@@ -313,7 +313,7 @@
             let month = date.getMonth() + 1;
             if (month <= 6) maxyear -= 1;
 
-            user.depts.filter((dept) => dept.year <= maxyear);
+            user.depts = user.depts.filter((dept) => dept.year <= maxyear);
             user.depts.sort((a, b) => {
               if (a.year == b.year) {
                 return (a.dept.toLowerCase() > b.dept.toLowerCase()) ? 1 : ((a.dept.toLowerCase() < b.dept.toLowerCase()) ? -1 : 0)
