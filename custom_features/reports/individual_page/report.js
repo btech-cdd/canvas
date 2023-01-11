@@ -309,7 +309,7 @@
             }
           } else {
             console.log("GETTING DEPT");
-            let date = new Date(date);
+            let date = new Date();
             console.log("GETTING DEPT");
             let maxyear = date.getFullYear();
             console.log("GETTING DEPT");
