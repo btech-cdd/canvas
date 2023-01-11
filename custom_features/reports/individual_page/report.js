@@ -296,6 +296,7 @@
                   name: courseName,
                   score: current_score
                 }
+                console.log(courseCode);
                 user.courses[courseCode] = courseData;
                 user.treeCourses.other.push(courseData)
               }
