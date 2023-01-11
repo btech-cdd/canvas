@@ -310,9 +310,13 @@
           } else {
             console.log("GETTING DEPT");
             let date = new Date(date);
+            console.log("GETTING DEPT");
             let maxyear = date.getFullYear();
+            console.log("GETTING DEPT");
             let month = date.getMonth() + 1;
+            console.log("GETTING DEPT");
             if (month <= 6) maxyear -= 1;
+            console.log("GETTING DEPT");
 
             console.log(maxyear);
             user.depts = user.depts.filter((dept) => dept.year <= maxyear);
