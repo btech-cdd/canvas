@@ -312,12 +312,18 @@
               }
             }
           } else {
+            let date = new Date(date);
+            let maxyear = date.getFullYear();
+            let month = date.getMonth() + 1;
+            if (month <= 6) maxyear -= 1;
+
+            user.depts.filter((dept) => dept.year <= maxyear);
             user.depts.sort((a, b) => {
               if (a.year == b.year) {
                 return (a.dept.toLowerCase() > b.dept.toLowerCase()) ? 1 : ((a.dept.toLowerCase() < b.dept.toLowerCase()) ? -1 : 0)
               }
               return (a.year > b.year) ? -1 : ((a.year < b.year) ? 1 : 0)
-            })
+            });
             app.currentDepartment = user.depts[0];
             console.log(user);
             console.log(user.depts[0]);
