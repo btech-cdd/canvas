@@ -223,7 +223,7 @@
           });
           await $.get("https://reports.bridgetools.dev/api/students/" + userId + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function (data) {
             console.log("USER FOUND!")
-            console.log(data);
+            console.log(JSON.stringify(data));
             user = data;
           });
           if (user === "") {
