@@ -27,10 +27,8 @@
     let dateOverride = document.getElementById("date-override");
     let name = $(picker).val();
     let enrollment = users[name];
-      console.log(enrollment);
     $(dateOverride).change(()=>{
       if (startAt != undefined) {
-        console.log(dateOverride.value);
         $.post("/api/v1/courses/" + ENV.COURSE_ID + "/enrollments",
           {enrollment: {
             start_at: new Date(dateOverride.value),
@@ -52,7 +50,6 @@
       var month = ("0" + (startAt.getMonth() + 1)).slice(-2);
 
       startAt = startAt.getFullYear()+"-"+(month)+"-"+(day) ;
-      console.log(startAt);
       dateOverride.value=startAt;
     }
   });
@@ -62,12 +59,10 @@
   for (let e in enrollments) {
     let enrollment = enrollments[e];
       if (users?.[enrollment.user.name] == undefined) {
-      console.log(enrollment.user.name);
       users[enrollment.user.name] = enrollment;
       } else {
           console.log("DUP");
       }
-      console.log(enrollment);
   }
 })();
 
