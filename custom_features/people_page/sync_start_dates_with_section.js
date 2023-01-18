@@ -29,6 +29,9 @@
     let enrollment = users[name];
     $(dateOverride).change(()=>{
       if (startAt != undefined) {
+        let startDate = new Date(dateOverride.value);
+        //for...reasons, this is a day off
+        startDate.setDate(startDate.getDate() + 1);
         $.post("/api/v1/courses/" + ENV.COURSE_ID + "/enrollments",
           {enrollment: {
             start_at: new Date(dateOverride.value),
