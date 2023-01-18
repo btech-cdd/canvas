@@ -34,7 +34,7 @@
         startDate.setDate(startDate.getDate() + 1);
         $.post("/api/v1/courses/" + ENV.COURSE_ID + "/enrollments",
           {enrollment: {
-            start_at: new Date(dateOverride.value),
+            start_at: startDate,
             user_id: enrollment.user.id,
             course_section_id: enrollment.course_section_id,
             type: "StudentEnrollment",
