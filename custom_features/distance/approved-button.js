@@ -1,4 +1,7 @@
 (async function() {
+
+  //html for icon - can be replaced with any icon you'd like, just make sure style on the svg element is:
+  ////style="width: 1.5rem; height: auto; vertical-align: middle;"
   let workFromHomeIcon = `
   <svg 
     style="width: 1.5rem; height: auto; vertical-align: middle;"
@@ -11,36 +14,52 @@
     </g>
   </svg>`
 
+
+  //api call to get list of distance approved module items
   let approvals;
   await $.get("https://distance.bridgetools.dev/api/courses/" + ENV.COURSE_ID + "/approval", data => {approvals = data});
 
+  //get all module items in current course
   let items = await canvasGet('/api/v1/courses/' + ENV.COURSE_ID + '/modules?include[]=items&include[]=content_details');
+  //set colors
   let contentNotApprovedColor = "rgb(76, 88, 96)";
   let contentApprovedColor = "rgb(11, 135, 75)";
 
+
+  //clear away any distance approved icons on the chance this gets run more than once on a page
   $('.ig-distance-approved').each(function () {
     $(this).remove();
   })
+
+  //iterate over each module item and add the icon if it's in the list of approved items
   for (let m = 0; m < items.length; m++) {
       let module = items[m];
       for (let i = 0; i < module.items.length; i++) {
           let item = module.items[i];
+
+          //module item actually has something
           if (item.url !== undefined && item.content_id > 0) {
+              //get page element using element id
               let itemLiElId = "context_module_item_" + item.id;
               let titleEl = $("#" + itemLiElId + " div.ig-info");
               let approved = false;
+              //see if it's approved
               for (let a = 0; a < approvals.length; a++) {
                   let approval = approvals[a];
                   if (approval.type == item.type && approval.content_id == item.content_id) {
                       approved = approval.approved;
                   }
               }
+
+              //default to not approved
               let color = contentNotApprovedColor;
               if (IS_CDD && approved) color = contentApprovedColor;
               let distanceApprovedButton = $(`<span class="ig-distance-approved" style="cursor: pointer; float: right;"></span>`);
               let icon = $(workFromHomeIcon);
               icon.css("fill", color);
               distanceApprovedButton.append(icon);
+
+              //allow for toggling of approved state if CDD
               if (IS_CDD) {
                   distanceApprovedButton.click(function() {
                       let currentColor = icon.css("fill");
@@ -56,10 +75,11 @@
                       });
                   });
               }
+
+              //only show if approved or if CDD so tehy can toggle it to be approved
               if (approved || IS_CDD) {
                 titleEl.after(distanceApprovedButton);
               }
-              let item_url = item.url.replace('/api/v1', '');
           }
       }
   }

@@ -1,5 +1,5 @@
 //THIS HAS VERY MUCH BEEN TAILORED TO DENTAL. IT WILL NEED TO BE REWORKED TO BE FLEXIBLE ACROSS DEPARTMENTS
-IMPORTED_FEATURE = {};
+console.log("DENTAL ASSIGNMENTS")
 if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
   let highlightColor = "#FFC";
   $("tr.student_assignment").each(function() {
