@@ -2,6 +2,7 @@ console.log("IMG ZOOM");
 (function() {
   $("span").each(function() {
     let el = $(this);
+    console.log(el);
     let bgimg = el.css("background-image");
     if (bgimg != "none") {
       console.log(bgimg);
