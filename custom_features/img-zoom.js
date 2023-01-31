@@ -1,11 +1,8 @@
-console.log("IMG ZOOM");
 window.onload = function() {
   $("span").each(function() {
     let el = $(this);
-    console.log(el);
     let bgimg = el.css("background-image");
     if (bgimg != "none") {
-      console.log(bgimg);
         let hoverimg = $(el.clone());
         hoverimg.css({
             width: "256px",
