@@ -3,6 +3,7 @@ $("span").each(function() {
   let el = $(this);
   let bgimg = el.css("background-image");
   if (bgimg != "none") {
+    console.log(bgimg);
       let hoverimg = $(el.clone());
       hoverimg.css({
           width: "256px",
