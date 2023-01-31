@@ -1,5 +1,5 @@
 console.log("IMG ZOOM");
-(function() {
+window.onload = function() {
   $("span").each(function() {
     let el = $(this);
     console.log(el);
@@ -28,4 +28,4 @@ console.log("IMG ZOOM");
         );
     }
   });
-})();
+}
