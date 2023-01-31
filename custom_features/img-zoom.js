@@ -1,3 +1,4 @@
+console.log("IMG ZOOM");
 $("span").each(function() {
   let el = $(this);
   let bgimg = el.css("background-image");
