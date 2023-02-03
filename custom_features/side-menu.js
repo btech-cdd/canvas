@@ -26,7 +26,12 @@ createSideMenuButton(
   "Community Resources"
   , "https://btech.edu/community-resource-page/"
   , `
-    <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.46 19.95">
+    <svg 
+      id="Layer_2" 
+      data-name="Layer 2" 
+      xmlns="http://www.w3.org/2000/svg" 
+      class="ic-icon-svg menu-item__icon"
+      viewBox="0 0 19.46 19.95">
       <defs>
         <style>
           .cls-1 {
