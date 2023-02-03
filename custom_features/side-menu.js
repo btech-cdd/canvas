@@ -1,6 +1,7 @@
-let sideMenu = $("#menu");
+console.log("SIDE MENU")
 function createSideMenuButton(text, url, svg) {
   let cssText = text.toLowerCase().replace(" ", "-");
+  let sideMenu = $("#menu");
   sideMenu.append(`
     <li class="ic-app-header__menu-list-item">
       <a 
