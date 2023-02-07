@@ -24,6 +24,9 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
         let possible = assignment.points_possible;
         let perc= score / possible;
         let el =  $(`#submission_${assignment.id}`);
+        console.log(submission);
+        console.log(score);
+        console.log(possible);
         if (perc < .8) {
           console.log("TEST")
           let context = el.find("div.context").text();
