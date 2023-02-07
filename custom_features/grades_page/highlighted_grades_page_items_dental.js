@@ -26,7 +26,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
               // $(this).css("background-color", highlightColor);
           }
           if (context === "Tests" && percent < .8) {
-              $(this).css("background-color", highlightColor);
+              // $(this).css("background-color", highlightColor);
           }
           if (context === "Skills Pass-Off") {
             let rubricId = $(this).attr("id").replace("submission_", "rubric_");
@@ -57,6 +57,9 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
                 //*/
             });
             if (completed === false) {
+              $($(this).find(".assignment_score .score_holder")).append(`
+                <span class="unread_dot grade_dot" id="">&nbsp;</span>
+              `);
                 $(this).css("background-color", highlightColor);
             }
         }
