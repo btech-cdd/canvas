@@ -55,26 +55,12 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
                 rubric = rub;
               }
             }
-            console.log(submission);
-            console.log(assignment);
-            console.log(rubric);
-            console.log(rubricAssessment);
-            let rubricId = $(this).attr("id").replace("submission_", "rubric_");
-            let table = $("#" + rubricId + " tbody.criterions");
-            let criteria = $(table).find("tr.rubric-criterion");
             let completed = true;
-            criteria.each(function() {
-                //CHECK EVERY CRITERIA EXCEPT FOR ATTEMPTS
-                let isAttemptsCriterion = $(this).find("th.description-header").text().includes("Attempts");
-                //CHECK ALL CRITERIA EXCEPT ATTEMPTS
-                if (!isAttemptsCriterion) {
-                    let ratings = $(this).find("div.rating-tier-list div.rating-tier");
-                    //IF THE TOP OPTION ISN'T SELECTED, IT'S NOT COMPLETE
-                    if (!$(ratings[0]).hasClass("selected")) {
-                        completed = false;
-                    }
-                }
-            });
+            for (let d in rubric.data) {
+              if (rubricAssessment.data[d].points < rubric.data[d].points) {
+                completed = false;
+              }
+            }
             if (completed === false) {
               addDot(el, "#FC0");
             }
