@@ -48,9 +48,6 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
             //rewrite this to do a filter on the array, sort so the most recent is first, then set that as the assessment
             for (let a in rubricAssessments) {
               let rub = rubricAssessments[a];
-              if (perc < 1) {
-                console.log(rub);
-              }
               if (rub.rubric_association.association_id == assignment.id) {
                 rubricAssessment = rub;
               }
