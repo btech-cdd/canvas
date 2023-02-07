@@ -18,6 +18,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
     let assignments = group.assignments;
     for (let a in assignments) {
       let assignment = assignments[a];
+      console.log(assignment);
       if (!!submissions?.[assignment.id]) {
         let submission = submissions[assignment.id];
         let score = submission.score;
