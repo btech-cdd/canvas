@@ -25,6 +25,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
         let perc= score / possible;
         let el =  $(`#submission_${assignment.id}`);
         if (perc < .8) {
+          console.log("TEST")
           let context = el.find("div.context").text();
           addDot(el, "#FC0");
         }
