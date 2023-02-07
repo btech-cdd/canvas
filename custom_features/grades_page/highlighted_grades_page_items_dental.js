@@ -2,9 +2,13 @@
 if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
 
   //adds a colored dot next to the score on the grades page
-  function addDot(el, color="#FC0") {
+  function addDot(el, color="#FC0", hoverText="Below minium required score") {
     $(el.find(".assignment_score .score_holder")).append(`
-      <span class="unread_dot grade_dot" style="background-color: ${color};">&nbsp;</span>
+      <span 
+        title="${hoverText}"
+        class="unread_dot grade_dot" 
+        style="background-color: ${color}; hover: help;"
+      >&nbsp;</span>
     `);
   }
 
