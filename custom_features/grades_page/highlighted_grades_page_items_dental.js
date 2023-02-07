@@ -11,6 +11,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
       if (isNaN(grade) && gradeText != "-" && gradeText != "N/A") {
         $(this).css("background-color", highlightColor);
       } else if (!isNaN(grade) && !isNaN(total)) {
+          console.log(context);
           let percent = (grade / total);
           if (context === "Quizzes" && percent < .8) {
             $($(this).find(".assignment_score .score_holder")).append(`
