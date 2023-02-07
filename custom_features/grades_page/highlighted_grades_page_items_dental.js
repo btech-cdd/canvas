@@ -1,7 +1,6 @@
 //THIS HAS VERY MUCH BEEN TAILORED TO DENTAL. IT WILL NEED TO BE REWORKED TO BE FLEXIBLE ACROSS DEPARTMENTS
 if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
-  let highlightColor = "#FFC";
-  function addDot(el, color="#FF0") {
+  function addDot(el, color="#FC0") {
     $(el.find(".assignment_score .score_holder")).append(`
       <span class="unread_dot grade_dot" style="background-color: ${color};">&nbsp;</span>
     `);
@@ -13,19 +12,19 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
     let grade = parseFloat(gradeText);
     let total = parseFloat($(this).find("td.points_possible").text().trim());
     if (isNaN(grade) && gradeText != "-" && gradeText != "N/A") {
-      addDot(el, "#FF0");
+      addDot(el, "#C00");
       // $(this).css("background-color", highlightColor);
     } else if (!isNaN(grade) && !isNaN(total)) {
       console.log(context);
       let percent = (grade / total);
       if (context === "Quizzes" && percent < .8) {
-        addDot(el, "#FF0");
+        addDot(el, "#FC0");
       }
       if (context === "Assignments" && percent < .8) {
-        addDot(el, "#FF0");
+        addDot(el, "#FC0");
       }
       if (context === "Tests" && percent < .8) {
-        addDot(el, "#FF0");
+        addDot(el, "#FC0");
       }
       if (context === "Skills Pass-Off") {
         let rubricId = $(this).attr("id").replace("submission_", "rubric_");
@@ -56,7 +55,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
             //*/
         });
         if (completed === false) {
-          addDot(el, "#FF0");
+          addDot(el, "#FC0");
         }
       }
     }
