@@ -3,7 +3,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
   let highlightColor = "#FFC";
   function addDot(el, color="#FFC") {
     $(el.find(".assignment_score .score_holder")).append(`
-      <span class="unread_dot grade_dot" id="">&nbsp;</span>
+      <span class="unread_dot grade_dot" style="background-color: ${color};">&nbsp;</span>
     `);
   }
   $("tr.student_assignment").each(function() {
