@@ -36,7 +36,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
 
         //If needs grading, mark in red for instructor
         if (submission.workflow_state == 'submitted' && score == null) {
-          addDot(el, "#C00");
+          addDot(el, "#C00", "Needs to be graded");
           continue;
         }
 
@@ -66,14 +66,14 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
                 break;
               }
             }
-            let completed = true;
+            let incompetentItems = 0;
             for (let d in rubric.data) {
               if (rubricAssessment.data[d].points < rubric.data[d].points) {
-                completed = false;
+                incompetentItems += 1;
               }
             }
-            if (completed === false) {
-              addDot(el, "#FC0");
+            if (incompetentItems > 0) {
+              addDot(el, "#FC0", "Did not meet competency in " + incompetentItems + " areas");
             }
           } else if (perc < .8) {
             addDot(el, "#FC0");
