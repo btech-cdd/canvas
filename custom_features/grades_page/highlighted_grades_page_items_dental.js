@@ -32,8 +32,18 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
         if (score != null) {
           let context = el.find("div.context").text();
           if (context === "Skills Pass-Off") {
+            let rubric = {};
+            let rubricAssessments = ENV.rubric_assessments;
+            for (let a in rubricAssessments) {
+              let rub = rubricAssessments[a];
+              if (rub.rubric_association.association_id == assignment.id) {
+                rubric = rub;
+                break;
+              }
+            }
             console.log(submission);
             console.log(assignment);
+            console.log(rubric);
             let rubricId = $(this).attr("id").replace("submission_", "rubric_");
             let table = $("#" + rubricId + " tbody.criterions");
             let criteria = $(table).find("tr.rubric-criterion");
