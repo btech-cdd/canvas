@@ -1,7 +1,7 @@
 //THIS HAS VERY MUCH BEEN TAILORED TO DENTAL. IT WILL NEED TO BE REWORKED TO BE FLEXIBLE ACROSS DEPARTMENTS
 if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
   let highlightColor = "#FFC";
-  function addDot(el, color="#FFC") {
+  function addDot(el, color="#FF0") {
     $(el.find(".assignment_score .score_holder")).append(`
       <span class="unread_dot grade_dot" style="background-color: ${color};">&nbsp;</span>
     `);
