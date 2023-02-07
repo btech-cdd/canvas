@@ -11,11 +11,13 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
     let gradeText = $(this).find("span.grade").text().replaceAll("Click to test a different score", "").trim();
     let grade = parseFloat(gradeText);
     let total = parseFloat($(this).find("td.points_possible").text().trim());
+    console.log(context);
+    console.log(grade);
+    console.log(total);
     if (isNaN(grade) && gradeText != "-" && gradeText != "N/A") {
       addDot(el, "#C00");
       // $(this).css("background-color", highlightColor);
     } else if (!isNaN(grade) && !isNaN(total)) {
-      console.log(context);
       let percent = (grade / total);
       if (context === "Quizzes" && percent < .8) {
         addDot(el, "#FC0");
