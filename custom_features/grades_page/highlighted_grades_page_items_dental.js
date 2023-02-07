@@ -46,6 +46,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
             let rubrics = ENV.rubrics;
             for (let r in rubrics) {
               let rub = rubrics[a];
+              console.log(rub);
               if (rub.id == rubricAssessment.rubric_id) {
                 rubric = rub;
                 break;
