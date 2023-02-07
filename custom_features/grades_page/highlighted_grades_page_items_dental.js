@@ -10,6 +10,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
   for (let s in submissionsData) {
     let submission = submissionsData[s];
     submissions[submission.assignment_id] = submission;
+    console.log(submission);
     if (submission.id == 5353425) {
       console.log(submission);
     }
