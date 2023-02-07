@@ -5,7 +5,6 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
       <span class="unread_dot grade_dot" style="background-color: ${color};">&nbsp;</span>
     `);
   }
-  let highlightColor = "#FFC";
   let submissions = {};
   let submissionsData = ENV.submissions;
   for (let s in submissionsData) {
@@ -15,6 +14,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
   let groups = ENV.assignment_groups;
   for (let g in groups) {
     let group = groups[g];
+    console.log(group);
     let assignments = group.assignments;
     for (let a in assignments) {
       let assignment = assignments[a];
