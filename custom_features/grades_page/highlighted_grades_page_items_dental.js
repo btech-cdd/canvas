@@ -29,9 +29,33 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
         }
         let possible = assignment.points_possible;
         let perc = score / possible;
-        if (score != null && perc < .8) {
+        if (score != null) {
           let context = el.find("div.context").text();
-          addDot(el, "#FC0");
+          if (context === "Skills Pass-Off") {
+            console.log(submission);
+            console.log(assignment);
+            let rubricId = $(this).attr("id").replace("submission_", "rubric_");
+            let table = $("#" + rubricId + " tbody.criterions");
+            let criteria = $(table).find("tr.rubric-criterion");
+            let completed = true;
+            criteria.each(function() {
+                //CHECK EVERY CRITERIA EXCEPT FOR ATTEMPTS
+                let isAttemptsCriterion = $(this).find("th.description-header").text().includes("Attempts");
+                //CHECK ALL CRITERIA EXCEPT ATTEMPTS
+                if (!isAttemptsCriterion) {
+                    let ratings = $(this).find("div.rating-tier-list div.rating-tier");
+                    //IF THE TOP OPTION ISN'T SELECTED, IT'S NOT COMPLETE
+                    if (!$(ratings[0]).hasClass("selected")) {
+                        completed = false;
+                    }
+                }
+            });
+            if (completed === false) {
+              addDot(el, "#FC0");
+            }
+          } else if (perc < .8) {
+            addDot(el, "#FC0");
+          }
         }
       }
     }
