@@ -2,7 +2,7 @@
 if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
 
   //adds a colored dot next to the score on the grades page
-  function addDot(el, color="#FC0", hoverText="Below minium required score") {
+  function addDot(el, color="#C00", hoverText="Below minium required score") {
     $(el.find(".assignment_score .score_holder")).append(`
       <span 
         title="${hoverText}"
@@ -36,7 +36,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
 
         //If needs grading, mark in red for instructor
         if (submission.workflow_state == 'submitted' && score == null) {
-          addDot(el, "#C00", "Needs to be graded");
+          addDot(el, "#FC0", "Needs to be graded");
           continue;
         }
 
@@ -73,61 +73,13 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
               }
             }
             if (incompetentItems > 0) {
-              addDot(el, "#FC0", "Did not meet competency in " + incompetentItems + " areas");
+              addDot(el, "#C00", "Did not meet competency in " + incompetentItems + " areas");
             }
           } else if (perc < .8) {
-            addDot(el, "#FC0");
+            addDot(el, "#C00");
           }
         }
       }
     }
   }
-  /*
-  $("tr.student_assignment").each(function() {
-    let el = $(this);
-    let context = $(this).find("div.context").text();
-    let gradeText = $(this).find("span.grade").text().replaceAll("Click to test a different score", "").trim();
-    let grade = parseFloat(gradeText);
-    let total = parseFloat($(this).find("td.points_possible").text().trim());
-    console.log(context);
-    console.log(grade);
-    console.log(total);
-    if (isNaN(grade) && gradeText != "-" && gradeText != "N/A") {
-      addDot(el, "#C00");
-      // $(this).css("background-color", highlightColor);
-    } else if (!isNaN(grade) && !isNaN(total)) {
-      let percent = (grade / total);
-      if (context === "Quizzes" && percent < .8) {
-        addDot(el, "#FC0");
-      }
-      if (context === "Assignments" && percent < .8) {
-        addDot(el, "#FC0");
-      }
-      if (context === "Tests" && percent < .8) {
-        addDot(el, "#FC0");
-      }
-      if (context === "Skills Pass-Off") {
-        let rubricId = $(this).attr("id").replace("submission_", "rubric_");
-        let table = $("#" + rubricId + " tbody.criterions");
-        let criteria = $(table).find("tr.rubric-criterion");
-        let completed = true;
-        criteria.each(function() {
-            //CHECK EVERY CRITERIA EXCEPT FOR ATTEMPTS
-            let isAttemptsCriterion = $(this).find("th.description-header").text().includes("Attempts");
-            //CHECK ALL CRITERIA EXCEPT ATTEMPTS
-            if (!isAttemptsCriterion) {
-                let ratings = $(this).find("div.rating-tier-list div.rating-tier");
-                //IF THE TOP OPTION ISN'T SELECTED, IT'S NOT COMPLETE
-                if (!$(ratings[0]).hasClass("selected")) {
-                    completed = false;
-                }
-            }
-        });
-        if (completed === false) {
-          addDot(el, "#FC0");
-        }
-      }
-    }
-  });
-  */
 }
