@@ -24,7 +24,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
         let submission = submissions[assignment.id];
         let score = submission.score;
         if (submission.workflow_state == 'submitted' && score == null) {
-          addDot(el, "#FC0");
+          addDot(el, "#C00");
           continue;
         }
         let possible = assignment.points_possible;
