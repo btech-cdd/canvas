@@ -34,11 +34,12 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
           if (context === "Skills Pass-Off") {
             let rubricAssessment = {};
             let rubricAssessments = ENV.rubric_assessments;
+            //rewrite this to do a filter on the array, sort so the most recent is first, then set that as the assessment
             for (let a in rubricAssessments) {
               let rub = rubricAssessments[a];
               if (rub.rubric_association.association_id == assignment.id) {
+                console.log(rub);
                 rubricAssessment = rub;
-                break;
               }
             }
 
