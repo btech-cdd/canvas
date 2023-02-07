@@ -29,7 +29,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
         console.log(score);
         console.log(possible);
         if (perc < .8) {
-          console.log("TEST")
+          console.log("TEST");
           let context = el.find("div.context").text();
           addDot(el, "#FC0");
         }
@@ -82,6 +82,6 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
         }
       }
     }
-    */
   });
+  */
 }
