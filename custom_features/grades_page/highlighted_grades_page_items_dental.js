@@ -1,71 +1,64 @@
 //THIS HAS VERY MUCH BEEN TAILORED TO DENTAL. IT WILL NEED TO BE REWORKED TO BE FLEXIBLE ACROSS DEPARTMENTS
 if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
   let highlightColor = "#FFC";
+  function addDot(el, color="#FFC") {
+    $(el.find(".assignment_score .score_holder")).append(`
+      <span class="unread_dot grade_dot" id="">&nbsp;</span>
+    `);
+  }
   $("tr.student_assignment").each(function() {
-      let context = $(this).find("div.context").text();
-      let gradeText = $(this).find("span.grade").text().replaceAll("Click to test a different score", "").trim();
-      let grade = parseFloat(gradeText);
-      console.log(grade);
-      let total = parseFloat($(this).find("td.points_possible").text().trim());
-      console.log()
-      if (isNaN(grade) && gradeText != "-" && gradeText != "N/A") {
-        $($(this).find(".assignment_score .score_holder")).append(`
-          <span class="unread_dot grade_dot" id="">&nbsp;</span>
-        `);
-        // $(this).css("background-color", highlightColor);
-      } else if (!isNaN(grade) && !isNaN(total)) {
-          console.log(context);
-          let percent = (grade / total);
-          if (context === "Quizzes" && percent < .8) {
-            $($(this).find(".assignment_score .score_holder")).append(`
-              <span class="unread_dot grade_dot" id="">&nbsp;</span>
-            `);
-              // $(this).css("background-color", highlightColor);
-          }
-          if (context === "Assignments" && percent < .8) {
-            $($(this).find(".assignment_score .score_holder")).append(`
-              <span class="unread_dot grade_dot" id="">&nbsp;</span>
-            `);
-              // $(this).css("background-color", highlightColor);
-          }
-          if (context === "Tests" && percent < .8) {
-              // $(this).css("background-color", highlightColor);
-          }
-          if (context === "Skills Pass-Off") {
-            let rubricId = $(this).attr("id").replace("submission_", "rubric_");
-            let table = $("#" + rubricId + " tbody.criterions");
-            let criteria = $(table).find("tr.rubric-criterion");
-            let completed = true;
-            criteria.each(function() {
-                //OPTION 1, JUST CHECK THE Time 1.0 CRITERION
-                /*
-                let isCompletedCriterion = $(this).find("th.description-header").text().includes("Time 1.0");
-                if (isCompletedCriterion) {
-                    let ratings = $(this).find("div.rating-tier-list div.rating-tier");
-                    completed = $(ratings[0]).hasClass("selected");
-                }
-                //*/
-
-                //OPTION 2, CHECK EVERY CRITERIA EXCEPT FOR ATTEMPTS
-                //*
-                let isAttemptsCriterion = $(this).find("th.description-header").text().includes("Attempts");
-                //CHECK ALL CRITERIA EXCEPT ATTEMPTS
-                if (!isAttemptsCriterion) {
-                    let ratings = $(this).find("div.rating-tier-list div.rating-tier");
-                    //IF THE TOP OPTION ISN'T SELECTED, IT'S NOT COMPLETE
-                    if (!$(ratings[0]).hasClass("selected")) {
-                        completed = false;
-                    }
-                }
-                //*/
-            });
-            if (completed === false) {
-              $($(this).find(".assignment_score .score_holder")).append(`
-                <span class="unread_dot grade_dot" id="">&nbsp;</span>
-              `);
-                // $(this).css("background-color", highlightColor);
+    let el = $(this);
+    let context = $(this).find("div.context").text();
+    let gradeText = $(this).find("span.grade").text().replaceAll("Click to test a different score", "").trim();
+    let grade = parseFloat(gradeText);
+    let total = parseFloat($(this).find("td.points_possible").text().trim());
+    if (isNaN(grade) && gradeText != "-" && gradeText != "N/A") {
+      addDot(el, "#FF0");
+      // $(this).css("background-color", highlightColor);
+    } else if (!isNaN(grade) && !isNaN(total)) {
+      console.log(context);
+      let percent = (grade / total);
+      if (context === "Quizzes" && percent < .8) {
+        addDot(el, "#FF0");
+      }
+      if (context === "Assignments" && percent < .8) {
+        addDot(el, "#FF0");
+      }
+      if (context === "Tests" && percent < .8) {
+        addDot(el, "#FF0");
+      }
+      if (context === "Skills Pass-Off") {
+        let rubricId = $(this).attr("id").replace("submission_", "rubric_");
+        let table = $("#" + rubricId + " tbody.criterions");
+        let criteria = $(table).find("tr.rubric-criterion");
+        let completed = true;
+        criteria.each(function() {
+            //OPTION 1, JUST CHECK THE Time 1.0 CRITERION
+            /*
+            let isCompletedCriterion = $(this).find("th.description-header").text().includes("Time 1.0");
+            if (isCompletedCriterion) {
+                let ratings = $(this).find("div.rating-tier-list div.rating-tier");
+                completed = $(ratings[0]).hasClass("selected");
             }
+            //*/
+
+            //OPTION 2, CHECK EVERY CRITERIA EXCEPT FOR ATTEMPTS
+            //*
+            let isAttemptsCriterion = $(this).find("th.description-header").text().includes("Attempts");
+            //CHECK ALL CRITERIA EXCEPT ATTEMPTS
+            if (!isAttemptsCriterion) {
+                let ratings = $(this).find("div.rating-tier-list div.rating-tier");
+                //IF THE TOP OPTION ISN'T SELECTED, IT'S NOT COMPLETE
+                if (!$(ratings[0]).hasClass("selected")) {
+                    completed = false;
+                }
+            }
+            //*/
+        });
+        if (completed === false) {
+          addDot(el, "#FF0");
         }
       }
+    }
   });
 }
