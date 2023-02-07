@@ -36,11 +36,9 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
             let rubricAssessments = ENV.rubric_assessments;
             for (let a in rubricAssessments) {
               let rub = rubricAssessments[a];
-              if (rub.rubric_id == 547172) {
-                console.log(rub);
-              }
               if (rub.rubric_association.association_id == assignment.id) {
                 rubricAssessment = rub;
+                break;
               }
             }
 
@@ -48,11 +46,9 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
             let rubrics = ENV.rubrics;
             for (let r in rubrics) {
               let rub = rubrics[r];
-              if (rub.id == 547172) {
-                console.log(rub);
-              }
               if (rub.id == rubricAssessment.rubric_id) {
                 rubric = rub;
+                break;
               }
             }
             let completed = true;
