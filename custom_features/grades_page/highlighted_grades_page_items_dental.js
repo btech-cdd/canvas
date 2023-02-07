@@ -20,6 +20,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
     for (let a in assignments) {
       let assignment = assignments[a];
       if (!!submissions?.[assignment.id]) {
+        let el =  $(`#submission_${assignment.id}`);
         let submission = submissions[assignment.id];
         let score = submission.score;
         if (submission.workflow_state == 'submitted' && score == null) {
@@ -28,7 +29,6 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
         }
         let possible = assignment.points_possible;
         let perc = score / possible;
-        let el =  $(`#submission_${assignment.id}`);
         if (score != null && perc < .8) {
           let context = el.find("div.context").text();
           addDot(el, "#FC0");
