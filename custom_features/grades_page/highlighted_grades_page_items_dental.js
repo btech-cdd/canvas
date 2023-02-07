@@ -7,7 +7,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
       <span 
         title="${hoverText}"
         class="unread_dot grade_dot" 
-        style="background-color: ${color}; hover: help;"
+        style="background-color: ${color}; cursor: help;"
       >&nbsp;</span>
     `);
   }
