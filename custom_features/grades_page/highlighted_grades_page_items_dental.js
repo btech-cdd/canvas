@@ -10,24 +10,22 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
   for (let s in submissionsData) {
     let submission = submissionsData[s];
     submissions[submission.assignment_id] = submission;
+    if (submission.id == 5353425) {
+      console.log(submission);
+    }
   }
   let groups = ENV.assignment_groups;
   for (let g in groups) {
     let group = groups[g];
-    console.log(group);
     let assignments = group.assignments;
     for (let a in assignments) {
       let assignment = assignments[a];
-      console.log(assignment);
       if (!!submissions?.[assignment.id]) {
         let submission = submissions[assignment.id];
         let score = submission.score;
         let possible = assignment.points_possible;
         let perc= score / possible;
         let el =  $(`#submission_${assignment.id}`);
-        console.log(submission);
-        console.log(score);
-        console.log(possible);
         if (perc < .8) {
           console.log("TEST");
           let context = el.find("div.context").text();
