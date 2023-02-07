@@ -10,9 +10,7 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
   for (let s in submissionsData) {
     let submission = submissionsData[s];
     submissions[submission.assignment_id] = submission;
-    console.log(submission);
     if (submission.assignment_id == 5353425) {
-      console.log(submission);
     }
   }
   let groups = ENV.assignment_groups;
@@ -24,11 +22,14 @@ if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
       if (!!submissions?.[assignment.id]) {
         let submission = submissions[assignment.id];
         let score = submission.score;
+        if (submission.workflow_state == 'submitted' && score == null) {
+          addDot(el, "#FC0");
+          continue;
+        }
         let possible = assignment.points_possible;
-        let perc= score / possible;
+        let perc = score / possible;
         let el =  $(`#submission_${assignment.id}`);
-        if (perc < .8) {
-          console.log("TEST");
+        if (score != null && perc < .8) {
           let context = el.find("div.context").text();
           addDot(el, "#FC0");
         }
