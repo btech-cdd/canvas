@@ -152,6 +152,8 @@
               message.text= resp.choices[0].text;
             });
             this.awaitingResponse = false;
+            const container = this.$el.querySelector(".msger");
+            container.scrollTop = container.scrollHeight;
           }
         }
       });
