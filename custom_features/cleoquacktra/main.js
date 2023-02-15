@@ -1,6 +1,6 @@
 (function () {
   createSideMenuButton(
-    "Ask CleoQuacktra"
+    "Ask Cleo"
     , ""
     , `
     <svg 
