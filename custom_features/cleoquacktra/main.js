@@ -132,7 +132,7 @@
           cycleOldMessages() {
             console.log("CYCLING...");
             for (let i = this.messages.length - 1; i >= 0; i--) {
-              console.log(i);
+              let message = this.messages[i];
               console.log(message);
               if (message.name == this.canvasUserData.name) {
                 this.input = message.text;
