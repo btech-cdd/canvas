@@ -173,7 +173,6 @@
             <div
               class="msg-img"
               :style="{
-                'background-image': 'url(' + {{message.img}} + ')'
               }"
             ></div>
 
