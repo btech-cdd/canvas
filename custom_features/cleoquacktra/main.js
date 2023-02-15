@@ -107,6 +107,11 @@
             showHelp: false,
             topics: {},
           }
+        },
+        methods: {
+          submitRequest: function() {
+            console.log();
+          }
         }
       });
       Vue.component('help-topic', {
