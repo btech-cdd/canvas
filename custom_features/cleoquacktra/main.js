@@ -74,7 +74,7 @@
       `;
       $('body').append(vueString);
       class CleoQuacktraMessage {
-        constructor(text, name="CleoQuacktra") {
+        constructor(text, name="CleoQuacktra", img="") {
           this.name = name;
           this.align = "right";
           this.img = ""
@@ -91,6 +91,9 @@
       new Vue({
         el: "#cleoquacktra",
         mounted: async function() {
+          let canvasUserData = await $.get("/api/v1/users/self");
+          console.log(canvasUserData);
+          this.canvasUserData = canvasUserData;
           let key = "";
           try {
             key = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoquacktra`);
@@ -115,6 +118,7 @@
           return {
             key: "",
             input: "",
+            canvasUserData: {},
             awaitingResponse: false,
             buttonX: 10,
             showHelp: false,
@@ -125,7 +129,10 @@
         },
         methods: {
           addMessage(text, name="CleoQuacktra") {
-            let message = new CleoQuacktraMessage(text, name);
+            let message = new CleoQuacktraMessage(
+              text, 
+              name,
+              img);
             this.messages.push(message);
             const container = this.$el.querySelector(".msger");
             container.scrollTop = container.scrollHeight;
@@ -133,7 +140,7 @@
           },
           submitRequest: async function() {
             let input = this.input;
-            this.addMessage(input, "Me");
+            this.addMessage(input, this.canvasUserData.name, this.canvasUserData.avatar_url);
             this.input = "";
             let message = this.addMessage("...");
             this.awaitingResponse = true;
@@ -146,7 +153,7 @@
             let data = `{
               "prompt": "${input}",
               "temperature": 0.9,
-              "max_tokens": 150,
+              "max_tokens": 512,
               "top_p": 1,
               "frequency_penalty": 0,
               "presence_penalty": 0.6,
@@ -154,6 +161,7 @@
             }`;
             await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
               message.text= resp.choices[0].text;
+              message.img = "https://bridgetools.dev/canvas/media/cleoquacktra-idle.gif"
             });
             this.awaitingResponse = false;
             const container = this.$el.querySelector(".msger");
@@ -173,7 +181,7 @@
             <div
               class="msg-img"
               :style="{
-                'background-image': 'url(&quot;https://bridgetools.dev/canvas/media/cleoquacktra.gif&quot;)' 
+                'background-image': 'url(&quot;' + message.img + '&quot;)' 
               }"
             ></div>
 
