@@ -64,7 +64,10 @@
                     :message="message"
                   ></cleoquacktra-message> 
                 </main>
-                <form @submit.prevent="submitRequest" class="msger-inputarea">
+                <form 
+                  style="margin: 0;"
+                  @submit.prevent="submitRequest" 
+                  class="msger-inputarea">
                   <input :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
                   <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
                 </form>
