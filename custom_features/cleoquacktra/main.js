@@ -56,8 +56,6 @@
                 z-index: 100001;
                 border-radius: 5px;
                 box-shadow: 0px 0px 8px 1px #333;
-                padding: 10px;
-                overflow-y: scroll;
               '
             >
                 <main class="msger-chat">
