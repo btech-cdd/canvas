@@ -89,8 +89,18 @@
       new Vue({
         el: "#cleoquacktra",
         mounted: async function() {
-          let key = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoquacktra`);
-          this.key = key.data;
+          let key = "";
+          try {
+            key = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoquacktra`);
+            this.key = key.data;
+          } catch (err) {
+            try {
+              key = await $.get(`/api/v1/users/1893418/custom_data/openai-key?ns=com.btech.cleoquacktra`);
+              this.key = key.data;
+            } catch (err) {
+              this.key = "";
+            }
+          }
           $("#global_nav_ask-cleo_link").click((e) => {
             e.preventDefault();
             console.log("TEST");
