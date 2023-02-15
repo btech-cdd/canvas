@@ -119,7 +119,13 @@
       });
       Vue.component('cleoquacktra-message', {
         template: `
-          <div class="msg right-msg">
+          <div 
+            class="msg"
+            :class="{
+              'right-msg': align == 'right',
+              'left-msg': align == 'left',
+            }"
+            >
             <div
               class="msg-img"
               style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
