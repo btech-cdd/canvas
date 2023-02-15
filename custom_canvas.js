@@ -244,7 +244,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
         feature('reports/accreditation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
 
         // if (IS_ME) $.getScript("https://bridgetools.dev/collaborator/import.js");
-        if (IS_ME) feature("help_tab.js");
+        if (IS_ME) feature("help_tab.js", {}, /^/);
         //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
         feature("welcome_banner", {}, /^\/$/);
       });
