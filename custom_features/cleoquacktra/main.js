@@ -65,7 +65,7 @@
                   style="margin: 0;"
                   @submit.prevent="submitRequest" 
                   class="msger-inputarea">
-                  <input :keyup.38="cycleOldMessages()" :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
+                  <input :keyup="cycleOldMessages" :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
                   <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
                 </form>
             </div>
@@ -129,14 +129,16 @@
           }
         },
         methods: {
-          cycleOldMessages() {
-            console.log("CYCLING...");
-            for (let i = this.messages.length - 1; i >= 0; i--) {
-              let message = this.messages[i];
-              console.log(message);
-              if (message.name == this.canvasUserData.name) {
-                this.input = message.text;
-                break;
+          cycleOldMessages(e) {
+            if (e.keyCode == 38) {
+              console.log("CYCLING...");
+              for (let i = this.messages.length - 1; i >= 0; i--) {
+                let message = this.messages[i];
+                console.log(message);
+                if (message.name == this.canvasUserData.name) {
+                  this.input = message.text;
+                  break;
+                }
               }
             }
           },
