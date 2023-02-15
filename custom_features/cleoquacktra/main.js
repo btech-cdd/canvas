@@ -58,10 +58,23 @@
                 overflow-y: scroll;
               '
             >
-              <form class="msger-inputarea">
-                <input type="text" class="msger-input" placeholder="Enter your message...">
-                <button type="submit" class="msger-send-btn">Ask</button>
-              </form>
+              <section class="msger">
+                <header class="msger-header">
+                  <div class="msger-header-title">
+                    <i class="fas fa-comment-alt"></i> SimpleChat
+                  </div>
+                  <div class="msger-header-options">
+                    <span><i class="fas fa-cog"></i></span>
+                  </div>
+                </header>
+
+                <main class="msger-chat">
+                </main>
+                <form class="msger-inputarea">
+                  <input type="text" class="msger-input" placeholder="Enter your message...">
+                  <button @click="submitRequest" type="submit" class="msger-send-btn">Ask</button>
+                </form>
+              </section>
             </div>
           </div>
         </div>
