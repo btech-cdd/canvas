@@ -75,7 +75,7 @@
                   ></cleoquacktra-message> 
                 </main>
                 <form @submit.prevent="submitRequest" class="msger-inputarea">
-                  <input v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
+                  <input :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
                   <button type="submit" class="msger-send-btn">Ask</button>
                 </form>
             </div>
@@ -105,6 +105,7 @@
         data: function() {
           return {
             input: "",
+            awaitingResponse: false,
             buttonX: 10,
             showHelp: false,
             messages: [
@@ -122,6 +123,7 @@
             this.input = "";
             console.log(input);
             this.addMessage("...");
+            this.awaitingResponse = true;
           }
         }
       });
