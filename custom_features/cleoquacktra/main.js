@@ -131,8 +131,7 @@
         methods: {
           cycleOldMessages() {
             console.log("CYCLING...");
-            for (let i = this.messages.length - 1; i >= 0; i++) {
-              let message = this.messages[i];
+            for (let i = this.messages.length - 1; i >= 0; i--) {
               console.log(i);
               console.log(message);
               if (message.name == this.canvasUserData.name) {
