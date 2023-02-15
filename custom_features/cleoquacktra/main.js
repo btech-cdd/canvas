@@ -183,8 +183,10 @@
             this.awaitingResponse = false;
             let containerEl = this.$el.querySelector(".msger");
             containerEl.scrollTop = containerEl.scrollHeight;
-            let inputEl = this.$el.querySelector(".msger-input");
-            inputEl.focus();
+            this.$nextTick(function() {
+              let inputEl = this.$el.querySelector(".msger-input");
+              inputEl.focus();
+            });
           }
         }
       });
