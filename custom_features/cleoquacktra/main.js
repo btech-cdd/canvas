@@ -73,11 +73,11 @@
         </div>
       `;
       $('body').append(vueString);
-      class CleoQuacktraMessage {
-        constructor(text, name="CleoQuacktra") {
+      class CleoDucktraMessage {
+        constructor(text, name="CleoDucktra") {
           this.name = name;
           this.align = "right";
-          if (name == "CleoQuacktra") {
+          if (name == "CleoDucktra") {
             this.align = "left";
           }
           this.text = text;
@@ -107,13 +107,13 @@
             buttonX: 10,
             showHelp: false,
             messages: [
-              new CleoQuacktraMessage("Welcome! What can I do for you?")
+              new CleoDucktraMessage("Welcome! What can I do for you?")
             ],
           }
         },
         methods: {
-          addMessage(text, name="CleoQuacktra") {
-            let message = new CleoQuacktraMessage(text, name);
+          addMessage(text, name="CleoDucktra") {
+            let message = new CleoDucktraMessage(text, name);
             this.messages.push(message);
             const container = this.$el.querySelector(".msger");
             container.scrollTop = container.scrollHeight;
