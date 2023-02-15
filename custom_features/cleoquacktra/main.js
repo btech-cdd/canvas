@@ -71,7 +71,7 @@
                 <main class="msger-chat">
                 </main>
                 <form @submit.prevent="submitRequest" class="msger-inputarea">
-                  <input type="text" class="msger-input" placeholder="Enter your message...">
+                  <input v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
                   <button type="submit" class="msger-send-btn">Ask</button>
                 </form>
             </div>
@@ -102,6 +102,7 @@
         },
         data: function() {
           return {
+            input: "",
             buttonX: 10,
             showHelp: false,
             topics: {},
@@ -109,7 +110,9 @@
         },
         methods: {
           submitRequest: function() {
-            console.log();
+            let input = this.input;
+            this.input = "";
+            console.log(input);
           }
         }
       });
