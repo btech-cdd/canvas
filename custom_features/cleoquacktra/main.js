@@ -77,8 +77,10 @@
         constructor(text, name="CleoQuacktra") {
           this.name = name;
           this.align = "right";
+          this.img = ""
           if (name == "CleoQuacktra") {
             this.align = "left";
+            this.img = "https://bridgetools.dev/canvas/media/cleoquacktra.gif"
           }
           this.text = text;
           this.timestamp = new Date();
@@ -170,7 +172,8 @@
             >
             <div
               class="msg-img"
-              style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
+              :style="{
+                'background-image': "url(" + {{message.img}} + ")"
             ></div>
 
             <div class="msg-bubble">
