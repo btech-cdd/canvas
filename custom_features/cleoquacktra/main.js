@@ -77,7 +77,7 @@
         constructor(text, name="CleoQuacktra", img="") {
           this.name = name;
           this.align = "right";
-          this.img = ""
+          this.img = img;
           if (name == "CleoQuacktra") {
             this.align = "left";
             this.img = "https://bridgetools.dev/canvas/media/cleoquacktra.gif"
@@ -128,7 +128,7 @@
           }
         },
         methods: {
-          addMessage(text, name="CleoQuacktra") {
+          addMessage(text, name="CleoQuacktra", img="") {
             let message = new CleoQuacktraMessage(
               text, 
               name,
