@@ -1,4 +1,5 @@
 (function () {
+  console.log("CleoQuacktra");
   if ($("#cleoquacktra").length === 0) {
       let vueString = `
         <div id="cleoquacktra">
