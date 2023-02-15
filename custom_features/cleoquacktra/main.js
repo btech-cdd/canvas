@@ -3,7 +3,10 @@
     "Ask CleoQuacktra"
     , ""
     , `
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve"
+      class="ic-icon-svg menu-item__icon"
+      >
     <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
     <g fill="#FFF">
       <g>
