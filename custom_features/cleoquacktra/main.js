@@ -173,7 +173,7 @@
             <div
               class="msg-img"
               :style="{
-                'background-image': 'test' 
+                'background-image': 'url(\"https://bridgetools.dev/canvas/media/cleoquacktra.gif\")' 
               }"
             ></div>
 
