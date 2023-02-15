@@ -99,6 +99,8 @@
       new Vue({
         el: "#cleoquacktra",
         mounted: async function() {
+          let key = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoquacktra`).data;
+          console.log(key);
         },
         computed: {
         },
