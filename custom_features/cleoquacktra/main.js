@@ -121,6 +121,8 @@
           addMessage(text, name="CleoQuacktra") {
             let message = new CleoQuacktraMessage(text, name);
             this.messages.push(message);
+            const container = this.$el.querySelector(".msger");
+            container.scrollTop = container.scrollHeight;
             return message;
           },
           submitRequest: async function() {
@@ -179,6 +181,8 @@
             </div>
           </div>
         `,
+        mounted: function() {
+        },
         data: function() {
           return {
           }
