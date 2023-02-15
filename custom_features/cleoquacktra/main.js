@@ -173,7 +173,7 @@
             <div
               class="msg-img"
               :style="{
-                'background-image': 'url(\'' + {{message.img}} + '\')'
+                'background-image': 'url(' + {{message.img}} + ')'
               }"
             ></div>
 
@@ -190,6 +190,7 @@
           </div>
         `,
         mounted: function() {
+          console.log(this.message.img);
         },
         data: function() {
           return {
