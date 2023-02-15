@@ -132,7 +132,7 @@
               }
             });
             let resp = await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", `{
-              "prompt": "How many moons does earth have?",
+              "prompt": "${input}",
               "temperature": 0.9,
               "max_tokens": 150,
               "top_p": 1,
