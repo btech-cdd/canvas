@@ -104,6 +104,7 @@
         },
         data: function() {
           return {
+            key: "",
             input: "",
             awaitingResponse: false,
             buttonX: 10,
@@ -127,7 +128,7 @@
             this.awaitingResponse = true;
             $.ajaxSetup({
               headers:{
-                  'Authorization': "Bearer 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",
+                  'Authorization': "Bearer " + this.key,
                   'Content-Type': 'application/json'
               }
             });
