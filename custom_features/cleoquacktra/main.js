@@ -123,7 +123,7 @@
             this.messages.push(message);
             return message;
           },
-          submitRequest: function() {
+          submitRequest: async function() {
             let input = this.input;
             this.addMessage(input, "Me");
             this.input = "";
@@ -145,11 +145,11 @@
               "stop": [" Human:", " AI:"]
             }`;
             console.log(data);
-            $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
+            await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
               console.log(resp);
               message.text= resp.choices[0].text;
-              this.awaitingResponse = false;
             });
+            this.awaitingResponse = false;
           }
         }
       });
