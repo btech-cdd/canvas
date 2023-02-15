@@ -122,8 +122,8 @@
           <div 
             class="msg"
             :class="{
-              'right-msg': align == 'right',
-              'left-msg': align == 'left',
+              'right-msg': message.align == 'right',
+              'left-msg': message.align == 'left',
             }"
             >
             <div
