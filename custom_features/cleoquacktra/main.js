@@ -91,7 +91,7 @@
         mounted: async function() {
           let key = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoquacktra`);
           this.key = key.data;
-          $("#global_nav_ask-cleoquacktra_link").click((e) => {
+          $("#global_nav_ask-cleo_link").click((e) => {
             e.preventDefault();
             console.log("TEST");
             this.showHelp = true;
