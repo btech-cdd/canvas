@@ -61,7 +61,7 @@
             >
                 <header class="msger-header">
                   <div class="msger-header-title">
-                    <i class="fas fa-comment-alt"></i> SimpleChat
+                    <i class="fas fa-comment-alt"></i>Ask CleoQuacktra 
                   </div>
                   <div class="msger-header-options">
                     <span><i class="fas fa-cog"></i></span>
@@ -89,6 +89,7 @@
           this.align = align;
           this.text = text;
           this.timestamp = new Date();
+          this.time = this.timestamp.getHours() + ":" + this.timestamp.getMinutes();
         }
       }
       //IMPORTED_FEATURE._init();
@@ -127,7 +128,7 @@
             <div class="msg-bubble">
               <div class="msg-info">
                 <div class="msg-info-name">{{message.name}}</div>
-                <div class="msg-info-time">{{message.timestamp}}</div>
+                <div class="msg-info-time">{{message.time}}</div>
               </div>
 
               <div class="msg-text">
