@@ -1,57 +1,85 @@
 //THIS HAS VERY MUCH BEEN TAILORED TO DENTAL. IT WILL NEED TO BE REWORKED TO BE FLEXIBLE ACROSS DEPARTMENTS
-IMPORTED_FEATURE = {};
 if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
-  let highlightColor = "#FFC";
-  $("tr.student_assignment").each(function() {
-      let context = $(this).find("div.context").text();
-      let gradeText = $(this).find("span.grade").text().replaceAll("Click to test a different score", "").trim();
-      let grade = parseFloat(gradeText);
-      let total = parseFloat($(this).find("td.points_possible").text().trim());
-      if (isNaN(grade) && gradeText != "-" && gradeText != "N/A") {
-        $(this).css("background-color", highlightColor);
-      } else if (!isNaN(grade) && !isNaN(total)) {
-          let percent = (grade / total);
-          if (context === "Quizzes" && percent < .8) {
-              $(this).css("background-color", highlightColor);
-          }
-          if (context === "Assignments" && percent < .8) {
-              $(this).css("background-color", highlightColor);
-          }
-          if (context === "Tests" && percent < .8) {
-              $(this).css("background-color", highlightColor);
-          }
-          if (context === "Skills Pass-Off") {
-            let rubricId = $(this).attr("id").replace("submission_", "rubric_");
-            let table = $("#" + rubricId + " tbody.criterions");
-            let criteria = $(table).find("tr.rubric-criterion");
-            let completed = true;
-            criteria.each(function() {
-                //OPTION 1, JUST CHECK THE Time 1.0 CRITERION
-                /*
-                let isCompletedCriterion = $(this).find("th.description-header").text().includes("Time 1.0");
-                if (isCompletedCriterion) {
-                    let ratings = $(this).find("div.rating-tier-list div.rating-tier");
-                    completed = $(ratings[0]).hasClass("selected");
-                }
-                //*/
 
-                //OPTION 2, CHECK EVERY CRITERIA EXCEPT FOR ATTEMPTS
-                //*
-                let isAttemptsCriterion = $(this).find("th.description-header").text().includes("Attempts");
-                //CHECK ALL CRITERIA EXCEPT ATTEMPTS
-                if (!isAttemptsCriterion) {
-                    let ratings = $(this).find("div.rating-tier-list div.rating-tier");
-                    //IF THE TOP OPTION ISN'T SELECTED, IT'S NOT COMPLETE
-                    if (!$(ratings[0]).hasClass("selected")) {
-                        completed = false;
-                    }
-                }
-                //*/
-            });
-            if (completed === false) {
-                $(this).css("background-color", highlightColor);
+  //adds a colored dot next to the score on the grades page
+  function addDot(el, color="#C00", hoverText="Below minium required score") {
+    $(el.find(".assignment_score .score_holder")).append(`
+      <span 
+        title="${hoverText}"
+        class="unread_dot grade_dot" 
+        style="background-color: ${color}; cursor: help;"
+      >&nbsp;</span>
+    `);
+  }
+
+  //create lookup dict of submissions
+  let submissions = {};
+  let submissionsData = ENV.submissions;
+  for (let s in submissionsData) {
+    let submission = submissionsData[s];
+    submissions[submission.assignment_id] = submission;
+  }
+
+  //iterate over assignments group by group
+  let groups = ENV.assignment_groups;
+  for (let g in groups) {
+    let group = groups[g];
+    let assignments = group.assignments;
+    for (let a in assignments) {
+
+      //get assignment sumbission details
+      let assignment = assignments[a];
+      if (!!submissions?.[assignment.id]) {
+        let el =  $(`#submission_${assignment.id}`);
+        let submission = submissions[assignment.id];
+        let score = submission.score;
+
+        //If needs grading, mark in red for instructor
+        if (submission.workflow_state == 'submitted' && score == null) {
+          addDot(el, "#FC0", "Needs to be graded");
+          continue;
+        }
+
+        //if graded, check if it meets score requirements
+        let possible = assignment.points_possible;
+        let perc = score / possible;
+        if (score != null) {
+          //different rules depending on assignment group
+          let assignmentGroupName = el.find("div.context").text();
+          if (assignmentGroupName === "Skills Pass-Off") {
+            let rubricAssessment = {};
+            let rubricAssessments = ENV.rubric_assessments;
+            //rewrite this to do a filter on the array, sort so the most recent is first, then set that as the assessment
+            for (let a in rubricAssessments) {
+              let rub = rubricAssessments[a];
+              if (rub.rubric_association.association_id == assignment.id) {
+                rubricAssessment = rub;
+              }
             }
+
+            let rubric = {};
+            let rubrics = ENV.rubrics;
+            for (let r in rubrics) {
+              let rub = rubrics[r];
+              if (rub.id == rubricAssessment.rubric_id) {
+                rubric = rub;
+                break;
+              }
+            }
+            let incompetentItems = 0;
+            for (let d in rubric.data) {
+              if (rubricAssessment.data[d].points < rubric.data[d].points) {
+                incompetentItems += 1;
+              }
+            }
+            if (incompetentItems > 0) {
+              addDot(el, "#C00", "Did not meet competency in " + incompetentItems + " areas");
+            }
+          } else if (perc < .8) {
+            addDot(el, "#C00");
+          }
         }
       }
-  });
+    }
+  }
 }

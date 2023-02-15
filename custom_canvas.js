@@ -87,6 +87,8 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
   $.getScript("https://bridgetools.dev/canvas/scripts.js").done(function() {
     feature("login_page", {}, /^\/login/);
     feature("editor_toolbar/manage-settings", {}, /^\/btech-toolbar/);
+    feature("img-zoom", {}, /users/);
+    feature("side-menu", {}, "");
 
     //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
     feature('conversations/open_conversation', {}, /^\/conversations/);
@@ -126,7 +128,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
     $.getScript("https://cdn.jsdelivr.net/npm/vue@2.6.12").done(function () {
       $.getScript(SOURCE_URL + "/course_data/course_hours.js").done(() => {
         //GENERAL FEATURES
-        feature("reports/dashboard/banner-report", {}, /^\/$/);
+        //feature("reports/dashboard/banner-report", {}, /^\/$/);
         if (!IS_TEACHER) {
           feature("reports/individual_page/report", {}, [
             /^\/$/,
@@ -174,7 +176,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
 
             if (CURRENT_DEPARTMENT_ID == 4218) { // DATA ANALYTICS
               externalFeature("https://cdn.datacamp.com/datacamp-light-latest.min.js", /^\/courses\/([0-9]+)\/(pages|assignments|quizzes|discussion_topics)\/[0-9]+(\?|$)/); //really just available to data analytics
-              feature("people_page/sync_start_dates_with_section", {}, /^\/courses\/[0-9]+\/users/);
+              feature("people_page/sync_start_dates_with_section", {}, /^\/courses\/[0-9]+\/course_pacing/);
               feature("department_specific/data_analytics_feedback_report", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
             }
             if (CURRENT_DEPARTMENT_ID === 3824) { // DENTAL
