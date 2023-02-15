@@ -82,6 +82,7 @@
           this.key = key.data;
           $("#global_nav_ask-cleoquacktra_link").click(function(e) {
             e.preventDefault();
+            console.log("TEST");
             this.showHelp = true;
           })
         },
