@@ -135,11 +135,14 @@
               for (let i = this.messages.length - 1; i >= 0; i--) {
                 let message = this.messages[i];
                 console.log(message);
-                if (message.name == this.canvasUserData.name) {
+                if (message.name == this.canvasUserData.name && (this.lastOldMessage == -1 || i < this.lastOldMessage)) {
+                  this.lastOldMessage = i;
                   this.input = message.text;
                   break;
                 }
               }
+            } else {
+              this.lastOldMessage = -1;
             }
           },
           addMessage(text, name="CleoQuacktra", img="") {
