@@ -119,7 +119,7 @@
             this.messages.push(message);
             return message;
           },
-          submitRequest: async function() {
+          submitRequest: function() {
             let input = this.input;
             this.addMessage(input, "Me");
             this.input = "";
@@ -131,7 +131,7 @@
                   'Content-Type': 'application/json'
               }
             });
-            let resp = await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", `{
+            $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", `{
               "prompt": "${input}",
               "temperature": 0.9,
               "max_tokens": 150,
@@ -139,9 +139,10 @@
               "frequency_penalty": 0,
               "presence_penalty": 0.6,
               "stop": [" Human:", " AI:"]
-            }`);
-            console.log(resp);
-            this.awaitingResponse = false;
+            }`, function(resp) {
+              console.log(resp);
+              this.awaitingResponse = false;
+            });
           }
         }
       });
