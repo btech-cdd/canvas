@@ -80,7 +80,7 @@
           this.img = img;
           if (name == "CleoQuacktra") {
             this.align = "left";
-            this.img = "https://bridgetools.dev/canvas/media/cleoquacktra.gif"
+            this.img = "https://bridgetools.dev/canvas/media/cleoquacktra-idle.gif"
           }
           this.text = text;
           this.timestamp = new Date();
