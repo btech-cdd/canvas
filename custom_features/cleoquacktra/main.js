@@ -80,6 +80,10 @@
         mounted: async function() {
           let key = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoquacktra`);
           this.key = key.data;
+          $("#global_nav_ask-cleoquacktra_link").click(function(e) {
+            e.preventDefault();
+            this.showHelp = true;
+          })
         },
         computed: {
         },
