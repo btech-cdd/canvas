@@ -5,7 +5,7 @@ function createSideMenuButton(text, url, svg) {
   sideMenu.append(`
     <li class="ic-app-header__menu-list-item">
       <a 
-        id="global_nav_${cssText}help_link" 
+        id="global_nav_${cssText}_link" 
         role="button" 
         class="ic-app-header__menu-list-link" 
         data-track-category="${text}" 
