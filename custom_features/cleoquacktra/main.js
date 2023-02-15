@@ -151,7 +151,7 @@
               name,
               img);
             this.messages.push(message);
-            const container = this.$el.querySelector(".msger");
+            const container = this.$el.querySelector(".msger-chat");
             container.scrollTop = container.scrollHeight;
             return message;
           },
@@ -177,11 +177,12 @@
               "stop": [" Human:", " AI:"]
             }`;
             await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
+
               message.text= resp.choices[0].text;
               message.img = "https://bridgetools.dev/canvas/media/cleoquacktra-idle.gif"
             });
             this.awaitingResponse = false;
-            let containerEl = this.$el.querySelector(".msger");
+            let containerEl = this.$el.querySelector(".msger-chat");
             containerEl.scrollTop = containerEl.scrollHeight;
             this.$nextTick(function() {
               let inputEl = this.$el.querySelector(".msger-input");
