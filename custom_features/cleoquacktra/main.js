@@ -84,9 +84,12 @@
       `;
       $('body').append(vueString);
       class CleoQuacktraMessage {
-        constructor(name, text, align) {
+        constructor(text, name="CleoQuacktra") {
           this.name = name;
-          this.align = align;
+          this.align = "right";
+          if (name == "CleoQuacktra") {
+            this.align = "left";
+          }
           this.text = text;
           this.timestamp = new Date();
           this.time = this.timestamp.getHours() + ":" + this.timestamp.getMinutes();
@@ -105,13 +108,17 @@
             buttonX: 10,
             showHelp: false,
             messages: [
-              new CleoQuacktraMessage("CleoQuacktra", "Welcome! What can I do for you?", "left")
+              new CleoQuacktraMessage("Welcome! What can I do for you?")
             ],
           }
         },
         methods: {
+          addMessage(text, name="CleoQuacktra") {
+            this.messages.append(new CleoQuacktraMessage(text, name));
+          },
           submitRequest: function() {
             let input = this.input;
+            this.addMessage(input, "Me");
             this.input = "";
             console.log(input);
           }
