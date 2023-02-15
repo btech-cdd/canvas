@@ -70,9 +70,9 @@
 
                 <main class="msger-chat">
                 </main>
-                <form class="msger-inputarea">
+                <form @submit.prevent="submitRequest" class="msger-inputarea">
                   <input type="text" class="msger-input" placeholder="Enter your message...">
-                  <button @click="submitRequest" type="submit" class="msger-send-btn">Ask</button>
+                  <button type="submit" class="msger-send-btn">Ask</button>
                 </form>
             </div>
           </div>
