@@ -159,8 +159,8 @@
             let input = this.input;
             this.addMessage(input, this.canvasUserData.name, this.canvasUserData.avatar_url);
             this.input = "";
-            message.img = "https://bridgetools.dev/canvas/media/cleoquacktra.gif"
             let message = this.addMessage("...");
+            message.img = "https://bridgetools.dev/canvas/media/cleoquacktra.gif"
             this.awaitingResponse = true;
             $.ajaxSetup({
               headers:{
