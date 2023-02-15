@@ -147,6 +147,7 @@
             console.log(data);
             $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
               console.log(resp);
+              message.text= resp.choices[0].text;
               this.awaitingResponse = false;
             });
           }
