@@ -114,13 +114,14 @@
         },
         methods: {
           addMessage(text, name="CleoQuacktra") {
-            this.messages.append(new CleoQuacktraMessage(text, name));
+            this.messages.push(new CleoQuacktraMessage(text, name));
           },
           submitRequest: function() {
             let input = this.input;
             this.addMessage(input, "Me");
             this.input = "";
             console.log(input);
+            this.addMessage("...");
           }
         }
       });
