@@ -23,7 +23,7 @@
             ' 
             :style="{'right': buttonX + 'px'}"
           >
-          Need Help?
+            Ask CleoQuacktra 
           </div>
           <div v-if="showHelp">
             <div
@@ -41,28 +41,10 @@
                 background-color: rgb(0, 0, 0, 0.4);
               ' 
             >
-            <div
-              id="btech-help-modal"
-              style='
-                position: absolute;
-                background-color: rgb(255,255,255);
-                color: #000;
-                width: 80%;
-                height: 80%;
-                top: 10%;
-                left: 10%;
-                z-index: 100001;
-                border-radius: 5px;
-                box-shadow: 0px 0px 8px 1px #333;
-                padding: 10px;
-                overflow-y: scroll;
-              '
-            >
-              <div v-for="(topic, key) in topics">
-                <help-topic :topic='topic' :name='key'>
-                </help-topic>
-              </div>
-            </div>
+            <form class="msger-inputarea">
+              <input type="text" class="msger-input" placeholder="Enter your message...">
+              <button type="submit" class="msger-send-btn">Ask</button>
+            </form>
             </div>
           </div>
         </div>
