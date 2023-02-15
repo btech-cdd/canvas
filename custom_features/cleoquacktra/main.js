@@ -151,7 +151,7 @@
               name,
               img);
             this.messages.push(message);
-            const container = this.$el.querySelector(".msger-chat");
+            let container = this.$el.querySelector(".msger-chat");
             container.scrollTop = container.scrollHeight;
             return message;
           },
