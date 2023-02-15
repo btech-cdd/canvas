@@ -127,7 +127,7 @@
             this.awaitingResponse = true;
             $.ajaxSetup({
               headers:{
-                  'Authorization': "Bearer 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",
+                  'Authorization': "Bearer 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",
                   'Content-Type': 'application/json'
               }
             });
