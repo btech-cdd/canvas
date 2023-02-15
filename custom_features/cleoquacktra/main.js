@@ -131,7 +131,7 @@
                   'Content-Type': 'application/json'
               }
             });
-            $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", `{
+            let data = `{
               "prompt": "${input}",
               "temperature": 0.9,
               "max_tokens": 150,
@@ -139,7 +139,9 @@
               "frequency_penalty": 0,
               "presence_penalty": 0.6,
               "stop": [" Human:", " AI:"]
-            }`, function(resp) {
+            }`;
+            console.log(data);
+            $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
               console.log(resp);
               this.awaitingResponse = false;
             });
