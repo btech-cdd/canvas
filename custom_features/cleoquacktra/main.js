@@ -69,6 +69,10 @@
                 </header>
 
                 <main class="msger-chat">
+                  <cleoquacktra-message
+                    v-for="message in  messages"
+                    :message="message"
+                  ></cleoquacktra-message> 
                 </main>
                 <form @submit.prevent="submitRequest" class="msger-inputarea">
                   <input v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
@@ -79,24 +83,18 @@
         </div>
       `;
       $('body').append(vueString);
-      class Resource {
-        constructor(name, target, topic) {
+      class CleoQuacktraMessage {
+        constructor(name, text, align) {
           this.name = name;
-          this.target = target;
-          this.topic = topic;
-          this.url = '';
-          this.kalturaId = '';
-          this.questions = [];
-        }
-        addQuestion(question) {
-          this.questions.push(question);
+          this.align = align;
+          this.text = text;
+          this.timestamp = new Date();
         }
       }
       //IMPORTED_FEATURE._init();
       new Vue({
         el: "#cleoquacktra",
         mounted: async function() {
-          this.resources = [];
         },
         computed: {
         },
@@ -105,7 +103,9 @@
             input: "",
             buttonX: 10,
             showHelp: false,
-            topics: {},
+            messages: [
+              new CleoQuacktraMessage("CleoQuacktra", "Welcome! What can I do for you?", "left")
+            ],
           }
         },
         methods: {
@@ -116,45 +116,32 @@
           }
         }
       });
-      Vue.component('help-topic', {
+      Vue.component('cleoquacktra-message', {
         template: `
-          <div>
-            <h2 @click="show = !show" style="
-              background-color: #A00012;
-              border-radius: 4px;
-              color: #FFF;
-              cursor: pointer;
-              user-select: none;
-            ">
-              <i v-if="show" class='icon-mini-arrow-down'></i>
-              <i v-else class='icon-mini-arrow-right'></i>
-              {{name}}
-            </h2>
-            <div v-show="show" style="padding: 10px;">
-              <div v-for="(resource, index) in topic" style="border-bottom: 2px dotted #000">
-                <p>
-                  <div v-if="resource.url !== ''">
-                    <a target="_blank" :href="resource.url">{{resource.name}}</a>
-                  </div>
-                  <div v-else>
-                    {{resource.name}}
-                  </div>
-                </p>
-                <div style="text-align: center;">
-                  <iframe v-if="resource.kalturaId !== ''" :src="'https://cdnapisec.kaltura.com/p/1699651/sp/169965100/embedIframeJs/uiconf_id/22825111/partner_id/1699651?iframeembed=true&entry_id='+resource.kalturaId" width="400" height="333" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" frameborder="0"></iframe>
-                </div>
+          <div class="msg right-msg">
+            <div
+              class="msg-img"
+              style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
+            ></div>
+
+            <div class="msg-bubble">
+              <div class="msg-info">
+                <div class="msg-info-name">{{message.name}}</div>
+                <div class="msg-info-time">{{message.timestamp}}</div>
+              </div>
+
+              <div class="msg-text">
+                {{message.text}}
               </div>
             </div>
           </div>
         `,
         data: function() {
           return {
-            show: false
           }
         },
         props: [
-          'topic',
-          'name'
+          'message'
         ]
       });
   }
