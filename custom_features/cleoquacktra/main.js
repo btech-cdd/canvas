@@ -43,6 +43,7 @@
             >
             <div
               id="btech-help-modal"
+              class="msger"
               style='
                 position: absolute;
                 background-color: rgb(255,255,255);
@@ -58,7 +59,6 @@
                 overflow-y: scroll;
               '
             >
-              <section class="msger">
                 <header class="msger-header">
                   <div class="msger-header-title">
                     <i class="fas fa-comment-alt"></i> SimpleChat
@@ -74,7 +74,6 @@
                   <input type="text" class="msger-input" placeholder="Enter your message...">
                   <button @click="submitRequest" type="submit" class="msger-send-btn">Ask</button>
                 </form>
-              </section>
             </div>
           </div>
         </div>
