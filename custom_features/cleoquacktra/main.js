@@ -181,8 +181,10 @@
               message.img = "https://bridgetools.dev/canvas/media/cleoquacktra-idle.gif"
             });
             this.awaitingResponse = false;
-            const container = this.$el.querySelector(".msger");
-            container.scrollTop = container.scrollHeight;
+            let containerEl = this.$el.querySelector(".msger");
+            containerEl.scrollTop = containerEl.scrollHeight;
+            let inputEl = this.$el.querySelector(".msger-input");
+            inputEl.focus();
           }
         }
       });
