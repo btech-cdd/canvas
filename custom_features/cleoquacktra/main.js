@@ -1,5 +1,4 @@
 (function () {
-  console.log("CleoQuacktra");
   if ($("#cleoquacktra").length === 0) {
       let vueString = `
         <div id="cleoquacktra">
@@ -94,7 +93,6 @@
         mounted: async function() {
           let key = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoquacktra`);
           this.key = key.data;
-          console.log(this.key);
         },
         computed: {
         },
@@ -139,9 +137,7 @@
               "presence_penalty": 0.6,
               "stop": [" Human:", " AI:"]
             }`;
-            console.log(data);
             await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
-              console.log(resp);
               message.text= resp.choices[0].text;
             });
             this.awaitingResponse = false;
