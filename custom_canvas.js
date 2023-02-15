@@ -10,9 +10,15 @@ var CDDIDS = [
   2023384, //Dani
   1638854, //Mason
   1807337, //Jon
+  2064104, //Jonny
+  2101672, //William
+  2101656, //Sydney
+  1917265, //Abigail
+  2075766, //Kristyn
   1869288, //Alan
   2000557, //Charlotte
   2048150, //Tiffany
+
 ];
 
 function getCSSVar(cssvar) {
@@ -244,7 +250,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
         feature('reports/accreditation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
 
         // if (IS_ME) $.getScript("https://bridgetools.dev/collaborator/import.js");
-        if (IS_ME) feature("cleoquacktra/main", {}, /^/);
+        featureCDD("cleoquacktra/main", {}, /^/);
         //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
         feature("welcome_banner", {}, /^\/$/);
       });

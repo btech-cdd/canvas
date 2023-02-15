@@ -65,7 +65,7 @@
                   style="margin: 0;"
                   @submit.prevent="submitRequest" 
                   class="msger-inputarea">
-                  <input :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
+                  <input @keydown="cycleOldMessages" :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
                   <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
                 </form>
             </div>
@@ -74,11 +74,13 @@
       `;
       $('body').append(vueString);
       class CleoDucktraMessage {
-        constructor(text, name="CleoDucktra") {
+        constructor(text, name="CleoDucktra", img="") {
           this.name = name;
           this.align = "right";
+          this.img = img;
           if (name == "CleoDucktra") {
             this.align = "left";
+            this.img = "https://bridgetools.dev/canvas/media/cleoquacktra-idle.gif"
           }
           this.text = text;
           this.timestamp = new Date();
@@ -89,8 +91,21 @@
       new Vue({
         el: "#cleoquacktra",
         mounted: async function() {
-          let key = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoquacktra`);
-          this.key = key.data;
+          let canvasUserData = await $.get("/api/v1/users/self");
+          console.log(canvasUserData);
+          this.canvasUserData = canvasUserData;
+          let key = "";
+          try {
+            key = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoquacktra`);
+            this.key = key.data;
+          } catch (err) {
+            try {
+              key = await $.get(`/api/v1/users/1893418/custom_data/openai-key?ns=com.btech.cleoquacktra`);
+              this.key = key.data;
+            } catch (err) {
+              this.key = "";
+            }
+          }
           $("#global_nav_ask-cleo_link").click((e) => {
             e.preventDefault();
             console.log("TEST");
@@ -101,8 +116,10 @@
         },
         data: function() {
           return {
+            lastOldMessage: 0,
             key: "",
             input: "",
+            canvasUserData: {},
             awaitingResponse: false,
             buttonX: 10,
             showHelp: false,
@@ -112,16 +129,35 @@
           }
         },
         methods: {
-          addMessage(text, name="CleoDucktra") {
-            let message = new CleoDucktraMessage(text, name);
+          cycleOldMessages(e) {
+            if (e.keyCode == 38) {
+              console.log("CYCLING...");
+              for (let i = this.messages.length - 1; i >= 0; i--) {
+                let message = this.messages[i];
+                console.log(message);
+                if (message.name == this.canvasUserData.name && (this.lastOldMessage == -1 || i < this.lastOldMessage)) {
+                  this.lastOldMessage = i;
+                  this.input = message.text;
+                  break;
+                }
+              }
+            } else {
+              this.lastOldMessage = -1;
+            }
+          },
+          addMessage(text, name="CleoDucktra", img="") {
+            let message = new CleoDucktraMessage(
+              text, 
+              name,
+              img);
             this.messages.push(message);
-            const container = this.$el.querySelector(".msger");
+            let container = this.$el.querySelector(".msger-chat");
             container.scrollTop = container.scrollHeight;
             return message;
           },
           submitRequest: async function() {
             let input = this.input;
-            this.addMessage(input, "Me");
+            this.addMessage(input, this.canvasUserData.name, this.canvasUserData.avatar_url);
             this.input = "";
             let message = this.addMessage("...");
             this.awaitingResponse = true;
@@ -134,18 +170,24 @@
             let data = `{
               "prompt": "${input}",
               "temperature": 0.9,
-              "max_tokens": 150,
+              "max_tokens": 512,
               "top_p": 1,
               "frequency_penalty": 0,
               "presence_penalty": 0.6,
               "stop": [" Human:", " AI:"]
             }`;
             await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
+
               message.text= resp.choices[0].text;
+              message.img = "https://bridgetools.dev/canvas/media/cleoquacktra-idle.gif"
             });
             this.awaitingResponse = false;
-            const container = this.$el.querySelector(".msger");
-            container.scrollTop = container.scrollHeight;
+            let containerEl = this.$el.querySelector(".msger-chat");
+            containerEl.scrollTop = containerEl.scrollHeight;
+            this.$nextTick(function() {
+              let inputEl = this.$el.querySelector(".msger-input");
+              inputEl.focus();
+            });
           }
         }
       });
@@ -160,7 +202,9 @@
             >
             <div
               class="msg-img"
-              style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
+              :style="{
+                'background-image': 'url(&quot;' + message.img + '&quot;)' 
+              }"
             ></div>
 
             <div class="msg-bubble">
@@ -176,6 +220,7 @@
           </div>
         `,
         mounted: function() {
+          console.log(this.message.img);
         },
         data: function() {
           return {
