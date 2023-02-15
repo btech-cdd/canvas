@@ -60,15 +60,6 @@
                 overflow-y: scroll;
               '
             >
-                <header class="msger-header">
-                  <div class="msger-header-title">
-                    <i class="fas fa-comment-alt"></i>Ask CleoQuacktra 
-                  </div>
-                  <div class="msger-header-options">
-                    <span><i class="fas fa-cog"></i></span>
-                  </div>
-                </header>
-
                 <main class="msger-chat">
                   <cleoquacktra-message
                     v-for="message in  messages"
