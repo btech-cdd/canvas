@@ -115,15 +115,33 @@
         },
         methods: {
           addMessage(text, name="CleoQuacktra") {
-            this.messages.push(new CleoQuacktraMessage(text, name));
+            let message = new CleoQuacktraMessage(text, name);
+            this.messages.push(message);
+            return message;
           },
-          submitRequest: function() {
+          submitRequest: async function() {
             let input = this.input;
             this.addMessage(input, "Me");
             this.input = "";
-            console.log(input);
-            this.addMessage("...");
+            let message = this.addMessage("...");
             this.awaitingResponse = true;
+            $.ajaxSetup({
+              headers:{
+                  'Authorization': "Bearer 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",
+                  'Content-Type': 'application/json'
+              }
+            });
+            let resp = await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", `{
+              "prompt": "How many moons does earth have?",
+              "temperature": 0.9,
+              "max_tokens": 150,
+              "top_p": 1,
+              "frequency_penalty": 0,
+              "presence_penalty": 0.6,
+              "stop": [" Human:", " AI:"]
+            }`);
+            console.log(resp);
+            this.awaitingResponse = false;
           }
         }
       });
