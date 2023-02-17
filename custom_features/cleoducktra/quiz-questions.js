@@ -107,15 +107,13 @@
               answer_text: answer
             })
           }
-          console.log(answers);
-          $.post(`/courses/${ENV.COURSE_ID}/question_banks/1307665/assessment_questions`, {
+          $.post(`/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/questions`, {
             question: {
-              question_name: this.input,
-              question_type: "multiple_choice_question",
-              points_possible: 1,
-              question_text: `<p>${this.question.prompt}</p>`,
-              answers: answers,
-              assessment_question_bank_id: 1307665
+                question_name: this.input,
+                question_type: "multiple_choice_question",
+                points_possible: 1,
+                question_text: `<p>${this.question.prompt}</p>`,
+                answers: answers
             }
           }); 
         },
@@ -143,6 +141,8 @@
             console.log(resp.choices);
             response = resp.choices[0].text;
           });
+          delete $.ajaxSettings.headers.Authorization;
+          delete $.ajaxSettings.headers['Content-Type'];
           response = response.split("\n");
           let prompt = "";
           let answers = [];
