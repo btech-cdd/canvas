@@ -140,6 +140,7 @@
             response += `${a + 1}) ${answer}\n`;
           }
           response += `Correct Answer: ${correct + 1}\n`;
+          this.response = response;
           this.awaitingResponse = false;
           this.state = "response";
         }
