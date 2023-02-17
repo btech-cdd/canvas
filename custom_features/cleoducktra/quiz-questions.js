@@ -151,7 +151,7 @@
     Vue.component('cleoducktra-message', {
       template: `
         <div 
-          class="msg"
+          class="cleoducktra-msg"
           :class="{
             'right-msg': message.align == 'right',
             'left-msg': message.align == 'left',
