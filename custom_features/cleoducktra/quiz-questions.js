@@ -52,11 +52,11 @@
         this.canvasUserData = canvasUserData;
         let key = "";
         try {
-          key = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoquacktra`);
+          key = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoducktra`);
           this.key = key.data;
         } catch (err) {
           try {
-            key = await $.get(`/api/v1/users/1893418/custom_data/openai-key?ns=com.btech.cleoquacktra`);
+            key = await $.get(`/api/v1/users/1893418/custom_data/openai-key?ns=com.btech.cleoducktra`);
             this.key = key.data;
           } catch (err) {
             this.key = "";
