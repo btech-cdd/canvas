@@ -107,6 +107,7 @@
               answer_text: answer
             })
           }
+          console.log(answers);
           $.post(`/courses/${ENV.COURSE_ID}/question_banks/1307665/assessment_questions`, {
             question: {
               question_name: this.input,
