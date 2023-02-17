@@ -49,10 +49,9 @@
             </main>
             <form 
               style="margin: 0;"
-              @submit.prevent="submitRequest" 
               class="msger-inputarea">
-              <button :disabled="awaitingResponse" type="submit" @click="createQuestion();" class="msger-send-btn">Create</button>
-              <button :disabled="awaitingResponse" type="submit" class="msger-send-btn blue">Next</button>
+              <button :disabled="awaitingResponse" @click="createQuestion(); submitRequest();" class="msger-send-btn">Create</button>
+              <button :disabled="awaitingResponse" @click="submitRequest();" class="msger-send-btn blue">Next</button>
               <button :disabled="awaitingResponse" class="msger-send-btn red" @click="state = 'prompt'; input='';">Restart</button>
             </form>
           </div>
@@ -131,15 +130,17 @@
                 'Content-Type': 'application/json'
             }
           });
-          let data = `{
-            "prompt": "Create a multiple choice question and answer about ${input}. . Use the format Q: ... A) ... B) ... C) ... D) ... Answer: ...",
+          let data = {
+            "prompt": `Create a multiple choice question and answer about ${input}. Use the format Q: ... A) ... B) ... C) ... D) ... Answer: ...`,
             "temperature": 0.5,
-            "max_tokens": 2000,
+            "max_tokens": 500,
             "top_p": 1,
             "frequency_penalty": 0,
             "presence_penalty": 0,
             "stop": [" Human:", " AI:"]
-          }`;
+          };
+          console.log(data.prompt);
+          data = JSON.stringify(data);
           let response = "";
           await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, (resp) => {
             console.log(resp.choices);
