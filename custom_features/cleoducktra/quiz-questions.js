@@ -15,11 +15,11 @@
             <main class="msger-chat">
               <div>What can I help you with?</div>
             </main>
+            <div>Create a question about...</div><br>
             <form 
               style="margin: 0;"
               @submit.prevent="submitRequest" 
               class="msger-inputarea">
-              <div>Create a question about...</div><br>
               <input v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
               <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
             </form>
