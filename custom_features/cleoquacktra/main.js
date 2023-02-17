@@ -144,20 +144,25 @@
                   'Content-Type': 'application/json'
               }
             });
-            let data = `{
-              "prompt": "${input}",
+            let data = {
+              "prompt": input,
               "temperature": 0.9,
               "max_tokens": 2000,
               "top_p": 1,
               "frequency_penalty": 0,
               "presence_penalty": 0.6,
               "stop": [" Human:", " AI:"]
-            }`;
-            await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
+            };
+            data = JSON.stringify(data);
+            try {
+              await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
 
-              message.text= resp.choices[0].text;
-              message.img = "https://bridgetools.dev/canvas/media/cleoquacktra-idle.gif"
-            });
+                message.text= resp.choices[0].text;
+                message.img = "https://bridgetools.dev/canvas/media/cleoquacktra-idle.gif"
+              });
+            } catch (err) {
+              console.log(err);
+            }
             this.awaitingResponse = false;
             let containerEl = this.$el.querySelector(".msger-chat");
             containerEl.scrollTop = containerEl.scrollHeight;
