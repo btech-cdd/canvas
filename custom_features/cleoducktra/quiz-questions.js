@@ -4,7 +4,7 @@
     let vueString = `
       <div id="cleoducktra-quiz-questions" class="cleoducktra-input">
         <div
-          v-if="show"
+          v-show="show"
           @click.self="show = false;"
           class="btech-modal"
           style="display: inline-block;"
