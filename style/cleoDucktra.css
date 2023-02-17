@@ -44,12 +44,12 @@
  .cleoducktra-msger-chat::-webkit-scrollbar-thumb {
   background: #bdbdbd;
 }
- .cleoducktra-msg {
+ .msg {
   display: flex;
   align-items: flex-end;
   margin-bottom: 10px;
 }
- .cleoducktra-msg:last-of-type {
+ .msg:last-of-type {
   margin: 0;
 }
  .msg-img {
