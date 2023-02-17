@@ -1,6 +1,6 @@
 :root {
   --cleoducktra-body-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  --cleoducktra-cleoducktra-msger-bg: #fff;
+  --cleoducktra-msger-bg: #fff;
   --cleoducktra-border: 2px solid #ddd;
   --cleoducktra-left-msg-bg: #ececec;
   --cleoducktra-right-msg-bg: #579ffb;
@@ -8,7 +8,7 @@
 
 
 
-.cleoducktra-msger {
+ .msger {
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
@@ -17,11 +17,11 @@
   height: calc(100% - 50px);
   border: var(--cleoducktra-border);
   border-radius: 5px;
-  background: var(--cleoducktra-cleoducktra-msger-bg);
+  background: var(--cleoducktra-msger-bg);
   box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
 }
 
- .cleoducktra-msger-header {
+.cleoducktra-input .msger-header {
   display: flex;
   justify-content: space-between;
   padding: 10px;
@@ -30,29 +30,29 @@
   color: #666;
 }
 
- .cleoducktra-msger-chat {
+.cleoducktra-input .msger-chat {
   flex: 1;
   overflow-y: auto;
   padding: 10px;
 }
- .cleoducktra-msger-chat::-webkit-scrollbar {
+.cleoducktra-input .msger-chat::-webkit-scrollbar {
   width: 6px;
 }
- .cleoducktra-msger-chat::-webkit-scrollbar-track {
+.cleoducktra-input .msger-chat::-webkit-scrollbar-track {
   background: #ddd;
 }
- .cleoducktra-msger-chat::-webkit-scrollbar-thumb {
+.cleoducktra-input .msger-chat::-webkit-scrollbar-thumb {
   background: #bdbdbd;
 }
- .msg {
+.cleoducktra-input .msg {
   display: flex;
   align-items: flex-end;
   margin-bottom: 10px;
 }
- .msg:last-of-type {
+.cleoducktra-input .msg:last-of-type {
   margin: 0;
 }
- .msg-img {
+.cleoducktra-input .msg-img {
   width: 50px;
   height: 50px;
   margin-right: 10px;
@@ -62,59 +62,59 @@
   background-size: cover;
   border-radius: 50%;
 }
- .msg-bubble {
+.cleoducktra-input .msg-bubble {
   max-width: 450px;
   padding: 15px;
   border-radius: 15px;
   background: var(--cleoducktra-left-msg-bg);
 }
- .msg-info {
+.cleoducktra-input .msg-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
- .msg-info-name {
+.cleoducktra-input .msg-info-name {
   margin-right: 10px;
   font-weight: bold;
 }
- .msg-info-time {
+.cleoducktra-input .msg-info-time {
   font-size: 0.85em;
 }
 
- .left-msg .msg-bubble {
+.cleoducktra-input .left-msg .msg-bubble {
   border-bottom-left-radius: 0;
 }
 
- .right-msg {
+.cleoducktra-input .right-msg {
   flex-direction: row-reverse;
 }
- .right-msg .msg-bubble {
+.cleoducktra-input .right-msg .msg-bubble {
   background: var(--cleoducktra-right-msg-bg);
   color: #fff;
   border-bottom-right-radius: 0;
 }
- .right-msg .msg-img {
+.cleoducktra-input .right-msg .msg-img {
   margin: 0 0 0 10px;
 }
 
- .cleoducktra-msger-inputarea {
+.cleoducktra-input .msger-inputarea {
   display: flex;
   padding: 10px;
   border-top: var(--cleoducktra-border);
   background: #eee;
 }
- .cleoducktra-msger-inputarea * {
+.cleoducktra-input .msger-inputarea * {
   padding: 10px;
   border: none;
   border-radius: 3px;
   font-size: 1em;
 }
- .cleoducktra-msger-input {
+.cleoducktra-input .msger-input {
   flex: 1;
   background: #ddd;
 }
-.cleoducktra-msger-send-btn {
+.cleoducktra-input .msger-send-btn {
   margin-left: 10px;
   background: rgb(0, 196, 65);
   color: #fff;
@@ -122,10 +122,10 @@
   cursor: pointer;
   transition: background 0.23s;
 }
-.cleoducktra-msger-send-btn:hover {
+.cleoducktra-input .msger-send-btn:hover {
   background: rgb(0, 180, 50);
 }
 
-.cleoducktra-msger-chat {
+.cleoducktra-input .msger-chat {
   background-color: #fcfcfe;
 }

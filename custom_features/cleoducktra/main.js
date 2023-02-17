@@ -22,7 +22,7 @@
   );
   if ($("#cleoducktra").length === 0) {
       let vueString = `
-        <div id="cleoducktra">
+        <div id="cleoducktra" class="cleoducktra-input">
           <div
             v-show="show"
             class="btech-modal"
@@ -30,9 +30,9 @@
             @click.self="show = false;"
           >
             <div
-              class="cleoducktra-msger btech-modal-content"
+              class="msger btech-modal-content"
             >
-              <main class="cleoducktra-msger-chat">
+              <main class="msger-chat">
                 <cleoducktra-message
                   v-for="message in  messages"
                   :message="message"
@@ -41,9 +41,9 @@
               <form 
                 style="margin: 0;"
                 @submit.prevent="submitRequest" 
-                class="cleoducktra-msger-inputarea">
-                <input @keydown="cycleOldMessages" :disabled="awaitingResponse" v-model="input" type="text" class="cleoducktra-msger-input" placeholder="Enter your message...">
-                <button :disabled="awaitingResponse" type="submit" class="cleoducktra-msger-send-btn">Ask</button>
+                class="msger-inputarea">
+                <input @keydown="cycleOldMessages" :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
+                <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
               </form>
             </div>
           </div>
@@ -128,7 +128,7 @@
               name,
               img);
             this.messages.push(message);
-            let container = this.$el.querySelector(".cleoducktra-msger-chat");
+            let container = this.$el.querySelector(".msger-chat");
             container.scrollTop = container.scrollHeight;
             return message;
           },
@@ -165,10 +165,10 @@
               console.log(err);
             }
             this.awaitingResponse = false;
-            let containerEl = this.$el.querySelector(".cleoducktra-msger-chat");
+            let containerEl = this.$el.querySelector(".msger-chat");
             containerEl.scrollTop = containerEl.scrollHeight;
             this.$nextTick(function() {
-              let inputEl = this.$el.querySelector(".cleoducktra-msger-input");
+              let inputEl = this.$el.querySelector(".msger-input");
               inputEl.focus();
             });
           }

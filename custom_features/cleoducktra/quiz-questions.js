@@ -2,7 +2,7 @@
   console.log("QUIZ DUCK")
   if ($("#cleoducktra-quiz-questions").length === 0) {
     let vueString = `
-      <div id="cleoducktra-quiz-questions">
+      <div id="cleoducktra-quiz-questions" class="cleoducktra-input">
         <div
           v-if="show"
           @click.self="show = false;"
@@ -10,9 +10,9 @@
           style="display: inline-block;"
         >
           <div
-            class="cleoducktra-msger btech-modal-content"
+            class="msger btech-modal-content"
           >
-            <main class="cleoducktra-msger-chat">
+            <main class="msger-chat">
               <cleoducktra-message
                 v-for="message in  messages"
                 :message="message"
@@ -21,9 +21,9 @@
             <form 
               style="margin: 0;"
               @submit.prevent="submitRequest" 
-              class="cleoducktra-msger-inputarea">
-              <input @keydown="cycleOldMessages" :disabled="awaitingResponse" v-model="input" type="text" class="cleoducktra-msger-input" placeholder="Enter your message...">
-              <button :disabled="awaitingResponse" type="submit" class="cleoducktra-msger-send-btn">Ask</button>
+              class="msger-inputarea">
+              <input @keydown="cycleOldMessages" :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
+              <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
             </form>
           </div>
         </div>
@@ -107,7 +107,7 @@
             name,
             img);
           this.messages.push(message);
-          let container = this.$el.querySelector(".cleoducktra-msger-chat");
+          let container = this.$el.querySelector(".msger-chat");
           container.scrollTop = container.scrollHeight;
           return message;
         },
@@ -139,10 +139,10 @@
             message.img = "https://bridgetools.dev/canvas/media/cleoducktra-idle.gif"
           });
           this.awaitingResponse = false;
-          let containerEl = this.$el.querySelector(".cleoducktra-msger-chat");
+          let containerEl = this.$el.querySelector(".msger-chat");
           containerEl.scrollTop = containerEl.scrollHeight;
           this.$nextTick(function() {
-            let inputEl = this.$el.querySelector(".cleoducktra-msger-input");
+            let inputEl = this.$el.querySelector(".msger-input");
             inputEl.focus();
           });
         }
@@ -151,7 +151,7 @@
     Vue.component('cleoducktra-message', {
       template: `
         <div 
-          class="cleoducktra-msg"
+          class="msg"
           :class="{
             'right-msg': message.align == 'right',
             'left-msg': message.align == 'left',
