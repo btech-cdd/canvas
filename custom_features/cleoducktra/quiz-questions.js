@@ -103,7 +103,7 @@
             "presence_penalty": 0.6,
             "stop": [" Human:", " AI:"]
           }`;
-          await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
+          await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, (resp) => {
             console.log(resp.choices);
             this.response = resp.choices[0].text;
           });
