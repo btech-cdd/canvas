@@ -98,7 +98,7 @@
             }
           });
           let data = `{
-            "prompt": "Create a multiple choice question about ${input}",
+            "prompt": "Create a multiple choice question about ${input}. Then provide the answer.",
             "temperature": 0.9,
             "max_tokens": 2000,
             "top_p": 1,
@@ -106,9 +106,10 @@
             "presence_penalty": 0.6,
             "stop": [" Human:", " AI:"]
           }`;
+          let response = "";
           await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, (resp) => {
             console.log(resp.choices);
-            this.response = resp.choices[0].text;
+            response = resp.choices[0].text;
           });
           this.awaitingResponse = false;
           this.state = "response";
