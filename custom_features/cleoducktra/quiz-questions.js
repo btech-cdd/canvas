@@ -98,7 +98,7 @@
             }
           });
           let data = `{
-            "prompt": "Create a multiple choice question about ${input}. Then provide the answer.",
+            "prompt": "Create a multiple choice question about ${input}. Provide the answer.",
             "temperature": 0.9,
             "max_tokens": 2000,
             "top_p": 1,
