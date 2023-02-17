@@ -112,7 +112,7 @@
             response = resp.choices[0].text;
           });
           let question = response.match(/Q:(.*?)\n/);
-          let answers = response.match(/\n[A-Za-z]\)(.*?)\n/);
+          let answers = response.matchAll(/\n[A-Za-z]\)(.*?)\n/);
           let correct = response.match(/\nAnswer:(.*?)/);
           console.log(question);
           console.log(answers);
