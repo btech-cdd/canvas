@@ -6,7 +6,7 @@
       Generate Question 
     </a>
   `)
-  $(".question_editing").append(openButton);
+  $(".add_question.question_editing").append(openButton);
   if ($("#cleoducktra-quiz-questions").length === 0) {
     let vueString = `
       <div id="cleoducktra-quiz-questions" class="cleoducktra-input">
