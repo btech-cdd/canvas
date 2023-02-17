@@ -20,7 +20,6 @@
               @submit.prevent="submitRequest" 
               class="msger-inputarea">
               <div>Create a question about...</div>
-              <input @keydown="cycleOldMessages" :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
               <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
             </form>
           </div>
@@ -67,22 +66,6 @@
         }
       },
       methods: {
-        cycleOldMessages(e) {
-          if (e.keyCode == 38) {
-            console.log("CYCLING...");
-            for (let i = this.messages.length - 1; i >= 0; i--) {
-              let message = this.messages[i];
-              console.log(message);
-              if (message.name == this.canvasUserData.name && (this.lastOldMessage == -1 || i < this.lastOldMessage)) {
-                this.lastOldMessage = i;
-                this.input = message.text;
-                break;
-              }
-            }
-          } else {
-            this.lastOldMessage = -1;
-          }
-        },
         submitRequest: async function() {
           let input = this.input;
           this.input = "";
