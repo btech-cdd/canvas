@@ -111,7 +111,7 @@
             question: {
                 question_name: this.input,
                 question_type: "multiple_choice_question",
-                poinst_possible: 1,
+                points_possible: 1,
                 question_text: `<p>${this.question.prompt}</p>`,
                 answers: answers
             }
