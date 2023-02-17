@@ -139,7 +139,7 @@
             let answer = answers[a];
             response += `<p>${a + 1}) ${answer}</p>`;
           }
-          response += `<p>Correct Answer: ${a + 1}</p>`;
+          response += `<p>Correct Answer: ${correct + 1}</p>`;
           this.awaitingResponse = false;
           this.state = "response";
         }
