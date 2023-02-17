@@ -94,7 +94,7 @@
           canvasUserData: {},
           awaitingResponse: false,
           buttonX: 10,
-          show: true,
+          show: false,
           state: "prompt",
           response: "",
           question: {
