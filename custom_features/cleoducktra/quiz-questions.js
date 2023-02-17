@@ -62,11 +62,10 @@
             this.key = "";
           }
         }
-        $("#global_nav_ask-cleo_link").click((e) => {
-          e.preventDefault();
-          console.log("TEST");
-          this.show = true;
-        })
+        // $("#global_nav_ask-cleo_link").click((e) => {
+        //   e.preventDefault();
+        //   this.show = true;
+        // })
       },
       computed: {
       },
@@ -78,7 +77,7 @@
           canvasUserData: {},
           awaitingResponse: false,
           buttonX: 10,
-          show: false,
+          show: true,
           messages: [
             new CleoDucktraMessage("Welcome! What can I do for you?")
           ],
