@@ -122,7 +122,7 @@
               question = mQuestion[1];
               continue;
             }
-            let mAnswer = line.match(/[A-Za-z]\)(.*)/);
+            let mAnswer = line.match(/^[A-Za-z]\)(.*)/);
             if (mAnswer) {
               answers.push(mAnswer[1]);
             }
