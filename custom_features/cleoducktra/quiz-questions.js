@@ -86,22 +86,9 @@
             this.lastOldMessage = -1;
           }
         },
-        addMessage(text, name="CleoDucktra", img="") {
-          let message = new CleoDucktraMessage(
-            text, 
-            name,
-            img);
-          this.messages.push(message);
-          let container = this.$el.querySelector(".msger-chat");
-          container.scrollTop = container.scrollHeight;
-          return message;
-        },
         submitRequest: async function() {
           let input = this.input;
-          this.addMessage(input, this.canvasUserData.name, this.canvasUserData.avatar_url);
           this.input = "";
-          let message = this.addMessage("...");
-          message.img = "https://bridgetools.dev/canvas/media/cleoducktra.gif"
           this.awaitingResponse = true;
           $.ajaxSetup({
             headers:{
