@@ -117,16 +117,16 @@
           let correct = "";
           for (let r in response) {
             let line = response[r];
-            let mquestion = response.match(/Q:(.*)/);
+            let mquestion = line.match(/Q:(.*)/);
             if (mQuestion) {
               question = mQuestion[1];
               continue;
             }
-            let manswers = response.match(/[A-Za-z]\)(.*)/);
+            let manswers = line.match(/[A-Za-z]\)(.*)/);
             if (manswers) {
               console.log(manswer[1]);
             }
-            let mcorrect = response.match(/Answer: ([A-Z])/);
+            let mcorrect = line.match(/Answer: ([A-Z])/);
             let letters = "ABCDEFG";
             if (mcorrect) {
               console.log(mcorrect[1]);
