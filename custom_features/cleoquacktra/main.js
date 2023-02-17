@@ -24,7 +24,7 @@
       let vueString = `
         <div id="cleoquacktra">
           <div
-            v-if="showHelp"
+            v-show="showHelp"
             class="btech-modal"
             @click.self="showHelp = false;"
           >
