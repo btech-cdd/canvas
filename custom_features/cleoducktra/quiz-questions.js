@@ -20,6 +20,7 @@
               @submit.prevent="submitRequest" 
               class="msger-inputarea">
               <div>Create a question about...</div>
+              <input v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
               <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
             </form>
           </div>
