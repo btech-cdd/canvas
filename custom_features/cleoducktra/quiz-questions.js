@@ -98,7 +98,7 @@
             }
           });
           let data = `{
-            "prompt": "Create a multiple choice question about ${input} with 4 choices.",
+            "prompt": "Create a multiple choice question and answer about ${input}.",
             "temperature": 0.5,
             "max_tokens": 2000,
             "top_p": 1,
