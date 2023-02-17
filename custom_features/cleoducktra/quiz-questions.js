@@ -113,7 +113,7 @@
           });
           let question = response.match(/Q:(.*?)\n/g);
           let answers = [...response.matchAll(/\n[A-Za-z]\)(.*?)/g)];
-          let correct = response.match(/\nAnswer:(.*?)/g);
+          let correct = response.match(/\nAnswer: ([A-Z])/g);
           console.log(question);
           console.log(answers);
           console.log(correct);
