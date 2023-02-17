@@ -126,6 +126,21 @@
   background: rgb(0, 180, 50);
 }
 
+.cleoducktra-input .msger-send-btn.blue {
+  background: rgb(0, 65, 196);
+}
+.cleoducktra-input .msger-send-btn.blue:hover {
+  background: rgb(0, 50, 180);
+}
+
+.cleoducktra-input .msger-send-btn.red{
+  background: rgb(196, 65, 0);
+}
+.cleoducktra-input .msger-send-btn.red:hover {
+  background: rgb(180, 50, 0);
+}
+
+
 .cleoducktra-input .msger-chat {
   background-color: #fcfcfe;
 }
