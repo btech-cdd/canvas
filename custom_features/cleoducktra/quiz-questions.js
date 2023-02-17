@@ -45,8 +45,8 @@
               style="margin: 0;"
               @submit.prevent="submitRequest" 
               class="msger-inputarea">
-              <button :disabled="awaitingResponse" class="msger-send-btn blue">Next</button>
-              <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Create</button>
+              <button :disabled="awaitingResponse" type="submit" @click="createQuestion();" class="msger-send-btn">Create</button>
+              <button :disabled="awaitingResponse" type="submit" class="msger-send-btn blue">Next</button>
               <button :disabled="awaitingResponse" class="msger-send-btn red" @click="state = 'prompt'; input='';">Restart</button>
             </form>
           </div>
@@ -97,6 +97,26 @@
         }
       },
       methods: {
+        createQuestion: function() {
+          let answers = [];
+          for (let a in this.question.answers) {
+            let answer = this.question.answers[a];
+            answers.push({
+              answer_weight: a == question.correct ? 100 : 0,
+              numerical_answer_type: "exact_answer",
+              answer_text: answer
+            })
+          }
+          $.post(`https://btech.instructure.com/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/questions`, {
+            question: {
+                question_name: this.input,
+                question_type: "multiple_choice_question",
+                poinst_possible: 1,
+                question_text: `<p>${this.question.prompt}</p>`,
+                answers: answers
+            }
+          }); 
+        },
         submitRequest: async function() {
           let input = this.input;
           this.input = "";
