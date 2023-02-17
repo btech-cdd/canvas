@@ -132,14 +132,14 @@
               correct = letters.indexOf(mCorrect[1]);
             }
           }
-          this.response = `
-            <p>${question}</p>
+          response = `
+            ${question}\n
           `;
           for (let a in answers) {
             let answer = answers[a];
-            response += `<p>${a + 1}) ${answer}</p>`;
+            response += `${a + 1}) ${answer}\n`;
           }
-          response += `<p>Correct Answer: ${correct + 1}</p>`;
+          response += `Correct Answer: ${correct + 1}\n`;
           this.awaitingResponse = false;
           this.state = "response";
         }
