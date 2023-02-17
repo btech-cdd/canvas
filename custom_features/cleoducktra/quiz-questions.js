@@ -111,9 +111,27 @@
             console.log(resp.choices);
             response = resp.choices[0].text;
           });
-          let question = response.match(/Q:(.*?)\n/g);
-          let answers = [...response.matchAll(/\n[A-Za-z]\)(.*?)/g)];
-          let correct = response.match(/\nAnswer: ([A-Z])/g);
+          response = response.split("\n");
+          let question = "";
+          let answers = "";
+          let correct = "";
+          for (let r in response) {
+            let line = response[r];
+            let mquestion = response.match(/Q:(.*)/);
+            if (mQuestion) {
+              question = mQuestion[1];
+              continue;
+            }
+            let manswers = response.match(/[A-Za-z]\)(.*)/);
+            if (manswers) {
+              console.log(manswer[1]);
+            }
+            let mcorrect = response.match(/Answer: ([A-Z])/);
+            let letters = "ABCDEFG";
+            if (mcorrect) {
+              console.log(mcorrect[1]);
+            }
+          }
           console.log(question);
           console.log(answers);
           console.log(correct);
