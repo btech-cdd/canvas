@@ -14,7 +14,7 @@
             style="height: auto;"
           >
             <main class="msger-chat">
-              <div>What can I help you with?</div>
+              <div>Create a quiz question about...</div>
             </main>
             <form 
               style="margin: 0;"
