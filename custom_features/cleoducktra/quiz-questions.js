@@ -111,6 +111,13 @@
             console.log(resp.choices);
             response = resp.choices[0].text;
           });
+          let question = response.match(/Q:(.*?)\n/);
+          let answers = response.match(/\nA:(.*?)\n/);
+          let correct = response.match(/\nAnswer:(.*?)\n/);
+          console.log(question);
+          console.log(answers);
+          console.log(correct);
+          this.response = response;
           this.awaitingResponse = false;
           this.state = "response";
         }
