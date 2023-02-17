@@ -12,10 +12,9 @@
           <div
             class="msger btech-modal-content"
           >
-            <main class="msger-chat">
+            <main class="msger-chat" style="height: 2rem;">
               <div>What can I help you with?</div>
             </main>
-            <div>Create a question about...</div><br>
             <form 
               style="margin: 0;"
               @submit.prevent="submitRequest" 
