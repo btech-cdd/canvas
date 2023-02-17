@@ -107,7 +107,7 @@
               answer_text: answer
             })
           }
-          $.post(`https://btech.instructure.com/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/questions`, {
+          $.post(`/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/questions`, {
             question: {
                 question_name: this.input,
                 question_type: "multiple_choice_question",
