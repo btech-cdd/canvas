@@ -11,9 +11,9 @@
         >
           <div
             class="msger btech-modal-content"
-            height="4rem;"
+            style="height: auto;"
           >
-            <main height="2rem">
+            <main class="msger-chat">
               <div>What can I help you with?</div>
             </main>
             <form 
