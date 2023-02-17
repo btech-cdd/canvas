@@ -26,6 +26,7 @@
           <div
             v-show="showHelp"
             class="btech-modal"
+            style="display: inline-block;"
             @click.self="showHelp = false;"
           >
             <div
