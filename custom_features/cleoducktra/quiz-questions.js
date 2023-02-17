@@ -113,7 +113,7 @@
           });
           response = response.split("\n");
           let question = "";
-          let answers = "";
+          let answers = [];
           let correct = "";
           for (let r in response) {
             let line = response[r];
