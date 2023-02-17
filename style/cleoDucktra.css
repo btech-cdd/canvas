@@ -1,6 +1,6 @@
 :root {
   --cleoducktra-body-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  --cleoducktra-msger-bg: #fff;
+  --cleoducktra-cleoducktra-msger-bg: #fff;
   --cleoducktra-border: 2px solid #ddd;
   --cleoducktra-left-msg-bg: #ececec;
   --cleoducktra-right-msg-bg: #579ffb;
@@ -8,7 +8,7 @@
 
 
 
-#cleoducktra .msger {
+.cleoducktra-msger {
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
@@ -17,11 +17,11 @@
   height: calc(100% - 50px);
   border: var(--cleoducktra-border);
   border-radius: 5px;
-  background: var(--cleoducktra-msger-bg);
+  background: var(--cleoducktra-cleoducktra-msger-bg);
   box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
 }
 
-#cleoducktra .msger-header {
+#cleoducktra .cleoducktra-msger-header {
   display: flex;
   justify-content: space-between;
   padding: 10px;
@@ -30,18 +30,18 @@
   color: #666;
 }
 
-#cleoducktra .msger-chat {
+#cleoducktra .cleoducktra-msger-chat {
   flex: 1;
   overflow-y: auto;
   padding: 10px;
 }
-#cleoducktra .msger-chat::-webkit-scrollbar {
+#cleoducktra .cleoducktra-msger-chat::-webkit-scrollbar {
   width: 6px;
 }
-#cleoducktra .msger-chat::-webkit-scrollbar-track {
+#cleoducktra .cleoducktra-msger-chat::-webkit-scrollbar-track {
   background: #ddd;
 }
-#cleoducktra .msger-chat::-webkit-scrollbar-thumb {
+#cleoducktra .cleoducktra-msger-chat::-webkit-scrollbar-thumb {
   background: #bdbdbd;
 }
 #cleoducktra .msg {
@@ -98,23 +98,23 @@
   margin: 0 0 0 10px;
 }
 
-#cleoducktra .msger-inputarea {
+#cleoducktra .cleoducktra-msger-inputarea {
   display: flex;
   padding: 10px;
   border-top: var(--cleoducktra-border);
   background: #eee;
 }
-#cleoducktra .msger-inputarea * {
+#cleoducktra .cleoducktra-msger-inputarea * {
   padding: 10px;
   border: none;
   border-radius: 3px;
   font-size: 1em;
 }
-#cleoducktra .msger-input {
+#cleoducktra .cleoducktra-msger-input {
   flex: 1;
   background: #ddd;
 }
-#cleoducktra .msger-send-btn {
+#cleoducktra .cleoducktra-msger-send-btn {
   margin-left: 10px;
   background: rgb(0, 196, 65);
   color: #fff;
@@ -122,10 +122,10 @@
   cursor: pointer;
   transition: background 0.23s;
 }
-#cleoducktra .msger-send-btn:hover {
+#cleoducktra .cleoducktra-msger-send-btn:hover {
   background: rgb(0, 180, 50);
 }
 
-#cleoducktra .msger-chat {
+#cleoducktra .cleoducktra-msger-chat {
   background-color: #fcfcfe;
 }
