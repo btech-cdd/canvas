@@ -102,7 +102,7 @@
           for (let a in this.question.answers) {
             let answer = this.question.answers[a];
             answers.push({
-              answer_weight: a == question.correct ? 100 : 0,
+              answer_weight: a == this.question.correct ? 100 : 0,
               numerical_answer_type: "exact_answer",
               answer_text: answer
             })
