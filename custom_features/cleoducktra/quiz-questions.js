@@ -1,5 +1,12 @@
 (function () {
   console.log("QUIZ DUCK")
+  let openButton = $(`
+    <a href="#" class="generate_question_link btn">
+      <i class="icon-add"></i><span class="screenreader-only">Generate Question</span>
+      Generate Question 
+    </a>
+  `)
+  $(".question_editing").append(openButton);
   if ($("#cleoducktra-quiz-questions").length === 0) {
     let vueString = `
       <div id="cleoducktra-quiz-questions" class="cleoducktra-input">
@@ -73,10 +80,9 @@
             this.key = "";
           }
         }
-        // $("#global_nav_ask-cleo_link").click((e) => {
-        //   e.preventDefault();
-        //   this.show = true;
-        // })
+        openButton.click(() => {
+          this.show = true;
+        });
       },
       computed: {
       },
