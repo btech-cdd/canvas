@@ -109,11 +109,12 @@
           }
           $.post(`/courses/${ENV.COURSE_ID}/question_banks/1307665/assessment_questions`, {
             question: {
-                question_name: this.input,
-                question_type: "multiple_choice_question",
-                points_possible: 1,
-                question_text: `<p>${this.question.prompt}</p>`,
-                answers: answers
+              question_name: this.input,
+              question_type: "multiple_choice_question",
+              points_possible: 1,
+              question_text: `<p>${this.question.prompt}</p>`,
+              answers: answers,
+              assessment_question_bank_id: 1307665
             }
           }); 
         },
