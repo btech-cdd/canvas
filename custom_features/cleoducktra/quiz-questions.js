@@ -107,7 +107,7 @@
               answer_text: answer
             })
           }
-          $.post(`/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/questions`, {
+          $.post(`/courses/${ENV.COURSE_ID}/question_banks/1307665/assessment_questions`, {
             question: {
                 question_name: this.input,
                 question_type: "multiple_choice_question",
