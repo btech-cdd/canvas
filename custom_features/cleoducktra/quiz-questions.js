@@ -122,8 +122,8 @@
               question = mQuestion[1];
               continue;
             }
-            let mAnswers = line.match(/[A-Za-z]\)(.*)/);
-            if (mAnswers) {
+            let mAnswer = line.match(/[A-Za-z]\)(.*)/);
+            if (mAnswer) {
               console.log(mAnswer[1]);
             }
             let mCorrect = line.match(/Answer: ([A-Z])/);
