@@ -20,9 +20,9 @@
     </svg>
     `
   );
-  if ($("#cleoquacktra").length === 0) {
+  if ($("#cleoducktra").length === 0) {
       let vueString = `
-        <div id="cleoquacktra">
+        <div id="cleoducktra">
           <div
             v-show="showHelp"
             class="btech-modal"
@@ -33,10 +33,10 @@
               class="msger btech-modal-content"
             >
               <main class="msger-chat">
-                <cleoquacktra-message
+                <cleoducktra-message
                   v-for="message in  messages"
                   :message="message"
-                ></cleoquacktra-message> 
+                ></cleoducktra-message> 
               </main>
               <form 
                 style="margin: 0;"
@@ -57,7 +57,7 @@
           this.img = img;
           if (name == "CleoDucktra") {
             this.align = "left";
-            this.img = "https://bridgetools.dev/canvas/media/cleoquacktra-idle.gif"
+            this.img = "https://bridgetools.dev/canvas/media/cleoducktra-idle.gif"
           }
           this.text = text;
           this.timestamp = new Date();
@@ -66,18 +66,18 @@
       }
       //IMPORTED_FEATURE._init();
       new Vue({
-        el: "#cleoquacktra",
+        el: "#cleoducktra",
         mounted: async function() {
           let canvasUserData = await $.get("/api/v1/users/self");
           console.log(canvasUserData);
           this.canvasUserData = canvasUserData;
           let key = "";
           try {
-            key = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoquacktra`);
+            key = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoducktra`);
             this.key = key.data;
           } catch (err) {
             try {
-              key = await $.get(`/api/v1/users/1893418/custom_data/openai-key?ns=com.btech.cleoquacktra`);
+              key = await $.get(`/api/v1/users/1893418/custom_data/openai-key?ns=com.btech.cleoducktra`);
               this.key = key.data;
             } catch (err) {
               this.key = "";
@@ -137,7 +137,7 @@
             this.addMessage(input, this.canvasUserData.name, this.canvasUserData.avatar_url);
             this.input = "";
             let message = this.addMessage("...");
-            message.img = "https://bridgetools.dev/canvas/media/cleoquacktra.gif"
+            message.img = "https://bridgetools.dev/canvas/media/cleoducktra.gif"
             this.awaitingResponse = true;
             $.ajaxSetup({
               headers:{
@@ -159,7 +159,7 @@
               await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
 
                 message.text= resp.choices[0].text;
-                message.img = "https://bridgetools.dev/canvas/media/cleoquacktra-idle.gif"
+                message.img = "https://bridgetools.dev/canvas/media/cleoducktra-idle.gif"
               });
             } catch (err) {
               console.log(err);
@@ -174,7 +174,7 @@
           }
         }
       });
-      Vue.component('cleoquacktra-message', {
+      Vue.component('cleoducktra-message', {
         template: `
           <div 
             class="msg"
