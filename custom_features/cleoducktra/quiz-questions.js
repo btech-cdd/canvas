@@ -22,15 +22,14 @@
             v-if="state=='prompt'"
           >
             <main class="msger-chat">
-              <div v-if="!awaitingResponse">Create a quiz question about...</div>
+              <div>Create a quiz question about...</div>
             </main>
             <form 
-              v-if="!awaitingResponse"
               style="margin: 0;"
               @submit.prevent="submitRequest" 
               class="msger-inputarea">
               <input v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
-              <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
+              <button type="submit" class="msger-send-btn">Ask</button>
             </form>
           </div>
           <div
@@ -50,9 +49,9 @@
             <form 
               style="margin: 0;"
               class="msger-inputarea">
-              <button :disabled="awaitingResponse" @click="createQuestion(); submitRequest();" class="msger-send-btn">Create</button>
-              <button :disabled="awaitingResponse" @click="submitRequest();" class="msger-send-btn blue">Next</button>
-              <button :disabled="awaitingResponse" class="msger-send-btn red" @click="state = 'prompt'; input='';">Restart</button>
+              <button @click="createQuestion(); submitRequest();" class="msger-send-btn">Create</button>
+              <button @click="submitRequest();" class="msger-send-btn blue">Next</button>
+              <button class="msger-send-btn red" @click="state = 'prompt'; input='';">Restart</button>
             </form>
           </div>
         </div>
@@ -90,7 +89,6 @@
           key: "",
           input: "",
           canvasUserData: {},
-          awaitingResponse: false,
           buttonX: 10,
           show: false,
           state: "prompt",
@@ -123,7 +121,6 @@
         },
         submitRequest: async function() {
           let input = this.input;
-          this.awaitingResponse = true;
           $.ajaxSetup({
             headers:{
                 'Authorization': "Bearer " + this.key,
@@ -175,7 +172,6 @@
             correct: correct
           }
           this.question = question;
-          this.awaitingResponse = false;
           this.state = "response";
         }
       }
