@@ -23,27 +23,27 @@
   if ($("#cleoquacktra").length === 0) {
       let vueString = `
         <div id="cleoquacktra">
-          <div v-if="showHelp">
-            <div
-              @click.self="showHelp = false;"
-              class="btech-modal"
-            >
+          <div
+            v-if="showHelp"
+            class="btech-modal"
+            @click.self="showHelp = false;"
+          >
             <div
               class="msger btech-modal-content"
             >
-                <main class="msger-chat">
-                  <cleoquacktra-message
-                    v-for="message in  messages"
-                    :message="message"
-                  ></cleoquacktra-message> 
-                </main>
-                <form 
-                  style="margin: 0;"
-                  @submit.prevent="submitRequest" 
-                  class="msger-inputarea">
-                  <input @keydown="cycleOldMessages" :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
-                  <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
-                </form>
+              <main class="msger-chat">
+                <cleoquacktra-message
+                  v-for="message in  messages"
+                  :message="message"
+                ></cleoquacktra-message> 
+              </main>
+              <form 
+                style="margin: 0;"
+                @submit.prevent="submitRequest" 
+                class="msger-inputarea">
+                <input @keydown="cycleOldMessages" :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
+                <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
+              </form>
             </div>
           </div>
         </div>
