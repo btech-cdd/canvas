@@ -12,6 +12,7 @@
           <div
             class="msger btech-modal-content"
             style="height: auto;"
+            v-if="state=='prompt'"
           >
             <main class="msger-chat">
               <div>Create a quiz question about...</div>
@@ -21,6 +22,21 @@
               @submit.prevent="submitRequest" 
               class="msger-inputarea">
               <input v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
+              <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
+            </form>
+          </div>
+          <div
+            class="msger btech-modal-content"
+            style="height: auto;"
+            v-if="state=='response'"
+          >
+            <main class="msger-chat">
+              <div>{{response}}</div>
+            </main>
+            <form 
+              style="margin: 0;"
+              @submit.prevent="submitRequest" 
+              class="msger-inputarea">
               <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
             </form>
           </div>
@@ -63,7 +79,8 @@
           awaitingResponse: false,
           buttonX: 10,
           show: true,
-          state: "prompt" 
+          state: "prompt",
+          response: "",
         }
       },
       methods: {
@@ -78,7 +95,7 @@
             }
           });
           let data = `{
-            "prompt": "${input}",
+            "prompt": "Create a multiple choice question about ${input}",
             "temperature": 0.9,
             "max_tokens": 2000,
             "top_p": 1,
@@ -87,17 +104,11 @@
             "stop": [" Human:", " AI:"]
           }`;
           await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
-
-            message.text= resp.choices[0].text;
-            message.img = "https://bridgetools.dev/canvas/media/cleoducktra-idle.gif"
+            console.log(resp.choices);
+            this.response = resp.choices[0].text;
           });
           this.awaitingResponse = false;
-          let containerEl = this.$el.querySelector(".msger-chat");
-          containerEl.scrollTop = containerEl.scrollHeight;
-          this.$nextTick(function() {
-            let inputEl = this.$el.querySelector(".msger-input");
-            inputEl.focus();
-          });
+          this.state = "response";
         }
       }
     });
