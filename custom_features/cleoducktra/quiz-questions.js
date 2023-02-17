@@ -15,9 +15,11 @@
             v-if="state=='prompt'"
           >
             <main class="msger-chat">
-              <div>Create a quiz question about...</div>
+              <div v-if="!awaitingResponse">Create a quiz question about...</div>
+              <div v-if="awaitingResponse">Creating question...</div>
             </main>
             <form 
+              v-if="!awaitingResponse"
               style="margin: 0;"
               @submit.prevent="submitRequest" 
               class="msger-inputarea">
@@ -37,6 +39,7 @@
               style="margin: 0;"
               @submit.prevent="submitRequest" 
               class="msger-inputarea">
+              <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
               <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
             </form>
           </div>
