@@ -51,7 +51,7 @@
               class="msger-inputarea">
               <button @click="createQuestion(); submitRequest();" class="msger-send-btn">Create</button>
               <button @click="submitRequest();" class="msger-send-btn blue">Next</button>
-              <button class="msger-send-btn red" @click="state = 'prompt'; input='';">Restart</button>
+              <button @click="state = 'prompt'; input='';" class="msger-send-btn red">Restart</button>
             </form>
           </div>
         </div>
@@ -120,6 +120,7 @@
           }); 
         },
         submitRequest: async function() {
+          console.log("SUBMIT!")
           let input = this.input;
           $.ajaxSetup({
             headers:{
