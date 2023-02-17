@@ -24,10 +24,10 @@
       let vueString = `
         <div id="cleoducktra">
           <div
-            v-show="showHelp"
+            v-show="show"
             class="btech-modal"
             style="display: inline-block;"
-            @click.self="showHelp = false;"
+            @click.self="show = false;"
           >
             <div
               class="msger btech-modal-content"
@@ -86,7 +86,7 @@
           $("#global_nav_ask-cleo_link").click((e) => {
             e.preventDefault();
             console.log("TEST");
-            this.showHelp = true;
+            this.show = true;
           })
         },
         computed: {
@@ -99,7 +99,7 @@
             canvasUserData: {},
             awaitingResponse: false,
             buttonX: 10,
-            showHelp: false,
+            show: false,
             messages: [
               new CleoDucktraMessage("Welcome! What can I do for you?")
             ],

@@ -1,28 +1,29 @@
 (function () {
-  if ($("#cleoquacktra").length === 0) {
+  if ($("#cleoducktra-quiz-questions").length === 0) {
     let vueString = `
       <div id="cleoducktra-quiz-questions">
-        <div v-if="show">
-          <div
-            @click.self="showHelp = false;"
-            class="btech-modal"
-          >
+        <div
+          v-if="show"
+          @click.self="show = false;"
+          class="btech-modal"
+          style="display: inline-block;"
+        >
           <div
             class="msger btech-modal-content"
           >
-              <main class="msger-chat">
-                <cleoquacktra-message
-                  v-for="message in  messages"
-                  :message="message"
-                ></cleoquacktra-message> 
-              </main>
-              <form 
-                style="margin: 0;"
-                @submit.prevent="submitRequest" 
-                class="msger-inputarea">
-                <input @keydown="cycleOldMessages" :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
-                <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
-              </form>
+            <main class="msger-chat">
+              <cleoquacktra-message
+                v-for="message in  messages"
+                :message="message"
+              ></cleoquacktra-message> 
+            </main>
+            <form 
+              style="margin: 0;"
+              @submit.prevent="submitRequest" 
+              class="msger-inputarea">
+              <input @keydown="cycleOldMessages" :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
+              <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
+            </form>
           </div>
         </div>
       </div>
@@ -64,7 +65,7 @@
         $("#global_nav_ask-cleo_link").click((e) => {
           e.preventDefault();
           console.log("TEST");
-          this.showHelp = true;
+          this.show = true;
         })
       },
       computed: {
@@ -77,7 +78,7 @@
           canvasUserData: {},
           awaitingResponse: false,
           buttonX: 10,
-          showHelp: false,
+          show: false,
           messages: [
             new CleoDucktraMessage("Welcome! What can I do for you?")
           ],
