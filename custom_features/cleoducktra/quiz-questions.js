@@ -124,12 +124,12 @@
             }
             let mAnswers = line.match(/[A-Za-z]\)(.*)/);
             if (mAnswers) {
-              console.log(manswer[1]);
+              console.log(mAnswer[1]);
             }
             let mCorrect = line.match(/Answer: ([A-Z])/);
             let letters = "ABCDEFG";
             if (mCorrect) {
-              console.log(mcorrect[1]);
+              console.log(mCorrect[1]);
             }
           }
           console.log(question);
