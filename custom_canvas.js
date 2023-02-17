@@ -251,6 +251,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
 
         // if (IS_ME) $.getScript("https://bridgetools.dev/collaborator/import.js");
         featureCDD("cleoquacktra/main", {}, /^/);
+        if (IS_ME) featureCDD("cleoquacktra/quiz-questions", {}, /^/);
         //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
         feature("welcome_banner", {}, /^\/$/);
       });
