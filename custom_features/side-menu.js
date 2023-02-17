@@ -23,7 +23,7 @@ function createSideMenuButton(text, url, svg) {
   `);
 }
 createSideMenuButton(
-  "Community Resources"
+  "Local Resources"
   , "https://btech.edu/community-resource-page/"
   , `
     <svg 
