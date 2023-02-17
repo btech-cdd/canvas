@@ -26,34 +26,10 @@
           <div v-if="showHelp">
             <div
               @click.self="showHelp = false;"
-              style='
-                position: fixed;
-                z-index: 100000;
-                padding-top: 10px;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                overflow: auto;
-                background-color: #000;
-                background-color: rgb(0, 0, 0, 0.4);
-              ' 
+              class="btech-modal"
             >
             <div
-              id="btech-help-modal"
-              class="msger"
-              style='
-                position: absolute;
-                background-color: rgb(255,255,255);
-                color: #000;
-                width: 80%;
-                height: 80%;
-                top: 10%;
-                left: 10%;
-                z-index: 100001;
-                border-radius: 5px;
-                box-shadow: 0px 0px 8px 1px #333;
-              '
+              class="msger btech-modal-content"
             >
                 <main class="msger-chat">
                   <cleoquacktra-message
