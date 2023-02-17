@@ -45,8 +45,9 @@
               style="margin: 0;"
               @submit.prevent="submitRequest" 
               class="msger-inputarea">
-              <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
-              <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
+              <button :disabled="awaitingResponse" class="msger-send-btn">Next</button>
+              <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Create</button>
+              <button :disabled="awaitingResponse" class="msger-send-btn" @click="state = 'prompt'; input='';>Restart</button>
             </form>
           </div>
         </div>
