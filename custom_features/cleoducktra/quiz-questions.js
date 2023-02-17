@@ -13,10 +13,7 @@
             class="msger btech-modal-content"
           >
             <main class="msger-chat">
-              <cleoducktra-message
-                v-for="message in  messages"
-                :message="message"
-              ></cleoducktra-message> 
+              <div>What can I help you with?</div>
             </main>
             <form 
               style="margin: 0;"
