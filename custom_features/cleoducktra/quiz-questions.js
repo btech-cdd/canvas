@@ -33,7 +33,13 @@
             v-if="state=='response'"
           >
             <main class="msger-chat">
-              <div>{{response}}</div>
+              <div v-if="question.prompt !== ''">
+                <p>{{question.prompt}}</p>
+                <ol>
+                  <li v-for="answer in question.answers">{{answer}}</li>
+                </ol>
+                <p>Correct answer: {{question.correct + 1}}</p>
+              </div>
             </main>
             <form 
               style="margin: 0;"
@@ -84,6 +90,9 @@
           show: true,
           state: "prompt",
           response: "",
+          question: {
+            prompt: ""
+          },
         }
       },
       methods: {
@@ -112,14 +121,14 @@
             response = resp.choices[0].text;
           });
           response = response.split("\n");
-          let question = "";
+          let prompt = "";
           let answers = [];
           let correct = "";
           for (let r in response) {
             let line = response[r];
-            let mQuestion = line.match(/Q:(.*)/);
-            if (mQuestion) {
-              question = mQuestion[1];
+            let mPrompt = line.match(/Q:(.*)/);
+            if (mPrompt) {
+              prompt = mPrompt[1];
               continue;
             }
             let mAnswer = line.match(/^[A-Za-z]\)(.*)/);
@@ -132,15 +141,12 @@
               correct = letters.indexOf(mCorrect[1]);
             }
           }
-          response = `
-            ${question}\n
-          `;
-          for (let a in answers) {
-            let answer = answers[a];
-            response += `${a + 1}) ${answer}\n`;
+          let question = {
+            prompt: prompt,
+            answers: answers,
+            correct: correct
           }
-          response += `Correct Answer: ${correct + 1}\n`;
-          this.response = response;
+          this.question = question;
           this.awaitingResponse = false;
           this.state = "response";
         }
