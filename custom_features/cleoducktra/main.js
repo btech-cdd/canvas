@@ -27,6 +27,7 @@
       vueString = html.replace("<template>", "").replace("</template>", "");
     }, 'text');
     await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/message.js");
+    await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/quiz-questions.js");
 
     //create vue object
     $('body').append(vueString);
