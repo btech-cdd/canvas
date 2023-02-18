@@ -21,7 +21,9 @@
       v-if="state=='response'"
     >
       <main class="msger-chat">
-        <div v-if="question.prompt !== ''">
+          <div
+            v-for="question in questions"
+          >
           <p>{{question.prompt}}</p>
           <ol>
             <li v-for="answer in question.answers">{{answer}}</li>

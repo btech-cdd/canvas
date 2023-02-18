@@ -17,6 +17,7 @@
         awaitingResponse: false,
         state: "prompt",
         input: "",
+        questions: [],
         question: {
           prompt: ""
         },
@@ -35,11 +36,11 @@
         }
         $.post(`/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/questions`, {
           question: {
-              question_name: this.input,
-              question_type: "multiple_choice_question",
-              points_possible: 1,
-              question_text: `<p>${this.question.prompt}</p>`,
-              answers: answers
+            question_name: this.input,
+            question_type: "multiple_choice_question",
+            points_possible: 1,
+            question_text: `<p>${this.question.prompt}</p>`,
+            answers: answers
           }
         }); 
       },
@@ -52,10 +53,10 @@
           }
         });
         let data = {
-          "prompt": `Create a multiple choice question and answer about ${input}. Use the format Q: ... A) ... B) ... C) ... D) ... Answer: ...`,
+          "prompt": `Create 10 multiple choice questions with answers about ${input}. Use the format Q: ... A) ... B) ... C) ... D) ... Answer: ...`,
           "temperature": 0.5,
           "max_tokens": 500,
-          "top_p": 10,
+          "top_p": 1,
           "frequency_penalty": 0,
           "presence_penalty": 0,
           "stop": [" Human:", " AI:"]
@@ -65,8 +66,8 @@
         let response = "";
         this.awaitingResponse = true;
         await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, (resp) => {
-          console.log(resp.choices);
           response = resp.choices[0].text;
+          console.log(response);
         });
         this.awaitingResponse = false;
         delete $.ajaxSettings.headers.Authorization;
@@ -90,14 +91,17 @@
           let letters = "ABCDEFG";
           if (mCorrect) {
             correct = letters.indexOf(mCorrect[1]);
+            let question = {
+              prompt: prompt,
+              answers: answers,
+              correct: correct
+            }
+            this.questions.push(question);
+            prompt = "";
+            answers = [];
+            correct = "";
           }
         }
-        let question = {
-          prompt: prompt,
-          answers: answers,
-          correct: correct
-        }
-        this.question = question;
         this.state = "response";
       }
     }
