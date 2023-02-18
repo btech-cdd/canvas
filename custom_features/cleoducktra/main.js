@@ -32,6 +32,7 @@
       };
       data = JSON.stringify(data);
       let response = "";
+      console.log(data);
       try {
         await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
           console.log(resp);
@@ -45,6 +46,7 @@
       return response;
     }
   }
+  CLEODUCKTRA.init();
   createSideMenuButton(
     "Ask Cleo"
     , ""
