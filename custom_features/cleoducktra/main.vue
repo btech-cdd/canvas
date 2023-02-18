@@ -40,6 +40,12 @@
             <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
           </div>
         </div>
+
+        <!--Quiz Questions-->
+        <cleoquacktra-quiz-questions
+          v-if="menuCurrent = 'Quiz Questions'"
+        ></cleoquacktra-quiz-questions>
+
       </div>
     </div>
   </div>
