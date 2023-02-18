@@ -39,7 +39,7 @@
   background: var(--cleoducktra-msger-bg);
   box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
 }
-.cleoducktra-wrapper {
+.cleoducktra-content {
   display: flex;
   flex-flow: column wrap;
 }
