@@ -26,12 +26,12 @@
           v-if="menuCurrent == 'Ask Cleo'"
           class="cleoducktra-content"
         >
-          <main class="msger-chat">
+          <div class="msger-chat">
             <cleoducktra-message
               v-for="message in  messages"
               :message="message"
             ></cleoducktra-message> 
-          </main>
+          </div>
           <div
             style="margin: 0;"
             class="msger-inputarea"

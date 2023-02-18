@@ -1,6 +1,7 @@
 <template>
   <div
     v-if="awaitingResponse"
+    class="cleoducktra-content"
   >
     Createing questions...
   </div>
@@ -9,6 +10,7 @@
   >
     <div
       style="height: auto;"
+      class="cleoducktra-content"
       v-if="state=='prompt'"
     >
       <main class="msger-chat">
@@ -22,24 +24,24 @@
       </div>
     </div>
     <div
-      style="height: auto;"
+      class="cleoducktra-content"
       v-if="state=='response'"
     >
       <main class="msger-chat">
-          <div
-            v-for="question in questions"
-          >
+        <div
+          v-for="question in questions"
+        >
           <p>{{question.prompt}}</p>
           <ol>
             <li v-for="answer in question.answers">{{answer}}</li>
           </ol>
           <p>Correct answer: {{question.correct + 1}}</p>
+          <button @click="createQuestion();" class="msger-send-btn">Create</button>
         </div>
       </main>
       <div
         style="margin: 0;"
         class="msger-inputarea">
-        <button @click="createQuestion(); submitRequest();" class="msger-send-btn">Create</button>
         <button @click="submitRequest();" class="msger-send-btn blue">Next</button>
         <button @click="state = 'prompt'; input='';" class="msger-send-btn red">Restart</button>
       </div>
