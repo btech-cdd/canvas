@@ -25,7 +25,7 @@
         <div
           v-if="menuCurrent == 'Ask Cleo'"
         >
-          <div class="msger-chat">
+          <div style="display: inline-block;" class="msger-chat">
             <cleoducktra-message
               v-for="message in  messages"
               :message="message"
