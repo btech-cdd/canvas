@@ -7,7 +7,6 @@
   Vue.component('cleoducktra-quiz-questions', {
     template: vueString,
     mounted: function() {
-      console.log(this.key);
     },
     data: function() {
       return {
@@ -45,6 +44,7 @@
         }); 
       },
       submitRequest: async function() {
+        console.log(this.key);
         let input = this.input;
         $.ajaxSetup({
           headers:{
