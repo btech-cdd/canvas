@@ -5,7 +5,7 @@
     vueString = html.replace("<template>", "").replace("</template>", "");
   }, 'text');
   Vue.component('cleoducktra-quiz-questions', {
-    template: vuestring,
+    template: vueString,
     mounted: function() {
       console.log(this.message.img);
     },
