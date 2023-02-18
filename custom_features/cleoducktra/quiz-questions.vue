@@ -3,7 +3,7 @@
     v-if="awaitingResponse"
     class="cleoducktra-content"
   >
-    Createing questions...
+    Creating questions...
   </div>
   <div
     v-else
