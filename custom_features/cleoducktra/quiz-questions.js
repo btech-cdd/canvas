@@ -44,7 +44,6 @@
         }); 
       },
       submitRequest: async function() {
-        console.log(this.apikey);
         let input = this.input;
         $.ajaxSetup({
           headers:{
@@ -56,7 +55,7 @@
           "prompt": `Create a multiple choice question and answer about ${input}. Use the format Q: ... A) ... B) ... C) ... D) ... Answer: ...`,
           "temperature": 0.5,
           "max_tokens": 500,
-          "top_p": 1,
+          "top_p": 10,
           "frequency_penalty": 0,
           "presence_penalty": 0,
           "stop": [" Human:", " AI:"]
