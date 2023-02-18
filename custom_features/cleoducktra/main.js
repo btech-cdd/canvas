@@ -75,7 +75,7 @@
             "Assignments",
             "Quiz Questions"
           ],
-          currentMenu: "Ask Cleo"
+          menuCurrent: "Ask Cleo"
         }
       },
       methods: {
