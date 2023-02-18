@@ -21,19 +21,25 @@
             }"
           >{{menu}}</div>
         </div>
-        <main class="msger-chat">
-          <cleoducktra-message
-            v-for="message in  messages"
-            :message="message"
-          ></cleoducktra-message> 
-        </main>
-        <form 
-          style="margin: 0;"
-          @submit.prevent="submitRequest" 
-          class="msger-inputarea">
-          <input @keydown="cycleOldMessages" :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
-          <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
-        </form>
+        <!--Ask Cleo-->
+        <div
+          v-if="menuCurrent == 'Ask Cleo'"
+        >
+          <div class="msger-chat">
+            <cleoducktra-message
+              v-for="message in  messages"
+              :message="message"
+            ></cleoducktra-message> 
+          </div>
+          <div
+            style="margin: 0;"
+            @submit.prevent="submitRequest" 
+            class="msger-inputarea"
+          >
+            <input @keydown="cycleOldMessages" :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
+            <button :disabled="awaitingResponse" type="submit" class="msger-send-btn">Ask</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
