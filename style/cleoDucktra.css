@@ -137,7 +137,11 @@
   flex: 1;
   background: #ddd;
 }
-.cleoducktra-input .msger-send-btn {
+.cleoducktra-input .msger-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 1em;
   margin-left: 10px;
   background: rgb(0, 196, 65);
   color: #fff;
@@ -145,21 +149,21 @@
   cursor: pointer;
   transition: background 0.23s;
 }
-.cleoducktra-input .msger-send-btn:hover {
+.cleoducktra-input .msger-btn:hover {
   background: rgb(0, 170, 50);
 }
 
-.cleoducktra-input .msger-send-btn.blue {
+.cleoducktra-input .msger-btn.blue {
   background: rgb(0, 65, 196);
 }
-.cleoducktra-input .msger-send-btn.blue:hover {
+.cleoducktra-input .msger-btn.blue:hover {
   background: rgb(0, 50, 170);
 }
 
-.cleoducktra-input .msger-send-btn.red{
+.cleoducktra-input .msger-btn.red{
   background: rgb(196, 65, 0);
 }
-.cleoducktra-input .msger-send-btn.red:hover {
+.cleoducktra-input .msger-btn.red:hover {
   background: rgb(170, 50, 0);
 }
 
