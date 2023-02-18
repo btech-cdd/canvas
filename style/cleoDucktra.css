@@ -33,7 +33,6 @@
 .cleoducktra-wrapper {
   justify-content: space-between;
   width: 100%;
-  height: calc(100% - 50px);
   border: var(--cleoducktra-border);
   border-radius: 5px;
   background: var(--cleoducktra-msger-bg);
@@ -42,6 +41,7 @@
 .cleoducktra-content {
   display: flex;
   flex-flow: column wrap;
+  height: calc(100% - 50px);
 }
 
 .cleoducktra-input .msger-header {
