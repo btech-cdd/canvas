@@ -30,7 +30,7 @@
         class="msger-chat">
         <div
           v-for="question in questions"
-          style="question-wrapper"
+          class="question-wrapper"
         >
           <p>{{question.prompt}}</p>
           <ol>
