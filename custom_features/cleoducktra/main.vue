@@ -45,9 +45,10 @@
         <div
           v-if="menuCurrent == 'Quiz Questions'"
         >
-        <cleoducktra-quiz-questions
-          :key="key"
-        ></cleoducktra-quiz-questions>
+          {{key}}
+          <cleoducktra-quiz-questions
+            :key="key"
+          ></cleoducktra-quiz-questions>
         </div>
 
       </div>
