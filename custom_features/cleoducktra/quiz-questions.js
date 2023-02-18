@@ -7,10 +7,10 @@
   Vue.component('cleoducktra-quiz-questions', {
     template: vueString,
     props: [
-      'key'
+      'apikey'
     ],
     mounted: function() {
-      console.log(this.key);
+      console.log(this.apikey);
     },
     data: function() {
       return {
@@ -44,11 +44,11 @@
         }); 
       },
       submitRequest: async function() {
-        console.log(this.key);
+        console.log(this.apikey);
         let input = this.input;
         $.ajaxSetup({
           headers:{
-              'Authorization': "Bearer " + this.key,
+              'Authorization': "Bearer " + this.apikey,
               'Content-Type': 'application/json'
           }
         });

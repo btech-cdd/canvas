@@ -38,19 +38,19 @@
         let canvasUserData = await $.get("/api/v1/users/self");
         console.log(canvasUserData);
         this.canvasUserData = canvasUserData;
-        let key = "";
+        let apikey = "";
         try {
-          key = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoducktra`);
-          this.key = key.data;
+          apikey = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoducktra`);
+          this.paikey = apikey.data;
         } catch (err) {
           try {
-            key = await $.get(`/api/v1/users/1893418/custom_data/openai-key?ns=com.btech.cleoducktra`);
-            this.key = key.data;
+            apikey = await $.get(`/api/v1/users/1893418/custom_data/openai-key?ns=com.btech.cleoducktra`);
+            this.apikey = apikey.data;
           } catch (err) {
-            this.key = "";
+            this.apikey = "";
           }
         }
-        console.log(this.key);
+        console.log(this.apikey);
         $("#global_nav_ask-cleo_link").click((e) => {
           e.preventDefault();
           console.log("TEST");
@@ -62,7 +62,7 @@
       data: function() {
         return {
           lastOldMessage: 0,
-          key: "",
+          apikey: "",
           input: "",
           canvasUserData: {},
           awaitingResponse: false,
@@ -116,7 +116,7 @@
           this.awaitingResponse = true;
           $.ajaxSetup({
             headers:{
-                'Authorization': "Bearer " + this.key,
+                'Authorization': "Bearer " + this.apikey,
                 'Content-Type': 'application/json'
             }
           });
