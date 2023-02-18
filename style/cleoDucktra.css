@@ -30,9 +30,7 @@
   background-color: #FFF;
 }
 
-.msger {
-  display: flex;
-  flex-flow: column wrap;
+.cleoducktra-wrapper {
   justify-content: space-between;
   width: 100%;
   height: calc(100% - 50px);
@@ -40,6 +38,10 @@
   border-radius: 5px;
   background: var(--cleoducktra-msger-bg);
   box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.2);
+}
+.cleoducktra-wrapper {
+  display: flex;
+  flex-flow: column wrap;
 }
 
 .cleoducktra-input .msger-header {

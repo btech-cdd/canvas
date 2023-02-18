@@ -7,7 +7,7 @@
       @click.self="show = false;"
     >
       <div
-        class="msger btech-modal-content"
+        class="cleoducktra-wrapper btech-modal-content"
       >
         <div 
           class="menu"
@@ -24,6 +24,7 @@
         <!--Ask Cleo-->
         <div
           v-if="menuCurrent == 'Ask Cleo'"
+          class="cleoducktra-content"
         >
           <main class="msger-chat">
             <cleoducktra-message
