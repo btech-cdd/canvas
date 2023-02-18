@@ -1,6 +1,6 @@
 <template>
   <div
-    if="!awaitingResponse"
+    v-if="!awaitingResponse"
   >
     <div
       style="height: auto;"
