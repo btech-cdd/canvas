@@ -1,3 +1,17 @@
+class CleoDucktraMessage {
+  constructor(text, name="CleoDucktra", img="") {
+    this.name = name;
+    this.align = "right";
+    this.img = img;
+    if (name == "CleoDucktra") {
+      this.align = "left";
+      this.img = "https://bridgetools.dev/canvas/media/cleoducktra-idle.gif"
+    }
+    this.text = text;
+    this.timestamp = new Date();
+    this.time = this.timestamp.getHours() + ":" + this.timestamp.getMinutes();
+  }
+}
 Vue.component('cleoducktra-message', {
   template: `
     <div 
