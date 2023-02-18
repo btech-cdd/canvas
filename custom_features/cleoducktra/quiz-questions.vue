@@ -1,6 +1,11 @@
 <template>
   <div
-    v-if="!awaitingResponse"
+    v-if="awaitingResponse"
+  >
+    Createing questions...
+  </div>
+  <div
+    v-else
   >
     <div
       style="height: auto;"
