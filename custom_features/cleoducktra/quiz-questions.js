@@ -50,13 +50,14 @@
         let response = await CLEODUCKTRA.get(`Create 5 multiple choice questions with answers about ${input}. Use the format 1\nQ: ... A) ... B) ... C) ... D) ... Answer: ...`);
         this.awaitingResponse = false;
         response = response.replace(/([A-Za-z]\) )/, "\n$1")
-        response = response.split("\n");
         console.log(response);
+        let lines = response.split("\n");
+        console.log(lines);
         let prompt = "";
         let answers = [];
         let correct = "";
-        for (let r in response) {
-          let line = response[r];
+        for (let l in lines) {
+          let line = lines[l];
           let mPrompt = line.match(/Q:(.*)/);
           if (mPrompt) {
             prompt = mPrompt[1];
