@@ -20,7 +20,6 @@
     props: [
       'user',
       'key',
-
     ],
     methods: {
       createQuestion: function() {

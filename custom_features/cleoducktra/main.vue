@@ -44,6 +44,8 @@
         <!--Quiz Questions-->
         <cleoquacktra-quiz-questions
           v-if="menuCurrent == 'Quiz Questions'"
+          :user="canvasUserData"
+          :key="key"
         ></cleoquacktra-quiz-questions>
 
       </div>
