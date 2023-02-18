@@ -43,7 +43,7 @@
 
         <!--Quiz Questions-->
         <cleoquacktra-quiz-questions
-          v-if="menuCurrent = 'Quiz Questions'"
+          v-if="menuCurrent == 'Quiz Questions'"
         ></cleoquacktra-quiz-questions>
 
       </div>
