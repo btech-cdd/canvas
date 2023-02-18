@@ -24,9 +24,9 @@
     </div>
     <div
       v-if="state=='response'"
+      class="cleoducktra-content"
     >
       <main 
-        class="cleoducktra-content"
         class="msger-chat">
         <div
           v-for="question in questions"

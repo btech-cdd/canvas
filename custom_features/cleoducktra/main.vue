@@ -24,6 +24,7 @@
         <!--Ask Cleo-->
         <div
           v-if="menuCurrent == 'Ask Cleo'"
+          class="cleoducktra-content"
         >
           <div class="msger-chat">
             <cleoducktra-message
@@ -43,7 +44,6 @@
         <!--Quiz Questions-->
         <div
           v-show="menuCurrent == 'Quiz Questions'"
-          class="cleoducktra-content"
         >
           <cleoducktra-quiz-questions
           ></cleoducktra-quiz-questions>
