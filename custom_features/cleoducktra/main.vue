@@ -24,7 +24,6 @@
         <!--Ask Cleo-->
         <div
           v-if="menuCurrent == 'Ask Cleo'"
-          class="cleoducktra-content"
         >
           <div class="msger-chat">
             <cleoducktra-message

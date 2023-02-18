@@ -1,6 +1,7 @@
 <template>
   <div
     v-if="awaitingResponse"
+    class="cleoducktra-content"
   >
     Createing questions...
   </div>
@@ -24,7 +25,9 @@
     <div
       v-if="state=='response'"
     >
-      <main class="msger-chat">
+      <main 
+        class="cleoducktra-content"
+        class="msger-chat">
         <div
           v-for="question in questions"
         >
