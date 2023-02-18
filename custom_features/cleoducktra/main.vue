@@ -43,7 +43,7 @@
 
         <!--Quiz Questions-->
         <div
-          v-if="menuCurrent == 'Quiz Questions'"
+          v-show="menuCurrent == 'Quiz Questions'"
           class="cleoducktra-content"
         >
           <cleoducktra-quiz-questions
