@@ -34,11 +34,14 @@
       let response = "";
       try {
         await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
+          console.log(resp);
           response = resp.choices[0].text;
         });
       } catch (err) {
         console.log(err);
       }
+      delete $.ajaxSettings.headers.Authorization;
+      delete $.ajaxSettings.headers['Content-Type'];
       return response;
     }
   }
