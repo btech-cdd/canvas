@@ -42,10 +42,13 @@
         </div>
 
         <!--Quiz Questions-->
-        <cleoducktra-quiz-questions
+        <div
           v-if="menuCurrent == 'Quiz Questions'"
+        >
+        <cleoducktra-quiz-questions
           :key="key"
         ></cleoducktra-quiz-questions>
+        </div>
 
       </div>
     </div>
