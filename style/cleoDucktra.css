@@ -30,7 +30,6 @@
   flex-flow: column wrap;
   justify-content: space-between;
   width: 100%;
-  max-width: 867px;
   height: calc(100% - 50px);
   border: var(--cleoducktra-border);
   border-radius: 5px;
