@@ -44,6 +44,7 @@
         <!--Quiz Questions-->
         <div
           v-if="menuCurrent == 'Quiz Questions'"
+          class="cleoducktra-content"
         >
           <cleoducktra-quiz-questions
           ></cleoducktra-quiz-questions>

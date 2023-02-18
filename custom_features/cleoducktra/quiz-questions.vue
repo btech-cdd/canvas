@@ -1,7 +1,6 @@
 <template>
   <div
     v-if="awaitingResponse"
-    class="cleoducktra-content"
   >
     Createing questions...
   </div>
@@ -10,7 +9,6 @@
   >
     <div
       style="height: auto;"
-      class="cleoducktra-content"
       v-if="state=='prompt'"
     >
       <main class="msger-chat">
@@ -24,7 +22,6 @@
       </div>
     </div>
     <div
-      class="cleoducktra-content"
       v-if="state=='response'"
     >
       <main class="msger-chat">
