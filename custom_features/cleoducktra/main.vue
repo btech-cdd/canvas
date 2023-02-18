@@ -35,7 +35,7 @@
             style="margin: 0;"
             class="msger-inputarea"
           >
-            <input @keyup.enter="submitRequest();" @keydown="cycleOldMessages" :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
+            <input @keyup.enter="submitRequest" @keydown="cycleOldMessages" :disabled="awaitingResponse" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
             <button @click="submitRequest();" :disabled="awaitingResponse" class="msger-send-btn">Ask</button>
           </div>
         </div>
