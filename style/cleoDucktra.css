@@ -41,7 +41,7 @@
 .cleoducktra-content {
   display: flex;
   flex-flow: column wrap;
-  height: calc(100% - 50px);
+  height: calc(100vh - 100px);
 }
 
 .cleoducktra-input .msger-header {
