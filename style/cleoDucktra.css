@@ -7,8 +7,11 @@
 }
 
 
+.cleoducktra-input .menu {
+  
+}
 
- .msger {
+.msger {
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;

@@ -7,6 +7,14 @@
       @click.self="show = false;"
     >
       <div
+        class="menu"
+      >
+        <div class="menu-item">Ask Cleo</div>
+        <div class="menu-item">Course Outline</div>
+        <div class="menu-item">Assignments</div>
+        <div class="menu-item">Quiz Questions</div>
+      </div>
+      <div
         class="msger btech-modal-content"
       >
         <main class="msger-chat">
