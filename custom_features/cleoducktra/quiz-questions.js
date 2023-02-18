@@ -7,7 +7,7 @@
   Vue.component('cleoducktra-quiz-questions', {
     template: vueString,
     mounted: function() {
-      console.log(this.message.img);
+      console.log(this.state);
     },
     data: function() {
       return {
