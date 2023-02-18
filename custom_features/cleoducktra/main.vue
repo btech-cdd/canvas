@@ -12,25 +12,25 @@
         <div 
           class="menu"
         >
-          <main
+          <div
             v-for="menu in menus"
             class="menu-item" 
             @click="menuCurrent = menu;"
             :class="{
               'selected': menuCurrent == menu
             }"
-          >{{menu}}</main>
+          >{{menu}}</div>
         </div>
         <!--Ask Cleo-->
         <div
           v-if="menuCurrent == 'Ask Cleo'"
         >
-          <div style="display: inline-block;" class="msger-chat">
+          <main class="msger-chat">
             <cleoducktra-message
               v-for="message in  messages"
               :message="message"
             ></cleoducktra-message> 
-          </div>
+          </main>
           <div
             style="margin: 0;"
             class="msger-inputarea"
