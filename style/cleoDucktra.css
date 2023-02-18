@@ -18,16 +18,16 @@
   cursor: pointer;
 }
 
-.cleoducktra-input .menu-item.selected {
-  color: #000;
-  background-color: #FFF;
-}
-
 .cleoducktra-input .menu-item:hover {
   display: inline-block; 
   color: #fff;
   background: rgb(0, 170, 50);
   padding: 0.5rem;
+}
+
+.cleoducktra-input .menu-item.selected {
+  color: #000;
+  background-color: #FFF;
 }
 
 .msger {
