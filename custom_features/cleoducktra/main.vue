@@ -12,14 +12,14 @@
         <div 
           class="menu"
         >
-          <div 
+          <main
             v-for="menu in menus"
             class="menu-item" 
             @click="menuCurrent = menu;"
             :class="{
               'selected': menuCurrent == menu
             }"
-          >{{menu}}</div>
+          >{{menu}}</main>
         </div>
         <!--Ask Cleo-->
         <div
