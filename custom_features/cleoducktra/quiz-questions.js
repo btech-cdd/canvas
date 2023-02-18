@@ -6,6 +6,9 @@
   }, 'text');
   Vue.component('cleoducktra-quiz-questions', {
     template: vueString,
+    props: [
+      'key'
+    ],
     mounted: function() {
       console.log(this.key);
     },
@@ -19,9 +22,6 @@
         },
       }
     },
-    props: [
-      'key'
-    ],
     methods: {
       createQuestion: function() {
         let answers = [];
