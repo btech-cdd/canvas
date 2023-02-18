@@ -37,7 +37,11 @@
             <li v-for="answer in question.answers">{{answer}}</li>
           </ol>
           <p>Correct answer: {{question.correct + 1}}</p>
-          <button style="float: right;" @click="createQuestion(question);" class="msger-btn">Create</button>
+          <div
+            style="text-align: right;"
+          >
+            <button @click="createQuestion(question);" class="msger-btn">Create</button>
+          </div>
         </div>
       </main>
       <div
