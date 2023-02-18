@@ -171,3 +171,7 @@
 .cleoducktra-input .msger-chat {
   background-color: #fcfcfe;
 }
+
+.cleoducktra-input .question-wrapper {
+  border: 1px solid #AAA;
+}

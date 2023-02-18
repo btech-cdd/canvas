@@ -30,13 +30,14 @@
         class="msger-chat">
         <div
           v-for="question in questions"
+          style="question-wrapper"
         >
           <p>{{question.prompt}}</p>
           <ol>
             <li v-for="answer in question.answers">{{answer}}</li>
           </ol>
           <p>Correct answer: {{question.correct + 1}}</p>
-          <button @click="createQuestion(question);" class="msger-btn">Create</button>
+          <button style="float: right;" @click="createQuestion(question);" class="msger-btn">Create</button>
         </div>
       </main>
       <div
