@@ -50,6 +50,7 @@
             this.key = "";
           }
         }
+        console.log(this.key);
         $("#global_nav_ask-cleo_link").click((e) => {
           e.preventDefault();
           console.log("TEST");
