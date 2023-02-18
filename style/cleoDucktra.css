@@ -18,6 +18,11 @@
   cursor: pointer;
 }
 
+.cleoducktra-input .menu-item.selected {
+  color: #000;
+  background-color: #FFF;
+}
+
 .cleoducktra-input .menu-item:hover {
   display: inline-block; 
   color: #fff;

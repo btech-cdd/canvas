@@ -30,20 +30,6 @@
 
     //create vue object
     $('body').append(vueString);
-    class CleoDucktraMessage {
-      constructor(text, name="CleoDucktra", img="") {
-        this.name = name;
-        this.align = "right";
-        this.img = img;
-        if (name == "CleoDucktra") {
-          this.align = "left";
-          this.img = "https://bridgetools.dev/canvas/media/cleoducktra-idle.gif"
-        }
-        this.text = text;
-        this.timestamp = new Date();
-        this.time = this.timestamp.getHours() + ":" + this.timestamp.getMinutes();
-      }
-    }
     //IMPORTED_FEATURE._init();
     new Vue({
       el: "#cleoducktra",
@@ -83,6 +69,13 @@
           messages: [
             new CleoDucktraMessage("Welcome! What can I do for you?")
           ],
+          menus: [
+            "Ask Cleo",
+            "Course Outline",
+            "Assignments",
+            "Quiz Questions"
+          ],
+          currentMenu: "Ask Cleo"
         }
       },
       methods: {
