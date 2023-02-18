@@ -18,31 +18,29 @@
         state: "prompt",
         input: "",
         questions: [],
-        question: {
-          prompt: ""
-        },
       }
     },
     methods: {
-      createQuestion: function() {
+      createQuestion: async function(question) {
         let answers = [];
-        for (let a in this.question.answers) {
-          let answer = this.question.answers[a];
+        for (let a in question.answers) {
+          let answer = question.answers[a];
           answers.push({
-            answer_weight: a == this.question.correct ? 100 : 0,
+            answer_weight: a == question.correct ? 100 : 0,
             numerical_answer_type: "exact_answer",
             answer_text: answer
           })
         }
-        $.post(`/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/questions`, {
+        await $.post(`/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/questions`, {
           question: {
             question_name: this.input,
             question_type: "multiple_choice_question",
             points_possible: 1,
-            question_text: `<p>${this.question.prompt}</p>`,
+            question_text: `<p>${question.prompt}</p>`,
             answers: answers
           }
         }); 
+        question.created = true;
       },
       submitRequest: async function() {
         let input = this.input;
@@ -75,7 +73,8 @@
             let question = {
               prompt: prompt,
               answers: answers,
-              correct: correct
+              correct: correct,
+              created: false
             }
             this.questions.push(question);
             prompt = "";
