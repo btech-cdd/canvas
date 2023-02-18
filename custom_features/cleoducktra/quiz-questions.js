@@ -47,7 +47,7 @@
       submitRequest: async function() {
         let input = this.input;
         this.awaitingResponse = true;
-        let response = await CLEODUCKTRA.get(`Create 10 multiple choice questions with answers about ${input}. Use the format Q: ... A) ... B) ... C) ... D) ... Answer: ...`);
+        let response = await CLEODUCKTRA.get(`Create 5 multiple choice questions with answers about ${input}. Use the format Q: ... A) ... B) ... C) ... D) ... Answer: ...`);
         this.awaitingResponse = false;
         response = response.split("\n");
         let prompt = "";
