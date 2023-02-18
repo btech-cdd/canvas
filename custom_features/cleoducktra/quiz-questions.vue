@@ -1,5 +1,7 @@
 <template>
-  <div>
+  <div
+    if="!awaitingResponse"
+  >
     <div
       style="height: auto;"
       v-if="state=='prompt'"

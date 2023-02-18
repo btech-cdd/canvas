@@ -11,6 +11,7 @@
     },
     data: function() {
       return {
+        awaitingResponse: false,
         state: "prompt",
         input: "",
         question: {
@@ -63,10 +64,12 @@
         console.log(data.prompt);
         data = JSON.stringify(data);
         let response = "";
+        this.awaitingResponse = true;
         await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, (resp) => {
           console.log(resp.choices);
           response = resp.choices[0].text;
         });
+        this.awaitingResponse = false;
         delete $.ajaxSettings.headers.Authorization;
         delete $.ajaxSettings.headers['Content-Type'];
         response = response.split("\n");
