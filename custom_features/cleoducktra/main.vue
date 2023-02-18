@@ -46,7 +46,6 @@
           v-if="menuCurrent == 'Quiz Questions'"
         >
           <cleoducktra-quiz-questions
-            :apikey="apikey"
           ></cleoducktra-quiz-questions>
         </div>
 

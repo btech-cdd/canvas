@@ -52,23 +52,8 @@
               'Content-Type': 'application/json'
           }
         });
-        let data = {
-          "prompt": `Create 10 multiple choice questions with answers about ${input}. Use the format Q: ... A) ... B) ... C) ... D) ... Answer: ...`,
-          "temperature": 0.5,
-          "max_tokens": 500,
-          "top_p": 1,
-          "frequency_penalty": 0,
-          "presence_penalty": 0,
-          "stop": [" Human:", " AI:"]
-        };
-        console.log(data.prompt);
-        data = JSON.stringify(data);
-        let response = "";
         this.awaitingResponse = true;
-        await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, (resp) => {
-          response = resp.choices[0].text;
-          console.log(response);
-        });
+        let response = await CLEODUCKTRA.get(`Create 10 multiple choice questions with answers about ${input}. Use the format Q: ... A) ... B) ... C) ... D) ... Answer: ...`);
         this.awaitingResponse = false;
         delete $.ajaxSettings.headers.Authorization;
         delete $.ajaxSettings.headers['Content-Type'];

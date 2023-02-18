@@ -1,4 +1,47 @@
 (async function () {
+  CLEODUCKTRA = {
+    apikey: "",
+    init: async function() {
+      try {
+        let resp = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoducktra`);
+        this.apikey = resp.data;
+      } catch (err) {
+        try {
+          let resp = await $.get(`/api/v1/users/1893418/custom_data/openai-key?ns=com.btech.cleoducktra`);
+          this.apikey = resp.data;
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    },
+    get: async function(input) {
+      $.ajaxSetup({
+        headers:{
+            'Authorization': "Bearer " + this.apikey,
+            'Content-Type': 'application/json'
+        }
+      });
+      let data = {
+        "prompt": input,
+        "temperature": 0.9,
+        "max_tokens": 2000,
+        "top_p": 1,
+        "frequency_penalty": 0,
+        "presence_penalty": 0.6,
+        "stop": [" Human:", " AI:"]
+      };
+      data = JSON.stringify(data);
+      let response = "";
+      try {
+        await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
+          response = resp.choices[0].text;
+        });
+      } catch (err) {
+        console.log(err);
+      }
+      return response;
+    }
+  }
   createSideMenuButton(
     "Ask Cleo"
     , ""
@@ -38,22 +81,8 @@
         let canvasUserData = await $.get("/api/v1/users/self");
         console.log(canvasUserData);
         this.canvasUserData = canvasUserData;
-        let apikey = "";
-        try {
-          apikey = await $.get(`/api/v1/users/self/custom_data/openai-key?ns=com.btech.cleoducktra`);
-          this.apikey = apikey.data;
-        } catch (err) {
-          try {
-            apikey = await $.get(`/api/v1/users/1893418/custom_data/openai-key?ns=com.btech.cleoducktra`);
-            this.apikey = apikey.data;
-          } catch (err) {
-            this.apikey = "";
-          }
-        }
-        console.log(this.apikey);
         $("#global_nav_ask-cleo_link").click((e) => {
           e.preventDefault();
-          console.log("TEST");
           this.show = true;
         })
       },
@@ -62,7 +91,6 @@
       data: function() {
         return {
           lastOldMessage: 0,
-          apikey: "",
           input: "",
           canvasUserData: {},
           awaitingResponse: false,
@@ -83,10 +111,8 @@
       methods: {
         cycleOldMessages(e) {
           if (e.keyCode == 38) {
-            console.log("CYCLING...");
             for (let i = this.messages.length - 1; i >= 0; i--) {
               let message = this.messages[i];
-              console.log(message);
               if (message.name == this.canvasUserData.name && (this.lastOldMessage == -1 || i < this.lastOldMessage)) {
                 this.lastOldMessage = i;
                 this.input = message.text;
@@ -114,31 +140,9 @@
           let message = this.addMessage("...");
           message.img = "https://bridgetools.dev/canvas/media/cleoducktra.gif"
           this.awaitingResponse = true;
-          $.ajaxSetup({
-            headers:{
-                'Authorization': "Bearer " + this.apikey,
-                'Content-Type': 'application/json'
-            }
-          });
-          let data = {
-            "prompt": input,
-            "temperature": 0.9,
-            "max_tokens": 2000,
-            "top_p": 1,
-            "frequency_penalty": 0,
-            "presence_penalty": 0.6,
-            "stop": [" Human:", " AI:"]
-          };
-          data = JSON.stringify(data);
-          try {
-            await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
-
-              message.text= resp.choices[0].text;
-              message.img = "https://bridgetools.dev/canvas/media/cleoducktra-idle.gif"
-            });
-          } catch (err) {
-            console.log(err);
-          }
+          let text = await CLEODUCKTRA.get(input);
+          message.text= text;
+          message.img = "https://bridgetools.dev/canvas/media/cleoducktra-idle.gif"
           this.awaitingResponse = false;
           let containerEl = this.$el.querySelector(".msger-chat");
           containerEl.scrollTop = containerEl.scrollHeight;
