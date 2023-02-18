@@ -23,7 +23,7 @@
   if ($("#cleoducktra").length === 0) {
     let vueString = '';
     //load the resources
-    await $.get(SOURCE_URL + '/custom_features/reports/grades_page/template.vue', null, function (html) {
+    await $.get(SOURCE_URL + '/custom_features/cleoducktra/main.vue', null, function (html) {
       vueString = html.replace("<template>", "").replace("</template>", "");
     }, 'text');
     await $.getScript(SOURCE_URL + "/course_data/course_hours.js");
