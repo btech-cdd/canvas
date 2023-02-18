@@ -46,17 +46,9 @@
       },
       submitRequest: async function() {
         let input = this.input;
-        $.ajaxSetup({
-          headers:{
-              'Authorization': "Bearer " + this.apikey,
-              'Content-Type': 'application/json'
-          }
-        });
         this.awaitingResponse = true;
         let response = await CLEODUCKTRA.get(`Create 10 multiple choice questions with answers about ${input}. Use the format Q: ... A) ... B) ... C) ... D) ... Answer: ...`);
         this.awaitingResponse = false;
-        delete $.ajaxSettings.headers.Authorization;
-        delete $.ajaxSettings.headers['Content-Type'];
         response = response.split("\n");
         let prompt = "";
         let answers = [];
