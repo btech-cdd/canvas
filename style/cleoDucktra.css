@@ -8,11 +8,13 @@
 
 
 .cleoducktra-input .menu {
-
+  background: rgb(0, 196, 65);
 }
 
 .cleoducktra-input .menu-item {
   display: inline-block; 
+  color: #fff;
+  padding: 0.5rem;
 }
 
 .msger {
