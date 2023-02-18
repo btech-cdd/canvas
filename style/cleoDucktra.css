@@ -8,7 +8,11 @@
 
 
 .cleoducktra-input .menu {
-  
+
+}
+
+.cleoducktra-input .menu-item {
+  display: inline-block; 
 }
 
 .msger {
