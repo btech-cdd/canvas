@@ -42,11 +42,10 @@
         </div>
 
         <!--Quiz Questions-->
-        <cleoquacktra-quiz-questions
+        <cleoducktra-quiz-questions
           v-if="menuCurrent == 'Quiz Questions'"
-          :user="canvasUserData"
           :key="key"
-        ></cleoquacktra-quiz-questions>
+        ></cleoducktra-quiz-questions>
 
       </div>
     </div>
