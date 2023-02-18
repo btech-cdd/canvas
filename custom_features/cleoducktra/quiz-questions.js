@@ -12,6 +12,7 @@
     data: function() {
       return {
         state: "prompt",
+        input: "",
         question: {
           prompt: ""
         },
