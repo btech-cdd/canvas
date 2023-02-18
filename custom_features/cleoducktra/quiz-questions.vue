@@ -2,7 +2,7 @@
   <div
     if="!awaitingResponse"
   >
-    {{key}}
+    Key {{key}}
     <div
       style="height: auto;"
       v-if="state=='prompt'"

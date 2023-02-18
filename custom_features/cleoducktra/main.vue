@@ -45,7 +45,6 @@
         <div
           v-if="menuCurrent == 'Quiz Questions'"
         >
-          {{key}}
           <cleoducktra-quiz-questions
             :key="key"
           ></cleoducktra-quiz-questions>
