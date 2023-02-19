@@ -20,7 +20,7 @@
               'selected': menuCurrent == menu
             }"
           >{{menu}}</div>
-          <span style="float: right; color: #FFF; cursor: pointer;" @click="show = false;">X</span>
+          <span style="padding: 0.5rem; float: right; color: #FFF; cursor: pointer;" @click="show = false;">X</span>
         </div>
         <!--Ask Cleo-->
         <div
