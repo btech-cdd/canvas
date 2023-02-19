@@ -4,7 +4,6 @@
       v-show="show"
       class="btech-modal"
       style="display: inline-block;"
-      @click.self="show = false;"
     >
       <div
         class="cleoducktra-wrapper btech-modal-content"
