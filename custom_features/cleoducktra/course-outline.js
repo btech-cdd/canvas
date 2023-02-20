@@ -1,6 +1,7 @@
 class CleoDucktraCourse {
   constructor(name) {
     this.name = name;
+    this.courseId = ENV.course_id;
     this.objectives = [];
     this.loadingObjectives = false;
   }

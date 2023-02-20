@@ -91,6 +91,12 @@
           e.preventDefault();
           this.show = true;
         })
+
+        if (ENV.course_id != undefined) {
+          this.menuCurrent.push("Course Outline");
+        }
+        // "Assignments",
+        // "Quiz Questions"
       },
       computed: {
       },
@@ -107,9 +113,6 @@
           ],
           menus: [
             "Ask Cleo",
-            "Course Outline",
-            "Assignments",
-            "Quiz Questions"
           ],
           menuCurrent: "Ask Cleo"
         }
