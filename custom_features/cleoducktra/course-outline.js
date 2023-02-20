@@ -19,6 +19,7 @@ class CleoDucktraCourse {
 
   }
 }
+
 class CleoDucktraObjective {
   constructor(name, description) {
     this.name = name;
