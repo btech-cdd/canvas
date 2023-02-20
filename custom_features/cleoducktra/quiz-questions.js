@@ -6,11 +6,7 @@
   }, 'text');
   Vue.component('cleoducktra-quiz-questions', {
     template: vueString,
-    props: [
-      'apikey'
-    ],
     mounted: function() {
-      console.log(this.apikey);
     },
     data: function() {
       return {
