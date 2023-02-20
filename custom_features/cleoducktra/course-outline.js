@@ -6,7 +6,6 @@ class CleoDucktraCourse {
 
   async getObjectives() {
     let response = await CLEODUCKTRA.get(`Create ten objectives for a course about ${this.name}. Use the format 1) skill: description`);
-    this.awaitingResponse = false;
     let lines = response.split("\n");
     for (let l in  lines) {
       let line = lines[l];
