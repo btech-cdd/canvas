@@ -38,9 +38,7 @@
                 <div>{{objective.description}}</div>
               </div>
             </div>
-            <div
-              v-if="objective.loadingTopics"
-            >
+            <div>
               <button @click="objective.getTopics()" class="msger-btn red">Restart</button>
             </div>
           </div>
