@@ -35,6 +35,7 @@ class CleoDucktraCourse {
 
   async addPageToModule(module, page) {
     console.log("ADD PAGE");
+    console.log(module);
     console.log(page);
     await $.post(`/api/v1/courses/${this.courseId}/modules/${module.id}/items`, {
       module_item: {
