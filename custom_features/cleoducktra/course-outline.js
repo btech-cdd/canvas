@@ -136,6 +136,8 @@ class CleoDucktraTopic {
       <div class="btech-callout-box">${keywords}</div>
       <p>&nbsp;</p>
     `
+    console.log(content);
+    console.log(this);
     return content;
   }
 
