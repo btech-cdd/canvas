@@ -41,7 +41,7 @@
       submitRequest: async function() {
         let input = this.input;
         this.awaitingResponse = true;
-        let response = await CLEODUCKTRA.get(`What are the ten most important skills needed for ${input}. Use the format 1) skill: description`);
+        let response = await CLEODUCKTRA.get(`Create ten objectives for a course about ${input}. Use the format 1) skill: description`);
         this.awaitingResponse = false;
         let lines = response.split("\n");
         for (let l in  lines) {
