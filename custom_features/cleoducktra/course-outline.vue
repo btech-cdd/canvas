@@ -39,9 +39,8 @@
         </div>
       </main>
       <div
-        style="margin: 0;"
+        style="margin: 0; text-align: right;"
         class="msger-inputarea">
-        <button @click="getObjectives();" class="msger-btn blue">Add More</button>
         <button @click="state = 'course'; course.name=''; objectives = [];" class="msger-btn red">Restart</button>
       </div>
     </div>

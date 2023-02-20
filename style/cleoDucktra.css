@@ -179,5 +179,5 @@
 
 .cleoducktra-input .objective-wrapper {
   display: grid;
-  grid-template-rows: 2rem auto;
+  grid-template-columns: 2rem auto;
 }
