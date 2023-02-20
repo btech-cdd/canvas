@@ -49,6 +49,14 @@
           ></cleoducktra-quiz-questions>
         </div>
 
+        <!--Course Outline-->
+        <div
+          v-show="menuCurrent == 'Quiz Questions'"
+        >
+          <cleoducktra-course-outline
+          ></cleoducktra-course-outline>
+        </div>
+
       </div>
     </div>
   </div>
