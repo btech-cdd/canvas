@@ -50,7 +50,6 @@ class CleoDucktraTopics {
       return {
         awaitingResponse: false,
         state: "course",
-        objectives: [],
         course: new CleoDucktraCourse("") 
       }
     },
