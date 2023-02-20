@@ -118,7 +118,7 @@ class CleoDucktraTopic {
     this.outcomes = [];
   }
 
-  async createPageBody() {
+  createPageBody() {
     let keywords = `<ul>`;
     for (let k in this.keywords) {
       let keyword = this.keywords[k];
