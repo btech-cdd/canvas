@@ -3,7 +3,7 @@
     v-if="awaitingResponse"
     class="cleoducktra-content"
   >
-    Creating outline...
+    Creating Objectives...
   </div>
   <div
     v-else
@@ -32,14 +32,14 @@
           v-for="objective, o in objectives"
           class="objectives-wrapper"
         >
-          <span>{{o}}. {{objective.name}}: {{objective.description}}</span>
+          <span><strong>{{o + 1}}. {{objective.name}}:</strong> {{objective.description}}</span>
         </div>
       </main>
       <div
         style="margin: 0;"
         class="msger-inputarea">
         <button @click="submitRequest();" class="msger-btn blue">Add More</button>
-        <button @click="state = 'prompt'; input='';" class="msger-btn red">Restart</button>
+        <button @click="state = 'prompt'; input=''; objectives = [];" class="msger-btn red">Restart</button>
       </div>
     </div>
   </div>

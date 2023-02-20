@@ -48,7 +48,7 @@
         style="margin: 0;"
         class="msger-inputarea">
         <button @click="submitRequest();" class="msger-btn blue">Next</button>
-        <button @click="state = 'prompt'; input='';" class="msger-btn red">Restart</button>
+        <button @click="state = 'prompt'; input=''; questions = [];" class="msger-btn red">Restart</button>
       </div>
     </div>
   </div>
