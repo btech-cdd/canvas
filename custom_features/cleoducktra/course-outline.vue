@@ -53,8 +53,14 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div
+              v-if="objective.loadingTopics"
+            >
+              Loading new topics...
+            </div>
             <div>
-              <button @click="objective.getTopics()" class="msger-btn red">+ Topics</button>
+              <button @click="objective.getTopics()" class="msger-btn">+ Topics</button>
             </div>
           </div>
         </div>

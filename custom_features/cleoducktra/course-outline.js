@@ -23,7 +23,7 @@ class CleoDucktraCourse {
   }
 
   async createPage(title, body) {
-    console.log("CREATE PAGE");
+    console.log("CREATE PAGE: " + title);
     let page = await $.post(`/api/v1/courses/${this.courseId}/pages`, {
       wiki_page: {
         title: title,
@@ -35,8 +35,6 @@ class CleoDucktraCourse {
 
   async addPageToModule(module, page) {
     console.log("ADD PAGE");
-    console.log(module);
-    console.log(page);
     await $.post(`/api/v1/courses/${this.courseId}/modules/${module.id}/items`, {
       module_item: {
         type: 'Page',
@@ -46,7 +44,7 @@ class CleoDucktraCourse {
   }
 
   async createModule(objective) {
-    console.log("CREATE MODULE");
+    console.log("CREATE MODULE: " + objective.name);
     let module = await $.post(`/api/v1/courses/${this.courseId}/modules`, {
       module: {
         name: objective.name
@@ -56,14 +54,25 @@ class CleoDucktraCourse {
       "Intro to " + objective.name,
       `<p>Module Outcomes</p><p>${objective.description}</p>`
     );
-    this.addPageToModule(module, introPage);
+    await this.addPageToModule(module, introPage);
+    for (let t in objective.topics) {
+      let topic = objective.topics[t];
+      if (topic.include) {
+        console.log("GEN CONTENT FOR " + topic.description);
+        await topic.genContent();
+        let page = await this.createPage(topic.name, topic.content);
+        await this.addPageToModule(module, page);
+      }
+    }
     return module;
   }
 
   async build() {
     for (let o in this.objectives) {
       let objective = this.objectives[o];
-      this.createModule(objective);
+      if (objective.include) {
+        await this.createModule(objective);
+      }
     }
   }
 }
@@ -88,7 +97,7 @@ class CleoDucktraObjective {
       if (mObjective) {
         let name = mObjective[1];
         let description = mObjective[2];
-        this.topics.push(new CleoDucktraTopic(name, description));
+        this.topics.push(new CleoDucktraTopic(this, name, description));
       }
     }
     this.loadingTopics = false;
@@ -96,10 +105,17 @@ class CleoDucktraObjective {
 }
 
 class CleoDucktraTopic {
-  constructor(name) {
+  constructor(objective, name, description) {
+    this.objective = objective;
     this.name = name;
-    this.description = this.description;
+    this.description = description;
+    this.content = "";
     this.include = true;
+  }
+
+  async genContent() {
+    let content = await CLEODUCKTRA.get(`Teach me about ${this.description} for a course on ${this.objective.description} in ${this.objective.course.name}. format in html. include headers and examples.`);
+    this.content = content;
   }
 }
 
