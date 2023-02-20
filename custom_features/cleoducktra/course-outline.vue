@@ -10,7 +10,7 @@
   >
     <div
       style="height: auto;"
-      v-if="state=='prompt'"
+      v-if="state=='course'"
     >
       <main class="msger-chat">
         <div>Create objectives for a course about...</div>
@@ -18,12 +18,12 @@
       <div
         style="margin: 0;"
         class="msger-inputarea">
-        <input @keyup.enter="submitRequest" v-model="input" type="text" class="msger-input" placeholder="Enter your message...">
-        <button @click="submitRequest();" class="msger-btn">Ask</button>
+        <input @keyup.enter="submitRequest" v-model="course.name" type="text" class="msger-input" placeholder="course topic....">
+        <button @click="state = 'objectives';" class="msger-btn">Create</button>
       </div>
     </div>
     <div
-      v-if="state=='response'"
+      v-if="state=='objectives'"
       class="cleoducktra-content"
     >
       <main 
@@ -31,6 +31,7 @@
         <div
           v-for="objective, o in objectives"
           class="objectives-wrapper"
+          style="margin-bottom: 0.5rem;"
         >
           <div><strong><span width="2rem">{{o + 1}}.</span> {{objective.name}}</strong></div> 
           <div>{{objective.description}}</div>
@@ -39,8 +40,8 @@
       <div
         style="margin: 0;"
         class="msger-inputarea">
-        <button @click="submitRequest();" class="msger-btn blue">Add More</button>
-        <button @click="state = 'prompt'; input=''; objectives = [];" class="msger-btn red">Restart</button>
+        <button @click="getObjectives();" class="msger-btn blue">Add More</button>
+        <button @click="state = 'course'; course.name=''; objectives = [];" class="msger-btn red">Restart</button>
       </div>
     </div>
   </div>

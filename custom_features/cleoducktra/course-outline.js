@@ -1,3 +1,42 @@
+class CleoDucktraCourse {
+  constructor(name) {
+    this.name = name;
+    this.objectives = [];
+  }
+
+  async getObjectives() {
+    let response = await CLEODUCKTRA.get(`Create ten objectives for a course about ${this.name}. Use the format 1) skill: description`);
+    this.awaitingResponse = false;
+    let lines = response.split("\n");
+    for (let l in  lines) {
+      let line = lines[l];
+      let mObjective = line.match(/[0-9]+\) (.*): (.*)/);
+      if (mObjective) {
+        let name = mObjective[1];
+        let description = mObjective[2];
+        this.objectives.push(new CleoDucktraObjective(name, description));
+      }
+    }
+
+  }
+}
+class CleoDucktraObjective {
+  constructor(name, description) {
+    this.name = name;
+    this.description = description;
+    this.topics = [];
+    this.include = false;
+  }
+}
+
+class CleoDucktraTopics {
+  constructor(name, description) {
+    this.name = name;
+    this.description = description;
+    this.include = false;
+  }
+}
+
 (async function () {
   let vueString = '';
   //load the resources
@@ -11,9 +50,9 @@
     data: function() {
       return {
         awaitingResponse: false,
-        state: "prompt",
-        input: "",
+        state: "course",
         objectives: [],
+        course: new Course("") 
       }
     },
     methods: {
@@ -38,27 +77,15 @@
       //   }); 
       //   question.created = true;
       // },
-      submitRequest: async function() {
-        let input = this.input;
+      getObjectives: async function() {
         this.awaitingResponse = true;
-        let response = await CLEODUCKTRA.get(`Create ten objectives for a course about ${input}. Use the format 1) skill: description`);
+        this.course.getObjectives();
         this.awaitingResponse = false;
-        let lines = response.split("\n");
-        for (let l in  lines) {
-          let line = lines[l];
-          let mObjective = line.match(/[0-9]+\) (.*): (.*)/);
-          if (mObjective) {
-            let name = mObjective[1];
-            let description = mObjective[2];
-            this.objectives.push({
-              name: name,
-              description: description,
-              include: false
-            });
-          }
-        }
-        this.state = "response";
-      }
+        this.state = "objectives";
+      },
+      getTopics: async function() {
+
+      },
     }
   });
 })();
