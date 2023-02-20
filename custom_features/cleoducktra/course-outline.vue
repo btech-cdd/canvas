@@ -67,6 +67,7 @@
       <div
         style="margin: 0; text-align: right;"
         class="msger-inputarea">
+        <button @click="course.build();" class="msger-btn">Build</button>
         <button @click="state = 'course'; course.name=''; objectives = [];" class="msger-btn red">Restart</button>
       </div>
     </div>

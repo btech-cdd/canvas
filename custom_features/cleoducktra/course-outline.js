@@ -1,7 +1,7 @@
 class CleoDucktraCourse {
   constructor(name) {
     this.name = name;
-    this.courseId = ENV.course_id;
+    this.courseId = ENV.COURSE_ID;
     this.objectives = [];
     this.loadingObjectives = false;
   }
@@ -20,7 +20,47 @@ class CleoDucktraCourse {
       }
     }
     this.loadingObjectives = false;
+  }
 
+  async createPage(title, body) {
+    let page = await $.post(`/api/v1/courses/${this.courseId}/pages`, {
+      wiki_page: {
+        title: title,
+        body: body
+      }
+    });
+    return page;
+  }
+
+  async addPageToModule(module, page) {
+    console.log(page);
+    await $.post(`/api/v1/courses/${this.courseId}/modules/${module.id}/items`, {
+      module_item: {
+        type: 'Page',
+        page_url: page.url
+      }
+    })
+  }
+
+  async createModule(objective) {
+    let module = await $.post(`/api/v1/courses/${this.courseId}/modules`, {
+      module: {
+        name: objective.name
+      }
+    }); 
+    let introPage = await this.createPage(
+      "Intro to " + objective.name,
+      `<p>Module Outcomes</p><p>${objective.description}</p>`
+    );
+    addPageToModule(module, introPage);
+    return module;
+  }
+
+  async build() {
+    for (let o in this.objectives) {
+      let objective = this.objectives[o];
+      this.createModule(objective);
+    }
   }
 }
 
@@ -30,7 +70,7 @@ class CleoDucktraObjective {
     this.name = name;
     this.description = description;
     this.topics = [];
-    this.include = false;
+    this.include = true;
     this.loadingTopics = false;
   }
 
@@ -55,7 +95,7 @@ class CleoDucktraTopic {
   constructor(name) {
     this.name = name;
     this.description = this.description;
-    this.include = false;
+    this.include = true;
   }
 }
 
