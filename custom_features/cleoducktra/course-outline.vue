@@ -18,8 +18,8 @@
       <div
         style="margin: 0;"
         class="msger-inputarea">
-        <input @keyup.enter="submitRequest" v-model="course.name" type="text" class="msger-input" placeholder="course topic....">
-        <button @click="state = 'objectives';" class="msger-btn">Create</button>
+        <input @keyup.enter="getObjectives" v-model="course.name" type="text" class="msger-input" placeholder="course topic....">
+        <button @click="getObjectives();" class="msger-btn">Create</button>
       </div>
     </div>
     <div
