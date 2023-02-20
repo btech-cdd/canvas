@@ -32,7 +32,8 @@
           v-for="objective, o in objectives"
           class="objectives-wrapper"
         >
-          <span><strong>{{o + 1}}. {{objective.name}}:</strong> {{objective.description}}</span>
+          <div><strong><span width="2rem">{{o + 1}}.</span> {{objective.name}}</strong></div> 
+          <div>{{objective.description}}</div>
         </div>
       </main>
       <div
