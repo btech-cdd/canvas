@@ -51,7 +51,7 @@ class CleoDucktraTopics {
         awaitingResponse: false,
         state: "course",
         objectives: [],
-        course: new Course("") 
+        course: new CleoDucktraCourse("") 
       }
     },
     methods: {
