@@ -60,7 +60,7 @@ class CleoDucktraCourse {
       if (topic.include) {
         console.log("GEN CONTENT FOR " + topic.description);
         await topic.genContent();
-        let page = await this.createPage(topic.name, topic.content);
+        let page = await this.createPage(topic.name, topic.createPageContent());
         await this.addPageToModule(module, page);
       }
     }
@@ -115,13 +115,67 @@ class CleoDucktraTopic {
     this.outcomes = [];
   }
 
+  async createPageContent() {
+    let keywords = `<ul>`;
+    for (let k in this.keywords) {
+      let keyword = this.keywords[k];
+      keywords += `<li><strong>${keyword.keyword}:</strong> ${keyword.definition}</li>`
+    }
+    keywords += `</ul>`;
+    let outcomes = `<ol>`;
+    for (let o in this.outcomes) {
+      let outcome = this.outcomes[o];
+      outcomes += `<li>${outcome}</li>`
+    }
+    keywords += "</ol>";
+    let content = `
+      <div class="btech-callout-box"></div>
+      <p>&nbsp;</p>
+      ${this.content}
+      <p>&nbsp;</p>
+      <div class="btech-callout-box">${keywords}</div>
+      <p>&nbsp;</p>
+    `
+    return content;
+  }
+
+  async genKeywords() {
+    let keywords = await CLEODUCKTRA.get(`Use the format 1) keyword: definition. What are the keywords in this text and their definitions: ${this.content}.`);
+    let lines = keywords.split("\n");
+    for (let l in  lines) {
+      let line = lines[l];
+      let mKeyword= line.match(/[0-9]+\) (.*): (.*)/);
+      if (mKeyword) {
+        let keyword = mObjective[1];
+        let definition = mObjective[2];
+        this.keywords.push({
+          keyword: keyword,
+          definition: definition
+        })
+      }
+    }
+  }
+
+  async genOutcomes() {
+    let outcomes = await CLEODUCKTRA.get(`Use the format 1) ... 2) .... What are the learning outcomes in this text: ${content}.`);
+    let lines = outcomes.split("\n");
+    for (let l in  lines) {
+      let line = lines[l];
+      let mOutcome = line.match(/[0-9]+\) (.*)/);
+      if (mOutcome) {
+        let outcome = mObjective[1];
+        this.outcomes.push(outcome)
+      }
+    }
+  }
+
   async genContent() {
     let content = await CLEODUCKTRA.get(`Teach me about ${this.description} for a course on ${this.objective.description} in ${this.objective.course.name}. format in html. include headers and examples.`);
-    let keywords = await CLEODUCKTRA.get(`Use the format 1) keyword. What are the keywords in this text: ${content}.`);
-    console.log(keywords);
+    this.content = content;
+    await this.genKeywords();
+    await this.genOutcomes();
     let outcomes = await CLEODUCKTRA.get(`Use the format 1) ... 2) .... What are the learning outcomes in this text: ${content}.`);
     console.log(outcomes);
-    this.content = content;
   }
 }
 
