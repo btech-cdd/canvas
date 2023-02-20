@@ -129,7 +129,7 @@ class CleoDucktraTopic {
     }
     keywords += "</ol>";
     let content = `
-      <div class="btech-callout-box"></div>
+      <div class="btech-callout-box">${outcomes}</div>
       <p>&nbsp;</p>
       ${this.content}
       <p>&nbsp;</p>
@@ -150,6 +150,7 @@ class CleoDucktraTopic {
       if (mKeyword) {
         let keyword = mKeyword[1];
         let definition = mKeyword[2];
+        console.log(`${keyword}: ${definition}`);
         this.keywords.push({
           keyword: keyword,
           definition: definition
