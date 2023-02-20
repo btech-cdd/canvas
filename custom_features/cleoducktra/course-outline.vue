@@ -1,13 +1,5 @@
 <template>
-  <div
-    v-if="awaitingResponse"
-    class="cleoducktra-content"
-  >
-    Creating Objectives...
-  </div>
-  <div
-    v-else
-  >
+  <div>
     <div
       style="height: auto;"
       v-if="state=='course'"
