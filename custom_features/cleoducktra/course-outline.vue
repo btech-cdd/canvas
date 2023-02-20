@@ -46,7 +46,7 @@
                   class="objective-wrapper"
                 >
                   <div>
-                    <input type="checkbox" v-model="objective.include">
+                    <input type="checkbox" v-model="topic.include">
                   </div>
                   <div>
                     <span><strong>{{topic.name}}:</strong> {{topic.description}}</span>
