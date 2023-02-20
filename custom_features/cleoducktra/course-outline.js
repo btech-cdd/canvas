@@ -23,7 +23,6 @@ class CleoDucktraCourse {
   }
 
   async createPage(title, body) {
-    console.log("CREATE PAGE: " + title);
     let page = await $.post(`/api/v1/courses/${this.courseId}/pages`, {
       wiki_page: {
         title: title,
@@ -34,7 +33,6 @@ class CleoDucktraCourse {
   }
 
   async addPageToModule(module, page) {
-    console.log("ADD PAGE");
     await $.post(`/api/v1/courses/${this.courseId}/modules/${module.id}/items`, {
       module_item: {
         type: 'Page',
@@ -44,7 +42,6 @@ class CleoDucktraCourse {
   }
 
   async createModule(objective) {
-    console.log("CREATE MODULE: " + objective.name);
     let module = await $.post(`/api/v1/courses/${this.courseId}/modules`, {
       module: {
         name: objective.name
@@ -58,11 +55,8 @@ class CleoDucktraCourse {
     for (let t in objective.topics) {
       let topic = objective.topics[t];
       if (topic.include) {
-        console.log("GEN CONTENT FOR " + topic.description);
         await topic.genContent();
-        console.log("GEN PAGE CONTENT");
         let topicBody= topic.createPageBody();
-        console.log(topicBody);
         let page = await this.createPage(topic.name, topicBody);
         await this.addPageToModule(module, page);
       }
@@ -139,8 +133,6 @@ class CleoDucktraTopic {
       <div class="btech-callout-box">${keywords}</div>
       <p>&nbsp;</p>
     `
-    console.log(content);
-    console.log(this);
     return content;
   }
 
@@ -153,7 +145,6 @@ class CleoDucktraTopic {
       if (mKeyword) {
         let keyword = mKeyword[1];
         let definition = mKeyword[2];
-        console.log(`${keyword}: ${definition}`);
         this.keywords.push({
           keyword: keyword,
           definition: definition
@@ -181,7 +172,6 @@ class CleoDucktraTopic {
     await this.genKeywords();
     await this.genOutcomes();
     let outcomes = await CLEODUCKTRA.get(`Use the format 1) ... 2) .... What are the learning outcomes in this text: ${content}.`);
-    console.log(outcomes);
   }
 }
 
