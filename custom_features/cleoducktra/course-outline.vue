@@ -34,8 +34,7 @@
                 <input type="checkbox" v-model="objective.include">
               </div>
               <div>
-                <div><strong><span width="2rem">{{o + 1}}.</span> {{objective.name}}</strong></div> 
-                <div>{{objective.description}}</div>
+                <div><strong><span width="2rem">{{o + 1}}.</span> {{objective.name}}: </strong>{{objective.description}}</div> 
               </div>
             </div>
             <div>
