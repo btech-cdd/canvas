@@ -23,6 +23,7 @@ class CleoDucktraCourse {
   }
 
   async createPage(title, body) {
+    console.log("CREATE PAGE");
     let page = await $.post(`/api/v1/courses/${this.courseId}/pages`, {
       wiki_page: {
         title: title,
@@ -33,6 +34,7 @@ class CleoDucktraCourse {
   }
 
   async addPageToModule(module, page) {
+    console.log("ADD PAGE");
     console.log(page);
     await $.post(`/api/v1/courses/${this.courseId}/modules/${module.id}/items`, {
       module_item: {
@@ -43,6 +45,7 @@ class CleoDucktraCourse {
   }
 
   async createModule(objective) {
+    console.log("CREATE MODULE");
     let module = await $.post(`/api/v1/courses/${this.courseId}/modules`, {
       module: {
         name: objective.name
@@ -52,7 +55,7 @@ class CleoDucktraCourse {
       "Intro to " + objective.name,
       `<p>Module Outcomes</p><p>${objective.description}</p>`
     );
-    addPageToModule(module, introPage);
+    this.addPageToModule(module, introPage);
     return module;
   }
 
