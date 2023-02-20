@@ -38,12 +38,21 @@
               </div>
             </div>
             <div>
+              <div
+                v-for="topic in objective.topics"
+                style="margin-left: 2rem;"
+              >
                 <div
-                  v-for="topic in objective.topics"
-                  style="margin-left: 2rem;"
+                  class="objective-wrapper"
                 >
-                  <span>{{topic.name}}</span>
+                  <div>
+                    <input type="checkbox" v-model="objective.include">
+                  </div>
+                  <div>
+                    <span><strong>{{topic.name}}:</strong> {{topic.description}}</span>
+                  </div>
                 </div>
+              </div>
             <div>
               <button @click="objective.getTopics()" class="msger-btn red">+ Topics</button>
             </div>
