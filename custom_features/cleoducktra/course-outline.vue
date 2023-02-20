@@ -13,7 +13,7 @@
       v-if="state=='prompt'"
     >
       <main class="msger-chat">
-        <div>Create a course outline about...</div>
+        <div>Create objectives for a course about...</div>
       </main>
       <div
         style="margin: 0;"
