@@ -29,9 +29,10 @@
       <main 
         class="msger-chat">
         <div
-          v-for="question in questions"
+          v-for="objective, o in objectives"
           class="objectives-wrapper"
         >
+          <span>{{o}}. {{objective.name}}: {{objective.description}}</span>
         </div>
       </main>
       <div

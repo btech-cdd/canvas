@@ -13,7 +13,7 @@
         awaitingResponse: false,
         state: "prompt",
         input: "",
-        questions: [],
+        objectives: [],
       }
     },
     methods: {
@@ -43,9 +43,20 @@
         this.awaitingResponse = true;
         let response = await CLEODUCKTRA.get(`What are the ten most important skills needed for ${input}. Use the format 1) skill: description`);
         this.awaitingResponse = false;
-        console.log(response);
         let lines = response.split("\n");
-        console.log(lines);
+        for (let l in  lines) {
+          let line = lines[l];
+          let mObjective = line.match(/[0-9]+\) (.*): (.*)/);
+          if (mObjective) {
+            let name = mObjective[1];
+            let description = mObjective[2];
+            this.objectives.push({
+              name: name,
+              description: description,
+              include: false
+            });
+          }
+        }
         this.state = "response";
       }
     }
