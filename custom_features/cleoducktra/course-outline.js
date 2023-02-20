@@ -83,13 +83,13 @@ class CleoDucktraObjective {
     this.name = name;
     this.description = description;
     this.topics = [];
-    this.include = true;
+    this.include = false;
     this.loadingTopics = false;
   }
 
   async getTopics() {
     this.loadingTopics = true;
-    let response = await CLEODUCKTRA.get(`Create a course module outline with ten topics that teaches ${this.description} in ${this.course.name}. Use the format 1) topic: description`);
+    let response = await CLEODUCKTRA.get(`Create a course module outline with five topics that teaches ${this.description} in ${this.course.name}. Use the format 1) topic: description`);
     let lines = response.split("\n");
     for (let l in  lines) {
       let line = lines[l];
@@ -110,7 +110,7 @@ class CleoDucktraTopic {
     this.name = name;
     this.description = description;
     this.content = "";
-    this.include = true;
+    this.include = false;
     this.keywords = [];
     this.outcomes = [];
   }
@@ -119,7 +119,7 @@ class CleoDucktraTopic {
     let content = await CLEODUCKTRA.get(`Teach me about ${this.description} for a course on ${this.objective.description} in ${this.objective.course.name}. format in html. include headers and examples.`);
     let keywords = await CLEODUCKTRA.get(`Use the format 1) keyword. What are the keywords in this text: ${content}.`);
     console.log(keywords);
-    let outcomes = await CLEODUCKTRA.get(`Use the format 1) keyword. What are the learning outcomes in this text: ${content}.`);
+    let outcomes = await CLEODUCKTRA.get(`Use the format 1) ... 2) .... What are the learning outcomes in this text: ${content}.`);
     console.log(outcomes);
     this.content = content;
   }
