@@ -4,6 +4,8 @@ class CleoDucktraCourse {
     this.courseId = ENV.COURSE_ID;
     this.objectives = [];
     this.loadingObjectives = false;
+    this.buildStep = "";
+    this.buildProgress = "";
   }
 
   async getObjectives() {
@@ -47,6 +49,7 @@ class CleoDucktraCourse {
         name: objective.name
       }
     }); 
+    this.buildStep = `Building objective intro page for: ${objective.name}`
     let introPage = await this.createPage(
       "Intro to " + objective.name,
       `<p>Module Outcomes</p><p>${objective.description}</p>`
@@ -55,6 +58,7 @@ class CleoDucktraCourse {
     for (let t in objective.topics) {
       let topic = objective.topics[t];
       if (topic.include) {
+        this.buildStep = `Building content for topic: ${topic.name}`
         await topic.genContent();
         let topicBody= topic.createPageBody();
         let page = await this.createPage(topic.name, topicBody);
@@ -68,6 +72,7 @@ class CleoDucktraCourse {
     for (let o in this.objectives) {
       let objective = this.objectives[o];
       if (objective.include) {
+        this.buildStep = `Building objective: ${objective.name}`
         await this.createModule(objective);
       }
     }
@@ -220,9 +225,11 @@ class CleoDucktraTopic {
         this.awaitingResponse = false;
         this.state = "objectives";
       },
-      getTopics: async function() {
-
-      },
+      buildCourse: async function() {
+        this.state = "build";
+        await this.course.build();
+        this.state = "objectives";
+      }
     }
   });
 })();
