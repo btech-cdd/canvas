@@ -25,15 +25,21 @@
         >
           <div
             v-for="objective, o in course.objectives"
-            class="objective-wrapper"
             style="margin-bottom: 0.5rem;"
           >
-            <div>
-              <input type="checkbox" v-model="objective.include">
+            <div
+              class="objective-wrapper"
+            >
+              <div>
+                <input type="checkbox" v-model="objective.include">
+              </div>
+              <div>
+                <div><strong><span width="2rem">{{o + 1}}.</span> {{objective.name}}</strong></div> 
+                <div>{{objective.description}}</div>
+              </div>
             </div>
             <div>
-              <div><strong><span width="2rem">{{o + 1}}.</span> {{objective.name}}</strong></div> 
-              <div>{{objective.description}}</div>
+              <button @click="objective.getTopics()" class="msger-btn red">Restart</button>
             </div>
           </div>
         </div>

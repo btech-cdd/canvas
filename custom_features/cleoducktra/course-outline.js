@@ -2,9 +2,11 @@ class CleoDucktraCourse {
   constructor(name) {
     this.name = name;
     this.objectives = [];
+    this.loadingObjectives = false;
   }
 
   async getObjectives() {
+    this.loadingObjectives = true;
     let response = await CLEODUCKTRA.get(`Create ten objectives for a course about ${this.name}. Use the format 1) skill: description`);
     let lines = response.split("\n");
     for (let l in  lines) {
@@ -13,26 +15,43 @@ class CleoDucktraCourse {
       if (mObjective) {
         let name = mObjective[1];
         let description = mObjective[2];
-        this.objectives.push(new CleoDucktraObjective(name, description));
+        this.objectives.push(new CleoDucktraObjective(this, name, description));
       }
     }
+    this.loadingObjectives = false;
 
   }
 }
 
 class CleoDucktraObjective {
-  constructor(name, description) {
+  constructor(course, name, description) {
+    this.course = course;
     this.name = name;
     this.description = description;
     this.topics = [];
     this.include = false;
+    this.loadingTopics = false;
+  }
+
+  async getTopics() {
+    this.loadingTopics = true;
+    let response = await CLEODUCKTRA.get(`Create a course module outline with ten topics that teaches ${this.description} in ${this.course.name}. Use the format 1) topic`);
+    let lines = response.split("\n");
+    for (let l in  lines) {
+      let line = lines[l];
+      let mObjective = line.match(/[0-9]+\) (.*)/);
+      if (mObjective) {
+        let name = mObjective[1];
+        this.objectives.push(new CleoDucktraTopic(name));
+      }
+    }
+    this.loadingTopics = false;
   }
 }
 
-class CleoDucktraTopics {
-  constructor(name, description) {
+class CleoDucktraTopic {
+  constructor(name) {
     this.name = name;
-    this.description = description;
     this.include = false;
   }
 }
