@@ -21,7 +21,7 @@
       <main 
         class="msger-chat">
         <div
-          v-for="objective, o in objectives"
+          v-for="objective, o in course.objectives"
           class="objectives-wrapper"
           style="margin-bottom: 0.5rem;"
         >
