@@ -60,7 +60,10 @@ class CleoDucktraCourse {
       if (topic.include) {
         console.log("GEN CONTENT FOR " + topic.description);
         await topic.genContent();
-        let page = await this.createPage(topic.name, topic.createPageContent());
+        console.log("GEN PAGE CONTENT");
+        let topicBody= topic.createPageBody();
+        console.log(topicBody);
+        let page = await this.createPage(topic.name, topicBody);
         await this.addPageToModule(module, page);
       }
     }
@@ -115,7 +118,7 @@ class CleoDucktraTopic {
     this.outcomes = [];
   }
 
-  async createPageContent() {
+  async createPageBody() {
     let keywords = `<ul>`;
     for (let k in this.keywords) {
       let keyword = this.keywords[k];
