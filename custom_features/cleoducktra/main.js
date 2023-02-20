@@ -93,7 +93,7 @@
         })
 
         if (ENV.course_id != undefined) {
-          this.menuCurrent.push("Course Outline");
+          this.menus.push("Course Outline");
         }
         // "Assignments",
         // "Quiz Questions"
