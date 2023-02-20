@@ -35,14 +35,15 @@ class CleoDucktraObjective {
 
   async getTopics() {
     this.loadingTopics = true;
-    let response = await CLEODUCKTRA.get(`Create a course module outline with ten topics that teaches ${this.description} in ${this.course.name}. Use the format 1) topic`);
+    let response = await CLEODUCKTRA.get(`Create a course module outline with ten topics that teaches ${this.description} in ${this.course.name}. Use the format 1) topic: description`);
     let lines = response.split("\n");
     for (let l in  lines) {
       let line = lines[l];
-      let mObjective = line.match(/[0-9]+\) (.*)/);
+      let mObjective = line.match(/[0-9]+\) (.*): (.*)/);
       if (mObjective) {
         let name = mObjective[1];
-        this.topics.push(new CleoDucktraTopic(name));
+        let description = mObjective[2];
+        this.topics.push(new CleoDucktraTopic(name, description));
       }
     }
     this.loadingTopics = false;
@@ -52,6 +53,7 @@ class CleoDucktraObjective {
 class CleoDucktraTopic {
   constructor(name) {
     this.name = name;
+    this.description = this.description;
     this.include = false;
   }
 }

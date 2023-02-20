@@ -40,11 +40,12 @@
             <div>
                 <div
                   v-for="topic in objective.topics"
+                  style="margin-left: 2rem;"
                 >
                   <span>{{topic.name}}</span>
                 </div>
             <div>
-              <button @click="objective.getTopics()" class="msger-btn red">Create Topics</button>
+              <button @click="objective.getTopics()" class="msger-btn red">+ Topics</button>
             </div>
           </div>
         </div>
