@@ -176,3 +176,8 @@
   border-bottom: 1px solid #AAA;
   padding: 0.25rem;
 }
+
+.cleoducktra-input .objective-wrapper {
+  display: grid;
+  grid-template-rows: 2rem auto;
+}

@@ -21,12 +21,19 @@
       <main 
         class="msger-chat">
         <div
-          v-for="objective, o in course.objectives"
-          class="objectives-wrapper"
-          style="margin-bottom: 0.5rem;"
+          class="objective-wrapper"
         >
-          <div><strong><span width="2rem">{{o + 1}}.</span> {{objective.name}}</strong></div> 
-          <div>{{objective.description}}</div>
+          <div>
+            <input type="checkbox" v-model="objective.include">
+          </div>
+          <div
+            v-for="objective, o in course.objectives"
+            class="objectives-wrapper"
+            style="margin-bottom: 0.5rem;"
+          >
+            <div><strong><span width="2rem">{{o + 1}}.</span> {{objective.name}}</strong></div> 
+            <div>{{objective.description}}</div>
+          </div>
         </div>
       </main>
       <div
