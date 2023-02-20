@@ -146,8 +146,8 @@ class CleoDucktraTopic {
       let line = lines[l];
       let mKeyword= line.match(/[0-9]+\) (.*): (.*)/);
       if (mKeyword) {
-        let keyword = mObjective[1];
-        let definition = mObjective[2];
+        let keyword = mKeyword[1];
+        let definition = mKeyword[2];
         this.keywords.push({
           keyword: keyword,
           definition: definition
@@ -163,7 +163,7 @@ class CleoDucktraTopic {
       let line = lines[l];
       let mOutcome = line.match(/[0-9]+\) (.*)/);
       if (mOutcome) {
-        let outcome = mObjective[1];
+        let outcome = mOutcome[1];
         this.outcomes.push(outcome)
       }
     }
