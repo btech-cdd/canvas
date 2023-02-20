@@ -111,10 +111,16 @@ class CleoDucktraTopic {
     this.description = description;
     this.content = "";
     this.include = true;
+    this.keywords = [];
+    this.outcomes = [];
   }
 
   async genContent() {
     let content = await CLEODUCKTRA.get(`Teach me about ${this.description} for a course on ${this.objective.description} in ${this.objective.course.name}. format in html. include headers and examples.`);
+    let keywords = await CLEODUCKTRA.get(`Use the format 1) keyword. What are the keywords in this text: ${content}.`);
+    console.log(keywords);
+    let outcomes = await CLEODUCKTRA.get(`Use the format 1) keyword. What are the learning outcomes in this text: ${content}.`);
+    console.log(outcomes);
     this.content = content;
   }
 }
