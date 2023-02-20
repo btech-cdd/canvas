@@ -42,7 +42,7 @@ class CleoDucktraObjective {
       let mObjective = line.match(/[0-9]+\) (.*)/);
       if (mObjective) {
         let name = mObjective[1];
-        this.objectives.push(new CleoDucktraTopic(name));
+        this.topics.push(new CleoDucktraTopic(name));
       }
     }
     this.loadingTopics = false;

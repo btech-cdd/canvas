@@ -39,7 +39,13 @@
               </div>
             </div>
             <div>
-              <button @click="objective.getTopics()" class="msger-btn red">Restart</button>
+                <div
+                  v-for="topic in objective.topics"
+                >
+                  <span>{{topic.name}}</span>
+                </div>
+            <div>
+              <button @click="objective.getTopics()" class="msger-btn red">Create Topics</button>
             </div>
           </div>
         </div>
