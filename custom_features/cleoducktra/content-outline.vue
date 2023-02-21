@@ -53,8 +53,8 @@
       <div
         style="margin: 0;"
         class="msger-inputarea">
-        <input @keyup.enter="createModule" v-model="singleModule" type="text" class="msger-input" placeholder="module topic....">
-        <button @click="createModule();" class="msger-btn">Next</button>
+        <input @keyup.enter="createPage" v-model="singleTopic" type="text" class="msger-input" placeholder="module topic....">
+        <button @click="createPage();" class="msger-btn">Next</button>
       </div>
     </div>
     <div
