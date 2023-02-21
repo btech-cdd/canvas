@@ -141,7 +141,6 @@ class CleoDucktraTopic {
     this.video = "";
     this.bank = undefined;
     this.quiz = [];
-    this.getBank();
   }
 
   async getBank() {
@@ -196,6 +195,9 @@ class CleoDucktraTopic {
   }
 
   async genQuiz() {
+    if (this.bank == undefined) {
+      await this.getBank();
+    }
     for (let q in this.quiz) {
       let question = this.quiz[q];
       let answers = [];
