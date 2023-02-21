@@ -16,7 +16,7 @@ class CleoDucktraCourse {
             'Accept': 'application/json'
         }
     });
-    let banks = await $.get("https://btech.instructure.com/courses/565350/question_banks");
+    let banks = await $.get(`https://btech.instructure.com/courses/${this.courseId}/question_banks`);
     delete $.ajaxSettings.headers['Accept'];
     console.log(banks);
   }
