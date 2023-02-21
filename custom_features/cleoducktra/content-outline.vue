@@ -96,12 +96,7 @@
                   <div>
                     <span>Create Quiz Questions</span>
                   </div>
-                  <div>
-                    <input type="checkbox" v-model="topic.includeVideo">
-                  </div>
-                  <div>
-                    <span>Create Video Script</span>
-                  </div>
+                  <!--No video for right now...-->
                 </div>
               </div>
             </div>
