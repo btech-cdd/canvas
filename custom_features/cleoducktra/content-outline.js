@@ -106,7 +106,7 @@ class CleoDucktraObjective {
     this.name = name;
     this.description = description;
     this.topics = [];
-    this.include = false;
+    this.include = true;
     this.loadingTopics = false;
   }
 

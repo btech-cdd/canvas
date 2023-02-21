@@ -125,7 +125,7 @@
         style="margin: 0; text-align: right;"
         class="msger-inputarea">
         <button @click="buildCourse();" class="msger-btn">Build</button>
-        <button @click="state = 'course'; course.name=''; objectives = [];" class="msger-btn red">Restart</button>
+        <button @click="state = 'select type'; course.name=ENV.COURSE.long_name; singleModule = ''; objectives = [];" class="msger-btn red">Restart</button>
       </div>
     </div>
   </div>
