@@ -110,8 +110,7 @@
     }, 'text');
     await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/message.js");
     await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/quiz-questions.js");
-    await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/module-outline.js");
-    await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/course-outline.js");
+    await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/content-outline.js");
 
     //create vue object
     $('body').append(vueString);
@@ -128,10 +127,7 @@
         })
 
         if (ENV.course_id != undefined) {
-          this.menus.push("Course Outline");
-        }
-        if (ENV.course_id != undefined) {
-          this.menus.push("Module Outline");
+          this.menus.push("Content Outline");
         }
         // "Assignments",
         // "Quiz Questions"

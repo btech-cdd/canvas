@@ -2,6 +2,48 @@
   <div>
     <div
       style="height: auto;"
+      v-if="state=='select type'"
+    >
+      <div class="msger-chat">
+        <div>Will you be creating a full course, or a single module?</div>
+      </div>
+      <div
+        style="margin: 0;"
+        class="msger-inputarea">
+        <button @click="contentType = 'Course'; state = 'course';" class="msger-btn">Course</button>
+        <button @click="contentType = 'Module'; state = 'course'" class="msger-btn">Module</button>
+      </div>
+    </div>
+    <div
+      style="height: auto;"
+      v-if="state=='course'"
+    >
+      <div class="msger-chat">
+        <div>Create content for a course about<span v-if="contentType=='Module'">(provides context for your module)</span>...</div>
+      </div>
+      <div
+        style="margin: 0;"
+        class="msger-inputarea">
+        <input @keyup.enter="createCourse" v-model="course.name" type="text" class="msger-input" placeholder="course topic....">
+        <button @click="createCourse();" class="msger-btn">Next</button>
+      </div>
+    </div>
+    <div
+      style="height: auto;"
+      v-if="state=='module'"
+    >
+      <div class="msger-chat">
+        <div>What is the learning outcome for your module?</div>
+      </div>
+      <div
+        style="margin: 0;"
+        class="msger-inputarea">
+        <input @keyup.enter="createModule" v-model="singleModule" type="text" class="msger-input" placeholder="module topic....">
+        <button @click="createModule();" class="msger-btn">Next</button>
+      </div>
+    </div>
+    <div
+      style="height: auto;"
       v-if="state=='course'"
     >
       <div class="msger-chat">
