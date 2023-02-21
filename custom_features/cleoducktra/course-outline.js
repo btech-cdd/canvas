@@ -3,25 +3,25 @@ class CleoDucktraCourse {
     this.name = name;
     this.courseId = ENV.COURSE_ID;
     this.modules = [];
-    this.loadingObjectives = false;
+    this.loadingModules = false;
     this.buildStep = "";
     this.buildProgress = "";
   }
 
-  async getObjectives() {
-    this.loadingObjectives = true;
-    let response = await CLEODUCKTRA.get(`Create ten objectives for a course about ${this.name}. Use the format 1) skill: description`);
+  async getModules() {
+    this.loadingModules = true;
+    let response = await CLEODUCKTRA.get(`Create ten modules for a course about ${this.name}. Use the format 1) skill: description`);
     let lines = response.split("\n");
     for (let l in  lines) {
       let line = lines[l];
-      let mObjective = line.match(/[0-9]+\) (.*): (.*)/);
-      if (mObjective) {
-        let name = mObjective[1];
-        let objective = mObjective[2];
-        this.modules.push(new CleoDucktraModule(this, name, objective));
+      let mModule = line.match(/[0-9]+\) (.*): (.*)/);
+      if (mModule) {
+        let name = mModule[1];
+        let module = mModule[2];
+        this.modules.push(new CleoDucktraModule(this, name, module));
       }
     }
-    this.loadingObjectives = false;
+    this.loadingModules = false;
   }
 
   async createPage(title, body) {
@@ -43,20 +43,20 @@ class CleoDucktraCourse {
     })
   }
 
-  async createModule(objective) {
+  async createModule(module) {
     let module = await $.post(`/api/v1/courses/${this.courseId}/modules`, {
       module: {
-        name: objective.name
+        name: module.name
       }
     }); 
-    this.buildStep = `Building objective intro page for: ${objective.name}`
+    this.buildStep = `Building module intro page for: ${objective.name}`
     let introPage = await this.createPage(
-      "Intro to " + objective.name,
-      `<p>Module Outcomes</p><p>${objective.description}</p>`
+      "Intro to " + module.name,
+      `<p>Module Outcomes</p><p>${module.description}</p>`
     );
     await this.addPageToModule(module, introPage);
-    for (let t in objective.topics) {
-      let topic = objective.topics[t];
+    for (let t in module.topics) {
+      let topic = module.topics[t];
       if (topic.include) {
         this.buildStep = `Building content for topic: ${topic.name}`
         await topic.genContent();
@@ -72,7 +72,7 @@ class CleoDucktraCourse {
     for (let m in this.modules) {
       let module = this.modules[m];
       if (module.include) {
-        this.buildStep = `Building modules: ${objective.name}`
+        this.buildStep = `Building modules: ${module.name}`
         await this.createModule(module);
       }
     }
@@ -118,16 +118,16 @@ class CleoDucktraCourse {
       //   }); 
       //   question.created = true;
       // },
-      getObjectives: async function() {
+      getModules: async function() {
         this.awaitingResponse = true;
-        this.course.getObjectives();
+        this.course.getModules();
         this.awaitingResponse = false;
-        this.state = "objectives";
+        this.state = "modules";
       },
       buildCourse: async function() {
         this.state = "build";
         await this.course.build();
-        this.state = "objectives";
+        this.state = "modules";
       }
     }
   });
