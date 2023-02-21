@@ -224,7 +224,7 @@ class CleoDucktraTopic {
         state: "course",
         contentType: "",
         singleModule: "", //placeholder variable to create the objective for a single module
-        course: new CleoDucktraCourse(COURSE.COURSE.long_name)
+        course: new CleoDucktraCourse(ENV.COURSE.long_name)
       }
     },
     methods: {
