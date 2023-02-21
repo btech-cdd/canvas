@@ -229,14 +229,14 @@ class CleoDucktraTopic {
       keywords += `<li><strong>${keyword.keyword}:</strong> ${keyword.definition}</li>`
     }
     keywords += `</ul>`;
-    let outcomes = `<ol>`;
+    let outcomes = `<ul>`;
     for (let o in this.outcomes) {
       let outcome = this.outcomes[o];
       outcomes += `<li>${outcome}</li>`
     }
-    keywords += "</ol>";
+    keywords += "</ul>";
     let content = `
-      <div class="btech-callout-box">${outcomes}</div>
+      <div class="btech-callout-box"><h3>Content Outcomes</h3>${outcomes}</div>
       <p>&nbsp;</p>
     `
     if (this.includeVideo) {
