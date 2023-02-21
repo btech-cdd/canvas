@@ -159,7 +159,7 @@ class CleoDucktraTopic {
   }
 
   async genOutcomes() {
-    let outcomes = await CLEODUCKTRA.get(`Use the format 1) ... 2) .... What are the learning outcomes in this text: ${content}.`);
+    let outcomes = await CLEODUCKTRA.get(`Use the format 1) ... 2) .... What are the learning outcomes in this text: ${this.content}.`);
     let lines = outcomes.split("\n");
     for (let l in  lines) {
       let line = lines[l];

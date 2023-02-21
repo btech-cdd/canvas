@@ -14,6 +14,40 @@
         }
       }
     },
+    edit: async function(input) {
+      
+    },
+    imageUrls: async function(input) {
+      $.ajaxSetup({
+        headers:{
+            'Authorization': "Bearer " + this.apikey,
+            'Content-Type': 'application/json'
+        }
+      });
+      let data = {
+        "prompt": input,
+        "n": 3,
+        "size": "256x256",
+        "response_format": "url",
+        "user": "" + ENV.current_user_id
+      };
+      data = JSON.stringify(data);
+      let urls = [];
+      console.log(data);
+      try {
+        await $.post("https://api.openai.com/v1/images/generations", data, function(resp) {
+          console.log(resp);
+          for (let d in resp.data) {
+            urls.push(resp.data[d].url)
+          }
+        });
+      } catch (err) {
+        console.log(err);
+      }
+      delete $.ajaxSettings.headers.Authorization;
+      delete $.ajaxSettings.headers['Content-Type'];
+      return urls;
+    },
     get: async function(input) {
       $.ajaxSetup({
         headers:{
