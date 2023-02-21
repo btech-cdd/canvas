@@ -62,6 +62,18 @@
                   class="objective-wrapper"
                   style="margin-left: 2rem;"
                 >
+                  <div>
+                    <input type="checkbox" v-model="topic.includeQuiz">
+                  </div>
+                  <div>
+                    <span>Create Quiz Questions</span>
+                  </div>
+                  <div>
+                    <input type="checkbox" v-model="topic.includeVideo">
+                  </div>
+                  <div>
+                    <span>Create Video Script</span>
+                  </div>
                 </div>
               </div>
             </div>
