@@ -209,6 +209,7 @@ class CleoDucktraTopic {
           answer_text: answer
         })
       }
+      delete $.ajaxSettings.headers.Authorization;
       await $.post(`/api/v1/courses/${ENV.COURSE_ID}/question_banks/${this.bank.assessment_question_bank.id}/assessment_questions`, {
         question: {
           question_name: this.input,
