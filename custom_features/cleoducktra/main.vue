@@ -57,6 +57,13 @@
           ></cleoducktra-course-outline>
         </div>
 
+        <!--Module Outline-->
+        <div
+          v-show="menuCurrent == 'Module Outline'"
+        >
+          <cleoducktra-module-outline
+          ></cleoducktra-module-outline>
+        </div>
       </div>
     </div>
   </div>
