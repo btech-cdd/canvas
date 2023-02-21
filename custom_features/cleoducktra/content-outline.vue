@@ -12,6 +12,7 @@
         class="msger-inputarea">
         <button @click="contentType = 'Course'; state = 'course';" class="msger-btn">Course</button>
         <button @click="contentType = 'Module'; state = 'course'" class="msger-btn">Module</button>
+        <button @click="contentType = 'Page'; state = 'course'" class="msger-btn">Page</button>
       </div>
     </div>
     <div
@@ -34,6 +35,20 @@
     >
       <div class="msger-chat">
         <div>What is the learning outcome for your module?</div>
+      </div>
+      <div
+        style="margin: 0;"
+        class="msger-inputarea">
+        <input @keyup.enter="createModule" v-model="singleModule" type="text" class="msger-input" placeholder="module topic....">
+        <button @click="createModule();" class="msger-btn">Next</button>
+      </div>
+    </div>
+    <div
+      style="height: auto;"
+      v-if="state=='page'"
+    >
+      <div class="msger-chat">
+        <div>What is the learning outcome for your page?</div>
       </div>
       <div
         style="margin: 0;"

@@ -328,6 +328,7 @@ class CleoDucktraTopic {
         state: "select type",
         contentType: "",
         singleModule: "", //placeholder variable to create the objective for a single module
+        singleTopic: "", //placeholder variable to create the topic for a single page 
         course: new CleoDucktraCourse(ENV.COURSE.long_name)
       }
     },
@@ -370,8 +371,16 @@ class CleoDucktraTopic {
       createModule: async function() {
         //go straight to the objectives if a course, else get module info
         let objective = new CleoDucktraObjective(this.course, this.singleModule, this.singleModule);
-        objective.getTopics();
         this.course.objectives.push(objective);
+        if (this.contentType == 'Module') {
+          objective.getTopics();
+          this.state = "objectives";
+        } else {
+          this.state = "page";
+        }
+      },
+      createPage: async function() {
+        new CleoDucktraTopic(this.course.objectives[0], this.singleTopic, this.singleTopic)
         this.state = "objectives";
       }
     }
