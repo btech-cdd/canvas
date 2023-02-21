@@ -71,11 +71,6 @@ class CleoDucktraCourse {
       }
     }); 
     this.buildStep = `Building objective intro page for: ${objective.name}`
-    let introPage = await this.createPage(
-      "Intro to " + objective.name,
-      `<p>Module Outcomes</p><p>${objective.description}</p>`
-    );
-    await this.addPageToModule(module, introPage);
     for (let t in objective.topics) {
       let topic = objective.topics[t];
       if (topic.include) {
@@ -159,7 +154,7 @@ class CleoDucktraTopic {
   }
 
   async genQuizQuestions() {
-    let response = await CLEODUCKTRA.get(`Create 5 multiple choice questions with answers about ${input}. Use the format 1\nQ: ... A) ... B) ... C) ... D) ... Answer: ...`);
+    let response = await CLEODUCKTRA.get(`Use the format 1\nQ: ... A) ... B) ... C) ... D) ... Answer: .... Create 5 multiple choice questions with answers about: ${this.content}.`);
     response = response.replace(/Answer: ([A-Za-z])\)/g, "\nAnswer: $1\*")
     response = response.replace(/([A-Za-z]\) )/g, "\n$1")
     let lines = response.split("\n");
