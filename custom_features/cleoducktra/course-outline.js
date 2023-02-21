@@ -186,6 +186,7 @@ class CleoDucktraTopic {
 
   async genVideo() {
     let video = await CLEODUCKTRA.get(`Create a video script with dialogue for ${this.description}.`);
+    video = video.replaceAll("\n", "<br>")
     this.video = video;
   }
 
