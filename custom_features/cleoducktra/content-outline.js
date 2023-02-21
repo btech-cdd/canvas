@@ -221,7 +221,7 @@ class CleoDucktraTopic {
     data: function() {
       return {
         awaitingResponse: false,
-        state: "course",
+        state: "select type",
         contentType: "",
         singleModule: "", //placeholder variable to create the objective for a single module
         course: new CleoDucktraCourse(ENV.COURSE.long_name)
