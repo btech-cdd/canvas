@@ -158,7 +158,7 @@ class CleoDucktraTopic {
   }
 
   async genQuizQuestions() {
-    let response = await CLEODUCKTRA.get(`Use the format 1\nQ: ... A) ... B) ... C) ... D) ... Answer: .... Create 5 multiple choice questions with answers about: ${this.content}.`);
+    let response = await CLEODUCKTRA.get(`Use the format Q: ... A) ... B) ... C) ... D) ... Answer: .... Create 5 multiple choice questions with answers about: ${this.content}.`);
     console.log(response);
     response = response.replace(/Answer: ([A-Za-z])\)/g, "\nAnswer: $1\*")
     response = response.replace(/([A-Za-z]\) )/g, "\n$1")
