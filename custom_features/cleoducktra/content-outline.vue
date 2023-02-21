@@ -19,7 +19,7 @@
       v-if="state=='course'"
     >
       <div class="msger-chat">
-        <div>Create content for a course about<span v-if="contentType=='Module'">(provides context for your module)</span>...</div>
+        <div>Create content for a course about <span v-if="contentType=='Module'">(provides context for your module)</span>...</div>
       </div>
       <div
         style="margin: 0;"
@@ -40,20 +40,6 @@
         class="msger-inputarea">
         <input @keyup.enter="createModule" v-model="singleModule" type="text" class="msger-input" placeholder="module topic....">
         <button @click="createModule();" class="msger-btn">Next</button>
-      </div>
-    </div>
-    <div
-      style="height: auto;"
-      v-if="state=='course'"
-    >
-      <div class="msger-chat">
-        <div>Create objectives for a course about...</div>
-      </div>
-      <div
-        style="margin: 0;"
-        class="msger-inputarea">
-        <input @keyup.enter="getObjectives" v-model="course.name" type="text" class="msger-input" placeholder="course topic....">
-        <button @click="getObjectives();" class="msger-btn">Create</button>
       </div>
     </div>
     <div
