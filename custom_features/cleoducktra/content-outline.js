@@ -150,6 +150,7 @@ class CleoDucktraTopic {
     if (this.bank == undefined) {
       let bank = await this.objective.course.createBank(this.name);
       this.bank = bank;
+      console.log(this.bank);
     }
   }
 
