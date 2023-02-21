@@ -380,7 +380,8 @@ class CleoDucktraTopic {
         }
       },
       createPage: async function() {
-        new CleoDucktraTopic(this.course.objectives[0], this.singleTopic, this.singleTopic)
+        let topic = new CleoDucktraTopic(this.course.objectives[0], this.singleTopic, this.singleTopic)
+        this.course.objectives[0].topics.push(topic);
         this.state = "objectives";
       }
     }
