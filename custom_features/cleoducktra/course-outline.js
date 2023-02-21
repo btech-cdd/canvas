@@ -112,9 +112,12 @@ class CleoDucktraTopic {
     this.name = name;
     this.description = description;
     this.content = "";
-    this.include = false;
+    this.include = true;
+    this.includeQuiz = false;
+    this.includeVideo = false;
     this.keywords = [];
     this.outcomes = [];
+    this.video = "";
   }
 
   createPageBody() {
@@ -133,6 +136,16 @@ class CleoDucktraTopic {
     let content = `
       <div class="btech-callout-box">${outcomes}</div>
       <p>&nbsp;</p>
+    `
+    if (this.includeVideo) {
+      content += `
+        <h2>Video</h2>
+        <p>&nbsp;</p>
+        <div class="btech-callout-box">${this.video}</div>
+        <p>&nbsp;</p>
+      ` 
+    }
+    content += `
       ${this.content}
       <p>&nbsp;</p>
       <div class="btech-callout-box">${keywords}</div>
@@ -171,12 +184,22 @@ class CleoDucktraTopic {
     }
   }
 
+  async genVideo() {
+    let video = await CLEODUCKTRA.get(`Create a video script with dialogue for ${this.description}.`);
+    this.video = video;
+  }
+
   async genContent() {
-    let content = await CLEODUCKTRA.get(`Teach me about ${this.description} for a course on ${this.objective.description} in ${this.objective.course.name}. format in html. include headers and examples.`);
+    let content = await CLEODUCKTRA.get(`Teach me about ${this.description} for a course on ${this.objective.description} in ${this.objective.course.name}. format in html. include headers and examples. the top level header is h2.`);
     this.content = content;
     await this.genKeywords();
     await this.genOutcomes();
-    let outcomes = await CLEODUCKTRA.get(`Use the format 1) ... 2) .... What are the learning outcomes in this text: ${content}.`);
+    if (this.includeQuiz) {
+
+    }
+    if (this.includeVideo) {
+      await this.genVideo();
+    }
   }
 }
 
