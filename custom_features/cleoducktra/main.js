@@ -48,6 +48,7 @@
       return urls;
     },
     get: async function(input) {
+      console.log(this.apikey);
       $.ajaxSetup({
         headers:{
             'Authorization': "Bearer " + this.apikey,
