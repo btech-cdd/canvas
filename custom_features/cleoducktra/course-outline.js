@@ -2,7 +2,7 @@ class CleoDucktraCourse {
   constructor(name) {
     this.name = name;
     this.courseId = ENV.COURSE_ID;
-    this.objectives = [];
+    this.modules = [];
     this.loadingObjectives = false;
     this.buildStep = "";
     this.buildProgress = "";
@@ -17,8 +17,8 @@ class CleoDucktraCourse {
       let mObjective = line.match(/[0-9]+\) (.*): (.*)/);
       if (mObjective) {
         let name = mObjective[1];
-        let description = mObjective[2];
-        this.objectives.push(new CleoDucktraObjective(this, name, description));
+        let objective = mObjective[2];
+        this.modules.push(new CleoDucktraModule(this, name, objective));
       }
     }
     this.loadingObjectives = false;
@@ -69,141 +69,12 @@ class CleoDucktraCourse {
   }
 
   async build() {
-    for (let o in this.objectives) {
-      let objective = this.objectives[o];
-      if (objective.include) {
-        this.buildStep = `Building objective: ${objective.name}`
-        await this.createModule(objective);
+    for (let m in this.modules) {
+      let module = this.modules[m];
+      if (module.include) {
+        this.buildStep = `Building modules: ${objective.name}`
+        await this.createModule(module);
       }
-    }
-  }
-}
-
-class CleoDucktraObjective {
-  constructor(course, name, description) {
-    this.course = course;
-    this.name = name;
-    this.description = description;
-    this.topics = [];
-    this.include = false;
-    this.loadingTopics = false;
-  }
-
-  async getTopics() {
-    this.loadingTopics = true;
-    let response = await CLEODUCKTRA.get(`Create a course module outline with five topics that teaches ${this.description} in ${this.course.name}. Use the format 1) topic: description`);
-    let lines = response.split("\n");
-    for (let l in  lines) {
-      let line = lines[l];
-      let mObjective = line.match(/[0-9]+\) (.*): (.*)/);
-      if (mObjective) {
-        let name = mObjective[1];
-        let description = mObjective[2];
-        this.topics.push(new CleoDucktraTopic(this, name, description));
-      }
-    }
-    this.loadingTopics = false;
-  }
-}
-
-class CleoDucktraTopic {
-  constructor(objective, name, description) {
-    this.objective = objective;
-    this.name = name;
-    this.description = description;
-    this.content = "";
-    this.include = true;
-    this.includeQuiz = false;
-    this.includeVideo = false;
-    this.keywords = [];
-    this.outcomes = [];
-    this.video = "";
-  }
-
-  createPageBody() {
-    let keywords = `<ul>`;
-    for (let k in this.keywords) {
-      let keyword = this.keywords[k];
-      keywords += `<li><strong>${keyword.keyword}:</strong> ${keyword.definition}</li>`
-    }
-    keywords += `</ul>`;
-    let outcomes = `<ol>`;
-    for (let o in this.outcomes) {
-      let outcome = this.outcomes[o];
-      outcomes += `<li>${outcome}</li>`
-    }
-    keywords += "</ol>";
-    let content = `
-      <div class="btech-callout-box">${outcomes}</div>
-      <p>&nbsp;</p>
-    `
-    if (this.includeVideo) {
-      content += `
-        <h2>Video</h2>
-        <p>&nbsp;</p>
-        <div class="btech-callout-box">${this.video}</div>
-        <p>&nbsp;</p>
-      ` 
-    }
-    content += `
-      ${this.content}
-      <p>&nbsp;</p>
-      <div class="btech-callout-box">${keywords}</div>
-      <p>&nbsp;</p>
-    `
-    return content;
-  }
-
-  async genKeywords() {
-    let keywords = await CLEODUCKTRA.get(`Use the format 1) keyword: definition. What are the keywords in this text and their definitions: ${this.content}.`);
-    let lines = keywords.split("\n");
-    for (let l in  lines) {
-      let line = lines[l];
-      let mKeyword= line.match(/[0-9]+\) (.*): (.*)/);
-      if (mKeyword) {
-        let keyword = mKeyword[1];
-        let definition = mKeyword[2];
-        this.keywords.push({
-          keyword: keyword,
-          definition: definition
-        })
-      }
-    }
-  }
-
-  async genOutcomes() {
-    let outcomes = await CLEODUCKTRA.get(`Use the format 1) ... 2) .... What are the learning outcomes in this text: ${this.content}.`);
-    let lines = outcomes.split("\n");
-    for (let l in  lines) {
-      let line = lines[l];
-      let mOutcome = line.match(/[0-9]+\) (.*)/);
-      if (mOutcome) {
-        let outcome = mOutcome[1];
-        this.outcomes.push(outcome)
-      }
-    }
-  }
-
-  async genVideo() {
-    let video = await CLEODUCKTRA.get(`Create a video script with dialogue for ${this.description}.`);
-    video = video.replaceAll("\n", "<br>")
-    this.video = video;
-  }
-
-  async genQuiz() {
-    
-  }
-
-  async genContent() {
-    let content = await CLEODUCKTRA.get(`Teach me about ${this.description} for a course on ${this.objective.description} in ${this.objective.course.name}. format in html. include headers and examples. the top level header is h2.`);
-    this.content = content;
-    await this.genKeywords();
-    await this.genOutcomes();
-    if (this.includeQuiz) {
-      await this.genQuiz();
-    }
-    if (this.includeVideo) {
-      await this.genVideo();
     }
   }
 }

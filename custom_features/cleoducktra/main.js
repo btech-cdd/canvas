@@ -110,6 +110,7 @@
     }, 'text');
     await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/message.js");
     await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/quiz-questions.js");
+    await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/module-outline.js");
     await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/course-outline.js");
 
     //create vue object
@@ -128,6 +129,9 @@
 
         if (ENV.course_id != undefined) {
           this.menus.push("Course Outline");
+        }
+        if (ENV.course_id != undefined) {
+          this.menus.push("Module Outline");
         }
         // "Assignments",
         // "Quiz Questions"
