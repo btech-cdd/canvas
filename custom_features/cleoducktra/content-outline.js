@@ -16,9 +16,17 @@ class CleoDucktraCourse {
             'Accept': 'application/json'
         }
     });
-    let banks = await $.get(`https://btech.instructure.com/courses/${this.courseId}/question_banks`);
+    this.banks = await $.get(`https://btech.instructure.com/courses/${this.courseId}/question_banks`);
     delete $.ajaxSettings.headers['Accept'];
-    console.log(banks);
+    console.log(this.banks);
+  }
+
+  async createBank(title) {
+    let bank = await $.post(`https://btech.instructure.com/courses/${this.courseId}/question_banks`, {
+      assessment_question_bank: {title: title}
+    });
+    this.banks.push(bank);
+    return bank;
   }
 
   async getObjectives() {
@@ -131,6 +139,84 @@ class CleoDucktraTopic {
     this.keywords = [];
     this.outcomes = [];
     this.video = "";
+    this.bank = undefined;
+    this.quiz = [];
+    this.getBank();
+  }
+
+  async getBank() {
+    let banks = this.objective.course.banks;
+    for (let b in banks) {
+      let bank = banks[b];
+      if (bank.title == this.name) {
+        this.bank = bank;
+      }
+    }
+    if (this.bank == undefined) {
+      let bank = await this.objective.course.createBank(this.name);
+      this.bank = bank;
+    }
+  }
+
+  async genQuizQuestions() {
+    let response = await CLEODUCKTRA.get(`Create 5 multiple choice questions with answers about ${input}. Use the format 1\nQ: ... A) ... B) ... C) ... D) ... Answer: ...`);
+    response = response.replace(/Answer: ([A-Za-z])\)/g, "\nAnswer: $1\*")
+    response = response.replace(/([A-Za-z]\) )/g, "\n$1")
+    let lines = response.split("\n");
+    let prompt = "";
+    let answers = [];
+    let correct = "";
+    for (let l in lines) {
+      let line = lines[l];
+      let mPrompt = line.match(/Q:(.*)/);
+      if (mPrompt) {
+        prompt = mPrompt[1];
+        continue;
+      }
+      let mAnswer = line.match(/^[A-Za-z]\)(.*)/);
+      if (mAnswer) {
+        answers.push(mAnswer[1]);
+      }
+      let mCorrect = line.match(/Answer: ([A-Z])/);
+      let letters = "ABCDEFG";
+      if (mCorrect) {
+        correct = letters.indexOf(mCorrect[1]);
+        let question = {
+          prompt: prompt,
+          answers: answers,
+          correct: correct,
+          created: false
+        }
+        this.quiz.push(question);
+        prompt = "";
+        answers = [];
+        correct = "";
+      }
+    }
+  }
+
+  async genQuiz() {
+    for (let q in this.quiz) {
+      let question = this.quiz[q];
+      let answers = [];
+      for (let a in question.answers) {
+        let answer = question.answers[a];
+        answers.push({
+          answer_weight: a == question.correct ? 100 : 0,
+          numerical_answer_type: "exact_answer",
+          answer_text: answer
+        })
+      }
+      await $.post(`/api/v1/courses/${ENV.COURSE_ID}/question_banks/${this.bank.assessment_question_bank.id}/assessment_questions`, {
+        question: {
+          question_name: this.input,
+          question_type: "multiple_choice_question",
+          points_possible: 1,
+          question_text: `<p>${question.prompt}</p>`,
+          answers: answers
+        }
+      }); 
+    }
   }
 
   createPageBody() {
@@ -203,19 +289,20 @@ class CleoDucktraTopic {
     this.video = video;
   }
 
-  async genQuiz() {
-    
-  }
-
   async genContent() {
     let content = await CLEODUCKTRA.get(`Teach me about ${this.description} for a course on ${this.objective.description} in ${this.objective.course.name}. format in html. include headers and examples. the top level header is h2.`);
     this.content = content;
+    this.objective.course.buildStep = `Generating keywords for objective: ${this.objective.name} topic: ${this.name}`;
     await this.genKeywords();
+    this.objective.course.buildStep = `Generating outcomes for objective: ${this.objective.name} topic: ${this.name}`;
     await this.genOutcomes();
     if (this.includeQuiz) {
+      this.objective.course.buildStep = `Generating quiz questions for objective: ${this.objective.name} topic: ${this.name}`;
+      await this.genQuizQuestions();
       await this.genQuiz();
     }
     if (this.includeVideo) {
+      this.objective.course.buildStep = `Generating a video transcript for objective: ${this.objective.name} topic: ${this.name}`;
       await this.genVideo();
     }
   }
