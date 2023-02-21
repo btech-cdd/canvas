@@ -250,6 +250,7 @@ class CleoDucktraTopic {
     content += `
       ${this.content}
       <p>&nbsp;</p>
+      <h2>Keywords</h2>
       <div class="btech-callout-box">${keywords}</div>
       <p>&nbsp;</p>
     `
