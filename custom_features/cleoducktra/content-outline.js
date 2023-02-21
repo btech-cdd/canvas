@@ -22,9 +22,15 @@ class CleoDucktraCourse {
   }
 
   async createBank(title) {
+    $.ajaxSetup({
+        headers:{
+            'Accept': 'application/json'
+        }
+    });
     let bank = await $.post(`https://btech.instructure.com/courses/${this.courseId}/question_banks`, {
       assessment_question_bank: {title: title}
     });
+    delete $.ajaxSettings.headers['Accept'];
     this.banks.push(bank);
     return bank;
   }
