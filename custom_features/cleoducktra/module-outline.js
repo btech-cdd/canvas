@@ -140,7 +140,7 @@ class CleoDucktraTopic {
     data: function() {
       return {
         awaitingResponse: false,
-        state: "course",
+        state: "module",
         course: new CleoDucktraCourse("") 
       }
     },
