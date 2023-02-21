@@ -189,13 +189,17 @@ class CleoDucktraTopic {
     this.video = video;
   }
 
+  async genQuiz() {
+    
+  }
+
   async genContent() {
     let content = await CLEODUCKTRA.get(`Teach me about ${this.description} for a course on ${this.objective.description} in ${this.objective.course.name}. format in html. include headers and examples. the top level header is h2.`);
     this.content = content;
     await this.genKeywords();
     await this.genOutcomes();
     if (this.includeQuiz) {
-
+      await this.genQuiz();
     }
     if (this.includeVideo) {
       await this.genVideo();
