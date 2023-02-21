@@ -18,7 +18,6 @@ class CleoDucktraCourse {
     });
     this.banks = await $.get(`https://btech.instructure.com/courses/${this.courseId}/question_banks`);
     delete $.ajaxSettings.headers['Accept'];
-    console.log(this.banks);
   }
 
   async createBank(title) {
@@ -156,7 +155,6 @@ class CleoDucktraTopic {
     if (this.bank == undefined) {
       let bank = await this.objective.course.createBank(this.name);
       this.bank = bank;
-      console.log(this.bank);
     }
   }
 
@@ -209,8 +207,7 @@ class CleoDucktraTopic {
           answer_text: answer
         })
       }
-      delete $.ajaxSettings.headers.Authorization;
-      await $.post(`/api/v1/courses/${ENV.COURSE_ID}/question_banks/${this.bank.assessment_question_bank.id}/assessment_questions`, {
+      await $.post(`/courses/${ENV.COURSE_ID}/question_banks/${this.bank.assessment_question_bank.id}/assessment_questions`, {
         question: {
           question_name: this.input,
           question_type: "multiple_choice_question",
