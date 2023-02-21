@@ -1,7 +1,6 @@
-class CleoDucktraModule{
+class CleoDucktraObjective {
   constructor(course, name, description) {
     this.course = course;
-    this.courseId = ENV.COURSE_ID;
     this.name = name;
     this.description = description;
     this.topics = [];
@@ -15,10 +14,10 @@ class CleoDucktraModule{
     let lines = response.split("\n");
     for (let l in  lines) {
       let line = lines[l];
-      let mModule = line.match(/[0-9]+\) (.*): (.*)/);
-      if (mModule) {
-        let name = mModule[1];
-        let description = mModule[2];
+      let mObjective = line.match(/[0-9]+\) (.*): (.*)/);
+      if (mObjective) {
+        let name = mObjective[1];
+        let description = mObjective[2];
         this.topics.push(new CleoDucktraTopic(this, name, description));
       }
     }
@@ -27,8 +26,8 @@ class CleoDucktraModule{
 }
 
 class CleoDucktraTopic {
-  constructor(module, name, description) {
-    this.module = module;
+  constructor(objective, name, description) {
+    this.objective = objective;
     this.name = name;
     this.description = description;
     this.content = "";
@@ -115,7 +114,7 @@ class CleoDucktraTopic {
   }
 
   async genContent() {
-    let content = await CLEODUCKTRA.get(`Teach me about ${this.description} for a course on ${this.module.description} in ${this.module.course.name}. format in html. include headers and examples. the top level header is h2.`);
+    let content = await CLEODUCKTRA.get(`Teach me about ${this.description} for a course on ${this.objective.description} in ${this.objective.course.name}. format in html. include headers and examples. the top level header is h2.`);
     this.content = content;
     await this.genKeywords();
     await this.genOutcomes();
@@ -167,16 +166,16 @@ class CleoDucktraTopic {
       //   }); 
       //   question.created = true;
       // },
-      getModules: async function() {
+      getObjectives: async function() {
         this.awaitingResponse = true;
-        this.course.getModules();
+        this.course.getObjectives();
         this.awaitingResponse = false;
-        this.state = "modules";
+        this.state = "objectives";
       },
       buildCourse: async function() {
         this.state = "build";
         await this.course.build();
-        this.state = "modules";
+        this.state = "objectives";
       }
     }
   });

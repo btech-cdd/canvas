@@ -5,13 +5,13 @@
       v-if="state=='course'"
     >
       <div class="msger-chat">
-        <div>Create modules for a course about...</div>
+        <div>Create objectives for a course about...</div>
       </div>
       <div
         style="margin: 0;"
         class="msger-inputarea">
-        <input @keyup.enter="getModules" v-model="course.name" type="text" class="msger-input" placeholder="course topic....">
-        <button @click="getModules();" class="msger-btn">Create</button>
+        <input @keyup.enter="getObjectives" v-model="course.name" type="text" class="msger-input" placeholder="course topic....">
+        <button @click="getObjectives();" class="msger-btn">Create</button>
       </div>
     </div>
     <div
@@ -21,35 +21,35 @@
       <div>{{course.buildStep}}</div>
     </div>
     <div
-      v-if="state=='modules'"
+      v-if="state=='objectives'"
       class="cleoducktra-content"
     >
       <div
         class="msger-chat">
         <div
-          class="modules-wrapper"
+          class="objectives-wrapper"
         >
           <div
-            v-for="module, m in course.modules"
+            v-for="objective, o in course.objectives"
             style="margin-bottom: 0.5rem;"
           >
             <div
-              class="module-wrapper"
+              class="objective-wrapper"
             >
               <div>
-                <input type="checkbox" v-model="module.include">
+                <input type="checkbox" v-model="objective.include">
               </div>
               <div>
-                <div><strong><span width="2rem">{{m + 1}}.</span> {{module.name}}: </strong>{{modules.description}}</div> 
+                <div><strong><span width="2rem">{{o + 1}}.</span> {{objective.name}}: </strong>{{objective.description}}</div> 
               </div>
             </div>
             <div>
               <div
-                v-for="topic in module.topics"
+                v-for="topic in objective.topics"
                 style="margin-left: 2rem;"
               >
                 <div
-                  class="module-wrapper"
+                  class="objective-wrapper"
                 >
                   <div>
                     <input type="checkbox" v-model="topic.include">
@@ -59,7 +59,7 @@
                   </div>
                 </div>
                 <div
-                  class="module-wrapper"
+                  class="objective-wrapper"
                   style="margin-left: 2rem;"
                 >
                   <div>
@@ -78,26 +78,26 @@
               </div>
             </div>
             <div
-              v-if="module.loadingTopics"
+              v-if="objective.loadingTopics"
             >
               Loading new topics...
             </div>
             <div>
-              <button @click="module.getTopics()" class="msger-btn">+ Topics</button>
+              <button @click="objective.getTopics()" class="msger-btn">+ Topics</button>
             </div>
           </div>
         </div>
         <div
-          v-if="course.loadingModules"
+          v-if="course.loadingObjectives"
         >
-          Loading new modules...
+          Loading new objectives...
         </div>
       </div>
       <div
         style="margin: 0; text-align: right;"
         class="msger-inputarea">
         <button @click="buildCourse();" class="msger-btn">Build</button>
-        <button @click="state = 'course'; course.name=''; modules = [];" class="msger-btn red">Restart</button>
+        <button @click="state = 'course'; course.name=''; objectives = [];" class="msger-btn red">Restart</button>
       </div>
     </div>
   </div>
