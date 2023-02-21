@@ -6,6 +6,13 @@ class CleoDucktraCourse {
     this.loadingObjectives = false;
     this.buildStep = "";
     this.buildProgress = "";
+    this.banks = [];
+    this.getBanks();
+  }
+
+  async getBanks() {
+    let banks = await $.get("https://btech.instructure.com/courses/565350/question_banks");
+    console.log(banks);
   }
 
   async getObjectives() {
