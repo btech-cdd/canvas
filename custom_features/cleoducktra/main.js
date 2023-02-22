@@ -18,6 +18,7 @@
       
     },
     imageUrls: async function(input) {
+      return //don't need to do images, they all suck right now
       $.ajaxSetup({
         headers:{
             'Authorization': "Bearer " + this.apikey,
@@ -33,10 +34,8 @@
       };
       data = JSON.stringify(data);
       let urls = [];
-      console.log(data);
       try {
         await $.post("https://api.openai.com/v1/images/generations", data, function(resp) {
-          console.log(resp);
           for (let d in resp.data) {
             urls.push(resp.data[d].url)
           }
@@ -49,6 +48,7 @@
       return urls;
     },
     get: async function(input) {
+      console.log(this.apikey);
       $.ajaxSetup({
         headers:{
             'Authorization': "Bearer " + this.apikey,
@@ -66,10 +66,8 @@
       };
       data = JSON.stringify(data);
       let response = "";
-      console.log(data);
       try {
         await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
-          console.log(resp);
           response = resp.choices[0].text;
         });
       } catch (err) {
@@ -110,7 +108,7 @@
     }, 'text');
     await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/message.js");
     await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/quiz-questions.js");
-    await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/course-outline.js");
+    await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/content-outline.js");
 
     //create vue object
     $('body').append(vueString);
@@ -119,7 +117,6 @@
       el: "#cleoducktra",
       mounted: async function() {
         let canvasUserData = await $.get("/api/v1/users/self");
-        console.log(canvasUserData);
         this.canvasUserData = canvasUserData;
         $("#global_nav_ask-cleo_link").click((e) => {
           e.preventDefault();
@@ -127,7 +124,7 @@
         })
 
         if (ENV.course_id != undefined) {
-          this.menus.push("Course Outline");
+          this.menus.push("Content Outline");
         }
         // "Assignments",
         // "Quiz Questions"

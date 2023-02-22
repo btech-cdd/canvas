@@ -6,6 +6,32 @@ class CleoDucktraCourse {
     this.loadingObjectives = false;
     this.buildStep = "";
     this.buildProgress = "";
+    this.banks = [];
+    this.getBanks();
+  }
+
+  async getBanks() {
+    $.ajaxSetup({
+        headers:{
+            'Accept': 'application/json'
+        }
+    });
+    this.banks = await $.get(`https://btech.instructure.com/courses/${this.courseId}/question_banks`);
+    delete $.ajaxSettings.headers['Accept'];
+  }
+
+  async createBank(title) {
+    $.ajaxSetup({
+        headers:{
+            'Accept': 'application/json'
+        }
+    });
+    let bank = await $.post(`https://btech.instructure.com/courses/${this.courseId}/question_banks`, {
+      assessment_question_bank: {title: title}
+    });
+    delete $.ajaxSettings.headers['Accept'];
+    this.banks.push(bank);
+    return bank;
   }
 
   async getObjectives() {
@@ -50,11 +76,6 @@ class CleoDucktraCourse {
       }
     }); 
     this.buildStep = `Building objective intro page for: ${objective.name}`
-    let introPage = await this.createPage(
-      "Intro to " + objective.name,
-      `<p>Module Outcomes</p><p>${objective.description}</p>`
-    );
-    await this.addPageToModule(module, introPage);
     for (let t in objective.topics) {
       let topic = objective.topics[t];
       if (topic.include) {
@@ -85,7 +106,7 @@ class CleoDucktraObjective {
     this.name = name;
     this.description = description;
     this.topics = [];
-    this.include = false;
+    this.include = true;
     this.loadingTopics = false;
   }
 
@@ -118,6 +139,87 @@ class CleoDucktraTopic {
     this.keywords = [];
     this.outcomes = [];
     this.video = "";
+    this.bank = undefined;
+    this.quiz = [];
+  }
+
+  async getBank() {
+    let banks = this.objective.course.banks;
+    for (let b in banks) {
+      let bank = banks[b];
+      if (bank.title == this.name) {
+        this.bank = bank;
+      }
+    }
+    if (this.bank == undefined) {
+      let bank = await this.objective.course.createBank(this.name);
+      this.bank = bank;
+    }
+  }
+
+  async genQuizQuestions() {
+    let response = await CLEODUCKTRA.get(`Use the format 1) ... A) ... B) ... C) ... D) ... Answer: .... Create five multiple choice questions with answers about: ${this.content}.`);
+    console.log(response);
+    response = response.replace(/Answer: ([A-Za-z])\)/g, "\nAnswer: $1\*")
+    response = response.replace(/([A-Za-z]\) )/g, "\n$1")
+    let lines = response.split("\n");
+    let prompt = "";
+    let answers = [];
+    let correct = "";
+    for (let l in lines) {
+      let line = lines[l];
+      let mPrompt = line.match(/[0-9]+\)(.*)/);
+      if (mPrompt) {
+        prompt = mPrompt[1];
+        continue;
+      }
+      let mAnswer = line.match(/^[A-Za-z]\)(.*)/);
+      if (mAnswer) {
+        answers.push(mAnswer[1]);
+      }
+      let mCorrect = line.match(/Answer: ([A-Z])/);
+      let letters = "ABCDEFG";
+      if (mCorrect) {
+        correct = letters.indexOf(mCorrect[1]);
+        let question = {
+          prompt: prompt,
+          answers: answers,
+          correct: correct,
+          created: false
+        }
+        this.quiz.push(question);
+        prompt = "";
+        answers = [];
+        correct = "";
+      }
+    }
+  }
+
+  async genQuiz() {
+    if (this.bank == undefined) {
+      await this.getBank();
+    }
+    for (let q in this.quiz) {
+      let question = this.quiz[q];
+      let answers = [];
+      for (let a in question.answers) {
+        let answer = question.answers[a];
+        answers.push({
+          answer_weight: a == question.correct ? 100 : 0,
+          numerical_answer_type: "exact_answer",
+          answer_text: answer
+        })
+      }
+      await $.post(`/courses/${ENV.COURSE_ID}/question_banks/${this.bank.assessment_question_bank.id}/assessment_questions`, {
+        question: {
+          question_name: this.input,
+          question_type: "multiple_choice_question",
+          points_possible: 1,
+          question_text: `<p>${question.prompt}</p>`,
+          answers: answers
+        }
+      }); 
+    }
   }
 
   createPageBody() {
@@ -127,14 +229,14 @@ class CleoDucktraTopic {
       keywords += `<li><strong>${keyword.keyword}:</strong> ${keyword.definition}</li>`
     }
     keywords += `</ul>`;
-    let outcomes = `<ol>`;
+    let outcomes = `<ul>`;
     for (let o in this.outcomes) {
       let outcome = this.outcomes[o];
       outcomes += `<li>${outcome}</li>`
     }
-    keywords += "</ol>";
+    keywords += "</ul>";
     let content = `
-      <div class="btech-callout-box">${outcomes}</div>
+      <div class="btech-callout-box"><h3>Content Outcomes</h3>${outcomes}</div>
       <p>&nbsp;</p>
     `
     if (this.includeVideo) {
@@ -191,19 +293,20 @@ class CleoDucktraTopic {
     this.video = video;
   }
 
-  async genQuiz() {
-    
-  }
-
   async genContent() {
     let content = await CLEODUCKTRA.get(`Teach me about ${this.description} for a course on ${this.objective.description} in ${this.objective.course.name}. format in html. include headers and examples. the top level header is h2.`);
     this.content = content;
+    this.objective.course.buildStep = `Generating keywords for objective: ${this.objective.name} topic: ${this.name}`;
     await this.genKeywords();
+    this.objective.course.buildStep = `Generating outcomes for objective: ${this.objective.name} topic: ${this.name}`;
     await this.genOutcomes();
     if (this.includeQuiz) {
+      this.objective.course.buildStep = `Generating quiz questions for objective: ${this.objective.name} topic: ${this.name}`;
+      await this.genQuizQuestions();
       await this.genQuiz();
     }
     if (this.includeVideo) {
+      this.objective.course.buildStep = `Generating a video transcript for objective: ${this.objective.name} topic: ${this.name}`;
       await this.genVideo();
     }
   }
@@ -212,18 +315,21 @@ class CleoDucktraTopic {
 (async function () {
   let vueString = '';
   //load the resources
-  await $.get(SOURCE_URL + '/custom_features/cleoducktra/course-outline.vue', null, function (html) {
+  await $.get(SOURCE_URL + '/custom_features/cleoducktra/content-outline.vue', null, function (html) {
     vueString = html.replace("<template>", "").replace("</template>", "");
   }, 'text');
-  Vue.component('cleoducktra-course-outline', {
+  Vue.component('cleoducktra-content-outline', {
     template: vueString,
     mounted: function() {
     },
     data: function() {
       return {
         awaitingResponse: false,
-        state: "course",
-        course: new CleoDucktraCourse("") 
+        state: "select type",
+        contentType: "",
+        singleModule: "", //placeholder variable to create the objective for a single module
+        singleTopic: "", //placeholder variable to create the topic for a single page 
+        course: new CleoDucktraCourse(ENV.COURSE.long_name)
       }
     },
     methods: {
@@ -248,15 +354,34 @@ class CleoDucktraTopic {
       //   }); 
       //   question.created = true;
       // },
-      getObjectives: async function() {
-        this.awaitingResponse = true;
-        this.course.getObjectives();
-        this.awaitingResponse = false;
-        this.state = "objectives";
-      },
       buildCourse: async function() {
         this.state = "build";
         await this.course.build();
+        this.state = "objectives";
+      },
+      createCourse: async function() {
+        //go straight to the objectives if a course, else get module info
+        if (this.contentType == 'Course') {
+          this.course.getObjectives();
+          this.state = "objectives";
+        } else {
+          this.state = "module";
+        }
+      },
+      createModule: async function() {
+        //go straight to the objectives if a course, else get module info
+        let objective = new CleoDucktraObjective(this.course, this.singleModule, this.singleModule);
+        this.course.objectives.push(objective);
+        if (this.contentType == 'Module') {
+          objective.getTopics();
+          this.state = "objectives";
+        } else {
+          this.state = "page";
+        }
+      },
+      createPage: async function() {
+        let topic = new CleoDucktraTopic(this.course.objectives[0], this.singleTopic, this.singleTopic)
+        this.course.objectives[0].topics.push(topic);
         this.state = "objectives";
       }
     }

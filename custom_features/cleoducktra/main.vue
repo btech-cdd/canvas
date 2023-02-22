@@ -51,12 +51,11 @@
 
         <!--Course Outline-->
         <div
-          v-show="menuCurrent == 'Course Outline'"
+          v-show="menuCurrent == 'Content Outline'"
         >
-          <cleoducktra-course-outline
-          ></cleoducktra-course-outline>
+          <cleoducktra-content-outline
+          ></cleoducktra-content-outline>
         </div>
-
       </div>
     </div>
   </div>

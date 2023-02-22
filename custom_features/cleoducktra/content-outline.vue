@@ -2,16 +2,59 @@
   <div>
     <div
       style="height: auto;"
-      v-if="state=='course'"
+      v-if="state=='select type'"
     >
-      <main class="msger-chat">
-        <div>Create objectives for a course about...</div>
-      </main>
+      <div class="msger-chat">
+        <div>Will you be creating a full course, or a single module?</div>
+      </div>
       <div
         style="margin: 0;"
         class="msger-inputarea">
-        <input @keyup.enter="getObjectives" v-model="course.name" type="text" class="msger-input" placeholder="course topic....">
-        <button @click="getObjectives();" class="msger-btn">Create</button>
+        <button @click="contentType = 'Course'; state = 'course';" class="msger-btn">Course</button>
+        <button @click="contentType = 'Module'; state = 'course'" class="msger-btn">Module</button>
+        <button @click="contentType = 'Page'; state = 'course'" class="msger-btn">Page</button>
+      </div>
+    </div>
+    <div
+      style="height: auto;"
+      v-if="state=='course'"
+    >
+      <div class="msger-chat">
+        <div>Create content for a course about <span v-if="contentType=='Module'">(provides context for your module)</span>...</div>
+      </div>
+      <div
+        style="margin: 0;"
+        class="msger-inputarea">
+        <input @keyup.enter="createCourse" v-model="course.name" type="text" class="msger-input" placeholder="course topic....">
+        <button @click="createCourse();" class="msger-btn">Next</button>
+      </div>
+    </div>
+    <div
+      style="height: auto;"
+      v-if="state=='module'"
+    >
+      <div class="msger-chat">
+        <div>What is the learning outcome for your module?</div>
+      </div>
+      <div
+        style="margin: 0;"
+        class="msger-inputarea">
+        <input @keyup.enter="createModule" v-model="singleModule" type="text" class="msger-input" placeholder="module topic....">
+        <button @click="createModule();" class="msger-btn">Next</button>
+      </div>
+    </div>
+    <div
+      style="height: auto;"
+      v-if="state=='page'"
+    >
+      <div class="msger-chat">
+        <div>What is the learning outcome for your page?</div>
+      </div>
+      <div
+        style="margin: 0;"
+        class="msger-inputarea">
+        <input @keyup.enter="createPage" v-model="singleTopic" type="text" class="msger-input" placeholder="module topic....">
+        <button @click="createPage();" class="msger-btn">Next</button>
       </div>
     </div>
     <div
@@ -24,7 +67,7 @@
       v-if="state=='objectives'"
       class="cleoducktra-content"
     >
-      <main 
+      <div
         class="msger-chat">
         <div
           class="objectives-wrapper"
@@ -68,12 +111,7 @@
                   <div>
                     <span>Create Quiz Questions</span>
                   </div>
-                  <div>
-                    <input type="checkbox" v-model="topic.includeVideo">
-                  </div>
-                  <div>
-                    <span>Create Video Script</span>
-                  </div>
+                  <!--No video for right now...-->
                 </div>
               </div>
             </div>
@@ -92,12 +130,12 @@
         >
           Loading new objectives...
         </div>
-      </main>
+      </div>
       <div
         style="margin: 0; text-align: right;"
         class="msger-inputarea">
         <button @click="buildCourse();" class="msger-btn">Build</button>
-        <button @click="state = 'course'; course.name=''; objectives = [];" class="msger-btn red">Restart</button>
+        <button @click="state = 'select type'; course.name=ENV.COURSE.long_name; singleModule = ''; course.objectives = [];" class="msger-btn red">Restart</button>
       </div>
     </div>
   </div>
