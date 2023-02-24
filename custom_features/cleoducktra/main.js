@@ -123,7 +123,7 @@
           this.show = true;
         })
 
-        if (ENV.course_id != undefined) {
+        if (ENV.COURSE_ID != undefined) {
           this.menus.push("Content Outline");
         }
         if (ENV.QUIZ != undefined) {
