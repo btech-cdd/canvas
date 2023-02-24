@@ -53,7 +53,7 @@
         let correct = "";
         for (let l in lines) {
           let line = lines[l];
-          let mPrompt = line.match(/Q:(.*)/);
+          let mPrompt = line.match(/[0-9]+\)(.*)/);
           if (mPrompt) {
             prompt = mPrompt[1];
             continue;
