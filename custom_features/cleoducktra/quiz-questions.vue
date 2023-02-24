@@ -30,18 +30,23 @@
         class="msger-chat">
         <div
           v-for="question in questions"
-          class="question-wrapper"
         >
-          <p>{{question.prompt}}</p>
-          <ol v-show="!question.created">
-            <li v-for="answer in question.answers">{{answer}}</li>
-          </ol>
-          <p v-show="!question.created">Correct answer: {{question.correct + 1}}</p>
           <div
-            style="text-align: right;"
+            v-if="question.include"
+            class="question-wrapper"
           >
-            <button v-if="!question.created" @click="createQuestion(question);" class="msger-btn">Create</button>
-            <button v-else @click="" class="msger-btn red">Created</button>
+            <p>{{question.prompt}}</p>
+            <ol v-show="!question.created">
+              <li v-for="answer in question.answers">{{answer}}</li>
+            </ol>
+            <p v-show="!question.created">Correct answer: {{question.correct + 1}}</p>
+            <div
+              style="text-align: right;"
+            >
+              <button v-show="!question.created" @click="question.include = false" class="msger-btn blue">Created</button>
+              <button v-show="!question.created" @click="createQuestion(question);" class="msger-btn">Create</button>
+              <button v-show="question.created" @click="" class="msger-btn blue">Created</button>
+            </div>
           </div>
         </div>
       </main>

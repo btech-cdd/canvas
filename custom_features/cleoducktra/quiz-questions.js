@@ -70,7 +70,8 @@
               prompt: prompt,
               answers: answers,
               correct: correct,
-              created: false
+              created: false,
+              include: true,
             }
             this.questions.push(question);
             prompt = "";
