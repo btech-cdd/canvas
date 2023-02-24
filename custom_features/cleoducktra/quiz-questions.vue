@@ -43,7 +43,7 @@
             <div
               style="text-align: right;"
             >
-              <button v-show="!question.created" @click="question.include = false" class="msger-btn blue">Created</button>
+              <button v-show="!question.created" @click="question.include = false" class="msger-btn red">Delete</button>
               <button v-show="!question.created" @click="createQuestion(question);" class="msger-btn">Create</button>
               <button v-show="question.created" @click="" class="msger-btn blue">Created</button>
             </div>
