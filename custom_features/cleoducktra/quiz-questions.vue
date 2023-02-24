@@ -40,7 +40,7 @@
           <div
             style="text-align: right;"
           >
-            <button v-if="qestion.created" @click="createQuestion(question);" class="msger-btn">Create</button>
+            <button v-if="question.created" @click="createQuestion(question);" class="msger-btn">Create</button>
             <button v-else @click="" class="msger-btn red">Created</button>
           </div>
         </div>
