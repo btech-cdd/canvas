@@ -33,10 +33,10 @@
           class="question-wrapper"
         >
           <p>{{question.prompt}}</p>
-          <ol>
+          <ol v-show="!question.created">
             <li v-for="answer in question.answers">{{answer}}</li>
           </ol>
-          <p>Correct answer: {{question.correct + 1}}</p>
+          <p v-show="!question.created">Correct answer: {{question.correct + 1}}</p>
           <div
             style="text-align: right;"
           >
