@@ -126,6 +126,9 @@
         if (ENV.course_id != undefined) {
           this.menus.push("Content Outline");
         }
+        if (ENV.QUIZ != undefined) {
+          this.menus.push("Quiz Questions");
+        }
         // "Assignments",
         // "Quiz Questions"
       },
