@@ -24,7 +24,7 @@
           answers.push({
             answer_weight: a == question.correct ? 100 : 0,
             numerical_answer_type: "exact_answer",
-            answer_text: answer
+            answer_text: answer,
           })
         }
         await $.post(`/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/questions`, {
