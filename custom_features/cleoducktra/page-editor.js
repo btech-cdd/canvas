@@ -30,6 +30,7 @@
         let editType = this.editType;
         let content = TOOLBAR.editor.getContent();
         this.content = content;
+        console.log(content);
         let tokenCount = content.split(" ").length;
         console.log(tokenCount);
         if (tokenCount < 500) {
@@ -47,6 +48,7 @@
           contentArr.filter(item => item);
 
           let revision = await CLEODUCKTRA.get(`${req} ${TOOLBAR.editor.getBody().innerHTML}`);
+          console.log(revision);
           let revisionArr = revision.split("\n");
           revisionArr.map(s => s.trim());
           revisionArr.filter(item => item);
