@@ -109,6 +109,7 @@
     await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/message.js");
     await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/quiz-questions.js");
     await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/content-outline.js");
+    await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/page-editor.js");
 
     //create vue object
     $('body').append(vueString);
