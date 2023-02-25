@@ -47,7 +47,7 @@
           console.log(contentArr);
           console.log(respArr);
 
-          let diffs = Diff.diffArrays(content, resp);
+          let diffs = Diff.diffArrays(contentArr, respArr);
           let displayRevisions = "";
           diffs.forEach((part) => {
             const color = part.added ? 'green' : part.removed ? 'red' : 'grey';
