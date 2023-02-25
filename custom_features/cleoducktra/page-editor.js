@@ -46,7 +46,7 @@
 
           let resp = await CLEODUCKTRA.get(`${req} ${TOOLBAR.editor.getBody().innerHTML}`);
           let respArr = resp.split("\n");
-          respArr.filter(item => item);
+          respArr.filter(item => item.trim());
           console.log(contentArr);
           console.log(respArr);
 
