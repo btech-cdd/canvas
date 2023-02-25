@@ -329,7 +329,7 @@ class CleoDucktraTopic {
         contentType: "",
         singleModule: "", //placeholder variable to create the objective for a single module
         singleTopic: "", //placeholder variable to create the topic for a single page 
-        course: new CleoDucktraCourse(ENV.COURSE.long_name)
+        course: new CleoDucktraCourse(ENV?.COURSE?.long_name ?? "")
       }
     },
     methods: {
