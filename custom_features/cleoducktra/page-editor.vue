@@ -28,7 +28,7 @@
         <div
           v-if="tooLong"
         >
-          Content is too long. Cannot edit content longer than 1000 tokens. 
+          Content is too long. Cannot edit content longer than 1000 tokens. Try splitting your content into multiple pages.
         </div>
         <div
           v-html="revision"
