@@ -42,8 +42,11 @@
             req = "Edit the content of this html for spelling and grammar."
           }
           let contentArr = content.split("\n");
+          contentArr.filter(item => item);
+
           let resp = await CLEODUCKTRA.get(`${req} ${TOOLBAR.editor.getBody().innerHTML}`);
           let respArr = resp.split("\n");
+          respArr.filter(item => item);
           console.log(contentArr);
           console.log(respArr);
 
@@ -51,6 +54,7 @@
           let displayRevisions = "";
           diffs.forEach((part) => {
             const color = part.added ? 'green' : part.removed ? 'red' : 'grey';
+            console.log(part);
             displayRevisions += `<div style="color: ${color};">${part.value}</div>`
           })
           this.revision = displayRevisions;
