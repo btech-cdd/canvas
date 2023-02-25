@@ -29,7 +29,7 @@
         <div
           v-if="tooLong"
         >
-          Content is too long. Cannot edit content longer than 1000 tokens. Try splitting your content into multiple pages.
+          Content is too long. Your content shouldn't be more than approximately 500 words. However, exact word count will vary depedning on the ammount of images, videos, and page stylings you use. Try highlighting a section of the text to edit just that piece or split the page into multiple pages.
         </div>
         <div
           v-html="revision"

@@ -18,6 +18,7 @@
         editType: "",
         state: "select type",
         show: "revision",
+        selection: false,
         editOptions: [
           'Clarity',
           'Concision',
@@ -34,14 +35,25 @@
         this.revision = '';
         this.diffs = '';
         this.content = '';
+        this.selection = false;
       },
       applyEdits() {
+        if (this.selection) {
+          TOOLBAR.editor.selection.setContent(this.revision);
+        } else {
+          TOOLBAR.editor.setContent(this.revision);
+        }
 
       },
       async editPage() {
         this.awaitingResponse = true;
         let editType = this.editType;
+        console.log(TOOLBAR.editor.selection.getContent());
         let content = TOOLBAR.editor.getContent();
+        if (TOOLBAR.editor.selection.getContent() !== "") {
+          content = TOOLBAR.editor.selection.getContent();
+          this.selection = true;
+        }
         content = html_beautify(content);
         let contentArr = content.split("\n");
         contentArr.map(s => s.trim());
