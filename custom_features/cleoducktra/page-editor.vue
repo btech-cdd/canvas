@@ -18,6 +18,7 @@
       v-if="state=='compare'"
     >
       <div
+        class="msger-chat"
         v-html="revision"
       >
       </div>
