@@ -51,16 +51,16 @@
         if (tokenCount < 1000) {
           let req = "";
           if (editType == "Concision") {
-            req = "Edit the content of this html to be more concise."
+            req = "Edit the content of this html to be more concise"
           } else if (editType == "Clarity") {
-            req = "Edit the content of this html to be more clear."
+            req = "Edit the content of this html to be more clear"
           } else if (editType == "Accuracy") {
-            req = "Edit the content of this html for factual accuracy."
+            req = "Edit the content of this html for factual accuracy"
           } else if (editType == "Spelling/Grammar") {
-            req = "Edit the content of this html for spelling and grammar."
+            req = "Edit the content of this html for spelling and grammar"
           }
 
-          let revision = await CLEODUCKTRA.get(`${req} ${content}`);
+          let revision = await CLEODUCKTRA.get(`${req}, but keep all links, videos, and images. ${content}`);
           this.awaitingResponse = false;
           revision = html_beautify(revision);
           let revisionArr = revision.split("\n");
