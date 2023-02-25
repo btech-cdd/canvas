@@ -32,8 +32,9 @@
       <div
         style="margin: 0;"
         class="msger-inputarea">
-        <button @click="show = 'diffs';" class="msger-btn blue">Show Differences</button>
-        <button @click="show = 'revision';" class="msger-btn blue">Show Revised Page</button>
+        <button @click="show = 'diffs';" class="msger-btn blue">Show Changes</button>
+        <button @click="show = 'revision';" class="msger-btn blue">Show With Edits</button>
+        <button @click="applyEdits();" class="msger-btn">Apply Edits</button>
       </div>
     </div>
   </div>
