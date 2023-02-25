@@ -110,6 +110,7 @@
     await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/quiz-questions.js");
     await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/content-outline.js");
     await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/page-editor.js");
+    await $.getScript("https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.1.0/diff.min.js");
 
     //create vue object
     $('body').append(vueString);
@@ -129,6 +130,9 @@
         }
         if (ENV.QUIZ != undefined) {
           this.menus.push("Quiz Questions");
+        }
+        if (ENV.WIKI_PAGE != undefined) {
+          this.menus.push("Page Editor");
         }
         // "Assignments",
         // "Quiz Questions"
