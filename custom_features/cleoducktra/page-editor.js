@@ -26,7 +26,7 @@
     methods: {
       async editPage() {
         let editType = this.editType;
-        let content = TOOLBAR.editor.getBody().innerHTML;
+        let content = TOOLBAR.editor.getContent();
         this.content = content;
         let tokenCount = content.split(" ").length;
         console.log(tokenCount);
