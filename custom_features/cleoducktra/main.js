@@ -111,6 +111,7 @@
     await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/content-outline.js");
     await $.getScript(SOURCE_URL + "/custom_features/cleoducktra/page-editor.js");
     await $.getScript("https://cdnjs.cloudflare.com/ajax/libs/jsdiff/5.1.0/diff.min.js");
+    await $.getScript("https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.14.7/beautify.min.js");
 
     //create vue object
     $('body').append(vueString);
