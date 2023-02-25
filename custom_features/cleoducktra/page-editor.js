@@ -26,7 +26,17 @@
       }
     },
     methods: {
+      restart() {
+        this.state = 'select type';
+        this.revision = '';
+        this.diffs = '';
+        this.content = '';
+      },
+      applyEdits() {
+
+      },
       async editPage() {
+        this.awaitingResponse = true;
         let editType = this.editType;
         let content = TOOLBAR.editor.getContent();
         this.content = content;
@@ -48,6 +58,7 @@
           contentArr.filter(item => item);
 
           let revision = await CLEODUCKTRA.get(`${req} ${TOOLBAR.editor.getBody().innerHTML}`);
+          this.awaitingResponse = false;
           console.log(revision);
           let revisionArr = revision.split("\n");
           revisionArr.map(s => s.trim());

@@ -19,21 +19,27 @@
     >
       <div
         class="msger-chat"
-        v-html="revision"
-        v-if="show == 'revision'"
       >
-      </div>
-      <div
-        class="msger-chat"
-        v-html="diffs"
-        v-if="show == 'diffs'"
-      >
+        <div
+          v-if="awaitingResponse"
+        >
+          Editing...
+        </div>
+        <div
+          v-html="revision"
+          v-if="show == 'revision'"
+        ></div>
+        <div
+          v-html="diffs"
+          v-if="show == 'diffs'"
+        ></div>
       </div>
       <div
         style="margin: 0;"
         class="msger-inputarea">
         <button @click="show = 'diffs';" class="msger-btn blue">Show Changes</button>
         <button @click="show = 'revision';" class="msger-btn blue">Show With Edits</button>
+        <button @click="restart();" class="msger-btn red">Restart</button>
         <button @click="applyEdits();" class="msger-btn">Apply Edits</button>
       </div>
     </div>
