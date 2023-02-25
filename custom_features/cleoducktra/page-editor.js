@@ -57,7 +57,7 @@
           contentArr.map(s => s.trim());
           contentArr.filter(item => item);
 
-          let revision = await CLEODUCKTRA.get(`${req} ${TOOLBAR.editor.getBody().innerHTML}`);
+          let revision = await CLEODUCKTRA.get(`${req} ${content}`);
           this.awaitingResponse = false;
           revision = html_beautify(revision);
           let revisionArr = revision.split("\n");
