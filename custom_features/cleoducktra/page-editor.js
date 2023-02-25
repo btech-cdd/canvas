@@ -73,6 +73,8 @@
           })
           this.diffs = displayRevisions;
           this.revision = revision;
+        } else {
+          console.log("TOO BIG: " + tokenCount + " TOKENS");
         }
       }
     }
