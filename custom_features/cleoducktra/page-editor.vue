@@ -10,7 +10,7 @@
       <div
         style="margin: 0;"
         class="msger-inputarea">
-        <button v-for="option in editOptions" @click="contentType = option; state = 'compare';" class="msger-btn">{{option}}</button>
+        <button v-for="option in editOptions" @click="editType = option; state = 'compare'; editPage();" class="msger-btn">{{option}}</button>
       </div>
     </div>
     <div

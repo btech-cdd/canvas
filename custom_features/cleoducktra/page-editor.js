@@ -11,6 +11,7 @@
     data: function() {
       return {
         awaitingResponse: false,
+        editType: "",
         state: "select type",
         editOptions: [
           'Clarity',
@@ -20,6 +21,12 @@
       }
     },
     methods: {
+      editPage() {
+        let editType = this.editType;
+        let content = TOOLBAR.editor.getBody().innerHTML;
+        let tokenCount = content.split(" ").length;
+        console.log(tokenCount);
+      }
     }
   });
 })();
