@@ -43,7 +43,7 @@
         } else {
           TOOLBAR.editor.setContent(this.revision);
         }
-
+        this.restart();
       },
       async editPage() {
         this.awaitingResponse = true;
