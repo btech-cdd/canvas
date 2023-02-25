@@ -48,7 +48,7 @@
         contentArr.filter(item => item);
         this.content = content;
         let tokenCount = content.split(" ").length;
-        if (tokenCount < 500) {
+        if (tokenCount < 1000) {
           let req = "";
           if (editType == "Concision") {
             req = "Edit the content of this html to be more concise."
