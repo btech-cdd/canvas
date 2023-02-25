@@ -55,7 +55,7 @@
           diffs.forEach((part) => {
             const color = part.added ? 'green' : part.removed ? 'red' : 'grey';
             console.log(part);
-            displayRevisions += `<div style="color: ${color};">${part.value}</div>`
+            displayRevisions += `<div style="color: ${color};">${part.value.join(" ")}</div>`
           })
           this.revision = displayRevisions;
         }
