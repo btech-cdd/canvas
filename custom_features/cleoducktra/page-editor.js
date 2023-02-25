@@ -41,8 +41,13 @@
           } else if (editType == "Spelling/Grammar") {
             req = "Edit the content of this html for spelling and grammar."
           }
+          let contentArr = content.split("\n");
           let resp = await CLEODUCKTRA.get(`${req} ${TOOLBAR.editor.getBody().innerHTML}`);
-          let diffs = Diff.diffLines(content, resp);
+          let respArr = resp.split("\n");
+          console.log(contentArr);
+          console.log(respArr);
+
+          let diffs = Diff.diffArrays(content, resp);
           let displayRevisions = "";
           diffs.forEach((part) => {
             const color = part.added ? 'green' : part.removed ? 'red' : 'grey';
