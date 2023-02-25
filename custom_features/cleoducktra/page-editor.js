@@ -40,9 +40,7 @@
         let editType = this.editType;
         let content = TOOLBAR.editor.getContent();
         this.content = content;
-        console.log(content);
         let tokenCount = content.split(" ").length;
-        console.log(tokenCount);
         if (tokenCount < 500) {
           let req = "";
           if (editType == "Concision") {
@@ -54,12 +52,14 @@
           } else if (editType == "Spelling/Grammar") {
             req = "Edit the content of this html for spelling and grammar."
           }
+          content = html_beautify(content);
           let contentArr = content.split("\n");
+          contentArr.map(s => s.trim());
           contentArr.filter(item => item);
 
           let revision = await CLEODUCKTRA.get(`${req} ${TOOLBAR.editor.getBody().innerHTML}`);
           this.awaitingResponse = false;
-          console.log(revision);
+          revision = html_beautify(revision);
           let revisionArr = revision.split("\n");
           revisionArr.map(s => s.trim());
           revisionArr.filter(item => item);
