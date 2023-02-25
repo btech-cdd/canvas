@@ -11,7 +11,7 @@
     data: function() {
       return {
         awaitingResponse: false,
-        state: "prompt",
+        state: "select type",
         editOptions: [
           'Clarity',
           'Concision',
