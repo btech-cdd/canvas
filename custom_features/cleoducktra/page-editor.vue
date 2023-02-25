@@ -17,6 +17,10 @@
       style="height: auto;"
       v-if="state=='compare'"
     >
+      <div
+        v-html="revision"
+      >
+      </div>
     </div>
   </div>
 </template>
