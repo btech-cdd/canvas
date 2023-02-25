@@ -14,6 +14,7 @@
         revision: "",
         diffs: "",
         awaitingResponse: false,
+        tooLong: false,
         editType: "",
         state: "select type",
         show: "revision",
@@ -28,6 +29,8 @@
     methods: {
       restart() {
         this.state = 'select type';
+        this.awaitingResponse = false;
+        this.tooLong = false;
         this.revision = '';
         this.diffs = '';
         this.content = '';
@@ -39,6 +42,10 @@
         this.awaitingResponse = true;
         let editType = this.editType;
         let content = TOOLBAR.editor.getContent();
+        content = html_beautify(content);
+        let contentArr = content.split("\n");
+        contentArr.map(s => s.trim());
+        contentArr.filter(item => item);
         this.content = content;
         let tokenCount = content.split(" ").length;
         if (tokenCount < 500) {
@@ -52,10 +59,6 @@
           } else if (editType == "Spelling/Grammar") {
             req = "Edit the content of this html for spelling and grammar."
           }
-          content = html_beautify(content);
-          let contentArr = content.split("\n");
-          contentArr.map(s => s.trim());
-          contentArr.filter(item => item);
 
           let revision = await CLEODUCKTRA.get(`${req} ${content}`);
           this.awaitingResponse = false;
@@ -74,6 +77,7 @@
           this.diffs = displayRevisions;
           this.revision = revision;
         } else {
+          this.tooLong = true;
           console.log("TOO BIG: " + tokenCount + " TOKENS");
         }
       }

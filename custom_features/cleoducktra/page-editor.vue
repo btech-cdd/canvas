@@ -26,6 +26,11 @@
           Editing...
         </div>
         <div
+          v-if="tooLong"
+        >
+          Content is too long. Cannot edit content longer than 500 tokens. 
+        </div>
+        <div
           v-html="revision"
           v-if="show == 'revision'"
         ></div>
