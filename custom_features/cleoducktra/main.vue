@@ -56,6 +56,14 @@
           <cleoducktra-content-outline
           ></cleoducktra-content-outline>
         </div>
+
+        <!--Page Editor-->
+        <div
+          v-show="menuCurrent == 'Page Editor'"
+        >
+          <cleoducktra-page-editor
+          ></cleoducktra-page-editor>
+        </div>
       </div>
     </div>
   </div>
