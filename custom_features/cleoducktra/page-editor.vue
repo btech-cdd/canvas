@@ -16,6 +16,7 @@
     <div
       style="height: auto;"
       v-if="state=='compare'"
+      class="cleoducktra-content"
     >
       <div
         class="msger-chat"
