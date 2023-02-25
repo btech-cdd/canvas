@@ -20,7 +20,20 @@
       <div
         class="msger-chat"
         v-html="revision"
+        v-if="show == 'revision'"
       >
+      </div>
+      <div
+        class="msger-chat"
+        v-html="diffs"
+        v-if="show == 'diffs'"
+      >
+      </div>
+      <div
+        style="margin: 0;"
+        class="msger-inputarea">
+        <button @click="show = 'diffs';" class="msger-btn blue">Show Differences</button>
+        <button @click="show = 'revision';" class="msger-btn blue">Show Revised Page</button>
       </div>
     </div>
   </div>

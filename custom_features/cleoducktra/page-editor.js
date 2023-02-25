@@ -12,9 +12,11 @@
       return {
         content: "",
         revision: "",
+        diffs: "",
         awaitingResponse: false,
         editType: "",
         state: "select type",
+        show: "revision",
         editOptions: [
           'Clarity',
           'Concision',
@@ -45,20 +47,20 @@
           contentArr.filter(item => item);
 
           let resp = await CLEODUCKTRA.get(`${req} ${TOOLBAR.editor.getBody().innerHTML}`);
-          let respArr = resp.split("\n");
-          respArr.map(s => s.trim());
-          respArr.filter(item => item);
-          console.log(contentArr);
-          console.log(respArr);
+          let revision = reps;
+          let revisionArr = resp.split("\n");
+          revisionArr.map(s => s.trim());
+          revisionArr.filter(item => item);
 
-          let diffs = Diff.diffArrays(contentArr, respArr);
+          let diffs = Diff.diffArrays(contentArr, revisionArr);
           let displayRevisions = "";
           diffs.forEach((part) => {
             const color = part.added ? 'green' : part.removed ? 'red' : 'grey';
             console.log(part);
             displayRevisions += `<div style="color: ${color};">${part.value.join(" ")}</div>`
           })
-          this.revision = displayRevisions;
+          this.diffs = displayRevisions;
+          this.revision = revision;
         }
       }
     }
