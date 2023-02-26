@@ -57,9 +57,10 @@
       initialData: {
         apikey: RCE.openAIKey 
       },
-      onSubmit: function(api) {
+      onSubmit: async function(api) {
         data = api.getData();
         console.log(data.apikey);
+        await RCE.setOpenAIKey(data.apikey);
 
         api.close();
       }
