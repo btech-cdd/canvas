@@ -55,7 +55,7 @@
         }
       ],
       initialData: {
-        apikey: "this.openAIKey"
+        apikey: RCE.openAIKey
       },
       onSubmit: async function(api) {
         data = api.getData();
