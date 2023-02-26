@@ -1,3 +1,6 @@
+//Run in custom js. You'll want to:
+////1. Filter in some way which pages this runs on, I just do a regex checking the url to see if /edit is at the end of the url.
+////2. wait for the rce to be loaded and initialized. I'm still experimenting on the best way to do this so don't have any good suggestions for you.
 (function() {
   //save current settings so you don't lose anything Canvas has set up
   let savedSettings = tinymce.activeEditor.settings;
