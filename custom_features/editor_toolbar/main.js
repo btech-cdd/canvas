@@ -4,7 +4,7 @@
 (function() {
   RCE = {
     getEditor: async function () {
-      if (window?.tinymce?.activeEditor?.initialized === true) {
+      if (tinymce?.activeEditor?.initialized === true) {
         return;
       } else {
         await delay(500);
