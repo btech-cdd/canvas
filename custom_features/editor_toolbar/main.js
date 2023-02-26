@@ -8,6 +8,7 @@
       try {
         $.put(`/api/v1/users/self/custom_data?ns=dev.bridgetools.rce&data[openaiapikey]=${key}`);
         RCE.openAIKey = key;
+        RCE.aiRegisterConfig.initialData.apikey = key;
       } catch (err) {
         RCE.openAIKey = "";
       }
@@ -55,7 +56,7 @@
         }
       ],
       initialData: {
-        apikey: RCE.openAIKey
+        apikey: "" 
       },
       onSubmit: async function(api) {
         data = api.getData();
