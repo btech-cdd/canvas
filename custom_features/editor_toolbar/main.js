@@ -63,19 +63,19 @@
           }
         });
         editor.ui.registry.addMenuItem('ai_clarify', {
-          text: 'Register',
+          text: 'Clarify',
           onAction: function () {
             editor.insertContent('<p>Here\'s some content inserted from a basic menu!</p>');
           }
         });
         editor.ui.registry.addMenuItem('ai_quiz_generator', {
-          text: 'Register',
+          text: 'Generate Quiz Items',
           onAction: function () {
             editor.insertContent('<p>Here\'s some content inserted from a basic menu!</p>');
           }
         });
         editor.ui.registry.addMenuItem('ai_fact_check', {
-          text: 'Register',
+          text: 'Fact Check',
           onAction: function () {
             editor.insertContent('<p>Here\'s some content inserted from a basic menu!</p>');
           }
