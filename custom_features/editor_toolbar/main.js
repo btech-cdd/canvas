@@ -78,7 +78,7 @@
 
     init: async function () {
       await this.getEditor();
-      this.resetEditor();
+      this.addMenu();
       console.log(window.tinymce.activeEditor)
     }
   }
