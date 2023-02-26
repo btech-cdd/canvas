@@ -3,6 +3,23 @@
 ////2. wait for the rce to be loaded and initialized. I'm still experimenting on the best way to do this so don't have any good suggestions for you.
 (function() {
   RCE = {
+    openAIKey: "",
+    setOpenAIKey: async function (key) {
+      try {
+        $.put(`/api/v1/users/self/custom_data?ns=dev.bridgetools.rce&data[openaiapikey]=${key}`);
+        RCE.openAIKey = key;
+      } catch (err) {
+        RCE.openAIKey = "";
+      }
+    },
+    getOpenAIKey: async function () {
+      try {
+        let resp = await $.get(`/api/v1/users/self/custom_data/openaiapikey?ns=dev.bridgetools.rce`);
+        RCE.openAIKey = resp.data;
+      } catch (err) {
+        RCE.openAIKey = "";
+      }
+    },
     getEditor: async function () {
       if (tinymce?.activeEditor?.initialized === true) {
         return;
@@ -38,7 +55,7 @@
         }
       ],
       initialData: {
-        apikey: "API KEY"
+        apikey: RCE.openAIKey 
       },
       onSubmit: function(api) {
         data = api.getData();
