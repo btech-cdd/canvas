@@ -13,6 +13,7 @@
     },
 
     addMenu: function () {
+      tinymce.activeEditor.settings.menubar += " ai"
       tinymce.activeEditor.settings.menu.ai = {
         title: 'AI Tools',
         items: 'ai_register | ai_clarify | ai_quiz_generator | ai_fact_check'
