@@ -8,7 +8,6 @@
       try {
         $.put(`/api/v1/users/self/custom_data?ns=dev.bridgetools.rce&data[openaiapikey]=${key}`);
         RCE.openAIKey = key;
-        RCE.aiRegisterConfig.initialData.key = key;
       } catch (err) {
         RCE.openAIKey = "";
       }
@@ -17,9 +16,7 @@
       try {
         let resp = await $.get(`/api/v1/users/self/custom_data/openaiapikey?ns=dev.bridgetools.rce`);
         let key = resp.data;
-        console.log(key);
         RCE.openAIKey = key;
-        RCE.aiRegisterConfig.initialData.key = key;
       } catch (err) {
         RCE.openAIKey = "";
       }
@@ -41,7 +38,7 @@
           {
             type: "input",
             name: "key",
-            label: "Enter your OpenAI API Key"
+            label: "Enter your OpenAI API Key. Only required once. Your key will not display here for security."
           }
         ],
       },
