@@ -2,48 +2,6 @@
 ////1. Filter in some way which pages this runs on, I just do a regex checking the url to see if /edit is at the end of the url.
 ////2. wait for the rce to be loaded and initialized. I'm still experimenting on the best way to do this so don't have any good suggestions for you.
 (function() {
-  var dialogConfig =  {
-  title: 'Pet Name Machine',
-  body: {
-    type: 'panel',
-    items: [
-      {
-        type: 'input',
-        name: 'catdata',
-        label: 'enter the name of a cat'
-      },
-      {
-        type: 'checkbox',
-        name: 'isdog',
-        label: 'tick if cat is actually a dog'
-      }
-    ]
-  },
-  buttons: [
-    {
-      type: 'cancel',
-      name: 'closeButton',
-      text: 'Cancel'
-    },
-    {
-      type: 'submit',
-      name: 'submitButton',
-      text: 'Do Cat Thing',
-      primary: true
-    }
-  ],
-  initialData: {
-    catdata: 'initial Cat',
-    isdog: false
-  },
-  onSubmit: function (api) {
-    var data = api.getData();
-    var pet = data.isdog ? 'dog' : 'cat';
-
-    tinymce.activeEditor.execCommand('mceInsertContent', false, '<p>My ' + pet +'\'s name is: <strong>' + data.catdata + '</strong></p>');
-    api.close();
-  }
-};
   RCE = {
     getEditor: async function () {
       if (tinymce?.activeEditor?.initialized === true) {
@@ -68,7 +26,7 @@
         buttons: [
           {
             type: 'cancel',
-            name: 'closebutton',
+            name: 'closeButton',
             text: 'Cancel'
           },
           {
@@ -101,7 +59,7 @@
         editor.ui.registry.addMenuItem('ai_register', {
           text: 'Register',
           onAction: function () {
-            editor.windowManager.open(dialogConfig);
+            editor.windowManager.open(RCE.aiRegisterConfig);
           }
         });
         editor.ui.registry.addMenuItem('ai_clarify', {
