@@ -17,6 +17,7 @@
       try {
         let resp = await $.get(`/api/v1/users/self/custom_data/openaiapikey?ns=dev.bridgetools.rce`);
         let key = resp.data;
+        console.log(key);
         RCE.openAIKey = key;
         RCE.aiRegisterConfig.initialData.key = key;
       } catch (err) {
