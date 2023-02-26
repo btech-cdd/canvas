@@ -55,7 +55,7 @@
         }
       ],
       initialData: {
-        apikey: this.openAIKey 
+        apikey: "this.openAIKey"
       },
       onSubmit: async function(api) {
         data = api.getData();
