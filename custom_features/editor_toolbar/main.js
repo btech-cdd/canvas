@@ -12,6 +12,42 @@
       }
     },
 
+    aiRegisterConfig: {
+      title: "Register OpenAI API Key",
+      body: {
+        type: "panel",
+        items: [
+          {
+            type: "input",
+            name: "apikey",
+            label: "Enter your OpenAI API Key"
+          }
+        ],
+        buttons: [
+          {
+            type: 'cancel',
+            name: 'closebutton',
+            text: 'Cancel'
+          },
+          {
+            type: 'submit',
+            name: 'submitButton',
+            text: 'Add Key',
+            primary: true
+          }
+        ],
+        initialData: {
+          apikey: "API KEY"
+        },
+        onSubmit: function(api) {
+          data = api.getData();
+          console.log(data.apikey);
+
+          api.close();
+        }
+      }
+    },
+
     addMenu: function () {
       tinymce.activeEditor.settings.menubar += " ai"
       tinymce.activeEditor.settings.menu.ai = {
@@ -23,7 +59,7 @@
         editor.ui.registry.addMenuItem('ai_register', {
           text: 'Register',
           onAction: function () {
-            editor.insertContent('<p>Here\'s some content inserted from a basic menu!</p>');
+            editor.windowManager.open(this.aiRegisterConfig);
           }
         });
         editor.ui.registry.addMenuItem('ai_clarify', {
