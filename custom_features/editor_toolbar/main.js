@@ -38,7 +38,7 @@
           {
             type: "input",
             name: "key",
-            label: "Enter your OpenAI API Key. Only required once. Your key will not display here for security."
+            label: "Enter your OpenAI API Key. Only required once. \nYour key will not display here for security."
           }
         ],
       },
