@@ -23,28 +23,28 @@
             label: "Enter your OpenAI API Key"
           }
         ],
-        buttons: [
-          {
-            type: 'cancel',
-            name: 'closeButton',
-            text: 'Cancel'
-          },
-          {
-            type: 'submit',
-            name: 'submitButton',
-            text: 'Add Key',
-            primary: true
-          }
-        ],
-        initialData: {
-          apikey: "API KEY"
+      },
+      buttons: [
+        {
+          type: 'cancel',
+          name: 'closeButton',
+          text: 'Cancel'
         },
-        onSubmit: function(api) {
-          data = api.getData();
-          console.log(data.apikey);
-
-          api.close();
+        {
+          type: 'submit',
+          name: 'submitButton',
+          text: 'Add Key',
+          primary: true
         }
+      ],
+      initialData: {
+        apikey: "API KEY"
+      },
+      onSubmit: function(api) {
+        data = api.getData();
+        console.log(data.apikey);
+
+        api.close();
       }
     },
 
