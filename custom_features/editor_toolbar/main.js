@@ -137,6 +137,7 @@
 
     init: async function () {
       await this.getEditor();
+      await this.getOpenAIKey();
       this.addMenu();
       console.log(window.tinymce.activeEditor)
     }
