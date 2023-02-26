@@ -12,7 +12,41 @@
       }
     },
 
-    resetEditor: async function () {
+    addMenu: function () {
+      tinymce.activeEditor.settings.menu.ai = {
+        title: 'AI Tools',
+        items: 'ai_register | ai_clarify | ai_quiz_generator | ai_fact_check'
+      };
+
+      this.resetEditor(function() {
+        editor.ui.registry.addMenuItem('ai_register', {
+          text: 'Register',
+          onAction: function () {
+            editor.insertContent('<p>Here\'s some content inserted from a basic menu!</p>');
+          }
+        });
+        editor.ui.registry.addMenuItem('ai_clarify', {
+          text: 'Register',
+          onAction: function () {
+            editor.insertContent('<p>Here\'s some content inserted from a basic menu!</p>');
+          }
+        });
+        editor.ui.registry.addMenuItem('ai_quiz_generator', {
+          text: 'Register',
+          onAction: function () {
+            editor.insertContent('<p>Here\'s some content inserted from a basic menu!</p>');
+          }
+        });
+        editor.ui.registry.addMenuItem('ai_fact_check', {
+          text: 'Register',
+          onAction: function () {
+            editor.insertContent('<p>Here\'s some content inserted from a basic menu!</p>');
+          }
+        });
+      });
+    },
+
+    resetEditor: async function (extrasetup = (editor) => {}) {
       //save current settings so you don't lose anything Canvas has set up
       let savedSettings = tinymce.activeEditor.settings;
       //save the setup function
@@ -24,16 +58,17 @@
         
         //add your button or whatever else you want to do
         //this is just a sample button I pulled from the tinymce docs
-        editor.ui.registry.addButton('customInsertButton', {
-          text: 'My Button',
-          onAction: function (_) {
-            editor.insertContent('&nbsp;<strong>It\'s my button!</strong>&nbsp;');
-          }
-        });
+        extrasetup(editor);
+        // editor.ui.registry.addButton('customInsertButton', {
+        //   text: 'My Button',
+        //   onAction: function (_) {
+        //     editor.insertContent('&nbsp;<strong>It\'s my button!</strong>&nbsp;');
+        //   }
+        // });
       }
       //don't forget to add your button to the toolbar
       //you'll probably want to get more sophisticated in selecting which specific toolbar to add to rather than just the first one
-      savedSettings.toolbar[0].items.push("customInsertButton");
+      // savedSettings.toolbar[0].items.push("customInsertButton");
       //get rid of the current editor
       tinymce.activeEditor.destroy();
       //reset up with modified settings
