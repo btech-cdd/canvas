@@ -38,7 +38,7 @@
           {
             type: "input",
             name: "key",
-            label: "Enter your OpenAI API Key. Only required once. \nYour key will not display here for security."
+            label: "Update your OpenAI API Key."
           }
         ],
       },
@@ -61,6 +61,7 @@
       onSubmit: async function(api) {
         data = api.getData();
         if (data.key !== RCE.openAIKey);
+        this.initialData.key = data.key;
         await RCE.setOpenAIKey(data.apikey);
         console.log(RCE.openAIKey);
 
