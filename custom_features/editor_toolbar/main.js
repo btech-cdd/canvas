@@ -18,7 +18,7 @@
         items: 'ai_register | ai_clarify | ai_quiz_generator | ai_fact_check'
       };
 
-      this.resetEditor(function() {
+      this.resetEditor(function(editor) {
         editor.ui.registry.addMenuItem('ai_register', {
           text: 'Register',
           onAction: function () {
