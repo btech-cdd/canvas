@@ -70,7 +70,7 @@
             req = "Edit the content of this html for factual accuracy"
           } else if (editType == "Spelling/Grammar") {
             req = "Edit the content of this html for spelling and grammar"
-          }
+          } 
 
           let revision = await CLEODUCKTRA.get(`${req}, but keep all links, videos, and images. ${content}`);
           this.awaitingResponse = false;
