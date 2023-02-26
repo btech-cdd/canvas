@@ -61,6 +61,7 @@
         data = api.getData();
         console.log(data.apikey);
         await RCE.setOpenAIKey(data.apikey);
+        console.log(RCE.openAIKey);
 
         api.close();
       }
