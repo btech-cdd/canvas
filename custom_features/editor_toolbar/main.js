@@ -2,6 +2,7 @@
 ////1. Filter in some way which pages this runs on, I just do a regex checking the url to see if /edit is at the end of the url.
 ////2. wait for the rce to be loaded and initialized. I'm still experimenting on the best way to do this so don't have any good suggestions for you.
 (function() {
+  return;
   RCE = {
     openAIKey: "",
     setOpenAIKey: async function (key) {
@@ -29,6 +30,10 @@
         await delay(500);
         return this.getEditor();
       }
+    },
+
+    aiClarify: {
+
     },
 
     aiRegisterConfig: {
