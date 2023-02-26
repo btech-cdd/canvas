@@ -94,6 +94,7 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
   $.getScript("https://bridgetools.dev/canvas/scripts.js").done(function() {
     feature("login_page", {}, /^\/login/);
     feature("editor_toolbar/manage-settings", {}, /^\/btech-toolbar/);
+    if (IS_ME) feature("editor_toolbar/main", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
     feature("img-zoom", {}, /users/);
     feature("side-menu", {}, "");
 
