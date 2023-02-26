@@ -43,7 +43,7 @@
 
     init: async function () {
       await this.getEditor();
-      resetEditor();
+      this.resetEditor();
       console.log(window.tinymce.activeEditor)
     }
   }
