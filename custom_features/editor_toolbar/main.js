@@ -58,8 +58,8 @@
       this.resetEditor(function(editor) {
         editor.ui.registry.addMenuItem('ai_register', {
           text: 'Register',
-          onAction: () => {
-            editor.windowManager.open(this.aiRegisterConfig);
+          onAction: function () {
+            editor.windowManager.open(RCE.aiRegisterConfig);
           }
         });
         editor.ui.registry.addMenuItem('ai_clarify', {
