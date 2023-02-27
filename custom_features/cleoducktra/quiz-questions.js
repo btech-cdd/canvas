@@ -41,7 +41,7 @@
       submitRequest: async function() {
         let input = this.input;
         this.awaitingResponse = true;
-        let response = await CLEODUCKTRA.get(`Create ten multiple choice questions with answers about ${input}. Use the format 1) question A) option Answer: ...`);
+        let response = await CLEODUCKTRA.get(`Create ten multiple choice questions with 4 options and answers about ${input}. Use the format 1) question A) option Answer: ...`);
         this.awaitingResponse = false;
         response = response.replace(/Answer: ([A-Za-z])\)/g, "\nAnswer: $1\*")
         response = response.replace(/([A-Za-z]\) )/g, "\n$1")
