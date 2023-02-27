@@ -72,7 +72,7 @@
             req = "Edit the content of this html for spelling and grammar"
           } 
 
-          let revision = await CLEODUCKTRA.get(`${req}, but keep all links, videos, and images. ${content}`);
+          let revision = await CLEODUCKTRA.get(`${req} and don't remove existing media tags. ${content}`);
           this.awaitingResponse = false;
           revision = html_beautify(revision);
           let revisionArr = revision.split("\n");
