@@ -67,7 +67,7 @@
           } else if (editType == "Clarity") {
             req = "Edit the content of this html to be more clear"
           } else if (editType == "Accuracy") {
-            req = "Edit the content of this html for factual accuracy"
+            req = "Correct any factually incorrect statements in the following html and then wrap the statement in italics tags."
           } else if (editType == "Spelling/Grammar") {
             req = "Edit the content of this html for spelling and grammar"
           } 
