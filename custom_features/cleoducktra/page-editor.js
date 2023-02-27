@@ -69,7 +69,7 @@
           } else if (editType == "Accuracy") {
             req = "Correct any factually incorrect statements in the following html and then wrap the statement in italics tags."
           } else if (editType == "Spelling/Grammar") {
-            req = "Edit the content of this html for spelling and grammar"
+            req = "Edit the content of this html for spelling and grammar using American spelling."
           } 
 
           let revision = await CLEODUCKTRA.get(`${req}. ${content}`);
