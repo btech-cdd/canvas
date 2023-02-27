@@ -46,7 +46,7 @@
         <button @click="show = 'diffs';" class="msger-btn blue">Show Changes</button>
         <button @click="show = 'revision';" class="msger-btn blue">Show With Edits</button>
         <button @click="restart();" class="msger-btn red">Restart</button>
-        <button @click="applyEdits();" class="msger-btn">Apply Edits</button>
+        <button @click="applyEdits(); restart();" class="msger-btn">Apply Edits</button>
       </div>
     </div>
   </div>
