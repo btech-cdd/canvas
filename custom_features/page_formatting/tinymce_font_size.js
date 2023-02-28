@@ -17,7 +17,7 @@ async function _init() {
   let oldSetup = savedSettings.setup;
   //create a new setup function that first calls the old one, then adds whatever button you want (or other settings)
   console.log(savedSettings);
-  savedSettings.content_css.push("https://bridgetools.com/canvas/style/rce.css");
+  savedSettings.content_css.push("https://bridgetools.dev/canvas/style/rce.css");
   savedSettings.setup = function(editor) {
     //run the old setup function and pass the editor
     oldSetup(editor);
