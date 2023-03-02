@@ -49,7 +49,7 @@
     },
     formatResponse: function(resp) {
       resp.replaceAll("\n", "<br>");
-      resp.replaceAll(/```(.*)```/, "<pre>$1</pre>");
+      resp.replaceAll(/```(.*)```/ig, "<pre>$1</pre>");
       console.log(resp);
       return resp;
     },
