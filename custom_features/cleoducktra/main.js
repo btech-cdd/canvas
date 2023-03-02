@@ -82,7 +82,6 @@
         await $.post("https://api.openai.com/v1/chat/completions", data, function(resp) {
           console.log(resp.choices[0]);
           response = resp.choices[0].message.content;
-          response = CLEODUCKTRA.formatResponse(response);
         });
       } catch (err) {
         console.log(err);
@@ -204,7 +203,7 @@
           message.img = "https://bridgetools.dev/canvas/media/cleoducktra.gif"
           this.awaitingResponse = true;
           let text = await CLEODUCKTRA.get(input);
-          message.text= text;
+          message.text= CLEODUCTRA.formatResponse(text);
           message.img = "https://bridgetools.dev/canvas/media/cleoducktra-idle.gif"
           this.awaitingResponse = false;
           let containerEl = this.$el.querySelector(".msger-chat");

@@ -34,8 +34,7 @@ Vue.component('cleoducktra-message', {
           <div class="msg-info-time">{{message.time}}</div>
         </div>
 
-        <div class="msg-text">
-          {{message.text}}
+        <div class="msg-text" v-html="message.text">
         </div>
       </div>
     </div>
