@@ -56,6 +56,7 @@
         }
       });
       let data = {
+        "model": "gpt-3.5-turbo",
         "prompt": input,
         "temperature": 0.9,
         "max_tokens": 2000,
@@ -67,8 +68,9 @@
       data = JSON.stringify(data);
       let response = "";
       try {
-        await $.post("https://api.openai.com/v1/engines/text-davinci-003/completions", data, function(resp) {
+        await $.post("https://api.openai.com/v1/completions", data, function(resp) {
           response = resp.choices[0].text;
+          console.log(response);
         });
       } catch (err) {
         console.log(err);
