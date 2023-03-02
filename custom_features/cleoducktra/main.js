@@ -48,8 +48,8 @@
       return urls;
     },
     formatResponse: function(resp) {
-      resp.replaceAll("\n", "<br>");
-      resp.replaceAll(/```(.*)```/ig, "<pre>$1</pre>");
+      resp = resp.replaceAll("\n", "<br>");
+      resp = resp.replaceAll(/```(.*)```/ig, "<pre>$1</pre>");
       console.log(resp);
       return resp;
     },
