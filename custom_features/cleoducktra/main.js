@@ -81,7 +81,7 @@
       try {
         await $.post("https://api.openai.com/v1/chat/completions", data, function(resp) {
           console.log(resp.choices[0]);
-          response = resp.choices[0].message.content;
+          response = resp.choices[0].message.content.trim();
         });
       } catch (err) {
         console.log(err);
