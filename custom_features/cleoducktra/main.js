@@ -203,7 +203,7 @@
           message.img = "https://bridgetools.dev/canvas/media/cleoducktra.gif"
           this.awaitingResponse = true;
           let text = await CLEODUCKTRA.get(input);
-          message.text= CLEODUCTRA.formatResponse(text);
+          message.text= CLEODUCKTRA.formatResponse(text);
           message.img = "https://bridgetools.dev/canvas/media/cleoducktra-idle.gif"
           this.awaitingResponse = false;
           let containerEl = this.$el.querySelector(".msger-chat");
