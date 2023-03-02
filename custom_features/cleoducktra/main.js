@@ -47,6 +47,12 @@
       delete $.ajaxSettings.headers['Content-Type'];
       return urls;
     },
+    formatResponse: function(resp) {
+      resp.replaceAll("\n", "<br>");
+      resp.replaceAll(/```(.*)```/, "<pre>$1</pre>");
+      console.log(resp);
+      return resp;
+    },
     get: async function(input) {
       console.log(this.apikey);
       $.ajaxSetup({
@@ -76,6 +82,7 @@
         await $.post("https://api.openai.com/v1/chat/completions", data, function(resp) {
           console.log(resp.choices[0]);
           response = resp.choices[0].message.content;
+          response = CLEODUCKTRA.formatResponse(response);
         });
       } catch (err) {
         console.log(err);
