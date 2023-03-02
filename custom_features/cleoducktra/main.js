@@ -57,7 +57,12 @@
       });
       let data = {
         "model": "gpt-3.5-turbo",
-        "prompt": input,
+        "messages": [
+          {
+            "role": user,
+            "content": input
+          }
+        ],
         "temperature": 0.9,
         "max_tokens": 2000,
         "top_p": 1,
@@ -68,7 +73,7 @@
       data = JSON.stringify(data);
       let response = "";
       try {
-        await $.post("https://api.openai.com/v1/completions", data, function(resp) {
+        await $.post("https://api.openai.com/v1/chat/completions", data, function(resp) {
           response = resp.choices[0].text;
           console.log(response);
         });
