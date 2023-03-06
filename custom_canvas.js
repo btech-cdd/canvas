@@ -1,89 +1,89 @@
+var BETA = false;
+if (window.location.href.includes("btech.beta.instructure.com")) {
+  BETA = true;
+} else {
+  BETA = false;
+}
+BETA = false;
+var CDDIDS = [
+  1893418, //Josh 
+  2023384, //Dani
+  1638854, //Mason
+  1807337, //Jon
+  2064104, //Jonny
+  2101672, //William
+  2101656, //Sydney
+  1917265, //Abigail
+  2075766, //Kristyn
+  1869288, //Alan
+  2000557, //Charlotte
+  2048150, //Tiffany
+  2074560, //Ryan
+
+];
+
+function getCSSVar(cssvar) {
+    var r = document.querySelector(':root');
+    var rs = getComputedStyle(r);
+    let val = rs.getPropertyValue(cssvar)
+    return val;
+}
+
+// Create a function for setting a variable value
+function setCSSVar(cssvar, val) {
+    var r = document.querySelector(':root');
+    r.style.setProperty(cssvar, val);
+    getCSSVar(cssvar);
+}
+
+const DEFAULT_MAX_WIDTH = "50rem";
+function updateMaxWidth() {
+  try {
+      $.get(`/api/v1/users/self/custom_data/page_width?ns=com.btech`, function(data) {
+        if (data.data == "readable") {
+          setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
+        } else if (data.data == "auto") {
+          setCSSVar("--btech-max-width", "auto")
+        } else { //some kind of error?
+          setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
+          $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=auto`);
+        }
+      });
+  } catch(err) {
+      setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
+      $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=auto`);
+  }
+}
+updateMaxWidth();
+
+
+let CURRENT_COURSE_ID = null;
+var rCheckInCourse = /^\/courses\/([0-9]+)/;
+if (rCheckInCourse.test(window.location.pathname)) {
+  CURRENT_COURSE_ID = parseInt(window.location.pathname.match(rCheckInCourse)[1]);
+}
+var CURRENT_DEPARTMENT_ID = null;
+var IS_BLUEPRINT = null;
+var IS_TEACHER = null;
+var IS_ME = false;
+var IS_CDD = false;
+var COURSE_HOURS, COURSE_LIST;
+//Now, if testing in beta, will pull from beta instance of all these tools
+//Should start experimenting with branching in github
+var SOURCE_URL = 'https://bridgetools.dev/canvas'
+if (BETA) {
+  SOURCE_URL = 'https://bridgetools.dev/canvas-beta'
+}
+if (ENV.current_user_roles !== null) {
+  IS_TEACHER = (ENV.current_user_roles.includes("teacher") || ENV.current_user_roles.includes("admin"));
+}
+
+var FEATURES = {};
+var IMPORTED_FEATURE = {};
+
+var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 (async function() {
 
-  var BETA = false;
-  if (window.location.href.includes("btech.beta.instructure.com")) {
-    BETA = true;
-  } else {
-    BETA = false;
-  }
-  BETA = false;
-  var CDDIDS = [
-    1893418, //Josh 
-    2023384, //Dani
-    1638854, //Mason
-    1807337, //Jon
-    2064104, //Jonny
-    2101672, //William
-    2101656, //Sydney
-    1917265, //Abigail
-    2075766, //Kristyn
-    1869288, //Alan
-    2000557, //Charlotte
-    2048150, //Tiffany
-    2074560, //Ryan
-
-  ];
-
-  function getCSSVar(cssvar) {
-      var r = document.querySelector(':root');
-      var rs = getComputedStyle(r);
-      let val = rs.getPropertyValue(cssvar)
-      return val;
-  }
-
-  // Create a function for setting a variable value
-  function setCSSVar(cssvar, val) {
-      var r = document.querySelector(':root');
-      r.style.setProperty(cssvar, val);
-      getCSSVar(cssvar);
-  }
-
-  const DEFAULT_MAX_WIDTH = "50rem";
-  function updateMaxWidth() {
-    try {
-        $.get(`/api/v1/users/self/custom_data/page_width?ns=com.btech`, function(data) {
-          if (data.data == "readable") {
-            setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
-          } else if (data.data == "auto") {
-            setCSSVar("--btech-max-width", "auto")
-          } else { //some kind of error?
-            setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
-            $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=auto`);
-          }
-        });
-    } catch(err) {
-        setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
-        $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=auto`);
-    }
-  }
-  updateMaxWidth();
-
-
-  let CURRENT_COURSE_ID = null;
-  var rCheckInCourse = /^\/courses\/([0-9]+)/;
-  if (rCheckInCourse.test(window.location.pathname)) {
-    CURRENT_COURSE_ID = parseInt(window.location.pathname.match(rCheckInCourse)[1]);
-  }
-  var CURRENT_DEPARTMENT_ID = null;
-  var IS_BLUEPRINT = null;
-  var IS_TEACHER = null;
-  var IS_ME = false;
-  var IS_CDD = false;
-  var COURSE_HOURS, COURSE_LIST;
-  //Now, if testing in beta, will pull from beta instance of all these tools
-  //Should start experimenting with branching in github
-  var SOURCE_URL = 'https://bridgetools.dev/canvas'
-  if (BETA) {
-    SOURCE_URL = 'https://bridgetools.dev/canvas-beta'
-  }
-  if (ENV.current_user_roles !== null) {
-    IS_TEACHER = (ENV.current_user_roles.includes("teacher") || ENV.current_user_roles.includes("admin"));
-  }
-
-  var FEATURES = {};
-  var IMPORTED_FEATURE = {};
-
-  var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
 
 
