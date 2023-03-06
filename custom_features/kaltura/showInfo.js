@@ -2,6 +2,7 @@ let iframes = $("iframe");
 iframes.each(function () {
   let iframe = $(this);
   let src = iframe.attr("src");
+  if (src === undefined) return
   if (src.includes("kaltura")) {
     let playerIdMatch = src.match(/[playerSkin\/|kaltura_player_]([0-9]+)/);
     let playerId = playerIdMatch[1];
