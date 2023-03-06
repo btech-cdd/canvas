@@ -1,97 +1,99 @@
-var BETA = false;
-if (window.location.href.includes("btech.beta.instructure.com")) {
-  BETA = true;
-} else {
-  BETA = false;
-}
-BETA = false;
-var CDDIDS = [
-  1893418, //Josh 
-  2023384, //Dani
-  1638854, //Mason
-  1807337, //Jon
-  2064104, //Jonny
-  2101672, //William
-  2101656, //Sydney
-  1917265, //Abigail
-  2075766, //Kristyn
-  1869288, //Alan
-  2000557, //Charlotte
-  2048150, //Tiffany
-  2074560, //Ryan
+(async function() {
 
-];
-
-function getCSSVar(cssvar) {
-    var r = document.querySelector(':root');
-    var rs = getComputedStyle(r);
-    let val = rs.getPropertyValue(cssvar)
-    return val;
-}
-
-// Create a function for setting a variable value
-function setCSSVar(cssvar, val) {
-    var r = document.querySelector(':root');
-    r.style.setProperty(cssvar, val);
-    getCSSVar(cssvar);
-}
-
-const DEFAULT_MAX_WIDTH = "50rem";
-function updateMaxWidth() {
-  try {
-      $.get(`/api/v1/users/self/custom_data/page_width?ns=com.btech`, function(data) {
-        if (data.data == "readable") {
-          setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
-        } else if (data.data == "auto") {
-          setCSSVar("--btech-max-width", "auto")
-        } else { //some kind of error?
-          setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
-          $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=auto`);
-        }
-      });
-  } catch(err) {
-      setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
-      $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=auto`);
+  var BETA = false;
+  if (window.location.href.includes("btech.beta.instructure.com")) {
+    BETA = true;
+  } else {
+    BETA = false;
   }
-}
-updateMaxWidth();
+  BETA = false;
+  var CDDIDS = [
+    1893418, //Josh 
+    2023384, //Dani
+    1638854, //Mason
+    1807337, //Jon
+    2064104, //Jonny
+    2101672, //William
+    2101656, //Sydney
+    1917265, //Abigail
+    2075766, //Kristyn
+    1869288, //Alan
+    2000557, //Charlotte
+    2048150, //Tiffany
+    2074560, //Ryan
+
+  ];
+
+  function getCSSVar(cssvar) {
+      var r = document.querySelector(':root');
+      var rs = getComputedStyle(r);
+      let val = rs.getPropertyValue(cssvar)
+      return val;
+  }
+
+  // Create a function for setting a variable value
+  function setCSSVar(cssvar, val) {
+      var r = document.querySelector(':root');
+      r.style.setProperty(cssvar, val);
+      getCSSVar(cssvar);
+  }
+
+  const DEFAULT_MAX_WIDTH = "50rem";
+  function updateMaxWidth() {
+    try {
+        $.get(`/api/v1/users/self/custom_data/page_width?ns=com.btech`, function(data) {
+          if (data.data == "readable") {
+            setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
+          } else if (data.data == "auto") {
+            setCSSVar("--btech-max-width", "auto")
+          } else { //some kind of error?
+            setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
+            $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=auto`);
+          }
+        });
+    } catch(err) {
+        setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
+        $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=auto`);
+    }
+  }
+  updateMaxWidth();
 
 
-let CURRENT_COURSE_ID = null;
-var rCheckInCourse = /^\/courses\/([0-9]+)/;
-if (rCheckInCourse.test(window.location.pathname)) {
-  CURRENT_COURSE_ID = parseInt(window.location.pathname.match(rCheckInCourse)[1]);
-}
-var CURRENT_DEPARTMENT_ID = null;
-var IS_BLUEPRINT = null;
-var IS_TEACHER = null;
-var IS_ME = false;
-var IS_CDD = false;
-var COURSE_HOURS, COURSE_LIST;
-//Now, if testing in beta, will pull from beta instance of all these tools
-//Should start experimenting with branching in github
-var SOURCE_URL = 'https://bridgetools.dev/canvas'
-if (BETA) {
-  SOURCE_URL = 'https://bridgetools.dev/canvas-beta'
-}
-if (ENV.current_user_roles !== null) {
-  IS_TEACHER = (ENV.current_user_roles.includes("teacher") || ENV.current_user_roles.includes("admin"));
-}
+  let CURRENT_COURSE_ID = null;
+  var rCheckInCourse = /^\/courses\/([0-9]+)/;
+  if (rCheckInCourse.test(window.location.pathname)) {
+    CURRENT_COURSE_ID = parseInt(window.location.pathname.match(rCheckInCourse)[1]);
+  }
+  var CURRENT_DEPARTMENT_ID = null;
+  var IS_BLUEPRINT = null;
+  var IS_TEACHER = null;
+  var IS_ME = false;
+  var IS_CDD = false;
+  var COURSE_HOURS, COURSE_LIST;
+  //Now, if testing in beta, will pull from beta instance of all these tools
+  //Should start experimenting with branching in github
+  var SOURCE_URL = 'https://bridgetools.dev/canvas'
+  if (BETA) {
+    SOURCE_URL = 'https://bridgetools.dev/canvas-beta'
+  }
+  if (ENV.current_user_roles !== null) {
+    IS_TEACHER = (ENV.current_user_roles.includes("teacher") || ENV.current_user_roles.includes("admin"));
+  }
 
-var FEATURES = {};
-var IMPORTED_FEATURE = {};
+  var FEATURES = {};
+  var IMPORTED_FEATURE = {};
 
-var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+  var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
 
 
-if (window.self === window.top) { //Make sure this is only run on main page, and not every single iframe on the page. For example, Kaltura videos all load in a Canvas iframe
-  let currentUser = parseInt(ENV.current_user.id);
-  IS_ME = (currentUser === 1893418);
-  IS_CDD = (CDDIDS.includes(currentUser))
-  // https://btech.instructure.com/accounts/3/theme_editor
+  if (window.self === window.top) { //Make sure this is only run on main page, and not every single iframe on the page. For example, Kaltura videos all load in a Canvas iframe
+    let currentUser = parseInt(ENV.current_user.id);
+    IS_ME = (currentUser === 1893418);
+    IS_CDD = (CDDIDS.includes(currentUser))
+    // https://btech.instructure.com/accounts/3/theme_editor
 
-  $.getScript("https://bridgetools.dev/canvas/scripts.js").done(function() {
+    await $.getScript("https://bridgetools.dev/canvas/scripts.js");
     feature("login_page", {}, /^\/login/);
     feature("editor_toolbar/manage-settings", {}, /^\/btech-toolbar/);
     if (IS_ME) feature("editor_toolbar/main", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
@@ -113,26 +115,25 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
     }
 
     //TOOLBAR FEATURES
-    $.getScript("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js").done(async function () {
-      console.log("LOAD");
-      await feature("page_formatting/tinymce_font_size", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
-      console.log("LOAD");
-      await feature("/custom_features/editor_toolbar/toolbar.js", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
-      console.log("LOAD");
-      feature("editor_toolbar/basics", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
-      feature("editor_toolbar/syllabi", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-      feature('page_formatting/dropdown_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-      feature('page_formatting/tabs_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-      feature('page_formatting/expandable_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-      feature('page_formatting/google_sheets_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-      feature('page_formatting/table_from_page', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-      feature("page_formatting/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-      feature("page_formatting/image_formatting", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-      feature("editor_toolbar/images", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-      feature("editor_toolbar/tables", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-      feature("editor_toolbar/headers", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-      feature("page_formatting/print_rubric", {}, /^\/courses\/[0-9]+\/(assignments)/);
-    });
+    await $.getScript("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js");
+    console.log("LOAD");
+    await feature("page_formatting/tinymce_font_size", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
+    console.log("LOAD");
+    await feature("/custom_features/editor_toolbar/toolbar.js", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
+    console.log("LOAD");
+    feature("editor_toolbar/basics", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
+    feature("editor_toolbar/syllabi", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+    feature('page_formatting/dropdown_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+    feature('page_formatting/tabs_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+    feature('page_formatting/expandable_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+    feature('page_formatting/google_sheets_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+    feature('page_formatting/table_from_page', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+    feature("page_formatting/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+    feature("page_formatting/image_formatting", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+    feature("editor_toolbar/images", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+    feature("editor_toolbar/tables", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+    feature("editor_toolbar/headers", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+    feature("page_formatting/print_rubric", {}, /^\/courses\/[0-9]+\/(assignments)/);
 
     //OTHER FEATURES
     $.getScript("https://cdn.jsdelivr.net/npm/vue@2.6.12").done(function () {
@@ -260,5 +261,5 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
         feature("welcome_banner", {}, /^\/$/);
       });
     });
-  });
-}
+  }
+})();
