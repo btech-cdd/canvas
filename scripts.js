@@ -74,6 +74,7 @@ async function feature(f, data = {}, regex = "") {
       }
     });
   }
+  return
 }
 
 function externalFeature(url, regex = "") {
