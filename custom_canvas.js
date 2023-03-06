@@ -113,23 +113,22 @@ if (window.self === window.top) { //Make sure this is only run on main page, and
     }
 
     //TOOLBAR FEATURES
-    $.getScript("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js").done(function () {
-      $.getScript(SOURCE_URL + "/custom_features/editor_toolbar/toolbar.js").done(() => {
-        feature("editor_toolbar/basics", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
-        feature("editor_toolbar/syllabi", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-        feature('page_formatting/dropdown_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-        feature('page_formatting/tabs_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-        feature('page_formatting/expandable_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-        feature('page_formatting/google_sheets_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-        feature('page_formatting/table_from_page', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-        feature("page_formatting/tinymce_font_size", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
-        feature("page_formatting/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-        feature("page_formatting/image_formatting", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-        feature("editor_toolbar/images", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-        feature("editor_toolbar/tables", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-        feature("editor_toolbar/headers", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-        feature("page_formatting/print_rubric", {}, /^\/courses\/[0-9]+\/(assignments)/);
-      });
+    $.getScript("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js").done(async function () {
+      await feature("page_formatting/tinymce_font_size", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
+      await feature("/custom_features/editor_toolbar/toolbar.js");
+      feature("editor_toolbar/basics", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
+      feature("editor_toolbar/syllabi", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature('page_formatting/dropdown_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature('page_formatting/tabs_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature('page_formatting/expandable_from_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature('page_formatting/google_sheets_table', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature('page_formatting/table_from_page', {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature("page_formatting/image_map", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature("page_formatting/image_formatting", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature("editor_toolbar/images", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature("editor_toolbar/tables", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature("editor_toolbar/headers", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+      feature("page_formatting/print_rubric", {}, /^\/courses\/[0-9]+\/(assignments)/);
     });
 
     //OTHER FEATURES
