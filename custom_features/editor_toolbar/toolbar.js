@@ -120,6 +120,7 @@ TOOLBAR = {
   },
 
   async _init() {
+    await TOOLBAR_STYLES.init();
     this.editor = await this.getEditor();
     let topPart = null;
     if (tinymce.majorVersion === "4") {
