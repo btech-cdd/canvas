@@ -136,4 +136,3 @@ TOOLBAR = {
   }
 }
 TOOLBAR._init();
-console.log("LOAD");
