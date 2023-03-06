@@ -1,3 +1,8 @@
+var SOURCE_URL = 'https://bridgetools.dev/canvas'
+if (BETA) {
+  SOURCE_URL = 'https://bridgetools.dev/canvas-beta'
+}
+
 async function delay(ms) {
   // return await for better async stack trace support in case of errors.
   return await new Promise(resolve => setTimeout(resolve, ms));
@@ -58,21 +63,20 @@ async function feature(f, data = {}, regex = "") {
     }
   }
   if (check) {
-    await $.getScript(SOURCE_URL + "/custom_features/" + f + ".js").done(function () {
-      if (!$.isEmptyObject(IMPORTED_FEATURE)) {
-        if (!(f in FEATURES)) {
-          FEATURES[f] = IMPORTED_FEATURE;
-        }
+    await $.getScript(SOURCE_URL + "/custom_features/" + f + ".js");
+    if (!$.isEmptyObject(IMPORTED_FEATURE)) {
+      if (!(f in FEATURES)) {
+        FEATURES[f] = IMPORTED_FEATURE;
       }
-      if (f in FEATURES) {
-        let feature = FEATURES[f];
-        //make sure it hasn't already been called to avoid messing up the page
-        if (feature.initiated === false) {
-          feature.initiated = true;
-          feature._init(data);
-        }
+    }
+    if (f in FEATURES) {
+      let feature = FEATURES[f];
+      //make sure it hasn't already been called to avoid messing up the page
+      if (feature.initiated === false) {
+        feature.initiated = true;
+        feature._init(data);
       }
-    });
+    }
   }
   return
 }
