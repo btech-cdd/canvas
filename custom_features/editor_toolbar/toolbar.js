@@ -138,4 +138,4 @@ TOOLBAR = {
     }
   }
 }
-// if (TOOLBAR.checkEditorPage()) TOOLBAR._init();
+if (TOOLBAR.checkEditorPage()) TOOLBAR._init();
