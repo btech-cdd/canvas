@@ -2,19 +2,19 @@
   //escape if not on the editor page
   if (!TOOLBAR.checkEditorPage()) return;
   async function hideOnHover() {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     let selection = editor.selection;
     editor.execCommand("mceReplaceContent", false, "<span class='btech-hover-show'><i>{$selection}</i></span>");
   }
 
   async function hoverDefinition() {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     let selection = editor.selection;
     editor.execCommand("mceReplaceContent", false, "<strong class='tooltip'>{$selection}<span class='tooltiptext'>-DEFINITION-</span></strong>");
   }
 
   async function calloutBoxFlat() {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     let selection = editor.selection;
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#FFFFFF";
@@ -25,7 +25,7 @@
       `);
   }
   async function calloutBox() {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     let selection = editor.selection;
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#FFFFFF";
@@ -37,7 +37,7 @@
   }
 
   async function exampleBox() {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     let selection = editor.selection;
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#FFFFFF";
@@ -62,7 +62,7 @@
   }
   
   async function exampleBoxSmall() {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     let selection = editor.selection;
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#FFFFFF";
@@ -83,7 +83,7 @@
   }
 
   function citationInsert(bg) {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     let name = $("#citation-name").val();
     let authorLast = $("#citation-author-last").val();
     let publisher = $("#citation-publisher").val();
@@ -120,7 +120,7 @@
     }
   }
   async function citationKeypress(bg) {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     $(".citation-information").keypress(function (event) {
       var keycode = (event.keyCode ? event.keyCode : event.which);
       if (keycode == '13') {

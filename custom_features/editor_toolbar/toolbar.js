@@ -1,6 +1,5 @@
 TOOLBAR = {
   selects: {},
-  editor: null,
   toolbar: null,
 
   async getEditor() {

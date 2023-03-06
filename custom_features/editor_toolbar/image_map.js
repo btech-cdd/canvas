@@ -73,11 +73,11 @@
   }
 
   async function imageMapCreate() {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     let originalImage = await addClassToImage("btech-image-map-image");
     if ($(originalImage).hasClass('btech-image-map-image')) {
       let imageId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-      TOOLBAR.editor.dom.addClass(originalImage, "image-id-" + imageId);
+      tinymce.activeEditor.dom.addClass(originalImage, "image-id-" + imageId);
       editor.execCommand("mceReplaceContent", false, originalImage.outerHTML + "<table class='btech-image-map-table image-id-" + imageId + "-table btech-hidden'><thead><tr><th>Content</th><th>x%</th><th>y%</th></tr></thead><tbody></tbody></table>");
       linkImageMapToTable(imageId);
     } else {
