@@ -114,11 +114,6 @@ TOOLBAR = {
     return button;
   },
 
-  checkEditorPage() {
-    if (window.location.pathname.includes("edit")) return true;
-    return false;
-  },
-
   async _init() {
     await TOOLBAR_STYLES.init();
     this.editor = await this.getEditor();
@@ -139,4 +134,4 @@ TOOLBAR = {
     }
   }
 }
-if (TOOLBAR.checkEditorPage()) TOOLBAR._init();
+TOOLBAR._init();
