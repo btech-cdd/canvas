@@ -103,7 +103,6 @@
 
   async function tableFromPage() {
     let editor = tinymce.activeEditor;
-    let selection = editor.selection;
     let bg = TOOLBAR.addBackground();
     bg.append(`
       <div id='table-from-page-id-container' style='
