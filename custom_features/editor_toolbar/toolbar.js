@@ -4,7 +4,7 @@ TOOLBAR = {
   toolbar: null,
 
   async getEditor() {
-    if (window.tinymce === undefined) {
+    if (!window?.tinymce?.activeEditor?.initialized) {
       await delay(500);
       return this.getEditor();
     } else {
