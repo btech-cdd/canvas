@@ -3,7 +3,7 @@ TOOLBAR = {
   toolbar: null,
 
   async getEditor() {
-    if (!window?.tinymce?.activeEditor?.initialized) {
+    if () {
       await delay(500);
       return this.getEditor();
     } else {
@@ -12,7 +12,7 @@ TOOLBAR = {
   },
 
   async checkReady() {
-    if (this.editor === null) {
+    if (!window?.tinymce?.activeEditor?.initialized) {
       await delay(500);
       return this.checkReady();
     } else {
