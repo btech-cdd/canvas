@@ -1,16 +1,17 @@
 TOOLBAR = {
   selects: {},
   toolbar: null,
+  initted: false,
 
   async getEditor() {
-    await this.checkReady();
+    await this.checkReady(1);
     return tinymce.activeEditor;
   },
 
-  async checkReady() {
-    if (!window?.tinymce?.activeEditor?.initialized) {
+  async checkReady(override=0) {
+    if (!window?.tinymce?.activeEditor?.initialized && (override || initted)) {
       await delay(500);
-      return this.checkReady();
+      return this.checkReady(override);
     } else {
       return;
     }
@@ -116,7 +117,6 @@ TOOLBAR = {
 
   async _init() {
     console.log("TOOLBAR INIT")
-    await this.checkReady;
     await TOOLBAR_STYLES.init();
     this.editor = await this.getEditor();
     if ($("#btech-custom-editor-buttons-container").length === 0) {
@@ -130,6 +130,7 @@ TOOLBAR = {
       $(".tox-editor-header").append(TOOLBAR.toolbar);
     }
     console.log(TOOLBAR.toolbar);
+    TOOLBAR.initted = true;
   }
 }
 if (TOOLBAR.checkEditorPage()) TOOLBAR._init();
