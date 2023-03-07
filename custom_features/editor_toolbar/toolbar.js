@@ -119,16 +119,16 @@ TOOLBAR = {
     await this.checkReady;
     await TOOLBAR_STYLES.init();
     this.editor = await this.getEditor();
-    let topPart = null;
-    if (topPart !== null && $("#btech-custom-editor-buttons-container").length === 0) {
+    if ($("#btech-custom-editor-buttons-container").length === 0) {
       // this.editor.addShortcut("ctrl+alt+h", "The highlighted font will be hidden until the reader highlights it.", hideOnHover);
       // this.editor.addShortcut("ctrl+alt+e", "the highlighted font will be put inside of an emphasis box.", exampleBox);
       // this.editor.addShortcut("ctrl+alt+d", "the highlighted font will display a definition on hover.", exampleBox);
       // this.editor.addShortcut("ctrl+alt+g", "Insert a table that is linked to a google sheet.", googleSheetsTable);
       // this.editor.addShortcut("ctrl+alt+q", "Insert a citation.", googleSheetsTable);
       TOOLBAR.toolbar = $("<div id='btech-custom-editor-buttons-container'></div>")
-      $(".tox-editor-header").append(this.toolbar);
+      $(".tox-editor-header").append(TOOLBAR.toolbar);
     }
+    console.log(TOOLBAR.toolbar);
   }
 }
 if (TOOLBAR.checkEditorPage()) TOOLBAR._init();
