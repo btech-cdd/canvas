@@ -3,12 +3,8 @@ TOOLBAR = {
   toolbar: null,
 
   async getEditor() {
-    if () {
-      await delay(500);
-      return this.getEditor();
-    } else {
-      return tinymce.activeEditor;
-    }
+    await this.checkReady();
+    return tinymce.activeEditor;
   },
 
   async checkReady() {
