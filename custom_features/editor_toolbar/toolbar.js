@@ -9,7 +9,6 @@ TOOLBAR = {
   },
 
   async checkReady(override=0) {
-    console.log(TOOLBAR.initted);
     if (!window?.tinymce?.activeEditor?.initialized || (override === 0 && !TOOLBAR.initted)) {
       await delay(500);
       return this.checkReady(override);
@@ -117,11 +116,9 @@ TOOLBAR = {
   },
 
   async _init() {
-    console.log("TOOLBAR INIT")
     await TOOLBAR_STYLES.init();
     this.editor = await this.getEditor();
     if ($("#btech-custom-editor-buttons-container").length === 0) {
-      console.log("ADD TOOLBAR")
       // this.editor.addShortcut("ctrl+alt+h", "The highlighted font will be hidden until the reader highlights it.", hideOnHover);
       // this.editor.addShortcut("ctrl+alt+e", "the highlighted font will be put inside of an emphasis box.", exampleBox);
       // this.editor.addShortcut("ctrl+alt+d", "the highlighted font will display a definition on hover.", exampleBox);
@@ -130,7 +127,6 @@ TOOLBAR = {
       TOOLBAR.toolbar = $("<div id='btech-custom-editor-buttons-container'></div>")
       $(".tox-editor-header").append(TOOLBAR.toolbar);
     }
-    console.log(TOOLBAR.toolbar);
     TOOLBAR.initted = true;
   }
 }
