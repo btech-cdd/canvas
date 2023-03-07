@@ -9,6 +9,7 @@ TOOLBAR = {
   },
 
   async checkReady(override=0) {
+    console.log(TOOLBAR.initted);
     if (!window?.tinymce?.activeEditor?.initialized && (override === 1 || TOOLBAR.initted)) {
       await delay(500);
       return this.checkReady(override);
