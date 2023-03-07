@@ -241,10 +241,9 @@
     });
   }
 
-  console.log(TOOLBAR.initted);
+  console.log("BEFORE: " + TOOLBAR.initted);
   await TOOLBAR.checkReady(0);
-  console.log(TOOLBAR.toolbar);
-  console.log(TOOLBAR.initted);
+  console.log("AFTER: " + TOOLBAR.initted);
 
   //Add in option to change color of exampleBox. IE, you click in it, it figures out he color selected, if you change the color, it changes the box
   TOOLBAR.toolbar.prepend(`<input type="color" id="btech-custom-editor-buttons-color" value="#d22232" style="width: 48px; padding: 4px; padding-right: 0px;" list="default-colors"/>
