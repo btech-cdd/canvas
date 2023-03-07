@@ -9,7 +9,7 @@ TOOLBAR = {
   },
 
   async checkReady(override=0) {
-    if (!window?.tinymce?.activeEditor?.initialized && (override || initted)) {
+    if (!window?.tinymce?.activeEditor?.initialized && (override === 1 || initted)) {
       await delay(500);
       return this.checkReady(override);
     } else {
