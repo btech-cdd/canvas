@@ -115,6 +115,7 @@ TOOLBAR = {
   },
 
   async _init() {
+    console.log("TOOLBAR INIT")
     await this.checkReady;
     await TOOLBAR_STYLES.init();
     this.editor = await this.getEditor();
@@ -130,7 +131,7 @@ TOOLBAR = {
       // this.editor.addShortcut("ctrl+alt+d", "the highlighted font will display a definition on hover.", exampleBox);
       // this.editor.addShortcut("ctrl+alt+g", "Insert a table that is linked to a google sheet.", googleSheetsTable);
       // this.editor.addShortcut("ctrl+alt+q", "Insert a citation.", googleSheetsTable);
-      this.toolbar = $("<div id='btech-custom-editor-buttons-container'></div>")
+      TOOLBAR.toolbar = $("<div id='btech-custom-editor-buttons-container'></div>")
       topPart.after(this.toolbar);
     }
   }
