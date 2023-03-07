@@ -120,6 +120,7 @@ TOOLBAR = {
     await TOOLBAR_STYLES.init();
     this.editor = await this.getEditor();
     if ($("#btech-custom-editor-buttons-container").length === 0) {
+      console.log("ADD TOOLBAR")
       // this.editor.addShortcut("ctrl+alt+h", "The highlighted font will be hidden until the reader highlights it.", hideOnHover);
       // this.editor.addShortcut("ctrl+alt+e", "the highlighted font will be put inside of an emphasis box.", exampleBox);
       // this.editor.addShortcut("ctrl+alt+d", "the highlighted font will display a definition on hover.", exampleBox);
