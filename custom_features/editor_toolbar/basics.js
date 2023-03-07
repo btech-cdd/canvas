@@ -241,30 +241,6 @@
     });
   }
 
-  function addCustomThemeParent() {
-    let body = tinyMCE.activeEditor.getBody();
-    let existingTheme = $(body).find("#btech-theme-parent");
-    if (existingTheme.length === 0) {
-      $(body).prepend(`
-    <div id="btech-theme-parent" style="border: 1px solid #000; padding: 5px;">
-      <span>
-        This information will all be hidden on render. Just make sure that when applying changes you have selected the entire element. (triple click or drag select from the starting # to the ending #)
-      </span>
-      <br />
-      <span class="btech-theme-header" style="background-color: #3366ff; color: #ffffff;">
-        #HEADER STYLE# 
-      </span>
-      <br />
-      <span class="btech-theme-header-hover" style="background-color: #000080; color: #ffffff;">
-        #HEADER HOVER STYLE#
-      </span>
-    </div>
-  `);
-    } else {
-      existingTheme.remove();
-    }
-  }
-
   await TOOLBAR.checkReady();
 
   //Add in option to change color of exampleBox. IE, you click in it, it figures out he color selected, if you change the color, it changes the box
