@@ -116,7 +116,7 @@ TOOLBAR = {
   },
 
   async _init() {
-    await TOOLBAR_STYLES.init();
+    // await TOOLBAR_STYLES.init();
     this.editor = await this.getEditor();
     if ($("#btech-custom-editor-buttons-container").length === 0) {
       // this.editor.addShortcut("ctrl+alt+h", "The highlighted font will be hidden until the reader highlights it.", hideOnHover);
