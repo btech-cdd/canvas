@@ -30,7 +30,7 @@
   if (!TOOLBAR.checkEditorPage()) return;
 
   async function insertHeader(className) {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     let selection = editor.selection;
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#000000";

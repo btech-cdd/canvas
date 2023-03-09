@@ -39,19 +39,19 @@
       },
       applyEdits() {
         if (this.selection) {
-          TOOLBAR.editor.selection.setContent(this.revision);
+          tinymce.activeEditor.selection.setContent(this.revision);
         } else {
-          TOOLBAR.editor.setContent(this.revision);
+          tinymce.activeEditor.setContent(this.revision);
         }
         this.restart();
       },
       async editPage() {
         this.awaitingResponse = true;
         let editType = this.editType;
-        console.log(TOOLBAR.editor.selection.getContent());
-        let content = TOOLBAR.editor.getContent();
-        if (TOOLBAR.editor.selection.getContent() !== "") {
-          content = TOOLBAR.editor.selection.getContent();
+        console.log(tinymce.activeEditor.selection.getContent());
+        let content = tinymce.activeEditor.getContent();
+        if (tinymce.activeEditor.selection.getContent() !== "") {
+          content = tinymce.activeEditor.selection.getContent();
           this.selection = true;
         }
         content = html_beautify(content);

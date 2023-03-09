@@ -1,21 +1,17 @@
 TOOLBAR = {
   selects: {},
-  editor: null,
   toolbar: null,
+  initted: false,
 
   async getEditor() {
-    if (window.tinymce === undefined) {
-      await delay(500);
-      return this.getEditor();
-    } else {
-      return tinymce.activeEditor;
-    }
+    await this.checkReady(1);
+    return tinymce.activeEditor;
   },
 
-  async checkReady() {
-    if (this.editor === null) {
+  async checkReady(override=0) {
+    if (!window?.tinymce?.activeEditor?.initialized || (override === 0 && !TOOLBAR.initted)) {
       await delay(500);
-      return this.checkReady();
+      return this.checkReady(override);
     } else {
       return;
     }
@@ -120,22 +116,18 @@ TOOLBAR = {
   },
 
   async _init() {
+    await TOOLBAR_STYLES.init();
     this.editor = await this.getEditor();
-    let topPart = null;
-    if (tinymce.majorVersion === "4") {
-      topPart = await getElement(".mce-top-part");
-    } else if (tinymce.majorVersion === "5") {
-      topPart = await getElement(".tox-editor-header");
-    }
-    if (topPart !== null && $("#btech-custom-editor-buttons-container").length === 0) {
+    if ($("#btech-custom-editor-buttons-container").length === 0) {
       // this.editor.addShortcut("ctrl+alt+h", "The highlighted font will be hidden until the reader highlights it.", hideOnHover);
       // this.editor.addShortcut("ctrl+alt+e", "the highlighted font will be put inside of an emphasis box.", exampleBox);
       // this.editor.addShortcut("ctrl+alt+d", "the highlighted font will display a definition on hover.", exampleBox);
       // this.editor.addShortcut("ctrl+alt+g", "Insert a table that is linked to a google sheet.", googleSheetsTable);
       // this.editor.addShortcut("ctrl+alt+q", "Insert a citation.", googleSheetsTable);
-      this.toolbar = $("<div id='btech-custom-editor-buttons-container'></div>")
-      topPart.after(this.toolbar);
+      TOOLBAR.toolbar = $("<div id='btech-custom-editor-buttons-container'></div>")
+      $(".tox-editor-header").append(TOOLBAR.toolbar);
     }
+    TOOLBAR.initted = true;
   }
 }
 if (TOOLBAR.checkEditorPage()) TOOLBAR._init();

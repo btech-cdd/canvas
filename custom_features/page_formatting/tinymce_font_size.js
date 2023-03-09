@@ -1,24 +1,13 @@
-async function getEditor() {
-  if (window.tinymce === undefined) {
-    await delay(500);
-    return getEditor();
-  } else {
-    return tinymce.activeEditor;
+TOOLBAR_STYLES = {
+  init: async function () {
+    //save current settings so you don't lose anything Canvas has set up
+    let savedSettings = tinymce.activeEditor.settings;
+    //save the setup function
+    //create a new setup function that first calls the old one, then adds whatever button you want (or other settings)
+    savedSettings.content_css.push("https://bridgetools.dev/canvas/style/rce.css");
+    //get rid of the current editor
+    tinymce.activeEditor.destroy();
+    //reset up with modified settings
+    tinymce.init(savedSettings);
   }
 }
-async function _init() {
-  let editor = await getEditor();
-  //use rem instead of pixels because it messes everything up otherwise. 1.5, 1.2, 1 for h2, h3, h4 respectively
-  //These should work out to 18, 14, and 12
-
-  //save current settings so you don't lose anything Canvas has set up
-  let savedSettings = tinymce.activeEditor.settings;
-  //save the setup function
-  //create a new setup function that first calls the old one, then adds whatever button you want (or other settings)
-  savedSettings.content_css.push("https://bridgetools.dev/canvas/style/rce.css");
-  //get rid of the current editor
-  tinymce.activeEditor.destroy();
-  //reset up with modified settings
-  tinymce.init(savedSettings);
-}
-_init();

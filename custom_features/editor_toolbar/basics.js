@@ -2,19 +2,30 @@
   //escape if not on the editor page
   if (!TOOLBAR.checkEditorPage()) return;
   async function hideOnHover() {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     let selection = editor.selection;
     editor.execCommand("mceReplaceContent", false, "<span class='btech-hover-show'><i>{$selection}</i></span>");
   }
 
   async function hoverDefinition() {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     let selection = editor.selection;
     editor.execCommand("mceReplaceContent", false, "<strong class='tooltip'>{$selection}<span class='tooltiptext'>-DEFINITION-</span></strong>");
   }
 
+  async function calloutBoxFlat() {
+    let editor = tinymce.activeEditor;
+    let selection = editor.selection;
+    let color = $("#btech-custom-editor-buttons-color").val();
+    let fontColor = "#FFFFFF";
+    editor.execCommand("mceReplaceContent", false, `
+      <div class="btech-callout-box flat">
+      ${selection.getContent()}
+      </div>
+      `);
+  }
   async function calloutBox() {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     let selection = editor.selection;
     editor.execCommand("mceReplaceContent", false, `
       <div class="btech-callout-box">
@@ -24,7 +35,7 @@
   }
 
   async function exampleBox() {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     let selection = editor.selection;
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#FFFFFF";
@@ -49,7 +60,7 @@
   }
   
   async function exampleBoxSmall() {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     let selection = editor.selection;
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#FFFFFF";
@@ -70,7 +81,7 @@
   }
 
   function citationInsert(bg) {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     let name = $("#citation-name").val();
     let authorLast = $("#citation-author-last").val();
     let publisher = $("#citation-publisher").val();
@@ -107,7 +118,7 @@
     }
   }
   async function citationKeypress(bg) {
-    let editor = TOOLBAR.editor;
+    let editor = tinymce.activeEditor;
     $(".citation-information").keypress(function (event) {
       var keycode = (event.keyCode ? event.keyCode : event.which);
       if (keycode == '13') {
@@ -228,31 +239,7 @@
     });
   }
 
-  function addCustomThemeParent() {
-    let body = tinyMCE.activeEditor.getBody();
-    let existingTheme = $(body).find("#btech-theme-parent");
-    if (existingTheme.length === 0) {
-      $(body).prepend(`
-    <div id="btech-theme-parent" style="border: 1px solid #000; padding: 5px;">
-      <span>
-        This information will all be hidden on render. Just make sure that when applying changes you have selected the entire element. (triple click or drag select from the starting # to the ending #)
-      </span>
-      <br />
-      <span class="btech-theme-header" style="background-color: #3366ff; color: #ffffff;">
-        #HEADER STYLE# 
-      </span>
-      <br />
-      <span class="btech-theme-header-hover" style="background-color: #000080; color: #ffffff;">
-        #HEADER HOVER STYLE#
-      </span>
-    </div>
-  `);
-    } else {
-      existingTheme.remove();
-    }
-  }
-
-  await TOOLBAR.checkReady();
+  await TOOLBAR.checkReady(0);
 
   //Add in option to change color of exampleBox. IE, you click in it, it figures out he color selected, if you change the color, it changes the box
   TOOLBAR.toolbar.prepend(`<input type="color" id="btech-custom-editor-buttons-color" value="#d22232" style="width: 48px; padding: 4px; padding-right: 0px;" list="default-colors"/>
@@ -270,6 +257,7 @@
   TOOLBAR.addButtonIcon("icon-unmuted", "Insert an information box. Can be used for warnings, examples, etc.", exampleBox);
   TOOLBAR.addButtonIcon("icon-flag", "Insert an information box. Can be used for warnings, examples, etc.", exampleBoxSmall);
   TOOLBAR.addButtonIcon("icon-note-light", "Insert a gray callout box", calloutBox);
+  TOOLBAR.addButtonIcon("icon-note-light", "Insert a gray callout box without a box shadow", calloutBoxFlat);
   TOOLBAR.addButtonIcon("icon-compose", "Insert a citation.", citation);
   TOOLBAR.addButtonIcon("icon-off", "Hide text. Reveal on mouse hover.", hideOnHover);
   TOOLBAR.addButtonIcon("icon-student-view", "Insert text which is shown on mouse hover.", hoverDefinition);
