@@ -1,6 +1,9 @@
 (async function () {
   let rUrl = /\/courses\/([0-9]+)\/gradebook\/speed_grader\?assignment_id=([0-9]+)&student_id=([0-9]+)/;
-  let student_id = parseInt(window.location.href.match(rUrl)[3]);
+  let pieces = window.location.href.match(rUrl);
+  console.log(pieces);
+  let student_id = parseInt(pieces[3]);
+  show
   let submissions = await canvasGet("/api/v1/courses/" + ENV.course_id + "/students/submissions", {
     'student_ids': [
       student_id
