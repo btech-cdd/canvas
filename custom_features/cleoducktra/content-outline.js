@@ -7,7 +7,7 @@ class CleoDucktraCourse {
     this.buildStep = "";
     this.buildProgress = "";
     this.banks = [];
-    this.getBanks();
+    if (ENV.COURSE_ID != undefined) this.getBanks();
   }
 
   async getBanks() {
