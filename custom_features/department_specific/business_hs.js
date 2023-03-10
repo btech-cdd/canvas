@@ -2,38 +2,38 @@
 (async function () {
   IMPORTED_FEATURE = {};
   //IF the editor, add the ability to add services
-  if (TOOLBAR.checkEditorPage()) {
-    await TOOLBAR.checkReady();
+  // if (TOOLBAR.checkEditorPage()) {
+  //   await TOOLBAR.checkReady();
 
-    function checkButtonColor(btn) {
-      let body = tinyMCE.activeEditor.getBody();
-      let services = $(body).find("#btech-hs-courses");
-      if (services.length === 0) {
-        btn.find('i').css({
-          'color': "#000000"
-        });
-      } else {
-        btn.find('i').css({
-          'color': "#d22212"
-        });
-      }
-    }
-    let btn = await TOOLBAR.addButtonIcon("far fa-abacus", "Convert this assignment to a Course Grading assignment", async function () {
-      let body = tinyMCE.activeEditor.getBody();
-      let div = $(body).find("#btech-hs-courses");
-      if (div.length === 0) {
-        $(body).prepend(`
-          <div id='btech-hs-courses' class='btech-hidden' style='border: 1px solid #000;'>DO NOT DELETE. THIS SETS THIS ASSIGNMENT AS AN ASSIGNMENT TO KEEP TRACK OF COURSES COMPLETED IN A TERM.</div><p> </p>
-        `);
-      } else {
-        div.remove();
-      }
-    });
-    checkButtonColor(btn);
-    btn.click(function () {
-      checkButtonColor(btn);
-    });
-  }
+  //   function checkButtonColor(btn) {
+  //     let body = tinyMCE.activeEditor.getBody();
+  //     let services = $(body).find("#btech-hs-courses");
+  //     if (services.length === 0) {
+  //       btn.find('i').css({
+  //         'color': "#000000"
+  //       });
+  //     } else {
+  //       btn.find('i').css({
+  //         'color': "#d22212"
+  //       });
+  //     }
+  //   }
+  //   let btn = await TOOLBAR.addButtonIcon("far fa-abacus", "Convert this assignment to a Course Grading assignment", async function () {
+  //     let body = tinyMCE.activeEditor.getBody();
+  //     let div = $(body).find("#btech-hs-courses");
+  //     if (div.length === 0) {
+  //       $(body).prepend(`
+  //         <div id='btech-hs-courses' class='btech-hidden' style='border: 1px solid #000;'>DO NOT DELETE. THIS SETS THIS ASSIGNMENT AS AN ASSIGNMENT TO KEEP TRACK OF COURSES COMPLETED IN A TERM.</div><p> </p>
+  //       `);
+  //     } else {
+  //       div.remove();
+  //     }
+  //   });
+  //   checkButtonColor(btn);
+  //   btn.click(function () {
+  //     checkButtonColor(btn);
+  //   });
+  // }
 
   let rPieces = /^\/courses\/([0-9]+)\/assignments\/([0-9]+)\/submissions\/([0-9]+)/;
   let rPiecesInitial = /^\/courses\/([0-9]+)\/assignments\/([0-9]+)\/submissions\/([0-9]+)/;
