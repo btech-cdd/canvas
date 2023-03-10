@@ -3,7 +3,6 @@
   let pieces = window.location.href.match(rUrl);
   console.log(pieces);
   let student_id = parseInt(pieces[3]);
-  show
   let submissions = await canvasGet("/api/v1/courses/" + ENV.course_id + "/students/submissions", {
     'student_ids': [
       student_id
