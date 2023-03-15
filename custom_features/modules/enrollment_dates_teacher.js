@@ -21,7 +21,7 @@
       let endAtDate = new Date(endAtEl.value);
       //for...reasons, this is a day off
       startDate.setDate(startDate.getDate() + 1);
-      $.post("/api/v1/courses/" + ENV.COURSE_ID + "/enrollments",
+      $.post("/api/v1/courses/" + ENV.course.id + "/enrollments",
         {enrollment: {
           start_at: enrollment.start_at ?? new Date(),
           end_at: endAtDate,
