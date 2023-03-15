@@ -12,12 +12,12 @@
     </div>
   `)
 
-  let endDateEl = document.getElementById("enrollment-end-date");
+  let endAtEl = document.getElementById("enrollment-end-date");
   let enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self`))[0];
-  let endAt = enrollment.end_at;
+  let endAt = enrollment?.end_at;
   $(dateOverride).change(()=>{
     if (endAt != undefined) {
-      let endAtDate = new Date(endDateEl.value);
+      let endAtDate = new Date(endAtEl.value);
       //for...reasons, this is a day off
       startDate.setDate(startDate.getDate() + 1);
       $.post("/api/v1/courses/" + ENV.COURSE_ID + "/enrollments",
@@ -33,25 +33,13 @@
       );
     }
   });
-  let startAt = enrollment?.start_at;
-  if (startAt !== undefined) {
-    startAt = new Date(startAt);
+  if (endAt !== undefined) {
+    endAt = new Date(endAt);
 
-    var day = ("0" + startAt.getDate()).slice(-2);
-    var month = ("0" + (startAt.getMonth() + 1)).slice(-2);
+    var day = ("0" + endAt.getDate()).slice(-2);
+    var month = ("0" + (endAt.getMonth() + 1)).slice(-2);
 
-    startAt = startAt.getFullYear()+"-"+(month)+"-"+(day) ;
-    dateOverride.value=startAt;
-  }
-
-  let users = {}
-  let enrollments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/enrollments`, {state: ['active'], type: ['StudentEnrollment']});
-  for (let e in enrollments) {
-    let enrollment = enrollments[e];
-      if (users?.[enrollment.user.name] == undefined) {
-      users[enrollment.user.name] = enrollment;
-      } else {
-          console.log("DUP");
-      }
+    endAt = endAt.getFullYear()+"-"+(month)+"-"+(day) ;
+    endAtEl.value=startAt;
   }
 })();
