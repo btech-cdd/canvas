@@ -15,7 +15,7 @@
   let endAtEl = document.getElementById("enrollment-end-date");
   let enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self`))[0];
   let endAt = enrollment?.end_at;
-  $(dateOverride).change(()=>{
+  $(endAtEl).change(()=>{
     if (endAt != undefined) {
       let endAtDate = new Date(endAtEl.value);
       //for...reasons, this is a day off
