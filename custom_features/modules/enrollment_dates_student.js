@@ -16,7 +16,7 @@ setInterval(async() => {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
   
   // Display the result in the element with id="demo"
-  if (days < 10) $("#end-of-course-date-countdown").html(days + "d " + hours + "h " + minutes + "m " + seconds + "s ");
+  if (days < 10) $("#end-of-course-date-countdown").html(`Time Remaining in Course: ${days}d ${hours}h ${minutes}m ${seconds}s`);
   else $("#end-of-course-date-countdown").html(days + "d");
   
   // If the count down is finished, write some text
