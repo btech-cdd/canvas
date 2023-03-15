@@ -11,25 +11,24 @@
       </span>
     </div>
   `)
-  return
 
-  let dateOverride = document.getElementById("date-override");
-  let name = $(picker).val();
-  let enrollment = users[name];
+  let endDateEl = document.getElementById("enrollment-end-date");
+  let enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self`))[0];
+  let endAt = enrollment.end_at;
   $(dateOverride).change(()=>{
-    if (startAt != undefined) {
-      let startDate = new Date(dateOverride.value);
+    if (endAt != undefined) {
+      let endAtDate = new Date(endDateEl.value);
       //for...reasons, this is a day off
       startDate.setDate(startDate.getDate() + 1);
       $.post("/api/v1/courses/" + ENV.COURSE_ID + "/enrollments",
         {enrollment: {
-          start_at: startDate,
+          start_at: enrollment.start_at ?? new Date(),
+          end_at: endAtDate,
           user_id: enrollment.user.id,
           course_section_id: enrollment.course_section_id,
-          type: "StudentEnrollment",
+          type: enrollment.type,
           enrollment_state: "active",
-          notify: false,
-
+          notify: false
         }}
       );
     }
