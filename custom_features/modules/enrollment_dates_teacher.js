@@ -13,7 +13,7 @@
   `)
 
   let endAtEl = document.getElementById("enrollment-end-date");
-  let enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self`))[0];
+  let enrollment = (await $.get(`/api/v1/courses/${ENV.course.id}/enrollments?user_id=self`))[0];
   let endAt = enrollment?.end_at;
   console.log(endAt);
   $(endAtEl).change(()=>{
