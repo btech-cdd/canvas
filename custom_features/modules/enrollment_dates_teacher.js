@@ -2,11 +2,11 @@
   $(".more_user_information fieldset").append(`
     <div id="student_last_attended__component">
       <span style="margin: 0.75rem 0.5rem;">
-        <span style="margin: 0.75rem 0px;">
+        <div style="margin: 0.75rem 0px;">
           <span wrap="normal" letter-spacing="normal">
             <b>Set Enrollment End Date</b> 
           </span>
-        </span>
+        </div>
         <input id="enrollment-end-date" type="date" value="">
       </span>
     </div>
