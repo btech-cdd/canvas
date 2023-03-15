@@ -40,6 +40,6 @@
     var month = ("0" + (endAt.getMonth() + 1)).slice(-2);
 
     endAt = endAt.getFullYear()+"-"+(month)+"-"+(day) ;
-    endAtEl.value=startAt;
+    endAtEl.value = endAt;
   }
 })();
