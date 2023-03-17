@@ -35,12 +35,14 @@
     }
   });
   if (endAt !== undefined) {
+    console.log(endAt);
     endAt = new Date(endAt);
 
     var day = ("0" + endAt.getDate()).slice(-2);
     var month = ("0" + (endAt.getMonth() + 1)).slice(-2);
 
     endAt = endAt.getFullYear()+"-"+(month)+"-"+(day) ;
+    console.log(endAt);
     endAtEl.value = endAt;
   }
 })();
