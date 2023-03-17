@@ -17,7 +17,7 @@ setInterval(async() => {
   
   // Display the result in the element with id="demo"
   if (days < 10) $("#end-of-course-date-countdown").html(`Time Remaining in Course: ${days}d ${hours}h ${minutes}m ${seconds}s`);
-  else $("#end-of-course-date-countdown").html(days + "d");
+  else $("#end-of-course-date-countdown").html(`Time Remaining in Course: ${days}d`);
   
   // If the count down is finished, write some text
   if (distance < 0) {
