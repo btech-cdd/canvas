@@ -34,7 +34,7 @@
       );
     }
   });
-  if (endAt !== undefined) {
+  if (endAt !== undefined && endAt !== null) {
     console.log(endAt);
     endAt = new Date(endAt);
 
