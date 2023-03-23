@@ -17,22 +17,20 @@
   let endAt = enrollment?.end_at;
   console.log(endAt);
   $(endAtEl).change(()=>{
-    if (endAt != undefined) {
-      let endAtDate = new Date(endAtEl.value);
-      //for...reasons, this is a day off
-      endAtDate.setDate(endAtDate.getDate() + 1);
-      $.post("/api/v1/courses/" + ENV.COURSE_ID + "/enrollments",
-        {enrollment: {
-          start_at: enrollment.start_at ?? new Date(),
-          end_at: endAtDate,
-          user_id: enrollment.user.id,
-          course_section_id: enrollment.course_section_id,
-          type: enrollment.type,
-          enrollment_state: "active",
-          notify: false
-        }}
-      );
-    }
+    let endAtDate = new Date(endAtEl.value);
+    //for...reasons, this is a day off
+    endAtDate.setDate(endAtDate.getDate() + 1);
+    $.post("/api/v1/courses/" + ENV.COURSE_ID + "/enrollments",
+      {enrollment: {
+        start_at: enrollment.start_at ?? new Date(),
+        end_at: endAtDate,
+        user_id: enrollment.user.id,
+        course_section_id: enrollment.course_section_id,
+        type: enrollment.type,
+        enrollment_state: "active",
+        notify: false
+      }}
+    );
   });
   if (endAt !== undefined && endAt !== null) {
     console.log(endAt);

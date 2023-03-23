@@ -38,16 +38,11 @@
         }); 
         question.created = true;
       },
-      submitRequest: async function() {
-        let input = this.input;
-        this.awaitingResponse = true;
-        let response = await CLEODUCKTRA.get(`Create ten multiple choice questions with 4 options and answers about ${input}. Use the format 1) question A) option Answer: ...`);
-        this.awaitingResponse = false;
+      extractQuestions: function(response) {
         response = response.replace(/Answer: ([A-Za-z])\)/g, "\nAnswer: $1\*")
         response = response.replace(/([A-Za-z]\) )/g, "\n$1")
-        console.log(response);
+        let questions = [];
         let lines = response.split("\n");
-        console.log(lines);
         let prompt = "";
         let answers = [];
         let correct = "";
@@ -73,12 +68,21 @@
               created: false,
               include: true,
             }
-            this.questions.push(question);
+            questions.push(question);
             prompt = "";
             answers = [];
             correct = "";
           }
         }
+        return questions;
+      },
+      submitRequest: async function() {
+        let input = this.input;
+        this.awaitingResponse = true;
+        let response = await CLEODUCKTRA.get(`Use the format 1) question A) option Answer: ... Create ten multiple choice questions with 4 options and answers about ${input}.`);
+        this.awaitingResponse = false;
+        let questions = this.extractQuestions(response);
+        questions.forEach(question => this.questions.push(question));
         this.state = "response";
       }
     }
