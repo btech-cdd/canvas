@@ -15,14 +15,13 @@
   let endAtEl = document.getElementById("enrollment-end-date");
   let enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=${ENV.USER_ID}`))[0];
   let endAt = enrollment?.end_at;
-  console.log(endAt);
   $(endAtEl).change(()=>{
     let endAtDate = new Date(endAtEl.value);
     //for...reasons, this is a day off
     endAtDate.setDate(endAtDate.getDate() + 1);
     $.post("/api/v1/courses/" + ENV.COURSE_ID + "/enrollments",
       {enrollment: {
-        start_at: enrollment.start_at ?? new Date(),
+        start_at: enrollment.start_at ?? enrollment.created_at ?? new Date(),
         end_at: endAtDate,
         user_id: enrollment.user.id,
         course_section_id: enrollment.course_section_id,
