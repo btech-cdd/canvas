@@ -217,7 +217,7 @@
           const textarea = $(e.target)[0];
           const maxHeight = 200; // set the maximum height here
           console.log(textarea.style.scrollHeight);
-          textarea.style.height = (textarea.scrollHeight + 2) + "px";
+          textarea.style.height = (textarea.scrollHeight ?? 0 + 2) + "px";
           if (textarea.offsetHeight > maxHeight) {
             textarea.style.height = maxHeight + "px";
             textarea.style.overflowY = "scroll";
