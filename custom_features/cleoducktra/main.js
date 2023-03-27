@@ -212,6 +212,16 @@
             let inputEl = this.$el.querySelector(".msger-input");
             inputEl.focus();
           });
+        },
+        autoResizeInput() {
+          const textarea = this.$refs.textarea;
+          textarea.style.height = "auto";
+          const maxHeight = 200; // set the maximum height here
+          textarea.style.height = (textarea.scrollHeight + 2) + "px";
+          if (textarea.offsetHeight > maxHeight) {
+            textarea.style.height = maxHeight + "px";
+            textarea.style.overflowY = "scroll";
+          }
         }
       }
     });

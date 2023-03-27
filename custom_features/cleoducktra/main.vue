@@ -39,6 +39,7 @@
             <textarea 
               @keyup.enter="submitRequest" 
               @keydown="cycleOldMessages"
+              @input="autoResizeInput"
               :disabled="awaitingResponse"
               v-model="input"
               type="text"
