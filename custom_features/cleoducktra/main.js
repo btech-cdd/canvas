@@ -213,8 +213,8 @@
             inputEl.focus();
           });
         },
-        autoResizeInput() {
-          const textarea = this.$refs.textarea;
+        autoResizeInput(e) {
+          const textarea = $(e.target);
           console.log(this.$refs);
           textarea.style.height = "auto";
           const maxHeight = 200; // set the maximum height here
