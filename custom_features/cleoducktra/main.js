@@ -214,7 +214,7 @@
           });
         },
         autoResizeInput(e) {
-          const textarea = $(e.target);
+          const textarea = $(e.target)[0];
           console.log(e.target);
           console.log(textarea);
           textarea.style.height = "auto";
