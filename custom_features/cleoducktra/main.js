@@ -215,10 +215,8 @@
         },
         autoResizeInput(e) {
           const textarea = $(e.target)[0];
-          console.log(e.target);
-          console.log(textarea);
-          textarea.style.height = "auto";
           const maxHeight = 200; // set the maximum height here
+          console.log(textarea.style.scrollHeight);
           textarea.style.height = (textarea.scrollHeight + 2) + "px";
           if (textarea.offsetHeight > maxHeight) {
             textarea.style.height = maxHeight + "px";
