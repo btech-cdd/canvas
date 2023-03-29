@@ -60,7 +60,7 @@
         this.awaitingResponse = true;
         let docs = await CLEODUCKTRA.searchDocs(input);
         console.log(docs);
-        message.text= "Try these pages.";
+        message.text = "";
         for (let d in docs) {
           let doc = docs[d];
           message.text += `<br><a href="${doc.url}">${doc.name}</a>`;
@@ -69,7 +69,7 @@
             let resp = await CLEODUCKTRA.get(`
               Does the following policy answer my question? 
               If no, respond with just one word, 'No'. 
-              If yes, respond with 'According to policy (policy number) ...' and answer the question based on the policy and provide a quote from the policy to suppor your answer.
+              If yes, answer the question based on the policy and provide a quote from the policy to suppor your answer.
               QUESTION: ${input}
               POLICY: ${page}
             `)
