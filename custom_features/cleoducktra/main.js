@@ -54,7 +54,11 @@
       return resp;
     },
     searchDocs: async function(input) {
-      console.log(input);
+      $.ajaxSetup({
+        headers:{
+            'Content-Type': 'application/json'
+        }
+      });
       let resp = await $.post("https://btech-docs.bridgetools.dev/api/query", {
         query: input
       });
