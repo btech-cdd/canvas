@@ -53,6 +53,13 @@
       console.log(resp);
       return resp;
     },
+    searchDocs: async function(input) {
+      let resp = await $.post("https://btech-docs.bridgetools.dev/api/query", {
+        query: input
+      });
+      console.log(resp);
+      return resp;
+    },
     get: async function(input) {
       console.log(this.apikey);
       $.ajaxSetup({
@@ -138,6 +145,8 @@
           e.preventDefault();
           this.show = true;
         })
+
+        this.menus.push("Search");
 
         if (ENV.COURSE_ID != undefined) {
           this.menus.push("Content Outline");

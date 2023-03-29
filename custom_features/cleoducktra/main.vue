@@ -53,6 +53,14 @@
 
         <!--Quiz Questions-->
         <div
+          v-show="menuCurrent == 'Search'"
+        >
+          <cleoducktra-search
+          ></cleoducktra-search>
+        </div>
+
+        <!--Quiz Questions-->
+        <div
           v-show="menuCurrent == 'Quiz Questions'"
         >
           <cleoducktra-quiz-questions
