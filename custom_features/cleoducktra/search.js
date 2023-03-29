@@ -19,7 +19,7 @@
         buttonX: 10,
         show: false,
         messages: [
-          new CleoDucktraMessage("Welcome! What can I do for you?")
+          new CleoDucktraMessage("What can I find for you?")
         ],
         state: "prompt",
         questions: [],
