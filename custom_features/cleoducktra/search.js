@@ -73,6 +73,7 @@
               QUESTION: ${input}
               POLICY: ${page}
             `)
+            console.log(resp);
             if (resp.startsWith("No") == false) {
               message.text += `<p>${resp}</p>`;
             }
