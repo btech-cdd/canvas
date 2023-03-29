@@ -67,11 +67,10 @@
           for (let p in doc.pages) {
             let page = doc.pages[p];
             let resp = await CLEODUCKTRA.get(`
-              Does the following policy answer my question? 
+              Does the following content relate to my query: ${input}?
               If no, respond with just one word, 'No'. 
-              If yes, answer the question based on the policy and provide a quote from the policy to suppor your answer.
-              QUESTION: ${input}
-              POLICY: ${page}
+              If yes, provide useful information based on the content and provide a quote from the content to support your answer.
+              CONTENT: ${page}
             `)
             console.log(resp);
             if (resp.startsWith("No") == false) {
