@@ -62,7 +62,7 @@
         console.log(docs);
         message.text= "Try these pages.";
         docs.map(doc => {
-          message.text += `<br>$<a href="${doc.url}">${doc.name}</a>`;
+          message.text += `<br><a href="${doc.url}">${doc.name}</a>`;
         })
         message.img = "https://bridgetools.dev/canvas/media/cleoducktra-idle.gif"
         this.awaitingResponse = false;
