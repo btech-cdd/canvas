@@ -61,7 +61,8 @@
         let docs = await CLEODUCKTRA.searchDocs(input);
         console.log(docs);
         message.text= "Try these pages.";
-        docs.map(async doc => {
+        for (let d in docs) {
+          let doc = docs[d];
           message.text += `<br><a href="${doc.url}">${doc.name}</a>`;
           for (let p in doc.pages) {
             let page = doc.pages[p];
@@ -76,7 +77,7 @@
               message.text += `<p>${resp}</p>`;
             }
           }
-        })
+        }
         message.img = "https://bridgetools.dev/canvas/media/cleoducktra-idle.gif"
         this.awaitingResponse = false;
         let containerEl = this.$el.querySelector(".msger-chat");
