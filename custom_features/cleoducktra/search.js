@@ -8,7 +8,8 @@
   Vue.component('cleoducktra-search', {
     template: vueString,
     mounted: function() {
-
+      let canvasUserData = await $.get("/api/v1/users/self");
+      this.canvasUserData = canvasUserData;
     },
     data: function() {
       return {
