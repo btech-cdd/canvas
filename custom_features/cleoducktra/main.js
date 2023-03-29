@@ -66,7 +66,6 @@
       return resp;
     },
     get: async function(input) {
-      console.log(this.apikey);
       $.ajaxSetup({
         headers:{
             'Authorization': "Bearer " + this.apikey,
@@ -92,7 +91,6 @@
       let response = "";
       try {
         await $.post("https://api.openai.com/v1/chat/completions", data, function(resp) {
-          console.log(resp.choices[0]);
           response = resp.choices[0].message.content.trim();
         });
       } catch (err) {
@@ -232,7 +230,6 @@
           const textarea = $(e.target)[0];
           const maxHeight = 200; // set the maximum height here
           textarea.style.height = "auto";
-          console.log(textarea.style.scrollHeight);
           textarea.style.height = (textarea.scrollHeight ?? 0 + 2) + "px";
           if (textarea.offsetHeight > maxHeight) {
             textarea.style.height = maxHeight + "px";
