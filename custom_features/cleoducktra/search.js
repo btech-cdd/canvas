@@ -63,8 +63,8 @@
         message.text= "Try these pages.";
         docs.map(async doc => {
           message.text += `<br><a href="${doc.url}">${doc.name}</a>`;
-          for (let p in pages) {
-            let page = pages[p];
+          for (let p in doc.pages) {
+            let page = doc.pages[p];
             let resp = await CLEODUCKTRA.get(`
               Does the following policy answer my question? 
               If no, respond with just one word, 'No'. 
