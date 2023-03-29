@@ -7,7 +7,7 @@
   console.log(vueString);
   Vue.component('cleoducktra-search', {
     template: vueString,
-    mounted: function() {
+    mounted: async function() {
       let canvasUserData = await $.get("/api/v1/users/self");
       this.canvasUserData = canvasUserData;
     },
