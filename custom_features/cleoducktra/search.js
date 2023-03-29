@@ -68,13 +68,13 @@
             let page = doc.pages[p];
             let resp = await CLEODUCKTRA.get(`
               Does the following content relate to my query: ${input}?
-              If no, summarize what the page is about. 
+              If no, respond with just one word, 'No'. 
               If yes, just provide useful information based on the content and provide a quote from the content to support your answer.
               CONTENT: ${page}
             `)
             console.log(resp);
             if (resp.startsWith("No") == false) {
-              message.text += `<p>${resp.replace(/^Yes/, "")}</p>`;
+              message.text += `<p>${resp.replace(/^Yes(\.|,| )/, "")}</p>`;
             }
           }
         }
