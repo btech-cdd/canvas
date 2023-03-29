@@ -58,8 +58,12 @@
         let message = this.addMessage("...");
         message.img = "https://bridgetools.dev/canvas/media/cleoducktra.gif"
         this.awaitingResponse = true;
-        let text = await CLEODUCKTRA.searchDocs(input);
-        message.text= CLEODUCKTRA.formatResponse(text);
+        let docs = await CLEODUCKTRA.searchDocs(input);
+        console.log(docs);
+        message.text= "Try these pages.";
+        docs.map(doc => {
+          message.text += `\n$<a href="${doc.url}">${doc.name}</a>`;
+        })
         message.img = "https://bridgetools.dev/canvas/media/cleoducktra-idle.gif"
         this.awaitingResponse = false;
         let containerEl = this.$el.querySelector(".msger-chat");
