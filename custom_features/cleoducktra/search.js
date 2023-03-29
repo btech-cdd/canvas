@@ -62,6 +62,7 @@
         console.log(docs);
         message.text= "Try these pages.";
         docs.map(async doc => {
+          console.log(doc);
           message.text += `<br><a href="${doc.url}">${doc.name}</a>`;
           await Promise.all(doc.pages.map(async page => {
              let resp = await CLEODUCKTRA.get(`
