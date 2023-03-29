@@ -12,9 +12,16 @@
     },
     data: function() {
       return {
-        awaitingResponse: false,
-        state: "prompt",
+        lastOldMessage: 0,
         input: "",
+        canvasUserData: {},
+        awaitingResponse: false,
+        buttonX: 10,
+        show: false,
+        messages: [
+          new CleoDucktraMessage("Welcome! What can I do for you?")
+        ],
+        state: "prompt",
         questions: [],
       }
     },
