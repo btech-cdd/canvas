@@ -69,7 +69,7 @@
             let resp = await CLEODUCKTRA.get(`
               Does the following content relate to my query: ${input}?
               If no, respond with just one word, 'No'. 
-              If yes, provide useful information based on the content and provide a quote from the content to support your answer.
+              If yes, provide useful information based on the content and provide a quote from the content to support your answer. Don't actually say Yes though.
               CONTENT: ${page}
             `)
             console.log(resp);
