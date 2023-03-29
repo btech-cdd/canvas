@@ -68,7 +68,7 @@
             let page = doc.pages[p];
             let resp = await CLEODUCKTRA.get(`
               QUERY: ${input}
-              What information is in the following content which relates to my query?
+              What is the following content abbout and how does it relate to my query?
               CONTENT: ${page}
             `)
             console.log(resp);
