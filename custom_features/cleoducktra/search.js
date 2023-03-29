@@ -4,9 +4,11 @@
   await $.get(SOURCE_URL + '/custom_features/cleoducktra/search.vue', null, function (html) {
     vueString = html.replace("<template>", "").replace("</template>", "");
   }, 'text');
+  console.log(vueString);
   Vue.component('cleoducktra-search', {
     template: vueString,
     mounted: function() {
+
     },
     data: function() {
       return {
