@@ -63,19 +63,19 @@
         message.text= "Try these pages.";
         docs.map(async doc => {
           message.text += `<br><a href="${doc.url}">${doc.name}</a>`;
-          await Promise.allSettled(doc.pages.map(async page => {
-
-             let resp = await CLEODUCKTRA.get(`
+          for (let p in pages) {
+            let page = pages[p];
+            let resp = await CLEODUCKTRA.get(`
               Does the following policy answer my question? 
               If no, respond with just one word, 'No'. 
-              If yes, respond with 'According to policy ...' and answer the question based on the policy and provide a quote from the policy to suppor your answer.
+              If yes, respond with 'According to policy (policy number) ...' and answer the question based on the policy and provide a quote from the policy to suppor your answer.
               QUESTION: ${input}
               POLICY: ${page}
             `)
             if (resp.startsWith("No") == false) {
               message.text += `<p>${resp}</p>`;
             }
-          }));
+          }
         })
         message.img = "https://bridgetools.dev/canvas/media/cleoducktra-idle.gif"
         this.awaitingResponse = false;
