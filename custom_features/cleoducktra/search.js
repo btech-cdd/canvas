@@ -63,7 +63,7 @@
         message.text = "";
         for (let d in docs) {
           let doc = docs[d];
-          message.text += `<br><a href="${doc.url}">${doc.name}</a>`;
+          message.text += `<p><a href="${doc.url}">${doc.name}</a></p>`;
           for (let p in doc.pages) {
             let page = doc.pages[p];
             let resp = await CLEODUCKTRA.get(`
@@ -74,7 +74,7 @@
             `)
             console.log(resp);
             if (resp.startsWith("No") == false) {
-              message.text += `<p>${resp}</p>`;
+              message.text += `<p>${resp.replace("Yes. ", "")}</p>`;
             }
           }
         }
