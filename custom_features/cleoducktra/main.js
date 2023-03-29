@@ -59,9 +59,9 @@
             'Content-Type': 'application/json'
         }
       });
-      let resp = await $.post("https://btech-docs.bridgetools.dev/api/query", {
-        query: input
-      });
+      let resp = await $.post("https://btech-docs.bridgetools.dev/api/query", JSON.stringify({
+        "query": input
+      }));
       console.log(resp);
       return resp;
     },
