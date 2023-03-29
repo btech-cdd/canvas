@@ -67,8 +67,8 @@
           for (let p in doc.pages) {
             let page = doc.pages[p];
             let resp = await CLEODUCKTRA.get(`
-              Provide useful information related to my query based on the content and provide a quote from the content to support your answer.
-              QUERY: ${input}?
+              QUERY: ${input}
+              What information is in the following content which relates to my query?
               CONTENT: ${page}
             `)
             console.log(resp);
