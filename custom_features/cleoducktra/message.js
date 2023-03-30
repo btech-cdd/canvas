@@ -24,7 +24,7 @@ Vue.component('cleoducktra-message', {
       <div
         class="msg-img"
         :style="{
-          'background-image': 'url(&quot;' + message.img + '&quot;)' + message.name == 'CleoDucktra' ? ', url(&quot;https://bridgetools.dev/canvas/media/bg.png&quot;)' : '' 
+          'background-image': 'url(&quot;' + message.img + '&quot;), url(&quot;https://bridgetools.dev/canvas/media/bg.png&quot;)' 
         }"
       ></div>
 
