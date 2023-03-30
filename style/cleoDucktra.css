@@ -86,7 +86,7 @@
   border-radius: 50%;
 }
 .cleoducktra-input .msg-bubble {
-  max-width: 90%;
+  max-width: 80%;
   padding: 15px;
   border-radius: 15px;
   background: var(--cleoducktra-left-msg-bg);
