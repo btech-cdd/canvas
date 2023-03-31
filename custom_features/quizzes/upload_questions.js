@@ -60,6 +60,7 @@ function processUploadedQuizBank() {
         correct = "";
     }
   }
+  console.log(quiz);
 }
 upload.click(() => {
     $("body").append(`
