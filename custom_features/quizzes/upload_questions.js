@@ -68,8 +68,9 @@ function processUploadedQuizBank() {
         console.log(question);
         let answers = [];
         for (let a in question.answers) {
+          let answer = question.answers[a];
           answers.push({
-            answer_weight: a == question.correct ? 100 : 0,
+            answer_weight: question.correct ? 100 : 0,
             numerical_answer_type: "exact_answer",
             answer_text: answer
           })
