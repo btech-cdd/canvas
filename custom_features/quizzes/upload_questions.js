@@ -70,9 +70,9 @@ function processUploadedQuizBank() {
         for (let a in question.answers) {
           let answer = question.answers[a];
           answers.push({
-            answer_weight: question.correct ? 100 : 0,
+            answer_weight: answer.correct ? 100 : 0,
             numerical_answer_type: "exact_answer",
-            answer_text: answer
+            answer_text: answer.option
           })
         }
         await $.post(`/courses/${CURRENT_COURSE_ID}/question_banks/${bank.assessment_question_bank.id}/assessment_questions`, {
