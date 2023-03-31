@@ -23,42 +23,69 @@ function closeUploadQuizBank() {
 function processUploadedQuizBank() {
   const fileInput = document.getElementById('fileInput');
 	
-	const file = fileInput.files[0];
-	const reader = new FileReader();
-	reader.readAsText(file);
-	reader.onload = function() {
-    let lines = reader.result.split("\n");
-    let quiz = [];
-    let prompt = "";
-    let answers = [];
-    let correct = "";
-    for (l in lines) {
-      let line = lines[l];
-      let mPrompt = line.match(/^[0-9]+\.(.*)/);
-      if (mPrompt) {
-          prompt = mPrompt[1];
-          continue;
+	const files = fileInput.files;
+  for (let i in files) {
+    let file = files[i];
+    let reader = new FileReader();
+    let fileName = file.name;
+    reader.readAsText(file);
+    reader.onload = async function() {
+      let lines = reader.result.split("\n");
+      let quiz = [];
+      let prompt = "";
+      let answers = [];
+      let correct = "";
+      for (l in lines) {
+        let line = lines[l];
+        let mPrompt = line.match(/^[0-9]+\.(.*)/);
+        if (mPrompt) {
+            prompt = mPrompt[1];
+            continue;
+        }
+        let mAnswer = line.match(/^\*{0,1}[A-Za-z]\.(.*)/);
+        if (mAnswer) {
+            answers.push({
+                option: mAnswer[1],
+                correct: line.charAt(0) == '*'
+            });
+        }
+        if (answers.length > 1 && line == '') {
+            let question = {
+              prompt: prompt,
+              answers: answers
+            }
+            quiz.push(question);
+            prompt = "";
+            answers = [];
+            correct = "";
+        }
       }
-      let mAnswer = line.match(/^\*{0,1}[A-Za-z]\.(.*)/);
-      if (mAnswer) {
+
+      let bank = await createBank(fileName);
+      console.log(quiz);
+      for (let q in this.quiz) {
+        console.log(q);
+        let question = this.quiz[q];
+        let answers = [];
+        for (let a in question.answers) {
           answers.push({
-              option: mAnswer[1],
-              correct: line.charAt(0) == '*'
-          });
-      }
-      if (answers.length > 1 && line == '') {
-          let question = {
-            prompt: prompt,
+            answer_weight: a == question.correct ? 100 : 0,
+            numerical_answer_type: "exact_answer",
+            answer_text: answer
+          })
+        }
+        await $.post(`/courses/${ENV.COURSE_ID}/question_banks/${bank.assessment_question_bank.id}/assessment_questions`, {
+          question: {
+            question_name: "MC Question " + q,
+            question_type: "multiple_choice_question",
+            points_possible: 1,
+            question_text: `<p>${question.prompt}</p>`,
             answers: answers
           }
-          quiz.push(question);
-          prompt = "";
-          answers = [];
-          correct = "";
+        }); 
       }
-    }
-    console.log(quiz);
-	};
+    };
+  }
 }
 upload.click(() => {
     $("body").append(`
