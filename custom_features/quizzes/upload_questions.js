@@ -11,7 +11,6 @@ async function createBank(title) {
       assessment_question_bank: {title: title}
     });
     delete $.ajaxSettings.headers['Accept'];
-    this.banks.push(bank);
     return bank;
   }
 
