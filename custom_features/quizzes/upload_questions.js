@@ -62,6 +62,10 @@ function processUploadedQuizBank() {
         }
       }
 
+      $(".upload-quiz-progress-bar").empty();
+      $(".upload-quiz-progress-bar").progressbar({
+          value: 0
+      });
       let bank = await createBank(fileName);
       for (let q in quiz) {
         let question = quiz[q];
@@ -84,6 +88,9 @@ function processUploadedQuizBank() {
             answers: answers
           }
         }); 
+        $(".upload-quiz-progress-bar").progressbar({
+            value:  q / quiz.length * 100
+        });
       }
     };
   }
@@ -92,10 +99,12 @@ upload.click(() => {
     $("body").append(`
     <div id='uploadQuizBankModal' class='btech-modal' style='display: inline-block;'>
     <div class='btech-modal-content'>
+    <div class='upload-quiz-progress-bar'>
     <button style='float: right;' onclick='closeUploadQuizBank()'>X</button>
     <div class='btech-modal-content-inner'>
     <input type="file" id="fileInput" multiple>
     <button onclick="processUploadedQuizBank()">Upload</button>
+    </div>
     </div>
     </div>
     </div>
