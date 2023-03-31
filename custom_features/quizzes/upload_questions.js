@@ -82,7 +82,7 @@ function processUploadedQuizBank() {
         }
         await $.post(`/courses/${CURRENT_COURSE_ID}/question_banks/${bank.assessment_question_bank.id}/assessment_questions`, {
           question: {
-            question_name: "MC Question " + pad(q + 1, 3),
+            question_name: "MC Question " + pad(+q + 1, 3),
             question_type: "multiple_choice_question",
             points_possible: 1,
             question_text: `<p>${question.prompt}</p>`,
