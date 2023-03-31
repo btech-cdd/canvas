@@ -1,6 +1,11 @@
 let upload = $(`
 <button class="upload_bank_link btn button-sidebar-wide"><i class="icon-upload"></i> Upload Question Bank</button>
 `);
+function pad(num, size) {
+    num = num.toString();
+    while (num.length < size) num = "0" + num;
+    return num;
+}
 async function createBank(title) {
     $.ajaxSetup({
         headers:{
@@ -77,7 +82,7 @@ function processUploadedQuizBank() {
         }
         await $.post(`/courses/${CURRENT_COURSE_ID}/question_banks/${bank.assessment_question_bank.id}/assessment_questions`, {
           question: {
-            question_name: "MC Question " + q,
+            question_name: "MC Question " + pad(q, 3),
             question_type: "multiple_choice_question",
             points_possible: 1,
             question_text: `<p>${question.prompt}</p>`,
