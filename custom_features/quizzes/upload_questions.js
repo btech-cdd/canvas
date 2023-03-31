@@ -27,40 +27,38 @@ function processUploadedQuizBank() {
 	const reader = new FileReader();
 	reader.readAsText(file);
 	reader.onload = function() {
-	  const fileContent = reader.result;
-		console.log(fileContent);
+    let lines = reader.result.split("\n");
+    let quiz = [];
+    let prompt = "";
+    let answers = [];
+    let correct = "";
+    for (l in lines) {
+      let line = lines[l];
+      let mPrompt = line.match(/^[0-9]+\.(.*)/);
+      if (mPrompt) {
+          prompt = mPrompt[1];
+          continue;
+      }
+      let mAnswer = line.match(/^\*{0,1}[A-Za-z]\.(.*)/);
+      if (mAnswer) {
+          answers.push({
+              option: mAnswer[1],
+              correct: line.charAt(0) == '*'
+          });
+      }
+      if (answers.length > 1 && line == '') {
+          let question = {
+            prompt: prompt,
+            answers: answers
+          }
+          quiz.push(question);
+          prompt = "";
+          answers = [];
+          correct = "";
+      }
+    }
+    console.log(quiz);
 	};
-  let lines = uploadString.split("\n");
-  let quiz = [];
-  let prompt = "";
-  let answers = [];
-  let correct = "";
-  for (l in lines) {
-    let line = lines[l];
-    let mPrompt = line.match(/^[0-9]+\.(.*)/);
-    if (mPrompt) {
-        prompt = mPrompt[1];
-        continue;
-    }
-    let mAnswer = line.match(/^\*{0,1}[A-Za-z]\.(.*)/);
-    if (mAnswer) {
-        answers.push({
-            option: mAnswer[1],
-            correct: line.charAt(0) == '*'
-        });
-    }
-    if (answers.length > 1 && line == '') {
-        let question = {
-          prompt: prompt,
-          answers: answers
-        }
-        quiz.push(question);
-        prompt = "";
-        answers = [];
-        correct = "";
-    }
-  }
-  console.log(quiz);
 }
 upload.click(() => {
     $("body").append(`
