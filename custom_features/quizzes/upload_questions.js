@@ -66,8 +66,8 @@ function processUploadedQuizBank() {
         }
       }
 
-      $("#uploadQuizBankModal .btech-modal-content-innner").empty();
-      $("#uploadQuizBankModal .btech-modal-content-innner").append(`
+      $("#uploadQuizBankModal .btech-modal-content-inner").empty();
+      $("#uploadQuizBankModal .btech-modal-content-inner").append(`
         <p>${fileName}</p>
         <div id="${progresBarID}"></div>
       `);
