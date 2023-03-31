@@ -27,7 +27,9 @@ function processUploadedQuizBank() {
   const fileInput = document.getElementById('fileInput');
 	
 	const files = fileInput.files;
+  let filesProcessed = 0;
   for (let i = 0; i < files.length; i++) {
+    let progresBarID = "#upload-quiz-progress-bar-" + i;
     let file = files[i];
     let reader = new FileReader();
     let fileName = file.name;
@@ -64,8 +66,12 @@ function processUploadedQuizBank() {
         }
       }
 
-      $(".upload-quiz-progress-bar").empty();
-      $(".upload-quiz-progress-bar").progressbar({
+      $("#uploadQuizBankModal .btech-modal-content-innner").empty();
+      $("#uploadQuizBankModal .btech-modal-content-innner").append(`
+        <p>${fileName}</p>
+        <div id="${progresBarID}"></div>
+      `);
+      $("#" + progresBarID).progressbar({
           value: 0
       });
       let bank = await createBank(fileName);
@@ -89,11 +95,14 @@ function processUploadedQuizBank() {
             answers: answers
           }
         }); 
-        $(".upload-quiz-progress-bar").progressbar({
-            value:  q / quiz.length * 100
+        $("#" + progresBarID).progressbar({
+            value: q / quiz.length * 100
         });
       }
-      closeUploadQuizBank();
+      filesProcessed += 1;
+      if (filesProcessed == files.length) {
+        closeUploadQuizBank();
+      }
     };
   }
 }
@@ -103,12 +112,10 @@ upload.click(() => {
     <div id='uploadQuizBankModal' class='btech-modal' style='display: inline-block;'>
       <div class='btech-modal-content'>
         <div class='btech-modal-content-inner'>
-          <div class='upload-quiz-progress-bar'>
-            <button style='float: right;' onclick='closeUploadQuizBank()'>X</button>
-            <div class='btech-modal-content-inner'>
-            <input type="file" id="fileInput">
-            <button onclick="processUploadedQuizBank()">Upload</button>
-          </div>
+          <button style='float: right;' onclick='closeUploadQuizBank()'>X</button>
+          <div class='btech-modal-content-inner'>
+          <input type="file" id="fileInput" multiple>
+          <button onclick="processUploadedQuizBank()">Upload</button>
         </div>
       </div>
     </div>
