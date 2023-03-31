@@ -25,7 +25,7 @@ function processUploadedQuizBank() {
 	
 	const files = fileInput.files;
   console.log(files);
-  for (let i in files) {
+  for (let i = 0; i < files.length; i++) {
     let file = files[i];
     let reader = new FileReader();
     let fileName = file.name;
