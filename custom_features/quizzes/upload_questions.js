@@ -28,6 +28,7 @@ function processUploadedQuizBank() {
 	
 	const files = fileInput.files;
   let filesProcessed = 0;
+  $("#uploadQuizBankModal .btech-modal-content-inner").empty();
   for (let i = 0; i < files.length; i++) {
     let progresBarID = "#upload-quiz-progress-bar-" + i;
     let file = files[i];
@@ -66,10 +67,11 @@ function processUploadedQuizBank() {
         }
       }
 
-      $("#uploadQuizBankModal .btech-modal-content-inner").empty();
       $("#uploadQuizBankModal .btech-modal-content-inner").append(`
-        <p>${fileName}</p>
-        <div id="${progresBarID}"></div>
+        <div>
+          <p>${fileName}</p>
+          <div id="${progresBarID}"></div>
+        </div>
       `);
       $("#" + progresBarID).progressbar({
           value: 0
