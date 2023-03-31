@@ -30,7 +30,7 @@ function processUploadedQuizBank() {
   let filesProcessed = 0;
   $("#uploadQuizBankModal .btech-modal-content-inner").empty();
   for (let i = 0; i < files.length; i++) {
-    let progresBarID = "#upload-quiz-progress-bar-" + i;
+    let progresBarID = "upload-quiz-progress-bar-" + i;
     let file = files[i];
     let reader = new FileReader();
     let fileName = file.name;
