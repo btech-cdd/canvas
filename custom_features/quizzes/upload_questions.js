@@ -95,15 +95,16 @@ function processUploadedQuizBank() {
 upload.click(() => {
     $("body").append(`
     <div id='uploadQuizBankModal' class='btech-modal' style='display: inline-block;'>
-    <div class='btech-modal-content'>
-    <div class='upload-quiz-progress-bar'>
-    <button style='float: right;' onclick='closeUploadQuizBank()'>X</button>
-    <div class='btech-modal-content-inner'>
-    <input type="file" id="fileInput" multiple>
-    <button onclick="processUploadedQuizBank()">Upload</button>
-    </div>
-    </div>
-    </div>
+      <div class='btech-modal-content'>
+        <div class='btech-modal-content-inner'>
+          <div class='upload-quiz-progress-bar'>
+            <button style='float: right;' onclick='closeUploadQuizBank()'>X</button>
+            <div class='btech-modal-content-inner'>
+            <input type="file" id="fileInput" multiple>
+            <button onclick="processUploadedQuizBank()">Upload</button>
+          </div>
+        </div>
+      </div>
     </div>
     `)
 });
