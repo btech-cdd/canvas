@@ -7,7 +7,7 @@ async function createBank(title) {
             'Accept': 'application/json'
         }
     });
-    let bank = await $.post(`https://btech.instructure.com/courses/${CURRENT_COURSE_ID}}/question_banks`, {
+    let bank = await $.post(`https://btech.instructure.com/courses/${CURRENT_COURSE_ID}/question_banks`, {
       assessment_question_bank: {title: title}
     });
     delete $.ajaxSettings.headers['Accept'];
