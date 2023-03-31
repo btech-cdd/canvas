@@ -87,8 +87,8 @@ function processUploadedQuizBank() {
         $(".upload-quiz-progress-bar").progressbar({
             value:  q / quiz.length * 100
         });
-        closeUploadQuizBank();
       }
+      closeUploadQuizBank();
     };
   }
 }
