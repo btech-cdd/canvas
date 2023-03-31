@@ -63,10 +63,9 @@ function processUploadedQuizBank() {
       }
 
       let bank = await createBank(fileName);
-      console.log(quiz);
-      for (let q in this.quiz) {
-        console.log(q);
-        let question = this.quiz[q];
+      for (let q in quiz) {
+        let question = quiz[q];
+        console.log(question);
         let answers = [];
         for (let a in question.answers) {
           answers.push({
