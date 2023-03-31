@@ -7,7 +7,7 @@ async function createBank(title) {
             'Accept': 'application/json'
         }
     });
-    let bank = await $.post(`https://btech.instructure.com/courses/${ENV.COURSE_ID}}/question_banks`, {
+    let bank = await $.post(`https://btech.instructure.com/courses/${CURRENT_COURSE_ID}}/question_banks`, {
       assessment_question_bank: {title: title}
     });
     delete $.ajaxSettings.headers['Accept'];
@@ -76,7 +76,7 @@ function processUploadedQuizBank() {
             answer_text: answer
           })
         }
-        await $.post(`/courses/${ENV.COURSE_ID}/question_banks/${bank.assessment_question_bank.id}/assessment_questions`, {
+        await $.post(`/courses/${CURRENT_COURSE_ID}/question_banks/${bank.assessment_question_bank.id}/assessment_questions`, {
           question: {
             question_name: "MC Question " + q,
             question_type: "multiple_choice_question",
