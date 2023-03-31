@@ -16,19 +16,16 @@ async function createBank(title) {
 
 
 function closeUploadQuizBank() {
-    console.log("CLOSE");
     $("#uploadQuizBankModal").remove();
 }
 function processUploadedQuizBank() {
   const fileInput = document.getElementById('fileInput');
 	
 	const files = fileInput.files;
-  console.log(files);
   for (let i = 0; i < files.length; i++) {
     let file = files[i];
     let reader = new FileReader();
     let fileName = file.name;
-    console.log("NAME" + fileName);
     reader.readAsText(file);
     reader.onload = async function() {
       let lines = reader.result.split("\n");
@@ -69,7 +66,6 @@ function processUploadedQuizBank() {
       let bank = await createBank(fileName);
       for (let q in quiz) {
         let question = quiz[q];
-        console.log(question);
         let answers = [];
         for (let a in question.answers) {
           let answer = question.answers[a];
@@ -91,6 +87,7 @@ function processUploadedQuizBank() {
         $(".upload-quiz-progress-bar").progressbar({
             value:  q / quiz.length * 100
         });
+        closeUploadQuizBank();
       }
     };
   }
