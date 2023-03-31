@@ -28,6 +28,7 @@ function processUploadedQuizBank() {
     let file = files[i];
     let reader = new FileReader();
     let fileName = file.name;
+    console.log(fileName);
     reader.readAsText(file);
     reader.onload = async function() {
       let lines = reader.result.split("\n");
