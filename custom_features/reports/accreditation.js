@@ -15,6 +15,7 @@
 
     let rCheckInCourse = /^\/courses\/([0-9]+)/;
     if (rCheckInCourse.test(window.location.pathname)) {
+      add_javascript_library("https://cdn.jsdelivr.net/npm/vue@2.6.12");
       //Allows printing of an element, may be obsolete
       add_javascript_library("https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js");
       //convert html to a canvas which can then be converted to a blob...
