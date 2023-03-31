@@ -98,7 +98,7 @@ function processUploadedQuizBank() {
           }
         }); 
         $("#" + progresBarID).progressbar({
-            value: q / quiz.length * 100
+            value: (+q + 1) / quiz.length * 100
         });
       }
       filesProcessed += 1;
