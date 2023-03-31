@@ -24,11 +24,12 @@ function processUploadedQuizBank() {
   const fileInput = document.getElementById('fileInput');
 	
 	const files = fileInput.files;
+  console.log(files);
   for (let i in files) {
     let file = files[i];
     let reader = new FileReader();
     let fileName = file.name;
-    console.log(fileName);
+    console.log("NAME" + fileName);
     reader.readAsText(file);
     reader.onload = async function() {
       let lines = reader.result.split("\n");
