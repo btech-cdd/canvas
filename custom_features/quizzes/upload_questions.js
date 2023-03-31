@@ -92,6 +92,7 @@ function processUploadedQuizBank() {
     };
   }
 }
+//handling multiple isn't currently working, but add multiple after input 
 upload.click(() => {
     $("body").append(`
     <div id='uploadQuizBankModal' class='btech-modal' style='display: inline-block;'>
@@ -100,7 +101,7 @@ upload.click(() => {
           <div class='upload-quiz-progress-bar'>
             <button style='float: right;' onclick='closeUploadQuizBank()'>X</button>
             <div class='btech-modal-content-inner'>
-            <input type="file" id="fileInput" multiple>
+            <input type="file" id="fileInput">
             <button onclick="processUploadedQuizBank()">Upload</button>
           </div>
         </div>
