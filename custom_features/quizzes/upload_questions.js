@@ -108,6 +108,7 @@ let VUE_APP = new Vue({
               }
             }); 
             this.uploadProgress[file.name] = +q / quiz.length;
+            this.uploadProgress = JSON.stringify(JSON.parse(this.uploadProgress));
             console.log(this.uploadProgress);
           }
           filesProcessed += 1;
