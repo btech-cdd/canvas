@@ -6,6 +6,8 @@ $("body").append(`
     <div 
       v-if="show"
       class='btech-modal'
+      style="display: inline-block;"
+
     >
       <div class='btech-modal-content'>
         <div class='btech-modal-content-inner'>
