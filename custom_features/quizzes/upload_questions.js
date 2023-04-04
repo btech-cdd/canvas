@@ -2,20 +2,28 @@ let upload = $(`
   <button class="upload_bank_link btn button-sidebar-wide"><i class="icon-upload"></i> Upload Question Bank</button>
 `);
 $("body").append(`
-  <div
+  <div 
+    v-if="show"
+    class='btech-modal'
+    style="display: inline-block;"
     id='canvas-question-bank-uploader-vue'
   >
-    <div 
-      v-if="show"
-      class='btech-modal'
-      style="display: inline-block;"
-    >
-      <div class='btech-modal-content'>
+    <div class='btech-modal-content'>
+      <div 
+        v-if="state='upload'"
+        class='btech-modal-content-inner'
+      >
+        <button style='float: right;' @click='show=false;'>X</button>
         <div class='btech-modal-content-inner'>
-          <button style='float: right;' @click='show=false;'>X</button>
-          <div class='btech-modal-content-inner'>
-          <input type="file" id="fileInput" multiple>
-          <button onclick="processUploadedQuizBank()">Upload</button>
+        <input type="file" id="fileInput" multiple>
+        <button onclick="processUploadedQuizBank()">Upload</button>
+      </div>
+      <div 
+        v-if="state='uploading'"
+        class='btech-modal-content-inner'
+      >
+        <div v-for="file in files">
+          <span>{{file.name}}</span><span>{{Math.round(uploadProgress[file.name] * 100)}}%</span>
         </div>
       </div>
     </div>
@@ -29,20 +37,22 @@ let VUE_APP = new Vue({
   data: function () {
     return {
       show: false,
+      state: 'upload',
+      files: [],
+      uploadProgress: {}
     }
   },
   methods: {
     processUploadedQuizBank: function () {
       const fileInput = document.getElementById('fileInput');
+      this.files = fileInput.files;
+      this.state = 'uploading';
       
-      const files = fileInput.files;
       let filesProcessed = 0;
-      $("#uploadQuizBankModal .btech-modal-content-inner").empty();
       for (let i = 0; i < files.length; i++) {
-        let progresBarID = "upload-quiz-progress-bar-" + i;
+        uploadProgress[file.name] = 0;
         let file = files[i];
         let reader = new FileReader();
-        let fileName = file.name;
         reader.readAsText(file);
         reader.onload = async function() {
           let lines = reader.result.split("\n");
@@ -76,15 +86,6 @@ let VUE_APP = new Vue({
             }
           }
 
-          $("#uploadQuizBankModal .btech-modal-content-inner").append(`
-            <div>
-              <p>${fileName}</p>
-              <div id="${progresBarID}"></div>
-            </div>
-          `);
-          $("#" + progresBarID).progressbar({
-              value: 0
-          });
           let bank = await createBank(fileName);
           for (let q in quiz) {
             let question = quiz[q];
@@ -106,13 +107,11 @@ let VUE_APP = new Vue({
                 answers: answers
               }
             }); 
-            $("#" + progresBarID).progressbar({
-                value: (+q + 1) / quiz.length * 100
-            });
+            this.uploadProgress[file.name] = +q / quiz.length;
           }
           filesProcessed += 1;
-          if (filesProcessed == files.length) {
-            closeUploadQuizBank();
+          if (filesProcessed == this.files.length) {
+            this.show = false;;
           }
         };
       }
@@ -141,6 +140,7 @@ async function createBank(title) {
 //handling multiple isn't currently working, but add multiple after input 
 upload.click(() => {
   VUE_APP.show = true;
+  VUE_APP.state = 'upload';
 });
 $(".see_bookmarked_banks").after(upload);
 
