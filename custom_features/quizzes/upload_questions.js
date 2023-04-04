@@ -108,6 +108,7 @@ let VUE_APP = new Vue({
               }
             }); 
             this.uploadProgress[file.name] = +q / quiz.length;
+            console.log(this.uploadProgress);
           }
           filesProcessed += 1;
           if (filesProcessed == this.files.length) {
