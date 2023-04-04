@@ -2,20 +2,18 @@ let upload = $(`
   <button class="upload_bank_link btn button-sidebar-wide"><i class="icon-upload"></i> Upload Question Bank</button>
 `);
 $("body").append(`
-  <div id='canvas-question-bank-uploader-vue'>
-    <div 
-      v-if="show"
-      class='btech-modal'
-      style="display: inline-block;"
-
-    >
-      <div class='btech-modal-content'>
+  <div 
+    v-if="show"
+    class='btech-modal'
+    style="display: inline-block;"
+    id='canvas-question-bank-uploader-vue'
+  >
+    <div class='btech-modal-content'>
+      <div class='btech-modal-content-inner'>
+        <button style='float: right;' onclick='closeUploadQuizBank()'>X</button>
         <div class='btech-modal-content-inner'>
-          <button style='float: right;' onclick='closeUploadQuizBank()'>X</button>
-          <div class='btech-modal-content-inner'>
-          <input type="file" id="fileInput" multiple>
-          <button onclick="processUploadedQuizBank()">Upload</button>
-        </div>
+        <input type="file" id="fileInput" multiple>
+        <button onclick="processUploadedQuizBank()">Upload</button>
       </div>
     </div>
   </div>
