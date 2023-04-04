@@ -16,7 +16,7 @@ $("body").append(`
         <button style='float: right;' @click='show=false;'>X</button>
         <div class='btech-modal-content-inner'>
         <input type="file" id="fileInput" multiple>
-        <button onclick="processUploadedQuizBank()">Upload</button>
+        <button @click="processUploadedQuizBank()">Upload</button>
       </div>
       <div 
         v-if="state='uploading'"
