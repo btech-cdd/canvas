@@ -86,7 +86,7 @@ let VUE_APP = new Vue({
             }
           }
 
-          let bank = await createBank(fileName);
+          let bank = await this.createBank(fileName);
           for (let q in quiz) {
             let question = quiz[q];
             let answers = [];
@@ -115,6 +115,18 @@ let VUE_APP = new Vue({
           }
         };
       }
+    },
+    createBank: async function(title) {
+      $.ajaxSetup({
+          headers:{
+              'Accept': 'application/json'
+          }
+      });
+      let bank = await $.post(`https://btech.instructure.com/courses/${CURRENT_COURSE_ID}/question_banks`, {
+        assessment_question_bank: {title: title}
+      });
+      delete $.ajaxSettings.headers['Accept'];
+      return bank;
     }
   }
 });
@@ -123,18 +135,6 @@ function pad(num, size) {
     while (num.length < size) num = "0" + num;
     return num;
 }
-async function createBank(title) {
-    $.ajaxSetup({
-        headers:{
-            'Accept': 'application/json'
-        }
-    });
-    let bank = await $.post(`https://btech.instructure.com/courses/${CURRENT_COURSE_ID}/question_banks`, {
-      assessment_question_bank: {title: title}
-    });
-    delete $.ajaxSettings.headers['Accept'];
-    return bank;
-  }
 
 
 //handling multiple isn't currently working, but add multiple after input 
