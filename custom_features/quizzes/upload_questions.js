@@ -23,7 +23,7 @@ $("body").append(`
         class='btech-modal-content-inner'
       >
         <div v-for="file in files">
-          <span>{{file.name}}</span><span>{{Math.round(uploadProgress[file.name] * 100)}}%</span>
+          <span>{{file.name}}</span><span>{{uploadProgress[file.name]}}%</span>
         </div>
       </div>
     </div>
