@@ -1,6 +1,34 @@
 let upload = $(`
-<button class="upload_bank_link btn button-sidebar-wide"><i class="icon-upload"></i> Upload Question Bank</button>
+  <button class="upload_bank_link btn button-sidebar-wide"><i class="icon-upload"></i> Upload Question Bank</button>
 `);
+$("body").append(`
+  <div id='canvas-question-bank-uploader-vue'>
+    <div 
+      v-if="show"
+      class='btech-modal'
+    >
+      <div class='btech-modal-content'>
+        <div class='btech-modal-content-inner'>
+          <button style='float: right;' onclick='closeUploadQuizBank()'>X</button>
+          <div class='btech-modal-content-inner'>
+          <input type="file" id="fileInput" multiple>
+          <button onclick="processUploadedQuizBank()">Upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+`);
+this.APP = new Vue({
+  el: '#canvas-question-bank-uploader-vue',
+  mounted: async function () {
+
+  },
+  data: function () {
+    return {
+      show: false,
+    }
+  }
+});
 function pad(num, size) {
     num = num.toString();
     while (num.length < size) num = "0" + num;
