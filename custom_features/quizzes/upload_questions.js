@@ -50,8 +50,8 @@ let VUE_APP = new Vue({
       
       let filesProcessed = 0;
       for (let i = 0; i < this.files.length; i++) {
+        let file = this.files[i];
         this.uploadProgress[file.name] = 0;
-        let file = files[i];
         let reader = new FileReader();
         reader.readAsText(file);
         reader.onload = async function() {
