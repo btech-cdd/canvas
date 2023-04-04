@@ -10,7 +10,7 @@ $("body").append(`
   >
     <div class='btech-modal-content'>
       <div class='btech-modal-content-inner'>
-        <button style='float: right;' onclick='closeUploadQuizBank()'>X</button>
+        <button style='float: right;' @click='show=false;'>X</button>
         <div class='btech-modal-content-inner'>
         <input type="file" id="fileInput" multiple>
         <button onclick="processUploadedQuizBank()">Upload</button>
