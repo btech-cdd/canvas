@@ -54,7 +54,7 @@ let VUE_APP = new Vue({
         this.uploadProgress[file.name] = 0;
         let reader = new FileReader();
         reader.readAsText(file);
-        reader.onload = async function() {
+        reader.onload = async () => {
           let lines = reader.result.split("\n");
           let quiz = [];
           let prompt = "";
