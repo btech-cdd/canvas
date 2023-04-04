@@ -18,7 +18,7 @@ $("body").append(`
     </div>
   </div>
 `);
-this.APP = new Vue({
+let VUE_APP = new Vue({
   el: '#canvas-question-bank-uploader-vue',
   mounted: async function () {
 
@@ -138,18 +138,7 @@ function processUploadedQuizBank() {
 }
 //handling multiple isn't currently working, but add multiple after input 
 upload.click(() => {
-    $("body").append(`
-    <div id='uploadQuizBankModal' class='btech-modal' style='display: inline-block;'>
-      <div class='btech-modal-content'>
-        <div class='btech-modal-content-inner'>
-          <button style='float: right;' onclick='closeUploadQuizBank()'>X</button>
-          <div class='btech-modal-content-inner'>
-          <input type="file" id="fileInput" multiple>
-          <button onclick="processUploadedQuizBank()">Upload</button>
-        </div>
-      </div>
-    </div>
-    `)
+  VUE_APP.show = true;
 });
 $(".see_bookmarked_banks").after(upload);
 
