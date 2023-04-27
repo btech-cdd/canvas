@@ -1,8 +1,50 @@
 (async function() {
+  function addBackground(remove) {
+    let bg = $(`
+      <div style="
+        overflow: auto; 
+        position: fixed; 
+        background-color: rgba(0, 0, 0, 0.5); 
+        width: 100%; 
+        height: 100%; 
+        left: 0; 
+        top: 0; 
+        z-index:1000;
+      ">
+        <div id='background-container' style='
+          width: 500px;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          position:fixed;
+          top: 50%;
+          z-index:1000;
+          transition: 0.5s;
+          background-color: #FFF;
+          border: 2px solid #888;
+          padding: 10px 20px;
+          color: #000;
+          border-radius: 5px;
+        '>
+        </div>
+      </div>
+      `);
+    $("body").append(bg);
+    if (remove) addBackgroundClosing(bg);
+    return bg;
+  }
+
+  function addBackgroundClosing(bg) {
+    bg.click(function (e) {
+      if (e.target !== this)
+        return;
+      $(this).remove();
+    });
+  }
+
   let button = $(`<button class="btn">DATA Feedback</button>`);
   $(".header-bar-right__buttons").prepend(button);
   button.click(async function() {
-    let background = TOOLBAR.addBackground(true);
+    let background = addBackground(true);
     let container = background.find("#background-container");
     container.append("Loading");
     let report = $("<div></div>");
