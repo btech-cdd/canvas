@@ -1,4 +1,8 @@
 (async function() {
+  //add conclude button if hidden for not concluded but not active students
+  if ($(".unconclude_enrollment_link_holder").css("display") == "none") $(".conclude_enrollment_link_holder").css("display", "block");
+
+  //The actual enrollment bit
   $(".more_user_information fieldset").append(`
     <div id="student_last_attended__component">
       <span style="margin: 0.75rem 0.5rem;">
