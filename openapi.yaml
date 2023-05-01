@@ -4,7 +4,7 @@ info:
   description:  A plugin that allows the user to get account information as a Canvas LMS Admin.
   version: 'v1'
 servers:
-  - url: https://bridgetools.dev/api
+  - url: https://canvas.bridgetools.dev/api
 paths:
   /openai/accounts/{id}:
     get:
