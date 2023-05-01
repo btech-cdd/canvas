@@ -29,6 +29,37 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Account'
+  /openai/accounts/{account_id}/sub_accounts:
+    get:
+      tags:
+        - accounts
+      summary: Get the sub-accounts of an account
+      description: List accounts that are sub-accounts of the given account.
+      operationId: get_sub_accounts_of_account
+      parameters:
+        - name: account_id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+        - name: recursive
+          in: query
+          description: |-
+            If true, the entire account tree underneath
+            this account will be returned (though still paginated). If false, only
+            direct sub-accounts of this account will be returned. Defaults to false.
+          schema:
+            type: boolean
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
   /openai/accounts:
     get:
       tags:
