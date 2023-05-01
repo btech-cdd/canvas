@@ -1,0 +1,591 @@
+openapi: 3.0.1
+info:
+  title: Canvas Plugin
+  description:  A plugin that allows the user to get account information as a Canvas LMS Admin.
+  version: 'v1'
+servers:
+  - url: https://btech.beta.instructure.com/api
+paths:
+  /v1/accounts/{id}:
+    get:
+      tags:
+        - accounts
+      summary: Get a single account
+      description: |-
+        Retrieve information on an individual account, given by id or sis
+        sis_account_id.
+      operationId: get_single_account
+      parameters:
+        - name: id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+    put:
+      tags:
+        - accounts
+      summary: Update an account
+      description: Update an existing account.
+      operationId: update_account
+      parameters:
+        - name: id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                account[name]:
+                  type: string
+                  description: Updates the account name
+                account[sis_account_id]:
+                  type: string
+                  description: |-
+                    Updates the account sis_account_id
+                    Must have manage_sis permission and must not be a root_account.
+                account[default_time_zone]:
+                  type: string
+                  description: |-
+                    The default time zone of the account. Allowed time zones are
+                    {http://www.iana.org/time-zones IANA time zones} or friendlier
+                    {http://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html Ruby on Rails time zones}.
+                account[default_storage_quota_mb]:
+                  type: integer
+                  description: The default course storage quota to be used, if not otherwise specified.
+                  format: int64
+                account[default_user_storage_quota_mb]:
+                  type: integer
+                  description: The default user storage quota to be used, if not otherwise specified.
+                  format: int64
+                account[default_group_storage_quota_mb]:
+                  type: integer
+                  description: The default group storage quota to be used, if not otherwise specified.
+                  format: int64
+                account[course_template_id]:
+                  type: integer
+                  description: |-
+                    The ID of a course to be used as a template for all newly created courses.
+                    Empty means to inherit the setting from parent account, 0 means to not
+                    use a template even if a parent account has one set. The course must be
+                    marked as a template.
+                  format: int64
+                account[settings][restrict_student_past_view][value]:
+                  type: boolean
+                  description: Restrict students from viewing courses after end date
+                account[settings][restrict_student_past_view][locked]:
+                  type: boolean
+                  description: Lock this setting for sub-accounts and courses
+                account[settings][restrict_student_future_view][value]:
+                  type: boolean
+                  description: Restrict students from viewing courses before start date
+                account[settings][microsoft_sync_enabled]:
+                  type: boolean
+                  description: |-
+                    Determines whether this account has Microsoft Teams Sync enabled or not.
+
+                    Note that if you are altering Microsoft Teams sync settings you must enable
+                    the Microsoft Group enrollment syncing feature flag. In addition, if you are enabling
+                    Microsoft Teams sync, you must also specify a tenant, login attribute, and a remote attribute.
+                    Specifying a suffix to use is optional.
+                account[settings][microsoft_sync_tenant]:
+                  type: string
+                  description: |-
+                    The tenant this account should use when using Microsoft Teams Sync.
+                    This should be an Azure Active Directory domain name.
+                account[settings][microsoft_sync_login_attribute]:
+                  type: string
+                  description: |-
+                    The attribute this account should use to lookup users when using Microsoft Teams Sync.
+                    Must be one of "sub", "email", "oid", "preferred_username", or "integration_id".
+                account[settings][microsoft_sync_login_attribute_suffix]:
+                  type: string
+                  description: |-
+                    A suffix that will be appended to the result of the login attribute when associating
+                    Canvas users with Microsoft users. Must be under 255 characters and contain no whitespace.
+                    This field is optional.
+                account[settings][microsoft_sync_remote_attribute]:
+                  type: string
+                  description: |-
+                    The Active Directory attribute to use when associating Canvas users with Microsoft users.
+                    Must be one of "mail", "mailNickname", or "userPrincipalName".
+                account[settings][restrict_student_future_view][locked]:
+                  type: boolean
+                  description: Lock this setting for sub-accounts and courses
+                account[settings][lock_all_announcements][value]:
+                  type: boolean
+                  description: Disable comments on announcements
+                account[settings][lock_all_announcements][locked]:
+                  type: boolean
+                  description: Lock this setting for sub-accounts and courses
+                account[settings][usage_rights_required][value]:
+                  type: boolean
+                  description: Copyright and license information must be provided for files before they are published.
+                account[settings][usage_rights_required][locked]:
+                  type: boolean
+                  description: Lock this setting for sub-accounts and courses
+                account[settings][restrict_student_future_listing][value]:
+                  type: boolean
+                  description: Restrict students from viewing future enrollments in course list
+                account[settings][restrict_student_future_listing][locked]:
+                  type: boolean
+                  description: Lock this setting for sub-accounts and courses
+                account[settings][conditional_release][value]:
+                  type: boolean
+                  description: Enable or disable individual learning paths for students based on assessment
+                account[settings][conditional_release][locked]:
+                  type: boolean
+                  description: Lock this setting for sub-accounts and courses
+                override_sis_stickiness:
+                  type: boolean
+                  description: |-
+                    Default is true. If false, any fields containing “sticky” changes will not be updated.
+                    See SIS CSV Format documentation for information on which fields can have SIS stickiness
+                account[settings][lock_outcome_proficiency][value]:
+                  type: boolean
+                  description: '[DEPRECATED] Restrict instructors from changing mastery scale'
+                account[lock_outcome_proficiency][locked]:
+                  type: boolean
+                  description: '[DEPRECATED] Lock this setting for sub-accounts and courses'
+                account[settings][lock_proficiency_calculation][value]:
+                  type: boolean
+                  description: '[DEPRECATED] Restrict instructors from changing proficiency calculation method'
+                account[lock_proficiency_calculation][locked]:
+                  type: boolean
+                  description: '[DEPRECATED] Lock this setting for sub-accounts and courses'
+                account[services]:
+                  type: object
+                  description: Give this a set of keys and boolean values to enable or disable services matching the keys
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /v1/course_accounts:
+    get:
+      tags:
+        - accounts
+      summary: List accounts for course admins
+      description: |-
+        A paginated list of accounts that the current user can view through their
+        admin course enrollments. (Teacher, TA, or designer enrollments).
+        Only returns "id", "name", "workflow_state", "root_account_id" and "parent_account_id"
+      operationId: list_accounts_for_course_admins
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+  /v1/accounts/{account_id}/permissions:
+    get:
+      tags:
+        - accounts
+      summary: Permissions
+      description: |-
+        Returns permission information for the calling user and the given account.
+        You may use `self` as the account id to check permissions against the domain root account.
+        The caller must have an account role or admin (teacher/TA/designer) enrollment in a course
+        in the account.
+
+        See also the {api:CoursesController#permissions Course} and {api:GroupsController#permissions Group}
+        counterparts.
+      operationId: permissions
+      parameters:
+        - name: account_id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+        - name: permissions
+          in: query
+          description: |-
+            List of permissions to check against the authenticated user.
+            Permission names are documented in the {api:RoleOverridesController#add_role Create a role} endpoint.
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        default:
+          description: success
+          content: {}
+  /v1/accounts/{account_id}/help_links:
+    get:
+      tags:
+        - accounts
+      summary: Get help links
+      description: Returns the help links for that account
+      operationId: get_help_links
+      parameters:
+        - name: account_id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HelpLinks'
+  /v1/manually_created_courses_account:
+    get:
+      tags:
+        - accounts
+      summary: Get the manually-created courses sub-account for the domain root account
+      operationId: get_manually_created_courses_sub_account_for_domain_root_account
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /v1/accounts:
+    get:
+      tags:
+        - accounts
+      summary: List accounts
+      description: |-
+        A paginated list of accounts that the current user can view or manage.
+        Typically, students and even teachers will get an empty list in response,
+        only account admins can view the accounts that they are in.
+      operationId: list_accounts
+      parameters:
+        - name: include
+          in: query
+          description: |-
+            Array of additional information to include.
+
+            "lti_guid":: the 'tool_consumer_instance_guid' that will be sent for this account on LTI launches
+            "registration_settings":: returns info about the privacy policy and terms of use
+            "services":: returns services and whether they are enabled (requires account management permissions)
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+            enum:
+              - lti_guid
+              - registration_settings
+              - services
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+  /v1/accounts/{account_id}/sub_accounts:
+    get:
+      tags:
+        - accounts
+      summary: Get the sub-accounts of an account
+      description: List accounts that are sub-accounts of the given account.
+      operationId: get_sub_accounts_of_account
+      parameters:
+        - name: account_id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+        - name: recursive
+          in: query
+          description: |-
+            If true, the entire account tree underneath
+            this account will be returned (though still paginated). If false, only
+            direct sub-accounts of this account will be returned. Defaults to false.
+          schema:
+            type: boolean
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+    post:
+      tags:
+        - accounts
+      summary: Create a new sub-account
+      description: Add a new sub-account to a given account.
+      operationId: create_new_sub_account
+      parameters:
+        - name: account_id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - account[name]
+              properties:
+                account[name]:
+                  type: string
+                  description: The name of the new sub-account.
+                account[sis_account_id]:
+                  type: string
+                  description: The account's identifier in the Student Information System.
+                account[default_storage_quota_mb]:
+                  type: integer
+                  description: The default course storage quota to be used, if not otherwise specified.
+                  format: int64
+                account[default_user_storage_quota_mb]:
+                  type: integer
+                  description: The default user storage quota to be used, if not otherwise specified.
+                  format: int64
+                account[default_group_storage_quota_mb]:
+                  type: integer
+                  description: The default group storage quota to be used, if not otherwise specified.
+                  format: int64
+        required: true
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /v1/accounts/{account_id}/terms_of_service:
+    get:
+      tags:
+        - accounts
+      summary: Get the Terms of Service
+      description: Returns the terms of service for that account
+      operationId: get_terms_of_service
+      parameters:
+        - name: account_id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TermsOfService'
+  /v1/accounts/{account_id}/sub_accounts/{id}:
+    delete:
+      tags:
+        - accounts
+      summary: Delete a sub-account
+      description: |-
+        Cannot delete an account with active courses or active sub_accounts.
+        Cannot delete a root_account
+      operationId: delete_sub_account
+      parameters:
+        - name: account_id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /v1/manageable_accounts:
+    get:
+      tags:
+        - accounts
+      summary: Get accounts that admins can manage
+      description: |-
+        A paginated list of accounts where the current user has permission to create
+        or manage courses. List will be empty for students and teachers as only admins
+        can view which accounts they are in.
+      operationId: get_accounts_that_admins_can_manage
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+  /v1/accounts/{account_id}/settings:
+    get:
+      tags:
+        - accounts
+      summary: Settings
+      description: |-
+        Returns settings for the specified account as a JSON object. The caller must be an Account
+        admin with the manage_account_settings permission.
+      operationId: settings
+      parameters:
+        - name: account_id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: success
+          content: {}
+ 
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: the ID of the Account object
+        name:
+          type: string
+          description: The display name of the account
+        uuid:
+          type: string
+          description: The UUID of the account
+        parent_account_id:
+          type: integer
+          description: The account's parent ID, or null if this is the root account
+        root_account_id:
+          type: integer
+          description: The ID of the root account, or null if this is the root account
+        default_storage_quota_mb:
+          type: integer
+          description: The storage quota for the account in megabytes, if not otherwise specified
+        default_user_storage_quota_mb:
+          type: integer
+          description: The storage quota for a user in the account in megabytes, if not otherwise specified
+        default_group_storage_quota_mb:
+          type: integer
+          description: The storage quota for a group in the account in megabytes, if not otherwise specified
+        default_time_zone:
+          type: string
+          description: The default time zone of the account. Allowed time zones are {http://www.iana.org/time-zones IANA time zones} or friendlier {http://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html Ruby on Rails time zones}.
+        sis_account_id:
+          type: string
+          description: The account's identifier in the Student Information System. Only included if the user has permission to view SIS information.
+        integration_id:
+          type: string
+          description: The account's identifier in the Student Information System. Only included if the user has permission to view SIS information.
+        sis_import_id:
+          type: integer
+          description: The id of the SIS import if created through SIS. Only included if the user has permission to manage SIS information.
+        lti_guid:
+          type: string
+          description: The account's identifier that is sent as context_id in LTI launches.
+        workflow_state:
+          type: string
+          description: The state of the account. Can be 'active' or 'deleted'.
+      description: ''
+    TermsOfService:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Terms Of Service id
+        terms_type:
+          type: string
+          description: The given type for the Terms of Service
+          enum:
+            - default
+            - custom
+            - no_terms
+        passive:
+          type: boolean
+          description: Boolean dictating if the user must accept Terms of Service
+        account_id:
+          type: integer
+          description: The id of the root account that owns the Terms of Service
+        content:
+          type: string
+          description: Content of the Terms of Service
+        self_registration_type:
+          type: string
+          description: The type of self registration allowed
+      description: ''
+    HelpLink:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the help link
+        text:
+          type: string
+          description: The name of the help link
+        subtext:
+          type: string
+          description: The description of the help link
+        url:
+          type: string
+          description: The URL of the help link
+        type:
+          type: string
+          description: The type of the help link
+          enum:
+            - default
+            - custom
+        available_to:
+          type: array
+          description: The roles that have access to this help link
+          items:
+            type: string
+      description: ''
+    HelpLinks:
+      type: object
+      properties:
+        help_link_name:
+          type: string
+          description: Help link button title
+        help_link_icon:
+          type: string
+          description: Help link button icon
+        custom_help_links:
+          type: array
+          description: Help links defined by the account. Could include default help links.
+          items:
+            $ref: '#/components/schemas/HelpLink'
+        default_help_links:
+          type: array
+          description: Default help links provided when account has not set help links of their own.
+          items:
+            $ref: '#/components/schemas/HelpLink'
+      description: ''
