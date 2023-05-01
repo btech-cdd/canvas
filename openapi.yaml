@@ -6,7 +6,7 @@ info:
 servers:
   - url: https://canvas.bridgetools.dev/api
 paths:
-  /openai/accounts/{id}:
+  /v1/accounts/{id}:
     get:
       tags:
         - accounts
@@ -29,38 +29,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Account'
-  /openai/accounts/{account_id}/sub_accounts:
-    get:
-      tags:
-        - accounts
-      summary: Get the sub-accounts of an account
-      description: List accounts that are sub-accounts of the given account.
-      operationId: get_sub_accounts_of_account
-      parameters:
-        - name: account_id
-          in: path
-          description: ID
-          required: true
-          schema:
-            type: string
-        - name: recursive
-          in: query
-          description: |-
-            If true, the entire account tree underneath
-            this account will be returned (though still paginated). If false, only
-            direct sub-accounts of this account will be returned. Defaults to false.
-          schema:
-            type: boolean
-      responses:
-        default:
-          description: success
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Account'
-  /openai/accounts:
+  /v1/accounts:
     get:
       tags:
         - accounts
@@ -98,6 +67,172 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Account'
+  /v1/accounts/{account_id}/sub_accounts:
+    get:
+      tags:
+        - accounts
+      summary: Get the sub-accounts of an account
+      description: List accounts that are sub-accounts of the given account.
+      operationId: get_sub_accounts_of_account
+      parameters:
+        - name: account_id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+        - name: recursive
+          in: query
+          description: |-
+            If true, the entire account tree underneath
+            this account will be returned (though still paginated). If false, only
+            direct sub-accounts of this account will be returned. Defaults to false.
+          schema:
+            type: boolean
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+    post:
+      tags:
+        - accounts
+      summary: Create a new sub-account
+      description: Add a new sub-account to a given account.
+      operationId: create_new_sub_account
+      parameters:
+        - name: account_id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - account[name]
+              properties:
+                account[name]:
+                  type: string
+                  description: The name of the new sub-account.
+                account[sis_account_id]:
+                  type: string
+                  description: The account's identifier in the Student Information System.
+                account[default_storage_quota_mb]:
+                  type: integer
+                  description: The default course storage quota to be used, if not otherwise specified.
+                  format: int64
+                account[default_user_storage_quota_mb]:
+                  type: integer
+                  description: The default user storage quota to be used, if not otherwise specified.
+                  format: int64
+                account[default_group_storage_quota_mb]:
+                  type: integer
+                  description: The default group storage quota to be used, if not otherwise specified.
+                  format: int64
+        required: true
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /v1/accounts/{account_id}/terms_of_service:
+    get:
+      tags:
+        - accounts
+      summary: Get the Terms of Service
+      description: Returns the terms of service for that account
+      operationId: get_terms_of_service
+      parameters:
+        - name: account_id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TermsOfService'
+  /v1/accounts/{account_id}/sub_accounts/{id}:
+    delete:
+      tags:
+        - accounts
+      summary: Delete a sub-account
+      description: |-
+        Cannot delete an account with active courses or active sub_accounts.
+        Cannot delete a root_account
+      operationId: delete_sub_account
+      parameters:
+        - name: account_id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+  /v1/manageable_accounts:
+    get:
+      tags:
+        - accounts
+      summary: Get accounts that admins can manage
+      description: |-
+        A paginated list of accounts where the current user has permission to create
+        or manage courses. List will be empty for students and teachers as only admins
+        can view which accounts they are in.
+      operationId: get_accounts_that_admins_can_manage
+      responses:
+        default:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
+  /v1/accounts/{account_id}/settings:
+    get:
+      tags:
+        - accounts
+      summary: Settings
+      description: |-
+        Returns settings for the specified account as a JSON object. The caller must be an Account
+        admin with the manage_account_settings permission.
+      operationId: settings
+      parameters:
+        - name: account_id
+          in: path
+          description: ID
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: success
+          content: {}
  
 components:
   schemas:
