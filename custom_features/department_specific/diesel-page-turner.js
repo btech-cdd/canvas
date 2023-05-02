@@ -1,6 +1,5 @@
 (async function () {
   $(document).ready(function() {
-    console.log("DIESEL LOAD");
     let imgs = $("#content img");
     imgs.each(function () {
       let img = $(this);
