@@ -1,5 +1,5 @@
 (async function () {
-  window.addEventListener('load', function () {
+  $(window).load(function() {
     console.log("DIESEL LOAD");
     let imgs = $("#content img");
     imgs.each(function () {
