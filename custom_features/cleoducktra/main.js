@@ -73,7 +73,7 @@
         }
       });
       let data = {
-        "model": "gpt-4",
+        "model": "gpt-4-32k",
         "messages": [
           {
             "role": 'user',
@@ -81,7 +81,7 @@
           }
         ],
         "temperature": 0.9,
-        "max_tokens": 8000,
+        "max_tokens": 32000,
         "top_p": 1,
         "frequency_penalty": 0,
         "presence_penalty": 0.6,
