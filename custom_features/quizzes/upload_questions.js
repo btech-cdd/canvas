@@ -55,7 +55,7 @@ let VUE_APP = new Vue({
         let reader = new FileReader();
         reader.readAsText(file);
         reader.onload = async () => {
-          let lines = reader.result.split("\n");
+          let lines = reader.result.split("\n").trim();
           let quiz = [];
           let prompt = "";
           let answers = [];
