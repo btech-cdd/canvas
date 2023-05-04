@@ -62,13 +62,16 @@ let VUE_APP = new Vue({
           let correct = "";
           for (l in lines) {
             let line = lines[l];
+            console.log(line);
             let mPrompt = line.match(/^[0-9]+\.(.*)/);
             if (mPrompt) {
                 prompt = mPrompt[1];
+                console.log("PROMPT");
                 continue;
             }
             let mAnswer = line.match(/^\*{0,1}[A-Za-z]\.(.*)/);
             if (mAnswer) {
+                console.log("ANSWER");
                 answers.push({
                     option: mAnswer[1],
                     correct: line.charAt(0) == '*'
@@ -79,6 +82,7 @@ let VUE_APP = new Vue({
                   prompt: prompt,
                   answers: answers
                 }
+                console.log(question);
                 quiz.push(question);
                 prompt = "";
                 answers = [];
