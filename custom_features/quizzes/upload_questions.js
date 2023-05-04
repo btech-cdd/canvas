@@ -55,13 +55,13 @@ let VUE_APP = new Vue({
         let reader = new FileReader();
         reader.readAsText(file);
         reader.onload = async () => {
-          let lines = reader.result.split("\n").trim();
+          let lines = reader.result.split("\n");
           let quiz = [];
           let prompt = "";
           let answers = [];
           let correct = "";
           for (l in lines) {
-            let line = lines[l];
+            let line = lines[l].trim();
             console.log(line);
             let mPrompt = line.match(/^[0-9]+\.(.*)/);
             if (mPrompt) {
