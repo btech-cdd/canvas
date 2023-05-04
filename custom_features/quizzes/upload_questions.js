@@ -77,7 +77,10 @@ let VUE_APP = new Vue({
                     correct: line.charAt(0) == '*'
                 });
             }
+            console.log(answers.length);
+            console.log(line);
             if (answers.length > 1 && line == '') {
+              console.log("GO!");
                 let question = {
                   prompt: prompt,
                   answers: answers
