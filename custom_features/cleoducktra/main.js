@@ -62,7 +62,6 @@
       let resp = await $.post("https://btech-docs.bridgetools.dev/api/query", JSON.stringify({
         "query": input
       }));
-      console.log(resp);
       return resp;
     },
     get: async function(input) {
@@ -98,6 +97,7 @@
       }
       delete $.ajaxSettings.headers.Authorization;
       delete $.ajaxSettings.headers['Content-Type'];
+      console.log(response);
       return response;
     }
   }
