@@ -20,8 +20,8 @@
 
 #btech-countdown .count-title {
   display: block;
-  margin-bottom: 15px;
-  font: normal 0.94em 'Lato';
+  margin-bottom: 1rem;
+  font: normal 1rem 'Lato';
   color: #1a1a1a;
   text-transform: uppercase;
 }
@@ -29,11 +29,11 @@
 #btech-countdown .figure {
   position: relative;
   float: left;
-  height: 110px;
-  width: 100px;
-  margin-right: 10px;
+  height: 2rem;
+  width: 1.5rem;
+  margin-right: 0.5rem;
   background-color: var(--btech-countdown-back);
-  border-radius: 8px;
+  border-radius: 0.5rem;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .2), inset 2px 4px 0 0 rgba(255, 255, 255, .08);
 }
 
@@ -46,7 +46,7 @@
   left: 0;
   right: 0;
   margin: auto;
-  font: normal 5.94em/107px 'Lato';
+  font: normal 1.75rem 'Lato';
   font-weight: 700;
   color: var(--btech-countdown-font);
 }
