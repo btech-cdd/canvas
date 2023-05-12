@@ -1,5 +1,5 @@
 $(".header-bar").append("<div id='btech-countdown'></div>");
-$(".header-bar").css("width", "100%");
+$(".header-bar-right").css("width", "100%");
 var Countdown = {
   
   // Backbone-like structure
