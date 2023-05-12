@@ -49,8 +49,7 @@ var Countdown = {
   
   count: function() {
     
-    var that    = this;
-    this.countdown_interval = setInterval(() => {
+    this.countdown_interval = setInterval(async () => {
       let data = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self`))[0];
       if (data.start_at == undefined || data.end_at == undefined) return;
       let endAt = Date.parse(data.end_at);
