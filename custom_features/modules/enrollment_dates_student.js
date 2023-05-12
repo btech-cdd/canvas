@@ -1,4 +1,4 @@
-$(".header-bar").after("<div id='btech-countdown'></div>");
+$(".header-bar").append("<br><div id='btech-countdown'></div>");
 var Countdown = {
   
   // Backbone-like structure
