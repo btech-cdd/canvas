@@ -17,6 +17,7 @@ var Countdown = {
   init: function() {
     // Initialize total seconds
     let groups = [
+      'DAYS',
       'HOURS',
       'MINUTES',
       'SECONDS'
