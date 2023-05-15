@@ -4,14 +4,15 @@
 }
 
 #btech-countdown {
-  width: 720px;
+  width: 100%;
   margin: 0 auto;
+  text-align: center;
 }
 
 #btech-countdown .bloc-time {
-  float: left;
-  margin-right: 45px;
+  margin: 0 45px;
   text-align: center;
+  display: inline-block;
 }
 
 #btech-countdown .bloc-time:last-child {
