@@ -17,11 +17,12 @@ var Countdown = {
 
   initProgress: function() {
     let progress = Math.round(this.calcProgress() * 100);
+    let recommendedProgress = Math.round(this.calcRecommendedProgress() * 100);
     let el = $(`
       <div class="background">
-        <div class="fill" style="width: 100%; background-color: #f1f1f1;"></div>
-        <div class="fill" style="width: ${progress}%; background-color: #d22232;">${progress}%</div>
-        <div class="fill" style="width: ${progress}%; background-color: #d22232;">${progress}%</div>
+        <div class="fill" style="width: 100%; background-color: #f1f1f1;">0</div>
+        <div class="fill" style="width: ${recommendedProgress}%; background-color: #d22232;"></div>
+        <div class="fill" style="width: ${progress}%; background-color: #22d232;">${progress}%</div>
       </div> 
     `);
     $("#btech-student-progress-bar").append(el);
