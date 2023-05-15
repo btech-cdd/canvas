@@ -16,7 +16,7 @@ var Countdown = {
   },
 
   initProgress: function() {
-    let progress = this.calcProgress() * 100;
+    let progress = Math.round(this.calcProgress() * 100);
     let el = $(`
       <div class="background">
         <div class="fill" style="width: ${progress}%;">${progress}</div>
