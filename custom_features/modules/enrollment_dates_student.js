@@ -45,7 +45,7 @@ var Countdown = {
           </div>
         </div>
       `);
-      el.find("part1").hide();
+      el.find(".part3").hide();
       this.els[name] = el;
       $("#btech-countdown").append(el);
     })
@@ -125,13 +125,23 @@ var Countdown = {
   checkCards: function(value, $els) {
     let $el_1 = $els.find(".part1");
     let $el_2 = $els.find(".part2");
+    let $el_3 = $els.find(".part3");
     let fig_1_value = $el_1.find('.top').html();
     let fig_2_value = $el_2.find('.top').html();
-    value = ('0'+value).slice(-2) 
+    let fig_3_value = $el_3.find('.top').html();
+    if (value > 99) {
+      value = '' + value;
+      $el_3.show();
+    } else {
+      value = ('0' + value).slice(-2);
+      $el_3.hide();
+    }
+
 
     // Animate only if the figure has changed
     if(fig_1_value !== value.charAt(0)) this.animateFigure($el_1, value.charAt(0));
     if(fig_2_value !== value.charAt(1)) this.animateFigure($el_2, value.charAt(1));
+    if(fig_3_value !== value.charAt(2)) this.animateFigure($el_3, value.charAt(2));
   }
 };
 Countdown.init();
