@@ -143,6 +143,7 @@
   width: 100%;
   height: 1rem;
   display: inline-block;
+  position: relative;
 }
 
 #btech-student-progress-bar .fill {
