@@ -93,7 +93,7 @@ var Countdown = {
     let startAt = Date.parse(this.enrollment.start_at);
     var now = new Date().getTime();
     let totalTime = endAt - startAt;
-    let currentTime = endAt - now;
+    let currentTime = now - startAt;
     let recommendedProgress = currentTime / totalTime;
     return recommendedProgress;
   },
