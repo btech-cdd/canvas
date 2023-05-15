@@ -95,6 +95,7 @@ var Countdown = {
       var now = new Date().getTime();
       let totalTime = endAt - startAt;
       let currentTime = now - startAt;
+      if (totalTime == 0) return 0;
       recommendedProgress = currentTime / totalTime;
     } catch (err) {
 
