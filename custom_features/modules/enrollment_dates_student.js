@@ -6,12 +6,16 @@ var Countdown = {
   $el: $("#btech-countdown"),
   
   // Params
+  enrollment: {},
   countdown_interval: null,
   total_seconds     : 0,
   els: {},
   
   // Initialize the countdown  
-  init: function() {
+  init: async function() {
+    let data = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self`))[0];
+    if (data.start_at == undefined || data.end_at == undefined) return;
+    this.enrollment = data;
     // Initialize total seconds
     let groups = [
       'DAYS',
@@ -54,10 +58,8 @@ var Countdown = {
   },
   
   count: function() {
-    
+    let data = this.enrollment; 
     this.countdown_interval = setInterval(async () => {
-      let data = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self`))[0];
-      if (data.start_at == undefined || data.end_at == undefined) return;
       let endAt = Date.parse(data.end_at);
       // Get today's date and time
       var now = new Date().getTime();
