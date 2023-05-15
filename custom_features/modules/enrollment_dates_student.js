@@ -19,7 +19,7 @@ var Countdown = {
     let progress = Math.round(this.calcProgress() * 100);
     let el = $(`
       <div class="background">
-        <div class="fill" style="min-width: 2rem; width: ${progress}%;">${progress}%</div>
+        <div class="fill" style="width: ${progress}%;">${progress}%</div>
       </div> 
     `);
     $("#btech-student-progress-bar").append(el);
