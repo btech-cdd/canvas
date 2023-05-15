@@ -131,6 +131,7 @@
   left: 0;
   right: 0;
   margin: auto;
+  text-align: center;
 }
 
 #btech-student-progress-bar .background {
