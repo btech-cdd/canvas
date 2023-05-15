@@ -9,7 +9,7 @@ var Countdown = {
   els: {},
   
   // Initialize the countdown  
-  calcProgress: async function() {
+  calcProgress: function() {
     let grades = this.enrollment.grades;
     let progress = (grades.current_score ? (grades.final_score / grades.current_score) : 0);
     return progress;
@@ -19,7 +19,7 @@ var Countdown = {
     let progress = this.calcProgress();
     let el = $(`
       <div class="background">
-        <div class="fill" style="width: ${progress}%;"></div>
+        <div class="fill" style="width: ${progress}%;">${progress}</div>
       </div> 
     `);
     $("#btech-student-progress-bar").append(el);
