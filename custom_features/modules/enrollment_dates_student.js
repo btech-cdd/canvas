@@ -53,41 +53,47 @@ var Countdown = {
       this.els[name] = el;
       $("#btech-countdown").append(el);
     })
+    let vals = this.calcVals();
+    if (vals.days > 9) {
+      $("#countdown-block-hours").hide();
+      $("#countdown-block-minutes").hide();
+      $("#countdown-block-seconds").hide();
+    } else {
+      $("#countdown-block-hours").show();
+      $("#countdown-block-minutes").show();
+      $("#countdown-block-seconds").show();
+    }
     // Animate countdown to the end 
     this.count();    
   },
+
+  calcVals: function() {
+    let data = this.enrollment; 
+    let endAt = Date.parse(data.end_at);
+    // Get today's date and time
+    var now = new Date().getTime();
+    
+    // Find the distance between now and the count down date
+    var distance = endAt - now;
+    // If the count down is finished, write some text
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("btech-countdown").innerHTML = "EXPIRED";
+      return
+    }
+    // Time calculations for days, hours, minutes and seconds
+    let vals = {
+      days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+      seconds: Math.floor((distance % (1000 * 60)) / 1000)
+    }
+    return vals;
+  },
   
   count: function() {
-    let data = this.enrollment; 
     this.countdown_interval = setInterval(async () => {
-      let endAt = Date.parse(data.end_at);
-      // Get today's date and time
-      var now = new Date().getTime();
-      
-      // Find the distance between now and the count down date
-      var distance = endAt - now;
-      // If the count down is finished, write some text
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("btech-countdown").innerHTML = "EXPIRED";
-        return
-      }
-      // Time calculations for days, hours, minutes and seconds
-      let vals = {
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000)
-      }
-      if (vals.days > 9) {
-        $("#countdown-block-hours").hide();
-        $("#countdown-block-minutes").hide();
-        $("#countdown-block-seconds").hide();
-      } else {
-        $("#countdown-block-hours").show();
-        $("#countdown-block-minutes").show();
-        $("#countdown-block-seconds").show();
-      }
+      let vals = calcVals;
       for (let time in this.els) {
         this.checkCards(
           vals[time],
