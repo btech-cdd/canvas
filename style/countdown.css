@@ -151,4 +151,6 @@
   height: 1.5rem;
   min-width: 2rem;
   position: absolute;
+  user-select: none;
+  cursor: help;
 }
