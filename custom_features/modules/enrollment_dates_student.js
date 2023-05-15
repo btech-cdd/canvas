@@ -67,6 +67,7 @@ var Countdown = {
     })
     let vals = this.calcVals();
     if (vals.days > 9) {
+      $("#countdown-block-days span.count-title").html("DAYS REMAINING");
       $("#countdown-block-hours").hide();
       $("#countdown-block-minutes").hide();
       $("#countdown-block-seconds").hide();
