@@ -87,6 +87,16 @@ var Countdown = {
     this.count();    
   },
 
+  calcRecommendedProgress: function() {
+    let endAt = Date.parse(this.enrollment.end_at);
+    let startAt = Date.parse(this.enrollment.start_at);
+    var now = new Date().getTime();
+    let totalTime = endAt - startAt;
+    let currentTime = endAt - now;
+    let recommendedProgress = currentTime / totalTime;
+    return recommendedProgress;
+  },
+
   calcVals: function() {
     let data = this.enrollment; 
     let endAt = Date.parse(data.end_at);
