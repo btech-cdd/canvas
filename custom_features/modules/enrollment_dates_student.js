@@ -79,11 +79,10 @@ var Countdown = {
 
   init: async function() {
     if (!ENV.current_user_is_student) return;
-    let data = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self&type[]=StudentEnrollment`))[0];
-    if (data.start_at == undefined || data.end_at == undefined) return;
-    this.enrollment = data;
-    this.initCountdown();
+    this.enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self&type[]=StudentEnrollment`))[0];
     this.initProgress();
+    if (this.enrollment.start_at == undefined || this.enrollment.end_at == undefined) return;
+    this.initCountdown();
     // Animate countdown to the end 
     this.count();    
   },
