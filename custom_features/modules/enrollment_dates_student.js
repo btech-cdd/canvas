@@ -88,12 +88,17 @@ var Countdown = {
   },
 
   calcRecommendedProgress: function() {
-    let endAt = Date.parse(this.enrollment.end_at);
-    let startAt = Date.parse(this.enrollment.start_at);
-    var now = new Date().getTime();
-    let totalTime = endAt - startAt;
-    let currentTime = now - startAt;
-    let recommendedProgress = currentTime / totalTime;
+    let recommendedProgress = 0;
+    try {
+      let endAt = Date.parse(this.enrollment.end_at);
+      let startAt = Date.parse(this.enrollment.start_at);
+      var now = new Date().getTime();
+      let totalTime = endAt - startAt;
+      let currentTime = now - startAt;
+      recommendedProgress = currentTime / totalTime;
+    } catch (err) {
+
+    }
     return recommendedProgress;
   },
 
