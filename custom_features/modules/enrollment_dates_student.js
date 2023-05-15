@@ -8,9 +8,6 @@ var Countdown = {
   // Params
   countdown_interval: null,
   total_seconds     : 0,
-  hours: null,
-  minutes: null,
-  seconds: null,
   els: {},
   
   // Initialize the countdown  
@@ -26,7 +23,7 @@ var Countdown = {
     groups.forEach((capName) => {
       let name = capName.toLowerCase();
       let el = $(`
-        <div class="bloc-time">
+        <div id="countdown-block-${name}" class="bloc-time">
           <span class="count-title">${capName}</span>
           <div class="figure part1">
             <span class="top"></span>
@@ -40,8 +37,15 @@ var Countdown = {
             <span class="bottom"></span>
             <span class="bottom-back"><span></span></span>
           </div>
+          <div class="figure part3">
+            <span class="top"></span>
+            <span class="top-back"><span></span></span>
+            <span class="bottom"></span>
+            <span class="bottom-back"><span></span></span>
+          </div>
         </div>
       `);
+      el.find("part1").hide();
       this.els[name] = el;
       $("#btech-countdown").append(el);
     })
