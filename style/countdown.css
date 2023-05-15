@@ -153,4 +153,5 @@
   position: absolute;
   user-select: none;
   cursor: help;
+  text-align: left;
 }
