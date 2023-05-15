@@ -1,10 +1,7 @@
 $(".header-bar").append("<div id='btech-countdown'></div>");
+$(".header-bar").append("<div id='btech-student-progress-bar'></div>");
 $(".header-bar-right").css("width", "100%");
 var Countdown = {
-  
-  // Backbone-like structure
-  $el: $("#btech-countdown"),
-  
   // Params
   enrollment: {},
   countdown_interval: null,
@@ -21,12 +18,11 @@ var Countdown = {
   initProgress: function() {
     let progress = this.calcProgress();
     let el = $(`
-      <div id="btech-student-progress-bar">
-        <div class="background">
-          <div class="fill" style="width: ${progress}%;"></div>
-        </div> 
-      </div>
+      <div class="background">
+        <div class="fill" style="width: ${progress}%;"></div>
+      </div> 
     `);
+    $("#btech-student-progress-bar").append(el);
   },
 
   initCountdown: function() {
