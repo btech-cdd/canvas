@@ -10,7 +10,8 @@
 }
 
 #btech-countdown .bloc-time {
-  margin: 0 1rem;
+  margin: 0 0.5rem;
+  width: 5rem;
   text-align: center;
   display: inline-block;
 }
@@ -29,10 +30,9 @@
 
 #btech-countdown .figure {
   position: relative;
-  float: left;
+  display: inline-block;
   height: 2rem;
   width: 1.5rem;
-  margin-right: 0.5rem;
   background-color: var(--btech-countdown-back);
   border-radius: 0.5rem;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .2), inset 2px 4px 0 0 rgba(255, 255, 255, .08);
