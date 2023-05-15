@@ -12,11 +12,24 @@ var Countdown = {
   els: {},
   
   // Initialize the countdown  
-  init: async function() {
-    let data = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self`))[0];
-    if (data.start_at == undefined || data.end_at == undefined) return;
-    this.enrollment = data;
-    // Initialize total seconds
+  calcProgress: async function() {
+    let grades = this.enrollment.grades;
+    let progress = (grades.current_score ? (grades.final_score / grades.current_score) : 0);
+    return progress;
+  },
+
+  initProgress: function() {
+    let progress = this.calcProgress();
+    let el = $(`
+      <div id="btech-student-progress-bar">
+        <div class="background">
+          <div class="fill" style="width: ${progress}%;"></div>
+        </div> 
+      </div>
+    `);
+  },
+
+  initCountdown: function() {
     let groups = [
       'DAYS',
       'HOURS',
@@ -63,6 +76,15 @@ var Countdown = {
       $("#countdown-block-minutes").show();
       $("#countdown-block-seconds").show();
     }
+  },
+
+  init: async function() {
+    if (ENV.current_user_is_student) return;
+    let data = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self&type[]=StudentEnrollment`))[0];
+    if (data.start_at == undefined || data.end_at == undefined) return;
+    this.enrollment = data;
+    this.initCountdown();
+    this.initProgress();
     // Animate countdown to the end 
     this.count();    
   },

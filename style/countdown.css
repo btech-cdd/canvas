@@ -133,3 +133,12 @@
   margin: auto;
 }
 
+#btech-student-progress-bar .background {
+  color: #000;
+  background-color: #f1f1f1;
+}
+
+#btech-student-progress-bar .fill {
+  color: #fff;
+  background-color: #d22232;
+}
