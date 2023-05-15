@@ -93,7 +93,7 @@ var Countdown = {
   
   count: function() {
     this.countdown_interval = setInterval(async () => {
-      let vals = calcVals;
+      let vals = this.calcVals();
       for (let time in this.els) {
         this.checkCards(
           vals[time],
