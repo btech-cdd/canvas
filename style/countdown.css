@@ -137,6 +137,8 @@
   color: #000;
   background-color: #f1f1f1;
   max-width: 500px;
+  width: 100%;
+  display: inline-block;
 }
 
 #btech-student-progress-bar .fill {
