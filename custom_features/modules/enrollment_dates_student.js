@@ -21,7 +21,7 @@ var Countdown = {
     let el = $(`
       <div class="background">
         <div class="fill" style="width: 100%; background-color: #f1f1f1;">0</div>
-        <div class="fill" title="Recommended Progress (${recommendedProgress}%" style="width: ${recommendedProgress}%; background-color: #721222;">${recommendedProgress}%</div>
+        <div class="fill" title="Recommended Progress (${recommendedProgress}%)" style="width: ${recommendedProgress}%; background-color: #721222;">${recommendedProgress}%</div>
         <div class="fill" title="Current Progress (${progress}%)" style="width: ${progress}%; background-color: #d22232;">${progress}%</div>
       </div> 
     `);
