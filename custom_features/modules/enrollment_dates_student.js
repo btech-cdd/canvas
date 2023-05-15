@@ -22,7 +22,7 @@ var Countdown = {
       <div class="background">
         <div class="fill" style="width: 100%; background-color: #f1f1f1;">0</div>
         <div class="fill" style="width: ${recommendedProgress}%; background-color: #d22232;"></div>
-        <div class="fill" style="width: ${progress}%; background-color: #3222d2;">${progress}%</div>
+        <div class="fill" style="width: ${progress}%; background-color: #821222;">${progress}%</div>
       </div> 
     `);
     $("#btech-student-progress-bar").append(el);
