@@ -79,6 +79,15 @@ var Countdown = {
         minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
         seconds: Math.floor((distance % (1000 * 60)) / 1000)
       }
+      if (vals.days > 9) {
+        $("#countdown-block-hours").hide();
+        $("#countdown-block-minutes").hide();
+        $("#countdown-block-seconds").hide();
+      } else {
+        $("#countdown-block-hours").show();
+        $("#countdown-block-minutes").show();
+        $("#countdown-block-seconds").show();
+      }
       for (let time in this.els) {
         this.checkCards(
           vals[time],
