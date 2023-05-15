@@ -21,7 +21,7 @@ var Countdown = {
     let el = $(`
       <div class="background">
         <div class="fill" style="width: 100%; background-color: #f1f1f1;">0</div>
-        <div class="fill" title="Recommended Progress (${recommendedProgress}%)" style="width: ${recommendedProgress}%; background-color: #721222;">${recommendedProgress}%</div>
+        <div class="fill" title="Recommended Progress (${recommendedProgress}%) based on enrollment dates." style="width: ${recommendedProgress}%; background-color: #721222;">${recommendedProgress}%</div>
         <div class="fill" title="Current Progress (${progress}%)" style="width: ${progress}%; background-color: #d22232;">${progress}%</div>
       </div> 
     `);
@@ -40,7 +40,6 @@ var Countdown = {
       let name = capName.toLowerCase();
       let el = $(`
         <div id="countdown-block-${name}" class="bloc-time">
-          <span class="count-title">${capName}</span>
           <div class="figure part1">
             <span class="top"></span>
             <span class="top-back"><span></span></span>
@@ -59,6 +58,7 @@ var Countdown = {
             <span class="bottom"></span>
             <span class="bottom-back"><span></span></span>
           </div>
+          <span class="count-title">${capName}</span>
         </div>
       `);
       el.find(".part3").hide();
