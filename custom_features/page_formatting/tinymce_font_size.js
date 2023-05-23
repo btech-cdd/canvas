@@ -1,7 +1,7 @@
 TOOLBAR_STYLES = {
   init: async function () {
     let css = await $.get("https://bridgetools.dev/canvas/style/rce.css");
-    console.log(css);
+    tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[0].innerHTML = tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[0].innerHTML + css;
     return
     //THIS DOESN'T WORK
     let savedSettings = tinymce.activeEditor.settings;
