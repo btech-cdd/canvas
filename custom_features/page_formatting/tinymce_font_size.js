@@ -3,7 +3,7 @@ TOOLBAR_STYLES = {
     let css = await $.get("https://bridgetools.dev/canvas/style/rce.css");
     tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[0].innerHTML = tinyMCE.activeEditor.iframeElement.contentDocument.getElementsByTagName('style')[0].innerHTML + css;
     return
-    //THIS DOESN'T WORK
+    //THIS DOESN'T WORK! FOR RANDOM PEOPLE DESTROYING AND RECREATING SETTINGS BREAKS THE CANVAS SAVE BUTTON
     let savedSettings = tinymce.activeEditor.settings;
     //save the setup function
     //create a new setup function that first calls the old one, then adds whatever button you want (or other settings)
