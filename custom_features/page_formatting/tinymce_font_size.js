@@ -1,6 +1,6 @@
 TOOLBAR_STYLES = {
   init: async function () {
-    let css = $.get("https://bridgetools.dev/canvas/style/rce.css");
+    let css = await $.get("https://bridgetools.dev/canvas/style/rce.css");
     console.log(css);
     return
     //THIS DOESN'T WORK
