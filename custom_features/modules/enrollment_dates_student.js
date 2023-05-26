@@ -18,6 +18,8 @@ var Countdown = {
   initProgress: function() {
     let progress = Math.round(this.calcProgress() * 100);
     let recommendedProgress = Math.round(this.calcRecommendedProgress() * 100);
+    console.log(progress);
+    console.log(recommendedProgress);
     let el = $(`
       <div class="background">
         <div class="fill" style="width: 100%; background-color: #f1f1f1;">0</div>
