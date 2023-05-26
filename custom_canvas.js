@@ -104,8 +104,6 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
     feature('conversations/open_conversation', {}, /^\/conversations/);
     if (rCheckInCourse.test(window.location.pathname)) {
       feature('modules/course_features');
-      await $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js");
-      feature('modules/enrollment_dates_student', {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
       //I'm putting concluding students in here as well vvv
       feature('modules/enrollment_dates_teacher', {}, /^\/courses\/[0-9]+\/users\/[0-9]+$/);
       feature("external_assignments_fullscreen", {}, /^\/courses\/[0-9]+\/(assignments)/);
@@ -173,6 +171,9 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
           $.get('/api/v1/courses/' + CURRENT_COURSE_ID, function (courseData) {
             CURRENT_DEPARTMENT_ID = courseData.account_id;
             //AVAILABLE TO EVERYONE
+            $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js", function() {
+              feature('modules/enrollment_dates_student', {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
+            });
             feature("quizzes/upload_questions", {}, /\/courses\/([0-9]+)\/question_banks$/);
             feature("quizzes/duplicate_bank_item", {}, /\/courses\/([0-9]+)\/question_banks\/([0-9]+)/);
             feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);
