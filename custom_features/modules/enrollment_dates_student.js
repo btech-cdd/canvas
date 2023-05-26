@@ -83,6 +83,8 @@ var Countdown = {
   init: async function() {
     if (!ENV.current_user_is_student) return;
     this.enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self&type[]=StudentEnrollment`))[0];
+    let checkDepartment = (CURRENT_DEPARTMENT_ID == 3820 || CURRENT_DEPARTMENT_ID == 3819); //web and amar 
+    if ((this.enrollment.start_at == undefined || this.enrollment.end_at == undefined) && !checkDepartment) return;
     this.initProgress();
     if (this.enrollment.start_at == undefined || this.enrollment.end_at == undefined) return;
     this.initCountdown();
