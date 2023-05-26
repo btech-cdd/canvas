@@ -18,8 +18,6 @@ var Countdown = {
   initProgress: function() {
     let progress = Math.round(this.calcProgress() * 100);
     let recommendedProgress = Math.round(this.calcRecommendedProgress() * 100);
-    console.log(progress);
-    console.log(recommendedProgress);
     let el = $(`
       <div class="background">
         <div class="fill" style="width: 100%; background-color: #f1f1f1;">0</div>
@@ -84,7 +82,6 @@ var Countdown = {
     if (!ENV.current_user_is_student) return;
     this.enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self&type[]=StudentEnrollment`))[0];
     let checkDepartment = (CURRENT_DEPARTMENT_ID == 3820 || CURRENT_DEPARTMENT_ID == 3819); //web and amar 
-    console.log("CHECK DEPT" + checkDepartment)
     if ((this.enrollment.start_at == undefined || this.enrollment.end_at == undefined) && !checkDepartment) return;
     this.initProgress();
     if (this.enrollment.start_at == undefined || this.enrollment.end_at == undefined) return;
