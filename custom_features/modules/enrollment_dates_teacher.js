@@ -101,7 +101,7 @@
   let endAtEl = document.getElementById("btech-enrollment-end-date");
   $("#btech-enrollment-suggested-date").click(() => {
     console.log("UPDATE")
-    $("#btech-enrollment-end-date").val(dateToString(endDate));
+    $("#btech-enrollment-end-date").val(dateToString(suggestedDate));
   });
   let enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=${ENV.USER_ID}`))[0];
   let endAt = enrollment?.end_at;
