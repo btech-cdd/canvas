@@ -93,7 +93,7 @@
             <b>Set Enrollment End Date</b> 
           </span>
         </div>
-        <input id="btech-enrollment-end-date" type="date" value=""> Suggested Date: <span id="btech-enrollment-suggested-date">${dateToString(suggestedDate)}</span>
+        <input id="btech-enrollment-end-date" type="date" value=""> Suggested Date: <span id="btech-enrollment-suggested-date" style="cursor: pointer;">${dateToString(suggestedDate)}</span>
       </span>
     </div>
   `);
