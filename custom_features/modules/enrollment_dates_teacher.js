@@ -83,7 +83,7 @@
   //add conclude button if hidden for not concluded but not active students
   if ($(".unconclude_enrollment_link_holder").css("display") == "none") $(".conclude_enrollment_link_holder").css("display", "block");
 
-  let endDate = await calcRecommendedEndDate();
+  let suggestedDate = await calcRecommendedEndDate();
   //The actual enrollment bit
   $(".more_user_information fieldset").append(`
     <div id="student_last_attended__component">
@@ -93,14 +93,15 @@
             <b>Set Enrollment End Date</b> 
           </span>
         </div>
-        <input id="enrollment-end-date" type="date" value=""> Suggested Date: <span id="btech-enrollment-suggested-date">${dateToString(endDate)}</span>
+        <input id="btech-enrollment-end-date" type="date" value=""> Suggested Date: <span id="btech-enrollment-suggested-date">${dateToString(suggestedDate)}</span>
       </span>
     </div>
   `);
 
-  let endAtEl = document.getElementById("enrollment-end-date");
-  let suggestedDateEl = $("#.btech-enrollment-suggested-date").click(() => {
-    $("#enrollment-end-date").val(dateToString(endDate));
+  let endAtEl = document.getElementById("btech-enrollment-end-date");
+  $("#.btech-enrollment-suggested-date").click(() => {
+    console.log("UPDATE")
+    $("#btech-enrollment-end-date").val(dateToString(endDate));
   });
   let enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=${ENV.USER_ID}`))[0];
   let endAt = enrollment?.end_at;
