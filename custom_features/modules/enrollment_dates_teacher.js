@@ -4,10 +4,10 @@
       const year = date.getUTCFullYear();
       
       // Get the current month (0-indexed, so we add 1)
-      const month = date.getUTCMonth() + 1;
+      const month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
       
       // Get the current day of the month
-      const day = date.getUTCDate();
+      const day = ('0' + date.getUTCDate()).slice(-2);
       return `${year}-${month}-${day}`;
   }
   async function calcRecommendedEndDate() {
@@ -93,12 +93,15 @@
             <b>Set Enrollment End Date</b> 
           </span>
         </div>
-        <input id="enrollment-end-date" type="date" value=""> Suggested Date: ${dateToString(endDate)}
+        <input id="enrollment-end-date" type="date" value=""> Suggested Date: <span id="btech-enrollment-suggested-date">${dateToString(endDate)}</span>
       </span>
     </div>
-  `)
+  `);
 
   let endAtEl = document.getElementById("enrollment-end-date");
+  let suggestedDateEl = $("#.btech-enrollment-suggested-date").click(() => {
+    $("#enrollment-end-date").val(dateToString(endDate));
+  });
   let enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=${ENV.USER_ID}`))[0];
   let endAt = enrollment?.end_at;
   $(endAtEl).change(()=>{
