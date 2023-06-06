@@ -93,12 +93,19 @@
             <b>Set Enrollment End Date</b> 
           </span>
         </div>
-        <input id="btech-enrollment-end-date" type="date" value=""> Suggested Date: <span id="btech-enrollment-suggested-date" style="cursor: pointer;">${dateToString(suggestedDate)}</span>
+        <div>
+          <input id="btech-enrollment-end-date" type="date" value=""> 
+          Suggested Date: 
+          <span id="btech-enrollment-suggested-date" style="cursor: pointer;">
+            ${dateToString(suggestedDate)}
+          </span>
+        </div>
       </span>
     </div>
   `);
 
   let endAtEl = document.getElementById("btech-enrollment-end-date");
+  $("#btech-enrollment-suggested-date").hide();
   $("#btech-enrollment-suggested-date").click(() => {
     console.log("UPDATE")
     $("#btech-enrollment-end-date").val(dateToString(suggestedDate));
