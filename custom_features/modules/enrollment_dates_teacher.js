@@ -105,8 +105,7 @@
   `);
 
   let endAtEl = document.getElementById("btech-enrollment-end-date");
-  $("#btech-enrollment-suggested-date").hide();
-  $("#btech-enrollment-suggested-date").click(() => {
+  $("#btech-enrollment-suggested-date").click(function () {
     console.log("UPDATE")
     $("#btech-enrollment-end-date").val(dateToString(suggestedDate));
   });
