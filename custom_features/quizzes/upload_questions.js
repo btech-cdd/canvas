@@ -56,10 +56,11 @@ let VUE_APP = new Vue({
         reader.readAsText(file);
         reader.onload = async () => {
           let lines = reader.result.split("\n");
+          lines.push(''); // kept having an issue where the last question wasn't being loaded if there's no empty line at the end, so just adding a blank line
           let quiz = [];
-          let prompt = "";
+          let prompt = '';
           let answers = [];
-          let correct = "";
+          let correct = '';
           for (l in lines) {
             let line = lines[l].trim();
             let mPrompt = line.match(/^[0-9]+\.(.*)/);
