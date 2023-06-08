@@ -121,5 +121,6 @@
       }
     });
   });
-  copyObserver.observe($(`tbody[data-automation="courses list"]`)[0])
+  await getElgetElement(`tbody[data-automation="courses list"]`);
+  copyObserver.observe($(`tbody[data-automation="courses list"]`)[0]);
 })();
