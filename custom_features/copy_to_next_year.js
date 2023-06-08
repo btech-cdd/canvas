@@ -1,5 +1,4 @@
 (async function() {
-  console.log("COPY TO NEXT YEAR")
   async function createNextYear(courseId) {
     const modal = createModal();
       const course = await $.get(`/api/v1/courses/${courseId}`);

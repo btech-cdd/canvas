@@ -11,9 +11,7 @@ var CDDIDS = [
   1638854, //Mason
   1807337, //Jon
   2064104, //Jonny
-  2101672, //William
   2101656, //Sydney
-  1917265, //Abigail
   2075766, //Kristyn
   1869288, //Alan
   2000557, //Charlotte
@@ -102,7 +100,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
 
     //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
     feature('conversations/open_conversation', {}, /^\/conversations/);
-    if (IS_ME) feature('copy_to_next_year', {}, /^\/accounts\/[0-9]+$/);
+    featureCDD('copy_to_next_year', {}, /^\/accounts\/[0-9]+$/);
     if (rCheckInCourse.test(window.location.pathname)) {
       feature('modules/course_features');
       //I'm putting concluding students in here as well vvv
