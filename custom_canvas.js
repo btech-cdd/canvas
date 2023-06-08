@@ -102,7 +102,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
 
     //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
     feature('conversations/open_conversation', {}, /^\/conversations/);
-    feature('copy_to_next_year', {}, /^\/accounts\/[0-9]+$/);
+    if (IS_ME) feature('copy_to_next_year', {}, /^\/accounts\/[0-9]+$/);
     if (rCheckInCourse.test(window.location.pathname)) {
       feature('modules/course_features');
       //I'm putting concluding students in here as well vvv
