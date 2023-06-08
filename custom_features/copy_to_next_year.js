@@ -109,7 +109,7 @@
       let row = $(this);
       if (row.find(".btech-content-migrator").length == 0) {
         var link = row.find('a').filter(function() {
-          return row.attr('href').match(/\/courses\/([0-9]+)/);
+          return $(this).attr('href').match(/\/courses\/([0-9]+)/);
         });
         
         var courseId = link.attr('href').match(/\/courses\/([0-9]+)/)[1];
