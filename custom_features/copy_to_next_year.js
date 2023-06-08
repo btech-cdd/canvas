@@ -106,17 +106,20 @@
   let copyObserver = new ResizeObserver(() => { 
     var rows = $('tbody[data-automation="courses list"] tr');
     rows.each(function () {
-        var link = $(this).find('a').filter(function() {
-            return $(this).attr('href').match(/\/courses\/([0-9]+)/);
-          });
+      let row = $(this);
+      if (row.find(".btech-content-migrator").length == 0) {
+        var link = row.find('a').filter(function() {
+          return row.attr('href').match(/\/courses\/([0-9]+)/);
+        });
         
         var courseId = link.attr('href').match(/\/courses\/([0-9]+)/)[1];
-        let icons = $(this).find('td:last-child');
-        let transferButton = $(`<i style="cursor: pointer;" class="icon-export-content"></i>`);
+        let icons = row.find('td:last-child');
+        let transferButton = $(`<i style="cursor: pointer;" class="btech-content-migrator icon-export-content"></i>`);
         transferButton.click(function() {
             createNextYear(courseId);
         });
         icons.append(transferButton);
+      }
     });
   });
   copyObserver.observe($(`tbody[data-automation="courses list"]`)[0])
