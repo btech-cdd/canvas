@@ -121,6 +121,6 @@
       }
     });
   });
-  await getElgetElement(`tbody[data-automation="courses list"]`);
+  await getElement(`tbody[data-automation="courses list"]`);
   copyObserver.observe($(`tbody[data-automation="courses list"]`)[0]);
 })();
