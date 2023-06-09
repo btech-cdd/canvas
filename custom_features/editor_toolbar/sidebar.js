@@ -5,7 +5,14 @@
   <div 
   id="btech-editor-vue"
   style="position: fixed; top: 0; right: 0; width: ${WIDTH}px; height: 100%; background-color: #f1f1f1;">
-    <div style="text-align: center; background-color: #d22232; color: white;">BTECH Editor<span style="float: right;"><b>&#8250;</b></span></div>
+    <div style="text-align: center; background-color: #d22232; color: white;">
+      BTECH Editor
+      <span 
+        @click="minimize"
+        style="float: right; padding-right: 1rem;"
+      >
+        <b>&#8250;</b></span>
+      </div>
   </div>
   `);
   new Vue({
@@ -17,6 +24,9 @@
       }
     },
     methods: {
+      minimize: function() {
+
+      }
     }
   });
 })();
