@@ -1,12 +1,16 @@
 (function() {
   const WIDTH = 200;
-  $('#wrapper').css('margin-right', `${WIDTH}px`);
   $('body').append(`
   <div 
     id="btech-editor-vue"
-    style="position: fixed; top: 0; right: 0; width: ${WIDTH}px; height: 100%; background-color: #f1f1f1;"
+    :style="{
+      width: width
+    }
+    style="position: fixed; top: 0; right: 0; width: px; height: 100%; background-color: #f1f1f1;"
   >
-    <div>
+    <div
+      v-if="!minimized"
+    >
       <div 
         style="
           text-align: center;
@@ -28,6 +32,7 @@
   new Vue({
     el: '#btech-editor-vue',
     mounted: async function () {
+      $('#wrapper').css('margin-right', `${this.width}px`);
     },
     data: function () {
       return {
