@@ -46,7 +46,7 @@
     methods: {
       minimize: function() {
         $('#wrapper').css('margin-right', '0px');
-        this.minized = true;
+        this.minimized = true;
       }
     }
   });
