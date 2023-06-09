@@ -7,7 +7,7 @@
       'width': width + 'px',
       'right': minimized ? '-' + width + 'px' : '0px'
     }"
-    style="position: fixed; top: 0; height: 100%; background-color: #f1f1f1;"
+    style="position: fixed; top: 100px; height: 100%; background-color: #f1f1f1;"
   >
     <div
       v-if="minimized"
