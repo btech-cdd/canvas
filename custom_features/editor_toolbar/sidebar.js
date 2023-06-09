@@ -1,5 +1,5 @@
 (function() {
-  const WIDTH = 150;
+  const WIDTH = 200;
   $("#wrapper").css("margin-right", `${WIDTH}px`);
   $("body").append(`
   <div 
