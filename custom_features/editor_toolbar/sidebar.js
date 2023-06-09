@@ -6,7 +6,7 @@
     :style="{
       width: width
     }
-    style="position: fixed; top: 0; right: 0; width: px; height: 100%; background-color: #f1f1f1;"
+    style="position: fixed; top: 0; right: 0; height: 100%; background-color: #f1f1f1;"
   >
     <div
       v-if="!minimized"
