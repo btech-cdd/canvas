@@ -12,7 +12,6 @@
           text-align: center;
           background-color: #d22232;
           color: white;
-          float: right;
           cursor: pointer;
           user-select: none;
         "
