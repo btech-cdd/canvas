@@ -9,7 +9,7 @@
       BTECH Editor
       <span 
         @click="minimize"
-        style="float: right; padding-right: 1rem;"
+        style="float: right; padding-right: 1rem; cursor: pointer; user-select: none;"
       >
         <b>&#8250;</b></span>
       </div>
