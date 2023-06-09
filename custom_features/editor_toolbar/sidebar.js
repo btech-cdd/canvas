@@ -36,7 +36,8 @@
     },
     data: function () {
       return {
-        minimized: false
+        minimized: false,
+        width: 0
       }
     },
     methods: {
