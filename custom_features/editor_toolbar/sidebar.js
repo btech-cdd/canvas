@@ -46,7 +46,7 @@
         <i
           @click="addGradebook"
           class="icon-gradebook"
-        >
+        ></i>
       </div>
     </div>
   </div>
