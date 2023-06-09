@@ -27,7 +27,7 @@
     },
     data: function () {
       return {
-        minimized: false;
+        minimized: false
       }
     },
     methods: {
