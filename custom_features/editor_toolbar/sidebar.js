@@ -37,7 +37,7 @@
     data: function () {
       return {
         minimized: false,
-        width: 0
+        width: 250 
       }
     },
     methods: {
