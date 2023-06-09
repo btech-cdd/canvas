@@ -42,6 +42,12 @@
         BTECH Editor
         <b>&#8250;</b>
       </div>
+      <div>
+        <i
+          @click="addGradebook"
+          class="icon-gradebook"
+        >
+      </div>
     </div>
   </div>
   `);
@@ -64,6 +70,12 @@
       minimize: function () {
         $('#wrapper').css('margin-right', '0px');
         this.minimized = true;
+      },
+      addGradebook: function () {
+        let editor = tinymce.activeEditor;
+        editor.execCommand("mceInsertContent", false, `
+          <p class="btech-grading-scheme btech-hidden" style="border: 1px solid black;">This will be replaced by a table populated with the course Grading Scheme.</p>
+        `);
       }
     }
   });
