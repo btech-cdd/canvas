@@ -9,7 +9,12 @@
     style="position: fixed; top: 0; right: 0; height: 100%; background-color: #f1f1f1;"
   >
     <div
-      v-if="!minimized"
+      v-if="minimized"
+    >
+      <i class="icon-edit"></i>
+    </div>
+    <div
+      v-else
     >
       <div 
         style="
@@ -24,8 +29,6 @@
         BTECH Editor
         <b>&#8250;</b>
       </div>
-    </div>
-    <div>
     </div>
   </div>
   `);
@@ -43,6 +46,7 @@
     methods: {
       minimize: function() {
         $('#wrapper').css('margin-right', '0px');
+        this.minized = true;
       }
     }
   });
