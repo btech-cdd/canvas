@@ -17,6 +17,7 @@
         background-color: #d22232;
         color: white;
         padding: 0.5rem;
+        cursor: pointer;
       "
       :style="{
         'right': width + 'px'
@@ -53,7 +54,11 @@
       }
     },
     methods: {
-      minimize: function() {
+      maximize: function () {
+        $('#wrapper').css('margin-right', this.width + 'px');
+        this.minimized = false;
+      },
+      minimize: function () {
         $('#wrapper').css('margin-right', '0px');
         this.minimized = true;
       }
