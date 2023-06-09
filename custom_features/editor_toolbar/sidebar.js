@@ -14,7 +14,7 @@
       style="
         position: absolute;
         top: 0;
-        background-color: '#d22232';
+        background-color: #d22232;
         padding: 1rem;
       "
       :style="{
