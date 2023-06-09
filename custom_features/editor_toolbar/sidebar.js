@@ -11,7 +11,11 @@
   >
     <div
       v-if="minimized"
-      style="position: absolute; top: 0;"
+      style="
+        position: absolute;
+        top: 0;
+        background-color: '#d22232'
+      "
       :style="{
         'right': width + 'px'
       }"
