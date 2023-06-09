@@ -4,18 +4,17 @@
   <div 
     id="btech-editor-vue"
     :style="{
-      'width': width + 'px'
+      'width': width + 'px',
+      'right': minimized ? '-' + width + 'px' : '0px'
     }"
-    style="position: fixed; top: 0; right: 0; height: 100%; background-color: #f1f1f1;"
+    style="position: fixed; top: 0; height: 100%; background-color: #f1f1f1;"
   >
     <div
       v-if="minimized"
     >
       <i class="icon-edit"></i>
     </div>
-    <div
-      v-else
-    >
+    <div>
       <div 
         style="
           text-align: center;
