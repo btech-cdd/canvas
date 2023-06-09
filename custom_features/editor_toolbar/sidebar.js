@@ -7,14 +7,19 @@
     style="position: fixed; top: 0; right: 0; width: ${WIDTH}px; height: 100%; background-color: #f1f1f1;"
   >
     <div>
-      <div style="text-align: center; background-color: #d22232; color: white;">
+      <div 
+        style="
+          text-align: center;
+          background-color: #d22232;
+          color: white;
+          float: right;
+          cursor: pointer;
+          user-select: none;
+        "
+        @click="minimize"
+      >
         BTECH Editor
-        <span 
-          @click="minimize"
-          style="float: right; padding: 0 1rem; cursor: pointer; user-select: none;"
-        >
-          <b>&#8250;</b>
-        </span>
+        <b>&#8250;</b>
       </div>
     </div>
     <div>
