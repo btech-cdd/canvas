@@ -11,6 +11,7 @@
   >
     <div
       v-if="minimized"
+      @click="maximize"
       style="
         position: absolute;
         top: 2rem;
@@ -25,7 +26,9 @@
     >
       <i class="icon-edit"></i>
     </div>
-    <div>
+    <div
+      v-else
+    >
       <div 
         style="
           text-align: center;
