@@ -11,6 +11,7 @@
   >
     <div
       v-if="minimized"
+      style="position: absolute; top: 0; right: 0;"
     >
       <i class="icon-edit"></i>
     </div>
