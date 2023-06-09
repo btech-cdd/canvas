@@ -15,7 +15,8 @@
         position: absolute;
         top: 2rem;
         background-color: #d22232;
-        padding: 1rem;
+        color: white;
+        padding: 0.5rem;
       "
       :style="{
         'right': width + 'px'
