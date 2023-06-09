@@ -3,7 +3,7 @@ $("body").append(`
 <div 
 id="btech-editor-vue"
 style="position: fixed; top: 0; right: 0; width: 150px; height: 100%; background-color: #f1f1f1;">
-  <div style="text-align: middle; background-color: #d22232; color: white;">BTECH Editor</div>
+  <div style="text-align: center; background-color: #d22232; color: white;">BTECH Editor</div>
 </div>
 `);
 new Vue({
