@@ -118,7 +118,6 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
     //TOOLBAR FEATURES
     await $.getScript("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js");
     await feature("page_formatting/tinymce_font_size", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
-    if (IS_ME) await feature("editor_toolbar/sidebar", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
     await feature("editor_toolbar/toolbar", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
     feature("editor_toolbar/basics", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
     feature("editor_toolbar/syllabi", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
@@ -136,6 +135,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
 
     //OTHER FEATURES
     $.getScript("https://cdn.jsdelivr.net/npm/vue@2.6.12").done(function () {
+      if (IS_ME) feature("editor_toolbar/sidebar", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
       $.getScript(SOURCE_URL + "/course_data/course_hours.js").done(() => {
         //GENERAL FEATURES
         //feature("reports/dashboard/banner-report", {}, /^\/$/);
