@@ -1,7 +1,7 @@
 (function() {
   const WIDTH = 200;
-  $("#wrapper").css("margin-right", `${WIDTH}px`);
-  $("body").append(`
+  $('#wrapper').css('margin-right', `${WIDTH}px`);
+  $('body').append(`
   <div 
     id="btech-editor-vue"
     style="position: fixed; top: 0; right: 0; width: ${WIDTH}px; height: 100%; background-color: #f1f1f1;"
@@ -27,7 +27,7 @@
   </div>
   `);
   new Vue({
-    el: "#btech-editor-vue",
+    el: '#btech-editor-vue',
     mounted: async function () {
     },
     data: function () {
@@ -37,7 +37,7 @@
     },
     methods: {
       minimize: function() {
-
+        $('#wrapper').css('margin-right', '0px');
       }
     }
   });
