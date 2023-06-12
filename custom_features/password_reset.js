@@ -55,7 +55,7 @@
       }
     });
     window.open(`
-      mailto:${user.email}?subject=Temporary Canvas Password&body=Username%3A ${login.unique_id}%0D%0APassword%3A ${password}%0D%0APlease reset your password after you successfully log in.
+      mailto:${user.email}?subject=Temporary Canvas Password&body=Username%3A ${login.unique_id}%0D%0APassword%3A ${password}%0D%0APlease reset your password after you successfully log in.%0D%0Ahttps%3A%2F%2Fcommunity.canvaslms.com%2Ft5%2FStudent-Guide%2FHow-do-I-change-my-login-password-as-a-student%2Fta-p%2F425
     `)
     //Used to send an email from server, but was getting blocked even more than Canvas.
     // let res = await $.post("https://canvas.bridgetools.dev/api/temp_password", body);
