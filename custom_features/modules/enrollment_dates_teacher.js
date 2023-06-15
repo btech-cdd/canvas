@@ -125,12 +125,13 @@
   $("#btech-enrollment-suggested-date").click(() => {
     console.log("UPDATE")
     $("#btech-enrollment-end-date").val(dateToString(suggestedDate));
+    changeDate();
   });
   let enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=${ENV.USER_ID}`))[0];
   let endAt = enrollment?.end_at;
   console.log("END DATE");
   console.log(endAt);
-  $(endAtEl).change(()=>{
+  function changeDate() {
     let endAtDate = new Date(endAtEl.value);
     //for...reasons, this is a day off
     console.log("CHANGE")
@@ -146,7 +147,8 @@
         notify: false
       }}
     );
-  });
+  }
+  $(endAtEl).change(changeDate);
   if (endAt !== undefined && endAt !== null) {
     console.log(endAt);
     endAt = new Date(endAt);
