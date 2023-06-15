@@ -16,20 +16,28 @@
     await $.get("/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports", data => {
         authCode = data.data.auth_code;
     });
-    await $.get("https://reports.bridgetools.dev/api/holidays?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function (data) {
-        for (let d in data) {
-        let holiday = data[d];
-        holiday.date = new Date(holiday.date);
-        holidays[dateToString(holiday.date)] = holiday;
-      }
-    });
+    try {
+      await $.get("https://reports.bridgetools.dev/api/holidays?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function (data) {
+          for (let d in data) {
+          let holiday = data[d];
+          holiday.date = new Date(holiday.date);
+          holidays[dateToString(holiday.date)] = holiday;
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
     let user;
     await $.get("/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports", data => {
         authCode = data.data.auth_code;
     });
-    await $.get("https://reports.bridgetools.dev/api/students/" + ENV.USER_ID + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function (data) {
-        user = data;
-    });
+    try {
+      await $.get("https://reports.bridgetools.dev/api/students/" + ENV.USER_ID + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function (data) {
+          user = data;
+      });
+    } catch (err) {
+      console.log(err);
+    }
     const DAY_TO_NAME = [
         "Sunday",
         "Monday",
