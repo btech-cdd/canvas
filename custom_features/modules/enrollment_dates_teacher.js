@@ -133,6 +133,7 @@
   $(endAtEl).change(()=>{
     let endAtDate = new Date(endAtEl.value);
     //for...reasons, this is a day off
+    console.log("CHANGE")
     endAtDate.setDate(endAtDate.getDate() + 1);
     $.post("/api/v1/courses/" + ENV.COURSE_ID + "/enrollments",
       {enrollment: {
