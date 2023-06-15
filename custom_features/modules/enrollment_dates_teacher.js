@@ -38,6 +38,8 @@
     } catch (err) {
       console.log(err);
     }
+
+    console.log("THROUGH")
     const DAY_TO_NAME = [
         "Sunday",
         "Monday",
