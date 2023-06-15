@@ -1,14 +1,15 @@
 (async function() {
   function dateToString(date) {
-      // Get the current year
-      const year = date.getUTCFullYear();
-      
-      // Get the current month (0-indexed, so we add 1)
-      const month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
-      
-      // Get the current day of the month
-      const day = ('0' + date.getUTCDate()).slice(-2);
-      return `${year}-${month}-${day}`;
+    if (!date) return ""
+    // Get the current year
+    const year = date.getUTCFullYear();
+    
+    // Get the current month (0-indexed, so we add 1)
+    const month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
+    
+    // Get the current day of the month
+    const day = ('0' + date.getUTCDate()).slice(-2);
+    return `${year}-${month}-${day}`;
   }
   async function calcRecommendedEndDate() {
     let holidays = {};
