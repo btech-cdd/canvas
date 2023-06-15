@@ -102,7 +102,7 @@
   }
   console.log(suggestedDate);
   //The actual enrollment bit
-  $(".more_user_information fieldset").append(`
+  $($(".more_user_information fieldset")[0]).append(`
     <div id="student_last_attended__component">
       <span style="margin: 0.75rem 0.5rem;">
         <div style="margin: 0.75rem 0px;">
