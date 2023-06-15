@@ -92,7 +92,13 @@
   //add conclude button if hidden for not concluded but not active students
   if ($(".unconclude_enrollment_link_holder").css("display") == "none") $(".conclude_enrollment_link_holder").css("display", "block");
 
-  let suggestedDate = await calcRecommendedEndDate();
+  let suggestedDate = "";
+  try {
+
+    suggestedDate = await calcRecommendedEndDate();
+  } catch (err) {
+    console.log(err);
+  }
   console.log(suggestedDate);
   //The actual enrollment bit
   $(".more_user_information fieldset").append(`
