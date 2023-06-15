@@ -39,7 +39,6 @@
       console.log(err);
     }
 
-    console.log("THROUGH")
     const DAY_TO_NAME = [
         "Sunday",
         "Monday",
@@ -94,6 +93,7 @@
   if ($(".unconclude_enrollment_link_holder").css("display") == "none") $(".conclude_enrollment_link_holder").css("display", "block");
 
   let suggestedDate = await calcRecommendedEndDate();
+  console.log(suggestedDate);
   //The actual enrollment bit
   $(".more_user_information fieldset").append(`
     <div id="student_last_attended__component">
