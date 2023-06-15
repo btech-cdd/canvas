@@ -128,6 +128,7 @@
   });
   let enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=${ENV.USER_ID}`))[0];
   let endAt = enrollment?.end_at;
+  console.log("END DATE");
   console.log(endAt);
   $(endAtEl).change(()=>{
     let endAtDate = new Date(endAtEl.value);
