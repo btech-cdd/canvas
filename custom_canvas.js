@@ -165,11 +165,11 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         if (rCheckInDepartment.test(window.location.pathname)) {
           CURRENT_DEPARTMENT_ID = parseInt(window.location.pathname.match(rCheckInDepartment)[1]);
         }
+        if (CURRENT_DEPARTMENT_ID == 3827) { //NURSING
+          feature('modules/replace_course_code_with_name', {}, /^\/courses\/[0-9]+/);
+          console.log("NURSING")
+        }
         if (rCheckInCourse.test(window.location.pathname)) {
-          if (CURRENT_DEPARTMENT_ID == 3827) { //NURSING
-            feature('modules/replace_course_code_with_name', {}, /^\/courses\/[0-9]+/);
-            console.log("NURSING")
-          }
           feature("distance/approved-button", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
           IS_BLUEPRINT = !(ENV.BLUEPRINT_COURSES_DATA === undefined)
           $.get('/api/v1/courses/' + CURRENT_COURSE_ID, function (courseData) {
