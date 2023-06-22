@@ -164,6 +164,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         let rCheckInDepartment = /^\/accounts\/([0-9]+)/;
         if (rCheckInDepartment.test(window.location.pathname)) {
           CURRENT_DEPARTMENT_ID = parseInt(window.location.pathname.match(rCheckInDepartment)[1]);
+          console.log(CURRENT_DEPARTMENT_ID);
         }
         if (CURRENT_DEPARTMENT_ID == 3827) { //NURSING
           feature('modules/replace_course_code_with_name', {}, /^\/courses\/[0-9]+/);
