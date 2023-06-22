@@ -95,7 +95,6 @@
 
   let suggestedDate = "";
   try {
-
     suggestedDate = await calcRecommendedEndDate();
   } catch (err) {
     console.log(err);
