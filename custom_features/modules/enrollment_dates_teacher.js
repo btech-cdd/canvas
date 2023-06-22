@@ -100,7 +100,6 @@
   } catch (err) {
     console.log(err);
   }
-  console.log(suggestedDate);
   //The actual enrollment bit
   $($(".more_user_information fieldset")[0]).append(`
     <div id="student_last_attended__component">
@@ -123,18 +122,14 @@
 
   let endAtEl = document.getElementById("btech-enrollment-end-date");
   $("#btech-enrollment-suggested-date").click(() => {
-    console.log("UPDATE")
     $("#btech-enrollment-end-date").val(dateToString(suggestedDate));
     changeDate();
   });
   let enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=${ENV.USER_ID}`))[0];
   let endAt = enrollment?.end_at;
-  console.log("END DATE");
-  console.log(endAt);
   function changeDate() {
     let endAtDate = new Date(endAtEl.value);
     //for...reasons, this is a day off
-    console.log("CHANGE")
     endAtDate.setDate(endAtDate.getDate() + 1);
     $.post("/api/v1/courses/" + ENV.COURSE_ID + "/enrollments",
       {enrollment: {
@@ -150,14 +145,12 @@
   }
   $(endAtEl).change(changeDate);
   if (endAt !== undefined && endAt !== null) {
-    console.log(endAt);
     endAt = new Date(endAt);
 
     var day = ("0" + endAt.getDate()).slice(-2);
     var month = ("0" + (endAt.getMonth() + 1)).slice(-2);
 
     endAt = endAt.getFullYear()+"-"+(month)+"-"+(day) ;
-    console.log(endAt);
     endAtEl.value = endAt;
   }
 })();
