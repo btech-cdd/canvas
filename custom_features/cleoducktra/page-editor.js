@@ -48,7 +48,6 @@
       async editPage() {
         this.awaitingResponse = true;
         let editType = this.editType;
-        console.log(tinymce.activeEditor.selection.getContent());
         let content = tinymce.activeEditor.getContent();
         if (tinymce.activeEditor.selection.getContent() !== "") {
           content = tinymce.activeEditor.selection.getContent();
@@ -83,14 +82,12 @@
           let displayRevisions = "";
           diffs.forEach((part) => {
             const color = part.added ? 'green' : part.removed ? 'red' : 'grey';
-            console.log(part);
             displayRevisions += `<div style="color: ${color};">${part.value.join(" ")}</div>`
           })
           this.diffs = displayRevisions;
           this.revision = revision;
         } else {
           this.tooLong = true;
-          console.log("TOO BIG: " + tokenCount + " TOKENS");
         }
       }
     }

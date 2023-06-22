@@ -4,7 +4,6 @@
   await $.get(SOURCE_URL + '/custom_features/cleoducktra/search.vue', null, function (html) {
     vueString = html.replace("<template>", "").replace("</template>", "");
   }, 'text');
-  console.log(vueString);
   Vue.component('cleoducktra-search', {
     template: vueString,
     mounted: async function() {
@@ -59,7 +58,6 @@
         message.img = "https://bridgetools.dev/canvas/media/cleoducktra.gif"
         this.awaitingResponse = true;
         let docs = await CLEODUCKTRA.searchDocs(input);
-        console.log(docs);
         message.text = "";
         for (let d in docs) {
           let doc = docs[d];
@@ -73,7 +71,6 @@
               If yes, respond 'Yes." then provide useful information based on the content and provide a quote from the content to support your answer.
               CONTENT: ${page}
             `)
-            console.log(resp);
             if (resp.startsWith("No") == false) {
               include = true;
               content += `<p>${resp.replace(/^Yes(\.|,| )/, "")}</p>`;
@@ -94,7 +91,6 @@
         const textarea = $(e.target)[0];
         const maxHeight = 200; // set the maximum height here
         textarea.style.height = "auto";
-        console.log(textarea.style.scrollHeight);
         textarea.style.height = (textarea.scrollHeight ?? 0 + 2) + "px";
         if (textarea.offsetHeight > maxHeight) {
           textarea.style.height = maxHeight + "px";

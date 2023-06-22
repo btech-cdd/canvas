@@ -69,7 +69,6 @@
         if (data.key !== RCE.openAIKey);
         this.initialData.key = data.key;
         await RCE.setOpenAIKey(data.key);
-        console.log(RCE.openAIKey);
 
         api.close();
       }
@@ -144,7 +143,6 @@
       await this.getEditor();
       await this.getOpenAIKey();
       this.addMenu();
-      console.log(window.tinymce.activeEditor)
     }
   }
   RCE.init();
