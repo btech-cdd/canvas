@@ -170,6 +170,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
           IS_BLUEPRINT = !(ENV.BLUEPRINT_COURSES_DATA === undefined)
           $.get('/api/v1/courses/' + CURRENT_COURSE_ID, function (courseData) {
             CURRENT_DEPARTMENT_ID = courseData.account_id;
+            console.log(CURRENT_DEPARTMENT_ID);
             if (CURRENT_DEPARTMENT_ID == 3827) { //NURSING
               console.log("NURSING")
               feature('modules/replace_course_code_with_name', {}, /^\/courses\/[0-9]+/);
