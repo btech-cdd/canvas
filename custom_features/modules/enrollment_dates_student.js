@@ -17,9 +17,10 @@ var Countdown = {
     if (!ENV.current_user_is_student) return;
     this.enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self&type[]=StudentEnrollment`))[0];
     let checkDepartment = this.enabledDepartments.includes(CURRENT_DEPARTMENT_ID);
-    if ((this.enrollment.start_at == undefined || this.enrollment.end_at == undefined) && !checkDepartment) return;
+    let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
+    if (!checkValidDates || !checkDepartment) return;
     this.initProgress();
-    if (this.enrollment.start_at == undefined || this.enrollment.end_at == undefined) return;
+    if (!checkValidDates) return;
     this.initCountdown();
     // Animate countdown to the end 
     this.count();    
