@@ -121,6 +121,7 @@ var Countdown = {
 
   calcVals: function() {
     let data = this.enrollment; 
+    console.log(data);
     let endAt = Date.parse(data.end_at);
     // Get today's date and time
     var now = new Date().getTime();
