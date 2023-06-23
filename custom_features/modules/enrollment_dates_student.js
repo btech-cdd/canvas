@@ -16,6 +16,7 @@ var Countdown = {
   init: async function() {
     if (!ENV.current_user_is_student) return;
     this.enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self&type[]=StudentEnrollment`))[0];
+    console.log(enrollment);
     let checkDepartment = this.enabledDepartments.includes(CURRENT_DEPARTMENT_ID);
     let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
     console.log(checkDepartment);
