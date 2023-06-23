@@ -23,7 +23,10 @@ var Countdown = {
     }
     let checkDepartment = this.enabledDepartments.includes(CURRENT_DEPARTMENT_ID);
     let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
+    console.log(checkDepartment);
+    console.log(checkValidDates);
     if (!checkValidDates && !checkDepartment) return;
+    console.log("INIT")
     this.initProgress();
     if (!checkValidDates) return;
     this.initCountdown();
