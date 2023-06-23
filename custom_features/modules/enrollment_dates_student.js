@@ -40,9 +40,9 @@ var Countdown = {
     let checkDepartment = this.enabledDepartments.includes(CURRENT_DEPARTMENT_ID);
     let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
     //if this is a conditional display, don't show it if the deadline's more than 30 days away
-    let checkNumDays = (!this.enrollment.conditionalDisplay || this.calcVals().days < 30);
+    let checkNumDays = (!this.enrollment.conditionalDisplay || this.calcTimeVals().days < 30);
     console.log(this.enrollment.conditionalDisplay);
-    console.log(this.calcVals());
+    console.log(this.calcTimeVals());
     console.log(checkNumDays);
     if (!checkValidDates && !checkDepartment) return;
     this.initProgress();
@@ -109,7 +109,7 @@ var Countdown = {
       this.els[name] = el;
       $("#btech-countdown").append(el);
     })
-    let vals = this.calcVals();
+    let vals = this.calcTimeVals();
     if (vals.days > 9) {
       $("#countdown-block-days span.count-title").html("DAYS REMAINING");
       $("#countdown-block-hours").hide();
@@ -150,18 +150,8 @@ var Countdown = {
     return days;
   },
 
-  calcTimeVals: function (time) {
-    return {
-      days: Math.floor(time / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-      minutes: Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)),
-      seconds: Math.floor((time % (1000 * 60)) / 1000)
-    }
-
-  },
-
-  calcVals: function() {
-    let timeRemaining = this.calcDays();
+  calcTimeVals: function() {
+    let timeRemaining = this.calcTimeRemaining();
     // If the count down is finished, write some text
     if (timeRemaining < 0) {
       clearInterval(x);
@@ -169,13 +159,17 @@ var Countdown = {
       return
     }
     // Time calculations for days, hours, minutes and seconds
-    let vals = calcTimeVals(timeRemaining)
-    return vals;
+    return {
+      days: Math.floor(time / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      minutes: Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)),
+      seconds: Math.floor((time % (1000 * 60)) / 1000)
+    }
   },
   
   count: function() {
     this.countdown_interval = setInterval(async () => {
-      let vals = this.calcVals();
+      let vals = this.calcTimeVals();
       for (let time in this.els) {
         this.checkCards(
           vals[time],
