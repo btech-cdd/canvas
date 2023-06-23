@@ -27,14 +27,14 @@ var Countdown = {
     if (!this.enrollment.end_at) {
       let courseURL = `/api/v1/courses/${ENV.COURSE_ID}`;
       course = (await $.get(courseURL));
-      this.enrollment.end_at == course.end_at;
+      this.enrollment.end_at = course.end_at;
     }
     if (!this.enrollment.end_at) {
       console.log("TERM")
       let termURL = `/api/v1/accounts/3/terms/${course.enrollment_term_id}`;
       term = (await $.get(termURL));
       console.log(term);
-      this.enrollment.end_at == term.end_at;
+      this.enrollment.end_at = term.end_at;
     }
     console.log(this.enrollment);
     let checkDepartment = this.enabledDepartments.includes(CURRENT_DEPARTMENT_ID);
