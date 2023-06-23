@@ -18,6 +18,7 @@ var Countdown = {
     this.enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self&type[]=StudentEnrollment`))[0];
     let checkDepartment = this.enabledDepartments.includes(CURRENT_DEPARTMENT_ID);
     let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
+    console.log(checkDepartment);
     if (!checkValidDates || !checkDepartment) return;
     this.initProgress();
     if (!checkValidDates) return;
