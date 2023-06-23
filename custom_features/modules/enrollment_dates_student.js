@@ -21,6 +21,7 @@ var Countdown = {
       let section = (await $.get(sectionURL))
       this.enrollment.end_at = section.end_at;
     }
+    console.log(this.enrollment);
     let checkDepartment = this.enabledDepartments.includes(CURRENT_DEPARTMENT_ID);
     let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
     console.log(checkDepartment);
