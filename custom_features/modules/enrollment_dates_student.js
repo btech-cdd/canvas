@@ -148,7 +148,7 @@ var Countdown = {
   },
 
   calcVals: function() {
-    let days = calcDays();
+    let days = this.calcDays();
     // If the count down is finished, write some text
     if (days< 0) {
       clearInterval(x);
