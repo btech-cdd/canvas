@@ -34,6 +34,7 @@ var Countdown = {
       term = (await $.get(termURL));
       this.enrollment.end_at == term.end_at;
     }
+    console.log(this.enrollment);
     let checkDepartment = this.enabledDepartments.includes(CURRENT_DEPARTMENT_ID);
     let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
     if (!checkValidDates && !checkDepartment) return;
