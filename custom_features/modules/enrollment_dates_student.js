@@ -151,9 +151,9 @@ var Countdown = {
   },
 
   calcTimeVals: function() {
-    let timeRemaining = this.calcTimeRemaining();
+    let time = this.calcTimeRemaining();
     // If the count down is finished, write some text
-    if (timeRemaining < 0) {
+    if (time < 0) {
       clearInterval(x);
       document.getElementById("btech-countdown").innerHTML = "EXPIRED";
       return
