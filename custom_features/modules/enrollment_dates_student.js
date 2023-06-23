@@ -52,6 +52,7 @@ var Countdown = {
   },
 
   initCountdown: function() {
+    console.log("INIT")
     let groups = [
       'DAYS',
       'HOURS',
