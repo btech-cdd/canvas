@@ -40,7 +40,7 @@ var Countdown = {
     let checkDepartment = this.enabledDepartments.includes(CURRENT_DEPARTMENT_ID);
     let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
     //if this is a conditional display, don't show it if the deadline's more than 30 days away
-    let checkNumDays = (!this.enrollment.conditionalDisplay || this.calcDays() < 30);
+    let checkNumDays = (!this.enrollment.conditionalDisplay || this.calcVals().days < 30);
     console.log(this.enrollment.conditionalDisplay);
     console.log(this.calcDays());
     console.log(checkNumDays);
@@ -139,7 +139,7 @@ var Countdown = {
     return recommendedProgress;
   },
 
-  calcDays: function() {
+  calcTimeRemaining: function () {
     let data = this.enrollment; 
     let endAt = Date.parse(data.end_at);
     // Get today's date and time
@@ -150,21 +150,26 @@ var Countdown = {
     return days;
   },
 
+  calcTimeVals: function (time) {
+    return {
+      days: Math.floor(time / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      minutes: Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)),
+      seconds: Math.floor((time % (1000 * 60)) / 1000)
+    }
+
+  },
+
   calcVals: function() {
-    let days = this.calcDays();
+    let timeRemaining = this.calcDays();
     // If the count down is finished, write some text
-    if (days< 0) {
+    if (timeRemaining < 0) {
       clearInterval(x);
       document.getElementById("btech-countdown").innerHTML = "EXPIRED";
       return
     }
     // Time calculations for days, hours, minutes and seconds
-    let vals = {
-      days: Math.floor(days / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((days % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-      minutes: Math.floor((days % (1000 * 60 * 60)) / (1000 * 60)),
-      seconds: Math.floor((days % (1000 * 60)) / 1000)
-    }
+    let vals = calcTimeVals(timeRemaining)
     return vals;
   },
   
