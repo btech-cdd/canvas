@@ -21,7 +21,6 @@ var Countdown = {
       let section = (await $.get(sectionURL))
       this.enrollment.end_at = section.end_at;
     }
-    console.log(this.enrollment);
     let checkDepartment = this.enabledDepartments.includes(CURRENT_DEPARTMENT_ID);
     let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
     if (!checkValidDates && !checkDepartment) return;
@@ -89,6 +88,7 @@ var Countdown = {
       this.els[name] = el;
       $("#btech-countdown").append(el);
     })
+    console.log(this.enrollment);
     let vals = this.calcVals();
     if (vals.days > 9) {
       $("#countdown-block-days span.count-title").html("DAYS REMAINING");
