@@ -22,6 +22,11 @@ var Countdown = {
       let section = (await $.get(sectionURL))
       this.enrollment.end_at = section.end_at;
     }
+    if (this.enrollment.end_at == undefined) {
+      let courseURL = `/api/v1/courses/${ENV.COURSE_ID}`;
+      let course = (await $.get(courseURL))
+      console.log(course);
+    }
     let checkDepartment = this.enabledDepartments.includes(CURRENT_DEPARTMENT_ID);
     let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
     if (!checkValidDates && !checkDepartment) return;
