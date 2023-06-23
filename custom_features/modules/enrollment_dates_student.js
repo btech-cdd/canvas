@@ -41,12 +41,10 @@ var Countdown = {
     let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
     //if this is a conditional display, don't show it if the deadline's more than 30 days away
     let checkNumDays = (!this.enrollment.conditionalDisplay || (this.calcTimeVals()).days < 30);
-    console.log(this.enrollment.conditionalDisplay);
-    console.log(this.calcTimeVals());
-    console.log(checkNumDays);
+
     if (!checkValidDates && !checkDepartment) return;
     this.initProgress();
-    if (!checkValidDates && !checkNumDays) return;
+    if (!checkValidDates || !checkNumDays) return;
     this.initCountdown();
     // Animate countdown to the end 
     this.count();    
