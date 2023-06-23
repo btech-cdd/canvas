@@ -17,6 +17,7 @@ var Countdown = {
     if (!ENV.current_user_is_student) return;
     let section, course, term;
     this.enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self&type[]=StudentEnrollment`))[0];
+    this.enrollment.conditionalDisplay = false;
     if (this.enrollment.start_at == undefined) this.enrollment.start_at = this.enrollment.created_at;
     //Try and find an end_at date if one hasn't been set
     if (!this.enrollment.end_at) {
@@ -25,6 +26,7 @@ var Countdown = {
       this.enrollment.end_at = section.end_at;
     }
     if (!this.enrollment.end_at) {
+      this.enrollment.conditionalDisplay = true;
       let courseURL = `/api/v1/courses/${ENV.COURSE_ID}`;
       course = (await $.get(courseURL));
       this.enrollment.end_at = course.end_at;
@@ -33,15 +35,15 @@ var Countdown = {
       console.log("TERM")
       let termURL = `/api/v1/accounts/3/terms/${course.enrollment_term_id}`;
       term = (await $.get(termURL));
-      console.log(term);
       this.enrollment.end_at = term.end_at;
     }
-    console.log(this.enrollment);
     let checkDepartment = this.enabledDepartments.includes(CURRENT_DEPARTMENT_ID);
     let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
+    //if this is a conditional display, don't show it if the deadline's more than 30 days away
+    let checkNumDays = (!this.enrollment.conditionalDisplay || this.calcDays() < 30);
     if (!checkValidDates && !checkDepartment) return;
     this.initProgress();
-    if (!checkValidDates) return;
+    if (!checkValidDates && !checkNumDays) return;
     this.initCountdown();
     // Animate countdown to the end 
     this.count();    
@@ -134,26 +136,31 @@ var Countdown = {
     return recommendedProgress;
   },
 
-  calcVals: function() {
+  calcDays: function() {
     let data = this.enrollment; 
     let endAt = Date.parse(data.end_at);
     // Get today's date and time
     var now = new Date().getTime();
     
     // Find the distance between now and the count down date
-    var distance = endAt - now;
+    var days = endAt - now;
+    return days;
+  },
+
+  calcVals: function() {
+    let days = calcDays();
     // If the count down is finished, write some text
-    if (distance < 0) {
+    if (days< 0) {
       clearInterval(x);
       document.getElementById("btech-countdown").innerHTML = "EXPIRED";
       return
     }
     // Time calculations for days, hours, minutes and seconds
     let vals = {
-      days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-      minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-      seconds: Math.floor((distance % (1000 * 60)) / 1000)
+      days: Math.floor(days / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((days % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+      minutes: Math.floor((days % (1000 * 60 * 60)) / (1000 * 60)),
+      seconds: Math.floor((days % (1000 * 60)) / 1000)
     }
     return vals;
   },
