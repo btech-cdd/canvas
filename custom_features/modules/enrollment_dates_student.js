@@ -30,6 +30,7 @@ var Countdown = {
       this.enrollment.end_at == course.end_at;
     }
     if (!this.enrollment.end_at) {
+      console.log("TERM")
       let termURL = `/api/v1/accounts/3/terms/${course.enrollment_term_id}`;
       term = (await $.get(termURL));
       this.enrollment.end_at == term.end_at;
