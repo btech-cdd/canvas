@@ -15,17 +15,23 @@ var Countdown = {
 
   init: async function() {
     if (!ENV.current_user_is_student) return;
+    let section, course, term;
     this.enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self&type[]=StudentEnrollment`))[0];
     if (this.enrollment.start_at == undefined) this.enrollment.start_at = this.enrollment.created_at;
     if (this.enrollment.end_at == undefined) {
       let sectionURL = `/api/v1/courses/${ENV.COURSE_ID}/sections/${this.enrollment.course_section_id}`;
-      let section = (await $.get(sectionURL))
+      section = (await $.get(sectionURL))
       this.enrollment.end_at = section.end_at;
     }
     if (this.enrollment.end_at == undefined) {
       let courseURL = `/api/v1/courses/${ENV.COURSE_ID}`;
-      let course = (await $.get(courseURL))
+      course = (await $.get(courseURL));
       console.log(course);
+    }
+    if (this.enrollment.end_at == undefined) {
+      let termURL = `/api/v1/accounts/3/terms/${course.enrollment_term_id}`;
+      term = (await $.get(termURL));
+      console.log(term);
     }
     let checkDepartment = this.enabledDepartments.includes(CURRENT_DEPARTMENT_ID);
     let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
