@@ -130,7 +130,7 @@
                 color: #FFFFFF;
                 position: relative;
                 z-index: 2;
-                height: 3.5rem;
+                height: 3rem;
                 padding: 0.5rem 1rem;
                 font-size: 2rem;
               " 
