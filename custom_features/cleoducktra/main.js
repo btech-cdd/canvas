@@ -56,7 +56,7 @@
     searchDocs: async function(input) {
       $.ajaxSetup({
         headers:{
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         }
       });
       let resp = await $.post("https://btech-docs.bridgetools.dev/api/query", JSON.stringify({
