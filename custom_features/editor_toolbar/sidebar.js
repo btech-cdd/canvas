@@ -104,19 +104,19 @@
               overflow: hidden;
             " 
           >
+            <div
+              style="
+                margin-top: 8rem;
+                background-color: #D22232;
+                color: #FFFFFF;
+              " 
+            >HEADER</div>
             <img 
               style="
                 width:100%;
               "
               src="https://bridgetools.dev/canvas/media/image-placeholder.png"
             >
-            <div
-              style="
-                margin-top: -2rem;
-                background-color: #D22232;
-                color: #FFFFFF;
-              " 
-            >HEADER</h2>
           </div>
         `);
       }
