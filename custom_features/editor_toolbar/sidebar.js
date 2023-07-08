@@ -136,6 +136,7 @@
                 display: inline-block;
                 margin-left: -2rem;
                 padding-left: 3rem;
+                width: 90%;
               " 
             >HEADER</div>
           </div>
