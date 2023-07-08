@@ -90,7 +90,7 @@
       },
       addHexImage: function() {
         let editor = tinymce.activeEditor;
-        editor.execCommand("mceInsert", false, `
+        editor.execCommand("mceInsertContent", false, `
           <div
             style="
               width: 200px; /* Adjust the size as per your needs */
