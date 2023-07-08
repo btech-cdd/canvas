@@ -105,6 +105,8 @@
             <h2
               style="
                 position: absolute;
+                left: 0px;
+                bottom: 0px;
               " 
             >HEADER</h2>
           </div>
