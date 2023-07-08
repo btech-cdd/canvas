@@ -111,6 +111,8 @@
                 width: 100%;
                 height: 10rem;
                 overflow: hidden;
+                position: relative;
+                z-index: 1;
               " 
             >
               <img 
@@ -126,6 +128,10 @@
                 margin-top: -2rem;
                 background-color: #D22232;
                 color: #FFFFFF;
+                position: relative;
+                z-index: 2;
+                height: 2rem;
+                line-height: 2rem;
               " 
             >HEADER</div>
           </div>
