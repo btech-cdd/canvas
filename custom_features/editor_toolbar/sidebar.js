@@ -130,7 +130,6 @@
                 color: #FFFFFF;
                 position: relative;
                 z-index: 2;
-                height: 3rem;
                 padding: 0.5rem;
                 font-size: 2rem;
                 display: inline-block;
