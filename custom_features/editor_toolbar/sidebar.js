@@ -100,10 +100,27 @@
             "
             style="
               width: 100%;
-              height: 10rem;
-              overflow: hidden;
             " 
           >
+            <div
+              class="
+                btech-formatted-content-item
+                btech-formatted-content-banner-wrapper
+              "
+              style="
+                width: 100%;
+                height: 10rem;
+                overflow: hidden;
+              " 
+            >
+              <img 
+                style="
+                  width:100%;
+                "
+                src="https://bridgetools.dev/canvas/media/image-placeholder.png"
+              >
+            </div>
+
             <div
               style="
                 margin-top: 8rem;
@@ -111,12 +128,6 @@
                 color: #FFFFFF;
               " 
             >HEADER</div>
-            <img 
-              style="
-                width:100%;
-              "
-              src="https://bridgetools.dev/canvas/media/image-placeholder.png"
-            >
           </div>
         `);
       }
