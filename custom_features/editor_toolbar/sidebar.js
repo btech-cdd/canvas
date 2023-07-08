@@ -131,8 +131,11 @@
                 position: relative;
                 z-index: 2;
                 height: 3rem;
-                padding: 0.5rem 1rem;
+                padding: 0.5rem;
                 font-size: 2rem;
+                display: inline-block;
+                margin-left: -2rem;
+                padding-left: 3rem;
               " 
             >HEADER</div>
           </div>
