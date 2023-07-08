@@ -103,7 +103,7 @@
             <img 
               style="
                 width:100%;
-                max-height: 15rem;
+                max-height: 10rem;
               "
               src="https://bridgetools.dev/canvas/media/image-placeholder.png"
             >
