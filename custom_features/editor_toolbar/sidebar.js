@@ -92,11 +92,13 @@
         let editor = tinymce.activeEditor;
         editor.execCommand("mceInsertContent", false, `
           <div
+            class="btech-hex-mask"
             style="
               width: 200px; /* Adjust the size as per your needs */
               height: 230px;
               position: relative;
               margin: 0 auto;
+              display: inline-block;
               clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
             "
           >

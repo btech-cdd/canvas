@@ -295,3 +295,8 @@ span.btech-pill-text {
   border-radius: 10px;
   font-size: .75rem;
 }
+
+.btech-hex-mask {
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+  transform: rotate(30deg);
+}
