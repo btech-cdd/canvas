@@ -96,6 +96,8 @@
           <div
             class="btech-formatted-content-banner-header"
             style="
+              width: 100%;
+              max-height: 15rem;
               position: relative;
             " 
           >
