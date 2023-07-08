@@ -94,7 +94,10 @@
         let wrapper = $($(body).find('.btech-formatted-content-wrapper')[0]);
         wrapper.prepend(`
           <div
-            class="btech-formatted-content-banner-header"
+            class="
+              btech-formatted-content-item
+              btech-formatted-content-banner-wrapper
+            "
             style="
               width: 100%;
               height: 10rem;
@@ -107,9 +110,11 @@
               "
               src="https://bridgetools.dev/canvas/media/image-placeholder.png"
             >
-            <h2
+            <div
               style="
                 margin-top: -2rem;
+                background-color: #D22232;
+                color: #FFFFFF;
               " 
             >HEADER</h2>
           </div>
