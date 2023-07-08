@@ -1,3 +1,16 @@
+/*
+  FORMATTING
+
+  Convert quiz questions to match the sample format. Correct answers in the HTML format are bolded. Mark the correct answer with an *.
+  SAMPLE
+  Q1. question
+  A. answer
+  *B. correct answer
+  C. answer
+  D. answer 
+  QUIZ QUESTIONS
+
+*/
 let upload = $(`
   <button class="upload_bank_link btn button-sidebar-wide"><i class="icon-upload"></i> Upload Question Bank</button>
 `);
@@ -63,7 +76,7 @@ let VUE_APP = new Vue({
           let correct = '';
           for (l in lines) {
             let line = lines[l].trim();
-            let mPrompt = line.match(/^[0-9]+\.(.*)/);
+            let mPrompt = line.match(/^Q?[0-9]+\.(.*)/);
             if (mPrompt) {
                 prompt = mPrompt[1];
                 continue;
