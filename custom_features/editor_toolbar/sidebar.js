@@ -97,12 +97,13 @@
             class="btech-formatted-content-banner-header"
             style="
               width: 100%;
+              height: 10rem;
+              overflow: hidden;
             " 
           >
             <img 
               style="
                 width:100%;
-                max-height: 10rem;
               "
               src="https://bridgetools.dev/canvas/media/image-placeholder.png"
             >
