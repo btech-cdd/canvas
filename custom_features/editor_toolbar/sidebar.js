@@ -48,6 +48,12 @@
           class="icon-gradebook"
         ></i>
       </div>
+      <div>
+        <i
+          @click="addHeader"
+          class="icon-text"
+        ></i>
+      </div>
     </div>
   </div>
   `);
@@ -76,6 +82,16 @@
         editor.execCommand("mceInsertContent", false, `
           <p class="btech-grading-scheme btech-hidden" style="border: 1px solid black;">This will be replaced by a table populated with the course Grading Scheme.</p>
         `);
+      },
+      addHeader: function () {
+        let editor = tinymce.activeEditor;
+        let body = editor.getBody();
+        $(body).find('.btech-formatted-content-wrapper').each(() => {
+          $(this).unwrap();
+        });
+        body.wrap(`<div class="btech-formatted-content-wrapper"></div>`);
+        let wrapper = $(body.find('.btech-formatted-content-wrapper')[0]);
+        wrapper.prepend(`<h2>HEADER</h2>`)
       }
     }
   });
