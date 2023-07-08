@@ -91,8 +91,8 @@
         });
         console.log(body);
         $(body).contents().wrap(`<div class="btech-formatted-content-wrapper"></div>`);
-        // let wrapper = $($(body).find('.btech-formatted-content-wrapper')[0]);
-        // wrapper.prepend(`<h2>HEADER</h2>`)
+        let wrapper = $($(body).find('.btech-formatted-content-wrapper')[0]);
+        wrapper.prepend(`<h2>HEADER</h2>`)
       }
     }
   });
