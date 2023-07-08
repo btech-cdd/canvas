@@ -40,7 +40,6 @@ Vue.component('cleoducktra-message', {
     </div>
   `,
   mounted: function() {
-    console.log(this.message.img);
   },
   data: function() {
     return {

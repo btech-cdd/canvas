@@ -56,36 +56,30 @@ let VUE_APP = new Vue({
         reader.readAsText(file);
         reader.onload = async () => {
           let lines = reader.result.split("\n");
+          lines.push(''); // kept having an issue where the last question wasn't being loaded if there's no empty line at the end, so just adding a blank line
           let quiz = [];
-          let prompt = "";
+          let prompt = '';
           let answers = [];
-          let correct = "";
+          let correct = '';
           for (l in lines) {
             let line = lines[l].trim();
-            console.log(line);
             let mPrompt = line.match(/^[0-9]+\.(.*)/);
             if (mPrompt) {
                 prompt = mPrompt[1];
-                console.log("PROMPT");
                 continue;
             }
             let mAnswer = line.match(/^\*{0,1}[A-Za-z]\.(.*)/);
             if (mAnswer) {
-                console.log("ANSWER");
                 answers.push({
                     option: mAnswer[1],
                     correct: line.charAt(0) == '*'
                 });
             }
-            console.log(answers.length);
-            console.log(line);
             if (answers.length > 1 && line == '') {
-              console.log("GO!");
                 let question = {
                   prompt: prompt,
                   answers: answers
                 }
-                console.log(question);
                 quiz.push(question);
                 prompt = "";
                 answers = [];
@@ -117,7 +111,6 @@ let VUE_APP = new Vue({
             this.uploadProgress[file.name] = +q / quiz.length;
             //trick vue into showing the change
             this.uploadProgress = JSON.parse(JSON.stringify(this.uploadProgress));
-            console.log(this.uploadProgress);
           }
           filesProcessed += 1;
           if (filesProcessed == this.files.length) {

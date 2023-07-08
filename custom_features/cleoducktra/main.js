@@ -50,7 +50,6 @@
     formatResponse: function(resp) {
       resp = resp.replaceAll("\n", "<br>");
       resp = resp.replaceAll(/```(.*)```/ig, "<pre>$1</pre>");
-      console.log(resp);
       return resp;
     },
     searchDocs: async function(input) {
@@ -97,7 +96,6 @@
       }
       delete $.ajaxSettings.headers.Authorization;
       delete $.ajaxSettings.headers['Content-Type'];
-      console.log(response);
       return response;
     }
   }

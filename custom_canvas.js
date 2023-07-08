@@ -11,9 +11,7 @@ var CDDIDS = [
   1638854, //Mason
   1807337, //Jon
   2064104, //Jonny
-  2101672, //William
   2101656, //Sydney
-  1917265, //Abigail
   2075766, //Kristyn
   1869288, //Alan
   2000557, //Charlotte
@@ -102,9 +100,9 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
 
     //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
     feature('conversations/open_conversation', {}, /^\/conversations/);
+    featureCDD('copy_to_next_year', {}, /^\/accounts\/[0-9]+$/);
     if (rCheckInCourse.test(window.location.pathname)) {
       feature('modules/course_features');
-      feature('modules/enrollment_dates_student', {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
       //I'm putting concluding students in here as well vvv
       feature('modules/enrollment_dates_teacher', {}, /^\/courses\/[0-9]+\/users\/[0-9]+$/);
       feature("external_assignments_fullscreen", {}, /^\/courses\/[0-9]+\/(assignments)/);
@@ -137,6 +135,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
 
     //OTHER FEATURES
     $.getScript("https://cdn.jsdelivr.net/npm/vue@2.6.12").done(function () {
+      if (IS_ME) feature("editor_toolbar/sidebar", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
       $.getScript(SOURCE_URL + "/course_data/course_hours.js").done(() => {
         //GENERAL FEATURES
         //feature("reports/dashboard/banner-report", {}, /^\/$/);
@@ -171,7 +170,13 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
           IS_BLUEPRINT = !(ENV.BLUEPRINT_COURSES_DATA === undefined)
           $.get('/api/v1/courses/' + CURRENT_COURSE_ID, function (courseData) {
             CURRENT_DEPARTMENT_ID = courseData.account_id;
+            if (CURRENT_DEPARTMENT_ID == 3827) { //NURSING
+              feature('modules/replace_course_code_with_name', {}, /^\/courses\/[0-9]+/);
+            }
             //AVAILABLE TO EVERYONE
+            $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js", function() {
+              feature('modules/enrollment_dates_student', {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
+            });
             feature("quizzes/upload_questions", {}, /\/courses\/([0-9]+)\/question_banks$/);
             feature("quizzes/duplicate_bank_item", {}, /\/courses\/([0-9]+)\/question_banks\/([0-9]+)/);
             feature('speed_grader/next_submitted_assignment', {}, /^\/courses\/([0-9]+)\/gradebook\/speed_grader/);

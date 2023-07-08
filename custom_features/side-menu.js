@@ -1,5 +1,4 @@
 function createSideMenuButton(text, url, svg) {
-  console.log("SIDE MENU")
   let cssText = text.toLowerCase().replace(" ", "-");
   let sideMenu = $("#menu");
   sideMenu.append(`
