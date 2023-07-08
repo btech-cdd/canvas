@@ -97,7 +97,6 @@
             class="btech-formatted-content-banner-header"
             style="
               width: 100%;
-              position: relative;
             " 
           >
             <img 
@@ -109,9 +108,7 @@
             >
             <h2
               style="
-                position: absolute;
-                left: 0px;
-                bottom: 0px;
+                margin-top: -2rem;
               " 
             >HEADER</h2>
           </div>
