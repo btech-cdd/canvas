@@ -123,7 +123,7 @@
               >
             </div>
 
-            <div
+            <h2
               style="
                 margin-top: -2rem;
                 background-color: #D22232;
@@ -137,8 +137,9 @@
                 margin-left: -2rem;
                 padding-left: 3rem;
                 width: 90%;
+                border: 0.25rem solid #FFFFFF;
               " 
-            >HEADER</div>
+            ><strong>HEADER</strong></h2>
           </div>
         `);
       }
