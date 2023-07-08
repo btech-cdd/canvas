@@ -47,12 +47,16 @@
           @click="addGradebook"
           class="icon-gradebook"
         ></i>
-      </div>
-      <div>
+        <i
+          @click="addHexImage"
+          class="icon-image"
+        ></i>
         <i
           @click="addHeader"
           class="icon-text"
         ></i>
+      </div>
+      <div>
       </div>
     </div>
   </div>
@@ -65,7 +69,8 @@
     data: function () {
       return {
         minimized: false,
-        width: 250 
+        width: 250,
+        defaultImg: 'https://bridgetools.dev/canvas/media/image-placeholder.png'
       }
     },
     methods: {
@@ -82,6 +87,31 @@
         editor.execCommand("mceInsertContent", false, `
           <p class="btech-grading-scheme btech-hidden" style="border: 1px solid black;">This will be replaced by a table populated with the course Grading Scheme.</p>
         `);
+      },
+      addHexImage: function() {
+        let editor = tinymce.activeEditor;
+        editor.execCommand("mceInsert", false, `
+          <div
+            style="
+              width: 200px; /* Adjust the size as per your needs */
+              height: 230px;
+              position: relative;
+              margin: 0 auto;
+              clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+            "
+          >
+            <img
+              src="${this.defaultImg}"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transform: rotate(30deg);
+              "
+            />
+          </div>
+        `);
+
       },
       addHeader: function () {
         let editor = tinymce.activeEditor;
@@ -119,7 +149,7 @@
                 style="
                   width:100%;
                 "
-                src="https://bridgetools.dev/canvas/media/image-placeholder.png"
+                src="${this.defaultImg}"
               >
             </div>
 
