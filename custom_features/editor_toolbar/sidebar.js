@@ -52,6 +52,10 @@
           class="icon-image"
         ></i>
         <i
+          @click="addCallout"
+          class="icon-note-light"
+        ></i>
+        <i
           @click="addHeader"
           class="icon-text"
         ></i>
@@ -114,6 +118,17 @@
           </div>
         `);
 
+      },
+      addCallout: function () {
+        let editor = tinymce.activeEditor;
+        let selection = editor.selection;
+        let selectionContent = selection.getContent();
+        console.log(selectionContent);
+        editor.execCommand("mceReplaceContent", false, `
+          <div class="btech-callout-box flat">
+          ${selectionContent}
+          </div>
+        `);
       },
       addHeader: function () {
         let editor = tinymce.activeEditor;
