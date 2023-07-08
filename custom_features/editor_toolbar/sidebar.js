@@ -131,7 +131,8 @@
                 position: relative;
                 z-index: 2;
                 height: 2rem;
-                line-height: 2rem;
+                padding: 0 0.5rem;
+                font-size: 2rem;
               " 
             >HEADER</div>
           </div>
