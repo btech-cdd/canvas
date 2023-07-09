@@ -199,7 +199,7 @@
           <div
             class="
               btech-formatted-content-modal
-              btech-formatted-content-image-right-wrapper
+              btech-formatted-content-image-left-wrapper
             "
             style="
               display: grid;
