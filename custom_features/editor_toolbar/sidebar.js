@@ -181,13 +181,14 @@
             "
             style="
               display: grid;
-              grid-template-columns: 1fr 20rem;
+              grid-template-columns: 3fr 1fr;
             "
           >
             <div>
               <p>TEXT</p>
             </div>
             <img
+              style="width: 25%;"
               src="${this.defaultImg}"
             />
           </div>
