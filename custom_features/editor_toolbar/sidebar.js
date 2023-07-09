@@ -181,7 +181,7 @@
             "
             style="
               display: grid;
-              grid-template-columns: auto 20rem;
+              grid-template-columns: 1fr 20rem;
             "
           >
             <div>
