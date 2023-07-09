@@ -54,11 +54,11 @@
           class="icon-text"
         ></i>
         <i
-          @click="addHeaderBanner"
+          @click="addHeaderBannerModal"
           class="icon-text"
         ></i>
         <i
-          @click="addHeaderHex"
+          @click="addHeaderHexModal"
           class="icon-text"
         ></i>
         <i
@@ -264,8 +264,8 @@
           >
             <div
               style="
-                width: 100%;
-                height: 10rem;
+                width: 50%;
+                height: 5rem;
                 overflow: hidden;
                 position: relative;
                 z-index: 1;
@@ -288,9 +288,9 @@
                 z-index: 2;
                 font-size: 2rem;
                 display: inline-block;
-                margin-left: -2rem;
+                margin-left: 50%;
                 padding-left: 3rem;
-                width: 90%;
+                width: 50%;
                 border: 0.25rem solid #FFFFFF;
               " 
             ><strong>HEADER</strong></h2>
