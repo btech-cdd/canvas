@@ -174,7 +174,7 @@
         wrapper.prepend(`
           <div
             class="
-              btech-formatted-content-item
+              btech-formatted-content-modal
               btech-formatted-content-banner-wrapper
             "
             style="
@@ -182,10 +182,6 @@
             " 
           >
             <div
-              class="
-                btech-formatted-content-item
-                btech-formatted-content-banner-wrapper
-              "
               style="
                 width: 100%;
                 height: 10rem;
