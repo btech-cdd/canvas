@@ -163,7 +163,7 @@
       getContainer: function (element) {
         let container = element;
         //loop until parent is 
-        while (container.parent().prop("tagName") != "body" && !container.parent().hasClass(".btech-formatted-content-wrapper")) {
+        while (container.parent().prop("tagName") != "body" && !container.parent().hasClass("btech-formatted-content-wrapper")) {
           console.log(container);
           container = container.parent();
           console.log(container);
