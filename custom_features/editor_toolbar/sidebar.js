@@ -249,10 +249,8 @@
 
       addHeaderHexModal: function () {
         let editor = tinymce.activeEditor;
-        let body = editor.getBody();
-        this.initFormattedContent();
-        let wrapper = $($(body).find('.btech-formatted-content-wrapper')[0]);
-        wrapper.prepend(`
+        let container = this.getContainer($(editor.selection.getNode()));
+        container.after(`
           <div
             class="
               btech-formatted-content-modal
