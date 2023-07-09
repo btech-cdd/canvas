@@ -188,7 +188,7 @@
               <p>TEXT</p>
             </div>
             <img
-              style="width: 25%;"
+              style="width: 100%;"
               src="${this.defaultImg}"
             />
           </div>
