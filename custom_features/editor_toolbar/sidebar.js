@@ -192,6 +192,31 @@
         return container;
       },
 
+      addImageLeftModal: function () {
+        let editor = tinymce.activeEditor;
+        let container = this.getContainer($(editor.selection.getNode()));
+        container.after(`
+          <div
+            class="
+              btech-formatted-content-modal
+              btech-formatted-content-image-right-wrapper
+            "
+            style="
+              display: grid;
+              grid-template-columns: 1fr 2fr;
+            "
+          >
+            <img
+              style="width: 100%;"
+              src="${this.defaultImg}"
+            />
+            <div>
+              <p>TEXT</p>
+            </div>
+          </div>
+        `)
+        console.log(container);
+      },
       addImageRightModal: function () {
         let editor = tinymce.activeEditor;
         let container = this.getContainer($(editor.selection.getNode()));
