@@ -308,6 +308,10 @@ span.btech-pill-text {
   font-family: Roboto;
 }
 
+.btech-formatted-content-wrapper > * {
+  max-width: 70ch;
+}
+
 .btech-formatted-content-modal {
   width: 70ch;
 }
