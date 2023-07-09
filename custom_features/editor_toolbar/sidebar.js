@@ -124,11 +124,19 @@
         let selection = editor.selection;
         let selectionContent = selection.getContent();
         console.log(selectionContent);
-        editor.execCommand("mceReplaceContent", false, `
-          <div class="btech-callout-box flat">
-          ${selectionContent}
-          </div>
-        `);
+        if (selectionContent !== "") {
+          editor.execCommand("mceReplaceContent", false, `
+            <div class="btech-callout-box flat">
+            ${selectionContent}
+            </div>
+          `);
+        } else {
+          editor.execCommand("mceInsertContent", false, `
+            <div class="btech-callout-box flat">
+              <p>Callout Content</p>
+            </div>
+          `);
+        }
       },
       addHeader: function () {
         let editor = tinymce.activeEditor;
