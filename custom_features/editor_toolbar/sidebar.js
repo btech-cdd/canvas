@@ -160,10 +160,19 @@
         $(body).contents().wrap(`<div class="btech-formatted-content-wrapper"></div>`);
       },
 
+      getContainer: function (element) {
+        let container = element;
+        //loop until parent is 
+        while (container.parent().prop("tagName") != "body" && !container.parent().hasClass(".btech-formatted-content-wrapper")) {
+          container = container.parent();
+        }
+        return container;
+      },
+
       addImageRightModal: function () {
         let editor = tinymce.activeEditor;
-        let parent = editor.selection.getNode();
-        console.log(parent);
+        let container = this.getContainer($(editor.selection.getNode()));
+        console.log(container);
       },
 
       addBannerModal: function () {
