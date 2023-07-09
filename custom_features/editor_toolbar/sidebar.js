@@ -42,11 +42,25 @@
         BTECH Editor
         <b>&#8250;</b>
       </div>
+
+      <!--MODULES-->
       <div>
         <i
-          @click="addGradebook"
+          @click="addGradebookModal"
           class="icon-gradebook"
         ></i>
+        <i
+          @click="addBannerModal"
+          class="icon-text"
+        ></i>
+        <i
+          @click="addImageRightModal"
+          class="icon-image"
+        ></i>
+      </div>
+
+      <!--ELEMENTS-->
+      <div>
         <i
           @click="addHexImage"
           class="icon-image"
@@ -55,11 +69,8 @@
           @click="addCallout"
           class="icon-note-light"
         ></i>
-        <i
-          @click="addHeader"
-          class="icon-text"
-        ></i>
       </div>
+
       <div>
       </div>
     </div>
@@ -86,7 +97,7 @@
         $('#wrapper').css('margin-right', '0px');
         this.minimized = true;
       },
-      addGradebook: function () {
+      addGradebookModal: function () {
         let editor = tinymce.activeEditor;
         editor.execCommand("mceInsertContent", false, `
           <p class="btech-grading-scheme btech-hidden" style="border: 1px solid black;">This will be replaced by a table populated with the course Grading Scheme.</p>
@@ -138,14 +149,27 @@
           `);
         }
       },
-      addHeader: function () {
+
+
+      initFormattedContent: function () {
         let editor = tinymce.activeEditor;
         let body = editor.getBody();
         $(body).find('.btech-formatted-content-wrapper').each(() => {
           $(this).unwrap();
         });
-        console.log(body);
         $(body).contents().wrap(`<div class="btech-formatted-content-wrapper"></div>`);
+      },
+
+      addImageRightModal: function () {
+        let editor = tinymce.activeEditor;
+        let parent = editor.selection.getNode();
+        console.log(parent);
+      },
+
+      addBannerModal: function () {
+        let editor = tinymce.activeEditor;
+        let body = editor.getBody();
+        this.initFormattedContent();
         let wrapper = $($(body).find('.btech-formatted-content-wrapper')[0]);
         wrapper.prepend(`
           <div
