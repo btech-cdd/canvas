@@ -307,3 +307,7 @@ span.btech-pill-text {
   align-items: center;
   font: Roboto;
 }
+
+.btech-formatted-content-modal {
+  width: 70ch;
+}
