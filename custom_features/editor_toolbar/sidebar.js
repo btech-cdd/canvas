@@ -164,7 +164,7 @@
         let container = element;
         //loop until parent is 
         while (container.parent().prop("tagName") != "body" && !container.parent().hasClass("btech-formatted-content-wrapper")) {
-          container = $(container.parent()[0]);
+          container = $(container.parent());
           console.log(container);
         }
         return container;
@@ -173,6 +173,7 @@
       addImageRightModal: function () {
         let editor = tinymce.activeEditor;
         let container = this.getContainer($(editor.selection.getNode()));
+        container.hide();
         console.log(container);
       },
 
