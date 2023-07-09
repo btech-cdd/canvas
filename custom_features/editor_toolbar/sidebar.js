@@ -164,7 +164,8 @@
         let container = element;
         //loop until parent is 
         while (container.parent().prop("tagName") != "body" && !container.parent().hasClass("btech-formatted-content-wrapper")) {
-          container = container.parent()[0];
+          container = $(container.parent()[0]);
+          console.log(container);
         }
         return container;
       },
