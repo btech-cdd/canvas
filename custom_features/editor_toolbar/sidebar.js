@@ -173,7 +173,25 @@
       addImageRightModal: function () {
         let editor = tinymce.activeEditor;
         let container = this.getContainer($(editor.selection.getNode()));
-        container.hide();
+        container.after(`
+          <div
+            class="
+              btech-formatted-content-modal
+              btech-formatted-content-image-right-wrapper
+            "
+            style="
+              display: grid;
+              grid-row: auto 20rem;
+            "
+          >
+            <div>
+              <p>TEXT</p>
+            </div>
+            <img
+              src="${this.defaultImg}"
+            />
+          </div>
+        `)
         console.log(container);
       },
 
