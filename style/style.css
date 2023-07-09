@@ -305,7 +305,7 @@ span.btech-pill-text {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  font: Roboto;
+  font-family: Roboto;
 }
 
 .btech-formatted-content-modal {
