@@ -287,9 +287,10 @@
                 font-size: 2rem;
                 display: inline-block;
                 margin-left: 10%;
-                padding-left: 3rem;
+                padding-right: 3rem;
                 width: 95%;
                 border: 0.25rem solid #FFFFFF;
+                text-align: right;
               " 
             ><strong>HEADER</strong></h2>
           </div>
