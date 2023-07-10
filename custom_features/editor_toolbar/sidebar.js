@@ -262,7 +262,7 @@
           >
             <div
               style="
-                width: 90%;
+                width: 100%;
                 height: 5rem;
                 overflow: hidden;
                 position: relative;
@@ -288,7 +288,7 @@
                 display: inline-block;
                 margin-left: 10%;
                 padding-right: 3rem;
-                width: 95%;
+                width: 90%;
                 border: 0.25rem solid #FFFFFF;
                 text-align: right;
               " 
