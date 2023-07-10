@@ -262,7 +262,7 @@
           >
             <div
               style="
-                width: 75%;
+                width: 90%;
                 height: 5rem;
                 overflow: hidden;
                 position: relative;
@@ -286,9 +286,9 @@
                 z-index: 2;
                 font-size: 2rem;
                 display: inline-block;
-                margin-left: 75%;
+                margin-left: 10%;
                 padding-left: 3rem;
-                width: 50%;
+                width: 95%;
                 border: 0.25rem solid #FFFFFF;
               " 
             ><strong>HEADER</strong></h2>
