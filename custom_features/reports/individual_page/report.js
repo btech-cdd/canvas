@@ -47,6 +47,7 @@
         if (IS_TEACHER) { //also change this to ref the url and not whether or not is teacher
           let match = window.location.pathname.match(/(users|grades)\/([0-9]+)/);
           this.userId = match[2];
+          console.log(this.userId);
         } else {
           this.userId = ENV.current_user_id;
         }
