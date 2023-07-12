@@ -182,6 +182,7 @@ Vue.component('show-grades-between-dates', {
   data() {
     return {
       selectedTermId: '',
+      userCanvasId: '',
       selectedTerm: {},
       gradesBetweenDates: {},
       progressBetweenDates: {},
@@ -215,7 +216,7 @@ Vue.component('show-grades-between-dates', {
     }
   },
   mounted: function () {
-    console.log("USER ID" + this.userId);
+    this.userCanvasId = this.userId;
   },
   created: async function () {
     this.loadingProgress = 0;
