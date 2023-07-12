@@ -7,10 +7,7 @@ var Countdown = {
   countdown_interval: null,
   total_seconds     : 0,
   els: {},
-  enabledDepartments: [
-    3820, //web
-    3819, //amar
-    4218, //data
+  disabledDepartments: [
   ],
 
   init: async function() {
@@ -37,7 +34,8 @@ var Countdown = {
       term = (await $.get(termURL));
       this.enrollment.end_at = term.end_at;
     }
-    let checkDepartment = this.enabledDepartments.includes(CURRENT_DEPARTMENT_ID);
+    //check if department has opted out
+    let checkDepartment = !this.disabledDepartments.includes(CURRENT_DEPARTMENT_ID);
     let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
     //if this is a conditional display, don't show it if the deadline's more than 30 days away
     let checkNumDays = (!this.enrollment.conditionalDisplay || (this.calcTimeVals()).days < 30);
