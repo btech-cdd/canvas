@@ -234,6 +234,7 @@ Vue.component('show-grades-between-dates', {
       this.loadingProgress += (50 / this.courses.length) * 0.5;
     }
     this.loadingAssignments = false;
+    console.log(this.userId);
   },
 
   methods: {
