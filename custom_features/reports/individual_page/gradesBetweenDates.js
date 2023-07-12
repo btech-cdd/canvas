@@ -752,7 +752,9 @@ Vue.component('show-grades-between-dates', {
           let crsCode = data.course_code;
           hours = COURSE_HOURS?.[year]?.[crsCode];
           //Check to see if a previous year can be found if current year doesn't work
-          if (hours == undefined) hours = COURSE_HOURS[year - 1][crsCode];
+          for (let i = 1; i < 5; i++) {
+            if (hours == undefined) hours = COURSE_HOURS?.[year - i]?.[crsCode];
+          }
           if (hours === undefined) hours = 0;
         })
       }
