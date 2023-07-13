@@ -103,7 +103,7 @@ Vue.component('show-grades-between-dates', {
               <h3>
                 <input @change="calcGradesFromIncludedAssignments" type="checkbox" :id="course.id + '-checkbox'"
                   v-model="course.include">
-                <a :href="'/courses/' + course.id + '/grades/' + userCanvasId" target="_blank">{{course.name}}</a>
+                <a :href="'/courses/' + course.id + '/grades/' + userId" target="_blank">{{course.name}}</a>
               </h3>
               <div v-if='course.include'>
                 <div v-for='group in course.groups' :key='group.name'>
@@ -182,7 +182,6 @@ Vue.component('show-grades-between-dates', {
   data() {
     return {
       selectedTermId: '',
-      userCanvasId: '',
       selectedTerm: {},
       gradesBetweenDates: {},
       progressBetweenDates: {},
@@ -214,9 +213,6 @@ Vue.component('show-grades-between-dates', {
         new Column('Days Since Last Submission', '', true, 'number', false)
       ],
     }
-  },
-  mounted: function () {
-    this.userCanvasId = this.userId;
   },
   created: async function () {
     this.loadingProgress = 0;
