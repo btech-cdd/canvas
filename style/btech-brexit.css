@@ -220,9 +220,10 @@ tbody .btech-brexit-tablerow:last-child {
   background-color: #f2f5fa;
   padding: 0.25em 0.5em;
   border-radius: 4px;
-  font-size: 14px;
   line-height: 21px;
   border: none;
+  float: none !important;
+  margin-left: 0 !important;
 }
 .btech-brexit-link:hover {
   text-decoration: underline;
