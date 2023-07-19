@@ -149,7 +149,7 @@
     var day = ("0" + endAt.getDate()).slice(-2);
     var month = ("0" + (endAt.getMonth() + 1)).slice(-2);
 
-    endAt = endAt.getFullYear()+"-"+(month)+"-"+(day) ;
+    endAt = `${endAt.getFullYear()}-${month}-${day}T06:00:00Z`;
     endAtEl.value = endAt;
   }
 })();
