@@ -130,6 +130,7 @@
     let endAtDate = new Date(endAtEl.value);
     //for...reasons, this is a day off
     endAtDate.setDate(endAtDate.getDate() + 1);
+    endAtDate.setTime(endAtDate.getTime() + (6 * 60 * 60 * 1000));
     $.post("/api/v1/courses/" + ENV.COURSE_ID + "/enrollments",
       {enrollment: {
         start_at: enrollment.start_at ?? enrollment.created_at ?? new Date(),
@@ -149,7 +150,7 @@
     var day = ("0" + endAt.getDate()).slice(-2);
     var month = ("0" + (endAt.getMonth() + 1)).slice(-2);
 
-    endAt = `${endAt.getFullYear()}-${month}-${day}T06:00:00Z`;
+    endAt = `${endAt.getFullYear()}-${month}-${day}`;
     endAtEl.value = endAt;
   }
 })();
