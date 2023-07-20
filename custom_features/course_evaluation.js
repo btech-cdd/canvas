@@ -79,6 +79,7 @@
                 'background-color': question.rating == i ? '#d22232' : '#FFFFFF',
                 'color' : question.rating == i ? '#FFFFFF' : '#000000'
               }"
+              @click="setScore(question.id); question.rating = i;"
             >{{i}}</span>
           </div>
         </div>

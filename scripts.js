@@ -194,7 +194,7 @@ $.delete = function (url, data) {
   });
 }
 
-async function bridgetoolsReq(url) {
+async function bridgetoolsReq(url, reqdata = {}, type = "GET") {
   let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
   let authCode = '';
   await $.get(reqUrl, data => {authCode = data.data.auth_code;});
@@ -202,8 +202,20 @@ async function bridgetoolsReq(url) {
   if (!url.includes("?")) url += "?auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
   else url += "&auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
   let output;
-  await $.get(url, function(data) {
-    output = data;
-  });
+  if (type == "GET") {
+    await $.get(url, function(data) {
+      output = data;
+    });
+  }
+  if (type == "POST") {
+    await $.post(url, reqdata, function(data) {
+      output = data;
+    });
+  }
+  if (type == "PUT") {
+    await $.put(url, reqdata, function(data) {
+      output = data;
+    });
+  }
   return output;
 }
