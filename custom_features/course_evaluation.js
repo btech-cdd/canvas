@@ -231,7 +231,7 @@
         }
       }
       this.pastReviews = pastReviews;
-      console.log(reviews);
+      console.log(pastReviews);
     },
     data: function () {
       return {
