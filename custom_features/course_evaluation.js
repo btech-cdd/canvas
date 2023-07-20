@@ -219,7 +219,7 @@
           rating: rating
         }, "PUT");
       },
-      submitReview: async function () {
+      submitReview: async function (scoreId) {
         await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
           submitted: true 
         }, "PUT");
