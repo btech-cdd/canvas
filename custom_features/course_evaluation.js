@@ -128,6 +128,17 @@
           padding: 0.5rem;
         "
       >
+        <div>
+          <div
+            v-for="review in pastReviews"
+          >
+            <div
+              v-for="topic, name in review.structure"
+            >
+              {{name}}: {{topic.average}}
+            </div>
+          </div>
+        </div>
         <div
           style="
             display:flex;
