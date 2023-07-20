@@ -144,7 +144,6 @@
   new Vue({
     el: '#btech-course-evaluation-vue',
     mounted: async function () {
-      let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/TEST%201010");
       // init context data
       let courseData = await $.get("/api/v1/courses/" + CURRENT_COURSE_ID);
       // do a check if there's a valid course code. If not, no need to rate :)
@@ -170,6 +169,8 @@
         console.log(err);
         return;
       }
+
+      let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/" + this.courseCode.replace(" ", "%20"));
       let pastReviews = [];
       for (let r in reviews) {
         let review = reviews[r];
@@ -261,6 +262,7 @@
           course_id: this.courseId,
           user_id: this.raterId,
         }, "POST");
+        console.log(review);
         this.activeReview = review;
         console.log('new');
       }
