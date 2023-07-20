@@ -8,7 +8,6 @@ var Countdown = {
   total_seconds     : 0,
   els: {},
   disabledDepartments: [
-    3828
   ],
 
   init: async function() {
