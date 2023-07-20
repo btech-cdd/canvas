@@ -92,8 +92,8 @@
           topic.average = average;
         }
 
-        if (submitted) pastReviews.push(review);
-        if (!submitted && review.rater_id == ENV.current_user_id) {
+        if (review.submitted) pastReviews.push(review);
+        if (!review.submitted && review.rater_id == ENV.current_user_id) {
           this.activeReview = review;
         }
       }
