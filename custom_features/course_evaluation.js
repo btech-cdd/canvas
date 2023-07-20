@@ -54,7 +54,21 @@
       let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/TEST%201010");
       for (let r in reviews) {
         let review = reviews[r];
+        let structure = {};
         console.log(review);
+        for (let s in scores) {
+          let score = scores[s];
+          let question = score.question;
+          let topic = question.topic;
+          structure[topic.name] = structure?.[topic.name] ?? {
+            questions: {},
+            average: 0
+          };
+          structure[topic.name].questions[question.text] = structure[topic.name].questions?.[question.text] ?? {
+            rating: score.rating
+          };
+        }
+        console.log(structure);
       }
       console.log(reviews);
     },
