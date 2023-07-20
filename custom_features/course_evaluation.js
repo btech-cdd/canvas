@@ -28,6 +28,9 @@
     </div>
     <div
       v-else
+      style="
+        padding: 0.5rem;
+      "
     >
       <div 
         style="
