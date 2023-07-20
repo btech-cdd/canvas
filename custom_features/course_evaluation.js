@@ -248,7 +248,7 @@
         }, "PUT");
       },
       submitReview: async function (reviewId) {
-        bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/review/${reviewId}`, {
+        await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/review/${reviewId}`, {
           submitted: true 
         }, "PUT");
         this.activeReview.submitted = true;
@@ -256,8 +256,12 @@
         this.activeReview = {};
       },
       newReview: async function () {
-        let review = bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/review/${reviewId}`, {
+        let review = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${this.courseCode.replace(" ", "%20")}/new`, {
+          year: this.year,
+          course_id: this.courseId,
+          rater_id: this.raterId,
         });
+        this.activeReview = review;
         console.log('new');
       }
     }
