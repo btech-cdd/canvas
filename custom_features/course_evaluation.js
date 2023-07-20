@@ -151,10 +151,10 @@
       // may be more accurate to pull based on sis course id 
       let sisCourseId = courseData.sis_course_id;
       if (sisCourseId == undefined) return; //don't do anything, no need to rate?
-      const yearPattern = /(\d{4})[A-Z]{2}/;
+      const yearPattern = /(\d{4})[A-Z]{2}$/;
       const courseCodePattern = /[A-Z]{4} \d{4}/;
 
-      const year = sisCourseId.match(yearPattern);
+      const year = sisCourseId.match(yearPattern)[1];
       console.log(year);
       const courseCode = sisCourseId.match(courseCodePattern)[0];
       console.log(courseCode);
