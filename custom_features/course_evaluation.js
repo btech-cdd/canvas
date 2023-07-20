@@ -57,7 +57,15 @@
           v-for="question, text in topic.questions"
         >
           <div><strong>{{text}}</strong></div>
-          <div><span v-for="i in [1, 2, 3, 4]">{{i}}</span></div>
+          <div>
+            <span 
+              style="
+                border: 1px solid #F0F0F0;
+                border-radius: 1rem;
+              "
+              v-for="i in [1, 2, 3, 4]"
+            >{{i}}</span>
+          </div>
         </div>
       </div>
       
