@@ -59,7 +59,7 @@
           <div
             v-for="question, text in topic.questions"
             style="
-              margin-bottom: 0.25rem;
+              margin-bottom: 0.5rem;
             "
           >
             <div><strong>{{text}}</strong></div>
