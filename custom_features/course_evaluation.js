@@ -5,7 +5,7 @@
     id="btech-course-evaluation-vue"
     :style="{
       'width': width + 'px',
-      'right': minimized ? '-' + width + 'px' : '0px'
+      'right': '0px'
     }"
     style="
       position: fixed; 
