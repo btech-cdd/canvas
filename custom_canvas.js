@@ -93,7 +93,6 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
     feature("login_page", {}, /^\/login/);
     feature("editor_toolbar/manage-settings", {}, /^\/btech-toolbar/);
     if (IS_ME) feature("editor_toolbar/main", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
-    if (IS_ME) feature("course_evaluation", {}, /^\/courses\/[0-9]+/);
     feature("img-zoom", {}, /users/);
     feature("side-menu", {}, "");
 
@@ -135,6 +134,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
     //OTHER FEATURES
     $.getScript("https://cdn.jsdelivr.net/npm/vue@2.6.12").done(function () {
       if (IS_ME) feature("editor_toolbar/sidebar", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
+      if (IS_ME) feature("course_evaluation", {}, /^\/courses\/[0-9]+/);
       $.getScript(SOURCE_URL + "/course_data/course_hours.js").done(() => {
         //GENERAL FEATURES
         //feature("reports/dashboard/banner-report", {}, /^\/$/);
