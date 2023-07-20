@@ -97,6 +97,7 @@
             background-color: #FFFFFF;
             color: #000000;
             padding: 0.25rem;
+            cursor: point;
           "
         >Discard</span>
         <span
@@ -104,6 +105,7 @@
             background-color: #d22232;
             color: #FFFFFF;
             padding: 0.25rem;
+            cursor: point;
           "
         >Submit</span>
       </div>
