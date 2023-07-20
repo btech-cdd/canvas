@@ -44,6 +44,11 @@
       </div>
 
       <!--MODULES-->
+      <div
+        v-for="topic in activeReview"
+      >
+        {{topic}}
+      </div>
       
     </div>
   </div>
@@ -52,6 +57,7 @@
     el: '#btech-course-evaluation-vue',
     mounted: async function () {
       let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/TEST%201010");
+      let pastReviews = [];
       for (let r in reviews) {
         let review = reviews[r];
         let summary = {};
@@ -65,7 +71,8 @@
             average: 0
           };
           summary[topic.name].questions[question.text] = summary[topic.name].questions?.[question.text] ?? {
-            rating: score.rating
+            rating: score.rating,
+            id: score._id
           };
         }
         review.summary = summary;
@@ -84,7 +91,13 @@
 
           topic.average = average;
         }
+
+        if (submitted) pastReviews.push(review);
+        if (!submitted && review.rater_id == ENV.current_user_id) {
+          this.activeReview = review;
+        }
       }
+      this.pastReviews = pastReviews;
       console.log(reviews);
     },
     data: function () {
@@ -99,7 +112,9 @@
           font: "#FFFFFF",
           bodyfont: "#000000",
           bg: "#FFFFFF"
-        } 
+        },
+        pastReviews: [],
+        activeReview: {}
       }
     },
     methods: {
