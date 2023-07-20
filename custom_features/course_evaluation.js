@@ -55,7 +55,7 @@
     data: function () {
       return {
         minimized: true,
-        width: 250,
+        width: 400,
         defaultImg: 'https://bridgetools.dev/canvas/media/image-placeholder.png',
         colors: {
           primary: "#D22232",
