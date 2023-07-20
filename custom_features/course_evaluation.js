@@ -220,6 +220,11 @@
         }, "PUT");
       },
       submitReview: async function () {
+        await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
+          submitted: true 
+        }, "PUT");
+        this.activeReview.submitted = true;
+        this.pastReviews.push(activeReview);
         this.activeReview = {};
       },
       newReview: async function () {
