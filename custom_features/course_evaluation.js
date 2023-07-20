@@ -71,9 +71,9 @@
                 style="
                   border: 1px solid #303030;
                   border-radius: 1rem;
-                  width: 2rem;
-                  height: 2rem;
-                  font-size: 1.5rem;
+                  width: 1.5rem;
+                  height: 1.5rem;
+                  font-size: 1rem;
                   text-align: center;
                   cursor: pointer;
                 "
@@ -83,7 +83,7 @@
                   'color' : question.rating == i ? '#FFFFFF' : '#000000'
                 }"
                 @click="setRating(question.id, i); question.rating = i;"
-              >{{i}}</span>
+              ><b>{{i}}</b></span>
             </div>
           </div>
         </div>
