@@ -220,7 +220,7 @@
         }, "PUT");
       },
       submitReview: async function (reviewId) {
-        await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/review/${reviewId}`, {
+        bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/review/${reviewId}`, {
           submitted: true 
         }, "PUT");
         this.activeReview.submitted = true;
