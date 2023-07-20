@@ -132,6 +132,7 @@
           <div
             v-for="review in pastReviews"
           >
+            {{review}}
             <div
               v-for="topic, name in review.structure"
             >
