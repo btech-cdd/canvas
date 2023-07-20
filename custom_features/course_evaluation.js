@@ -94,16 +94,18 @@
       >
         <span
           style="
+            background-color: #FFFFFF;
+            color: #000000;
+            padding: 0.25rem;
+          "
+        >Discard</span>
+        <span
+          style="
             background-color: #d22232;
             color: #FFFFFF;
             padding: 0.25rem;
           "
         >Submit</span>
-        <span
-          style="
-            padding: 0.25rem;
-          "
-        >Delete</span>
       </div>
     </div>
   </div>
