@@ -216,6 +216,7 @@
         if (review.submitted) pastReviews.push(review);
         if (!review.submitted && review.rater_id == this.raterId) {
           this.activeReview = review;
+          this.maximize();
         }
       }
       this.pastReviews = pastReviews;
