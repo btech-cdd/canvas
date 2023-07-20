@@ -102,7 +102,7 @@
               background-color: #d22232;
               color: #FFFFFF;
               padding: 0.25rem;
-              cursor: point;
+              cursor: pointer;
             "
             @click="newReview()"
           >New Review</span>
@@ -121,7 +121,7 @@
             background-color: #FFFFFF;
             color: #000000;
             padding: 0.25rem;
-            cursor: point;
+            cursor: pointer;
           "
         >Discard</span>
         <span
@@ -129,8 +129,9 @@
             background-color: #d22232;
             color: #FFFFFF;
             padding: 0.25rem;
-            cursor: point;
+            cursor: pointer;
           "
+          @click="submitReview()"
         >Submit</span>
       </div>
     </div>
