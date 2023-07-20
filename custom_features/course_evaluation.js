@@ -5,7 +5,7 @@
     id="btech-course-evaluation-vue"
     :style="{
       'width': width + 'px',
-      'right': '0px'
+      'right': minimized ? '-' + width + 'px' : '0px'
     }"
     style="
       position: fixed; 
@@ -21,21 +21,17 @@
       style="
         position: fixed;
         top: 2rem;
+        right: 0px;
         background-color: #d22232;
         color: white;
         padding: 0.5rem;
         cursor: pointer;
       "
-      :style="{
-        'right': width + 'px'
-      }"
     >
       <i class="icon-rubric"></i>
     </div>
     <div
       v-else
-      style="
-      "
     >
       <div 
         style="
@@ -247,9 +243,11 @@
     },
     methods: {
       maximize: function () {
+        $('#wrapper').css('margin-right', this.width + 'px');
         this.minimized = false;
       },
       minimize: function () {
+        $('#wrapper').css('margin-right', '0px');
         this.minimized = true;
       },
       setRating: async function (scoreId, rating) {
