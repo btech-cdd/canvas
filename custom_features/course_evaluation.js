@@ -109,7 +109,7 @@
               padding: 0.25rem;
               cursor: pointer;
             "
-            @click="submitReview()"
+            @click="submitReview(activeReview._id)"
           >Submit</span>
         </div>
       </div>
@@ -219,8 +219,8 @@
           rating: rating
         }, "PUT");
       },
-      submitReview: async function (scoreId) {
-        await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
+      submitReview: async function (reviewId) {
+        await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/review/${reviewId}`, {
           submitted: true 
         }, "PUT");
         this.activeReview.submitted = true;
