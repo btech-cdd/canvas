@@ -59,6 +59,7 @@
           <div><strong>{{text}}</strong></div>
           <div
             style="
+              display: flex;
               justify-content: space-around;
             "
           >
