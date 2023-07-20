@@ -47,8 +47,12 @@
       <div
         v-for="topic, name in activeReview.summary"
       >
-        {{name}}
-        {{topic}}
+        <h2>{{name}}</h2>
+        <div
+          v-for="question, text in topic.questions"
+        >
+          {{text}}
+        </div>
       </div>
       
     </div>
