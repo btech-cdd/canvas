@@ -87,6 +87,31 @@
             </div>
           </div>
         </div>
+        <!--BUTTONS-->
+        <div
+          style="
+            display:flex;
+            justify-content: space-around;
+          "
+        >
+          <span
+            style="
+              background-color: #FFFFFF;
+              color: #000000;
+              padding: 0.25rem;
+              cursor: pointer;
+            "
+          >Discard</span>
+          <span
+            style="
+              background-color: #d22232;
+              color: #FFFFFF;
+              padding: 0.25rem;
+              cursor: pointer;
+            "
+            @click="submitReview()"
+          >Submit</span>
+        </div>
       </div>
       <div
         v-else
@@ -107,32 +132,6 @@
             @click="newReview()"
           >New Review</span>
         </div>
-      </div>
-      
-      <!--BUTTONS-->
-      <div
-        style="
-          display:flex;
-          justify-content: space-around;
-        "
-      >
-        <span
-          style="
-            background-color: #FFFFFF;
-            color: #000000;
-            padding: 0.25rem;
-            cursor: pointer;
-          "
-        >Discard</span>
-        <span
-          style="
-            background-color: #d22232;
-            color: #FFFFFF;
-            padding: 0.25rem;
-            cursor: pointer;
-          "
-          @click="submitReview()"
-        >Submit</span>
       </div>
     </div>
   </div>
