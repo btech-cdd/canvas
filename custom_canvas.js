@@ -93,6 +93,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
     feature("login_page", {}, /^\/login/);
     feature("editor_toolbar/manage-settings", {}, /^\/btech-toolbar/);
     if (IS_ME) feature("editor_toolbar/main", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
+    if (IS_ME) feature("course_evaluation", {}, /^\/courses\/[0-9]+/);
     feature("img-zoom", {}, /users/);
     feature("side-menu", {}, "");
 
