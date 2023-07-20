@@ -57,7 +57,11 @@
           v-for="question, text in topic.questions"
         >
           <div><strong>{{text}}</strong></div>
-          <div>
+          <div
+            style="
+              justify-content: space-around;
+            "
+          >
             <span 
               style="
                 border: 1px solid #F0F0F0;
