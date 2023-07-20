@@ -68,6 +68,21 @@
             rating: score.rating
           };
         }
+
+        for (let name in structure) {
+          let topic = structure[name];
+          count = 0;
+          total = 0;
+          for (let text in topic.questions) {
+            let question = topic.questions[text];
+            let rating = question.rating;
+            count += 1;
+            total += rating;
+          }
+          let average = total / count;
+
+          topic.average = average;
+        }
         console.log(structure);
       }
       console.log(reviews);
