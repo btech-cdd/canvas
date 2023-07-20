@@ -38,7 +38,7 @@
         }
       }
     } catch(err) {
-
+      console.log(err);
     }
   }
   Vue.component('show-grades-between-dates', {
