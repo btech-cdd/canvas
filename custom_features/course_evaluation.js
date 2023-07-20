@@ -73,6 +73,9 @@
                 text-align: center;
               "
               v-for="i in [1, 2, 3, 4]"
+              :style="{
+                'background-color': question.rating == i ? '#d22232' : '#FFFFFF'
+              }"
             >{{i}}</span>
           </div>
         </div>
