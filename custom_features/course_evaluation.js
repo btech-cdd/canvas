@@ -28,9 +28,6 @@
     </div>
     <div
       v-else
-      style="
-        padding: 0.5rem;
-      "
     >
       <div 
         style="
@@ -49,6 +46,11 @@
       <!--MODULES-->
       <div
         v-for="topic, name in activeReview.summary"
+        style="
+          padding: 0.5rem;
+          margin: 0.5rem;
+          background-color: #FFFFFF;
+        "
       >
         <h3><strong>{{name}}</strong></h3>
         <div
