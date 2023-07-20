@@ -45,8 +45,9 @@
 
       <!--MODULES-->
       <div
-        v-for="topic in activeReview.summary"
+        v-for="topic, name in activeReview.summary"
       >
+        {{name}}
         {{topic}}
       </div>
       
