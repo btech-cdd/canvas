@@ -988,36 +988,34 @@
         return output;
       },
       async loadHSGradesAlert() {
-        if (ENV.current_user_id == "2112492") {
-          console.log("GRADES BETWEEN DATES")
-          try {
-            let user = await this.bridgetoolsReq(`https://reports.bridgetools.dev/api/students/${ENV.current_user_id}`);
-            console.log(user);
-            if (user?.enrollment_type == 'HS' && CURRENT_DEPARTMENT_ID === 3824) { //Dental testing this
-              if (/[0-9]+\/grades/.test(window.location.pathname)) {
-                $("#content").prepend(`
-                  <div style="background-color: white; position:relative; left: 0; bottom: 0;" class="ic-notification ic-notification--danger">
-                    <div class="ic-notification__icon" role="presentation">
-                      <i class="icon-info"></i>
-                      <span class="screenreader-only">
-                        information
-                      </span>
-                    </div>
-                    <div class="ic-notification__content">
-                      <div class="ic-notification__message">
-                        <h4 class="ic-notification__title">
-                          High School Students!
-                        </h4>
-                        <p class="notification_message">The grade here is your course grade, but may <strong>NOT</strong> be your final grade for the term. Your term grade will be based on only the assignments submitted during the term and may be based on the ammount of work you completed across multiple courses.</p><p>Contact your instructor if you have questions about how your grade will be calculated.</p>
-                        </div>
-                    </div>
+        console.log("GRADES BETWEEN DATES")
+        try {
+          let user = await this.bridgetoolsReq(`https://reports.bridgetools.dev/api/students/${ENV.current_user_id}`);
+          console.log(user);
+          if (user?.enrollment_type == 'HS' && CURRENT_DEPARTMENT_ID === 3824) { //Dental testing this
+            if (/[0-9]+\/grades/.test(window.location.pathname)) {
+              $("#content").prepend(`
+                <div style="background-color: white; position:relative; left: 0; bottom: 0;" class="ic-notification ic-notification--danger">
+                  <div class="ic-notification__icon" role="presentation">
+                    <i class="icon-info"></i>
+                    <span class="screenreader-only">
+                      information
+                    </span>
                   </div>
-                `);
-              }
+                  <div class="ic-notification__content">
+                    <div class="ic-notification__message">
+                      <h4 class="ic-notification__title">
+                        High School Students!
+                      </h4>
+                      <p class="notification_message">The grade here is your course grade, but may <strong>NOT</strong> be your final grade submitted to your high school at the end of the term. Your term grade will be based on only the assignments submitted during the term and may be based on the ammount of work you completed across multiple courses.</p><p>Contact your instructor if you have questions about how your grade will be calculated.</p>
+                      </div>
+                  </div>
+                </div>
+              `);
             }
-          } catch(err) {
-            console.log(err);
           }
+        } catch(err) {
+          console.log(err);
         }
       }
     },
