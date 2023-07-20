@@ -2,7 +2,7 @@
   const WIDTH = 200;
   $('body').append(`
   <div 
-    id="btech-editor-vue"
+    id="btech-course_evaluation-vue"
     :style="{
       'width': width + 'px',
       'right': minimized ? '-' + width + 'px' : '0px'
@@ -49,8 +49,10 @@
   </div>
   `);
   new Vue({
-    el: '#btech-editor-vue',
+    el: '#btech-course-evaluation-vue',
     mounted: async function () {
+      let reviews = await $.get("/api/reviews/scores/TEST%201010");
+      console.log(reviews);
     },
     data: function () {
       return {
