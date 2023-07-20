@@ -74,7 +74,8 @@
               "
               v-for="i in [1, 2, 3, 4]"
               :style="{
-                'background-color': question.rating == i ? '#d22232' : '#FFFFFF'
+                'background-color': question.rating == i ? '#d22232' : '#FFFFFF',
+                'color' : question.rating == i ? '#FFFFFF' : '#000000'
               }"
             >{{i}}</span>
           </div>
