@@ -28,7 +28,10 @@
     </div>
     <div
       v-else
-      style="overflow: sroll;"
+      style="
+        overflow: sroll;
+        height: 100vh;
+      "
     >
       <div 
         style="
