@@ -1008,7 +1008,7 @@
                         <h4 class="ic-notification__title">
                           High School Students!
                         </h4>
-                        <span class="notification_message">The grade here may <strong>NOT</strong> be your final grade for the term. Your final grade will be based on only the assignments submitted during the term and may take into account other factors such as the ammount of work you completed and/or work completed in other courses. Contact your instructor if you have questions about how your grade will be calculated.</span></div>
+                        <span class="notification_message">The grade here may <strong>NOT</strong> be your final grade for the term. Your final grade will be based on only the assignments submitted during the term and may take into account other factors such as the ammount of work you completed across multiple courses. Contact your instructor if you have questions about how your grade will be calculated.</span></div>
                     </div>
                   </div>
                 `);
