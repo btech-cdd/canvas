@@ -124,6 +124,7 @@
       <!--SUMMARY-->
       <div
         v-else
+        style="margin-top: 2rem;"
       >
         <!--BUTTON-->
         <div
