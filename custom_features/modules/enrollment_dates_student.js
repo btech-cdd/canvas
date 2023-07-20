@@ -8,27 +8,36 @@ var Countdown = {
   total_seconds     : 0,
   els: {},
   disabledDepartments: [
+    3828
   ],
 
   init: async function() {
     if (!ENV.current_user_is_student) return;
     let section, course, term;
+    let courseURL = `/api/v1/courses/${ENV.COURSE_ID}`;
+    course = (await $.get(courseURL));
+
     this.enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self&type[]=StudentEnrollment`))[0];
     this.enrollment.conditionalDisplay = false;
     if (this.enrollment.start_at == undefined) this.enrollment.start_at = this.enrollment.created_at;
-    //Try and find an end_at date if one hasn't been set
-    if (!this.enrollment.end_at) {
+    // Try and find an end_at date if one hasn't been set
+
+    // Currently, CE courses are set with an extra 30 days after the end date (to allow for extensions)
+    // this screws up the end date
+    // I'm only adding section, course, and enrollment term end dates if it's CS
+    let enrollmentType = '';
+    if (course.sis_course_id.search(/CE$/)) enrollmentType == 'CE';
+    else if (course.sis_course_id.search(/CS$/)) enrollmentType == 'CS';
+    if (!this.enrollment.end_at && enrollmentType == 'CS') {
       let sectionURL = `/api/v1/courses/${ENV.COURSE_ID}/sections/${this.enrollment.course_section_id}`;
       section = (await $.get(sectionURL))
       this.enrollment.end_at = section.end_at;
     }
-    if (!this.enrollment.end_at) {
+    if (!this.enrollment.end_at && enrollmentType == 'CS') {
       this.enrollment.conditionalDisplay = true;
-      let courseURL = `/api/v1/courses/${ENV.COURSE_ID}`;
-      course = (await $.get(courseURL));
       this.enrollment.end_at = course.end_at;
     }
-    if (!this.enrollment.end_at) {
+    if (!this.enrollment.end_at && enrollmentType == 'CS') {
       console.log("TERM")
       let termURL = `/api/v1/accounts/3/terms/${course.enrollment_term_id}`;
       term = (await $.get(termURL));
