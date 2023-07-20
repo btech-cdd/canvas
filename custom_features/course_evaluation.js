@@ -145,8 +145,25 @@
     el: '#btech-course-evaluation-vue',
     mounted: async function () {
       let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/TEST%201010");
+      // init context data
       let courseData = await $.get("/api/v1/courses/" + CURRENT_COURSE_ID);
-      console.log(courseData);
+      // do a check if there's a valid course code. If not, no need to rate :)
+      // may be more accurate to pull based on sis course id 
+      let sisCourseId = courseData.sis_course_id;
+      if (sisCourseId == undefined) return; //don't do anything, no need to rate?
+      const yearPattern = /\(d{4})[A-Z]{2}$/;
+      const courseCodePattern = /\b[A-Z]{4} \d{4}/;
+
+      const year = str.match(yearPattern)[1];
+      console.log(year);
+      const courseCode = str.match(courseCodePattern)[0];
+      console.log(courseCode);
+
+      this.courseCode = courseCode;
+      this.courseId = courseData.id;
+      this.raterId = ENV.current_user_id;
+      this.year = year;
+
       let pastReviews = [];
       for (let r in reviews) {
         let review = reviews[r];
@@ -183,7 +200,7 @@
         }
 
         if (review.submitted) pastReviews.push(review);
-        if (!review.submitted && review.rater_id == ENV.current_user_id) {
+        if (!review.submitted && review.rater_id == this.raterId) {
           this.activeReview = review;
         }
       }
@@ -204,7 +221,10 @@
           bg: "#FFFFFF"
         },
         pastReviews: [],
-        activeReview: {}
+        activeReview: {},
+        courseCode: "",
+        courseId: "",
+        raterId: ENV.current_user_id
       }
     },
     methods: {
