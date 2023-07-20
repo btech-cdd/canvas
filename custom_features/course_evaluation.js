@@ -124,21 +124,8 @@
       <!--SUMMARY-->
       <div
         v-else
-        style="
-          padding: 0.5rem;
-        "
       >
-        <div>
-          <div
-            v-for="review in pastReviews"
-          >
-            <div
-              v-for="topic, name in review.summary"
-            >
-              {{name}}: {{topic.average}}
-            </div>
-          </div>
-        </div>
+        <!--BUTTON-->
         <div
           style="
             display:flex;
@@ -154,6 +141,24 @@
             "
             @click="newReview()"
           >New Review</span>
+        </div>
+
+        <!--PAST REVIEWS-->
+        <div>
+          <div
+            v-for="review in pastReviews"
+            style="
+              padding: 0.5rem;
+              margin: 0.5rem;
+              background-color: #FFFFFF;
+            "
+          >
+            <div
+              v-for="topic, name in review.summary"
+            >
+              {{name}}: {{topic.average}}
+            </div>
+          </div>
         </div>
       </div>
     </div>
