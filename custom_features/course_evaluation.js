@@ -58,6 +58,9 @@
           <h3><strong>{{name}}</strong></h3>
           <div
             v-for="question, text in topic.questions"
+            style="
+              margin-bottom: 0.25rem;
+            "
           >
             <div><strong>{{text}}</strong></div>
             <div
