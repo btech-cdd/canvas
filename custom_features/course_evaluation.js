@@ -51,7 +51,6 @@
   new Vue({
     el: '#btech-editor-vue',
     mounted: async function () {
-      $('#wrapper').css('margin-right', `${this.width}px`);
     },
     data: function () {
       return {
