@@ -52,6 +52,10 @@
     el: '#btech-course-evaluation-vue',
     mounted: async function () {
       let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/TEST%201010");
+      for (let r in reviews) {
+        let review = reviews[r];
+        console.log(review);
+      }
       console.log(reviews);
     },
     data: function () {
