@@ -260,7 +260,7 @@
           year: this.year,
           course_id: this.courseId,
           rater_id: this.raterId,
-        });
+        }, "POST");
         this.activeReview = review;
         console.log('new');
       }
