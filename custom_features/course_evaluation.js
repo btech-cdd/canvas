@@ -259,7 +259,7 @@
         let review = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${this.courseCode.replace(" ", "%20")}/new`, {
           year: this.year,
           course_id: this.courseId,
-          rater_id: this.raterId,
+          user_id: this.raterId,
         }, "POST");
         this.activeReview = review;
         console.log('new');
