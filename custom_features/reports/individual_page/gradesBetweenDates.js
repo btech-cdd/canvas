@@ -11,8 +11,8 @@
       this.hideable = hideable;
     }
   }
-  console.log("GRADES BETWEEN DATES")
   if (ENV.current_user_id == "2112492") {
+    console.log("GRADES BETWEEN DATES")
     try {
       let user = await bridgetoolsReq(`https://reports.bridgetools.dev/api/students/${ENV.current_user_id}`);
       console.log(user);
