@@ -51,8 +51,8 @@
         <div
           v-for="question, text in topic.questions"
         >
-          <strong>{{text}}</strong>
-          <span v-for="i in [1, 2, 3, 4]">{{i}}</span>
+          <div><strong>{{text}}</strong></div>
+          <div><span v-for="i in [1, 2, 3, 4]">{{i}}</span></div>
         </div>
       </div>
       
