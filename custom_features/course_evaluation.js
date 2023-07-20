@@ -214,6 +214,9 @@
           rating: rating
         }, "PUT");
       },
+      submitReview: async function () {
+        this.activeReview = {};
+      },
       newReview: async function () {
         console.log('new');
       }
