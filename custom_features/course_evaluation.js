@@ -61,6 +61,7 @@
             style="
               display: flex;
               justify-content: space-around;
+              user-select: none;
             "
           >
             <span 
@@ -71,6 +72,7 @@
                 height: 2rem;
                 font-size: 1.5rem;
                 text-align: center;
+                cursor: pointer;
               "
               v-for="i in [1, 2, 3, 4]"
               :style="{
