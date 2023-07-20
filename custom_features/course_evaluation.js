@@ -1,8 +1,8 @@
 (function() {
   const WIDTH = 200;
   $('body').append(`
-  <div 
-    id="btech-course_evaluation-vue"
+  <div _
+    id="btech-course-evaluation-vue"
     :style="{
       'width': width + 'px',
       'right': minimized ? '-' + width + 'px' : '0px'
@@ -51,6 +51,8 @@
   new Vue({
     el: '#btech-course-evaluation-vue',
     mounted: async function () {
+      let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/TEST%201010");
+      console.log(reviews);
     },
     data: function () {
       return {
