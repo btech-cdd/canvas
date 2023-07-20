@@ -35,6 +35,7 @@ var Countdown = {
       this.enrollment.end_at = term.end_at;
     }
     //check if department has opted out
+    console.log(CURRENT_DEPARTMENT_ID);
     let checkDepartment = !this.disabledDepartments.includes(CURRENT_DEPARTMENT_ID);
     let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
     //if this is a conditional display, don't show it if the deadline's more than 30 days away
