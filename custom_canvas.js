@@ -4,7 +4,7 @@ if (window.location.href.includes("btech.beta.instructure.com")) {
 } else {
   BETA = false;
 }
-BETA = false;
+// BETA = false;
 var CDDIDS = [
   1893418, //Josh 
   1638854, //Mason
@@ -68,7 +68,7 @@ var COURSE_HOURS, COURSE_LIST;
 //Should start experimenting with branching in github
 var SOURCE_URL = 'https://bridgetools.dev/canvas'
 if (BETA) {
-  SOURCE_URL = 'https://bridgetools.dev/canvas-beta'
+  // SOURCE_URL = 'https://bridgetools.dev/canvas-beta'
 }
 if (ENV.current_user_roles !== null) {
   IS_TEACHER = (ENV.current_user_roles.includes("teacher") || ENV.current_user_roles.includes("admin"));
