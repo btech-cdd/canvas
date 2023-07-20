@@ -56,8 +56,8 @@
         let review = reviews[r];
         let structure = {};
         console.log(review);
-        for (let s in scores) {
-          let score = scores[s];
+        for (let s in review.scores) {
+          let score = review.scores[s];
           let question = score.question;
           let topic = question.topic;
           structure[topic.name] = structure?.[topic.name] ?? {
