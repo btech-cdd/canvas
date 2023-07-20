@@ -16,8 +16,12 @@
 
 
   //api call to get list of distance approved module items
-  let approvals;
-  await $.get("https://distance.bridgetools.dev/api/courses/" + ENV.COURSE_ID + "/approval", data => {approvals = data});
+  let approvals = [];;
+  try {
+    await $.get("https://distance.bridgetools.dev/api/courses/" + ENV.COURSE_ID + "/approval", data => {approvals = data});
+  } catch (err) {
+    console.log("NO APPROVALS")
+  }
 
   //get all module items in current course
   let items = await canvasGet('/api/v1/courses/' + ENV.COURSE_ID + '/modules?include[]=items&include[]=content_details');
