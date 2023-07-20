@@ -43,45 +43,69 @@
         <b>&#8250;</b>
       </div>
 
-      <!--Topics-->
+      <!--Active Review-->
       <div
-        v-for="topic, name in activeReview.summary"
-        style="
-          padding: 0.5rem;
-          margin: 0.5rem;
-          background-color: #FFFFFF;
-        "
+        v-if="activeReview"
       >
-        <h3><strong>{{name}}</strong></h3>
         <div
-          v-for="question, text in topic.questions"
+          v-for="topic, name in activeReview.summary"
+          style="
+            padding: 0.5rem;
+            margin: 0.5rem;
+            background-color: #FFFFFF;
+          "
         >
-          <div><strong>{{text}}</strong></div>
+          <h3><strong>{{name}}</strong></h3>
           <div
-            style="
-              display: flex;
-              justify-content: space-around;
-              user-select: none;
-            "
+            v-for="question, text in topic.questions"
           >
-            <span 
+            <div><strong>{{text}}</strong></div>
+            <div
               style="
-                border: 1px solid #303030;
-                border-radius: 1rem;
-                width: 2rem;
-                height: 2rem;
-                font-size: 1.5rem;
-                text-align: center;
-                cursor: pointer;
+                display: flex;
+                justify-content: space-around;
+                user-select: none;
               "
-              v-for="i in [1, 2, 3, 4]"
-              :style="{
-                'background-color': question.rating == i ? '#d22232' : '#FFFFFF',
-                'color' : question.rating == i ? '#FFFFFF' : '#000000'
-              }"
-              @click="setRating(question.id, i); question.rating = i;"
-            >{{i}}</span>
+            >
+              <span 
+                style="
+                  border: 1px solid #303030;
+                  border-radius: 1rem;
+                  width: 2rem;
+                  height: 2rem;
+                  font-size: 1.5rem;
+                  text-align: center;
+                  cursor: pointer;
+                "
+                v-for="i in [1, 2, 3, 4]"
+                :style="{
+                  'background-color': question.rating == i ? '#d22232' : '#FFFFFF',
+                  'color' : question.rating == i ? '#FFFFFF' : '#000000'
+                }"
+                @click="setRating(question.id, i); question.rating = i;"
+              >{{i}}</span>
+            </div>
           </div>
+        </div>
+      </div>
+      <div
+        v-else
+      >
+        <div
+          style="
+            display:flex;
+            justify-content: space-around;
+          "
+        >
+          <span
+            style="
+              background-color: #d22232;
+              color: #FFFFFF;
+              padding: 0.25rem;
+              cursor: point;
+            "
+            @click="newReview()"
+          >New Review</span>
         </div>
       </div>
       
@@ -189,6 +213,9 @@
         await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
           rating: rating
         }, "PUT");
+      },
+      newReview: async function () {
+        console.log('new');
       }
     }
   });
