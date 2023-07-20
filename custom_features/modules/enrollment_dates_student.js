@@ -70,8 +70,8 @@ var Countdown = {
     let el = $(`
       <div class="background">
         <div class="fill" style="width: 100%; background-color: #f1f1f1;">0</div>
-        <div class="fill" title="Recommended percentage of course completed (${recommendedProgress}%) based on enrollment dates." style="width: ${recommendedProgress}%; background-color: #721222;">${recommendedProgress}%</div>
-        <div class="fill" title="Percentage of course completed (${progress}%)" style="width: ${progress}%; background-color: #d22232;">${progress}%</div>
+        <div class="fill" title="Recommended progress (${recommendedProgress}%) based on enrollment dates." style="width: ${recommendedProgress}%; background-color: #721222;">${recommendedProgress}%</div>
+        <div class="fill" title="Percentage of course graded (${progress}%)" style="width: ${progress}%; background-color: #d22232;">${progress}%</div>
       </div> 
     `);
     $("#btech-student-progress-bar").append(el);

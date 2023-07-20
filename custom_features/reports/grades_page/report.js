@@ -1,5 +1,6 @@
 (async function () {
 //Confirm with Instructional Team before going live
+  console.log(CURRENT_DEPARTMENT_ID);
   if (false) {
     try {
       let user = await bridgetoolsReq(`https://reports.bridgetools.dev/api/students/${ENV.current_user_id}`);
