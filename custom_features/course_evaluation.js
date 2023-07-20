@@ -71,9 +71,9 @@
                 style="
                   border: 1px solid #303030;
                   border-radius: 1rem;
-                  width: 1.5rem;
-                  height: 1.5rem;
-                  font-size: 1rem;
+                  width: 2rem;
+                  height: 2rem;
+                  font-size: 1.5rem;
                   text-align: center;
                   cursor: pointer;
                 "
