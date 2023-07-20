@@ -65,11 +65,12 @@
           >
             <span 
               style="
-                border: 1px solid #F0F0F0;
+                border: 1px solid #303030;
                 border-radius: 1rem;
                 width: 2rem;
                 height: 2rem;
                 font-size: 1.5rem;
+                text-align: center;
               "
               v-for="i in [1, 2, 3, 4]"
             >{{i}}</span>
