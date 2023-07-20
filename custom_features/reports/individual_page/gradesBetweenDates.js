@@ -11,6 +11,7 @@
       this.hideable = hideable;
     }
   }
+  console.log("GRADES BETWEEN DATES")
   if (BETA) {
     try {
       let user = await bridgetoolsReq(`https://reports.bridgetools.dev/api/students/${ENV.current_user_id}`);
