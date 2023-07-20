@@ -7,13 +7,19 @@
       'width': width + 'px',
       'right': minimized ? '-' + width + 'px' : '0px'
     }"
-    style="position: fixed; top: 0; height: 100%; background-color: #f1f1f1;"
+    style="
+      position: fixed; 
+      top: 0;
+      overflow: sroll;
+      height: 100vh;
+      background-color: #f1f1f1;
+    "
   >
     <div
       v-if="minimized"
       @click="maximize"
       style="
-        position: absolute;
+        position: fixed;
         top: 2rem;
         background-color: #d22232;
         color: white;
@@ -29,8 +35,6 @@
     <div
       v-else
       style="
-        overflow: sroll;
-        height: 100vh;
       "
     >
       <div 
