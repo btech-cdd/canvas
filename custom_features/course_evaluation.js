@@ -79,7 +79,7 @@
                 'background-color': question.rating == i ? '#d22232' : '#FFFFFF',
                 'color' : question.rating == i ? '#FFFFFF' : '#000000'
               }"
-              @click="setScore(question.id); question.rating = i;"
+              @click="setRating(question.id, i); question.rating = i;"
             >{{i}}</span>
           </div>
         </div>
@@ -160,6 +160,11 @@
       minimize: function () {
         $('#wrapper').css('margin-right', '0px');
         this.minimized = true;
+      },
+      setRating: async function (scoreId, rating) {
+        await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
+          rating: rating
+        }, "PUT");
       }
     }
   });
