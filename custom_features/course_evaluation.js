@@ -145,6 +145,8 @@
     el: '#btech-course-evaluation-vue',
     mounted: async function () {
       let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/TEST%201010");
+      let courseData = await $.get("/api/v1/courses/" + CURRENT_COURSE_ID);
+      console.log(courseData);
       let pastReviews = [];
       for (let r in reviews) {
         let review = reviews[r];
@@ -228,6 +230,8 @@
         this.activeReview = {};
       },
       newReview: async function () {
+        let review = bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/review/${reviewId}`, {
+        });
         console.log('new');
       }
     }
