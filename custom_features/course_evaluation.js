@@ -10,7 +10,7 @@
     style="
       position: fixed; 
       top: 0;
-      overflow: sroll;
+      overflow: scroll;
       height: 100vh;
       background-color: #f1f1f1;
     "
