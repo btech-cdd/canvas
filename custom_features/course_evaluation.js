@@ -45,7 +45,7 @@
 
       <!--Active Review-->
       <div
-        v-if="activeReview"
+        v-if="**Object.keys(activeReview).length > 0"
       >
         <div
           v-for="topic, name in activeReview.summary"
