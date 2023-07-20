@@ -43,7 +43,7 @@
         <b>&#8250;</b>
       </div>
 
-      <!--MODULES-->
+      <!--Topics-->
       <div
         v-for="topic, name in activeReview.summary"
         style="
@@ -85,6 +85,26 @@
         </div>
       </div>
       
+      <!--BUTTONS-->
+      <div
+        style="
+          display:flex;
+          justify-content: space-around;
+        "
+      >
+        <span
+          style="
+            background-color: #d22232;
+            color: #FFFFFF;
+            padding: 0.25rem;
+          "
+        >Submit</span>
+        <span
+          style="
+            padding: 0.25rem;
+          "
+        >Delete</span>
+      </div>
     </div>
   </div>
   `);
