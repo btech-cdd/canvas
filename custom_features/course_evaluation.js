@@ -247,11 +247,9 @@
     },
     methods: {
       maximize: function () {
-        $('#wrapper').css('margin-right', this.width + 'px');
         this.minimized = false;
       },
       minimize: function () {
-        $('#wrapper').css('margin-right', '0px');
         this.minimized = true;
       },
       setRating: async function (scoreId, rating) {
