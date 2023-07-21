@@ -243,7 +243,7 @@
         if (Object.keys(this.activeReview).length > 0 && !this.minimized) {
           this.loadReviews();
         }
-      }, 5000);
+      }, 1000);
     },
     data: function () {
       return {
