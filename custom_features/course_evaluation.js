@@ -164,6 +164,12 @@
           >
             <div>
               {{review.date}}
+              <span
+                style="
+                  float: right;
+                "
+                @click="deleteReview(review._id)"
+              >X</span>
             </div>
             <div
               style="
@@ -358,6 +364,13 @@
                 colors.yellowGreen :
                 colors.green 
         )
+      },
+      deleteReview: function (reviewId) {
+        bridgetoolsReq(
+            `https://reports.bridgetools.dev/api/reviews/review/${reviewId}`
+            , {}
+            , "DELETE"
+          );
       }
     }
   });
