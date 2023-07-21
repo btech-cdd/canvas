@@ -227,9 +227,7 @@
         const courseCodePattern = /[A-Z]{4} \d{4}/;
 
         const year = sisCourseId.match(yearPattern)[1];
-        console.log(year);
         const courseCode = sisCourseId.match(courseCodePattern)[0];
-        console.log(courseCode);
 
         this.courseCode = courseCode;
         this.courseId = courseData.id;
@@ -241,6 +239,9 @@
       }
 
       this.loadReviews();
+      this.activeUpdater = setInterval(() => {
+        this.loadReviews();
+      }, 5000);
     },
     data: function () {
       return {
@@ -248,6 +249,7 @@
         width: 500,
         defaultImg: 'https://bridgetools.dev/canvas/media/image-placeholder.png',
         bridgetools: bridgetools,
+        activeUpdater: undefined,
         colors: {
           primary: "#D22232",
           secondary: "#B11121",
