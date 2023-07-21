@@ -185,7 +185,7 @@
                   :class="
                     icons[name]
                   "
-                  :title="topic.average"
+                  :title="name + ': ' + topic.average"
                 ></i>
               </span>
             </div>
