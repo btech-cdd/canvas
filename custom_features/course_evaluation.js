@@ -334,6 +334,7 @@
           course_id: this.courseId,
           user_id: this.raterId,
         }, "POST");
+        console.log(review);
         this.initReview(review);
         console.log(review);
         this.activeReview = review;
