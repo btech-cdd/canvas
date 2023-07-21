@@ -170,14 +170,13 @@
                   justify-content: center;
                   align-items: center;
                   text-align: center;
+                  height: 2rem;
+                  width: 2rem;
                 "
               >
                 <i 
                   style="
                     border-radius: 1rem;
-                    font-size: 1.5rem;
-                    height: 2rem;
-                    width: 2rem;
                     color: #FFFFFF;
                   "
                   :style="{
