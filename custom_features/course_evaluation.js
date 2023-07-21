@@ -240,7 +240,9 @@
 
       this.loadReviews();
       this.activeUpdater = setInterval(() => {
-        this.loadReviews();
+        if (Object.keys(activeReview).length > 0 && !minimized) {
+          this.loadReviews();
+        }
       }, 5000);
     },
     data: function () {
