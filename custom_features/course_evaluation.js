@@ -152,19 +152,27 @@
               padding: 0.5rem;
               margin: 0.5rem;
               background-color: #FFFFFF;
-              display:flex;
-              justify-content: space-around;
             "
           >
-            <span
-              v-for="topic, name in review.summary"
+            <div>
+              {{review.date}}
+            </div>
+            <div
+              style="
+                display:flex;
+                justify-content: space-around;
+              "
             >
-              <i 
-                :class="
-                  icons[name]
-                "
-              ></i> {{topic.average}}
-            </span>
+              <span
+                v-for="topic, name in review.summary"
+              >
+                <i 
+                  :class="
+                    icons[name]
+                  "
+                ></i> {{topic.average}}
+              </span>
+            </div>
           </div>
         </div>
       </div>
