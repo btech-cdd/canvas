@@ -167,6 +167,8 @@
               <span
                 style="
                   float: right;
+                  cursor: pointer;
+                  user-select: none;
                 "
                 @click="deleteReview(review._id)"
               >X</span>
@@ -371,6 +373,7 @@
             , {}
             , "DELETE"
           );
+        //pop it out of the list
       }
     }
   });
