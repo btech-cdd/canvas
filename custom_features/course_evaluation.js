@@ -343,15 +343,13 @@
       averageColor: function (average) {
         let colors = this.bridgetools.colors;
         return (
-          average < 1 ? 
+          average < 2 ? 
             colors.red : 
-            average < 2 ? 
+            average < 3 ? 
               colors.orange : 
-              average < 3 ?
-              colors.yellow :
               average < 4 ?
-                colors.yellowGreen :
-                colors.green 
+              colors.yellow :
+              colors.green 
         )
       }
     }
