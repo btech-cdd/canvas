@@ -367,6 +367,7 @@
       discardReview: async function () {
         this.updating = true;
         await this.deleteReview(this.activeReview._id);
+        this.activeReview = {};
         this.updating = false;
       },
       loadReviews: async function () {
