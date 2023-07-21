@@ -39,12 +39,13 @@
     </div>
     <div
       v-else
+      style="-10px 0px 10px 1px #aaaaaa;"
     >
       <div 
         style="
           text-align: center;
-          background-color: #d22232;
-          color: white;
+          background-color: white;
+          color: black;
           cursor: pointer;
           user-select: none;
         "
