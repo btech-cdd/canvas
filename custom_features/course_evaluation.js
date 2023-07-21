@@ -358,6 +358,7 @@
         //pop it out of the list
       },
       loadReviews: async function () {
+        this.activeReview = {};
         let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/" + this.courseCode.replace(" ", "%20"));
         let pastReviews = [];
         for (let r in reviews) {
