@@ -7,7 +7,7 @@
 (function() {
   const WIDTH = 200;
   $('body').append(`
-  <div _
+  <div
     id="btech-course-evaluation-vue"
     :style="{
       'width': width + 'px',
@@ -20,6 +20,7 @@
       height: 100vh;
       background-color: #e8e8e8;
       box-shadow: -1px 0px 10px 0.5px #aaaaaa;
+      z-index: 999999;
     "
   >
     <div
