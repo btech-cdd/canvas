@@ -152,9 +152,11 @@
               padding: 0.5rem;
               margin: 0.5rem;
               background-color: #FFFFFF;
+              display:flex;
+              justify-content: space-around;
             "
           >
-            <div
+            <span
               v-for="topic, name in review.summary"
             >
               <i 
@@ -162,7 +164,7 @@
                   icons[name]
                 "
               ></i> {{topic.average}}
-            </div>
+            </span>
           </div>
         </div>
       </div>
