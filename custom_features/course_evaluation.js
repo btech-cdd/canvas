@@ -157,7 +157,11 @@
             <div
               v-for="topic, name in review.summary"
             >
-              <i :class="{\`\${icons[name]}\`: true}"></i> {{topic.average}}
+              <i 
+                :class="
+                  icons[name]
+                "
+              ></i> {{topic.average}}
             </div>
           </div>
         </div>
