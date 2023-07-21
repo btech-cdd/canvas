@@ -228,37 +228,7 @@
       let pastReviews = [];
       for (let r in reviews) {
         let review = reviews[r];
-        let summary = {};
-        console.log(review);
-        for (let s in review.scores) {
-          let score = review.scores[s];
-          let question = score.question;
-          let topic = question.topic;
-          summary[topic.name] = summary?.[topic.name] ?? {
-            questions: {},
-            average: 0
-          };
-          summary[topic.name].questions[question.text] = summary[topic.name].questions?.[question.text] ?? {
-            rating: score.rating,
-            id: score._id
-          };
-        }
-        review.summary = summary;
-
-        for (let name in summary) {
-          let topic = summary[name];
-          count = 0;
-          total = 0;
-          for (let text in topic.questions) {
-            let question = topic.questions[text];
-            let rating = question.rating;
-            count += 1;
-            total += rating;
-          }
-          let average = total / count;
-
-          topic.average = average;
-        }
+        this.initReview(review);
 
         if (review.submitted) pastReviews.push(review);
         if (!review.submitted && review.rater_id == this.raterId) {
@@ -297,6 +267,38 @@
       }
     },
     methods: {
+      initReview: function (review) {
+        let summary = {};
+        for (let s in review.scores) {
+          let score = review.scores[s];
+          let question = score.question;
+          let topic = question.topic;
+          summary[topic.name] = summary?.[topic.name] ?? {
+            questions: {},
+            average: 0
+          };
+          summary[topic.name].questions[question.text] = summary[topic.name].questions?.[question.text] ?? {
+            rating: score.rating,
+            id: score._id
+          };
+        }
+        review.summary = summary;
+
+        for (let name in summary) {
+          let topic = summary[name];
+          count = 0;
+          total = 0;
+          for (let text in topic.questions) {
+            let question = topic.questions[text];
+            let rating = question.rating;
+            count += 1;
+            total += rating;
+          }
+          let average = total / count;
+
+          topic.average = average;
+        }
+      },
       maximize: function () {
         $('#wrapper').css('margin-right', this.width + 'px');
         this.minimized = false;
