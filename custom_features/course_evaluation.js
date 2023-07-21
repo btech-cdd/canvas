@@ -373,6 +373,9 @@
             , {}
             , "DELETE"
           );
+        this.pastReviews = this.pastReviews.filter(function(review) {
+            return review._id !== reviewId;
+        });
         //pop it out of the list
       }
     }
