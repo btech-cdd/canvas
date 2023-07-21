@@ -363,6 +363,10 @@
         });
         //pop it out of the list
       },
+      discardReview: async function () {
+        this.deleteReview(this.activeReview._id);
+        this.activeReview = {};
+      },
       loadReviews: async function () {
         let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/" + this.courseCode.replace(" ", "%20"));
         if (this.updating) return;
