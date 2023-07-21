@@ -165,6 +165,10 @@
             >
               <span
                 v-for="topic, name in review.summary"
+                style="
+                  display: flex;
+                  justify-content: center;
+                "
               >
                 <i 
                   style="
