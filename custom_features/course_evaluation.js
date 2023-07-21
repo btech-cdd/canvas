@@ -1,4 +1,3 @@
-// auto pull every x seconds so if you've got multiple tabs opened, the scores will update (just needs to replace the structure part, not the whole object)
 // track which pages were reviewed, or have an option to tag the current page as needing review
 //// maybe a little flag icon next to each topic that you can flag that page as an example. When you click flag, pop up to leave a comment why flagging.
 //// option to delete flags
@@ -240,7 +239,7 @@
 
       this.loadReviews();
       this.activeUpdater = setInterval(() => {
-        if (Object.keys(this.activeReview).length > 0 && !this.minimized) {
+        if (Object.keys(this.activeReview).length > 0 && !this.minimized && !this.updating) {
           this.loadReviews();
         }
       }, 1000);
@@ -248,6 +247,7 @@
     data: function () {
       return {
         minimized: true,
+        updating: false,
         width: 500,
         defaultImg: 'https://bridgetools.dev/canvas/media/image-placeholder.png',
         bridgetools: bridgetools,
@@ -315,9 +315,11 @@
         this.minimized = true;
       },
       setRating: async function (scoreId, rating) {
+        this.updating = true;
         await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
           rating: rating
         }, "PUT");
+        this.updating = false;
       },
       submitReview: async function () {
         console.log("GO!")
