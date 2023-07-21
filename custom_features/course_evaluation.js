@@ -175,7 +175,7 @@
                     color: #FFFFFF;
                   "
                   :style="{
-                    'background-color': bridgetools.colors.red
+                    'background-color': averageColor(topic.average)
                   }"
                   :class="
                     icons[name]
@@ -322,6 +322,20 @@
         console.log(review);
         this.activeReview = review;
         console.log('new');
+      },
+      averageColor: function (average) {
+        let colors = this.bridgetools.colors;
+        return (
+          average < 1 ? 
+            colors.red : 
+            average < 2 ? 
+              colors.orange : 
+              average < 3 ?
+              colors.yellow :
+              average < 4 ?
+                colors.yellowGreen :
+                colors.green 
+        )
       }
     }
   });
