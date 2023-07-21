@@ -167,10 +167,21 @@
                 v-for="topic, name in review.summary"
               >
                 <i 
+                  style="
+                    border-radius: 1rem;
+                    font-size: 1.5rem;
+                    height: 2rem;
+                    width: 2rem;
+                    color: #FFFFFF;
+                  "
+                  :style="
+                    'background-color': bridgetools.colors.red
+                  "
                   :class="
                     icons[name]
                   "
-                ></i> {{topic.average}}
+                  :title="topic.average"
+                ></i>
               </span>
             </div>
           </div>
@@ -258,6 +269,7 @@
         minimized: true,
         width: 500,
         defaultImg: 'https://bridgetools.dev/canvas/media/image-placeholder.png',
+        bridgetools: bridgetools,
         colors: {
           primary: "#D22232",
           secondary: "#B11121",
