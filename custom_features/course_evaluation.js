@@ -347,9 +347,11 @@
             colors.red : 
             average < 3 ? 
               colors.orange : 
-              average < 4 ?
+              average < 3.5 ?
               colors.yellow :
-              colors.green 
+              average < 4 ?
+                colors.yellowGreen :
+                colors.green 
         )
       }
     }
