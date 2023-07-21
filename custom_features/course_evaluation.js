@@ -365,8 +365,10 @@
         //pop it out of the list
       },
       discardReview: async function () {
-        this.deleteReview(this.activeReview._id);
+        this.updating = true;
+        await this.deleteReview(this.activeReview._id);
         this.activeReview = {};
+        this.updating = false;
       },
       loadReviews: async function () {
         let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/" + this.courseCode.replace(" ", "%20"));
