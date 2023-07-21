@@ -172,16 +172,16 @@
                   text-align: center;
                   height: 2rem;
                   width: 2rem;
+                  border-radius: 1rem;
                 "
+                :style="{
+                  'background-color': averageColor(topic.average)
+                }"
               >
                 <i 
                   style="
-                    border-radius: 1rem;
                     color: #FFFFFF;
                   "
-                  :style="{
-                    'background-color': averageColor(topic.average)
-                  }"
                   :class="
                     icons[name]
                   "
