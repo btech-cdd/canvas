@@ -157,7 +157,7 @@
             <div
               v-for="topic, name in review.summary"
             >
-              {{name}}: {{topic.average}}
+              <i :class="{('' + icons[name]): true}"></i> {{topic.average}}
             </div>
           </div>
         </div>
@@ -256,6 +256,12 @@
         activeReview: {},
         courseCode: "",
         courseId: "",
+        icons: {
+          'Assessments': 'icon-rubric',
+          'Relevance': 'icon-group',
+          'Structure': 'icon-copy-course',
+          'Clarity': 'icon-edit'
+        },
         raterId: ENV.current_user_id
       }
     },
