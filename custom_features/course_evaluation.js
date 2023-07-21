@@ -365,8 +365,8 @@
                 colors.green 
         )
       },
-      deleteReview: function (reviewId) {
-        bridgetoolsReq(
+      deleteReview: async function (reviewId) {
+        await bridgetoolsReq(
             `https://reports.bridgetools.dev/api/reviews/review/${reviewId}`
             , {}
             , "DELETE"

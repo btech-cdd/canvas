@@ -217,5 +217,10 @@ async function bridgetoolsReq(url, reqdata = {}, type = "GET") {
       output = data;
     });
   }
+  if (type == "DELETE") {
+    await $.delete(url, reqdata, function(data) {
+      output = data;
+    });
+  }
   return output;
 }
