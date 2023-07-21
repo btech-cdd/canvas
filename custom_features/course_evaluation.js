@@ -174,9 +174,9 @@
                     width: 2rem;
                     color: #FFFFFF;
                   "
-                  :style="
+                  :style="{
                     'background-color': bridgetools.colors.red
-                  "
+                  }"
                   :class="
                     icons[name]
                   "
