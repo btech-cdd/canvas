@@ -5,7 +5,6 @@
 
 
 (function() {
-  const WIDTH = 200;
   $('body').append(`
   <div
     id="btech-course-evaluation-vue"
