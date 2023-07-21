@@ -287,7 +287,6 @@
         let summary = {};
         for (let s in review.scores) {
           let score = review.scores[s];
-          console.log(score);
           let question = score.question;
           let topic = question.topic;
           summary[topic.name] = summary?.[topic.name] ?? {
@@ -338,6 +337,7 @@
         console.log("SUBMITTED");
         this.activeReview.submitted = true;
         this.initReview(review);
+        console.log(review);
         this.pastReviews.push(review);
         this.activeReview = {};
       },
