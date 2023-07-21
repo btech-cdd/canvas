@@ -279,6 +279,7 @@
         let summary = {};
         for (let s in review.scores) {
           let score = review.scores[s];
+          console.log(score);
           let question = score.question;
           let topic = question.topic;
           summary[topic.name] = summary?.[topic.name] ?? {
