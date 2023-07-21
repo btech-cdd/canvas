@@ -1,3 +1,10 @@
+// auto pull every x seconds so if you've got multiple tabs opened, the scores will update (just needs to replace the structure part, not the whole object)
+// track which pages were reviewed, or have an option to tag the current page as needing review
+//// maybe a little flag icon next to each topic that you can flag that page as an example. When you click flag, pop up to leave a comment why flagging.
+//// option to delete flags
+// need to add comments
+
+
 (function() {
   const WIDTH = 200;
   $('body').append(`
@@ -12,7 +19,8 @@
       top: 0;
       overflow: scroll;
       height: 100vh;
-      background-color: #f1f1f1;
+      background-color: #e8e8e8;
+      box-shadow: -1px 0px 10px 0.5px #aaaaaa;
     "
   >
     <div
@@ -36,14 +44,14 @@
       <div 
         style="
           text-align: center;
-          background-color: #d22232;
-          color: white;
+          background-color: white;
+          color: black;
           cursor: pointer;
           user-select: none;
         "
         @click="minimize"
       >
-        Course Review 
+        <b>Course Review</b>
         <b>&#8250;</b>
       </div>
 
@@ -86,7 +94,7 @@
                 "
                 v-for="i in [1, 2, 3, 4]"
                 :style="{
-                  'background-color': question.rating == i ? '#d22232' : '#FFFFFF',
+                  'background-color': question.rating == i ? averageColor(i) : '#FFFFFF',
                   'color' : question.rating == i ? '#FFFFFF' : '#000000'
                 }"
                 @click="setRating(question.id, i); question.rating = i;"
@@ -116,7 +124,7 @@
               padding: 0.25rem;
               cursor: pointer;
             "
-            @click="submitReview(activeReview._id)"
+            @click="submitReview()"
           >Submit</span>
         </div>
       </div>
@@ -154,10 +162,40 @@
               background-color: #FFFFFF;
             "
           >
+            <div>
+              {{review.date}}
+            </div>
             <div
-              v-for="topic, name in review.summary"
+              style="
+                display:flex;
+                justify-content: space-around;
+              "
             >
-              {{name}}: {{topic.average}}
+              <span
+                v-for="topic, name in review.summary"
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  text-align: center;
+                  height: 2rem;
+                  width: 2rem;
+                  border-radius: 1rem;
+                "
+                :style="{
+                  'background-color': averageColor(topic.average)
+                }"
+              >
+                <i 
+                  style="
+                    color: #FFFFFF;
+                  "
+                  :class="
+                    icons[name]
+                  "
+                  :title="name + ': ' + topic.average"
+                ></i>
+              </span>
             </div>
           </div>
         </div>
@@ -198,8 +236,47 @@
       let pastReviews = [];
       for (let r in reviews) {
         let review = reviews[r];
+        this.initReview(review);
+
+        if (review.submitted) pastReviews.push(review);
+        if (!review.submitted && review.rater_id == this.raterId) {
+          this.activeReview = review;
+          this.maximize();
+        }
+      }
+      this.pastReviews = pastReviews;
+      console.log(pastReviews);
+    },
+    data: function () {
+      return {
+        minimized: true,
+        width: 500,
+        defaultImg: 'https://bridgetools.dev/canvas/media/image-placeholder.png',
+        bridgetools: bridgetools,
+        colors: {
+          primary: "#D22232",
+          secondary: "#B11121",
+          callout: "#F1F1F1",
+          font: "#FFFFFF",
+          bodyfont: "#000000",
+          bg: "#FFFFFF"
+        },
+        pastReviews: [],
+        activeReview: {},
+        courseCode: "",
+        courseId: "",
+        icons: {
+          'Assessments': 'icon-rubric',
+          'Relevance': 'icon-group',
+          'Structure': 'icon-copy-course',
+          'Clarity': 'icon-edit'
+        },
+        raterId: ENV.current_user_id
+      }
+    },
+    methods: {
+      initReview: function (review) {
         let summary = {};
-        console.log(review);
         for (let s in review.scores) {
           let score = review.scores[s];
           let question = score.question;
@@ -229,37 +306,7 @@
 
           topic.average = average;
         }
-
-        if (review.submitted) pastReviews.push(review);
-        if (!review.submitted && review.rater_id == this.raterId) {
-          this.activeReview = review;
-          this.maximize();
-        }
-      }
-      this.pastReviews = pastReviews;
-      console.log(pastReviews);
-    },
-    data: function () {
-      return {
-        minimized: true,
-        width: 500,
-        defaultImg: 'https://bridgetools.dev/canvas/media/image-placeholder.png',
-        colors: {
-          primary: "#D22232",
-          secondary: "#B11121",
-          callout: "#F1F1F1",
-          font: "#FFFFFF",
-          bodyfont: "#000000",
-          bg: "#FFFFFF"
-        },
-        pastReviews: [],
-        activeReview: {},
-        courseCode: "",
-        courseId: "",
-        raterId: ENV.current_user_id
-      }
-    },
-    methods: {
+      },
       maximize: function () {
         $('#wrapper').css('margin-right', this.width + 'px');
         this.minimized = false;
@@ -273,12 +320,13 @@
           rating: rating
         }, "PUT");
       },
-      submitReview: async function (reviewId) {
-        await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/review/${reviewId}`, {
+      submitReview: async function () {
+        let review = this.activeReview;
+        await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/review/${review._id}`, {
           submitted: true 
         }, "PUT");
         this.activeReview.submitted = true;
-        this.pastReviews.push(activeReview);
+        this.pastReviews.push(review);
         this.activeReview = {};
       },
       newReview: async function () {
@@ -288,8 +336,24 @@
           user_id: this.raterId,
         }, "POST");
         console.log(review);
+        this.initReview(review);
+        console.log(review);
         this.activeReview = review;
         console.log('new');
+      },
+      averageColor: function (average) {
+        let colors = this.bridgetools.colors;
+        return (
+          average < 2 ? 
+            colors.red : 
+            average < 3 ? 
+              colors.orange : 
+              average < 3.5 ?
+              colors.yellow :
+              average < 4 ?
+                colors.yellowGreen :
+                colors.green 
+        )
       }
     }
   });
