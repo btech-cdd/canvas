@@ -115,6 +115,7 @@
               padding: 0.25rem;
               cursor: pointer;
             "
+            @click="discardReview()"
           >Discard</span>
           <span
             style="
