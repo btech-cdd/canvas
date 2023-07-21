@@ -19,7 +19,7 @@
       top: 0;
       overflow: scroll;
       height: 100vh;
-      background-color: #f1f1f1;
+      background-color: #e8e8e8;
       box-shadow: -1px 0px 10px 0.5px #aaaaaa;
     "
   >
@@ -51,7 +51,7 @@
         "
         @click="minimize"
       >
-        Course Review 
+        <b>Course Review</b>
         <b>&#8250;</b>
       </div>
 
