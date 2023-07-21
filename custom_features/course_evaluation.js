@@ -360,9 +360,9 @@
         //pop it out of the list
       },
       loadReviews: async function () {
-        this.activeReview = {};
         let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/" + this.courseCode.replace(" ", "%20"));
         let pastReviews = [];
+        let activeFound = false;
         for (let r in reviews) {
           let review = reviews[r];
           this.initReview(review);
@@ -370,9 +370,11 @@
           if (review.submitted) pastReviews.push(review);
           if (!review.submitted && review.rater_id == this.raterId) {
             this.activeReview = review;
+            activeFound = false;
             this.maximize();
           }
         }
+        if (!activeFound) this.activeReview = {};
         this.pastReviews = pastReviews;
       }
     }
