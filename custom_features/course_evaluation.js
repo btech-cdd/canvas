@@ -20,7 +20,7 @@
       overflow: scroll;
       height: 100vh;
       background-color: #f1f1f1;
-      box-shadow: -10px 0px 10px 1px #aaaaaa;
+      box-shadow: -1px 0px 10px 0.5px #aaaaaa;
     "
   >
     <div
