@@ -90,6 +90,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
     // https://btech.instructure.com/accounts/3/theme_editor
 
     await $.getScript("https://bridgetools.dev/canvas/scripts.js");
+    await $.getScript("https://reports.bridgetools.dev/scripts.js");
     feature("login_page", {}, /^\/login/);
     feature("editor_toolbar/manage-settings", {}, /^\/btech-toolbar/);
     if (IS_ME) feature("editor_toolbar/main", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
