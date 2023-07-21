@@ -326,9 +326,11 @@
         await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/review/${review._id}`, {
           submitted: true 
         }, "PUT");
+        console.log("SUBMITTED");
         this.activeReview.submitted = true;
         this.pastReviews.push(review);
         this.activeReview = {};
+        console.log(this.activeReview);
       },
       newReview: async function () {
         let review = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${this.courseCode.replace(" ", "%20")}/new`, {
