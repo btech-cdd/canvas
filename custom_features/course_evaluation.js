@@ -373,6 +373,7 @@
       },
       loadReviews: async function () {
         let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/" + this.courseCode.replace(" ", "%20"));
+        console.log(reviews);
         if (this.updating || this.minimized) return;
         let pastReviews = [];
         let activeFound = false;
