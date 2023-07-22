@@ -73,7 +73,7 @@
               margin-bottom: 0.5rem;
             "
           >
-            <div><strong>{{text}}</strong></div>
+            <div :title="question.tip"><strong>{{text}}</strong></div>
             <div
               style="
                 display: flex;
@@ -285,7 +285,12 @@
             questions: {},
             average: 0
           };
+          let tip = "";
+          for (let t in question.tips) {
+            tip += question.tips[t] + '\n';
+          }
           summary[topic.name].questions[question.text] = summary[topic.name].questions?.[question.text] ?? {
+            tip: tip,
             rating: score.rating,
             id: score._id
           };
