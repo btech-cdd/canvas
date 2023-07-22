@@ -238,7 +238,7 @@
         return;
       }
 
-      this.loadReviews();
+      this.loadReviews(init=true);
       this.activeUpdater = setInterval(() => {
         if (Object.keys(this.activeReview).length > 0 && !this.minimized && !this.updating) {
           this.loadReviews();
@@ -371,10 +371,10 @@
         await this.deleteReview(reviewId);
         this.updating = false;
       },
-      loadReviews: async function () {
+      loadReviews: async function (init=false) {
         let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/" + this.courseCode.replace(" ", "%20"));
         console.log(reviews);
-        if (this.updating || this.minimized) return;
+        if (this.updating || (this.minimized && !init)) return;
         let pastReviews = [];
         let activeFound = false;
         for (let r in reviews) {
