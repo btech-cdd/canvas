@@ -61,8 +61,9 @@
           'color': 'white'
         }"
         style="
-          display: flex;
-          justify-content: space-around;
+          display: grid;
+          grid-template-columns: auto auto auto;
+          text-align: center;
           user-select: none;
         "
       >
