@@ -206,6 +206,8 @@
 
 
         async loadTree(deptCode, deptYear) {
+          console.log(deptCode);
+          console.log(deptYear);
           let url = "https://reports.bridgetools.dev/api/trees?dept_code=" + deptCode + "&year=" + deptYear;
           let data = await bridgetoolsReq(url);
           let tree = data[0];
