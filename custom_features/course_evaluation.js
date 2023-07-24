@@ -73,11 +73,23 @@
             'color': currentMenu == 'history' ? 'black' : '',
           }"
           @click="currentMenu='history';">History</span>
-        <span @click="
-          currentMenu = 'new';
-          if (Object.keys(activeReview).length == 0) newReview();
-        ">{{Object.keys(activeReview).length > 0 ? 'Active' : 'New'}}</span>
-        <span @click="currentMenu = 'data';">Data</span>
+        <span 
+          :style="{
+            'background-color': currentMenu == 'history' ? 'white' : '',
+            'color': currentMenu == 'history' ? 'black' : '',
+          }"
+          @click="
+            currentMenu = 'new';
+            if (Object.keys(activeReview).length == 0) newReview();
+          "
+        >{{Object.keys(activeReview).length > 0 ? 'Active' : 'New'}}</span>
+        <span
+          :style="{
+            'background-color': currentMenu == 'history' ? 'white' : '',
+            'color': currentMenu == 'history' ? 'black' : '',
+          }"
+          @click="currentMenu = 'data';"
+        >Data</span>
       </div>
 
       <!--Active Review-->
