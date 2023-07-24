@@ -64,17 +64,20 @@
           user-select: none;
         "
       >
-        <span>History</span>
-        <span>New</span>
-        <span>Data</span>
+        <span @click="currentMenu='history';">History</span>
+        <span @click="
+          currentMenu = 'new';
+          if (Object.keys(activeReview).length == 0) newReview();
+        ">{{Object.keys(activeReview).length > 0 : 'Active' : 'New'}}</span>
+        <span @click="currentMenu = 'data';">Data</span>
       </div>
 
       <!--Active Review-->
       <div
-        v-if="Object.keys(activeReview).length > 0"
+        v-if="currentMenu == 'new'"
       >
         <div
-          v-for="topic, name in activeReview.summary"
+          v-for="topic, name in (activeReview?.summary ?? [])"
           style="
             padding: 0.5rem;
             margin: 0.5rem;
@@ -146,27 +149,9 @@
 
       <!--SUMMARY-->
       <div
-        v-else
+        v-if="currentMenu == 'history'"
         style="margin-top: 1rem;"
       >
-        <!--BUTTON-->
-        <div
-          style="
-            display:flex;
-            justify-content: space-around;
-          "
-        >
-          <span
-            style="
-              background-color: #d22232;
-              color: #FFFFFF;
-              padding: 0.25rem;
-              cursor: pointer;
-            "
-            @click="newReview()"
-          >New Review</span>
-        </div>
-
         <!--PAST REVIEWS-->
         <div>
           <div
@@ -267,6 +252,7 @@
       return {
         minimized: true,
         updating: false,
+        currentMenu: 'history',
         width: 500,
         defaultImg: 'https://bridgetools.dev/canvas/media/image-placeholder.png',
         bridgetools: bridgetools,
