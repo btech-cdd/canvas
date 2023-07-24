@@ -32,9 +32,9 @@
                 <select @change="changeTree(user)" v-model="currentDepartment">
                   <option v-for="dept in user.depts" :value="dept">{{dept.dept}} ({{dept.year}})</option>
                 </select>
-                <div>{{ currentDepartment }}</div>
+                <div>{{ user.depts}}</div>
                 <show-student-ind
-                    v-if="user.name !== undefined && tree.name !== undefined && user.year < 2023"
+                    v-if="user.name !== undefined && tree.name !== undefined && currentDepartment.year < 2023"
                     style="display: inline-block; background-color: #fff; padding: 0.5rem; box-sizing: border-box; width: 100%;"
                     :colors="colors"
                     :user="user"
@@ -42,7 +42,7 @@
                     :student-tree="tree"
                 ></show-student-ind>
                 <show-student-ind-credits
-                    v-if="user.name !== undefined && tree.name !== undefined && user.year >= 2023"
+                    v-if="user.name !== undefined && tree.name !== undefined && currentDepartment.year >= 2023"
                     style="display: inline-block; background-color: #fff; padding: 0.5rem; box-sizing: border-box; width: 100%;"
                     :colors="colors"
                     :user="user"
