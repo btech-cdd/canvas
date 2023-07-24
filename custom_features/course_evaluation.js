@@ -58,10 +58,15 @@
           'background-color': bridgetools.colors.red,
           'color': 'white'
         }"
+        style="
+          display: flex;
+          justify-content: space-around;
+          user-select: none;
+        "
       >
-        <span>Review History</span>
-        <span>New Review</span>
-        <span>Course Data</span>
+        <span>History</span>
+        <span>New</span>
+        <span>Data</span>
       </div>
 
       <!--Active Review-->
