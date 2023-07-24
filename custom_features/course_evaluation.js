@@ -53,6 +53,16 @@
         <b>Course Review</b>
         <b>&#8250;</b>
       </div>
+      <div
+        :style="{
+          'background-color': bridgetools.colors.red,
+          'color': 'white'
+        }"
+      >
+        <span>Review History</span>
+        <span>New Review</span>
+        <span>Course Data</span>
+      </div>
 
       <!--Active Review-->
       <div
