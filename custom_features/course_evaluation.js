@@ -29,11 +29,13 @@
         position: fixed;
         top: 2rem;
         right: 0px;
-        background-color: #d22232;
         color: white;
         padding: 0.5rem;
         cursor: pointer;
       "
+      :style="{
+        'background-color': bridgetools.colors.red
+      }"
     >
       <i class="icon-rubric"></i>
     </div>
@@ -68,7 +70,7 @@
         <span @click="
           currentMenu = 'new';
           if (Object.keys(activeReview).length == 0) newReview();
-        ">{{Object.keys(activeReview).length > 0 : 'Active' : 'New'}}</span>
+        ">{{Object.keys(activeReview).length > 0 ? 'Active' : 'New'}}</span>
         <span @click="currentMenu = 'data';">Data</span>
       </div>
 
