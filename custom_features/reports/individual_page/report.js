@@ -215,7 +215,6 @@
         },
 
         async loadUser(userId) {
-          let app = this;
           let user, tree;
           let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
           let authCode = '';
@@ -250,7 +249,7 @@
               user = {
                 name: "",
                 sis_id: "",
-                canvas_id: app.userId,
+                canvas_id: this.userId,
                 enrollment_type: "",
                 last_login: "",
                 enrolled_hours: 0,
@@ -314,7 +313,6 @@
             let maxyear = date.getFullYear();
             let month = date.getMonth() + 1;
             if (month <= 6) maxyear -= 1;
-            console.log(user.depts);
 
             user.depts = user.depts.filter((dept) => dept.year <= maxyear);
             user.depts.sort((a, b) => {
@@ -323,12 +321,12 @@
               }
               return (a.year > b.year) ? -1 : ((a.year < b.year) ? 1 : 0)
             });
-            console.log(user.depts);
-            app.currentDepartment = user.depts[0];
-            tree = await app.loadTree(user.depts[0].dept, user.depts[0].year);
+            this.currentDepartment = user.depts[0];
+            console.log(this.currentDepartment);
+            tree = await this.loadTree(user.depts[0].dept, user.depts[0].year);
           }
 
-          user = app.updateUserCourseInfo(user, tree);
+          user = this.updateUserCourseInfo(user, tree);
           return user;
         },
 
