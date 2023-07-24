@@ -379,6 +379,7 @@
         let reviewId = this.activeReview._id;
         this.activeReview = {};
         await this.deleteReview(reviewId);
+        this.currentMenu = 'history';
         this.updating = false;
       },
       loadReviews: async function (init=false) {
