@@ -331,7 +331,6 @@
         this.updating = false;
       },
       submitReview: async function () {
-        console.log("GO!")
         let review = this.activeReview;
         await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/review/${review._id}`, {
           submitted: true 
@@ -381,7 +380,6 @@
       },
       loadReviews: async function (init=false) {
         let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/" + this.courseCode.replace(" ", "%20"));
-        console.log(reviews);
         if (this.updating || (this.minimized && !init)) return;
         let pastReviews = [];
         let activeFound = false;
