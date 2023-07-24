@@ -394,7 +394,7 @@
           if (!review.submitted && review.rater_id == this.raterId) {
             this.activeReview = review;
             if (init) {
-              this.menuCurrent = 'new';
+              this.currentMenu = 'new';
             }
             activeFound = true;
             this.maximize();
