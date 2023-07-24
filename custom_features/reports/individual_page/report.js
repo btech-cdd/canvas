@@ -70,6 +70,7 @@
           console.log(user);
           this.user = user;
         } catch(err) {
+          console.log(err);
           app.user = {};
         }
         app.loadingProgress += 10;
