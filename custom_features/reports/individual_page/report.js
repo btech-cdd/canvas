@@ -63,6 +63,7 @@
         let enrollmentData = await bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + this.userId);
         this.enrollmentData = enrollmentData;
 
+        console.log("LOAD USER")
         try {
           let user = await app.loadUser(this.userId);
           console.log(user);
