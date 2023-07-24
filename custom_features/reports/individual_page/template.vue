@@ -33,12 +33,21 @@
                   <option v-for="dept in user.depts" :value="dept">{{dept.dept}} ({{dept.year}})</option>
                 </select>
                 <show-student-ind
-                    v-if="user.name !== undefined && tree.name !== undefined"
+                    v-if="user.name !== undefined && tree.name !== undefined && currentSubMenu =='Activity'"
                     style="display: inline-block; background-color: #fff; padding: 0.5rem; box-sizing: border-box; width: 100%;"
                     :colors="colors"
                     :user="user"
+                    :settings="settings"
                     :student-tree="tree"
                 ></show-student-ind>
+                <show-student-ind-credits
+                    v-if="user.name !== undefined && tree.name !== undefined && currentSubMenu =='Credits'"
+                    style="display: inline-block; background-color: #fff; padding: 0.5rem; box-sizing: border-box; width: 100%;"
+                    :colors="colors"
+                    :user="user"
+                    :settings="settings"
+                    :student-tree="tree"
+                ></show-student-ind-credits>
               </div>
             </div>
 
