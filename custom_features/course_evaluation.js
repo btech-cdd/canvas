@@ -238,7 +238,7 @@
         return;
       }
 
-      let courseData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses?course_code=${courseCode}&year=${year}`)
+      let courseData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses?course_code=${this.courseCode}&year=${this.year}`)
       console.log(courseData);
 
       this.loadReviews(init=true);
