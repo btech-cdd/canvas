@@ -215,10 +215,10 @@
     el: '#btech-course-evaluation-vue',
     mounted: async function () {
       // init context data
-      let courseData = await $.get("/api/v1/courses/" + CURRENT_COURSE_ID);
+      let canvasCourseData = await $.get("/api/v1/courses/" + CURRENT_COURSE_ID);
       // do a check if there's a valid course code. If not, no need to rate :)
       // may be more accurate to pull based on sis course id 
-      let sisCourseId = courseData.sis_course_id;
+      let sisCourseId = canvasCourseData.sis_course_id;
       if (sisCourseId == undefined) return; //don't do anything, no need to rate?
 
       //if can't set the required data, can't do a review
@@ -230,13 +230,16 @@
         const courseCode = sisCourseId.match(courseCodePattern)[0];
 
         this.courseCode = courseCode;
-        this.courseId = courseData.id;
+        this.courseId = canvasCourseData.id;
         this.raterId = ENV.current_user_id;
         this.year = year;
       } catch (err) {
         console.log(err);
         return;
       }
+
+      let courseData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses?course_code=${courseCode}&year=${year}`)
+      console.log(courseData);
 
       this.loadReviews(init=true);
       this.activeUpdater = setInterval(() => {
