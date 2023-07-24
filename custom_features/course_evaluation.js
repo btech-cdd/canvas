@@ -75,8 +75,8 @@
           @click="currentMenu='history';">History</span>
         <span 
           :style="{
-            'background-color': currentMenu == 'history' ? 'white' : '',
-            'color': currentMenu == 'history' ? 'black' : '',
+            'background-color': currentMenu == 'new' ? 'white' : '',
+            'color': currentMenu == 'new' ? 'black' : '',
           }"
           @click="
             currentMenu = 'new';
@@ -85,8 +85,8 @@
         >{{Object.keys(activeReview).length > 0 ? 'Active' : 'New'}}</span>
         <span
           :style="{
-            'background-color': currentMenu == 'history' ? 'white' : '',
-            'color': currentMenu == 'history' ? 'black' : '',
+            'background-color': currentMenu == 'data' ? 'white' : '',
+            'color': currentMenu == 'data' ? 'black' : '',
           }"
           @click="currentMenu = 'data';"
         >Data</span>
