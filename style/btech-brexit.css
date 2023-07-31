@@ -82,157 +82,228 @@ code.hljs {
   color: #b31d28;
   background-color: #ffeef0;
 }
-
 .btech-brexit-page {
-  font-size: 16px;
-  line-height: 24px;
-  color: #1e293b;
-  margin: 0 auto;
-  display: flex;
-  width: 100%;
-  max-width: 75ch;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1e293b;
+    margin: 0 auto;
+    display: flex;
+    width: 100%;
+    max-width: 75ch;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+.btech-brexit-page * {
+    box-sizing: border-box;
 }
 .btech-brexit-h1 {
-  font-size: 60px !important;
-  line-height: 60px;
-  font-weight: 700 !important;
-  margin: 2rem 0 1rem;
+    font-size: 60px !important;
+    line-height: 60px;
+    font-weight: 700 !important;
+    margin: 2rem 0 1rem;
 }
 .btech-brexit-h2 {
-  font-size: 48px !important;
-  line-height: 48px;
-  font-weight: 700 !important;
-  margin: 1.75rem 0 0.875rem;
+    font-size: 48px !important;
+    line-height: 48px;
+    font-weight: 700 !important;
+    margin: 1.75rem 0 0.875rem;
 }
 .btech-brexit-h3 {
-  font-size: 36px !important;
-  line-height: 48px;
-  font-weight: 700 !important;
-  margin: 3rem 0 2rem;
+    font-size: 36px !important;
+    line-height: 48px;
+    font-weight: 700 !important;
+    margin: 3rem 0 2rem;
 }
 .btech-brexit-h4 {
-  font-size: 30px !important;
-  line-height: 36px;
-  font-weight: 700 !important;
-  margin: 1.25rem 0 0.625rem;
+    font-size: 30px !important;
+    line-height: 36px;
+    font-weight: 700 !important;
+    margin: 1.25rem 0 0.625rem;
 }
 .btech-brexit-h5 {
-  font-size: 21px !important;
-  line-height: 32px;
-  font-weight: 700 !important;
-  margin: 1rem 0 0.5rem;
+    font-size: 21px !important;
+    line-height: 32px;
+    font-weight: 700 !important;
+    margin: 1rem 0 0.5rem;
 }
 .btech-brexit-h6 {
-  font-size: 18px !important;
-  line-height: 16px;
-  font-weight: 700 !important;
-  margin: 0.75rem 0;
+    font-size: 18px !important;
+    line-height: 16px;
+    font-weight: 700 !important;
+    margin: 0.75rem 0;
 }
 .btech-brexit-p {
-  font-size: 16px;
-  line-height: 28px;
-  margin: 0 0 1rem;
-  color: #334155;
+    font-size: 16px;
+    line-height: 28px;
+    margin: 0 0 1rem;
+    color: #334155;
 }
 .btech-brexit-hr {
-  border: 0;
-  border-top: 1px solid #e2e8f0;
-  margin: 2rem 0;
-  width: 100%;
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+    margin: 2rem 0;
+    width: 100%;
 }
 .btech-brexit-blockquote {
-  margin: 1rem 0;
-  padding: 0.5rem 1rem;
-  border-left: 4px solid #1e293b;
-  color: #334155;
-  font-size: 16px;
-  line-height: 28px;
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    border-left: 4px solid #1e293b;
+    color: #334155;
+    font-size: 16px;
+    line-height: 28px;
 }
 .btech-brexit-blockquote .btech-brexit-p {
-  margin: 0;
+    margin: 0;
 }
 .btech-brexit-codeblock {
-  font-family: monospace;
-  background-color: #f2f5fa;
-  padding: 0.5rem;
-  border-radius: 4px;
-  font-size: 14px;
-  line-height: 21px;
-  width: calc(100% - 1rem);
-  overflow-x: auto;
-  margin: 1rem 0;
-  border: none;
+    font-family: monospace;
+    background-color: #f2f5fa;
+    padding: 0.5rem;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 21px;
+    width: 100%;
+    overflow-x: auto;
+    margin: 0 0 1rem 0;
+    border: none;
 }
 .btech-brexit-list {
-  margin: 1rem 0;
-  padding-left: 2.5rem;
+    margin: 1rem 0;
+    padding-left: 2.5rem;
 }
 .btech-brexit-listitem {
-  margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 .btech-brexit-checkbox {
-  margin-right: 0.5rem;
+    margin-right: 0.5rem;
 }
 .btech-brexit-table-container {
-  width: calc(100% - 1rem);
-  overflow: hidden;
-  background-color: #fafafd;
-  border-radius: 8px;
-  overflow-x: auto;
-  padding: 0.5rem;
+    width: calc(100% - 1rem);
+    overflow: hidden;
+    background-color: #fafafd;
+    border-radius: 8px;
+    overflow-x: auto;
+    padding: 0.5rem;
 }
 .btech-brexit-table {
-  width: 100%;
-  min-width: 30rem;
-  border-collapse: collapse;
-  margin: 1rem 0;
-  border: none;
+    width: 100%;
+    min-width: 30rem;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    border: none;
 }
 .btech-brexit-tablecell,
 .btech-brexit-tablerow {
-  padding: 0.5rem;
-  line-height: 24px;
-  vertical-align: top;
+    padding: 0.5rem;
+    line-height: 24px;
+    vertical-align: top;
 }
 .btech-brexit-tablerow {
-  border-bottom: 1px solid #d7dfea;
+    border-bottom: 1px solid #d7dfea;
 }
 tbody .btech-brexit-tablerow:last-child {
-  border-bottom: none;
+    border-bottom: none;
 }
 .btech-brexit-tablecell {
-  border-right: 1px solid #d7dfea;
+    border-right: 1px solid #d7dfea;
 }
 .btech-brexit-tablecell:last-child {
-  border-right: none;
+    border-right: none;
 }
 .btech-brexit-tablecell[align="center"] {
-  text-align: center;
+    text-align: center;
 }
 .btech-brexit-tablecell[align="right"] {
-  text-align: right;
+    text-align: right;
 }
 .btech-brexit-codespan {
-  font-family: monospace;
-  background-color: #f2f5fa;
-  padding: 0.25em 0.5em;
-  border-radius: 4px;
-  line-height: 21px;
-  border: none;
-  float: none !important;
-  margin-left: 0 !important;
+    font-family: monospace;
+    background-color: #f2f5fa;
+    padding: 0.25em 0.5em;
+    border-radius: 4px;
+    line-height: 21px;
+    border: none;
+    float: none !important;
+    margin-left: 0 !important;
 }
 .btech-brexit-link:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 .btech-brexit-image {
-  height: auto;
-  display: block;
-  margin: 2rem auto;
+    height: auto;
+    display: block;
+    margin: 2rem auto;
 }
 .btech-brexit-p:has(> .btech-brexit-image) {
-  width: 100%;
+    width: 100%;
+}
+.btech-brexit-alert {
+    width: 100%;
+    border-radius: 10px;
+    margin: 0 0 1rem 0;
+    max-width: 1296px;
+    padding: 20px 20px 20px 64px;
+}
+.btech-brexit-alert>p {
+    margin: 0 0 10px;
+}
+.btech-brexit-alert>p:first-child {
+    font-weight: 700;
+    line-height: 1.25rem;
+}
+.btech-brexit-alert>p:first-child::before {
+    box-sizing: content-box;
+    display: block;
+    float: left;
+    height: 24px;
+    margin-left: -44px;
+    margin-top: -2px;
+    padding-right: 20px;
+    width: 24px;
+}
+.btech-brexit-alert>p:last-child {
+    margin: 0;
+}
+.btech-brexit-red {
+    background: #fee2e2;
+}
+.btech-brexit-alert.btech-brexit-red>p:first-child::before {
+    content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23FF4645'/%3E%3Crect width='1' height='5' x='7.5' y='6.5' stroke='%23fff' rx='.5'/%3E%3Ccircle cx='8' cy='4' r='1' fill='%23fff'/%3E%3C/svg%3E");
+}
+.btech-brexit-green {
+    background: #dcfce7;
+    color: #14532d;
+}
+.btech-brexit-alert.btech-brexit-green>p:first-child::before {
+    content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%2356BD67'/%3E%3Crect width='1' height='5' x='7.5' y='6.5' stroke='%23fff' rx='.5'/%3E%3Ccircle cx='8' cy='4' r='1' fill='%23fff'/%3E%3C/svg%3E");
+}
+.btech-brexit-blue {
+    background: #dbeafe;
+    color: #1e3a8a;
+}
+.btech-brexit-alert.btech-brexit-blue>p:first-child::before {
+    content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23027BF3'/%3E%3Crect width='1' height='5' x='7.5' y='6.5' stroke='%23fff' rx='.5'/%3E%3Ccircle cx='8' cy='4' r='1' fill='%23fff'/%3E%3C/svg%3E");
+}
+.btech-brexit-orange {
+    background: #fef3c7;
+    color: #78350f;
+}
+.btech-brexit-alert.btech-brexit-orange>p:first-child::before {
+    content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='8' fill='%23F19518'/%3E%3Crect width='1' height='5' x='7.5' y='6.5' stroke='%23fff' rx='.5'/%3E%3Ccircle cx='8' cy='4' r='1' fill='%23fff'/%3E%3C/svg%3E");
+}
+.btech-brexit-cut {
+    width: 100%;
+}
+.btech-brexit-cut-title {
+    padding: 1rem;
+    background: #fafafd;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.btech-brexit-cut-body {
+    padding:1rem;
+    background: #f5f5f8;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
