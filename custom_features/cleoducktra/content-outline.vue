@@ -5,14 +5,15 @@
       v-if="state=='select type'"
     >
       <div class="msger-chat">
-      </div>
-        <div>Will you be creating a full course, or a single module?</div>
-      <div
-        style="margin: 0;"
-        class="msger-inputarea">
-        <button @click="state = 'course';" class="msger-btn">Course</button>
-        <button @click="state = 'module';" class="msger-btn">Module</button>
-        <button @click="state = 'page';" class="msger-btn">Page</button>
+        </div>
+          <div>Will you be creating a full course, or a single module?</div>
+        <div
+          style="margin: 0;"
+          class="msger-inputarea">
+          <button @click="state = 'course';" class="msger-btn">Course</button>
+          <button @click="state = 'module';" class="msger-btn">Module</button>
+          <button @click="state = 'page';" class="msger-btn">Page</button>
+        </div>
       </div>
     </div>
     <div
