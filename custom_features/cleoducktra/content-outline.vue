@@ -9,9 +9,9 @@
         <div
           style="margin: 0;"
           class="msger-inputarea">
-          <button @click="state = 'course';" class="msger-btn">Course</button>
-          <button @click="state = 'module';" class="msger-btn">Module</button>
-          <button @click="state = 'page';" class="msger-btn">Page</button>
+          <button @click="contentType = 'Course'; state = 'course';" class="msger-btn">Course</button>
+          <button @click="contentType = 'Module'; state = 'module';" class="msger-btn">Module</button>
+          <button @click="contentType = 'Page'; state = 'page';" class="msger-btn">Page</button>
         </div>
       </div>
     </div>
