@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div>STATE{{ state }}</div>
     <div
       style="height: auto;"
       v-if="state=='select type'"
