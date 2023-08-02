@@ -6,7 +6,7 @@
       v-if="state=='select type'"
     >
       <div class="msger-chat">
-        <div>Will you be creating a full course, or a single module?</div>
+        <div>Will you be creating a course, a module, or a single page?</div>
         <div
           style="margin: 0;"
           class="msger-inputarea">
