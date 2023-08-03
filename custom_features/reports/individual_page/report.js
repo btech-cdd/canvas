@@ -378,13 +378,15 @@
                     $.getScript("https://reports.bridgetools.dev/department_report/components/menuSettings.js").done(function () {
                       $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/indGraphs.js").done(function () {
                         $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/indHeader.js").done(function () {
-                          $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentInd.js").done(function () {
-                            $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentIndCredits.js").done(function () {
-                              $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentHours.js").done(function () {
-                                $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentEmploymentSkills.js").done(function () {
-                                  $.getScript("https://reports.bridgetools.dev/department_report/graphs.js").done(function () {
-                                    $.getScript(SOURCE_URL + '/custom_features/reports/individual_page/gradesBetweenDates.js').done(function () {
-                                      postLoad();
+                          $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/indHeaderCredits.js").done(function () {
+                            $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentInd.js").done(function () {
+                              $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentIndCredits.js").done(function () {
+                                $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentHours.js").done(function () {
+                                  $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentEmploymentSkills.js").done(function () {
+                                    $.getScript("https://reports.bridgetools.dev/department_report/graphs.js").done(function () {
+                                      $.getScript(SOURCE_URL + '/custom_features/reports/individual_page/gradesBetweenDates.js').done(function () {
+                                        postLoad();
+                                      });
                                     });
                                   });
                                 });
