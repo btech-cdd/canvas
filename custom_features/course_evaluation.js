@@ -123,6 +123,16 @@
                 @click="pinURL(question.id, question.links)"
                 :title="question.links"
               ></i>
+              <i 
+                style="border-radius: 1rem; padding: 0.25rem; color: #FFFFFF;"
+                :style="{
+                  'background-color': 'black', 
+                  'color': 'white'
+                }"
+                class="icon-discussion"
+                @click="editComment"
+                :title="question.comment"
+              ></i>
               <strong :title="question.tip">{{text}}</strong></div>
             <div
               style="
