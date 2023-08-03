@@ -316,7 +316,7 @@
           summary[topic.name].questions[question.text] = summary[topic.name].questions?.[question.text] ?? {
             tip: tip,
             rating: score.rating,
-            links: score.links,
+            links: score.links[0],
             id: score._id
           };
         }
