@@ -111,7 +111,7 @@
               margin-bottom: 0.5rem;
             "
           >
-            <div :title="question.tip"><strong>{{text}}</strong></div>
+            <div :title="question.tip"><i class="icon-pin" @click="pinURL(question.id)"></i><strong>{{text}}</strong></div>
             <div
               style="
                 display: flex;
@@ -343,6 +343,20 @@
       minimize: function () {
         $('#wrapper').css('margin-right', '0px');
         this.minimized = true;
+      },
+      setCOmment: async function (socreId, comment) {
+        this.updating = true;
+        await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
+          comment: comment 
+        }, "PUT");
+        this.updating = false;
+      },
+      setLink: async function (scoreId, link) {
+        this.updating = true;
+        await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
+          links: [link] 
+        }, "PUT");
+        this.updating = false;
       },
       setRating: async function (scoreId, rating) {
         this.updating = true;
