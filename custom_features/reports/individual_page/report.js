@@ -47,7 +47,6 @@
         if (IS_TEACHER) { //also change this to ref the url and not whether or not is teacher
           let match = window.location.pathname.match(/(users|grades)\/([0-9]+)/);
           this.userId = match[2];
-          console.log(this.userId);
         } else {
           this.userId = ENV.current_user_id;
         }
@@ -63,11 +62,8 @@
         let enrollmentData = await bridgetoolsReq("https://reports.bridgetools.dev/api/students/canvas_enrollments/" + this.userId);
         this.enrollmentData = enrollmentData;
 
-        console.log("USER LOADING")
         try {
           let user = await app.loadUser(this.userId);
-          console.log("USER LOADED")
-          console.log(user);
           this.user = user;
         } catch(err) {
           console.log(err);
@@ -205,12 +201,9 @@
 
 
         async loadTree(deptCode, deptYear) {
-          console.log(deptCode);
-          console.log(deptYear);
           let url = "https://reports.bridgetools.dev/api/trees?dept_code=" + deptCode + "&year=" + deptYear;
           let data = await bridgetoolsReq(url);
           let tree = data[0];
-          console.log(tree);
           if (tree?.courses?.core === undefined) tree.courses.core = {};
           if (tree?.courses?.elective === undefined) tree.courses.elective = {};
           if (tree?.courses?.other === undefined) tree.courses.other = {};
@@ -228,7 +221,6 @@
           });
           await $.get("https://reports.bridgetools.dev/api/students/" + userId + "?requester_id=" + ENV.current_user_id + "&auth_code=" + authCode, function (data) {
             user = data;
-            console.log(JSON.stringify(data.courses));
           });
           if (user === "") {
             try {
