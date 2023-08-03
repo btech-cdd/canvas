@@ -134,7 +134,6 @@
           modal.hide();
         },
         async loadSettings() {
-          let app = this;
           let settings = await bridgetoolsReq("https://reports.bridgetools.dev/api/settings/" + ENV.current_user_id);
           if (settings.individualReport == undefined) {
             settings.individualReport = {
@@ -328,7 +327,7 @@
               return (a.year > b.year) ? -1 : ((a.year < b.year) ? 1 : 0)
             });
             this.currentDepartment = user.depts[0];
-            console.log(this.currentDepartment);
+            console.log(user);
             tree = await this.loadTree(user.depts[0].dept, user.depts[0].year);
           }
 
