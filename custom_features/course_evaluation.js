@@ -115,7 +115,8 @@
               <i 
                 style="border-radius: 1rem; padding: 0.25rem; color: #FFFFFF;"
                 :style="{
-                  'background-color': question.links ? bridgetools.colors.green : bridgetools.colors.black
+                  'background-color': !question.links ? 'white' : question.links == (windows.location.origin + windows.location.pathname) ? bridgetools.colors.green : 'black', 
+                  'color': question.links ? 'white' : 'black'
                 }"
                 class="icon-pin" @click="pinURL(question.id)"
                 :title="question.links"
