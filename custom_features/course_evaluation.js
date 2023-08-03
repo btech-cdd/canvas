@@ -151,7 +151,7 @@
             </div>
             <div>
                 <textarea
-                  @input="event => setComment(question.id, event.target.value)"
+                  @blur="event => setComment(question.id, event.target.value)"
                   style="margin-top: 0.5rem; height: 2.5rem; box-sizing: border-box; resize: none; width: 100%;"
                 ></textarea>
             </div>
@@ -367,6 +367,7 @@
 
       },
       setComment: async function (scoreId, comment) {
+        console.log(scoreId);
         console.log(comment);
         this.updating = true;
         await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
