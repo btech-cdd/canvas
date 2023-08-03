@@ -355,7 +355,7 @@
         $('#wrapper').css('margin-right', '0px');
         this.minimized = true;
       },
-      setCOmment: async function (socreId, comment) {
+      setComment: async function (socreId, comment) {
         this.updating = true;
         await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
           comment: comment 
@@ -364,8 +364,15 @@
       },
       pinURL: async function (scoreId, currentURL) {
         let url = window.location.origin + window.location.pathname;
-        if (currentURL == url) url = "";  
-        this.setLink(scoreId, url);
+        if (currentURL == url) {
+          if (window.confirm('Remove pinned URL for this criterion?')) {
+            this.setLink(scoreId, '');
+          }
+        } else if (currentURL) {
+          if (window.confirm('Replace existing pinned URL for this criterion?')) {
+            this.setLink(scoreId, url);
+          }
+        }
       },
       setLink: async function (scoreId, link) {
         this.updating = true;
