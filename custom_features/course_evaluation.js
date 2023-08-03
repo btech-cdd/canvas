@@ -118,7 +118,7 @@
                   'background-color': !question.links ? 'white' : question.links == (window.location.origin + window.location.pathname) ? bridgetools.colors.green : 'black', 
                   'color': question.links ? 'white' : 'black'
                 }"
-                class="icon-pin" @click="pinURL(question.id)"
+                class="icon-pin" @click="pinURL(question.id, question.links)"
                 :title="question.links"
               ></i>
               <strong :title="question.tip">{{text}}</strong></div>
@@ -362,8 +362,9 @@
         }, "PUT");
         this.updating = false;
       },
-      pinURL: async function (scoreId) {
+      pinURL: async function (scoreId, currentURL) {
         let url = window.location.origin + window.location.pathname;
+        if (currentURL == url) url = "";  
         this.setLink(scoreId, url);
       },
       setLink: async function (scoreId, link) {
