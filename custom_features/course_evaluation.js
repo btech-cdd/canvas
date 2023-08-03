@@ -115,7 +115,7 @@
               <i 
                 style="border-radius: 1rem; padding: 0.25rem; color: #FFFFFF;"
                 :style="{
-                  'border-color': question.links ? colors.green : colors.black
+                  'border-color': question.links ? bridgetools.colors.green : bridgetools.colors.black
                 }"
                 class="icon-pin" @click="pinURL(question.id)"
                 :title="question.links"
