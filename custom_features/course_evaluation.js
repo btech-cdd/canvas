@@ -280,6 +280,7 @@
       console.log(courseData);
 
       this.loadReviews(init=true);
+
       this.activeUpdater = setInterval(() => {
         if (Object.keys(this.activeReview).length > 0 && !this.minimized && !this.updating) {
           this.loadReviews();
@@ -322,6 +323,8 @@
         for (let s in review.scores) {
           let score = review.scores[s];
           let question = score.question;
+          console.log(question.text);
+          console.log(question.comment);
           let topic = question.topic;
           summary[topic.name] = summary?.[topic.name] ?? {
             questions: {},
