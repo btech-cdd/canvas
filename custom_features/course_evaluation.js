@@ -323,8 +323,6 @@
         for (let s in review.scores) {
           let score = review.scores[s];
           let question = score.question;
-          console.log(question.text);
-          console.log(question.comment);
           let topic = question.topic;
           summary[topic.name] = summary?.[topic.name] ?? {
             questions: {},
