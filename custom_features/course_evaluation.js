@@ -440,9 +440,7 @@
         this.updating = false;
       },
       loadReviews: async function (init=false) {
-        console.log("GET REVIEWS");
         let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/" + this.courseCode.replace(" ", "%20"));
-        console.log(reviews);
         if (this.updating || (this.minimized && !init)) return;
         let pastReviews = [];
         let activeFound = false;
