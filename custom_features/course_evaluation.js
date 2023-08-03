@@ -351,6 +351,10 @@
         }, "PUT");
         this.updating = false;
       },
+      pinURL: async function (scoreId) {
+        let url = window.location.origin + window.location.pathname;
+        this.setLink(scoreId, url);
+      },
       setLink: async function (scoreId, link) {
         this.updating = true;
         await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
