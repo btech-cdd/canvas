@@ -372,12 +372,14 @@
       },
       setComment: async function (scoreId, comment) {
         this.updating = true;
-        console.log(comment);
-        let score = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
-          comment: comment 
-        }, "PUT");
-        console.log(score);
-        this.updating = false;
+        this.$nextTick(async () => {
+          console.log(comment);
+          let score = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
+            comment: comment 
+          }, "PUT");
+          console.log(score);
+          this.updating = false;
+        });
       },
       pinURL: async function (scoreId, currentURL) {
         let url = window.location.origin + window.location.pathname;
