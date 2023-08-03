@@ -111,7 +111,16 @@
               margin-bottom: 0.5rem;
             "
           >
-            <div><i class="icon-pin" @click="pinURL(question.id)" :title="question.links"></i><strong :title="question.tip">{{text}}</strong></div>
+            <div>
+              <i 
+                style="border-radius: 1rem; padding: 0.25rem; color: #FFFFFF;"
+                :style="{
+                  'border-color': question.links ? colors.green : colors.black
+                }"
+                class="icon-pin" @click="pinURL(question.id)"
+                :title="question.links"
+              ></i>
+              <strong :title="question.tip">{{text}}</strong></div>
             <div
               style="
                 display: flex;
