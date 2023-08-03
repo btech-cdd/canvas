@@ -367,7 +367,10 @@
         $('#wrapper').css('margin-right', '0px');
         this.minimized = true;
       },
-      setComment: async function (socreId, comment) {
+      editComment: function(scoreId, comment) {
+
+      },
+      setComment: async function (scoreId, comment) {
         this.updating = true;
         await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
           comment: comment 
