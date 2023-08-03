@@ -373,6 +373,7 @@
       setComment: async function (scoreId, comment) {
         this.updating = true;
         this.$nextTick(async () => {
+          console.log("COMMENT")
           console.log(comment);
           let score = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
             comment: comment 
