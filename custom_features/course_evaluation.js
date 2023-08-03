@@ -372,6 +372,7 @@
       },
       setComment: async function (scoreId, comment) {
         this.updating = true;
+        console.log(comment);
         await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
           comment: comment 
         }, "PUT");
