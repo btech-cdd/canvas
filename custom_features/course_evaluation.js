@@ -160,7 +160,7 @@
               ><b>{{i}}</b></span>
             </div>
             <div>
-                <textarea style="margin-top: 0.5rem; height: 2rem; box-sizing: border-box; resize: none; width: 100%;"></textarea>
+                <textarea style="margin-top: 0.5rem; height: 3rem; box-sizing: border-box; resize: none; width: 100%;"></textarea>
             </div>
           </div>
         </div>
