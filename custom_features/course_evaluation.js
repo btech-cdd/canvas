@@ -159,6 +159,9 @@
                 @click="setRating(question.id, i); question.rating = i;"
               ><b>{{i}}</b></span>
             </div>
+            <div>
+                <textarea style="resize: none;"></textarea>
+            </div>
           </div>
         </div>
         <!--BUTTONS-->
