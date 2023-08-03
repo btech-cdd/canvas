@@ -118,7 +118,7 @@
                   'background-color': !question.links ? 'white' : question.links == (window.location.origin + window.location.pathname) ? bridgetools.colors.green : 'black', 
                   'color': question.links ? 'white' : 'black'
                 }"
-                class="icon-pin" @click.stop="window.location.replace(question.links);" @click="pinURL(question.id, question.links)"
+                class="icon-pin" @click.shift.stop="window.location.replace(question.links);" @click.stop="pinURL(question.id, question.links)"
                 :title="question.links"
               ></i>
               <strong :title="question.tip">{{text}}</strong></div>
