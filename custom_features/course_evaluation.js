@@ -335,6 +335,7 @@
             tip: tip,
             rating: score.rating,
             links: score.links[0],
+            comment: score.comment,
             id: score._id
           };
         }
