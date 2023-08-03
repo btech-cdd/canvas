@@ -111,7 +111,7 @@
               margin-bottom: 0.5rem;
             "
           >
-            <div :title="question.tip"><i class="icon-pin" @click="pinURL(question.id)"></i><strong>{{text}}</strong></div>
+            <div><i class="icon-pin" @click="pinURL(question.id)" :title="question.links"></i><strong :title="question.tip">{{text}}</strong></div>
             <div
               style="
                 display: flex;
