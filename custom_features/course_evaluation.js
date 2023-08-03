@@ -126,8 +126,8 @@
               <i 
                 style="border-radius: 1rem; padding: 0.25rem; color: #FFFFFF;"
                 :style="{
-                  'background-color': 'black', 
-                  'color': 'white'
+                  'background-color': question.comment ? 'black' : 'white',
+                  'color': question.comment ? 'white' : 'black'
                 }"
                 class="icon-discussion"
                 @click="editComment"
