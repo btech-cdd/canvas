@@ -41,6 +41,9 @@
     </div>
     <div
       v-else
+      :style="{
+        color: loading ? bridgetools.colors.gray : 'black'
+      }"
     >
       <div 
         style="
