@@ -25,10 +25,6 @@
           <div v-else>
             <div v-if="menu=='report'">
               <div class="btech-canvas-report" style="background-color: #ffffff;">
-                <menu-info
-                  :colors="colors"
-                  :current-report="'students'"
-                ></menu-info>
                 <select @change="changeTree(user)" v-model="currentDepartment">
                   <option v-for="dept in user.depts" :value="dept">{{dept.dept}} ({{dept.year}})</option>
                 </select>
