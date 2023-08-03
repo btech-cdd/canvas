@@ -150,7 +150,10 @@
               ><b>{{i}}</b></span>
             </div>
             <div>
-                <textarea style="margin-top: 0.5rem; height: 2.5rem; box-sizing: border-box; resize: none; width: 100%;"></textarea>
+                <textarea
+                  @input="event => setComment(question.id, event.target.value)"
+                  style="margin-top: 0.5rem; height: 2.5rem; box-sizing: border-box; resize: none; width: 100%;"
+                ></textarea>
             </div>
           </div>
         </div>
