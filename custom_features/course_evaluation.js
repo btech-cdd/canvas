@@ -152,7 +152,7 @@
             <div>
                 <textarea
                   v-model="question.comment"
-                  @focus="console.log('test');"
+                  @focus="updating = true;"
                   @blur="event => setComment(question.id, event.target.value)"
                   style="margin-top: 0.5rem; height: 2.5rem; box-sizing: border-box; resize: none; width: 100%;"
                 ></textarea>
@@ -369,10 +369,9 @@
       },
       setComment: async function (scoreId, comment) {
         this.updating = true;
-        let score = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
+        await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
           comment: comment 
         }, "PUT");
-        console.log(score);
         this.updating = false;
       },
       pinURL: async function (scoreId, currentURL) {
