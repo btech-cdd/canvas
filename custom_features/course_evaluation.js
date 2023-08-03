@@ -123,16 +123,6 @@
                 @click="pinURL(question.id, question.links)"
                 :title="question.links"
               ></i>
-              <i 
-                style="border-radius: 1rem; padding: 0.25rem; color: #FFFFFF;"
-                :style="{
-                  'background-color': question.comment ? 'black' : 'white',
-                  'color': question.comment ? 'white' : 'black'
-                }"
-                class="icon-discussion"
-                @click="editComment"
-                :title="question.comment"
-              ></i>
               <strong :title="question.tip">{{text}}</strong></div>
             <div
               style="
@@ -160,7 +150,7 @@
               ><b>{{i}}</b></span>
             </div>
             <div>
-                <textarea style="margin-top: 0.5rem; height: 3rem; box-sizing: border-box; resize: none; width: 100%;"></textarea>
+                <textarea style="margin-top: 0.5rem; height: 2.5rem; box-sizing: border-box; resize: none; width: 100%;"></textarea>
             </div>
           </div>
         </div>
