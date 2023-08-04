@@ -195,6 +195,21 @@ $.delete = function (url, data) {
 }
 
 async function bridgetoolsReq(url, reqdata = {}, type = "GET") {
+  $.put = function (url, data) {
+    return $.ajax({
+      url: url,
+      data: data,
+      type: 'PUT'
+    });
+  }
+
+  $.delete = function (url, data) {
+    return $.ajax({
+      url: url,
+      data: data,
+      type: 'DELETE'
+    });
+  }
   let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
   let authCode = '';
   await $.get(reqUrl, data => {authCode = data.data.auth_code;});
