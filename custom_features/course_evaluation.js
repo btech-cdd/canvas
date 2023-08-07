@@ -279,18 +279,8 @@
                 margin-bottom: 0.5rem;
               "
             >
-              <div>
-                <strong :title="question.tip">{{text}}</strong>
-              </div>
-              <div>
-                <a 
-                  :href="question.links"
-                >{{question.links}}</a>
-              </div>
               <div
                 style="
-                  display: flex;
-                  justify-content: space-around;
                   user-select: none;
                 "
               >
@@ -302,13 +292,20 @@
                     height: 2rem;
                     font-size: 1.5rem;
                     text-align: center;
-                    cursor: pointer;
                   "
                   :style="{
                     'background-color': averageColor(question.rating),
                     'color' : '#FFFFFF'
                   }"
                 ><b>{{question.rating}}</b></span>
+              </div>
+              <div>
+                <strong :title="question.tip">{{text}}</strong>
+              </div>
+              <div>
+                <a 
+                  :href="question.links"
+                >{{question.links}}</a>
               </div>
               <div>
                 <p
