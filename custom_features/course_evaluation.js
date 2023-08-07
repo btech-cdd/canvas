@@ -196,7 +196,9 @@
         style="margin-top: 1rem;"
       >
         <!--PAST REVIEWS-->
-        <div>
+        <div
+          v-if="Object.keys(activeReview).length == 0"
+        >
           <div
             v-for="review in pastReviews"
             style="
@@ -215,6 +217,14 @@
                 "
                 @click="deleteReview(review._id)"
               >X</span>
+              <span
+                style="
+                  float: right;
+                  cursor: pointer;
+                  user-select: none;
+                "
+                @click="viewReview = review;"
+              ><i class="icon-student-view"></i></span>
             </div>
             <div
               style="
@@ -247,6 +257,65 @@
                   :title="name + ': ' + topic.average"
                 ></i>
               </span>
+            </div>
+          </div>
+        </div>
+        <!--View a specific past review-->
+        <div
+          v-else
+        >
+          <div
+            v-for="topic, name in (activeReview?.summary ?? [])"
+            style="
+              padding: 0.5rem;
+              margin: 0.5rem;
+              background-color: #FFFFFF;
+            "
+          >
+            <h3><strong>{{name}}</strong></h3>
+            <div
+              v-for="question, text in topic.questions"
+              style="
+                margin-bottom: 0.5rem;
+              "
+            >
+              <div>
+                <strong :title="question.tip">{{text}}</strong>
+              </div>
+              <div>
+                <a 
+                  :href="question.links"
+                >{{question.links}}</a>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-around;
+                  user-select: none;
+                "
+              >
+                <span 
+                  style="
+                    border: 1px solid #303030;
+                    border-radius: 1rem;
+                    width: 2rem;
+                    height: 2rem;
+                    font-size: 1.5rem;
+                    text-align: center;
+                    cursor: pointer;
+                  "
+                  :style="{
+                    'background-color': averageColor(question.rating),
+                    'color' : '#FFFFFF'
+                  }"
+                ><b>{{i}}</b></span>
+              </div>
+              <div>
+                <p
+                  v-model="question.comment"
+                  style="margin-top: 0.5rem; height: 2.5rem; box-sizing: border-box; resize: none; width: 100%;"
+                >{{question.comment}}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -311,6 +380,7 @@
         },
         pastReviews: [],
         activeReview: {},
+        viewReview: {},
         courseCode: "",
         courseId: "",
         icons: {
