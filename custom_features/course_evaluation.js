@@ -222,6 +222,7 @@
                   float: right;
                   cursor: pointer;
                   user-select: none;
+                  padding-right: 1rem;
                 "
                 @click="viewReview = review;"
               ><i class="icon-student-view"></i></span>
