@@ -292,6 +292,7 @@
                     height: 2rem;
                     font-size: 1.5rem;
                     text-align: center;
+                    cursor: pointer;
                   "
                   :style="{
                     'background-color': averageColor(question.rating),
