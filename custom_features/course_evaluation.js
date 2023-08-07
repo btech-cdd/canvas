@@ -301,16 +301,15 @@
                 ><b>{{question.rating}}</b></span>
                 <strong :title="question.tip">{{text}}</strong>
               </div>
+              <div
+                style="margin-top: 0.5rem; height: 2.5rem; box-sizing: border-box; resize: none; width: 100%;"
+              >
+                {{question.comment}}
+              </div>
               <div>
                 <a 
                   :href="question.links"
                 >{{question.links}}</a>
-              </div>
-              <div>
-                <p
-                  v-model="question.comment"
-                  style="margin-top: 0.5rem; height: 2.5rem; box-sizing: border-box; resize: none; width: 100%;"
-                >{{question.comment}}</p>
               </div>
             </div>
           </div>
