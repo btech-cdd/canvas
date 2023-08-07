@@ -299,8 +299,6 @@
                     'color' : '#FFFFFF'
                   }"
                 ><b>{{question.rating}}</b></span>
-              </div>
-              <div>
                 <strong :title="question.tip">{{text}}</strong>
               </div>
               <div>
