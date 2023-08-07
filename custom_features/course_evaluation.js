@@ -302,7 +302,7 @@
                 <strong :title="question.tip">{{text}}</strong>
               </div>
               <div
-                style="margin-top: 0.5rem; height: 2.5rem; box-sizing: border-box; resize: none; width: 100%;"
+                style="margin-top: 0.5rem; box-sizing: border-box; width: 100%;"
               >
                 {{question.comment}}
               </div>
