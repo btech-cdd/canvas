@@ -197,7 +197,7 @@
       >
         <!--PAST REVIEWS-->
         <div
-          v-if="Object.keys(activeReview).length == 0"
+          v-if="Object.keys(viewReview).length == 0"
         >
           <div
             v-for="review in pastReviews"
