@@ -75,7 +75,7 @@
             'background-color': currentMenu == 'history' ? 'white' : '',
             'color': currentMenu == 'history' ? 'black' : '',
           }"
-          @click="currentMenu='history';">History</span>
+          @click="currentMenu='history'; viewReview = {};">History</span>
         <span 
           :style="{
             'background-color': currentMenu == 'new' ? 'white' : '',
