@@ -308,7 +308,7 @@
                     'background-color': averageColor(question.rating),
                     'color' : '#FFFFFF'
                   }"
-                ><b>{{i}}</b></span>
+                ><b>{{question.rating}}</b></span>
               </div>
               <div>
                 <p
