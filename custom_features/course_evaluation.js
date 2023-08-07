@@ -265,7 +265,7 @@
           v-else
         >
           <div
-            v-for="topic, name in (activeReview?.summary ?? [])"
+            v-for="topic, name in (viewReview?.summary ?? [])"
             style="
               padding: 0.5rem;
               margin: 0.5rem;
