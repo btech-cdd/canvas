@@ -288,6 +288,7 @@
                   style="
                     border: 1px solid #303030;
                     border-radius: 1rem;
+                    display: inline-block;
                     width: 2rem;
                     height: 2rem;
                     font-size: 1.5rem;
