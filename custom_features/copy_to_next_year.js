@@ -11,7 +11,12 @@
           
           let terms = (await $.get(`/api/v1/accounts/3/terms`)).enrollment_terms;
           terms = terms.filter(term => term.name == nextTermName);
-          const nextTerm = terms[0];
+          let nextTerm;
+          if (terms.length > 0) {
+            nextTerm = terms[0];
+          } else {
+            nextTerm = term;
+          }
           const newCourse = await $.post(`/api/v1/accounts/${course.account_id}/courses`, {
             course: {
                 name: course.name,
