@@ -66,7 +66,7 @@
     $("#copy-course-buttons button.yes").click(async function() {
       console.log(newCourseId);
       console.log(oldCourseId);
-      await $(`/api/v1/courses/${newCourseId}/content_migrations`, {
+      await $.post(`/api/v1/courses/${newCourseId}/content_migrations`, {
         migration_type: 'course_copy_importer',
         settings: {
           source_course_id: oldCourseId
