@@ -64,7 +64,7 @@
       confirmInstructors(modal, oldCourseId, newCourseId);
     });
     $("#copy-course-buttons button.yes").click(async function() {
-      console.log(newCouresId);
+      console.log(newCourseId);
       console.log(oldCourseId);
       await $(`/api/v1/courses/${newCourseId}/content_migrations`, {
         migration_type: 'course_copy_importer',
