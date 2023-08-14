@@ -2,6 +2,7 @@
   async function createNextYear(courseId) {
     const modal = createModal();
       const course = await $.get(`/api/v1/courses/${courseId}`);
+      console.log(course);
       if (course.sis_course_id == null) {
           const currentTermId = course.enrollment_term_id;
           const term = await $.get(`/api/v1/accounts/3/terms/${currentTermId}`);
