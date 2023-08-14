@@ -17,6 +17,7 @@
           } else {
             nextTerm = term;
           }
+          console.log(nextTerm)
           const newCourse = await $.post(`/api/v1/accounts/${course.account_id}/courses`, {
             course: {
                 name: course.name,
