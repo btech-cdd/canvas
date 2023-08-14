@@ -1,37 +1,34 @@
 (async function() {
   async function createNextYear(courseId) {
     const modal = createModal();
-      const course = await $.get(`/api/v1/courses/${courseId}`);
-      console.log(course);
-      if (course.sis_course_id == null) {
-          const currentTermId = course.enrollment_term_id;
-          const term = await $.get(`/api/v1/accounts/3/terms/${currentTermId}`);
-          const match = term.name.match(/\b\d{4}\b/);
-          const year = parseInt(match[0]);
-          const nextTermName = term.name.replace("" + year, "" + (year + 1));
-          
-          let terms = (await $.get(`/api/v1/accounts/3/terms`)).enrollment_terms;
-          terms = terms.filter(term => term.name == nextTermName);
-          let nextTerm;
-          if (terms.length > 0) {
-            nextTerm = terms[0];
-          } else {
-            nextTerm = term;
-          }
-          console.log(nextTerm)
-          const newCourse = await $.post(`/api/v1/accounts/${course.account_id}/courses`, {
-            course: {
-                name: course.name,
-                course_code: course.course_code,
-                term_id: nextTerm.id
-            }
-          });
-      const blueprintSubscriptions = await $.get(`/api/v1/courses/${courseId}/blueprint_subscriptions`);
-      if (blueprintSubscriptions.length > 0) {
-        confirmBlueprintContent(modal, courseId, newCourse.id, blueprintSubscriptions[0].blueprint_course.id);
-      } else {
-        confirmCopyContent(modal, courseId, newCourse.id);
+    const course = await $.get(`/api/v1/courses/${courseId}`);
+    const currentTermId = course.enrollment_term_id;
+    const term = await $.get(`/api/v1/accounts/3/terms/${currentTermId}`);
+    const match = term.name.match(/\b\d{4}\b/);
+    const year = parseInt(match[0]);
+    const nextTermName = term.name.replace("" + year, "" + (year + 1));
+    
+    let terms = (await $.get(`/api/v1/accounts/3/terms`)).enrollment_terms;
+    terms = terms.filter(term => term.name == nextTermName);
+    let nextTerm;
+    if (terms.length > 0) {
+      nextTerm = terms[0];
+    } else {
+      nextTerm = term;
+    }
+    console.log(nextTerm)
+    const newCourse = await $.post(`/api/v1/accounts/${course.account_id}/courses`, {
+      course: {
+          name: course.name,
+          course_code: course.course_code,
+          term_id: nextTerm.id
       }
+    });
+    const blueprintSubscriptions = await $.get(`/api/v1/courses/${courseId}/blueprint_subscriptions`);
+    if (blueprintSubscriptions.length > 0) {
+      confirmBlueprintContent(modal, courseId, newCourse.id, blueprintSubscriptions[0].blueprint_course.id);
+    } else {
+      confirmCopyContent(modal, courseId, newCourse.id);
     }
   }
 
