@@ -369,7 +369,6 @@
         let reviewInProgress = Object.keys(review).length > 0;
         if (!reviewInProgress) return false;
 
-        console.log(review);
         // FALSE IF ANY SCORES ARE MISSING
         for (let t in review.summary.topics) {
           let topic = review.summary.topics[t];
@@ -532,7 +531,6 @@
         this.updating = false;
       },
       submitReview: async function () {
-        console.log("SUBMIT");
         let review = this.activeReview;
         await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/review/${review._id}`, {
           submitted: true 
@@ -541,7 +539,6 @@
         this.loadReviews();
       },
       newReview: async function () {
-        console.log(this.courseCode);
         let review = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${this.courseCode.replace(" ", "%20")}/new`, {
           year: this.year,
           course_id: this.courseId,
