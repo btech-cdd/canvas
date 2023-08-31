@@ -185,11 +185,11 @@
           <span
             :style="{
               'background-color': readyToSubmit ? bridgetools.colors.red : bridgetools.colors.gray,
-              'color': readyToSubmit ? '#FFFFFF' '#000000',
+              'color': readyToSubmit ? '#FFFFFF' : '#000000',
               'padding': '0.25rem',
               'cursor': 'pointer'
             }"
-            @click="if (readyToSubmit) submitReview()"
+            @click="if (readyToSubmit) submitReview();"
           >Submit</span>
         </div>
       </div>
