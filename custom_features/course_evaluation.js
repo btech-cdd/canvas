@@ -186,7 +186,7 @@
           <span
             :style="{
               'background-color': readyToSubmit ? bridgetools.colors.red : bridgetools.colors.darkGray,
-              'color': readyToSubmit ? '#FFFFFF',
+              'color': '#FFFFFF',
               'padding': '0.25rem',
               'cursor': 'pointer'
             }"
