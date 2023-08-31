@@ -130,7 +130,6 @@
             </div>
             <div
               style="
-                width: 100%;
                 justify-content: space-around;
                 user-select: none;
                 border-radius: 1rem;
