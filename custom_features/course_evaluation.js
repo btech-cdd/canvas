@@ -374,6 +374,7 @@
           let topic = review.topics[t];
           for (let q in topic.questions) {
             let question = topic.questions[q];
+            console.log(question);
             let rating = question.rating ?? 0;
             if (rating == 0) return false;
           }
