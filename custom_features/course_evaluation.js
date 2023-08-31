@@ -100,14 +100,14 @@
         v-if="currentMenu == 'new'"
       >
         <div
-          v-for="topic, name in (activeReview?.summary.topics ?? [])"
+          v-for="topic in activeReview?.summary.topics ?? []"
           style="
             padding: 0.5rem;
             margin: 0.5rem;
             background-color: #FFFFFF;
           "
         >
-          <h3><strong>{{name}}</strong></h3>
+          <h3><strong>{{topicName}}</strong></h3>
           <div
             v-for="question, text in topic.questions"
             style="
@@ -402,14 +402,15 @@
     methods: {
       initReview: function (review) {
         let summary = {
-          topics: {},
+          topicDict: {},
+          topics: [],
           topicOrder: []
         };
         for (let s in review.scores) {
           let score = review.scores[s];
           let question = score.question;
           let topic = question.topic;
-          summary.topics[topic.name] = summary.topics?.[topic.name] ?? {
+          summary.topicDict[topic.name] = summary.topicDict?.[topic.name] ?? {
             questions: {},
             order: topic.order,
             average: 0
@@ -419,7 +420,7 @@
           for (let t in question.tips) {
             tip += question.tips[t] + '\n';
           }
-          summary.topics[topic.name].questions[question.text] = summary.topics[topic.name].questions?.[question.text] ?? {
+          summary.topicDict[topic.name].questions[question.text] = summary.topicDict[topic.name].questions?.[question.text] ?? {
             tip: tip,
             rating: score.rating,
             links: score.links[0],
@@ -427,10 +428,14 @@
             id: score._id
           };
         }
-        let topicOrder = summary.topicOrder;
-        topicOrder = topicOrder.sort((a, b) => {
-          return summary.topics[a].order - summary.topics[b].order;
+        for (let t in summary.topicDict) {
+          let topic = summary.topicDict[t];
+          summary.topics.push(topic);
+        }
+        summary.topics.sort((a, b) => {
+          return a.order - b.order;
         });
+        console.log(summary.topics);
         review.summary = summary;
 
         for (let name in summary.topics) {
@@ -461,7 +466,6 @@
         let score = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
           comment: comment 
         }, "PUT");
-        console.log(score);
         this.updating = false;
       },
       pinURL: async function (scoreId, currentURL) {
