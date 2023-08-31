@@ -425,6 +425,7 @@
             rating: score.rating,
             links: score.links[0],
             comment: score.comment,
+            order: question.order,
             id: score._id
           };
         }
