@@ -541,6 +541,7 @@
         this.loadReviews();
       },
       newReview: async function () {
+        console.log(this.courseCode);
         let review = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${this.courseCode.replace(" ", "%20")}/new`, {
           year: this.year,
           course_id: this.courseId,
