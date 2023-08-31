@@ -140,8 +140,8 @@
                   display: inline-block;
                   border: 1px solid #303030;
                   width: 24%;
-                  height: 2rem;
-                  font-size: 1.5rem;
+                  height: 1rem;
+                  font-size: .75rem;
                   text-align: center;
                   cursor: pointer;
                 "
