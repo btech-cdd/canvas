@@ -411,6 +411,7 @@
           let topic = question.topic;
           summary.topics[topic.name] = summary.topics?.[topic.name] ?? {
             questions: {},
+            order: topic.order,
             average: 0
           };
           if (!summary.topicOrder.includes(topic.name)) summary.topicOrder.push(topic.name);
