@@ -404,7 +404,6 @@
         let summary = {
           topicDict: {},
           topics: [],
-          topicOrder: []
         };
         for (let s in review.scores) {
           let score = review.scores[s];
@@ -429,18 +428,31 @@
             id: score._id
           };
         }
+
+        // REORDER TOPICS AND QUESTIONS IN SUMMARY TO MATCH THE ORDER
         for (let t in summary.topicDict) {
           let topic = summary.topicDict[t];
+          let questions = [];
+          for (let q in topic.questions) {
+            questions.push(topic.questions[q]);
+          }
+          questions.sort((a, b) => {
+            return a.order - b.order;
+          });
+          topic.questions = questions;
           summary.topics.push(topic);
         }
         summary.topics.sort((a, b) => {
           return a.order - b.order;
         });
-        console.log(summary.topics);
-        review.summary = summary;
 
-        for (let name in summary.topics) {
-          let topic = summary.topics[name];
+        // SET UP SUMMARY OBJECT
+        review.summary = {
+          topics: summary.topics
+        };
+
+        for (let t in summary.topics) {
+          let topic = summary.topics[t];
           count = 0;
           total = 0;
           for (let text in topic.questions) {
