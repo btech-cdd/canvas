@@ -431,7 +431,6 @@
         topicOrder = topicOrder.sort((a, b) => {
           return summary.topics[a].order - summary.topics[b].order;
         });
-        console.log(summary.topicOrder);
         review.summary = summary;
 
         for (let name in summary.topics) {
