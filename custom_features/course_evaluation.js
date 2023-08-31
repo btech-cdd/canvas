@@ -512,6 +512,10 @@
       },
       submitReview: async function () {
         let review = this.activeReview;
+        console.log(review);
+        for (let t in review.topics) {
+
+        }
         await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/review/${review._id}`, {
           submitted: true 
         }, "PUT");
