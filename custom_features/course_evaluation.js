@@ -428,7 +428,7 @@
         }
         let topicOrder = summary.topicOrder;
         topicOrder = topicOrder.sort((a, b) => {
-          console.log(a);
+          console.log(summary.topics[a].order);
           return summary.topics[b].order - summary.topics[a].order;
         });
         console.log(summary.topicOrder);
