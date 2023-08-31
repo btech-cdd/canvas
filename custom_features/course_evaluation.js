@@ -516,6 +516,7 @@
         await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/review/${review._id}`, {
           submitted: true 
         }, "PUT");
+        this.currentMenu = 'history';
         this.loadReviews();
       },
       newReview: async function () {
