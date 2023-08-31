@@ -426,9 +426,15 @@
             id: score._id
           };
         }
+        console.log(summary.topicOrder);
         summary.topicOrder.sort((a, b) => {
           summary.topics[a].order - summary.topics[b].order;
-        })
+        });
+        console.log(summary.topicOrder);
+        summary.topicOrder.sort((a, b) => {
+          summary.topics[b].order - summary.topics[a].order;
+        });
+        console.log(summary.topicOrder);
         review.summary = summary;
 
         for (let name in summary.topics) {
