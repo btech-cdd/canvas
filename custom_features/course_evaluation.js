@@ -426,7 +426,9 @@
             id: score._id
           };
         }
-        summary.topicOrder.sort((a, b) => {
+        let topicOrder = summary.topicOrder;
+        topicOrder = topicOrder.sort((a, b) => {
+          console.log(a);
           return summary.topics[b].order - summary.topics[a].order;
         });
         console.log(summary.topicOrder);
