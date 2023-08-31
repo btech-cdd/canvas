@@ -510,7 +510,7 @@
               colors.yellowGreen :
               average < 4 ?
                 colors.green:
-                colors.darkGreen 
+                colors.green
         )
       },
       deleteReview: async function (reviewId) {
