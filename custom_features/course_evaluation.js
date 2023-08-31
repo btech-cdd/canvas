@@ -140,7 +140,7 @@
                   display: inline-block;
                   border: 1px solid #303030;
                   border-radius: 1rem;
-                  width: 25%;
+                  width: 24%;
                   height: 2rem;
                   font-size: 1.5rem;
                   text-align: center;
