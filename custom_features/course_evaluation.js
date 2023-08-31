@@ -130,6 +130,7 @@
             </div>
             <div
               style="
+                width: 100%;
                 justify-content: space-around;
                 user-select: none;
                 border-radius: 1rem;
@@ -139,7 +140,7 @@
               <span 
                 style="
                   display: inline-block;
-                  width: 24%;
+                  width: 25%;
                   text-align: center;
                   cursor: pointer;
                 "
