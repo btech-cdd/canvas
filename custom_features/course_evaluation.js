@@ -184,10 +184,10 @@
           >Discard</span>
           <span
             :style="{
-              'background-color': bridgetools.colors.red;
-              color: #FFFFFF;
-              padding: 0.25rem;
-              cursor: pointer;
+              'background-color': bridgetools.colors.red,
+              'color': '#FFFFFF',
+              'padding': '0.25rem',
+              'cursor': 'pointer'
             }"
             @click="submitReview()"
           >Submit</span>
