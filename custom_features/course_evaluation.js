@@ -370,12 +370,12 @@
         let reviewInProgress = Object.keys(review).length > 0;
         if (!reviewInProgress) return false;
 
+        console.log(review);
         // FALSE IF ANY SCORES ARE MISSING
-        for (let t in review.topics) {
-          let topic = review.topics[t];
+        for (let t in review.summary.topics) {
+          let topic = review.summary.topics[t];
           for (let q in topic.questions) {
             let question = topic.questions[q];
-            console.log(question);
             let rating = question.rating ?? 0;
             if (rating == 0) return false;
           }
@@ -473,7 +473,6 @@
         review.summary = {
           topics: summary.topics
         };
-        console.log(review.summary);
 
         for (let t in summary.topics) {
           let topic = summary.topics[t];
