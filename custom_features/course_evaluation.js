@@ -183,12 +183,12 @@
             @click="discardReview()"
           >Discard</span>
           <span
-            style="
-              background-color: #d22232;
+            :style="{
+              'background-color': bridgetools.colors.red;
               color: #FFFFFF;
               padding: 0.25rem;
               cursor: pointer;
-            "
+            }"
             @click="submitReview()"
           >Submit</span>
         </div>
