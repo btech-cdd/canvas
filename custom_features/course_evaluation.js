@@ -141,8 +141,6 @@
                 style="
                   display: inline-block;
                   width: 24%;
-                  height: 1rem;
-                  font-size: .75rem;
                   text-align: center;
                   cursor: pointer;
                 "
