@@ -473,6 +473,7 @@
         review.summary = {
           topics: summary.topics
         };
+        console.log(review.summary);
 
         for (let t in summary.topics) {
           let topic = summary.topics[t];
