@@ -139,7 +139,6 @@
                 style="
                   display: inline-block;
                   border: 1px solid #303030;
-                  border-radius: 1rem;
                   width: 24%;
                   height: 2rem;
                   font-size: 1.5rem;
@@ -149,7 +148,8 @@
                 v-for="i in [1, 2, 3, 4]"
                 :style="{
                   'background-color': question.rating == i ? averageColor(i) : '#FFFFFF',
-                  'color' : question.rating == i ? '#FFFFFF' : '#000000'
+                  'color' : question.rating == i ? '#FFFFFF' : '#000000',
+                  'border-radius': i == 1 ? ('1rem 0 0 1rem') : (i == 4 ? '0 1rem 1rem 0' : '1rem')
                 }"
                 @click="setRating(question.id, i); question.rating = i;"
               >
