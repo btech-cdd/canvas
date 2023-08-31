@@ -503,7 +503,7 @@
         let colors = this.bridgetools.colors;
         return (
           average < 2 ? 
-            colors.orange: 
+            colors.darkOrange: 
             average < 3 ? 
               colors.yellow: 
               average < 3.5 ?
