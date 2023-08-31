@@ -126,19 +126,21 @@
                 @click="pinURL(question.id, question.links)"
                 :title="question.links"
               ></i>
-              <strong :title="question.tip">{{text}}</strong></div>
+              <strong :title="question.tip">{{text}}</strong>
+            </div>
             <div
               style="
-                display: flex;
+                width: 100%;
                 justify-content: space-around;
                 user-select: none;
               "
             >
               <span 
                 style="
+                  display: inline-block;
                   border: 1px solid #303030;
                   border-radius: 1rem;
-                  width: 2rem;
+                  width: 25%;
                   height: 2rem;
                   font-size: 1.5rem;
                   text-align: center;
@@ -150,7 +152,9 @@
                   'color' : question.rating == i ? '#FFFFFF' : '#000000'
                 }"
                 @click="setRating(question.id, i); question.rating = i;"
-              ><b>{{i}}</b></span>
+              >
+                <b>{{i}}</b>
+              </span>
             </div>
             <div>
                 <textarea

@@ -1,7 +1,7 @@
 /*
   FORMATTING
 
-  Convert quiz questions to match the sample format. Correct answers in the HTML format are bolded. Mark the correct answer with an *.
+  Convert quiz questions to match the sample format. Mark the correct answer with an *.
   SAMPLE
   Q1. question
   A. answer
