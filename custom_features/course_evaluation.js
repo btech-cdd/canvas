@@ -238,7 +238,7 @@
               "
             >
               <span
-                v-for="topic, name in review.summary.topics"
+                v-for="topic in review.summary.topics"
                 style="
                   display: flex;
                   justify-content: center;
@@ -257,9 +257,9 @@
                     color: #FFFFFF;
                   "
                   :class="
-                    icons[name]
+                    icons[topic.name]
                   "
-                  :title="name + ': ' + topic.average"
+                  :title="topic.name + ': ' + topic.average"
                 ></i>
               </span>
             </div>
