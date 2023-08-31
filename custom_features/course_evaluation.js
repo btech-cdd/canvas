@@ -99,6 +99,7 @@
       <div
         v-if="currentMenu == 'new'"
       >
+          <div>{{readyToSubmit}}</div>
         <div
           v-for="topic in activeReview?.summary?.topics ?? []"
           style="
