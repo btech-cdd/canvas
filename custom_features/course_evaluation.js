@@ -265,19 +265,19 @@
             </div>
           </div>
         </div>
-        <!--View a specific past review-->
+        <!--SPECIFIC PAST REVIEW-->
         <div
           v-else
         >
           <div
-            v-for="topic, name in (viewReview?.summary.topics ?? [])"
+            v-for="topic in (viewReview?.summary.topics ?? [])"
             style="
               padding: 0.5rem;
               margin: 0.5rem;
               background-color: #FFFFFF;
             "
           >
-            <h3><strong>{{name}}</strong></h3>
+            <h3><strong>{{topic.name}}</strong></h3>
             <div
               v-for="question, text in topic.questions"
               style="
