@@ -109,7 +109,7 @@
         >
           <h3><strong>{{topic.name}}</strong></h3>
           <div
-            v-for="question, text in topic.questions"
+            v-for="question in topic.questions"
             style="
               margin-bottom: 0.5rem;
             "
@@ -126,7 +126,7 @@
                 @click="pinURL(question.id, question.links)"
                 :title="question.links"
               ></i>
-              <strong :title="question.tip">{{text}}</strong>
+              <strong :title="question.tip">{{question.text}}</strong>
             </div>
             <div
               style="
@@ -279,7 +279,7 @@
           >
             <h3><strong>{{topic.name}}</strong></h3>
             <div
-              v-for="question, text in topic.questions"
+              v-for="question in topic.questions"
               style="
                 margin-bottom: 0.5rem;
               "
@@ -305,7 +305,7 @@
                     'color' : '#FFFFFF'
                   }"
                 ><b>{{question.rating}}</b></span>
-                <strong :title="question.tip">{{text}}</strong>
+                <strong :title="question.tip">{{question.text}}</strong>
               </div>
               <div
                 style="margin-top: 0.5rem; box-sizing: border-box; width: 100%;"
@@ -422,6 +422,7 @@
           }
           summary.topicDict[topic.name].questions[question.text] = summary.topicDict[topic.name].questions?.[question.text] ?? {
             tip: tip,
+            text: question.text,
             rating: score.rating,
             links: score.links[0],
             comment: score.comment,
