@@ -135,6 +135,7 @@
                 user-select: none;
                 border-radius: 1rem;
                 border: 1px solid #303030;
+                font-size: 0.75;
               "
             >
               <span 
