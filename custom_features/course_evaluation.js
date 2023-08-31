@@ -100,7 +100,7 @@
         v-if="currentMenu == 'new'"
       >
         <div
-          v-for="topic, name in (activeReview?.summary ?? [])"
+          v-for="topic, name in (activeReview?.summary.topics ?? [])"
           style="
             padding: 0.5rem;
             margin: 0.5rem;
@@ -238,7 +238,7 @@
               "
             >
               <span
-                v-for="topic, name in review.summary"
+                v-for="topic, name in review.summary.topics"
                 style="
                   display: flex;
                   justify-content: center;
@@ -270,7 +270,7 @@
           v-else
         >
           <div
-            v-for="topic, name in (viewReview?.summary ?? [])"
+            v-for="topic, name in (viewReview?.summary.topics ?? [])"
             style="
               padding: 0.5rem;
               margin: 0.5rem;
@@ -401,20 +401,24 @@
     },
     methods: {
       initReview: function (review) {
-        let summary = {};
+        let summary = {
+          topics: {},
+          topicOrder: []
+        };
         for (let s in review.scores) {
           let score = review.scores[s];
           let question = score.question;
           let topic = question.topic;
-          summary[topic.name] = summary?.[topic.name] ?? {
+          summary.topics[topic.name] = summary.topics?.[topic.name] ?? {
             questions: {},
             average: 0
           };
+          if (!summary.topicOrder.includes(topic.name)) summary.topicOrder.push(topic.name);
           let tip = "";
           for (let t in question.tips) {
             tip += question.tips[t] + '\n';
           }
-          summary[topic.name].questions[question.text] = summary[topic.name].questions?.[question.text] ?? {
+          summary.topics[topic.name].questions[question.text] = summary.topics[topic.name].questions?.[question.text] ?? {
             tip: tip,
             rating: score.rating,
             links: score.links[0],
@@ -422,10 +426,13 @@
             id: score._id
           };
         }
+        summary.topicOrder.sort((a, b) => {
+          summary.topics[a].order - summary.topics[b].order;
+        })
         review.summary = summary;
 
-        for (let name in summary) {
-          let topic = summary[name];
+        for (let name in summary.topics) {
+          let topic = summary.topics[name];
           count = 0;
           total = 0;
           for (let text in topic.questions) {
