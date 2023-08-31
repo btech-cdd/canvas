@@ -185,8 +185,8 @@
           >Discard</span>
           <span
             :style="{
-              'background-color': readyToSubmit ? bridgetools.colors.red : bridgetools.colors.gray,
-              'color': readyToSubmit ? '#FFFFFF' : '#000000',
+              'background-color': readyToSubmit ? bridgetools.colors.red : bridgetools.colors.darkGray,
+              'color': readyToSubmit ? '#FFFFFF',
               'padding': '0.25rem',
               'cursor': 'pointer'
             }"
