@@ -184,12 +184,12 @@
           >Discard</span>
           <span
             :style="{
-              'background-color': bridgetools.colors.red,
-              'color': '#FFFFFF',
+              'background-color': readyToSubmit ? bridgetools.colors.red : bridgetools.colors.gray,
+              'color': readyToSubmit ? '#FFFFFF' '#000000',
               'padding': '0.25rem',
               'cursor': 'pointer'
             }"
-            @click="submitReview()"
+            @click="if (readyToSubmit) submitReview()"
           >Submit</span>
         </div>
       </div>
@@ -361,6 +361,26 @@
           this.loadReviews();
         }
       }, 1000);
+    },
+    computed: {
+      readyToSubmit() {
+        let review = this.activeReview;
+        // MAKE SURE THERE'S AN ACTIVE REVIEW
+        let reviewInProgress = Object.keys(review).length > 0;
+        if (!reviewInProgress) return false;
+
+        // FALSE IF ANY SCORES ARE MISSING
+        for (let t in review.topics) {
+          let topic = review.topics[t];
+          for (let q in topic.questions) {
+            let question = topic.questions[q];
+            let rating = question.rating ?? 0;
+            if (rating == 0) return false;
+          }
+        }
+
+        return true;
+      }
     },
     data: function () {
       return {
