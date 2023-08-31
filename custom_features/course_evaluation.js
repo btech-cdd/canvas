@@ -100,7 +100,7 @@
         v-if="currentMenu == 'new'"
       >
         <div
-          v-for="topic in activeReview?.summary.topics ?? []"
+          v-for="topic in activeReview?.summary?.topics ?? []"
           style="
             padding: 0.5rem;
             margin: 0.5rem;
@@ -238,7 +238,7 @@
               "
             >
               <span
-                v-for="topic in review.summary.topics"
+                v-for="topic in review.summary?.topics ?? []"
                 style="
                   display: flex;
                   justify-content: center;
