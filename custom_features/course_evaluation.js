@@ -415,7 +415,6 @@
             order: topic.order,
             average: 0
           };
-          if (!summary.topicOrder.includes(topic.name)) summary.topicOrder.push(topic.name);
           let tip = "";
           for (let t in question.tips) {
             tip += question.tips[t] + '\n';
