@@ -153,7 +153,7 @@
                 }"
                 @click="setRating(question.id, i); question.rating = i;"
               >
-                <b>{{i}}</b>
+                <b>{{ratingDescription[i]}}</b>
               </span>
             </div>
             <div>
