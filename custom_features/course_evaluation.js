@@ -107,7 +107,7 @@
             background-color: #FFFFFF;
           "
         >
-          <h3><strong>{{topicName}}</strong></h3>
+          <h3><strong>{{topic.name}}</strong></h3>
           <div
             v-for="question, text in topic.questions"
             style="
@@ -411,6 +411,7 @@
           let question = score.question;
           let topic = question.topic;
           summary.topicDict[topic.name] = summary.topicDict?.[topic.name] ?? {
+            name: topic.name,
             questions: {},
             order: topic.order,
             average: 0
