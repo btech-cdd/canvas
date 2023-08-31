@@ -364,6 +364,12 @@
     },
     data: function () {
       return {
+        ratingDescription: [
+          'Never/Seldom'
+          , 'Sometimes'
+          , 'Consistently'
+          , 'Exemplary'
+        ],
         minimized: true,
         updating: false,
         currentMenu: 'history',
