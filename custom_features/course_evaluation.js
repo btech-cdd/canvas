@@ -503,14 +503,14 @@
         let colors = this.bridgetools.colors;
         return (
           average < 2 ? 
-            colors.red : 
+            colors.orange: 
             average < 3 ? 
-              colors.orange : 
+              colors.yellow: 
               average < 3.5 ?
-              colors.yellow :
+              colors.yellowGreen :
               average < 4 ?
-                colors.yellowGreen :
-                colors.green 
+                colors.green:
+                colors.darkGreen 
         )
       },
       deleteReview: async function (reviewId) {
