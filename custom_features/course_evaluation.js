@@ -212,7 +212,7 @@
             "
           >
             <div>
-              {{review}}
+              {{review.rater_name}}
               {{review.date}}
               <span
                 style="
