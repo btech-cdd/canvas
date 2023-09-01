@@ -68,6 +68,7 @@
           grid-template-columns: auto auto auto;
           text-align: center;
           user-select: none;
+          cursor: pointer;
         "
       >
         <span 
