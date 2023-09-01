@@ -211,11 +211,13 @@
               background-color: #FFFFFF;
             "
           >
-            <div>
-              <span style="display: inline-block; width: 6rem;">{{bridgetools.dateToString(review.date)}}</span>
+            <div
+              style="user-select: none; cursor: pointer;"
+              @click="viewReview = review;"
+            >
               <span style="font-size: 0.75;"><i>{{raterNames?.[review.rater_id] ?? ""}}</i></span>
               <span
-                v-if="review.rater_id == raterId || raterId == 1893418"
+                v-if="raterId == 1893418"
                 style="
                   float: right;
                   cursor: pointer;
@@ -223,15 +225,7 @@
                 "
                 @click="deleteReview(review._id)"
               >X</span>
-              <span
-                style="
-                  float: right;
-                  cursor: pointer;
-                  user-select: none;
-                  padding-right: 1rem;
-                "
-                @click="viewReview = review;"
-              ><i class="icon-student-view"></i></span>
+              <span style="float: right; display: inline-block; width: 6rem;">{{bridgetools.dateToString(review.date)}}</span>
             </div>
             <div
               style="
