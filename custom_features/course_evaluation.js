@@ -212,7 +212,7 @@
             "
           >
             <div>
-              {{review.rater_name}}
+              {{raterNames?.[review.rater_id] ?? ""}}
               {{review.date}}
               <span
                 style="
@@ -591,10 +591,11 @@
         let activeFound = false;
         for (let r in reviews) {
           let review = reviews[r];
+          console.log(review);
           let raterId = review.rater_id;
           if (!this.raterNames?.[raterId]) {
             let user = await canvasGet('/api/v1/users/' + raterId);
-            console.log(user);
+            this.raterNames[raterId] = user.name;
           }
           this.initReview(review);
 
