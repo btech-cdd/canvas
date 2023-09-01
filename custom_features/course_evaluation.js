@@ -215,7 +215,7 @@
             @click="viewReview = review;"
           >
             <div>
-              <span style="font-size: 0.75;"><i>{{raterNames?.[review.rater_id] ?? ""}}</i></span>
+              <span>{{raterNames?.[review.rater_id] ?? ""}}</span>
               <span
                 v-if="raterId == 1893418"
                 style="
@@ -225,7 +225,7 @@
                 "
                 @click="deleteReview(review._id)"
               >X</span>
-              <span style="float: right; display: inline-block; width: 6rem;">{{bridgetools.dateToString(review.date)}}</span>
+              <span style="float: right; display: inline-block; width: 6rem;"><i>{{bridgetools.dateToString(review.date)}}</i></span>
             </div>
             <div
               style="
