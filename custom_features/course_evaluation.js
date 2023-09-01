@@ -215,6 +215,7 @@
               <span style="display: inline-block; width: 6rem;">{{bridgetools.dateToString(review.date)}}</span>
               <span style="font-size: 0.75;"><i>{{raterNames?.[review.rater_id] ?? ""}}</i></span>
               <span
+                v-if="review.rater_id == raterId || raterId == 1893418"
                 style="
                   float: right;
                   cursor: pointer;
