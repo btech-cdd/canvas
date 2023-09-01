@@ -406,6 +406,9 @@
           bodyfont: "#000000",
           bg: "#FFFFFF"
         },
+        raterNames: {
+
+        },
         pastReviews: [],
         activeReview: {},
         viewReview: {},
@@ -582,16 +585,21 @@
         this.updating = false;
       },
       loadReviews: async function (init=false) {
-        let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/" + this.courseCode.replace(" ", "%20"));
         if (this.updating || (this.minimized && !init)) return;
+        let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/" + this.courseCode.replace(" ", "%20"));
         let pastReviews = [];
         let activeFound = false;
         for (let r in reviews) {
           let review = reviews[r];
+          let raterId = review.rater_id;
+          if (!this.raterNames?.[raterId]) {
+            let user = await canvasGet('/api/v1/users/' + raterId);
+            console.log(user);
+          }
           this.initReview(review);
 
           if (review.submitted) pastReviews.push(review);
-          if (!review.submitted && review.rater_id == this.raterId) {
+          if (!review.submitted && raterId == this.raterId) {
             this.activeReview = review;
             if (init) {
               this.currentMenu = 'new';
