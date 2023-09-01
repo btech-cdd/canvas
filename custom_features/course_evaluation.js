@@ -595,7 +595,7 @@
           console.log(review);
           let raterId = review.rater_id;
           console.log(raterId);
-          if (!this.raterNames?.[raterId]) {
+          if (this.raterNames[raterId] == undefined) {
             let user = await canvasGet('/api/v1/users/' + raterId);
             this.raterNames[raterId] = user.name;
           }
