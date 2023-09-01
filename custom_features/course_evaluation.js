@@ -212,6 +212,7 @@
             "
           >
             <div>
+              {{review.rater_id}}
               {{raterNames?.[review.rater_id] ?? ""}}
               {{review.date}}
               <span
@@ -593,10 +594,12 @@
           let review = reviews[r];
           console.log(review);
           let raterId = review.rater_id;
+          console.log(raterId);
           if (!this.raterNames?.[raterId]) {
             let user = await canvasGet('/api/v1/users/' + raterId);
             this.raterNames[raterId] = user.name;
           }
+          console.log(raterNames);
           this.initReview(review);
 
           if (review.submitted) pastReviews.push(review);
