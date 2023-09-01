@@ -212,6 +212,7 @@
             "
           >
             <div>
+              {{review}}
               {{review.date}}
               <span
                 style="
