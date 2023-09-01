@@ -599,7 +599,7 @@
             let user = await canvasGet('/api/v1/users/' + raterId);
             this.raterNames[raterId] = user.name;
           }
-          console.log(raterNames);
+          console.log(this.raterNames);
           this.initReview(review);
 
           if (review.submitted) pastReviews.push(review);
