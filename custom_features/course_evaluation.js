@@ -209,12 +209,11 @@
               padding: 0.5rem;
               margin: 0.5rem;
               background-color: #FFFFFF;
+              user-select: none; cursor: pointer;
             "
+            @click="viewReview = review;"
           >
-            <div
-              style="user-select: none; cursor: pointer;"
-              @click="viewReview = review;"
-            >
+            <div>
               <span style="font-size: 0.75;"><i>{{raterNames?.[review.rater_id] ?? ""}}</i></span>
               <span
                 v-if="raterId == 1893418"
