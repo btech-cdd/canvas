@@ -212,9 +212,8 @@
             "
           >
             <div>
-              {{review.rater_id}}
               {{raterNames?.[review.rater_id] ?? ""}}
-              {{review.date}}
+              {{bridgetools.dateToString(review.date)}}
               <span
                 style="
                   float: right;
@@ -592,14 +591,11 @@
         let activeFound = false;
         for (let r in reviews) {
           let review = reviews[r];
-          console.log(review);
           let raterId = review.rater_id;
-          console.log(raterId);
           if (this.raterNames[raterId] == undefined) {
             let user =(await canvasGet('/api/v1/users/' + raterId))[0];
             this.raterNames[raterId] = user.name;
           }
-          console.log(this.raterNames);
           this.initReview(review);
 
           if (review.submitted) pastReviews.push(review);
