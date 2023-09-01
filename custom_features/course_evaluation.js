@@ -212,7 +212,7 @@
             "
           >
             <div>
-              <span>{{bridgetools.dateToString(review.date)}}</span>
+              <span style="width: 6rem;">{{bridgetools.dateToString(review.date)}}</span>
               <span style="font-size: 0.75;"><i>{{raterNames?.[review.rater_id] ?? ""}}</i></span>
               <span
                 style="
