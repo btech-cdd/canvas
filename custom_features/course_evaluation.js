@@ -225,7 +225,7 @@
                 "
                 @click="deleteReview(review._id)"
               >X</span>
-              <span style="float: right; display: inline-block; width: 6rem;"><i>{{bridgetools.dateToString(review.date)}}</i></span>
+              <span style="float: right; display: inline-block; width: 6rem; font-size: 0.75rem;"><i>{{bridgetools.dateToString(review.date)}}</i></span>
             </div>
             <div
               style="
