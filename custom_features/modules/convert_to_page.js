@@ -87,5 +87,5 @@
 
   addToModuleItemMenu("Convert To Page", "Remove this item from the module", convertAssignmentToPage, "Assignment");
   addToModuleItemMenu("Convert To Page", "Remove this item from the module", convertQuizToPage, "Quiz");
-  addToModuleItemMenu("Convert Text Items to Page", "Remove this item from the module", convertTextItemsToPage, "Quiz");
+  // addToModuleItemMenu("Convert Text Items to Page", "Remove this item from the module", convertTextItemsToPage, "Quiz");
 })();
