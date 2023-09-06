@@ -30,10 +30,9 @@
     let itemId = item.find("div.ig-admin span").attr("data-content-id");
     let moduleItemId = item.find("div.ig-admin span").attr("data-module-item-id");
     let oldModuleItemData = await $.get("/api/v1/courses/" + courseId + "/modules/" + moduleId + "/items/" + moduleItemId);
-    console.log(oldModuleItemData);
-    return
     let quiz = await $.get("/api/v1/courses/" + courseId + "/quizzes/" + itemId);
     console.log(quiz);
+    return;
     let page = await $.post("/api/v1/courses/" + courseId + "/pages", {
       wiki_page: {
         title: assignment.name,
