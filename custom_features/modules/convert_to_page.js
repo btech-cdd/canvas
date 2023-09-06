@@ -74,7 +74,7 @@
           module_item: {
             title: page.title,
             type: 'Page',
-            position: oldModuleItemData.position++,
+            position: oldModuleItemData.position++, // ++ increments it after setting it so the next one will be one greater
             indent: oldModuleItemData.indent,
             page_url: page.url
           }
