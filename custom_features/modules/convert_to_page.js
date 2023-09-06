@@ -61,6 +61,7 @@
         let question = questions[q];
         if (question.question_type != "text_only_question") continue;
         let pageTitle = question.question_name;
+        if (pageTitle == "Question") pageTitle = oldModuleItemData.title;
         let pageBody = question.question_text;
         let page = await $.post("/api/v1/courses/" + courseId + "/pages", {
           wiki_page: {
