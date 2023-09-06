@@ -31,12 +31,10 @@
     let moduleItemId = item.find("div.ig-admin span").attr("data-module-item-id");
     let oldModuleItemData = await $.get("/api/v1/courses/" + courseId + "/modules/" + moduleId + "/items/" + moduleItemId);
     let quiz = await $.get("/api/v1/courses/" + courseId + "/quizzes/" + itemId);
-    console.log(quiz);
-    return;
     let page = await $.post("/api/v1/courses/" + courseId + "/pages", {
       wiki_page: {
-        title: assignment.name,
-        body: assignment.description,
+        title: quiz.title,
+        body: quiz.description,
         published: oldModuleItemData.published
       }
     });
@@ -50,7 +48,7 @@
       }
     });
     await $.delete("/api/v1/courses/" + courseId + "/modules/" + moduleId + "/items/" + moduleItemId);
-    await $.delete("/api/v1/courses/" + courseId + "/assignments/" + oldModuleItemData.content_id);
+    await $.delete("/api/v1/courses/" + courseId + "/quizzes/" + oldModuleItemData.content_id);
     location.reload(true);
   }
   addToModuleItemMenu("Convert To Page", "Remove this item from the module", convertAssignmentToPage, "Assignment");
