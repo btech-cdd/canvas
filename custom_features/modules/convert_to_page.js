@@ -55,5 +55,5 @@
     location.reload(true);
   }
   addToModuleItemMenu("Convert To Page", "Remove this item from the module", convertAssignmentToPage, "Assignment");
-  addToModuleItemMenu("Convert To Page", "Remove this item from the module", convertAssignmentToPage, "Quiz");
+  addToModuleItemMenu("Convert To Page", "Remove this item from the module", convertQuizToPage, "Quiz");
 })();
