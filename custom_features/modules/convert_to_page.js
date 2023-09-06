@@ -74,7 +74,7 @@
           module_item: {
             title: page.title,
             type: 'Page',
-            position: oldModuleItemData.position,
+            position: oldModuleItemData.position++,
             indent: oldModuleItemData.indent,
             page_url: page.url
           }
