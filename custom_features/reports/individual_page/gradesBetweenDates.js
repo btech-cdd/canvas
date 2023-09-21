@@ -992,7 +992,7 @@
         try {
           let user = await this.bridgetoolsReq(`https://reports.bridgetools.dev/api/students/${ENV.current_user_id}`);
           console.log(user);
-          if (user?.enrollment_type == 'HS' && CURRENT_DEPARTMENT_ID === 3824) { //Dental testing this
+          if (user?.enrollment_type == 'HS' && (CURRENT_DEPARTMENT_ID === 3824 || CURRENT_DEPARTMENT_ID === 3848)) { //Dental & ID testing this
             if (/[0-9]+\/grades/.test(window.location.pathname)) {
               $("#content").prepend(`
                 <div style="background-color: white; position:relative; left: 0; bottom: 0;" class="ic-notification ic-notification--danger">
