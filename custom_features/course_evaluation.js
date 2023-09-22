@@ -385,6 +385,9 @@
                 style="
                   cursor: pointer;
                 "
+                :style="{
+                  'color': surveyQuestions[question].page > 0 ? colors.black : colors.gray
+                }"
                 @click="if (surveyQuestions[question].page > 0) surveyQuestions[question].page -= 1;"
               >&#8249;</span>
               <span>{{surveyQuestions[question].page + 1}}</span>
