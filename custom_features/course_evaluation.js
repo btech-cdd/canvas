@@ -705,12 +705,21 @@
               if (val !== undefined) {
                 questions[question].count += 1;
                 questions[question].sum += val;
-                questions[question].average = questions[question].sum / questions[question].count;
               }
             }
             else if (questionData.type == 'Text') {
               questions[question].comments.push(questionResponse);
             }
+          }
+        }
+
+        // SOME CLEAN UP ON QUESTIONS
+        for (let question in questions) {
+          let data = questions[question];
+          if (data.type == 'Text') {
+            questions[question].comments.sort((a, b) => {
+              return b.length - a.length;
+            })
           }
         }
 
