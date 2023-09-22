@@ -702,6 +702,8 @@
               }
             }
             else if (questionData.type == 'Text') {
+              console.log(question);
+              console.log(questionResponse)
               questions[question].comments.push(questionResponse);
             }
           }
