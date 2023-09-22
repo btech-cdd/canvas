@@ -680,7 +680,10 @@
             question.sum = 0;
             question.average = 0;
           }
-          question.comments = [];
+          else if (question.type == 'Text') {
+            this.surveyRatingsList.push(question.question);
+            question.comments = [];
+          }
           questions[question.question] = question;
         }
 
