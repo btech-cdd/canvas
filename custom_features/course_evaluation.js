@@ -376,7 +376,7 @@
             <div
               v-for="c in surveyCommentsPerPage"
             >
-              {{c + (surveyCommentsPerPage * surveyQuestions[question].page)}}. {{surveyQuestions[question].comments[c + (surveyCommentsPerPage * surveyQuestions[question].page)]}}
+              {{c + (surveyCommentsPerPage * surveyQuestions[question].page)}}. {{surveyQuestions[question].comments[c + (surveyCommentsPerPage * surveyQuestions[question].page) - 1]}}
             </div>
             <div
               style="text-align: center;"
@@ -392,7 +392,7 @@
                 style="
                   cursor: pointer;
                 "
-                @click="if (surveyQuestions[question].page < surveyQuestions[question].max_pages) surveyQuestions[question].page += 1;"
+                @click="if (surveyQuestions[question].page < surveyQuestions[question].max_pages - 1) surveyQuestions[question].page += 1;"
               >&#8250;</span>
             </div>
           </div>
