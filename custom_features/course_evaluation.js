@@ -345,6 +345,18 @@
             {{surveyQuestions[question].average}}
           </div>
         </div>
+        <div>
+          <div
+            v-for="question in surveyTextList"
+          >
+            {{question}}
+            <div
+              v-for="comment in surveyQuestions[quesiton].comments
+            >
+              {{comment}}
+            </div>
+          </div>
+        </div>
         {{surveyQuestions}}
       </div>
     </div>
@@ -437,6 +449,7 @@
         surveyQuestions: [],
         surveyResponses: [],
         surveyRatingsList: [],
+        surveyTextList: [],
         surveysLoaded: false,
         pastReviews: [],
         activeReview: {},
