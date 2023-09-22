@@ -682,10 +682,10 @@
 
         // LOOK UP FOR NUMBERIC RATINGS
         let ratingRef = {
-          'Strongly Agree': 1,
-          'Agree': 0.5,
-          'Disagree': -0.5,
-          'Strongly Disagree': -1
+          'Strongly Agree': 4,
+          'Agree': 3,
+          'Disagree': 2,
+          'Strongly Disagree': 1
         }
 
         // LOAD THE SURVEYS
