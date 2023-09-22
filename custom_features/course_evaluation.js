@@ -359,7 +359,7 @@
             <div
               v-for="c in surveyCommentsPerPage"
             >
-              {{surveyQuestions[question].comments[c]}}
+              {{surveyQuestions[question].comments[c + (surveyCommentsPerPage * surveyQuestions[question].page)]}}
             </div>
           </div>
         </div>
