@@ -343,7 +343,6 @@
           >
             <strong>{{question}}</strong>
             <span
-              v-for="topic in review.summary?.topics ?? []"
               style="
                 display: flex;
                 justify-content: center;
