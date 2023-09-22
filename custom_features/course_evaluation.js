@@ -352,7 +352,7 @@
               padding: 0.5rem;
               margin: 0.5rem;
               background-color: #FFFFFF;
-              user-select: none; cursor: pointer;
+              user-select: none;
             "
           >
             <strong>{{question}}</strong>
@@ -364,9 +364,19 @@
             <div
               style="text-align: center;"
             >
-              <span>&#8249;</span>
+              <span
+                style="
+                  cursor: pointer;
+                "
+                @click="if (surveyQuestions[question].page > 0) surveyQuestions[question].page -= 1;"
+              >&#8249;</span>
               <span>{{surveyQuestions[question].page + 1}}</span>
-              <span>&#8250;</span>
+              <span
+                style="
+                  cursor: pointer;
+                "
+                @click="if (surveyQuestions[question].page < surveyQuestions[question].max_pages) surveyQuestions[question].page += 1;"
+              >&#8250;</span>
             </div>
           </div>
         </div>
@@ -725,7 +735,10 @@
         // SOME CLEAN UP ON QUESTIONS
         for (let question in questions) {
           let data = questions[question];
-          if (data.type == 'Text') {
+          if (data.type == 'Rating') {
+            questions[quesiton].average = questions[question].sum / questions[question].count
+          }
+          else if (data.type == 'Text') {
             questions[question].max_pages = Math.ceil(questions[question].comments.length / this.surveyCommentsPerPage)
             questions[question].comments.sort((a, b) => {
               return b.length - a.length;
