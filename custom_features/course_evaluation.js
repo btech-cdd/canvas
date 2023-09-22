@@ -736,7 +736,7 @@
         for (let question in questions) {
           let data = questions[question];
           if (data.type == 'Rating') {
-            questions[quesiton].average = questions[question].sum / questions[question].count
+            questions[question].average = questions[question].sum / questions[question].count
           }
           else if (data.type == 'Text') {
             questions[question].max_pages = Math.ceil(questions[question].comments.length / this.surveyCommentsPerPage)
