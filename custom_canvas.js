@@ -230,11 +230,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
             if (CURRENT_DEPARTMENT_ID === 3841 || CURRENT_DEPARTMENT_ID === 3947) { //cosmetology && master esthetics
               // feature("department_specific/esthetics_cosmetology_services");
             }
-            if (CURRENT_DEPARTMENT_ID === 3848) { //Interior Design
-              // feature("grades_page/default_include_ungraded_assignments", {}, /^\/courses\/[0-9]+\/grades/);
-            }
             if (CURRENT_DEPARTMENT_ID === 3820) { //Web & Mobile
-              // externalFeature("https://bridgerland-web-dev.github.io/html_practice/html_practice.js", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/)
               externalFeature("https://static.codepen.io/assets/embed/ei.js", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             }
             if (CURRENT_DEPARTMENT_ID === 3883) { //Diesel

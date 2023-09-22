@@ -94,6 +94,13 @@
           }"
           @click="currentMenu = 'data';"
         >Data</span>
+        <span
+          :style="{
+            'background-color': currentMenu == 'data' ? 'white' : '',
+            'color': currentMenu == 'data' ? 'black' : '',
+          }"
+          @click="currentMenu = 'surveys'; loadSurveys();"
+        >Surveys</span>
       </div>
 
       <!--Active Review-->
@@ -404,6 +411,8 @@
         raterNames: {
 
         },
+        surveys: [],
+        surveysLoaded: false,
         pastReviews: [],
         activeReview: {},
         viewReview: {},
@@ -605,6 +614,14 @@
         }
         if (!activeFound) this.activeReview = {};
         this.pastReviews = pastReviews;
+      },
+      loadSurveys: async function () {
+        if (this.surveysLoaded) return;
+        let surveys = await this.bridgetools.req('https://surveys.bridgetools.dev/api/survey_data', {
+            course_code: this.courseCode 
+        }, 'POST');
+        console.log(surveys);
+        this.surveysLoaded = true;
       }
     }
   });
