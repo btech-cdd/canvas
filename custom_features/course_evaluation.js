@@ -341,7 +341,7 @@
               user-select: none; cursor: pointer;
             "
           >
-            {{question}}
+            <h3><strong>{{question}}</strong></h3>
             {{surveyQuestions[question].average}}
           </div>
         </div>
@@ -355,7 +355,7 @@
               user-select: none; cursor: pointer;
             "
           >
-            {{question}}
+            <h3><strong>{{question}}</strong></h3>
             <div
               v-for="comment in surveyQuestions[question].comments"
             >
@@ -363,7 +363,6 @@
             </div>
           </div>
         </div>
-        {{surveyQuestions}}
       </div>
     </div>
   </div>
