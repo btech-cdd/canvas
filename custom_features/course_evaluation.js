@@ -351,7 +351,7 @@
           >
             {{question}}
             <div
-              v-for="comment in surveyQuestions[quesiton].comments
+              v-for="comment in surveyQuestions[question].comments
             >
               {{comment}}
             </div>
