@@ -343,6 +343,7 @@
           >
             <strong>{{question}}</strong>
             <span
+              :title="'Out of ' + surveyQuestions[question].count + ' responses.'"
               style="
                 display: flex;
                 justify-content: center;
