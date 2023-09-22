@@ -348,6 +348,12 @@
         <div>
           <div
             v-for="question in surveyTextList"
+            style="
+              padding: 0.5rem;
+              margin: 0.5rem;
+              background-color: #FFFFFF;
+              user-select: none; cursor: pointer;
+            "
           >
             {{question}}
             {{surveyQuestions[question]}}
