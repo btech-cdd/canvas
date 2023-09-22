@@ -386,7 +386,7 @@
                   cursor: pointer;
                 "
                 :style="{
-                  'color': surveyQuestions[question].page > 0 ? colors.black : colors.gray
+                  'color': surveyQuestions[question].page > 0 ? bridgetools.colors.black : bridgetools.colors.gray
                 }"
                 @click="if (surveyQuestions[question].page > 0) surveyQuestions[question].page -= 1;"
               ><b>&#8249;</b></span>
