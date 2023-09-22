@@ -357,9 +357,9 @@
           >
             <strong>{{question}}</strong>
             <div
-              v-for="comment in surveyQuestions[question].comments"
+              v-for="c in surveyCommentsPerPage"
             >
-              {{comment}}
+              {{surveyQuestions[quesiton].comments[c]}}
             </div>
           </div>
         </div>
@@ -456,6 +456,7 @@
         surveyRatingsList: [],
         surveyTextList: [],
         surveysLoaded: false,
+        surveyCommentsPerPage: 5,
         pastReviews: [],
         activeReview: {},
         viewReview: {},
@@ -689,6 +690,7 @@
           }
           else if (question.type == 'Text') {
             this.surveyTextList.push(question.question);
+            question.page = 0;
             question.comments = [];
           }
           questions[question.question] = question;
@@ -717,6 +719,7 @@
         for (let question in questions) {
           let data = questions[question];
           if (data.type == 'Text') {
+            questions[question].max_pages = Math.ceil(questions[question].comments.length / this.surveyCommentsPerPage)
             questions[question].comments.sort((a, b) => {
               return b.length - a.length;
             })
