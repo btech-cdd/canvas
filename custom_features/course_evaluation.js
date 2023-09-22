@@ -356,7 +356,7 @@
                 'background-color': averageColor(surveyQuestions[question].average)
               }"
             >
-            {{Math.round(surveyQuestions[question].average * 4) / 4}}
+            {{Math.round(surveyQuestions[question].average * 2) / 2}}
             </span>
           </div>
         </div>
