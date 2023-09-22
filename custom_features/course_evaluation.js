@@ -389,14 +389,14 @@
                   'color': surveyQuestions[question].page > 0 ? colors.black : colors.gray
                 }"
                 @click="if (surveyQuestions[question].page > 0) surveyQuestions[question].page -= 1;"
-              >&#8249;</span>
+              ><b>&#8249;</b></span>
               <span>{{surveyQuestions[question].page + 1}}</span>
               <span
                 style="
                   cursor: pointer;
                 "
                 @click="if (surveyQuestions[question].page < surveyQuestions[question].max_pages - 1) surveyQuestions[question].page += 1;"
-              >&#8250;</span>
+              ><b>&#8250;</b></span>
             </div>
           </div>
         </div>
