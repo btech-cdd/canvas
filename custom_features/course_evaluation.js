@@ -351,6 +351,7 @@
                 height: 2rem;
                 width: 2rem;
                 border-radius: 1rem;
+                color: white;
               "
               :style="{
                 'background-color': averageColor(surveyQuestions[question].average)
