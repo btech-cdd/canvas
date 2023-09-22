@@ -330,6 +330,21 @@
         v-if="currentMenu == 'surveys'"
         style="margin-top: 1rem;"
       >
+        <!--RATINGS-->
+        <div>
+          <div
+            v-for="question in surveyRatingsList"
+            style="
+              padding: 0.5rem;
+              margin: 0.5rem;
+              background-color: #FFFFFF;
+              user-select: none; cursor: pointer;
+            "
+          >
+            <{{question}}
+            {{surveyQuestions[question]}}
+          </div>
+        </div>
         {{surveyQuestions}}
       </div>
     </div>
@@ -421,6 +436,7 @@
         },
         surveyQuestions: [],
         surveyResponses: [],
+        surveyRatingsList: [],
         surveysLoaded: false,
         pastReviews: [],
         activeReview: {},
@@ -645,9 +661,12 @@
         let questions = {};
         for (let q in surveys.questions) {
           let question = surveys.questions[q];
-          question.count = 0;
-          question.sum = 0;
-          question.average = 0;
+          if (question.type == 'Rating') {
+            this.surveyRatingsList.push(question.question);
+            question.count = 0;
+            question.sum = 0;
+            question.average = 0;
+          }
           question.comments = [];
           questions[question.question] = question;
         }
