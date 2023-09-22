@@ -341,8 +341,8 @@
               user-select: none; cursor: pointer;
             "
           >
-            <{{question}}
-            {{surveyQuestions[question]}}
+            {{question}}
+            {{surveyQuestions[question].average}}
           </div>
         </div>
         {{surveyQuestions}}
