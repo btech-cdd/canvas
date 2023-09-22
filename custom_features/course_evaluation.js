@@ -634,6 +634,7 @@
       },
       averageColor: function (average) {
         let colors = this.bridgetools.colors;
+        if (average == "N/A") return "#000000"
         return (
           average < 2 ? 
             colors.darkOrange: 
@@ -752,7 +753,8 @@
         for (let question in questions) {
           let data = questions[question];
           if (data.type == 'Rating') {
-            questions[question].average = questions[question].sum / questions[question].count
+            if (questions[question].count == 0) questions[question].average = "N/A";
+            else questions[question].average = questions[question].sum / questions[question].count
           }
           else if (data.type == 'Text') {
             questions[question].max_pages = Math.ceil(questions[question].comments.length / this.surveyCommentsPerPage)
