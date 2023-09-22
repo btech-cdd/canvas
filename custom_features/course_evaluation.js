@@ -395,6 +395,9 @@
                 style="
                   cursor: pointer;
                 "
+                :style="{
+                  'color': surveyQuestions[question].page < surveyQuestions[question].max_pages - 1 ? bridgetools.colors.black : bridgetools.colors.gray
+                }"
                 @click="if (surveyQuestions[question].page < surveyQuestions[question].max_pages - 1) surveyQuestions[question].page += 1;"
               ><b>&#8250;</b></span>
             </div>
