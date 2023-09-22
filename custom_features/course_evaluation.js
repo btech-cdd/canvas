@@ -324,6 +324,14 @@
           </div>
         </div>
       </div>
+
+      <!--SURVEY DATA-->
+      <div
+        v-if="currentMenu == 'surveys'"
+        style="margin-top: 1rem;"
+      >
+        {{surveyQuestions}}
+      </div>
     </div>
   </div>
   `);
@@ -411,7 +419,8 @@
         raterNames: {
 
         },
-        surveys: [],
+        surveyQuestions: [],
+        surveyResponses: [],
         surveysLoaded: false,
         pastReviews: [],
         activeReview: {},
@@ -616,11 +625,54 @@
         this.pastReviews = pastReviews;
       },
       loadSurveys: async function () {
+        // DON'T WANT TO KEEP LOADING SAME DATA
         if (this.surveysLoaded) return;
+
+        // LOOK UP FOR NUMBERIC RATINGS
+        let ratingRef = {
+          'Strongly Agree': 1,
+          'Agree': 0.5,
+          'Disagree': -0.5,
+          'Strongly Disagree': -1
+        }
+
+        // LOAD THE SURVEYS
         let surveys = await this.bridgetools.req('https://surveys.bridgetools.dev/api/survey_data', {
             course_code: this.courseCode 
         }, 'POST');
-        console.log(surveys);
+
+        // ITERATE OVER EACH QUESTION AND CREATE AN OBJECT FOR THE SUMMARY DATA OF EACH QUESTION (WHAT WILL BE USED IN REPORT)
+        let questions = {};
+        for (let q in surveys.questions) {
+          let question = survey.questions[q];
+          question.count = 0;
+          question.sum = 0;
+          question.average = 0;
+          question.comments = [];
+          questions[question.question] = question;
+        }
+
+        // GO OVER EACH RESPONSE AND POPULATE SUMMARY DATA
+        for (let r in surveys.responses) {
+          let response = surveys.responses[r];
+          for (let question in response.questions) {
+            let questionResponse = response.questions[question];
+            let questionData = questions[question];
+            if (questionData.type == 'Rating') {
+              let val = ratingRef?.[questionResponse];
+              if (val !== undefined) {
+                questions[question].count += 1;
+                questions[question].sum += val;
+                questions[question].average = questions[question].sum / questions[question].count;
+              }
+            }
+            else if (questionData.type == 'Text') {
+              questions[question.comments].push(questionResponse);
+            }
+          }
+        }
+
+        this.surveyQuestions = questions;
         this.surveysLoaded = true;
       }
     }
