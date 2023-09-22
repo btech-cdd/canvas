@@ -358,7 +358,7 @@
                 'background-color': averageColor(surveyQuestions[question].average)
               }"
             >
-            {{isNaN(surveyQuestions[question.average]) ? "N/A" : Math.round(surveyQuestions[question].average * 2) / 2}}
+            {{isNaN(surveyQuestions[question].average) ? "N/A" : Math.round(surveyQuestions[question].average * 2) / 2}}
             </span>
           </div>
         </div>
