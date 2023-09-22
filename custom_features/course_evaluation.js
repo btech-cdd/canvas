@@ -65,7 +65,7 @@
         }"
         style="
           display: grid;
-          grid-template-columns: auto auto auto;
+          grid-template-columns: auto auto auto auto;
           text-align: center;
           user-select: none;
           cursor: pointer;
@@ -96,8 +96,8 @@
         >Data</span>
         <span
           :style="{
-            'background-color': currentMenu == 'data' ? 'white' : '',
-            'color': currentMenu == 'data' ? 'black' : '',
+            'background-color': currentMenu == 'surveys' ? 'white' : '',
+            'color': currentMenu == 'surveys' ? 'black' : '',
           }"
           @click="currentMenu = 'surveys'; loadSurveys();"
         >Surveys</span>
