@@ -361,6 +361,13 @@
             >
               {{surveyQuestions[question].comments[c + (surveyCommentsPerPage * surveyQuestions[question].page)]}}
             </div>
+            <div
+              style="text-align: center;"
+            >
+              <span>&#8249;</span>
+              <span>{{surveyQuestions[question].page + 1}}</span>
+              <span>&#8250;</span>
+            </div>
           </div>
         </div>
       </div>
