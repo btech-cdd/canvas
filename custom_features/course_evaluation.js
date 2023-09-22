@@ -667,7 +667,7 @@
               }
             }
             else if (questionData.type == 'Text') {
-              questions[question.comments].push(questionResponse);
+              questions[question].comments.push(questionResponse);
             }
           }
         }
