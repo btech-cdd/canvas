@@ -342,7 +342,23 @@
             "
           >
             <strong>{{question}}</strong>
-            {{surveyQuestions[question].average}}
+            <span
+              v-for="topic in review.summary?.topics ?? []"
+              style="
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                height: 2rem;
+                width: 2rem;
+                border-radius: 1rem;
+              "
+              :style="{
+                'background-color': averageColor(surveyQuestions[question].average)
+              }"
+            >
+            {{Math.round(surveyQuestions[question].average * 4) / 4}}
+            </span>
           </div>
         </div>
         <div>
