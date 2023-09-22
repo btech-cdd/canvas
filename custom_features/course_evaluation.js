@@ -644,7 +644,7 @@
         // ITERATE OVER EACH QUESTION AND CREATE AN OBJECT FOR THE SUMMARY DATA OF EACH QUESTION (WHAT WILL BE USED IN REPORT)
         let questions = {};
         for (let q in surveys.questions) {
-          let question = survey.questions[q];
+          let question = surveys.questions[q];
           question.count = 0;
           question.sum = 0;
           question.average = 0;
