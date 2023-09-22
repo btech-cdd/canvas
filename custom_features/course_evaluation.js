@@ -350,6 +350,7 @@
             v-for="question in surveyTextList"
           >
             {{question}}
+            {{surveyQuestions[question]}}
             <div
               v-for="comment in surveyQuestions[question].comments
             >
