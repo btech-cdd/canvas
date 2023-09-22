@@ -681,7 +681,7 @@
             question.average = 0;
           }
           else if (question.type == 'Text') {
-            this.surveyRatingsList.push(question.question);
+            this.surveyTextList.push(question.question);
             question.comments = [];
           }
           questions[question.question] = question;
