@@ -675,6 +675,8 @@
             course_code: this.courseCode 
         }, 'POST');
 
+        console.log(surveys);
+
         // ITERATE OVER EACH QUESTION AND CREATE AN OBJECT FOR THE SUMMARY DATA OF EACH QUESTION (WHAT WILL BE USED IN REPORT)
         let questions = {};
         for (let q in surveys.questions) {
@@ -707,8 +709,6 @@
               }
             }
             else if (questionData.type == 'Text') {
-              console.log(question);
-              console.log(questionResponse)
               questions[question].comments.push(questionResponse);
             }
           }
