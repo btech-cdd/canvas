@@ -9,6 +9,7 @@
       if( MutationObserver ){
         // define a new observer
         var mutationObserver = new MutationObserver(callback)
+        console.log("MUTATE?")
 
         // have the observer observe for changes in children
         mutationObserver.observe( obj, { attributes :true })
@@ -17,6 +18,7 @@
       
       // browser support fallback
       else if( window.addEventListener ){
+        console.log("MUTATE???")
         obj.addEventListener('DOMNodeInserted', callback, false)
         obj.addEventListener('DOMNodeRemoved', callback, false)
       }
