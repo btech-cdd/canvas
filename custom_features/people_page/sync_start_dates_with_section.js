@@ -28,6 +28,7 @@
   let obj = document.body;
   observeDOM( obj, function(m){ 
     console.log("CHANGE")
+    if ($('#date-override').length == 1) return;
     $($("span[data-testid='coursepace-end-date']")[0]).parent().after(`<span style="color: black;"><b>Start Date Override</b><input id="date-override" type="date" value=""></span>`);
     let dateOverride = document.getElementById("date-override");
     let info = $('div[data-testid="pace-info"]');
