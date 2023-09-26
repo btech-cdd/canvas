@@ -28,11 +28,10 @@
   let obj = document.body;
   observeDOM( obj, function(m){ 
     console.log("CHANGE")
-      $($("div[data-testid='coursepace-end-date']")[0]).parent().after(`<span><b>Date Override</b><br><input id="date-override" type="date" value=""></span>`);
+      $($("span[data-testid='coursepace-end-date']")[0]).parent().after(`<span><b>Date Override</b><br><input id="date-override" type="date" value=""></span>`);
     let dateOverride = document.getElementById("date-override");
     let info = $('div[data-testid="pace-info"]');
     let name = info.text();
-    console.log(name);
     let enrollment = users[name];
     $(dateOverride).change(()=>{
       if (startAt != undefined) {
