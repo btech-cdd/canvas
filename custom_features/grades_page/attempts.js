@@ -33,7 +33,8 @@
           scoreCell.after(`<td class="submission_date">${bridgetools.dateToString(sub.submitted_at)}</td>`);
         }
         else {
-          cellEl.append(sub.submitted_at);
+          console.log(sub);
+          $(cellEl[0]).append(bridgetools.dateToString(sub.submitted_at));
         }
     }
   }
