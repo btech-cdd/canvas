@@ -27,19 +27,18 @@
   })()
   let obj = document.body;
   observeDOM( obj, function(m){ 
-    console.log("CHANGE")
     if ($('#date-override').length > 0) return;
     $($("span[data-testid='coursepace-end-date']")[0]).parent().after(`<span style="color: black;"><b>Start Date Override</b><input id="date-override" type="date" value=""></span>`);
     let dateOverride = document.getElementById("date-override");
     let info = $('div[data-testid="pace-info"]');
     let name = info.text();
     let enrollment = users[name];
-    $(dateOverride).change(()=>{
+    $(dateOverride).change(async ()=>{
       if (startAt != undefined) {
         let startDate = new Date(dateOverride.value);
         //for...reasons, this is a day off
         startDate.setDate(startDate.getDate() + 1);
-        $.post("/api/v1/courses/" + ENV.COURSE_ID + "/enrollments",
+        await $.post("/api/v1/courses/" + ENV.COURSE_ID + "/enrollments",
           {enrollment: {
             start_at: startDate,
             user_id: enrollment.user.id,
@@ -50,6 +49,8 @@
 
           }}
         );
+        updateUsers();
+
       }
     });
     let startAt = enrollment?.start_at;
@@ -65,15 +66,18 @@
   });
 
   let users = {}
-  let enrollments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/enrollments`, {state: ['active'], type: ['StudentEnrollment']});
-  for (let e in enrollments) {
-    let enrollment = enrollments[e];
-      if (users?.[enrollment.user.name] == undefined) {
-      users[enrollment.user.name] = enrollment;
-      } else {
-          console.log("DUP");
-      }
+  async function updateUsers() {
+    let enrollments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/enrollments`, {state: ['active'], type: ['StudentEnrollment']});
+    for (let e in enrollments) {
+      let enrollment = enrollments[e];
+        if (users?.[enrollment.user.name] == undefined) {
+        users[enrollment.user.name] = enrollment;
+        } else {
+            console.log("DUP");
+        }
+    }
   }
+  await updateUsers();
 })();
 
 /*
