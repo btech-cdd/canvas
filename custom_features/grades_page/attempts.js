@@ -32,6 +32,9 @@
         if (cellEl.length === 0) {
           scoreCell.after(`<td class="submission_date">${bridgetools.dateToString(sub.submitted_at)}</td>`);
         }
+        else {
+          cellEl.append(sub.submitted_at);
+        }
     }
   }
 })();
