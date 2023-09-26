@@ -33,8 +33,7 @@
           scoreCell.after(`<td class="submission_date">${bridgetools.dateToString(sub.submitted_at)}</td>`);
         }
         else {
-          console.log(sub);
-          $(cellEl[0]).append(bridgetools.dateToString(sub.submitted_at));
+          //Possibly add something like over text to show what all the submission dates are, not just the most recent
         }
     }
   }

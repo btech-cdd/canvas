@@ -196,7 +196,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
               // feature("people_page/sync_start_dates_with_section", {}, /^\/courses\/[0-9]+\/course_pacing/);
               feature("department_specific/data_analytics_feedback_report", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
             }
-            if ([3839, 3824].includes(CURRENT_DEPARTMENT_ID)) { // DENTAL AND DRAFTING
+            if ([3839, 3840, 3824].includes(CURRENT_DEPARTMENT_ID)) { // DENTAL AND DRAFTING
               feature("grades_page/attempts", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
             }
             if (CURRENT_DEPARTMENT_ID === 3824) { // DENTAL
