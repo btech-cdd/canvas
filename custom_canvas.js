@@ -196,9 +196,11 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
               // feature("people_page/sync_start_dates_with_section", {}, /^\/courses\/[0-9]+\/course_pacing/);
               feature("department_specific/data_analytics_feedback_report", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
             }
+            if ([3839, 3824].includes(CURRENT_DEPARTMENT_ID)) { // DENTAL AND DRAFTING
+              feature("grades_page/attempts", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
+            }
             if (CURRENT_DEPARTMENT_ID === 3824) { // DENTAL
               feature("grades_page/highlighted_grades_page_items_dental", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
-              feature("grades_page/attempts", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
               feature("rubrics/attempts_data", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
               feature("rubrics/gen_comment", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
               feature("highlight_comments_same_date", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
