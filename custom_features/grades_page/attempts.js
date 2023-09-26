@@ -24,7 +24,7 @@
     } 
     createHeader("Submitted");
     for (let s in submissions) {
-        let sub = subs[s];
+        let sub = submissions[s];
         let row = $("tr#submission_"  + sub.assignment_id);
         let scoreCell = row.find('td.assignment_score');
         let cellEl = row.find('td.submitted');
