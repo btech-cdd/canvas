@@ -24,7 +24,7 @@
       }
     }
   })()
-  let picker = $("body").find("#course_paces")[0];
+  let picker = $("body").find('span[dir="ltr"]')[1];
   observeDOM( picker, function(m){ 
     console.log("CHANGE")
       $($("div[data-testid='coursepace-end-date']")[0]).parent().after(`<span><b>Date Override</b><br><input id="date-override" type="date" value=""></span>`);
