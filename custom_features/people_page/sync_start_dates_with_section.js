@@ -13,7 +13,7 @@
         console.log("MUTATE?")
 
         // have the observer observe for changes in children
-        mutationObserver.observe( obj, { attributes :true })
+        mutationObserver.observe( obj, { attributes :true , childList: true, subtree: true})
         return mutationObserver
       }
       
