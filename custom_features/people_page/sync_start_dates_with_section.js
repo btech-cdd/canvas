@@ -32,6 +32,7 @@
     let dateOverride = document.getElementById("date-override");
     let info = $('div[data-testid="pace-info"]');
     let name = info.text();
+    console.log(name);
     let enrollment = users[name];
     $(dateOverride).change(()=>{
       if (startAt != undefined) {
