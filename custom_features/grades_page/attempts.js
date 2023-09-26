@@ -1,19 +1,36 @@
 (async function() {
+  function createHeader(title) {
+    let className = title.toLowerCase().replace(' ', '_');
+    let head = $('#grades_summary thead');
+    if (head.find('th.' + className).length === 0) head.find('th.assignment_score').after(`<th class="${className}">${title}</th>`);
+  }
+
   if (/^\/courses\/[0-9]+\/grades\/[0-9]+$/.test(window.location.pathname)) {
     let submissions = await canvasGet("/api/v1/courses/" + CURRENT_COURSE_ID + "/students/submissions", {
         'student_ids': [ENV.student_id]
     });
-    let head = $("thead tr");
-    if (head.find('th.attempts').length === 0) head.find('th.possible').after('<th class="possible attempts">Attempts</th>');
-    for (let s = 0; s < submissions.length; s++) {
+    createHeader("Attempts");
+    for (let s in submissions) {
         let sub = submissions[s];
-        let row = $("#submission_" + sub.assignment_id);
-        let attemptsEl = row.find('td.attempts');
-        if (attemptsEl.length === 0) {
+        let row = $("tr#submission_"  + sub.assignment_id);
+        let scoreCell = row.find('td.assignment_score');
+        // Check if cell already created
+        let cellEl = row.find('td.attempts');
+        if (cellEl.length === 0) {
             let attempts = '';
             if (typeof sub.attempt === 'number') attempts = sub.attempt;
-            let pointsPossibleEl = row.find('td.points_possible');
-            pointsPossibleEl.after('<td class="possible attempts">' + attempts + '</td>');
+            scoreCell.after('<td class="possible attempts">' + attempts + '</td>');
+        }
+    } 
+    createHeader("Submitted");
+    for (let s in submissions) {
+        let sub = subs[s];
+        let row = $("tr#submission_"  + sub.assignment_id);
+        let scoreCell = row.find('td.assignment_score');
+        let cellEl = row.find('td.submitted');
+        // Check if cell already created
+        if (cellEl.length === 0) {
+          scoreCell.after(`<td class="submission_date">${bridgetools.dateToString(sub.submitted_at)}</td>`);
         }
     }
   }

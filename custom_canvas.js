@@ -8,7 +8,6 @@ if (window.location.href.includes("btech.beta.instructure.com")) {
 var CDDIDS = [
   1893418, //Josh 
   1638854, //Mason
-  2064104, //Jonny
   2101656, //Sydney
   1869288, //Alan
   2000557, //Charlotte
@@ -98,19 +97,19 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
     feature("side-menu", {}, "");
 
     //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
-    feature('conversations/open_conversation', {}, /^\/conversations/);
+    // feature('conversations/open_conversation', {}, /^\/conversations/);
     featureCDD('copy_to_next_year', {}, /^\/accounts\/[0-9]+$/);
     if (rCheckInCourse.test(window.location.pathname)) {
       feature('modules/course_features');
       //I'm putting concluding students in here as well vvv
       feature('modules/enrollment_dates_teacher', {}, /^\/courses\/[0-9]+\/users\/[0-9]+$/);
-      feature("external_assignments_fullscreen", {}, /^\/courses\/[0-9]+\/(assignments)/);
+      // feature("external_assignments_fullscreen", {}, /^\/courses\/[0-9]+\/(assignments)/);
       if (IS_TEACHER) {
         feature('quizzes/show_analytics', {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+/);
         feature("modules/show_undelete", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
         feature("kaltura/showInfo", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
       } else {
-        feature("check_linked_item_completed", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+        // feature("check_linked_item_completed", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
       }
     }
 
