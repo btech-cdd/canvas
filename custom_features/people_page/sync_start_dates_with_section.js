@@ -67,6 +67,7 @@
 
   let users = {}
   async function updateUsers() {
+    users = {};
     let enrollments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/enrollments`, {state: ['active'], type: ['StudentEnrollment']});
     for (let e in enrollments) {
       let enrollment = enrollments[e];
