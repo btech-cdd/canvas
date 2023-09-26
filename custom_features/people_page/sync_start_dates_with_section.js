@@ -1,4 +1,5 @@
 (async function() {
+  console.log("PACING!")
   var observeDOM = (function(){
     var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
