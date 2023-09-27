@@ -757,7 +757,7 @@
             hours = COURSE_HOURS?.[crsCode]?.horus ?? 0;
             //Check to see if a previous year can be found if current year doesn't work
             for (let i = 1; i < 5; i++) {
-              if (hours == undefined) hours = COURSE_HOURS?.[year - i]?.[crsCode];
+              if (hours == undefined) hours = COURSE_HOURS?.[crsCode].hours;
             }
             if (hours === undefined) hours = 0;
           })

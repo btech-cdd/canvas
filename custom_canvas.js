@@ -136,6 +136,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
       if (IS_ME) feature("editor_toolbar/sidebar", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
       featureCDD("course_evaluation", {}, /^\/courses\/[0-9]+/);
       $.getScript(SOURCE_URL + "/course_data/course_hours.js").done(() => {
+        console.log(COURSE_HOURS);
         //GENERAL FEATURES
         //feature("reports/dashboard/banner-report", {}, /^\/$/);
         if (!IS_TEACHER) {
