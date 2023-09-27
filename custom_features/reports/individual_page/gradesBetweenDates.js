@@ -754,7 +754,7 @@
         if (year !== null) {
           await $.get(url).done(function (data) {
             let crsCode = data.course_code;
-            hours = COURSE_HOURS?.[crsCode]?.horus ?? 0;
+            hours = COURSE_HOURS?.[crsCode]?.hours ?? 0;
             //Check to see if a previous year can be found if current year doesn't work
             for (let i = 1; i < 5; i++) {
               if (hours == undefined) hours = COURSE_HOURS?.[crsCode].hours;
