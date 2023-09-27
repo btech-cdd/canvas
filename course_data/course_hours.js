@@ -1489,7 +1489,7 @@ COURSE_HOURS = {
     },
     
     'BTEC 0114': {
-        name: 'ABC's of Your Computer',
+        name: 'ABCs of Your Computer',
         hours: 20,
         credits: 0,
     },
@@ -11101,13 +11101,13 @@ COURSE_HOURS = {
     },
     
     'AMAR 2710': {
-        name: 'Jen's Test',
+        name: 'Jens Test',
         hours: 120,
         credits: 4,
     },
     
     'BTEC 0116': {
-        name: 'Social Media - 1-2-3's',
+        name: 'Social Media - 1-2-3s',
         hours: 4,
         credits: 0,
     },
@@ -17941,7 +17941,7 @@ COURSE_HOURS = {
     },
     
     'ELTE 1130': {
-        name: 'Drone Piloting UAV's',
+        name: 'Drone Piloting UAVs',
         hours: 30,
         credits: 1,
     },
@@ -18613,7 +18613,7 @@ COURSE_HOURS = {
     },
     
     'TECD 1100': {
-        name: 'Commercial Driver's License Class A',
+        name: 'Commercial Drivers License Class A',
         hours: 180,
         credits: 6,
     },
