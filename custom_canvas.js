@@ -62,7 +62,7 @@ var IS_BLUEPRINT = null;
 var IS_TEACHER = null;
 var IS_ME = false;
 var IS_CDD = false;
-var COURSE_HOURS, COURSE_LIST;
+var COURSE_HOURS;
 //Now, if testing in beta, will pull from beta instance of all these tools
 //Should start experimenting with branching in github
 var SOURCE_URL = 'https://bridgetools.dev/canvas'
