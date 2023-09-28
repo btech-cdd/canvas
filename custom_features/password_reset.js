@@ -63,7 +63,7 @@
     // if (res.status == 'fail') alert("Failed to send!");
   });
 
-  let channels = await canvasGet(`/api/v1/users/${ENV.USER_ID}/communication_channels`);
+  let channels = await canvasGet(`/api/v1/users/${ENV.USER_ID ?? ENV.student_id}/communication_channels`);
 
   $("#name_and_email .user_details tr").each(function() {
       let row = $(this);
