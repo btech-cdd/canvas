@@ -204,6 +204,7 @@
           let url = "https://reports.bridgetools.dev/api/trees?dept_code=" + deptCode + "&year=" + deptYear;
           let data = await bridgetoolsReq(url);
           let tree = data[0];
+          if (tree?.courses === undefined) tree.courses = {};
           if (tree?.courses?.core === undefined) tree.courses.core = {};
           if (tree?.courses?.elective === undefined) tree.courses.elective = {};
           if (tree?.courses?.other === undefined) tree.courses.other = {};
