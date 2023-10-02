@@ -1033,19 +1033,19 @@ COURSE_HOURS = {
     },
     
     'AUTC 6111': {
-        name: 'Auto Collision',
+        name: 'Collision Repair Technology',
         hours: 120,
         credits: 4,
     },
     
     'AUTC 6211': {
-        name: 'Auto Collision',
+        name: 'Collision Repair Technology',
         hours: 120,
         credits: 4,
     },
     
     'AUTC 6311': {
-        name: 'Auto Collision',
+        name: 'Collision Repair Technology',
         hours: 120,
         credits: 4,
     },
@@ -1057,13 +1057,13 @@ COURSE_HOURS = {
     },
     
     'AUTC 6811': {
-        name: 'Auto Collision',
+        name: 'Collision Repair Technology',
         hours: 180,
         credits: 6,
     },
     
     'AUTC 6911': {
-        name: 'Auto Collision',
+        name: 'Collision Repair Technology',
         hours: 180,
         credits: 6,
     },
@@ -18935,4 +18935,5 @@ COURSE_HOURS = {
         hours: 90,
         credits: 0,
     },
+    
 }

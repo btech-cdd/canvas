@@ -238,6 +238,9 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
             if (CURRENT_DEPARTMENT_ID === 3883) { //Diesel
               feature("department_specific/diesel-page-turner", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             }
+            if (CURRENT_COURSE_ID === 575046) {
+              feature("department_specific/it-chatjolt", {}, /^\/courses\/[0-9]+\//);
+            }
 
           });
         }
