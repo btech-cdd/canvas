@@ -239,7 +239,8 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
               feature("department_specific/diesel-page-turner", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             }
             if (CURRENT_COURSE_ID === 575046) {
-              feature("department_specific/it-chatjolt", {}, /^\/courses\/[0-9]+\//);
+              console.log("TESTING COURSE ID")
+              feature("department_specific/chatjolt", {}, /^\/courses\/[0-9]+\//);
             }
 
           });
