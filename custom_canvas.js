@@ -187,7 +187,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
             if (IS_BLUEPRINT) feature("page_formatting/prep_parts_list_for_sharing", {}, /^\/courses\/[0-9]+\/pages\/parts-list-master/);
             if (IS_BLUEPRINT) feature('blueprint_association_links');
             feature('modules/convert_to_page');
-            // feature('instructional/glossary');
+            if (IS_ME) feature('instructional/glossary');
             //COURSE SPECIFIC FEATURES
             //DEPARTMENT SPECIFIC IMPORTS
 
@@ -205,7 +205,6 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
               feature("rubrics/gen_comment", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
               feature("highlight_comments_same_date", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
               //This is currently disabled because it was decided it might be more confusing for students to see a grade that was only part of their final grade.
-              // feature("previous-enrollment-data/previous_enrollment_period_grades", {}, /^\/courses\/[0-9]+\/grades/);
               if (IS_TEACHER) {
                 feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
               }
