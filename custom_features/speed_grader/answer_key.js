@@ -3,6 +3,10 @@
   for (let p in pages) {
       let page_info = pages[p];
       if (page_info.title.toLowerCase() == (ENV.assignment_title + " Answer Key").toLowerCase()) {
+          $.post('https://tracking.bridgetools.dev/api/hit', {
+            'tool': 'answer_key',
+            'canvasId': ENV.current_user_id
+          });
           let page = (await canvasGet("/api/v1/courses/" + ENV.course_id + "/pages/" + page_info.url))[0];
           console.log(page);
           let button = $(`<span><i style="cursor: pointer;" class="icon-info"></i></span>`);

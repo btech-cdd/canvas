@@ -100,6 +100,10 @@
             include: ['term']
           });
           app.courses = courses;
+          $.post('https://tracking.bridgetools.dev/api/hit', {
+            'tool': 'enroll_hs',
+            'canvasId': ENV.current_user_id
+          });
         },
         data: function () {
           return {

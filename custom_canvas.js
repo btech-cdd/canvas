@@ -97,7 +97,6 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
     feature("side-menu", {}, "");
 
     //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
-    // feature('conversations/open_conversation', {}, /^\/conversations/);
     featureCDD('copy_to_next_year', {}, /^\/accounts\/[0-9]+$/);
     if (rCheckInCourse.test(window.location.pathname)) {
       feature('modules/course_features');
@@ -171,7 +170,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
           $.get('/api/v1/courses/' + CURRENT_COURSE_ID, function (courseData) {
             CURRENT_DEPARTMENT_ID = courseData.account_id;
             if (CURRENT_DEPARTMENT_ID == 3827) { //NURSING
-              feature('modules/replace_course_code_with_name', {}, /^\/courses\/[0-9]+/);
+              feature('department_specific/replace_course_code_with_name', {}, /^\/courses\/[0-9]+/);
             }
             //AVAILABLE TO EVERYONE
             $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js", function() {
@@ -240,7 +239,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
             }
             if (CURRENT_COURSE_ID === 575046) {
               console.log("TESTING COURSE ID")
-              feature("department_specific/chatjolt", {}, /^\/courses\/[0-9]+\//);
+              feature("department_specific/chatjolt", {}, /^\/courses\/[0-9]+/);
             }
 
           });
