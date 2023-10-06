@@ -18936,4 +18936,16 @@ COURSE_HOURS = {
         credits: 0,
     },
     
+    'CE20 0040': {
+        name: 'Beginning Photography',
+        hours: 8,
+        credits: 0,
+    },
+    
+    'CE21 0020': {
+        name: 'Training',
+        hours: 8,
+        credits: 0,
+    },
+    
 }

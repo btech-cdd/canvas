@@ -8,13 +8,15 @@ if (window.location.href.includes("btech.beta.instructure.com")) {
 var CDDIDS = [
   1893418, //Josh 
   1638854, //Mason
-  2101656, //Sydney
   1869288, //Alan
   2000557, //Charlotte
   2048150, //Tiffany
   2074560, //Ryan
   2116084, //Mikaela
   1894248, //Zoe
+  2135443, //Joseph
+  2134266, //Jackson
+  2118711, //Colton
 ];
 
 function getCSSVar(cssvar) {
@@ -184,6 +186,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
             feature("rubrics/sortable", {}, [/\/rubrics/, /\/assignments\//]);
             feature("calendar/signup", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             feature("toggle-max-width", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+            feature("highlight_comments_same_date", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
             if (IS_BLUEPRINT) feature("page_formatting/prep_parts_list_for_sharing", {}, /^\/courses\/[0-9]+\/pages\/parts-list-master/);
             if (IS_BLUEPRINT) feature('blueprint_association_links');
             feature('modules/convert_to_page');
@@ -203,7 +206,6 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
               feature("grades_page/highlighted_grades_page_items_dental", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
               feature("rubrics/attempts_data", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
               feature("rubrics/gen_comment", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
-              feature("highlight_comments_same_date", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
               //This is currently disabled because it was decided it might be more confusing for students to see a grade that was only part of their final grade.
               if (IS_TEACHER) {
                 feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
@@ -236,11 +238,6 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
             if (CURRENT_DEPARTMENT_ID === 3883) { //Diesel
               feature("department_specific/diesel-page-turner", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             }
-            if (CURRENT_COURSE_ID === 575046) {
-              console.log("TESTING COURSE ID")
-              feature("department_specific/chatjolt", {}, /^\/courses\/[0-9]+/);
-            }
-
           });
         }
 
@@ -264,7 +261,6 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         // if (IS_ME) $.getScript("https://bridgetools.dev/collaborator/import.js");
         featureCDD("cleoducktra/main", {}, /^/);
         if (IS_ME) featureCDD("cleoducktra/quiz-questions", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/);
-        //featureCDD("transfer_sections", {}, /^\/courses\/[0-9]+\/users/);
         feature("welcome_banner", {}, /^\/$/);
       });
     });
