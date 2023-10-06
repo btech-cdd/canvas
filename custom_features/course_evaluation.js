@@ -434,7 +434,7 @@
         return;
       }
 
-      let courseData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses?course_code=${this.courseCode}&year=${this.year}`)
+      let courseData = await bridgetools.req(`https://reports.bridgetools.dev/api/courses?course_code=${this.courseCode}&year=${this.year}`)
       console.log(courseData);
 
       this.loadReviews(init=true);
@@ -589,7 +589,7 @@
       },
       setComment: async function (scoreId, comment) {
         this.updating = true;
-        let score = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
+        let score = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
           comment: comment 
         }, "PUT");
         this.updating = false;
@@ -610,28 +610,28 @@
       },
       setLink: async function (scoreId, link) {
         this.updating = true;
-        await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
+        await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
           links: [link] 
         }, "PUT");
         this.updating = false;
       },
       setRating: async function (scoreId, rating) {
         this.updating = true;
-        await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
+        await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/scores/${scoreId}`, {
           rating: rating
         }, "PUT");
         this.updating = false;
       },
       submitReview: async function () {
         let review = this.activeReview;
-        await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/review/${review._id}`, {
+        await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/review/${review._id}`, {
           submitted: true 
         }, "PUT");
         this.currentMenu = 'history';
         this.loadReviews();
       },
       newReview: async function () {
-        let review = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/scores/${this.courseCode.replace(" ", "%20")}/new`, {
+        let review = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/scores/${this.courseCode.replace(" ", "%20")}/new`, {
           year: this.year,
           course_id: this.courseId,
           user_id: this.raterId,
@@ -655,7 +655,7 @@
         )
       },
       deleteReview: async function (reviewId) {
-        await bridgetoolsReq(
+        await bridgetools.req(
             `https://reports.bridgetools.dev/api/reviews/review/${reviewId}`
             , {}
             , "DELETE"
@@ -675,7 +675,7 @@
       },
       loadReviews: async function (init=false) {
         if (this.updating || (this.minimized && !init)) return;
-        let reviews = await bridgetoolsReq("https://reports.bridgetools.dev/api/reviews/scores/" + this.courseCode.replace(" ", "%20"));
+        let reviews = await bridgetools.req("https://reports.bridgetools.dev/api/reviews/scores/" + this.courseCode.replace(" ", "%20"));
         let pastReviews = [];
         let activeFound = false;
         for (let r in reviews) {
