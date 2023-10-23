@@ -55,7 +55,7 @@
             console.log(line);
             let value = "";
             let row = $("<tr></tr>");
-            let names = line[0].split("/");
+            let names = line.name.split("/");
             for (let i = 0; i < names.length; i++) {
               let name = names[i].trim();
               let cell;
@@ -90,9 +90,9 @@
                 pCells[i] = tds[i];
               }
               if (CURRENT_DEPARTMENT_ID === 3827) {
-                value = Math.ceil((line[1]) * 100) + "% - 100%";
+                value = Math.ceil((line.value) * 100) + "% - 100%";
               } else {
-                value = "100% - " + (line[1] * 100) + "%";
+                value = "100% - " + (line.value * 100) + "%";
               }
             } else if (s === data.length - 1) { 
               if (CURRENT_DEPARTMENT_ID === 3827) {
@@ -102,9 +102,9 @@
               }
             } else {
               if (CURRENT_DEPARTMENT_ID === 3827) {
-                value =  Math.ceil(line[1] * 100) + "% - " + Math.floor(data[s - 1][1] * 100) + "%";
+                value =  Math.ceil(line.value * 100) + "% - " + Math.floor(data[s - 1].value * 100) + "%";
               } else {
-                value = "<" + (data[s - 1][1] * 100) + "% - " + (line[1] * 100) + "%";
+                value = "<" + (data[s - 1].value * 100) + "% - " + (line.value * 100) + "%";
               }
             }
             if (CURRENT_DEPARTMENT_ID === 3827) {
