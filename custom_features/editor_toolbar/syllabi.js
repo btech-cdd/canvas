@@ -96,7 +96,7 @@
               }
             } else if (s === data.length - 1) { 
               if (CURRENT_DEPARTMENT_ID === 3827) {
-                value = "Below " + Math.ceil((data[s - 1][1] * 100)) + "%";
+                value = "Below " + Math.ceil((data[s - 1].value * 100)) + "%";
               } else {
                 value = "<" + (data[s - 1][1] * 100) + "%";
               }
