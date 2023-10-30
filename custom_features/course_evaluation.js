@@ -268,10 +268,14 @@
             </div>
           </div>
         </div>
+
         <!--SPECIFIC PAST REVIEW-->
         <div
           v-else
         >
+          <div>
+            {{viewReview}}
+          </div>
           <div
             v-for="topic in (viewReview?.summary.topics ?? [])"
             style="
