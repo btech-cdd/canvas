@@ -215,62 +215,64 @@
             v-for="year in pastReviewsYears"
           >
             {{year}}
-          </div>
-          <div
-            v-for="review in pastReviews"
-            style="
-              padding: 0.5rem;
-              margin: 0.5rem;
-              background-color: #FFFFFF;
-              user-select: none; cursor: pointer;
-            "
-            @click="viewReview = review;"
-          >
-            <div>
-              <span><strong>{{raterNames?.[review.rater_id] ?? ""}}</strong></span>
-              <span>{{review.course_code}}-{{review.year}}</span>
-              <span
-                v-if="raterId == 1893418"
-                style="
-                  float: right;
-                  cursor: pointer;
-                  user-select: none;
-                "
-                @click="deleteReview(review._id)"
-              >X</span>
-              <span style="float: right; display: inline-block; width: 6rem; font-size: 0.75rem;"><i>{{bridgetools.dateToString(review.date)}}</i></span>
-            </div>
             <div
+              v-for="review in pastReviews.filter(rev => {
+                return review.year !== year;
+              })"
               style="
-                display:flex;
-                justify-content: space-around;
+                padding: 0.5rem;
+                margin: 0.5rem;
+                background-color: #FFFFFF;
+                user-select: none; cursor: pointer;
               "
+              @click="viewReview = review;"
             >
-              <span
-                v-for="topic in review.summary?.topics ?? []"
-                style="
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  text-align: center;
-                  height: 2rem;
-                  width: 2rem;
-                  border-radius: 1rem;
-                "
-                :style="{
-                  'background-color': averageColor(topic.average)
-                }"
-              >
-                <i 
+              <div>
+                <span><strong>{{raterNames?.[review.rater_id] ?? ""}}</strong></span>
+                <span>{{review.course_code}}-{{review.year}}</span>
+                <span
+                  v-if="raterId == 1893418"
                   style="
-                    color: #FFFFFF;
+                    float: right;
+                    cursor: pointer;
+                    user-select: none;
                   "
-                  :class="
-                    icons[topic.name]
+                  @click="deleteReview(review._id)"
+                >X</span>
+                <span style="float: right; display: inline-block; width: 6rem; font-size: 0.75rem;"><i>{{bridgetools.dateToString(review.date)}}</i></span>
+              </div>
+              <div
+                style="
+                  display:flex;
+                  justify-content: space-around;
+                "
+              >
+                <span
+                  v-for="topic in review.summary?.topics ?? []"
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    height: 2rem;
+                    width: 2rem;
+                    border-radius: 1rem;
                   "
-                  :title="topic.name + ': ' + topic.average"
-                ></i>
-              </span>
+                  :style="{
+                    'background-color': averageColor(topic.average)
+                  }"
+                >
+                  <i 
+                    style="
+                      color: #FFFFFF;
+                    "
+                    :class="
+                      icons[topic.name]
+                    "
+                    :title="topic.name + ': ' + topic.average"
+                  ></i>
+                </span>
+              </div>
             </div>
           </div>
         </div>
