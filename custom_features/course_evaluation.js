@@ -212,6 +212,11 @@
           v-if="Object.keys(viewReview).length == 0"
         >
           <div
+            v-for="year in pastReviewsYears"
+          >
+            {{year}}
+          </div>
+          <div
             v-for="review in pastReviews"
             style="
               padding: 0.5rem;
@@ -502,6 +507,7 @@
         surveyTextList: [],
         surveysLoaded: false,
         surveyCommentsPerPage: 5,
+        pastReviewsYears: [],
         pastReviews: [],
         activeReview: {},
         viewReview: {},
@@ -692,7 +698,12 @@
           }
           this.initReview(review);
 
-          if (review.submitted) pastReviews.push(review);
+          if (review.submitted) {
+            pastReviews.push(review);
+            if (!this.pastReviewsYears.includes(review.year)) {
+              this.pastReviewsYears.push(review.year);
+            }
+          }
           if (!review.submitted && raterId == this.raterId) {
             this.activeReview = review;
             if (init) {
@@ -704,6 +715,7 @@
         }
         if (!activeFound) this.activeReview = {};
         this.pastReviews = pastReviews;
+        this.pastReviewsYears.sort();
       },
       loadSurveys: async function () {
         // DON'T WANT TO KEEP LOADING SAME DATA
