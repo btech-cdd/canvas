@@ -238,7 +238,6 @@
             >
               <div>
                 <span><strong>{{raterNames?.[review.rater_id] ?? ""}}</strong></span>
-                <span>{{review.course_code}}-{{review.year}}</span>
                 <span
                   v-if="raterId == 1893418"
                   style="
