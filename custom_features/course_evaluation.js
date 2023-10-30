@@ -222,7 +222,8 @@
             @click="viewReview = review;"
           >
             <div>
-              <span>{{raterNames?.[review.rater_id] ?? ""}}</span>
+              <span><strong>{{raterNames?.[review.rater_id] ?? ""}}</strong></span>
+              <span>{{review.course_code}}-{{review.year}}</span>
               <span
                 v-if="raterId == 1893418"
                 style="
@@ -274,7 +275,7 @@
           v-else
         >
           <div>
-            {{viewReview}}
+            <a :href="'/courses/' + viewReview.course_id">{{viewReview.course_code}}</a><span>{{viewReview.year}}</span>
           </div>
           <div
             v-for="topic in (viewReview?.summary.topics ?? [])"
