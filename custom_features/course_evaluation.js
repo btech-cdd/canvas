@@ -214,7 +214,16 @@
           <div
             v-for="year in pastReviewsYears"
           >
-            {{year}}
+            <div
+              style="
+                padding: 0.5rem;
+                margin: 0.5rem;
+                background-color: #FFFFFF;
+                user-select: none; cursor: pointer;
+              "
+            >
+              <h3><strong>{{year}}</strong></h3>
+            </div>
             <div
               v-for="review in pastReviews.filter(rev => {
                 return rev.year !== year;
