@@ -688,6 +688,7 @@
         if (this.updating || (this.minimized && !init)) return;
         let reviews = await bridgetools.req("https://reports.bridgetools.dev/api/reviews/scores/" + this.courseCode.replace(" ", "%20"));
         let pastReviews = [];
+        this.pastReviewsYears = [];
         let activeFound = false;
         for (let r in reviews) {
           let review = reviews[r];
@@ -715,7 +716,9 @@
         }
         if (!activeFound) this.activeReview = {};
         this.pastReviews = pastReviews;
-        this.pastReviewsYears.sort();
+        this.pastReviewsYears.sort(function(a, b) {
+          return a - b;
+        });
       },
       loadSurveys: async function () {
         // DON'T WANT TO KEEP LOADING SAME DATA
