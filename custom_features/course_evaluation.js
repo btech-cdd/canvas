@@ -226,7 +226,7 @@
             </div>
             <div
               v-for="review in pastReviews.filter(rev => {
-                return rev.year !== year;
+                return rev.year == year;
               })"
               style="
                 padding: 0.5rem;
