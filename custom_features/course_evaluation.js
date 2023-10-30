@@ -290,7 +290,8 @@
           v-else
         >
           <div>
-            <a :href="'/courses/' + viewReview.course_id">{{viewReview.course_code}}</a><span>{{viewReview.year}}</span>
+            <span><strong><a target="_blank" :href="'/courses/' + viewReview.course_id">{{viewReview.course_code}}</a></strong></span>
+            <span>{{viewReview.year}}</span>
           </div>
           <div
             v-for="topic in (viewReview?.summary.topics ?? [])"
