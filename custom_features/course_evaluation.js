@@ -677,6 +677,7 @@
         )
       },
       deleteReview: async function (reviewId) {
+        console.log(reviewId);
         await bridgetools.req(
             `https://reports.bridgetools.dev/api/reviews/review/${reviewId}`
             , {}
