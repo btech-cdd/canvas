@@ -717,7 +717,7 @@
         if (!activeFound) this.activeReview = {};
         this.pastReviews = pastReviews;
         this.pastReviewsYears.sort(function(a, b) {
-          return a - b;
+          return b - a;
         });
       },
       loadSurveys: async function () {
