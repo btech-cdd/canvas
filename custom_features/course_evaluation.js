@@ -711,7 +711,7 @@
               this.raterNames[raterId] = user.name;
             } catch (err) {
               console.log("Could not load");
-              this.raternames[raterId] = `Unknown (${raterId})`;
+              this.raterNames[raterId] = `Unknown (${raterId})`;
             }
           }
           this.initReview(review);
