@@ -710,6 +710,7 @@
               let user =(await canvasGet('/api/v1/users/' + raterId))[0];
               this.raterNames[raterId] = user.name;
             } catch (err) {
+              console.log("Could not load");
               this.raternames[raterId] = `Unknown (${raterid})`;
             }
           }
