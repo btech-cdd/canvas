@@ -706,8 +706,12 @@
           let review = reviews[r];
           let raterId = review.rater_id;
           if (this.raterNames[raterId] == undefined) {
-            let user =(await canvasGet('/api/v1/users/' + raterId))[0];
-            this.raterNames[raterId] = user.name;
+            try {
+              let user =(await canvasGet('/api/v1/users/' + raterId))[0];
+              this.raterNames[raterId] = user.name;
+            } catch (err) {
+              this.raternames[raterId] = `Unknown (${raterid})`;
+            }
           }
           this.initReview(review);
 
