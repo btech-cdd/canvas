@@ -441,6 +441,7 @@
 
       //if can't set the required data, can't do a review
       try {
+        console.log("parse data");
         const yearPattern = /(\d{4})[A-Z]{2}$/;
         const courseCodePattern = /[A-Z]{4} \d{4}/;
         let match = sisCourseId.match(yearPattern);
