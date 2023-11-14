@@ -447,9 +447,9 @@
         let match = sisCourseId.match(yearPattern);
         console.log(match);
 
-        const year = "Sandbox";
+        let year = "Sandbox";
         if (match) year = match[1];
-        const courseCode = sisCourseId.match(courseCodePattern)[0];
+        let courseCode = sisCourseId.match(courseCodePattern)[0];
 
         this.courseCode = courseCode;
         this.courseId = canvasCourseData.id;
