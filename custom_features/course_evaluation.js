@@ -437,7 +437,7 @@
       // do a check if there's a valid course code. If not, no need to rate :)
       // may be more accurate to pull based on sis course id 
       let sisCourseId = canvasCourseData.sis_course_id;
-      if (sisCourseId == undefined) sisCourseId = ""; //don't do anything, no need to rate?
+      if (sisCourseId == undefined) sisCourseId = canvasCourseData.course_code + " - Sandbox"; //don't do anything, no need to rate?
 
       //if can't set the required data, can't do a review
       try {
@@ -447,7 +447,7 @@
         let match = sisCourseId.match(yearPattern);
         console.log(match);
 
-        const year = "";
+        const year = "Sandbox";
         if (match) year = match[1];
         const courseCode = sisCourseId.match(courseCodePattern)[0];
 
