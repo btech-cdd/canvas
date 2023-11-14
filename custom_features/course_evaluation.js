@@ -433,6 +433,7 @@
     mounted: async function () {
       // init context data
       let canvasCourseData = await $.get("/api/v1/courses/" + CURRENT_COURSE_ID);
+      console.log(canvasCourseData);
       // do a check if there's a valid course code. If not, no need to rate :)
       // may be more accurate to pull based on sis course id 
       let sisCourseId = canvasCourseData.sis_course_id;
