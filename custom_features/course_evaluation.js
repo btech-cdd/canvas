@@ -222,7 +222,7 @@
                 user-select: none; cursor: pointer;
               "
             >
-              <h3><strong>{{year}}</strong></h3>
+              <h3><strong>{{year > 0 ? year : "Sandbox"}}</strong></h3>
             </div>
             <div
               v-for="review in pastReviews.filter(rev => {
@@ -291,7 +291,7 @@
         >
           <div>
             <span><strong><a target="_blank" :href="'/courses/' + viewReview.course_id">{{viewReview.course_code}}</a></strong></span>
-            <span>{{viewReview.year}}</span>
+            <span>{{viewReview.year > 0 ? viewReview.year : "Sandbox"}}</span>
           </div>
           <div
             v-for="topic in (viewReview?.summary.topics ?? [])"
