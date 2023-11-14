@@ -443,8 +443,11 @@
       try {
         const yearPattern = /(\d{4})[A-Z]{2}$/;
         const courseCodePattern = /[A-Z]{4} \d{4}/;
+        let match = sisCourseId.match(yearPattern);
+        console.log(match);
 
-        const year = sisCourseId.match(yearPattern)?.[1] ?? "";
+        const year = "";
+        if (match) year = match[1];
         const courseCode = sisCourseId.match(courseCodePattern)[0];
 
         this.courseCode = courseCode;
