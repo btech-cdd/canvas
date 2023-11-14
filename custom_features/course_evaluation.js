@@ -447,7 +447,7 @@
         let match = sisCourseId.match(yearPattern);
         console.log(match);
 
-        let year = "Sandbox";
+        let year = 0;
         if (match) year = match[1];
         let courseCode = sisCourseId.match(courseCodePattern)[0];
 
