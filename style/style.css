@@ -308,7 +308,7 @@ span.btech-pill-text {
   font-family: Roboto;
 }
 
-img.btech-formatted-content-banner {
+div.btech-formatted-content-banner img {
   display: block;
   width: 100vw;
   object-fit: cover;
