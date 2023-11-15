@@ -433,7 +433,6 @@
     mounted: async function () {
       // init context data
       let canvasCourseData = await $.get("/api/v1/courses/" + CURRENT_COURSE_ID);
-      console.log(canvasCourseData);
       // do a check if there's a valid course code. If not, no need to rate :)
       // may be more accurate to pull based on sis course id 
       let sisCourseId = canvasCourseData.sis_course_id;
@@ -441,11 +440,9 @@
 
       //if can't set the required data, can't do a review
       try {
-        console.log("parse data");
         const yearPattern = /(\d{4})[A-Z]{2}$/;
         const courseCodePattern = /[A-Z]{4} \d{4}/;
         let match = sisCourseId.match(yearPattern);
-        console.log(match);
 
         let year = 0;
         if (match) year = match[1];
@@ -734,7 +731,7 @@
               this.currentMenu = 'new';
             }
             activeFound = true;
-            this.maximize();
+            // this.maximize();
           }
         }
         if (!activeFound) this.activeReview = {};
