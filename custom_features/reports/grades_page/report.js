@@ -4,8 +4,25 @@
   if (false) {
     try {
       let user = await bridgetoolsReq(`https://reports.bridgetools.dev/api/students/${ENV.current_user_id}`);
-      if (user?.enrollment_type == 'HS' && CURRENT_DEPARTMENT_ID === 3824) { //Dental testing this
-        if (/[0-9]+\/grades/.test(window.location.pathname)) {
+      if (/[0-9]+\/grades/.test(window.location.pathname)) {
+        $("#content").prepend(`
+          <div style="background-color: white; position:relative; left: 0; bottom: 0;" class="ic-notification ic-notification--danger">
+            <div class="ic-notification__icon" role="presentation">
+              <i class="icon-info"></i>
+              <span class="screenreader-only">
+                information
+              </span>
+            </div>
+            <div class="ic-notification__content">
+              <div class="ic-notification__message">
+                <h4 class="ic-notification__title">
+                  Your Grade! 
+                </h4>
+                <span class="notification_message">The default grade show by Canvas only takes into account graded items, and is <strong>NOT</strong> your final grade. You may click the checkbox below to show your grade including ungraded assignments. Assignments which show a - by them have not been submitted and will need to be. For any questions about your final grade, please reach out to your instructor.</span></div>
+            </div>
+          </div>
+        `);
+        if (user?.enrollment_type == 'HS' && CURRENT_DEPARTMENT_ID === 3824) { //Dental testing this
           $("#content").prepend(`
             <div style="background-color: white; position:relative; left: 0; bottom: 0;" class="ic-notification ic-notification--danger">
               <div class="ic-notification__icon" role="presentation">
