@@ -3,8 +3,8 @@
   console.log(CURRENT_DEPARTMENT_ID);
   if (true) {
     try {
-      let user = await bridgetoolsReq(`https://reports.bridgetools.dev/api/students/${ENV.current_user_id}`);
       if (/[0-9]+\/grades/.test(window.location.pathname)) {
+        let user = await bridgetoolsReq(`https://reports.bridgetools.dev/api/students/${ENV.current_user_id}`);
         if (user?.enrollment_type == 'HS' && CURRENT_DEPARTMENT_ID === 3824) { //Dental testing this
           $("#content").prepend(`
             <div style="background-color: white; position:relative; left: 0; bottom: 0;" class="ic-notification ic-notification--danger">
