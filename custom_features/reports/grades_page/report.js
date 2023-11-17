@@ -1,7 +1,7 @@
 (async function () {
 //Confirm with Instructional Team before going live
   console.log(CURRENT_DEPARTMENT_ID);
-  if (false) {
+  if (true) {
     try {
       let user = await bridgetoolsReq(`https://reports.bridgetools.dev/api/students/${ENV.current_user_id}`);
       if (/[0-9]+\/grades/.test(window.location.pathname)) {
