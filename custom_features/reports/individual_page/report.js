@@ -25,7 +25,8 @@
                   <h4 class="ic-notification__title">
                     High School Students!
                   </h4>
-                  <p class="notification_message">The grade here is your course grade, but may <strong>NOT</strong> be your final grade submitted to your high school at the end of the term. Your term grade will be based on only the assignments submitted during the term and may be based on the ammount of work you completed across multiple courses.</p><p>Contact your instructor if you have questions about your grade.</p>
+                  <p class="notification_message">The grade here is your course grade, but may <strong>NOT</strong> be your final grade submitted to your high school at the end of the term. Your term grade will be based on only the assignments submitted during the term and may be based on the ammount of work you completed across multiple courses.</p>
+                  <p>Contact your instructor if you have questions about your grade.</p>
                 </div>
               </div>
             </div>
@@ -44,7 +45,8 @@
                   <h4 class="ic-notification__title">
                     Your Grade! 
                   </h4>
-                  <p class="notification_message">The default grade show by Canvas only takes into account graded items, and may <strong>NOT</strong> reflect your final grade. You may uncheck the box below to show your actual grade including ungraded assignments. Assignments which show a - by them have not been submitted.</p><p>Contact your instructor if you have questions about your grade.</p>
+                  <p class="notification_message">The default grade show by Canvas only takes into account graded items, and may <strong>NOT</strong> reflect your final grade. You may uncheck the box below to show your actual grade including ungraded assignments. Assignments which show a - by them have not been submitted.</p>
+                  <p>Contact your instructor if you have questions about your grade.</p>
                 </div>
               </div>
             </div>
