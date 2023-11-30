@@ -74,6 +74,7 @@ let VUE_APP = new Vue({
           let prompt = '';
           let answers = [];
           let correct = '';
+          let comment = '';
           for (l in lines) {
             let line = lines[l].trim();
             let mPrompt = line.match(/^Q?[0-9]+\.(.*)/);
@@ -98,6 +99,11 @@ let VUE_APP = new Vue({
                 answers = [];
                 correct = "";
             }
+
+            let mComment = line.match(/^\\?\.(.*)/);
+            if (mComment) {
+                comment = mComment[1];
+            }
           }
 
           let bank = await this.createBank(file.name);
@@ -118,7 +124,8 @@ let VUE_APP = new Vue({
                 question_type: "multiple_choice_question",
                 points_possible: 1,
                 question_text: `<p>${question.prompt}</p>`,
-                answers: answers
+                answers: answers,
+                neutral_comments: comment
               }
             }); 
             this.uploadProgress[file.name] = +q / quiz.length;
