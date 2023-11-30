@@ -83,10 +83,10 @@ let VUE_APP = new Vue({
                 prompt = mPrompt[1];
                 continue;
             }
-            let mAnswer = line.match(/^\*{0,1}[A-Za-z]\.(.*)/);
+            let mAnswer = line.match(/^\*{0,1}[A-Za-z](\.|\))(.*)/);
             if (mAnswer) {
                 answers.push({
-                    option: mAnswer[1],
+                    option: mAnswer[2],
                     correct: line.charAt(0) == '*'
                 });
                 if (line.charAt(0) == '*') numCorrect += 1;
