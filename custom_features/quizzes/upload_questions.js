@@ -103,6 +103,7 @@ let VUE_APP = new Vue({
             let mComment = line.match(/^\\?\.(.*)/);
             if (mComment) {
                 comment = mComment[1];
+                console.log(comment);
             }
           }
 
