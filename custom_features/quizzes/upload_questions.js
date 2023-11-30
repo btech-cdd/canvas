@@ -75,6 +75,7 @@ let VUE_APP = new Vue({
           let answers = [];
           let correct = '';
           let comment = '';
+          let numCorrect = 0;
           for (l in lines) {
             let line = lines[l].trim();
             let mPrompt = line.match(/^Q?[0-9]+\.(.*)/);
@@ -88,16 +89,7 @@ let VUE_APP = new Vue({
                     option: mAnswer[1],
                     correct: line.charAt(0) == '*'
                 });
-            }
-            if (answers.length > 1 && line == '') {
-                let question = {
-                  prompt: prompt,
-                  answers: answers
-                }
-                quiz.push(question);
-                prompt = "";
-                answers = [];
-                correct = "";
+                if (line.charAt(0) == '*') numCorrect += 1;
             }
 
             let mComment = line.match(/^\?\.(.*)/);
@@ -105,6 +97,22 @@ let VUE_APP = new Vue({
                 comment = mComment[1];
                 console.log(comment);
             }
+
+            if (answers.length > 1 && line == '') {
+                let question = {
+                  prompt: prompt,
+                  answers: answers,
+                  comment: comment,
+                  num_correct: numCorrect
+                }
+                quiz.push(question);
+                prompt = "";
+                answers = [];
+                correct = "";
+                numCorrect = 0;
+                comment = "";
+            }
+
           }
 
           let bank = await this.createBank(file.name);
@@ -114,19 +122,21 @@ let VUE_APP = new Vue({
             for (let a in question.answers) {
               let answer = question.answers[a];
               answers.push({
-                answer_weight: answer.correct ? 100 : 0,
+                answer_weight: answer.correct ? (100 / question.num_correct) : 0,
                 numerical_answer_type: "exact_answer",
                 answer_text: answer.option
               })
             }
+            let questionType = 'multiple_choice_question';
+            if (numCorrect > 0 || question.prompt.includes("all that apply")) questionType = 'multiple_answers_question';
             await $.post(`/courses/${CURRENT_COURSE_ID}/question_banks/${bank.assessment_question_bank.id}/assessment_questions`, {
               question: {
                 question_name: "MC Question " + pad(+q + 1, 3),
-                question_type: "multiple_choice_question",
+                question_type: questionType,
                 points_possible: 1,
                 question_text: `<p>${question.prompt}</p>`,
                 answers: answers,
-                neutral_comments: comment
+                neutral_comments: question.comment
               }
             }); 
             this.uploadProgress[file.name] = +q / quiz.length;
