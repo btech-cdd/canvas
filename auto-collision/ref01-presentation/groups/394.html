@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta http-equiv="X-UA-Compatible" content=""/> 
+
+
+<link rel="stylesheet" type="text/css" href="../system/js/yui/reset-fonts-grids/reset-fonts-grids.css" />
+<link rel="stylesheet" href="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/css/content.css" type="text/css"/>
+
+<script type="text/javascript" src="../system/js/jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../system/js/yui/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/js/groupController.js" language="javscript"></script>
+<script type="text/javascript" src="../system/js/util/ObjectFinder.js" language="javascript"></script>
+<script type="text/javascript" language="javascript">
+GroupEngine.remaining = "$e.getMetadata($obj,'E8A92052415319A78969131700000BBE')";
+GroupEngine.linear = "false";
+if(GroupEngine.remaining.length == 0 || isNaN(GroupEngine.remaining)){
+	GroupEngine.remaining = "10";
+}
+var viewerController = ObjectFinder.search(window, "ViewerController");
+var current = viewerController.current || {accessed: false};
+if(current.lastAccess && ((new Date()).getTime()-current.lastAccess>GroupEngine.remaining*1000)){
+	current.accessed = true;
+}	
+
+if(GroupEngine.remaining > 0 && !current.accessed && viewerController.events.changeFwd) {
+	viewerController.events.changeFwd.fire();
+}
+
+GroupEngine.numChildAssessments = 0;
+if (viewerController.current) {
+	for (var i=0; i<current.children.length; i++)
+	{
+		var contentType = current.children[i].contentType;
+		var isAssessment = (100 == contentType) || (101 == contentType) || (102 == contentType) || (103 == contentType) 
+							|| (104 == contentType) || (105 == contentType) || (107 == contentType)
+							|| (27 == contentType) || (31 == contentType);
+		if (isAssessment) {
+			GroupEngine.numChildAssessments++;	
+		}
+	}
+}
+jQuery(document).ready(function()
+{	
+	if(GroupEngine.linear == "true" && (GroupEngine.numChildAssessments > 0 || (GroupEngine.remaining > 0 && !current.accessed && viewerController.events.changeFwd))) {
+		viewerController.events.changeFwd.fire();
+	} else {
+		viewerController.events.timeout.fire();
+	}
+});
+</script>
+</head>
+<body class="reflection">
+	<!-- Evolution Content API  --><script type="text/javascript" src="../system/js/yui290/yahoo-dom-event/yahoo-dom-event.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/animation/animation-min.js?reloadme=12345" language="javascript"></script>
+<script language="Javascript"></script><div id="GB21E205241531D6760EB130B000EE1D1" class="group_container"><style></style></div>
+</body>
+</html>

@@ -1,0 +1,3 @@
+sup{vertical-align:super;}sub{vertical-align:sub;}
+span ul li{list-style:circle;} span ul ul li{list-style:square;} span ul ol li{list-style:decimal;} span ol ol li{list-style:decimal;} span ol li {list-style:decimal;} span ol ul li{list-style:square;}
+div ul li{list-style:disc;} div ul ul li{list-style:circle;} div ul ol li{list-style:decimal;} div ol ol li{list-style:decimal;} div ol li {list-style:decimal;} div ol ul li{list-style:circle;}
