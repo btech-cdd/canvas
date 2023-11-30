@@ -115,7 +115,7 @@ let VUE_APP = new Vue({
 
           }
 
-          let bank = await this.createBank(file.name);
+          let bank = await this.createBank(file.name.replace(".txt", ""));
           for (let q in quiz) {
             let question = quiz[q];
             let answers = [];
