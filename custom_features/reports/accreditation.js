@@ -143,19 +143,6 @@
 
           let sections = await canvasGet("/api/v1/courses/" + app.courseId + "/sections?include[]=students")
           app.sections = sections;
-          /* unused as far as I can tell
-          let enrollments = await canvasGet("/api/v1/courses/" + app.courseId + "/enrollments", {
-            type: [
-              'StudentEnrollment'
-            ],
-            state: [
-              'active',
-              'completed',
-              'inactive'
-            ]
-          });
-          app.enrollments = enrollments;
-          */
         },
         data: function () {
           return {
@@ -185,6 +172,8 @@
             }
             return date;
           },
+
+          // a filter to determine which submissions display and which don't
           getFilteredSubmissions(submissions) {
             let app = this;
             let startDate = app.startDate;
@@ -235,8 +224,10 @@
             console.log(output);
             return output;
           },
+
+          // a filter to determine which assignments have a submission
+          // currently not doing anything because canvas's filter doesn't work
           getSubmittedAssignments(assignments) {
-            let app = this;
             let submittedAssignments = [];
             for (let i = 0; i < assignments.length; i++) {
               let assignment = assignments[i];
@@ -246,6 +237,8 @@
             }
             return submittedAssignments;
           },
+
+          // api call to load submissions
           async getAllSubmissions(assignmentId = '') {
             let app = this;
             submissionsByAssignment = {};
@@ -288,6 +281,8 @@
             }
             return submissions;
           },
+
+          // api call to load comments for a submission
           getComments(submission) {
             let comments = submission.submission_comments;
             let el = "";
@@ -305,7 +300,6 @@
             }
             return el;
           },
-
 
           //THIS IS WHERE EVERYTHING GETS SORTED OUT AND ALL THE DOWNLOADS ARE INITIATED
           async downloadSubmission(assignment, submission) {
@@ -342,6 +336,7 @@
 
             //text entry for assignments
             //append comments here and pull them from rubrics. If no text entry, just grab the comments
+            console.log(submission);
 
             //rubrics
             if (assignment.rubric != undefined) {

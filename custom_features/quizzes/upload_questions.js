@@ -139,7 +139,7 @@ let VUE_APP = new Vue({
                 neutral_comments: question.comment
               }
             }); 
-            this.uploadProgress[file.name] = +q / quiz.length;
+            this.uploadProgress[file.name] = +q + 1 / quiz.length;
             //trick vue into showing the change
             this.uploadProgress = JSON.parse(JSON.stringify(this.uploadProgress));
           }
