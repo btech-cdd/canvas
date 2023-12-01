@@ -455,7 +455,7 @@
           async downloadNewQuiz(iframe, content, data) {
             let app = this;
             let elId = iframe.attr('id');
-            iframe.style('max-width: 1080');
+            iframe.style('max-width: 800');
             let id = elId.replace('btech-content-', '');
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
             let commentEl = app.getComments(data.submission);
