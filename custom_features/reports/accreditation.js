@@ -455,7 +455,6 @@
           async downloadNewQuiz(iframe, content, data) {
             let app = this;
             let elId = iframe.attr('id');
-            iframe.style('width', '500px');
             let id = elId.replace('btech-content-', '');
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
             let commentEl = app.getComments(data.submission);
@@ -465,6 +464,7 @@
             content.prepend("<div>Title:" + data.assignment.name + "</div>");
             content.append(`<iframe src='`+url+`' 
                               width='100%' 
+                              style='max-width: 800px;'
                               scrolling='no' 
                               frameborder='0' 
                               onload="let obj = this; setTimeout(function() {obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';}, 5000);"
