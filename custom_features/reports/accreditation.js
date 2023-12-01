@@ -429,7 +429,6 @@
             let title = data.assignment.name + "-" + data.submission.user.name + " submission rubric"
             let commentEl = app.getComments(data.submission);
             content.find("#rubric_holder").show();
-            console.log(data.submission);
             content.find('#rubric_holder').prepend(`<div>${data.submission.body}</div>`);
             content.find("#rubric_holder").prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.find("#rubric_holder").prepend("<div>Student:" + data.submission.user.name + "</div>");
@@ -441,6 +440,7 @@
             });
             let ogTitle = $('title').text();
             $('title').text(title);
+            console.log(content.find('#rubric_holder'));
             content.find("#rubric_holder").printThis({
               pageTitle: title,
               afterPrint: function () {
@@ -509,7 +509,6 @@
             return;
           },
           async createIframe(url, func = null, data = {}) {
-            let app = this;
             let id = genId();
             let elId = 'btech-content-' + id
             let iframe = $('<iframe id="' + elId + '" style="display: none; max-width: 800px;" src="' + url + '"></iframe>');
