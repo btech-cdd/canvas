@@ -221,7 +221,6 @@
                 output.push(submission);
               }
             }
-            console.log(output);
             return output;
           },
 
