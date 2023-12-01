@@ -446,7 +446,7 @@
               afterPrint: function () {
                 $('title').text(ogTitle);
                 app.preparingDocument = false;
-                // iframe.remove();
+                iframe.remove();
               }
             });
             return;
@@ -510,7 +510,7 @@
           async createIframe(url, func = null, data = {}) {
             let id = genId();
             let elId = 'btech-content-' + id
-            let iframe = $('<iframe id="' + elId + '" style="display: none; width: 1200px;" src="' + url + '"></iframe>');
+            let iframe = $('<iframe id="' + elId + '" style="width: 1200px;" src="' + url + '"></iframe>');
 
             $("#content").append(iframe);
             //This is unused. was for trying to convert an html element to a canvas then to a data url then to image then to pdf, but ran into cors issues.
