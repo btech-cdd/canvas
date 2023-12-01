@@ -452,9 +452,10 @@
             return;
           },
           //Not currently working because of CORS
-          async downloadNewQuiz(ifraame, content, data) {
+          async downloadNewQuiz(iframe, content, data) {
             let app = this;
             let elId = iframe.attr('id');
+            iframe.style('max-width: 1080');
             let id = elId.replace('btech-content-', '');
             let title = data.assignment.name + "-" + data.submission.user.name + " submission"
             let commentEl = app.getComments(data.submission);
