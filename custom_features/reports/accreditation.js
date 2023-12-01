@@ -530,9 +530,9 @@
             app.showModal = true;
             app.currentAssignment = assignment;
             app.submissions = [];
-            if (assignment.submissions.length == 0) {
-              await app.getAllSubmissions(assignment.id);
-            }
+            // if (assignment.submissions.length == 0) {
+            //   await app.getAllSubmissions(assignment.id);
+            // }
             app.submissions = assignment.submissions;
           },
           submittedAssignments(submissions) {
