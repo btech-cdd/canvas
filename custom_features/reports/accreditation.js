@@ -463,8 +463,7 @@
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             content.prepend("<div>Title:" + data.assignment.name + "</div>");
             content.append(`<iframe src='`+url+`' 
-                              width='100%' 
-                              style='max-width: 800px;'
+                              width='800px' 
                               scrolling='no' 
                               frameborder='0' 
                               onload="let obj = this; setTimeout(function() {obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';}, 5000);"
