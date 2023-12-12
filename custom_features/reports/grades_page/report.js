@@ -345,6 +345,7 @@
     loadCSS("https://reports.bridgetools.dev/style/main.css");
     $.getScript("https://reports.bridgetools.dev/department_report/components/courseProgressBarInd.js").done(() => {
           postLoad();
+          console.log("LOADING...")
     });
   }
   _init();
