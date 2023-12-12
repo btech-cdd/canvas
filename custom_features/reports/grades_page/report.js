@@ -18,14 +18,14 @@
     let canvasbody = $("#application");
     canvasbody.after('<div id="canvas-grades-report-vue"></div>');
     $("#canvas-grades-report-vue").append(vueString);
-    let gen_report_button = $('<a class="Button" id="canvas-grades-report-vue-gen">Report</a>');
-    let new_grades = $('div#gradebook-actions');
-    let old_grades = $('div#gradebook-toolbar');
-    if (new_grades.length > 0) gen_report_button.appendTo(new_grades);
-    if (old_grades.length > 0) gen_report_button.appendTo(old_grades);
+    let genReportButton = $('<a class="Button" id="canvas-grades-report-vue-gen">Report</a>');
+    let newGrades = $('div#gradebook-actions');
+    let oldGrades = $('div#gradebook-toolbar');
+    if (newGrades.length > 0) newGrades.prepend(genReportButton);
+    if (oldGrades.length > 0) genReportButton.appendTo(oldGrades);
     let modal = $('#canvas-grades-report-vue');
     modal.hide();
-    gen_report_button.click(function () {
+    genReportButton.click(function () {
       let modal = $('#canvas-grades-report-vue');
       modal.show();
       $.post("https://tracking.bridgetools.dev/api/hit", {
