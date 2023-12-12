@@ -19,7 +19,7 @@
     canvasbody.after('<div id="canvas-grades-report-vue"></div>');
     $("#canvas-grades-report-vue").append(vueString);
     let gen_report_button = $('<a class="Button" id="canvas-grades-report-vue-gen">Report</a>');
-    let new_grades = $('div.header-buttons');
+    let new_grades = $('div#gradebook-actions');
     let old_grades = $('div#gradebook-toolbar');
     if (new_grades.length > 0) gen_report_button.appendTo(new_grades);
     if (old_grades.length > 0) gen_report_button.appendTo(old_grades);
@@ -345,7 +345,6 @@
     loadCSS("https://reports.bridgetools.dev/style/main.css");
     $.getScript("https://reports.bridgetools.dev/department_report/components/courseProgressBarInd.js").done(() => {
           postLoad();
-          console.log("LOADING...")
     });
   }
   _init();
