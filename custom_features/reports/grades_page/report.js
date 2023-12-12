@@ -339,11 +339,7 @@
         this.loadCSS("https://reports.bridgetools.dev/department_report/style/main.css");
         this.loadCSS("https://reports.bridgetools.dev/style/main.css");
         $.getScript("https://reports.bridgetools.dev/department_report/components/courseProgressBarInd.js").done(() => {
-          $.getScript("https://reports.bridgetools.dev/scripts.js").done(() => {
-            $.getScript("https://reports.bridgetools.dev/department_report/scripts.js").done(() => {
               this.postLoad();
-            });
-          });
         });
       },
       loadCSS(url) {

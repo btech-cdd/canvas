@@ -30,6 +30,9 @@
       //add in a selector for all students with their grade then only show assignments they've submitted so far???
       $("#content").html(`
       <div id='accreditation'>
+        <div>
+          If the pdf cuts off part of your evidence and you're using Chrome, try changing the layout to Landscape and/or adjusting the Scale (under More Settings) until everything fits.
+        </div>
         <div class='date-input'>
           <input type='date' v-model='startDate'>
           <input type='date' v-model='endDate'>
