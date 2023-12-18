@@ -1,0 +1,222 @@
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta http-equiv="X-UA-Compatible" content=""/> 
+
+
+<link rel="stylesheet" type="text/css" href="../system/js/yui/reset-fonts-grids/reset-fonts-grids.css" />
+<link rel="stylesheet" href="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/css/content.css" type="text/css"/>
+
+<script type="text/javascript" src="../system/js/jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../system/js/yui/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/js/groupController.js" language="javscript"></script>
+<script type="text/javascript" src="../system/js/util/ObjectFinder.js" language="javascript"></script>
+<script type="text/javascript" language="javascript">
+GroupEngine.remaining = "";
+GroupEngine.linear = "false";
+if(GroupEngine.remaining.length == 0 || isNaN(GroupEngine.remaining)){
+	GroupEngine.remaining = "10";
+}
+var viewerController = ObjectFinder.search(window, "ViewerController");
+var current = viewerController.current || {accessed: false};
+if(current.lastAccess && ((new Date()).getTime()-current.lastAccess>GroupEngine.remaining*1000)){
+	current.accessed = true;
+}	
+
+if(GroupEngine.remaining > 0 && !current.accessed && viewerController.events.changeFwd) {
+	viewerController.events.changeFwd.fire();
+}
+
+GroupEngine.numChildAssessments = 0;
+if (viewerController.current) {
+	for (var i=0; i<current.children.length; i++)
+	{
+		var contentType = current.children[i].contentType;
+		var isAssessment = (100 == contentType) || (101 == contentType) || (102 == contentType) || (103 == contentType) 
+							|| (104 == contentType) || (105 == contentType) || (107 == contentType)
+							|| (27 == contentType) || (31 == contentType);
+		if (isAssessment) {
+			GroupEngine.numChildAssessments++;	
+		}
+	}
+}
+jQuery(document).ready(function()
+{	
+	if(GroupEngine.linear == "true" && (GroupEngine.numChildAssessments > 0 || (GroupEngine.remaining > 0 && !current.accessed && viewerController.events.changeFwd))) {
+		viewerController.events.changeFwd.fire();
+	} else {
+		viewerController.events.timeout.fire();
+	}
+});
+</script>
+</head>
+<body class="reflection">
+	<!-- Evolution Content API  --><script type="text/javascript" src="../system/js/yui290/yahoo-dom-event/yahoo-dom-event.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/animation/animation-min.js?reloadme=12345" language="javascript"></script>
+<script language="Javascript"></script><div class="layout_container"><link href="../system/js/yui290/container/assets/skins/sam/container.css" rel="stylesheet"/><script type="text/javascript" src="../system/js/yui290/dragdrop/dragdrop-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/json/json-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-migrate-3.0.0.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/container/container-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/delivery/delivery_core.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-ui-1.12.1.min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-ui-effects-1.12.1.min.js?reloadme=12345" language="javascript"></script>
+<script language="javascript">var de = OSDeliveryEngine;
+de.themeId = "non_linear";
+de.userId = "dbarker";
+de.userRole = "00000000000000000000002C00000001";
+de.contextMap = {"11":"940B205241531ED21594130B0019788C","2":"940B205241531ED2159313020019786E","3":"940B205241531ED215851303001975BC","4":"E0DA205241531C9AD2D7130400064494"};
+de.uniqueIdContextMap = {"11":"4a0e98553d99c916a090b1c20b12932b","2":"5505dfe65b0bc382834c3ca75fd1d4e9","3":"43e593b4b18ae1b8acf160dd070f0550","4":"4d7c12d63f1364b727134536cbb74433"};
+de.satisfaction = {"threshold":80,"type":0};
+de.linear = false;
+de.addObject({"id":"E0DA205241531C9AD2D7130400064494","label":"Detailing (REF04)","type":4,"uniqueId":"4d7c12d63f1364b727134536cbb74433"});
+de.addObject({"id":"940B205241531ED215851303001975BC","label":" Module 3 -  Final Detailing","type":3,"uniqueId":"43e593b4b18ae1b8acf160dd070f0550","parentId":"E0DA205241531C9AD2D7130400064494"});
+de.addObject({"id":"940B205241531ED2159313020019786E","label":" Final Check And Delivery","type":2,"uniqueId":"5505dfe65b0bc382834c3ca75fd1d4e9","parentId":"940B205241531ED215851303001975BC"});
+de.addObject({"id":"940B205241531ED21594130B0019788C","label":" Care Tip Sheet","type":11,"uniqueId":"4a0e98553d99c916a090b1c20b12932b","parentId":"940B205241531ED2159313020019786E"});
+de.addObject({"weight":0,"id":"940B205241531ED2159413010019788D","label":" Presentation","type":1,"contentType":33,"uniqueId":"1b3879a32f4cae9f55149b61eead4f75","parentId":"940B205241531ED21594130B0019788C"});
+var mapURL = de.urlMap; 
+if (null != mapURL && typeof(mapURL) != "undefined") { 
+mapURL[0] = "../groups/2.html"; 
+mapURL[1] = "../groups/3.html"; 
+mapURL[2] = "../groups/4.html"; 
+mapURL[3] = "../groups/5.html"; 
+mapURL[4] = "../groups/6.html"; 
+mapURL[5] = "../groups/7.html"; 
+mapURL[6] = "../groups/8.html"; 
+mapURL[7] = "../groups/9.html"; 
+mapURL[8] = "../groups/10.html"; 
+mapURL[9] = "../groups/11.html"; 
+mapURL[10] = "../groups/12.html"; 
+mapURL[11] = "../groups/13.html"; 
+mapURL[12] = "../groups/14.html"; 
+mapURL[13] = "../groups/15.html"; 
+mapURL[14] = "../groups/16.html"; 
+mapURL[15] = "../groups/17.html"; 
+mapURL[16] = "../groups/18.html"; 
+mapURL[17] = "../groups/19.html"; 
+mapURL[18] = "../groups/20.html"; 
+mapURL[19] = "../groups/21.html"; 
+mapURL[20] = "../groups/22.html"; 
+mapURL[21] = "../groups/23.html"; 
+mapURL[22] = "../groups/24.html"; 
+mapURL[23] = "../assessments/25.html"; 
+mapURL[24] = "../assessments/26.html"; 
+mapURL[25] = "../assessments/27.html"; 
+mapURL[26] = "../assessments/28.html"; 
+mapURL[27] = "../assessments/29.html"; 
+mapURL[28] = "../groups/30.html"; 
+mapURL[29] = "../groups/31.html"; 
+mapURL[30] = "../groups/32.html"; 
+mapURL[31] = "../groups/33.html"; 
+mapURL[32] = "../groups/34.html"; 
+mapURL[33] = "../groups/35.html"; 
+mapURL[34] = "../groups/36.html"; 
+mapURL[35] = "../groups/37.html"; 
+mapURL[36] = "../groups/38.html"; 
+mapURL[37] = "../groups/39.html"; 
+mapURL[38] = "../groups/40.html"; 
+mapURL[39] = "../groups/41.html"; 
+mapURL[40] = "../groups/42.html"; 
+mapURL[41] = "../groups/43.html"; 
+mapURL[42] = "../groups/44.html"; 
+mapURL[43] = "../groups/45.html"; 
+mapURL[44] = "../groups/46.html"; 
+mapURL[45] = "../groups/47.html"; 
+mapURL[46] = "../groups/48.html"; 
+mapURL[47] = "../groups/49.html"; 
+mapURL[48] = "../groups/50.html"; 
+mapURL[49] = "../groups/51.html"; 
+mapURL[50] = "../groups/52.html"; 
+mapURL[51] = "../groups/53.html"; 
+mapURL[52] = "../groups/54.html"; 
+mapURL[53] = "../groups/55.html"; 
+mapURL[54] = "../groups/56.html"; 
+mapURL[55] = "../groups/57.html"; 
+mapURL[56] = "../groups/58.html"; 
+mapURL[57] = "../groups/59.html"; 
+mapURL[58] = "../groups/60.html"; 
+mapURL[59] = "../groups/61.html"; 
+mapURL[60] = "../groups/62.html"; 
+mapURL[61] = "../groups/63.html"; 
+mapURL[62] = "../groups/64.html"; 
+mapURL[63] = "../assessments/65.html"; 
+mapURL[64] = "../assessments/66.html"; 
+mapURL[65] = "../assessments/67.html"; 
+mapURL[66] = "../assessments/68.html"; 
+mapURL[67] = "../assessments/69.html"; 
+mapURL[68] = "../groups/70.html"; 
+mapURL[69] = "../groups/71.html"; 
+mapURL[70] = "../groups/72.html"; 
+mapURL[71] = "../groups/73.html"; 
+mapURL[72] = "../groups/74.html"; 
+mapURL[73] = "../groups/75.html"; 
+mapURL[74] = "../groups/76.html"; 
+mapURL[75] = "../groups/77.html"; 
+mapURL[76] = "../groups/78.html"; 
+mapURL[77] = "../assessments/79.html"; 
+mapURL[78] = "../assessments/80.html"; 
+mapURL[79] = "../assessments/81.html"; 
+mapURL[80] = "../groups/82.html"; 
+mapURL[81] = "../groups/83.html"; 
+mapURL[82] = "../groups/84.html"; 
+mapURL[83] = "../groups/85.html"; 
+mapURL[84] = "../groups/86.html"; 
+mapURL[85] = "../groups/87.html"; 
+mapURL[86] = "../groups/88.html"; 
+mapURL[87] = "../groups/89.html"; 
+mapURL[88] = "../assessments/90.html"; 
+mapURL[89] = "../assessments/91.html"; 
+mapURL[90] = "../groups/92.html"; 
+mapURL[91] = "../groups/93.html"; 
+mapURL[92] = "../assessments/94.html"; 
+mapURL[93] = "../assessments/95.html"; 
+mapURL[94] = "../assessments/96.html"; 
+mapURL[95] = "../groups/97.html"; 
+mapURL[96] = "../groups/98.html"; 
+mapURL[97] = "../groups/99.html"; 
+mapURL[98] = "../groups/100.html"; 
+mapURL[99] = "../groups/101.html"; 
+mapURL[100] = "../assessments/102.html"; 
+mapURL[101] = "../assessments/103.html"; 
+mapURL[102] = "../groups/104.html"; 
+mapURL[103] = "../assessments/105.html"; 
+mapURL[104] = "../assessments/106.html"; 
+ }; 
+</script><link href="../system/styles/delivery/web/default_content_styles.css" rel="stylesheet"/><!--[if lte IE 7]><link href="../system/styles/delivery/web/default_content_styles_ie7.css" rel="stylesheet"/><![endif]--><link href="../system/styles/override-reset-fonts-grids.css" rel="stylesheet"/><script src="../system/js/OsList.js" language="javascript"></script><script src="../system/js/delivery/MediaController.js" language="javascript"></script><script language="javascript">var list940B205241531ED2159413010019788D= new OsList('940B205241531ED2159413010019788D');list940B205241531ED2159413010019788D.aniType=0;jQuery(document).ready(function(){list940B205241531ED2159413010019788D.init();
+de.queueAnimation(list940B205241531ED2159413010019788D,'940B205241531ED2159413010019788D', 'onLoad');});OSDeliveryEngine.queueLoad('1b3879a32f4cae9f55149b61eead4f75');
+function applyListStyle()
+{
+jQuery("ol").each(function()
+{
+var typeAttr = jQuery(this).attr('type');
+if(typeof(typeAttr)!='undefined')
+{
+jQuery(this).find('li').each(function(){"+"
+var liStyle = '';
+if(typeAttr=='1')
+	liStyle = 'decimal';
+if(typeAttr=='a')
+	liStyle = 'lower-alpha';
+if(typeAttr=='A')
+	liStyle = 'upper-alpha';
+if(typeAttr=='i')
+	liStyle = 'lower-roman';
+if(typeAttr=='I')
+   liStyle = 'upper-roman';
+if(liStyle.length>0)
+	jQuery(this).css('list-style',liStyle);
+});
+}
+});
+}
+jQuery(document.body).on("load", function () {
+applyListStyle();
+});
+jQuery(document.body).on("click",function(){
+applyListStyle();
+})
+</script><script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED21594130100197891","label":" Image","type":1,"contentType":39,"uniqueId":"732f765921f86a44afceaa2bfa2d313c","parentId":"940B205241531ED21594130B0019788C"});
+var r = de.getObjectByUniqueId('732f765921f86a44afceaa2bfa2d313c').references = [{"media_references":{"types":[{"viewPort":"xs","mediaTypeId":"00000000000000000000001200000007","url":"../media/127.jpg"},{"viewPort":"sm","mediaTypeId":"00000000000000000000001200000008","url":"../media/128.jpg"},{"viewPort":"md","mediaTypeId":"00000000000000000000001200000009","url":"../media/129.jpg"},{"viewPort":"lg","mediaTypeId":"0000000000000000000000120000000A","url":"../media/130.jpg"},{"viewPort":"xl","mediaTypeId":"0000000000000000000000120000000B","url":"../media/131.jpg"}],"mediaId":"E699205241531D339D2C1308000CBFFC"},"id":"E699205241531D339D2C1308000CBFFC","label":"14345","type":8,"uniqueId":"92139b60918a1d65dc15b60e5a17b47","url":"..\/media\/126.jpg","parentId":"940B205241531ED21594130100197891"}];for (i in r) de.addObject(r[i]);</script><script language="javascript">OSDeliveryEngine.queueLoad('732f765921f86a44afceaa2bfa2d313c');
+</script><div id="G940B205241531ED21594130B0019788C" class="group_container"><style></style><input id="hasAppliedEffect" value="false" name="hasAppliedEffect" type="hidden"/><style>#dle_940B205241531ED21594130B0019788C_0{width: 50%; clear: ; float: left; margin: ; padding: ; width*: 38%; margin-right: .75em; display: inline-table;}#dle_940B205241531ED21594130B0019788C_1{width: 50%; position: absolute; right: 15px; top: 10px; clear: ; float: right; margin: ; padding: ; position*: relative; top*: 0px; right*: -10px;}</style><div id="dle_940B205241531ED21594130B0019788C_0" class="layout_container"><div id="dle_940B205241531ED21594130B0019788C_0_w" style="font-size:100%;background:none transparent;border:none;margin:0;padding:0"><div id="C940B205241531ED2159413010019788D" class="content_container element_33"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><div id="div_940B205241531ED2159413010019788D" class="list_block_div listtext"><ul id="list_940B205241531ED2159413010019788D" class="main_list list_type_bullets"><li id="item940B205241531ED2159413010019788D0" class="list_item"><span id="C940B205241531ED2159413010019788DDESC1" class="listtext">Polish occasionally
+<ul><li>after recommended wait period</li></ul></span></li><li id="item940B205241531ED2159413010019788D1" class="list_item"><span id="C940B205241531ED2159413010019788DDESC2" class="listtext">Clean off bird droppings and tree sap quickly</span></li><li id="item940B205241531ED2159413010019788D2" class="list_item"><span id="C940B205241531ED2159413010019788DDESC3" class="listtext">Do not allow rain drops to dry on surface</span></li><li id="item940B205241531ED2159413010019788D3" class="list_item"><span id="C940B205241531ED2159413010019788DDESC4" class="listtext">Do not wash vehicle in sun</span></li></ul></div></td></tr></table></td></tr></table></div></div></div><div id="dle_940B205241531ED21594130B0019788C_1" class="layout_container"><div id="dle_940B205241531ED21594130B0019788C_1_w" style="font-size:100%;background:none transparent;border:none;margin:0;padding:0"><div id="C940B205241531ED21594130100197891" class="content_container element_39"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><table class="media_and_text_table"><tr><td><table class="media_table"><tr><td class="media_cell align_Left"><img width="720" height="442" alt="" src="../media/126.jpg"/></td></tr><tr><td class="caption_cell align_Left"><span id="C940B205241531ED21594130100197891CAPTION" class="imagecaption">Paint makers usually have care tip sheets available to inform the vehicle owner how to take care of a newly refinished surface.</span></td></tr></table></td></tr></table></td></tr></table></td></tr></table></div></div></div><div style="clear:both;"></div></div></div>
+</body>
+</html>

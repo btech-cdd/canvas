@@ -1,0 +1,15 @@
+/*
+  * Licensed Materials - Property of IBM
+  * 5725N95, 5725P55, 5725N96
+  * (C) Copyright IBM Corp. 1999, 2014.
+  * US Government Users Restricted Rights- Use, duplication or disclosure
+  * restricted by GSA ADP Schedule Contract with IBM Corp.
+ */
+
+ /* $Id: default_content_styles_ie7.css,v 1.1.4.1.2.1 2014/01/08 09:23:48 phuocdang Exp $ */
+ 
+/*
+ * This file is included in IE7 or below by a conditional comment
+ */
+
+legend { left: -7px; position: relative; }

@@ -1,0 +1,653 @@
+<html>
+<head>
+<title> REF04 - Quiz</title>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta http-equiv="X-UA-Compatible" content=""/>
+<link href="../system/js/yui290/container/assets/skins/sam/container.css" rel="stylesheet"/><script type="text/javascript" src="../system/js/yui290/yahoo-dom-event/yahoo-dom-event.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/dragdrop/dragdrop-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/json/json-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-3.1.1.min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-migrate-3.0.0.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/container/container-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/util/ObjectFinder.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/delivery/delivery_core.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-ui-1.12.1.min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-ui-effects-1.12.1.min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/connection/connection-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/dataobjects/BaseAssessmentComponent.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/dataobjects/Assessment.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/dataobjects/assessment/AssessmentScore.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/dataobjects/Section.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/assessment/AssessmentEngine.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/assessment/AssessmentEngine_exported.js?reloadme=12345" language="javascript"></script>
+<script language="javascript">var de = OSDeliveryEngine;
+de.themeId = "non_linear";
+de.userId = "dbarker";
+de.userRole = "00000000000000000000002C00000001";
+de.contextMap = {"3":"8C772052415320DD70A3130600358042","4":"E0DA205241531C9AD2D7130400064494","6":"8C772052415320DD70A3130600358042"};
+de.uniqueIdContextMap = {"3":"38e3ab9c8450aa8ad17e5668d1b54d71","4":"4d7c12d63f1364b727134536cbb74433","6":"38e3ab9c8450aa8ad17e5668d1b54d71"};
+de.satisfaction = {"threshold":80,"type":0};
+de.linear = false;
+de.addObject({"id":"E0DA205241531C9AD2D7130400064494","label":"Detailing (REF04)","type":4,"uniqueId":"4d7c12d63f1364b727134536cbb74433"});
+de.addObject({"score":-1.0,"children":[],"passingScore":0.0,"weight":1.0,"attemptLimit":-1,"id":"8C772052415320DD70A3130600358042","label":" REF04 - Quiz","type":6,"uniqueId":"38e3ab9c8450aa8ad17e5668d1b54d71","parentId":"E0DA205241531C9AD2D7130400064494","attempts":0});
+var a = new Assessment();
+a.setID("8C772052415320DD70A3130600358042");
+a.setLabel(" REF04 - Quiz");
+a.setDuration(180);
+a.setPassingScore(0.0);
+a.setWeight(1.0);
+a.ignoreSections = false;
+a.allowBackwardsNavigation = true;
+a.allowSkipQuestions = true;
+a.proctorEnd = 0;
+var s = new Section();
+s.setID("8C772052415320DD70D4130A00358046");
+s.setWeight(1.0);
+s.setLabel("Module 1");
+a.addChild("8C772052415320DD70D4130A00358046",s);
+var s = new Section();
+s.setID("8C772052415320DD70D8130A00358047");
+s.setWeight(1.0);
+s.setLabel("Module 2");
+a.addChild("8C772052415320DD70D8130A00358047",s);
+var s = new Section();
+s.setID("8C772052415320DD70DA130A00358048");
+s.setWeight(1.0);
+s.setLabel("Module 3");
+a.addChild("8C772052415320DD70DA130A00358048",s);
+var ae = AssessmentEngine;
+ae.assessment = a;
+ae.instanceId = "2CE820524153264D6290231C0003629E";
+ae.uniqueId = "38e3ab9c8450aa8ad17e5668d1b54d71";
+ae.questionsPerPage = 1;
+ae.warnOnSkipped = true;
+ae.skippedWarningMsg = "You did not provide an answer to every question in the assessment.  Do you want to continue scoring the assessment?";
+ae.skippedNotAllowedMsg = "You must complete all questions before proceeding.";
+ae.savedPage = -1;
+ae.remaining = -1;
+ae.noSessionMsg = "Your session has expired or you are not logged in. Please return to your logon page in a new browser.";
+ae.errorMsg = "Error: Your request can not be proccessed at this time.";
+ae.plsWaitMsg = "Please wait... Your assessment is being scored.";
+ae.scoreBtnText = "Score Test";
+ae.showPrint = true;
+ae.showClose = true;
+ae.autoSaveInterval = 10000;
+ae.autoSaveErrorThreshold = 3;
+ae.autoSaveTimeout = 30000;
+ae.communicationErrorMessage = "An error occurred when trying to reach the server";
+ae.timeoutErrorMessage = "The server did not respond in a reasonable amount of time";
+ae.assessmentsavedsuccessful = "Assessment was saved...";
+ae.showWindowCloseWarning = true;
+ae.closeDialogMessage = "Close";
+ae.saveEnabled = true;
+ae.closeMsg = "Do you want to score or save the assessment? Click OK to score or Cancel to save";
+var mapURL = de.urlMap; 
+if (null != mapURL && typeof(mapURL) != "undefined") { 
+mapURL[0] = "../groups/2.html"; 
+mapURL[1] = "../groups/3.html"; 
+mapURL[2] = "../groups/4.html"; 
+mapURL[3] = "../groups/5.html"; 
+mapURL[4] = "../groups/6.html"; 
+mapURL[5] = "../groups/7.html"; 
+mapURL[6] = "../groups/8.html"; 
+mapURL[7] = "../groups/9.html"; 
+mapURL[8] = "../groups/10.html"; 
+mapURL[9] = "../groups/11.html"; 
+mapURL[10] = "../groups/12.html"; 
+mapURL[11] = "../groups/13.html"; 
+mapURL[12] = "../groups/14.html"; 
+mapURL[13] = "../groups/15.html"; 
+mapURL[14] = "../groups/16.html"; 
+mapURL[15] = "../groups/17.html"; 
+mapURL[16] = "../groups/18.html"; 
+mapURL[17] = "../groups/19.html"; 
+mapURL[18] = "../groups/20.html"; 
+mapURL[19] = "../groups/21.html"; 
+mapURL[20] = "../groups/22.html"; 
+mapURL[21] = "../groups/23.html"; 
+mapURL[22] = "../groups/24.html"; 
+mapURL[23] = "../assessments/25.html"; 
+mapURL[24] = "../assessments/26.html"; 
+mapURL[25] = "../assessments/27.html"; 
+mapURL[26] = "../assessments/28.html"; 
+mapURL[27] = "../assessments/29.html"; 
+mapURL[28] = "../groups/30.html"; 
+mapURL[29] = "../groups/31.html"; 
+mapURL[30] = "../groups/32.html"; 
+mapURL[31] = "../groups/33.html"; 
+mapURL[32] = "../groups/34.html"; 
+mapURL[33] = "../groups/35.html"; 
+mapURL[34] = "../groups/36.html"; 
+mapURL[35] = "../groups/37.html"; 
+mapURL[36] = "../groups/38.html"; 
+mapURL[37] = "../groups/39.html"; 
+mapURL[38] = "../groups/40.html"; 
+mapURL[39] = "../groups/41.html"; 
+mapURL[40] = "../groups/42.html"; 
+mapURL[41] = "../groups/43.html"; 
+mapURL[42] = "../groups/44.html"; 
+mapURL[43] = "../groups/45.html"; 
+mapURL[44] = "../groups/46.html"; 
+mapURL[45] = "../groups/47.html"; 
+mapURL[46] = "../groups/48.html"; 
+mapURL[47] = "../groups/49.html"; 
+mapURL[48] = "../groups/50.html"; 
+mapURL[49] = "../groups/51.html"; 
+mapURL[50] = "../groups/52.html"; 
+mapURL[51] = "../groups/53.html"; 
+mapURL[52] = "../groups/54.html"; 
+mapURL[53] = "../groups/55.html"; 
+mapURL[54] = "../groups/56.html"; 
+mapURL[55] = "../groups/57.html"; 
+mapURL[56] = "../groups/58.html"; 
+mapURL[57] = "../groups/59.html"; 
+mapURL[58] = "../groups/60.html"; 
+mapURL[59] = "../groups/61.html"; 
+mapURL[60] = "../groups/62.html"; 
+mapURL[61] = "../groups/63.html"; 
+mapURL[62] = "../groups/64.html"; 
+mapURL[63] = "../assessments/65.html"; 
+mapURL[64] = "../assessments/66.html"; 
+mapURL[65] = "../assessments/67.html"; 
+mapURL[66] = "../assessments/68.html"; 
+mapURL[67] = "../assessments/69.html"; 
+mapURL[68] = "../groups/70.html"; 
+mapURL[69] = "../groups/71.html"; 
+mapURL[70] = "../groups/72.html"; 
+mapURL[71] = "../groups/73.html"; 
+mapURL[72] = "../groups/74.html"; 
+mapURL[73] = "../groups/75.html"; 
+mapURL[74] = "../groups/76.html"; 
+mapURL[75] = "../groups/77.html"; 
+mapURL[76] = "../groups/78.html"; 
+mapURL[77] = "../assessments/79.html"; 
+mapURL[78] = "../assessments/80.html"; 
+mapURL[79] = "../assessments/81.html"; 
+mapURL[80] = "../groups/82.html"; 
+mapURL[81] = "../groups/83.html"; 
+mapURL[82] = "../groups/84.html"; 
+mapURL[83] = "../groups/85.html"; 
+mapURL[84] = "../groups/86.html"; 
+mapURL[85] = "../groups/87.html"; 
+mapURL[86] = "../groups/88.html"; 
+mapURL[87] = "../groups/89.html"; 
+mapURL[88] = "../assessments/90.html"; 
+mapURL[89] = "../assessments/91.html"; 
+mapURL[90] = "../groups/92.html"; 
+mapURL[91] = "../groups/93.html"; 
+mapURL[92] = "../assessments/94.html"; 
+mapURL[93] = "../assessments/95.html"; 
+mapURL[94] = "../assessments/96.html"; 
+mapURL[95] = "../groups/97.html"; 
+mapURL[96] = "../groups/98.html"; 
+mapURL[97] = "../groups/99.html"; 
+mapURL[98] = "../groups/100.html"; 
+mapURL[99] = "../groups/101.html"; 
+mapURL[100] = "../assessments/102.html"; 
+mapURL[101] = "../assessments/103.html"; 
+mapURL[102] = "../groups/104.html"; 
+mapURL[103] = "../assessments/105.html"; 
+mapURL[104] = "../assessments/106.html"; 
+ }; 
+</script>
+<link rel="stylesheet" type="text/css" href="../system/js/yui/reset-fonts-grids/reset-fonts-grids.css" />
+<link rel="stylesheet" type="text/css" href="../system/js/yui/resize/assets/skins/sam/resize.css" />
+<link rel="stylesheet" type="text/css" href="../system/js/yui/layout/assets/skins/sam/layout.css" />
+<link rel="stylesheet" type="text/css" href="../system/js/yui/button/assets/skins/sam/button.css" />
+<link rel="stylesheet" type="text/css" href="../system/js/yui/treeview/assets/skins/sam/treeview.css"/>
+<link rel="stylesheet" type="text/css" href="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/css/content.css"/>
+<link rel="stylesheet" type="text/css" href="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/css/assessment.css"/>
+<script type="text/javascript" src="../system/js/yui/element/element-beta-min.js"></script>
+<script type="text/javascript" src="../system/js/yui/dragdrop/dragdrop-min.js"></script>
+<script type="text/javascript" src="../system/js/yui/resize/resize-min.js"></script>
+<script type="text/javascript" src="../system/js/yui/animation/animation-min.js"></script>
+<script type="text/javascript" src="../system/js/yui/layout/layout-min.js"></script>
+<script type="text/javascript" src="../system/js/yui/cookie/cookie-min.js"></script>
+<script type="text/javascript" src="../system/js/yui/button/button-min.js"></script>
+<script type="text/javascript" src="../system/js/yui/treeview/treeview-min.js"></script>
+<script type="text/javascript" src="../system/js/i18n/numberFormats.js" language="javascript"></script>
+<script type="text/javascript" src="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/js/assessment_core.js" language="javascript"></script>
+<script language="javascript" type="text/javascript">
+
+AssessmentUI.addButton({"id":"go","on":"../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assess_go_on.gif","off":"../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assess_go_off.gif","disabled":"../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assess_go_dim.gif","label":"Go","disabled_label":"Go Disabled"});
+AssessmentUI.addButton({"id":"back","on":"../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assess_back_on.gif","off":"../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assess_back_off.gif","disabled":"../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assess_back_dim.gif","label":"Back","disabled_label":"Back Disabled"});
+AssessmentUI.addButton({"id":"next","on":"../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assess_next_on.gif","off":"../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assess_next_off.gif","disabled":"../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assess_next_dim.gif","label":"Next","disabled_label":"Next Disabled"});
+AssessmentUI.addButton({"id":"score","on":"../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assess_score_on.gif","off":"../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assess_score_off.gif","disabled":"../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assess_score_dim.gif","label":"Score","disabled_label":"Score Disabled"});
+
+AssessmentUI.loadingImage = "../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/loading.gif";
+
+jQuery(document).ready(function()
+{
+	AssessmentUI.loading.hide();
+
+	var layout = AssessmentUI.layout = new YAHOO.widget.Layout({
+		units: [
+			{ position: 'top', height: 80, body: 'header' },
+			{ position: 'bottom', height: 40, body: 'footer' },
+			{ position: 'center', body: 'content', scroll: true }
+		]
+	});
+	layout.render();
+	//layout.refresh();
+});
+</script>
+<script type="text/javascript" src="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/js/assessment_exported.js" language="javascript"></script>
+</head>
+<body class="reflection">
+<script>
+AssessmentUI.showLoading();
+</script>
+<noscript>This page requires javascript to be enabled</noscript>
+<div id="header">
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td><img alt="Assessment Logo" src="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assessment_icon.gif"/></td>
+			<td width="100%"><h1 id="lbl"> REF04 - Quiz</h1></td>
+		</tr>
+	</table>
+	<div id="tmr">Time Remaining: <span id="tmrval">3:00:00</span></div>
+</div>
+<div id="content">
+				<div id="page1" class="page">
+		<!-- Evolution Content API  --><script type="text/javascript" src="../system/js/yui290/animation/animation-min.js?reloadme=12345" language="javascript"></script>
+<script language="Javascript"></script><script language="javascript">de.addObject({"weight":1.0,"id":"8C772052415320DD70D4130A00358046","label":"Module 1","type":10,"uniqueId":"37a8a8556499220215a1d4f52248472a","parentId":"8C772052415320DD70A3130600358042"});
+de.addObject({"weight":0,"id":"940B205241531ED21561130100197073","label":"Q1_1","type":1,"contentType":101,"uniqueId":"33325567cbe926158b50861f2e119236","parentId":"8C772052415320DD70D4130A00358046"});
+</script><link href="../system/styles/delivery/web/default_content_styles.css" rel="stylesheet"/><!--[if lte IE 7]><link href="../system/styles/delivery/web/default_content_styles_ie7.css" rel="stylesheet"/><![endif]--><link href="../system/styles/override-reset-fonts-grids.css" rel="stylesheet"/><script src="../system/js/dataobjects/assessment/BaseAssessmentContent.js" language="javascript"></script><script src="../system/js/dataobjects/assessment/Assessment100.js" language="javascript"></script><script src="../system/js/delivery/MediaController.js" language="javascript"></script><script language="javascript">var c = question940B205241531ED21561130100197073 = new Assessment100();
+c.contentID = '940B205241531ED21561130100197073';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70D4130A00358046';
+c.label = "Q1_1";
+c.description = "All-purpose cleaners are:";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70D4130A00358046_940B205241531ED21561130100197073Form";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70D4130A00358046",10) || AssessmentEngine.assessment).addChild("940B205241531ED21561130100197073",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":false,"weight":1,"text":"acidic.","media":"","order":10}, {"feedback":"","correct":false,"weight":1,"text":"degreasers.","media":"","order":20}, {"feedback":"","correct":true,"weight":1,"text":"alkaline.","media":"","order":30}, {"feedback":"","correct":false,"weight":1,"text":"used for leather.","media":"","order":40}];
+OSDeliveryEngine.queueLoad('33325567cbe926158b50861f2e119236');
+window["f_940B205241531ED21561130100197073_load"] = function(){
+question940B205241531ED21561130100197073.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED21561130100197073_load);
+</script><div id="C940B205241531ED21561130100197073" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70D4130A00358046_940B205241531ED21561130100197073Form" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED21561130100197073DESC" class="maintext">All-purpose cleaners are:</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED21561130100197073" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="acidic." tooltip="acidic." class="tooltip" id="Answer0940B205241531ED21561130100197073" name="Answer940B205241531ED21561130100197073" value="acidic." type="radio"/>&nbsp;<label for="Answer0940B205241531ED21561130100197073"><span id="C940B205241531ED21561130100197073ANSWER1" class="questionanswer">acidic.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED21561130100197073" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="degreasers." tooltip="degreasers." class="tooltip" id="Answer1940B205241531ED21561130100197073" name="Answer940B205241531ED21561130100197073" value="degreasers." type="radio"/>&nbsp;<label for="Answer1940B205241531ED21561130100197073"><span id="C940B205241531ED21561130100197073ANSWER2" class="questionanswer">degreasers.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED21561130100197073" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="alkaline." tooltip="alkaline." class="tooltip" id="Answer2940B205241531ED21561130100197073" name="Answer940B205241531ED21561130100197073" value="alkaline." type="radio"/>&nbsp;<label for="Answer2940B205241531ED21561130100197073"><span id="C940B205241531ED21561130100197073ANSWER3" class="questionanswer">alkaline.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED21561130100197073" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="used for leather." tooltip="used for leather." class="tooltip" id="Answer3940B205241531ED21561130100197073" name="Answer940B205241531ED21561130100197073" value="used for leather." type="radio"/>&nbsp;<label for="Answer3940B205241531ED21561130100197073"><span id="C940B205241531ED21561130100197073ANSWER4" class="questionanswer">used for leather.</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page2" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED2156113010019707E","label":"Q1_2","type":1,"contentType":101,"uniqueId":"37c2eaed292b0286be75b3600895327e","parentId":"8C772052415320DD70D4130A00358046"});
+</script><script language="javascript">var c = question940B205241531ED2156113010019707E = new Assessment100();
+c.contentID = '940B205241531ED2156113010019707E';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70D4130A00358046';
+c.label = "Q1_2";
+c.description = "Knowledge of the pH scale is useful for determining whether to use:";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70D4130A00358046_940B205241531ED2156113010019707EForm";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70D4130A00358046",10) || AssessmentEngine.assessment).addChild("940B205241531ED2156113010019707E",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":true,"weight":1,"text":"all-purpose cleaner or a vinegar solution.","media":"","order":10}, {"feedback":"","correct":false,"weight":1,"text":"liquid or powdered car wash soap.","media":"","order":20}, {"feedback":"","correct":false,"weight":1,"text":"an upholstery or leather cleaner.","media":"","order":30}, {"feedback":"","correct":false,"weight":1,"text":"a buffing compound or polish. ","media":"","order":40}];
+OSDeliveryEngine.queueLoad('37c2eaed292b0286be75b3600895327e');
+window["f_940B205241531ED2156113010019707E_load"] = function(){
+question940B205241531ED2156113010019707E.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED2156113010019707E_load);
+</script><div id="C940B205241531ED2156113010019707E" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70D4130A00358046_940B205241531ED2156113010019707EForm" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED2156113010019707EDESC" class="maintext">Knowledge of the pH scale is useful for determining whether to use:</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED2156113010019707E" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="all-purpose cleaner or a vinegar solution." tooltip="all-purpose cleaner or a vinegar solution." class="tooltip" id="Answer0940B205241531ED2156113010019707E" name="Answer940B205241531ED2156113010019707E" value="all-purpose cleaner or a vinegar solution." type="radio"/>&nbsp;<label for="Answer0940B205241531ED2156113010019707E"><span id="C940B205241531ED2156113010019707EANSWER1" class="questionanswer">all-purpose cleaner or a vinegar solution.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED2156113010019707E" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="liquid or powdered car wash soap." tooltip="liquid or powdered car wash soap." class="tooltip" id="Answer1940B205241531ED2156113010019707E" name="Answer940B205241531ED2156113010019707E" value="liquid or powdered car wash soap." type="radio"/>&nbsp;<label for="Answer1940B205241531ED2156113010019707E"><span id="C940B205241531ED2156113010019707EANSWER2" class="questionanswer">liquid or powdered car wash soap.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED2156113010019707E" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="an upholstery or leather cleaner." tooltip="an upholstery or leather cleaner." class="tooltip" id="Answer2940B205241531ED2156113010019707E" name="Answer940B205241531ED2156113010019707E" value="an upholstery or leather cleaner." type="radio"/>&nbsp;<label for="Answer2940B205241531ED2156113010019707E"><span id="C940B205241531ED2156113010019707EANSWER3" class="questionanswer">an upholstery or leather cleaner.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED2156113010019707E" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="a buffing compound or polish. " tooltip="a buffing compound or polish. " class="tooltip" id="Answer3940B205241531ED2156113010019707E" name="Answer940B205241531ED2156113010019707E" value="a buffing compound or polish. " type="radio"/>&nbsp;<label for="Answer3940B205241531ED2156113010019707E"><span id="C940B205241531ED2156113010019707EANSWER4" class="questionanswer">a buffing compound or polish. </span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page3" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED21561130100197089","label":"Q1_3","type":1,"contentType":101,"uniqueId":"3e249d1b28feb848ba67f03377b9294c","parentId":"8C772052415320DD70D4130A00358046"});
+</script><script language="javascript">var c = question940B205241531ED21561130100197089 = new Assessment100();
+c.contentID = '940B205241531ED21561130100197089';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70D4130A00358046';
+c.label = "Q1_3";
+c.description = "Which of these is proper when washing a vehicle?";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70D4130A00358046_940B205241531ED21561130100197089Form";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70D4130A00358046",10) || AssessmentEngine.assessment).addChild("940B205241531ED21561130100197089",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":false,"weight":1,"text":"Use liquid or powdered dish washing soap.","media":"","order":10}, {"feedback":"","correct":true,"weight":1,"text":"Use two buckets, one with soapy water.","media":"","order":20}, {"feedback":"","correct":false,"weight":1,"text":"Start at the bottom of the vehicle and work up.","media":"","order":30}, {"feedback":"","correct":false,"weight":1,"text":"Rinse with a hose set on high pressure.","media":"","order":40}];
+OSDeliveryEngine.queueLoad('3e249d1b28feb848ba67f03377b9294c');
+window["f_940B205241531ED21561130100197089_load"] = function(){
+question940B205241531ED21561130100197089.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED21561130100197089_load);
+</script><div id="C940B205241531ED21561130100197089" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70D4130A00358046_940B205241531ED21561130100197089Form" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED21561130100197089DESC" class="maintext">Which of these is proper when washing a vehicle?</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED21561130100197089" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Use liquid or powdered dish washing soap." tooltip="Use liquid or powdered dish washing soap." class="tooltip" id="Answer0940B205241531ED21561130100197089" name="Answer940B205241531ED21561130100197089" value="Use liquid or powdered dish washing soap." type="radio"/>&nbsp;<label for="Answer0940B205241531ED21561130100197089"><span id="C940B205241531ED21561130100197089ANSWER1" class="questionanswer">Use liquid or powdered dish washing soap.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED21561130100197089" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Use two buckets, one with soapy water." tooltip="Use two buckets, one with soapy water." class="tooltip" id="Answer1940B205241531ED21561130100197089" name="Answer940B205241531ED21561130100197089" value="Use two buckets, one with soapy water." type="radio"/>&nbsp;<label for="Answer1940B205241531ED21561130100197089"><span id="C940B205241531ED21561130100197089ANSWER2" class="questionanswer">Use two buckets, one with soapy water.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED21561130100197089" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Start at the bottom of the vehicle and work up." tooltip="Start at the bottom of the vehicle and work up." class="tooltip" id="Answer2940B205241531ED21561130100197089" name="Answer940B205241531ED21561130100197089" value="Start at the bottom of the vehicle and work up." type="radio"/>&nbsp;<label for="Answer2940B205241531ED21561130100197089"><span id="C940B205241531ED21561130100197089ANSWER3" class="questionanswer">Start at the bottom of the vehicle and work up.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED21561130100197089" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Rinse with a hose set on high pressure." tooltip="Rinse with a hose set on high pressure." class="tooltip" id="Answer3940B205241531ED21561130100197089" name="Answer940B205241531ED21561130100197089" value="Rinse with a hose set on high pressure." type="radio"/>&nbsp;<label for="Answer3940B205241531ED21561130100197089"><span id="C940B205241531ED21561130100197089ANSWER4" class="questionanswer">Rinse with a hose set on high pressure.</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page4" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED21561130100197094","label":"Q1_4","type":1,"contentType":101,"uniqueId":"50219543e6ffc4e65fa6f009b17d1f00","parentId":"8C772052415320DD70D4130A00358046"});
+</script><script language="javascript">var c = question940B205241531ED21561130100197094 = new Assessment100();
+c.contentID = '940B205241531ED21561130100197094';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70D4130A00358046';
+c.label = "Q1_4";
+c.description = "After washing a vehicle with car wash soap, rinse using a:";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70D4130A00358046_940B205241531ED21561130100197094Form";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70D4130A00358046",10) || AssessmentEngine.assessment).addChild("940B205241531ED21561130100197094",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":false,"weight":1,"text":"pressure washer.","media":"","order":10}, {"feedback":"","correct":false,"weight":1,"text":"bucket that contains the rinse water used during washing.","media":"","order":20}, {"feedback":"","correct":true,"weight":1,"text":"hose without the nozzle attached.","media":"","order":30}, {"feedback":"","correct":false,"weight":1,"text":"hose with the nozzle set to full force.","media":"","order":40}];
+OSDeliveryEngine.queueLoad('50219543e6ffc4e65fa6f009b17d1f00');
+window["f_940B205241531ED21561130100197094_load"] = function(){
+question940B205241531ED21561130100197094.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED21561130100197094_load);
+</script><div id="C940B205241531ED21561130100197094" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70D4130A00358046_940B205241531ED21561130100197094Form" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED21561130100197094DESC" class="maintext">After washing a vehicle with car wash soap, rinse using a:</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED21561130100197094" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="pressure washer." tooltip="pressure washer." class="tooltip" id="Answer0940B205241531ED21561130100197094" name="Answer940B205241531ED21561130100197094" value="pressure washer." type="radio"/>&nbsp;<label for="Answer0940B205241531ED21561130100197094"><span id="C940B205241531ED21561130100197094ANSWER1" class="questionanswer">pressure washer.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED21561130100197094" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="bucket that contains the rinse water used during washing." tooltip="bucket that contains the rinse water used during washing." class="tooltip" id="Answer1940B205241531ED21561130100197094" name="Answer940B205241531ED21561130100197094" value="bucket that contains the rinse water used during washing." type="radio"/>&nbsp;<label for="Answer1940B205241531ED21561130100197094"><span id="C940B205241531ED21561130100197094ANSWER2" class="questionanswer">bucket that contains the rinse water used during washing.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED21561130100197094" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="hose without the nozzle attached." tooltip="hose without the nozzle attached." class="tooltip" id="Answer2940B205241531ED21561130100197094" name="Answer940B205241531ED21561130100197094" value="hose without the nozzle attached." type="radio"/>&nbsp;<label for="Answer2940B205241531ED21561130100197094"><span id="C940B205241531ED21561130100197094ANSWER3" class="questionanswer">hose without the nozzle attached.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED21561130100197094" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="hose with the nozzle set to full force." tooltip="hose with the nozzle set to full force." class="tooltip" id="Answer3940B205241531ED21561130100197094" name="Answer940B205241531ED21561130100197094" value="hose with the nozzle set to full force." type="radio"/>&nbsp;<label for="Answer3940B205241531ED21561130100197094"><span id="C940B205241531ED21561130100197094ANSWER4" class="questionanswer">hose with the nozzle set to full force.</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page5" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED2156213010019709F","label":"Q1_5","type":1,"contentType":101,"uniqueId":"34daafc4c370d1196f42d35203574350","parentId":"8C772052415320DD70D4130A00358046"});
+</script><script language="javascript">var c = question940B205241531ED2156213010019709F = new Assessment100();
+c.contentID = '940B205241531ED2156213010019709F';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70D4130A00358046';
+c.label = "Q1_5";
+c.description = "Technician A says that a magnifier may be able to determine if a defect has etched into the surface.\nTechnician B says that a magnifier may be able to determine the depth of a scratch.\nWho is right?";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70D4130A00358046_940B205241531ED2156213010019709FForm";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70D4130A00358046",10) || AssessmentEngine.assessment).addChild("940B205241531ED2156213010019709F",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":false,"weight":1,"text":"A only","media":"","order":10}, {"feedback":"","correct":false,"weight":1,"text":"B only","media":"","order":20}, {"feedback":"","correct":true,"weight":1,"text":"Both A and B","media":"","order":30}, {"feedback":"","correct":false,"weight":1,"text":"Neither A nor B","media":"","order":40}];
+OSDeliveryEngine.queueLoad('34daafc4c370d1196f42d35203574350');
+window["f_940B205241531ED2156213010019709F_load"] = function(){
+question940B205241531ED2156213010019709F.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED2156213010019709F_load);
+</script><div id="C940B205241531ED2156213010019709F" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70D4130A00358046_940B205241531ED2156213010019709FForm" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED2156213010019709FDESC" class="maintext">Technician A says that a magnifier may be able to determine if a defect has etched into the surface.
+Technician B says that a magnifier may be able to determine the depth of a scratch.
+Who is right?</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED2156213010019709F" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="A only" tooltip="A only" class="tooltip" id="Answer0940B205241531ED2156213010019709F" name="Answer940B205241531ED2156213010019709F" value="A only" type="radio"/>&nbsp;<label for="Answer0940B205241531ED2156213010019709F"><span id="C940B205241531ED2156213010019709FANSWER1" class="questionanswer">A only</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED2156213010019709F" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="B only" tooltip="B only" class="tooltip" id="Answer1940B205241531ED2156213010019709F" name="Answer940B205241531ED2156213010019709F" value="B only" type="radio"/>&nbsp;<label for="Answer1940B205241531ED2156213010019709F"><span id="C940B205241531ED2156213010019709FANSWER2" class="questionanswer">B only</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED2156213010019709F" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Both A and B" tooltip="Both A and B" class="tooltip" id="Answer2940B205241531ED2156213010019709F" name="Answer940B205241531ED2156213010019709F" value="Both A and B" type="radio"/>&nbsp;<label for="Answer2940B205241531ED2156213010019709F"><span id="C940B205241531ED2156213010019709FANSWER3" class="questionanswer">Both A and B</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED2156213010019709F" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Neither A nor B" tooltip="Neither A nor B" class="tooltip" id="Answer3940B205241531ED2156213010019709F" name="Answer940B205241531ED2156213010019709F" value="Neither A nor B" type="radio"/>&nbsp;<label for="Answer3940B205241531ED2156213010019709F"><span id="C940B205241531ED2156213010019709FANSWER4" class="questionanswer">Neither A nor B</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page6" class="page">
+		<script language="javascript">de.addObject({"weight":1.0,"id":"8C772052415320DD70D8130A00358047","label":"Module 2","type":10,"uniqueId":"3b2afae3f3f2ea94797ab436a21f96a4","parentId":"8C772052415320DD70A3130600358042"});
+de.addObject({"weight":0,"id":"940B205241531ED2157C13010019757E","label":"Q2_1","type":1,"contentType":101,"uniqueId":"790b83e781a61011af047b6f6340dde7","parentId":"8C772052415320DD70D8130A00358047"});
+</script><script language="javascript">var c = question940B205241531ED2157C13010019757E = new Assessment100();
+c.contentID = '940B205241531ED2157C13010019757E';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70D8130A00358047';
+c.label = "Q2_1";
+c.description = "Which of these methods is the recommended first step to remove most overspray?";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70D8130A00358047_940B205241531ED2157C13010019757EForm";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70D8130A00358047",10) || AssessmentEngine.assessment).addChild("940B205241531ED2157C13010019757E",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":false,"weight":1,"text":"Nib removal tool","media":"","order":10}, {"feedback":"","correct":false,"weight":1,"text":"All-purpose cleaner","media":"","order":20}, {"feedback":"","correct":false,"weight":1,"text":"Rotary buffer","media":"","order":30}, {"feedback":"","correct":true,"weight":1,"text":"Clay","media":"","order":40}];
+OSDeliveryEngine.queueLoad('790b83e781a61011af047b6f6340dde7');
+window["f_940B205241531ED2157C13010019757E_load"] = function(){
+question940B205241531ED2157C13010019757E.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED2157C13010019757E_load);
+</script><div id="C940B205241531ED2157C13010019757E" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70D8130A00358047_940B205241531ED2157C13010019757EForm" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED2157C13010019757EDESC" class="maintext">Which of these methods is the recommended first step to remove most overspray?</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED2157C13010019757E" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Nib removal tool" tooltip="Nib removal tool" class="tooltip" id="Answer0940B205241531ED2157C13010019757E" name="Answer940B205241531ED2157C13010019757E" value="Nib removal tool" type="radio"/>&nbsp;<label for="Answer0940B205241531ED2157C13010019757E"><span id="C940B205241531ED2157C13010019757EANSWER1" class="questionanswer">Nib removal tool</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED2157C13010019757E" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="All-purpose cleaner" tooltip="All-purpose cleaner" class="tooltip" id="Answer1940B205241531ED2157C13010019757E" name="Answer940B205241531ED2157C13010019757E" value="All-purpose cleaner" type="radio"/>&nbsp;<label for="Answer1940B205241531ED2157C13010019757E"><span id="C940B205241531ED2157C13010019757EANSWER2" class="questionanswer">All-purpose cleaner</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED2157C13010019757E" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Rotary buffer" tooltip="Rotary buffer" class="tooltip" id="Answer2940B205241531ED2157C13010019757E" name="Answer940B205241531ED2157C13010019757E" value="Rotary buffer" type="radio"/>&nbsp;<label for="Answer2940B205241531ED2157C13010019757E"><span id="C940B205241531ED2157C13010019757EANSWER3" class="questionanswer">Rotary buffer</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED2157C13010019757E" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Clay" tooltip="Clay" class="tooltip" id="Answer3940B205241531ED2157C13010019757E" name="Answer940B205241531ED2157C13010019757E" value="Clay" type="radio"/>&nbsp;<label for="Answer3940B205241531ED2157C13010019757E"><span id="C940B205241531ED2157C13010019757EANSWER4" class="questionanswer">Clay</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page7" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED2157D130100197589","label":"Q2_2","type":1,"contentType":101,"uniqueId":"3d64a39e0230638ae9b4447935700916","parentId":"8C772052415320DD70D8130A00358047"});
+</script><script language="javascript">var c = question940B205241531ED2157D130100197589 = new Assessment100();
+c.contentID = '940B205241531ED2157D130100197589';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70D8130A00358047';
+c.label = "Q2_2";
+c.description = "A technician has confirmed that spots on the surface are caused by acid rain. When treating acid rain, it is necessary to:";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70D8130A00358047_940B205241531ED2157D130100197589Form";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70D8130A00358047",10) || AssessmentEngine.assessment).addChild("940B205241531ED2157D130100197589",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":false,"weight":1,"text":"buff out the spots.","media":"","order":10}, {"feedback":"","correct":false,"weight":1,"text":"remove the spots with clay.","media":"","order":20}, {"feedback":"","correct":false,"weight":1,"text":"apply a vinegar and water solution.","media":"","order":30}, {"feedback":"","correct":true,"weight":1,"text":"neutralize the acid.","media":"","order":40}];
+OSDeliveryEngine.queueLoad('3d64a39e0230638ae9b4447935700916');
+window["f_940B205241531ED2157D130100197589_load"] = function(){
+question940B205241531ED2157D130100197589.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED2157D130100197589_load);
+</script><div id="C940B205241531ED2157D130100197589" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70D8130A00358047_940B205241531ED2157D130100197589Form" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED2157D130100197589DESC" class="maintext">A technician has confirmed that spots on the surface are caused by acid rain. When treating acid rain, it is necessary to:</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED2157D130100197589" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="buff out the spots." tooltip="buff out the spots." class="tooltip" id="Answer0940B205241531ED2157D130100197589" name="Answer940B205241531ED2157D130100197589" value="buff out the spots." type="radio"/>&nbsp;<label for="Answer0940B205241531ED2157D130100197589"><span id="C940B205241531ED2157D130100197589ANSWER1" class="questionanswer">buff out the spots.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED2157D130100197589" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="remove the spots with clay." tooltip="remove the spots with clay." class="tooltip" id="Answer1940B205241531ED2157D130100197589" name="Answer940B205241531ED2157D130100197589" value="remove the spots with clay." type="radio"/>&nbsp;<label for="Answer1940B205241531ED2157D130100197589"><span id="C940B205241531ED2157D130100197589ANSWER2" class="questionanswer">remove the spots with clay.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED2157D130100197589" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="apply a vinegar and water solution." tooltip="apply a vinegar and water solution." class="tooltip" id="Answer2940B205241531ED2157D130100197589" name="Answer940B205241531ED2157D130100197589" value="apply a vinegar and water solution." type="radio"/>&nbsp;<label for="Answer2940B205241531ED2157D130100197589"><span id="C940B205241531ED2157D130100197589ANSWER3" class="questionanswer">apply a vinegar and water solution.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED2157D130100197589" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="neutralize the acid." tooltip="neutralize the acid." class="tooltip" id="Answer3940B205241531ED2157D130100197589" name="Answer940B205241531ED2157D130100197589" value="neutralize the acid." type="radio"/>&nbsp;<label for="Answer3940B205241531ED2157D130100197589"><span id="C940B205241531ED2157D130100197589ANSWER4" class="questionanswer">neutralize the acid.</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page8" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED2157D130100197594","label":"Q2_3","type":1,"contentType":101,"uniqueId":"1b71eb688792e2ac6049cdcdbcf5b619","parentId":"8C772052415320DD70D8130A00358047"});
+</script><script language="javascript">var c = question940B205241531ED2157D130100197594 = new Assessment100();
+c.contentID = '940B205241531ED2157D130100197594';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70D8130A00358047';
+c.label = "Q2_3";
+c.description = "The earliest appearance of clearcoat degradation is:";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70D8130A00358047_940B205241531ED2157D130100197594Form";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70D8130A00358047",10) || AssessmentEngine.assessment).addChild("940B205241531ED2157D130100197594",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":true,"weight":1,"text":"a dull finish.","media":"","order":10}, {"feedback":"","correct":false,"weight":1,"text":"partial peeling.","media":"","order":20}, {"feedback":"","correct":false,"weight":1,"text":"cracks or checks.","media":"","order":30}, {"feedback":"","correct":false,"weight":1,"text":"pits that can also be felt.","media":"","order":40}];
+OSDeliveryEngine.queueLoad('1b71eb688792e2ac6049cdcdbcf5b619');
+window["f_940B205241531ED2157D130100197594_load"] = function(){
+question940B205241531ED2157D130100197594.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED2157D130100197594_load);
+</script><div id="C940B205241531ED2157D130100197594" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70D8130A00358047_940B205241531ED2157D130100197594Form" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED2157D130100197594DESC" class="maintext">The earliest appearance of clearcoat degradation is:</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED2157D130100197594" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="a dull finish." tooltip="a dull finish." class="tooltip" id="Answer0940B205241531ED2157D130100197594" name="Answer940B205241531ED2157D130100197594" value="a dull finish." type="radio"/>&nbsp;<label for="Answer0940B205241531ED2157D130100197594"><span id="C940B205241531ED2157D130100197594ANSWER1" class="questionanswer">a dull finish.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED2157D130100197594" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="partial peeling." tooltip="partial peeling." class="tooltip" id="Answer1940B205241531ED2157D130100197594" name="Answer940B205241531ED2157D130100197594" value="partial peeling." type="radio"/>&nbsp;<label for="Answer1940B205241531ED2157D130100197594"><span id="C940B205241531ED2157D130100197594ANSWER2" class="questionanswer">partial peeling.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED2157D130100197594" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="cracks or checks." tooltip="cracks or checks." class="tooltip" id="Answer2940B205241531ED2157D130100197594" name="Answer940B205241531ED2157D130100197594" value="cracks or checks." type="radio"/>&nbsp;<label for="Answer2940B205241531ED2157D130100197594"><span id="C940B205241531ED2157D130100197594ANSWER3" class="questionanswer">cracks or checks.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED2157D130100197594" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="pits that can also be felt." tooltip="pits that can also be felt." class="tooltip" id="Answer3940B205241531ED2157D130100197594" name="Answer940B205241531ED2157D130100197594" value="pits that can also be felt." type="radio"/>&nbsp;<label for="Answer3940B205241531ED2157D130100197594"><span id="C940B205241531ED2157D130100197594ANSWER4" class="questionanswer">pits that can also be felt.</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page9" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED2157D13010019759F","label":"Q2_4","type":1,"contentType":101,"uniqueId":"4ec4fca37c347f07e6fc14dbb8ac773a","parentId":"8C772052415320DD70D8130A00358047"});
+</script><script language="javascript">var c = question940B205241531ED2157D13010019759F = new Assessment100();
+c.contentID = '940B205241531ED2157D13010019759F';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70D8130A00358047';
+c.label = "Q2_4";
+c.description = "Which of these is the maximum amount of topcoat that can be removed when correcting a defect in an original finish? ";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70D8130A00358047_940B205241531ED2157D13010019759FForm";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70D8130A00358047",10) || AssessmentEngine.assessment).addChild("940B205241531ED2157D13010019759F",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":false,"weight":1,"text":"1\/4 mil","media":"","order":10}, {"feedback":"","correct":true,"weight":1,"text":"1\/2 mil","media":"","order":20}, {"feedback":"","correct":false,"weight":1,"text":"1 mil","media":"","order":30}, {"feedback":"","correct":false,"weight":1,"text":"2 mils","media":"","order":40}];
+OSDeliveryEngine.queueLoad('4ec4fca37c347f07e6fc14dbb8ac773a');
+window["f_940B205241531ED2157D13010019759F_load"] = function(){
+question940B205241531ED2157D13010019759F.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED2157D13010019759F_load);
+</script><div id="C940B205241531ED2157D13010019759F" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70D8130A00358047_940B205241531ED2157D13010019759FForm" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED2157D13010019759FDESC" class="maintext">Which of these is the maximum amount of topcoat that can be removed when correcting a defect in an original finish? </span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED2157D13010019759F" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="1/4 mil" tooltip="1/4 mil" class="tooltip" id="Answer0940B205241531ED2157D13010019759F" name="Answer940B205241531ED2157D13010019759F" value="1/4 mil" type="radio"/>&nbsp;<label for="Answer0940B205241531ED2157D13010019759F"><span id="C940B205241531ED2157D13010019759FANSWER1" class="questionanswer">1/4 mil</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED2157D13010019759F" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="1/2 mil" tooltip="1/2 mil" class="tooltip" id="Answer1940B205241531ED2157D13010019759F" name="Answer940B205241531ED2157D13010019759F" value="1/2 mil" type="radio"/>&nbsp;<label for="Answer1940B205241531ED2157D13010019759F"><span id="C940B205241531ED2157D13010019759FANSWER2" class="questionanswer">1/2 mil</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED2157D13010019759F" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="1 mil" tooltip="1 mil" class="tooltip" id="Answer2940B205241531ED2157D13010019759F" name="Answer940B205241531ED2157D13010019759F" value="1 mil" type="radio"/>&nbsp;<label for="Answer2940B205241531ED2157D13010019759F"><span id="C940B205241531ED2157D13010019759FANSWER3" class="questionanswer">1 mil</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED2157D13010019759F" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="2 mils" tooltip="2 mils" class="tooltip" id="Answer3940B205241531ED2157D13010019759F" name="Answer940B205241531ED2157D13010019759F" value="2 mils" type="radio"/>&nbsp;<label for="Answer3940B205241531ED2157D13010019759F"><span id="C940B205241531ED2157D13010019759FANSWER4" class="questionanswer">2 mils</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page10" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED2157D1301001975AA","label":"Q2_5","type":1,"contentType":101,"uniqueId":"ecab359d429e5c4f5e6da495d9d3199","parentId":"8C772052415320DD70D8130A00358047"});
+</script><script language="javascript">var c = question940B205241531ED2157D1301001975AA = new Assessment100();
+c.contentID = '940B205241531ED2157D1301001975AA';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70D8130A00358047';
+c.label = "Q2_5";
+c.description = "There is evidence of rail dust on a lower quarter panel.\nTechnician A says that clay might be able to remove the rail dust.\nTechnician B says that sanding and buffing might remove the rail dust.\nWho is right?";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70D8130A00358047_940B205241531ED2157D1301001975AAForm";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70D8130A00358047",10) || AssessmentEngine.assessment).addChild("940B205241531ED2157D1301001975AA",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":true,"weight":1,"text":"A only","media":"","order":10}, {"feedback":"","correct":false,"weight":1,"text":"B only","media":"","order":20}, {"feedback":"","correct":false,"weight":1,"text":"Both A and B","media":"","order":30}, {"feedback":"","correct":false,"weight":1,"text":"Neither A nor B","media":"","order":40}];
+OSDeliveryEngine.queueLoad('ecab359d429e5c4f5e6da495d9d3199');
+window["f_940B205241531ED2157D1301001975AA_load"] = function(){
+question940B205241531ED2157D1301001975AA.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED2157D1301001975AA_load);
+</script><div id="C940B205241531ED2157D1301001975AA" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70D8130A00358047_940B205241531ED2157D1301001975AAForm" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED2157D1301001975AADESC" class="maintext">There is evidence of rail dust on a lower quarter panel.
+Technician A says that clay might be able to remove the rail dust.
+Technician B says that sanding and buffing might remove the rail dust.
+Who is right?</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED2157D1301001975AA" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="A only" tooltip="A only" class="tooltip" id="Answer0940B205241531ED2157D1301001975AA" name="Answer940B205241531ED2157D1301001975AA" value="A only" type="radio"/>&nbsp;<label for="Answer0940B205241531ED2157D1301001975AA"><span id="C940B205241531ED2157D1301001975AAANSWER1" class="questionanswer">A only</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED2157D1301001975AA" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="B only" tooltip="B only" class="tooltip" id="Answer1940B205241531ED2157D1301001975AA" name="Answer940B205241531ED2157D1301001975AA" value="B only" type="radio"/>&nbsp;<label for="Answer1940B205241531ED2157D1301001975AA"><span id="C940B205241531ED2157D1301001975AAANSWER2" class="questionanswer">B only</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED2157D1301001975AA" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Both A and B" tooltip="Both A and B" class="tooltip" id="Answer2940B205241531ED2157D1301001975AA" name="Answer940B205241531ED2157D1301001975AA" value="Both A and B" type="radio"/>&nbsp;<label for="Answer2940B205241531ED2157D1301001975AA"><span id="C940B205241531ED2157D1301001975AAANSWER3" class="questionanswer">Both A and B</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED2157D1301001975AA" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Neither A nor B" tooltip="Neither A nor B" class="tooltip" id="Answer3940B205241531ED2157D1301001975AA" name="Answer940B205241531ED2157D1301001975AA" value="Neither A nor B" type="radio"/>&nbsp;<label for="Answer3940B205241531ED2157D1301001975AA"><span id="C940B205241531ED2157D1301001975AAANSWER4" class="questionanswer">Neither A nor B</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page11" class="page">
+		<script language="javascript">de.addObject({"weight":1.0,"id":"8C772052415320DD70DA130A00358048","label":"Module 3","type":10,"uniqueId":"27929b1f1eb6915cd2f60541923d4e35","parentId":"8C772052415320DD70A3130600358042"});
+de.addObject({"weight":0,"id":"940B205241531ED2158C13010019771D","label":"Q3_1","type":1,"contentType":101,"uniqueId":"661c24e733e27afa3773b1611316677","parentId":"8C772052415320DD70DA130A00358048"});
+</script><script language="javascript">var c = question940B205241531ED2158C13010019771D = new Assessment100();
+c.contentID = '940B205241531ED2158C13010019771D';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70DA130A00358048';
+c.label = "Q3_1";
+c.description = "When shampooing fabric carpets and seats:";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70DA130A00358048_940B205241531ED2158C13010019771DForm";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70DA130A00358048",10) || AssessmentEngine.assessment).addChild("940B205241531ED2158C13010019771D",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":false,"weight":1,"text":"use plenty of water.","media":"","order":10}, {"feedback":"","correct":false,"weight":1,"text":"ensure that the shampoo soaks into the foam backing.","media":"","order":20}, {"feedback":"","correct":false,"weight":1,"text":"use a coarse bristled brush to work the cleaner into the material.","media":"","order":30}, {"feedback":"","correct":true,"weight":1,"text":"test a hidden area to make sure the color will not bleed.","media":"","order":40}];
+OSDeliveryEngine.queueLoad('661c24e733e27afa3773b1611316677');
+window["f_940B205241531ED2158C13010019771D_load"] = function(){
+question940B205241531ED2158C13010019771D.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED2158C13010019771D_load);
+</script><div id="C940B205241531ED2158C13010019771D" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70DA130A00358048_940B205241531ED2158C13010019771DForm" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED2158C13010019771DDESC" class="maintext">When shampooing fabric carpets and seats:</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED2158C13010019771D" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="use plenty of water." tooltip="use plenty of water." class="tooltip" id="Answer0940B205241531ED2158C13010019771D" name="Answer940B205241531ED2158C13010019771D" value="use plenty of water." type="radio"/>&nbsp;<label for="Answer0940B205241531ED2158C13010019771D"><span id="C940B205241531ED2158C13010019771DANSWER1" class="questionanswer">use plenty of water.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED2158C13010019771D" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="ensure that the shampoo soaks into the foam backing." tooltip="ensure that the shampoo soaks into the foam backing." class="tooltip" id="Answer1940B205241531ED2158C13010019771D" name="Answer940B205241531ED2158C13010019771D" value="ensure that the shampoo soaks into the foam backing." type="radio"/>&nbsp;<label for="Answer1940B205241531ED2158C13010019771D"><span id="C940B205241531ED2158C13010019771DANSWER2" class="questionanswer">ensure that the shampoo soaks into the foam backing.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED2158C13010019771D" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="use a coarse bristled brush to work the cleaner into the material." tooltip="use a coarse bristled brush to work the cleaner into the material." class="tooltip" id="Answer2940B205241531ED2158C13010019771D" name="Answer940B205241531ED2158C13010019771D" value="use a coarse bristled brush to work the cleaner into the material." type="radio"/>&nbsp;<label for="Answer2940B205241531ED2158C13010019771D"><span id="C940B205241531ED2158C13010019771DANSWER3" class="questionanswer">use a coarse bristled brush to work the cleaner into the material.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED2158C13010019771D" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="test a hidden area to make sure the color will not bleed." tooltip="test a hidden area to make sure the color will not bleed." class="tooltip" id="Answer3940B205241531ED2158C13010019771D" name="Answer940B205241531ED2158C13010019771D" value="test a hidden area to make sure the color will not bleed." type="radio"/>&nbsp;<label for="Answer3940B205241531ED2158C13010019771D"><span id="C940B205241531ED2158C13010019771DANSWER4" class="questionanswer">test a hidden area to make sure the color will not bleed.</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page12" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED2158D130100197728","label":"Q3_2","type":1,"contentType":101,"uniqueId":"f5ab46c91e5ef70218d614e172a2a1f","parentId":"8C772052415320DD70DA130A00358048"});
+</script><script language="javascript">var c = question940B205241531ED2158D130100197728 = new Assessment100();
+c.contentID = '940B205241531ED2158D130100197728';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70DA130A00358048';
+c.label = "Q3_2";
+c.description = "Which of these is true about removing a stain in a carpet?";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70DA130A00358048_940B205241531ED2158D130100197728Form";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70DA130A00358048",10) || AssessmentEngine.assessment).addChild("940B205241531ED2158D130100197728",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":false,"weight":1,"text":"Rub the stain vigorously with a detailing cloth.","media":"","order":10}, {"feedback":"","correct":true,"weight":1,"text":"Blot the stain with a detailing cloth.","media":"","order":20}, {"feedback":"","correct":false,"weight":1,"text":"Apply solution directly to the stain.","media":"","order":30}, {"feedback":"","correct":false,"weight":1,"text":"Most stains are alkaline and require an acid solution.","media":"","order":40}];
+OSDeliveryEngine.queueLoad('f5ab46c91e5ef70218d614e172a2a1f');
+window["f_940B205241531ED2158D130100197728_load"] = function(){
+question940B205241531ED2158D130100197728.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED2158D130100197728_load);
+</script><div id="C940B205241531ED2158D130100197728" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70DA130A00358048_940B205241531ED2158D130100197728Form" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED2158D130100197728DESC" class="maintext">Which of these is true about removing a stain in a carpet?</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED2158D130100197728" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Rub the stain vigorously with a detailing cloth." tooltip="Rub the stain vigorously with a detailing cloth." class="tooltip" id="Answer0940B205241531ED2158D130100197728" name="Answer940B205241531ED2158D130100197728" value="Rub the stain vigorously with a detailing cloth." type="radio"/>&nbsp;<label for="Answer0940B205241531ED2158D130100197728"><span id="C940B205241531ED2158D130100197728ANSWER1" class="questionanswer">Rub the stain vigorously with a detailing cloth.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED2158D130100197728" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Blot the stain with a detailing cloth." tooltip="Blot the stain with a detailing cloth." class="tooltip" id="Answer1940B205241531ED2158D130100197728" name="Answer940B205241531ED2158D130100197728" value="Blot the stain with a detailing cloth." type="radio"/>&nbsp;<label for="Answer1940B205241531ED2158D130100197728"><span id="C940B205241531ED2158D130100197728ANSWER2" class="questionanswer">Blot the stain with a detailing cloth.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED2158D130100197728" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Apply solution directly to the stain." tooltip="Apply solution directly to the stain." class="tooltip" id="Answer2940B205241531ED2158D130100197728" name="Answer940B205241531ED2158D130100197728" value="Apply solution directly to the stain." type="radio"/>&nbsp;<label for="Answer2940B205241531ED2158D130100197728"><span id="C940B205241531ED2158D130100197728ANSWER3" class="questionanswer">Apply solution directly to the stain.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED2158D130100197728" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Most stains are alkaline and require an acid solution." tooltip="Most stains are alkaline and require an acid solution." class="tooltip" id="Answer3940B205241531ED2158D130100197728" name="Answer940B205241531ED2158D130100197728" value="Most stains are alkaline and require an acid solution." type="radio"/>&nbsp;<label for="Answer3940B205241531ED2158D130100197728"><span id="C940B205241531ED2158D130100197728ANSWER4" class="questionanswer">Most stains are alkaline and require an acid solution.</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page13" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED2158D130100197733","label":"Q3_3","type":1,"contentType":101,"uniqueId":"10617659d8c502f987562d01b89edb28","parentId":"8C772052415320DD70DA130A00358048"});
+</script><script language="javascript">var c = question940B205241531ED2158D130100197733 = new Assessment100();
+c.contentID = '940B205241531ED2158D130100197733';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70DA130A00358048';
+c.label = "Q3_3";
+c.description = "When cleaning a fabric headliner:";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70DA130A00358048_940B205241531ED2158D130100197733Form";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70DA130A00358048",10) || AssessmentEngine.assessment).addChild("940B205241531ED2158D130100197733",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":true,"weight":1,"text":"gently wet-wipe in one direction.","media":"","order":10}, {"feedback":"","correct":false,"weight":1,"text":"apply fabric shampoo and brush.","media":"","order":20}, {"feedback":"","correct":false,"weight":1,"text":"use a brush ahead of a vacuum nozzle to work up the loose dirt.","media":"","order":30}, {"feedback":"","correct":false,"weight":1,"text":"make sure the surface is wet.","media":"","order":40}];
+OSDeliveryEngine.queueLoad('10617659d8c502f987562d01b89edb28');
+window["f_940B205241531ED2158D130100197733_load"] = function(){
+question940B205241531ED2158D130100197733.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED2158D130100197733_load);
+</script><div id="C940B205241531ED2158D130100197733" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70DA130A00358048_940B205241531ED2158D130100197733Form" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED2158D130100197733DESC" class="maintext">When cleaning a fabric headliner:</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED2158D130100197733" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="gently wet-wipe in one direction." tooltip="gently wet-wipe in one direction." class="tooltip" id="Answer0940B205241531ED2158D130100197733" name="Answer940B205241531ED2158D130100197733" value="gently wet-wipe in one direction." type="radio"/>&nbsp;<label for="Answer0940B205241531ED2158D130100197733"><span id="C940B205241531ED2158D130100197733ANSWER1" class="questionanswer">gently wet-wipe in one direction.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED2158D130100197733" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="apply fabric shampoo and brush." tooltip="apply fabric shampoo and brush." class="tooltip" id="Answer1940B205241531ED2158D130100197733" name="Answer940B205241531ED2158D130100197733" value="apply fabric shampoo and brush." type="radio"/>&nbsp;<label for="Answer1940B205241531ED2158D130100197733"><span id="C940B205241531ED2158D130100197733ANSWER2" class="questionanswer">apply fabric shampoo and brush.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED2158D130100197733" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="use a brush ahead of a vacuum nozzle to work up the loose dirt." tooltip="use a brush ahead of a vacuum nozzle to work up the loose dirt." class="tooltip" id="Answer2940B205241531ED2158D130100197733" name="Answer940B205241531ED2158D130100197733" value="use a brush ahead of a vacuum nozzle to work up the loose dirt." type="radio"/>&nbsp;<label for="Answer2940B205241531ED2158D130100197733"><span id="C940B205241531ED2158D130100197733ANSWER3" class="questionanswer">use a brush ahead of a vacuum nozzle to work up the loose dirt.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED2158D130100197733" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="make sure the surface is wet." tooltip="make sure the surface is wet." class="tooltip" id="Answer3940B205241531ED2158D130100197733" name="Answer940B205241531ED2158D130100197733" value="make sure the surface is wet." type="radio"/>&nbsp;<label for="Answer3940B205241531ED2158D130100197733"><span id="C940B205241531ED2158D130100197733ANSWER4" class="questionanswer">make sure the surface is wet.</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page14" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED21593130100197851","label":"Q4_1","type":1,"contentType":101,"uniqueId":"249fd960255f9ca53e8fc368a5dcbf6e","parentId":"8C772052415320DD70DA130A00358048"});
+</script><script language="javascript">var c = question940B205241531ED21593130100197851 = new Assessment100();
+c.contentID = '940B205241531ED21593130100197851';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70DA130A00358048';
+c.label = "Q4_1";
+c.description = "When treating an odor:";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70DA130A00358048_940B205241531ED21593130100197851Form";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70DA130A00358048",10) || AssessmentEngine.assessment).addChild("940B205241531ED21593130100197851",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":true,"weight":1,"text":"start by removing the source.","media":"","order":10}, {"feedback":"","correct":false,"weight":1,"text":"test the deodorizer solution on a hidden area.","media":"","order":20}, {"feedback":"","correct":false,"weight":1,"text":"apply enough deodorizer until the odor is gone.","media":"","order":30}, {"feedback":"","correct":false,"weight":1,"text":"neutralize using an all-purpose cleaner.","media":"","order":40}];
+OSDeliveryEngine.queueLoad('249fd960255f9ca53e8fc368a5dcbf6e');
+window["f_940B205241531ED21593130100197851_load"] = function(){
+question940B205241531ED21593130100197851.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED21593130100197851_load);
+</script><div id="C940B205241531ED21593130100197851" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70DA130A00358048_940B205241531ED21593130100197851Form" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED21593130100197851DESC" class="maintext">When treating an odor:</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED21593130100197851" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="start by removing the source." tooltip="start by removing the source." class="tooltip" id="Answer0940B205241531ED21593130100197851" name="Answer940B205241531ED21593130100197851" value="start by removing the source." type="radio"/>&nbsp;<label for="Answer0940B205241531ED21593130100197851"><span id="C940B205241531ED21593130100197851ANSWER1" class="questionanswer">start by removing the source.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED21593130100197851" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="test the deodorizer solution on a hidden area." tooltip="test the deodorizer solution on a hidden area." class="tooltip" id="Answer1940B205241531ED21593130100197851" name="Answer940B205241531ED21593130100197851" value="test the deodorizer solution on a hidden area." type="radio"/>&nbsp;<label for="Answer1940B205241531ED21593130100197851"><span id="C940B205241531ED21593130100197851ANSWER2" class="questionanswer">test the deodorizer solution on a hidden area.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED21593130100197851" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="apply enough deodorizer until the odor is gone." tooltip="apply enough deodorizer until the odor is gone." class="tooltip" id="Answer2940B205241531ED21593130100197851" name="Answer940B205241531ED21593130100197851" value="apply enough deodorizer until the odor is gone." type="radio"/>&nbsp;<label for="Answer2940B205241531ED21593130100197851"><span id="C940B205241531ED21593130100197851ANSWER3" class="questionanswer">apply enough deodorizer until the odor is gone.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED21593130100197851" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="neutralize using an all-purpose cleaner." tooltip="neutralize using an all-purpose cleaner." class="tooltip" id="Answer3940B205241531ED21593130100197851" name="Answer940B205241531ED21593130100197851" value="neutralize using an all-purpose cleaner." type="radio"/>&nbsp;<label for="Answer3940B205241531ED21593130100197851"><span id="C940B205241531ED21593130100197851ANSWER4" class="questionanswer">neutralize using an all-purpose cleaner.</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page15" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED2159313010019785C","label":"Q4_2","type":1,"contentType":101,"uniqueId":"23318830ca7d304c5b1637f8f65b206f","parentId":"8C772052415320DD70DA130A00358048"});
+</script><script language="javascript">var c = question940B205241531ED2159313010019785C = new Assessment100();
+c.contentID = '940B205241531ED2159313010019785C';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70DA130A00358048';
+c.label = "Q4_2";
+c.description = "Which of these is true about conditioners and dressings?";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70DA130A00358048_940B205241531ED2159313010019785CForm";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70DA130A00358048",10) || AssessmentEngine.assessment).addChild("940B205241531ED2159313010019785C",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":false,"weight":1,"text":"Products that contain silicone work the best.","media":"","order":10}, {"feedback":"","correct":false,"weight":1,"text":"Use rubber dressing on pedals.","media":"","order":20}, {"feedback":"","correct":false,"weight":1,"text":"There are no conditioners available for leather.","media":"","order":30}, {"feedback":"","correct":true,"weight":1,"text":"They can be applied to weatherstripping.","media":"","order":40}];
+OSDeliveryEngine.queueLoad('23318830ca7d304c5b1637f8f65b206f');
+window["f_940B205241531ED2159313010019785C_load"] = function(){
+question940B205241531ED2159313010019785C.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED2159313010019785C_load);
+</script><div id="C940B205241531ED2159313010019785C" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70DA130A00358048_940B205241531ED2159313010019785CForm" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED2159313010019785CDESC" class="maintext">Which of these is true about conditioners and dressings?</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED2159313010019785C" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Products that contain silicone work the best." tooltip="Products that contain silicone work the best." class="tooltip" id="Answer0940B205241531ED2159313010019785C" name="Answer940B205241531ED2159313010019785C" value="Products that contain silicone work the best." type="radio"/>&nbsp;<label for="Answer0940B205241531ED2159313010019785C"><span id="C940B205241531ED2159313010019785CANSWER1" class="questionanswer">Products that contain silicone work the best.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED2159313010019785C" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Use rubber dressing on pedals." tooltip="Use rubber dressing on pedals." class="tooltip" id="Answer1940B205241531ED2159313010019785C" name="Answer940B205241531ED2159313010019785C" value="Use rubber dressing on pedals." type="radio"/>&nbsp;<label for="Answer1940B205241531ED2159313010019785C"><span id="C940B205241531ED2159313010019785CANSWER2" class="questionanswer">Use rubber dressing on pedals.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED2159313010019785C" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="There are no conditioners available for leather." tooltip="There are no conditioners available for leather." class="tooltip" id="Answer2940B205241531ED2159313010019785C" name="Answer940B205241531ED2159313010019785C" value="There are no conditioners available for leather." type="radio"/>&nbsp;<label for="Answer2940B205241531ED2159313010019785C"><span id="C940B205241531ED2159313010019785CANSWER3" class="questionanswer">There are no conditioners available for leather.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED2159313010019785C" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="They can be applied to weatherstripping." tooltip="They can be applied to weatherstripping." class="tooltip" id="Answer3940B205241531ED2159313010019785C" name="Answer940B205241531ED2159313010019785C" value="They can be applied to weatherstripping." type="radio"/>&nbsp;<label for="Answer3940B205241531ED2159313010019785C"><span id="C940B205241531ED2159313010019785CANSWER4" class="questionanswer">They can be applied to weatherstripping.</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page16" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED215951301001978AB","label":"Q5_1","type":1,"contentType":101,"uniqueId":"30b3e4998b872b84416755ff031dfe63","parentId":"8C772052415320DD70DA130A00358048"});
+</script><script language="javascript">var c = question940B205241531ED215951301001978AB = new Assessment100();
+c.contentID = '940B205241531ED215951301001978AB';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70DA130A00358048';
+c.label = "Q5_1";
+c.description = "Waxes and sealants:";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70DA130A00358048_940B205241531ED215951301001978ABForm";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70DA130A00358048",10) || AssessmentEngine.assessment).addChild("940B205241531ED215951301001978AB",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":false,"weight":1,"text":"always contain silicone.","media":"","order":10}, {"feedback":"","correct":true,"weight":1,"text":"form a thin barrier coating.","media":"","order":20}, {"feedback":"","correct":false,"weight":1,"text":"remove minor surface defects.","media":"","order":30}, {"feedback":"","correct":false,"weight":1,"text":"are applied after every refinish.","media":"","order":40}];
+OSDeliveryEngine.queueLoad('30b3e4998b872b84416755ff031dfe63');
+window["f_940B205241531ED215951301001978AB_load"] = function(){
+question940B205241531ED215951301001978AB.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED215951301001978AB_load);
+</script><div id="C940B205241531ED215951301001978AB" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70DA130A00358048_940B205241531ED215951301001978ABForm" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED215951301001978ABDESC" class="maintext">Waxes and sealants:</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED215951301001978AB" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="always contain silicone." tooltip="always contain silicone." class="tooltip" id="Answer0940B205241531ED215951301001978AB" name="Answer940B205241531ED215951301001978AB" value="always contain silicone." type="radio"/>&nbsp;<label for="Answer0940B205241531ED215951301001978AB"><span id="C940B205241531ED215951301001978ABANSWER1" class="questionanswer">always contain silicone.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED215951301001978AB" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="form a thin barrier coating." tooltip="form a thin barrier coating." class="tooltip" id="Answer1940B205241531ED215951301001978AB" name="Answer940B205241531ED215951301001978AB" value="form a thin barrier coating." type="radio"/>&nbsp;<label for="Answer1940B205241531ED215951301001978AB"><span id="C940B205241531ED215951301001978ABANSWER2" class="questionanswer">form a thin barrier coating.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED215951301001978AB" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="remove minor surface defects." tooltip="remove minor surface defects." class="tooltip" id="Answer2940B205241531ED215951301001978AB" name="Answer940B205241531ED215951301001978AB" value="remove minor surface defects." type="radio"/>&nbsp;<label for="Answer2940B205241531ED215951301001978AB"><span id="C940B205241531ED215951301001978ABANSWER3" class="questionanswer">remove minor surface defects.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED215951301001978AB" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="are applied after every refinish." tooltip="are applied after every refinish." class="tooltip" id="Answer3940B205241531ED215951301001978AB" name="Answer940B205241531ED215951301001978AB" value="are applied after every refinish." type="radio"/>&nbsp;<label for="Answer3940B205241531ED215951301001978AB"><span id="C940B205241531ED215951301001978ABANSWER4" class="questionanswer">are applied after every refinish.</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page17" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED215951301001978B6","label":"Q5_2","type":1,"contentType":101,"uniqueId":"39f5190b32ad4c1bb3cb2c8029a4352d","parentId":"8C772052415320DD70DA130A00358048"});
+</script><script language="javascript">var c = question940B205241531ED215951301001978B6 = new Assessment100();
+c.contentID = '940B205241531ED215951301001978B6';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70DA130A00358048';
+c.label = "Q5_2";
+c.description = "Which of these is recommended for removing decals and stickers from glass?";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70DA130A00358048_940B205241531ED215951301001978B6Form";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70DA130A00358048",10) || AssessmentEngine.assessment).addChild("940B205241531ED215951301001978B6",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":false,"weight":1,"text":"Clay","media":"","order":10}, {"feedback":"","correct":false,"weight":1,"text":"Glass cleaner","media":"","order":20}, {"feedback":"","correct":true,"weight":1,"text":"Plastic razor blade","media":"","order":30}, {"feedback":"","correct":false,"weight":1,"text":"Metal razor blade","media":"","order":40}];
+OSDeliveryEngine.queueLoad('39f5190b32ad4c1bb3cb2c8029a4352d');
+window["f_940B205241531ED215951301001978B6_load"] = function(){
+question940B205241531ED215951301001978B6.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED215951301001978B6_load);
+</script><div id="C940B205241531ED215951301001978B6" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70DA130A00358048_940B205241531ED215951301001978B6Form" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED215951301001978B6DESC" class="maintext">Which of these is recommended for removing decals and stickers from glass?</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED215951301001978B6" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Clay" tooltip="Clay" class="tooltip" id="Answer0940B205241531ED215951301001978B6" name="Answer940B205241531ED215951301001978B6" value="Clay" type="radio"/>&nbsp;<label for="Answer0940B205241531ED215951301001978B6"><span id="C940B205241531ED215951301001978B6ANSWER1" class="questionanswer">Clay</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED215951301001978B6" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Glass cleaner" tooltip="Glass cleaner" class="tooltip" id="Answer1940B205241531ED215951301001978B6" name="Answer940B205241531ED215951301001978B6" value="Glass cleaner" type="radio"/>&nbsp;<label for="Answer1940B205241531ED215951301001978B6"><span id="C940B205241531ED215951301001978B6ANSWER2" class="questionanswer">Glass cleaner</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED215951301001978B6" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Plastic razor blade" tooltip="Plastic razor blade" class="tooltip" id="Answer2940B205241531ED215951301001978B6" name="Answer940B205241531ED215951301001978B6" value="Plastic razor blade" type="radio"/>&nbsp;<label for="Answer2940B205241531ED215951301001978B6"><span id="C940B205241531ED215951301001978B6ANSWER3" class="questionanswer">Plastic razor blade</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED215951301001978B6" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Metal razor blade" tooltip="Metal razor blade" class="tooltip" id="Answer3940B205241531ED215951301001978B6" name="Answer940B205241531ED215951301001978B6" value="Metal razor blade" type="radio"/>&nbsp;<label for="Answer3940B205241531ED215951301001978B6"><span id="C940B205241531ED215951301001978B6ANSWER4" class="questionanswer">Metal razor blade</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page18" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED215951301001978C1","label":"Q5_3","type":1,"contentType":101,"uniqueId":"791ffe47d54053173d8ed50c3616fbd8","parentId":"8C772052415320DD70DA130A00358048"});
+</script><script language="javascript">var c = question940B205241531ED215951301001978C1 = new Assessment100();
+c.contentID = '940B205241531ED215951301001978C1';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70DA130A00358048';
+c.label = "Q5_3";
+c.description = "Which of these is the ingredient in a glass cleaner that may damage applied window tinting?";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70DA130A00358048_940B205241531ED215951301001978C1Form";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70DA130A00358048",10) || AssessmentEngine.assessment).addChild("940B205241531ED215951301001978C1",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":true,"weight":1,"text":"Ammonia","media":"","order":10}, {"feedback":"","correct":false,"weight":1,"text":"Vinegar","media":"","order":20}, {"feedback":"","correct":false,"weight":1,"text":"Silicone","media":"","order":30}, {"feedback":"","correct":false,"weight":1,"text":"Petroleum distillate","media":"","order":40}];
+OSDeliveryEngine.queueLoad('791ffe47d54053173d8ed50c3616fbd8');
+window["f_940B205241531ED215951301001978C1_load"] = function(){
+question940B205241531ED215951301001978C1.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED215951301001978C1_load);
+</script><div id="C940B205241531ED215951301001978C1" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70DA130A00358048_940B205241531ED215951301001978C1Form" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED215951301001978C1DESC" class="maintext">Which of these is the ingredient in a glass cleaner that may damage applied window tinting?</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED215951301001978C1" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Ammonia" tooltip="Ammonia" class="tooltip" id="Answer0940B205241531ED215951301001978C1" name="Answer940B205241531ED215951301001978C1" value="Ammonia" type="radio"/>&nbsp;<label for="Answer0940B205241531ED215951301001978C1"><span id="C940B205241531ED215951301001978C1ANSWER1" class="questionanswer">Ammonia</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED215951301001978C1" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Vinegar" tooltip="Vinegar" class="tooltip" id="Answer1940B205241531ED215951301001978C1" name="Answer940B205241531ED215951301001978C1" value="Vinegar" type="radio"/>&nbsp;<label for="Answer1940B205241531ED215951301001978C1"><span id="C940B205241531ED215951301001978C1ANSWER2" class="questionanswer">Vinegar</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED215951301001978C1" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Silicone" tooltip="Silicone" class="tooltip" id="Answer2940B205241531ED215951301001978C1" name="Answer940B205241531ED215951301001978C1" value="Silicone" type="radio"/>&nbsp;<label for="Answer2940B205241531ED215951301001978C1"><span id="C940B205241531ED215951301001978C1ANSWER3" class="questionanswer">Silicone</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED215951301001978C1" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Petroleum distillate" tooltip="Petroleum distillate" class="tooltip" id="Answer3940B205241531ED215951301001978C1" name="Answer940B205241531ED215951301001978C1" value="Petroleum distillate" type="radio"/>&nbsp;<label for="Answer3940B205241531ED215951301001978C1"><span id="C940B205241531ED215951301001978C1ANSWER4" class="questionanswer">Petroleum distillate</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page19" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED2159913010019796B","label":"Q6_1","type":1,"contentType":101,"uniqueId":"2a4a0a42d6b02fe2b5c237439846f705","parentId":"8C772052415320DD70DA130A00358048"});
+</script><script language="javascript">var c = question940B205241531ED2159913010019796B = new Assessment100();
+c.contentID = '940B205241531ED2159913010019796B';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70DA130A00358048';
+c.label = "Q6_1";
+c.description = "When cleaning clearcoated wheels:";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70DA130A00358048_940B205241531ED2159913010019796BForm";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70DA130A00358048",10) || AssessmentEngine.assessment).addChild("940B205241531ED2159913010019796B",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":false,"weight":1,"text":"use a wire wheel cleaner.","media":"","order":10}, {"feedback":"","correct":false,"weight":1,"text":"ensure the wheels are hot before cleaning.","media":"","order":20}, {"feedback":"","correct":true,"weight":1,"text":"all-purpose cleaner may work.","media":"","order":30}, {"feedback":"","correct":false,"weight":1,"text":"buff with a compound, followed by polishing.","media":"","order":40}];
+OSDeliveryEngine.queueLoad('2a4a0a42d6b02fe2b5c237439846f705');
+window["f_940B205241531ED2159913010019796B_load"] = function(){
+question940B205241531ED2159913010019796B.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED2159913010019796B_load);
+</script><div id="C940B205241531ED2159913010019796B" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70DA130A00358048_940B205241531ED2159913010019796BForm" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED2159913010019796BDESC" class="maintext">When cleaning clearcoated wheels:</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED2159913010019796B" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="use a wire wheel cleaner." tooltip="use a wire wheel cleaner." class="tooltip" id="Answer0940B205241531ED2159913010019796B" name="Answer940B205241531ED2159913010019796B" value="use a wire wheel cleaner." type="radio"/>&nbsp;<label for="Answer0940B205241531ED2159913010019796B"><span id="C940B205241531ED2159913010019796BANSWER1" class="questionanswer">use a wire wheel cleaner.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED2159913010019796B" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="ensure the wheels are hot before cleaning." tooltip="ensure the wheels are hot before cleaning." class="tooltip" id="Answer1940B205241531ED2159913010019796B" name="Answer940B205241531ED2159913010019796B" value="ensure the wheels are hot before cleaning." type="radio"/>&nbsp;<label for="Answer1940B205241531ED2159913010019796B"><span id="C940B205241531ED2159913010019796BANSWER2" class="questionanswer">ensure the wheels are hot before cleaning.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED2159913010019796B" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="all-purpose cleaner may work." tooltip="all-purpose cleaner may work." class="tooltip" id="Answer2940B205241531ED2159913010019796B" name="Answer940B205241531ED2159913010019796B" value="all-purpose cleaner may work." type="radio"/>&nbsp;<label for="Answer2940B205241531ED2159913010019796B"><span id="C940B205241531ED2159913010019796BANSWER3" class="questionanswer">all-purpose cleaner may work.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED2159913010019796B" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="buff with a compound, followed by polishing." tooltip="buff with a compound, followed by polishing." class="tooltip" id="Answer3940B205241531ED2159913010019796B" name="Answer940B205241531ED2159913010019796B" value="buff with a compound, followed by polishing." type="radio"/>&nbsp;<label for="Answer3940B205241531ED2159913010019796B"><span id="C940B205241531ED2159913010019796BANSWER4" class="questionanswer">buff with a compound, followed by polishing.</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+			<div id="page20" class="page">
+		<script language="javascript">de.addObject({"weight":0,"id":"940B205241531ED21599130100197976","label":"Q6_2","type":1,"contentType":101,"uniqueId":"4e5dca3d8f40e8154730d1004cc3068b","parentId":"8C772052415320DD70DA130A00358048"});
+</script><script language="javascript">var c = question940B205241531ED21599130100197976 = new Assessment100();
+c.contentID = '940B205241531ED21599130100197976';
+c.contentTypeID = 101;
+c.sectionID = '8C772052415320DD70DA130A00358048';
+c.label = "Q6_2";
+c.description = "Which of these is true about cleaning a vinyl convertible top?";
+c.weight = 1.0;
+c.formName = "Question8C772052415320DD70DA130A00358048_940B205241531ED21599130100197976Form";
+(AssessmentEngine.assessment.getChild("8C772052415320DD70DA130A00358048",10) || AssessmentEngine.assessment).addChild("940B205241531ED21599130100197976",c);
+c.setShuffled( false );
+c.answers = [{"feedback":"","correct":false,"weight":1,"text":"Do not use a brush.","media":"","order":10}, {"feedback":"","correct":true,"weight":1,"text":"Do not clean just one spot.","media":"","order":20}, {"feedback":"","correct":false,"weight":1,"text":"Clay works to remove defects.","media":"","order":30}, {"feedback":"","correct":false,"weight":1,"text":"Wipe in only one direction","media":"","order":40}];
+OSDeliveryEngine.queueLoad('4e5dca3d8f40e8154730d1004cc3068b');
+window["f_940B205241531ED21599130100197976_load"] = function(){
+question940B205241531ED21599130100197976.init();};
+YAHOO.util.Event.addListener(window,"load",f_940B205241531ED21599130100197976_load);
+</script><div id="C940B205241531ED21599130100197976" class="content_container element_101 mcsa_classic"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><form accept-charset="UNKNOWN" onsubmit="return false" name="Question8C772052415320DD70DA130A00358048_940B205241531ED21599130100197976Form" enctype="application/x-www-form-urlencoded"><fieldset class="fieldSet"><table cellpadding="2" width="100%" border="0"><tr><td><table cellspacing="0" width="100%" border="0" class="question_layout_table" cellpadding="10"><tr><td width="100%" class="maintext"><span id="C940B205241531ED21599130100197976DESC" class="maintext">Which of these is true about cleaning a vinyl convertible top?</span></td></tr><tr><td><table><tr><td align="right"><img name="Img1940B205241531ED21599130100197976" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Do not use a brush." tooltip="Do not use a brush." class="tooltip" id="Answer0940B205241531ED21599130100197976" name="Answer940B205241531ED21599130100197976" value="Do not use a brush." type="radio"/>&nbsp;<label for="Answer0940B205241531ED21599130100197976"><span id="C940B205241531ED21599130100197976ANSWER1" class="questionanswer">Do not use a brush.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img2940B205241531ED21599130100197976" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Do not clean just one spot." tooltip="Do not clean just one spot." class="tooltip" id="Answer1940B205241531ED21599130100197976" name="Answer940B205241531ED21599130100197976" value="Do not clean just one spot." type="radio"/>&nbsp;<label for="Answer1940B205241531ED21599130100197976"><span id="C940B205241531ED21599130100197976ANSWER2" class="questionanswer">Do not clean just one spot.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img3940B205241531ED21599130100197976" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Clay works to remove defects." tooltip="Clay works to remove defects." class="tooltip" id="Answer2940B205241531ED21599130100197976" name="Answer940B205241531ED21599130100197976" value="Clay works to remove defects." type="radio"/>&nbsp;<label for="Answer2940B205241531ED21599130100197976"><span id="C940B205241531ED21599130100197976ANSWER3" class="questionanswer">Clay works to remove defects.</span></label></td></tr></table></td></tr><tr><td align="right"><img name="Img4940B205241531ED21599130100197976" alt="" src="../system/themes/thumb_clear.gif"/></td><td><table cellspacing="0" class="truefalse_classic_row" border="0" cellpadding="5"><tr><td><input title="Wipe in only one direction" tooltip="Wipe in only one direction" class="tooltip" id="Answer3940B205241531ED21599130100197976" name="Answer940B205241531ED21599130100197976" value="Wipe in only one direction" type="radio"/>&nbsp;<label for="Answer3940B205241531ED21599130100197976"><span id="C940B205241531ED21599130100197976ANSWER4" class="questionanswer">Wipe in only one direction</span></label></td></tr></table></td></tr></table></td></tr></table></td></tr></table></fieldset></form></td></tr></table></td></tr></table></div>
+		</div>
+	</div>
+<div id="footer">
+	<form>
+		<span id="goto"><label id="gotolbl" for="pgctl">Go to page</label> <input id="pgctl" type="text" size="3" maxlength="3"></input> <a id="btngo" class="btn" href="#" onclick="AssessmentUI.page(); return false;"><img src="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assess_go_off.gif" border="0" alt="Go"></a></span>
+		<span id="navctrl">
+			<a id="btnback" class="btn" href="#" onclick="AssessmentUI.previous(); return false;"><img src="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assess_back_off.gif" border="0" alt="Back"></a>
+			<span id="counter"><span id="curcnt">1</span> of 20</span>
+			<a id="btnnext" class="btn" href="#" onclick="AssessmentUI.next(); return false;"><img src="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assess_next_off.gif" border="0" alt="Next"></a>
+		</span>
+		<span id="score"><a id="btnscore" class="btn" href="#" onclick="AssessmentEngine.score(); return false;"><img src="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/images/2011_assess_score_off.gif" border="0" alt="Score"></a></span>
+	</form>
+</div>
+</body>
+</html>

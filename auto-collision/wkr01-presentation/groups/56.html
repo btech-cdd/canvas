@@ -1,0 +1,298 @@
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta http-equiv="X-UA-Compatible" content=""/> 
+
+
+<link rel="stylesheet" type="text/css" href="../system/js/yui/reset-fonts-grids/reset-fonts-grids.css" />
+<link rel="stylesheet" href="../resources/viewertemplate/D6082052415322FC6FA9133E0042C303/css/content.css" type="text/css"/>
+
+<script type="text/javascript" src="../system/js/jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../system/js/yui/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="../resources/viewertemplate/D6082052415322FC6FA9133E0042C303/js/groupController.js" language="javscript"></script>
+<script type="text/javascript" src="../system/js/util/ObjectFinder.js" language="javascript"></script>
+<script type="text/javascript" language="javascript">
+GroupEngine.remaining = "";
+GroupEngine.linear = "false";
+if(GroupEngine.remaining.length == 0 || isNaN(GroupEngine.remaining)){
+	GroupEngine.remaining = "10";
+}
+var viewerController = ObjectFinder.search(window, "ViewerController");
+var current = viewerController.current || {accessed: false};
+if(current.lastAccess && ((new Date()).getTime()-current.lastAccess>GroupEngine.remaining*1000)){
+	current.accessed = true;
+}	
+
+if(GroupEngine.remaining > 0 && !current.accessed && viewerController.events.changeFwd) {
+	viewerController.events.changeFwd.fire();
+}
+
+GroupEngine.numChildAssessments = 0;
+if (viewerController.current) {
+	for (var i=0; i<current.children.length; i++)
+	{
+		var contentType = current.children[i].contentType;
+		var isAssessment = (100 == contentType) || (101 == contentType) || (102 == contentType) || (103 == contentType) 
+							|| (104 == contentType) || (105 == contentType) || (107 == contentType)
+							|| (27 == contentType) || (31 == contentType);
+		if (isAssessment) {
+			GroupEngine.numChildAssessments++;	
+		}
+	}
+}
+jQuery(document).ready(function()
+{	
+	if(GroupEngine.linear == "true" && (GroupEngine.numChildAssessments > 0 || (GroupEngine.remaining > 0 && !current.accessed && viewerController.events.changeFwd))) {
+		viewerController.events.changeFwd.fire();
+	} else {
+		viewerController.events.timeout.fire();
+	}
+});
+</script>
+</head>
+<body class="reflection">
+	<!-- Evolution Content API  --><script type="text/javascript" src="../system/js/yui290/yahoo-dom-event/yahoo-dom-event.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/animation/animation-min.js?reloadme=12345" language="javascript"></script>
+<script language="Javascript"></script><div class="layout_container"><link href="../system/js/yui290/container/assets/skins/sam/container.css" rel="stylesheet"/><script type="text/javascript" src="../system/js/yui290/dragdrop/dragdrop-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/json/json-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-migrate-3.0.0.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/container/container-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/delivery/delivery_core.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-ui-1.12.1.min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-ui-effects-1.12.1.min.js?reloadme=12345" language="javascript"></script>
+<script language="javascript">var de = OSDeliveryEngine;
+de.themeId = "non_linear";
+de.userId = "jvatne";
+de.userRole = "00000000000000000000002C00000001";
+de.contextMap = {"11":"E0DA205241531C5F700A130B00038ADC","2":"E0DA205241531C43D19E130200030A15","3":"E0DA205241531C43D19D1303000309D1","4":"E0DA205241531C43D18813040003076D"};
+de.uniqueIdContextMap = {"11":"4427f8e023a5120ab0fffc6d36404f78","2":"11a84d6fbe103a5ce8e58e6a6aeac061","3":"270af1275fb52d015413b00b001d6d5a","4":"3b4b28bd012ef5d5b82801d8dee47bd9"};
+de.satisfaction = {"threshold":80,"type":0};
+de.linear = false;
+de.addObject({"id":"E0DA205241531C43D18813040003076D","label":"Hazardous Materials, Personal Safety, And Refinish Safety","type":4,"uniqueId":"3b4b28bd012ef5d5b82801d8dee47bd9"});
+de.addObject({"id":"E0DA205241531C43D19D1303000309D1","label":" Module 2 - Labels","type":3,"uniqueId":"270af1275fb52d015413b00b001d6d5a","parentId":"E0DA205241531C43D18813040003076D"});
+de.addObject({"id":"E0DA205241531C43D19E130200030A15","label":" Label Indicators","type":2,"uniqueId":"11a84d6fbe103a5ce8e58e6a6aeac061","parentId":"E0DA205241531C43D19D1303000309D1"});
+de.addObject({"id":"E0DA205241531C5F700A130B00038ADC","label":" Signal Word","type":11,"uniqueId":"4427f8e023a5120ab0fffc6d36404f78","parentId":"E0DA205241531C43D19E130200030A15"});
+de.addObject({"weight":0,"id":"E0DA205241531C5F700A130100038ADD","label":" Narration","type":1,"contentType":39,"uniqueId":"63ef32f84e713e82ee35d26d0c7573cb","parentId":"E0DA205241531C5F700A130B00038ADC"});
+var mapURL = de.urlMap; 
+if (null != mapURL && typeof(mapURL) != "undefined") { 
+mapURL[0] = "../groups/2.html"; 
+mapURL[1] = "../groups/3.html"; 
+mapURL[2] = "../groups/4.html"; 
+mapURL[3] = "../groups/5.html"; 
+mapURL[4] = "../groups/6.html"; 
+mapURL[5] = "../groups/7.html"; 
+mapURL[6] = "../groups/8.html"; 
+mapURL[7] = "../groups/9.html"; 
+mapURL[8] = "../groups/10.html"; 
+mapURL[9] = "../groups/11.html"; 
+mapURL[10] = "../groups/12.html"; 
+mapURL[11] = "../groups/13.html"; 
+mapURL[12] = "../groups/14.html"; 
+mapURL[13] = "../groups/15.html"; 
+mapURL[14] = "../groups/16.html"; 
+mapURL[15] = "../groups/17.html"; 
+mapURL[16] = "../groups/18.html"; 
+mapURL[17] = "../groups/19.html"; 
+mapURL[18] = "../groups/20.html"; 
+mapURL[19] = "../groups/21.html"; 
+mapURL[20] = "../groups/22.html"; 
+mapURL[21] = "../groups/23.html"; 
+mapURL[22] = "../groups/24.html"; 
+mapURL[23] = "../groups/25.html"; 
+mapURL[24] = "../groups/26.html"; 
+mapURL[25] = "../groups/27.html"; 
+mapURL[26] = "../groups/28.html"; 
+mapURL[27] = "../groups/29.html"; 
+mapURL[28] = "../groups/30.html"; 
+mapURL[29] = "../groups/31.html"; 
+mapURL[30] = "../groups/32.html"; 
+mapURL[31] = "../groups/33.html"; 
+mapURL[32] = "../groups/34.html"; 
+mapURL[33] = "../groups/35.html"; 
+mapURL[34] = "../groups/36.html"; 
+mapURL[35] = "../groups/37.html"; 
+mapURL[36] = "../groups/38.html"; 
+mapURL[37] = "../groups/39.html"; 
+mapURL[38] = "../groups/40.html"; 
+mapURL[39] = "../groups/41.html"; 
+mapURL[40] = "../groups/42.html"; 
+mapURL[41] = "../groups/43.html"; 
+mapURL[42] = "../groups/44.html"; 
+mapURL[43] = "../groups/45.html"; 
+mapURL[44] = "../groups/46.html"; 
+mapURL[45] = "../groups/47.html"; 
+mapURL[46] = "../groups/48.html"; 
+mapURL[47] = "../groups/49.html"; 
+mapURL[48] = "../groups/50.html"; 
+mapURL[49] = "../groups/51.html"; 
+mapURL[50] = "../groups/52.html"; 
+mapURL[51] = "../groups/53.html"; 
+mapURL[52] = "../groups/54.html"; 
+mapURL[53] = "../groups/55.html"; 
+mapURL[54] = "../groups/56.html"; 
+mapURL[55] = "../groups/57.html"; 
+mapURL[56] = "../groups/58.html"; 
+mapURL[57] = "../groups/59.html"; 
+mapURL[58] = "../groups/60.html"; 
+mapURL[59] = "../groups/61.html"; 
+mapURL[60] = "../groups/62.html"; 
+mapURL[61] = "../groups/63.html"; 
+mapURL[62] = "../groups/64.html"; 
+mapURL[63] = "../groups/65.html"; 
+mapURL[64] = "../groups/66.html"; 
+mapURL[65] = "../groups/67.html"; 
+mapURL[66] = "../groups/68.html"; 
+mapURL[67] = "../groups/69.html"; 
+mapURL[68] = "../groups/70.html"; 
+mapURL[69] = "../groups/71.html"; 
+mapURL[70] = "../groups/72.html"; 
+mapURL[71] = "../groups/73.html"; 
+mapURL[72] = "../groups/74.html"; 
+mapURL[73] = "../groups/75.html"; 
+mapURL[74] = "../groups/76.html"; 
+mapURL[75] = "../groups/77.html"; 
+mapURL[76] = "../groups/78.html"; 
+mapURL[77] = "../groups/79.html"; 
+mapURL[78] = "../groups/80.html"; 
+mapURL[79] = "../groups/81.html"; 
+mapURL[80] = "../groups/82.html"; 
+mapURL[81] = "../groups/83.html"; 
+mapURL[82] = "../groups/84.html"; 
+mapURL[83] = "../groups/85.html"; 
+mapURL[84] = "../groups/86.html"; 
+mapURL[85] = "../groups/87.html"; 
+mapURL[86] = "../groups/88.html"; 
+mapURL[87] = "../groups/89.html"; 
+mapURL[88] = "../groups/90.html"; 
+mapURL[89] = "../groups/91.html"; 
+mapURL[90] = "../groups/92.html"; 
+mapURL[91] = "../groups/93.html"; 
+mapURL[92] = "../groups/94.html"; 
+mapURL[93] = "../groups/95.html"; 
+mapURL[94] = "../groups/96.html"; 
+mapURL[95] = "../groups/97.html"; 
+mapURL[96] = "../groups/98.html"; 
+mapURL[97] = "../groups/99.html"; 
+mapURL[98] = "../groups/100.html"; 
+mapURL[99] = "../groups/101.html"; 
+mapURL[100] = "../groups/102.html"; 
+mapURL[101] = "../groups/103.html"; 
+mapURL[102] = "../groups/104.html"; 
+mapURL[103] = "../groups/105.html"; 
+mapURL[104] = "../groups/106.html"; 
+mapURL[105] = "../groups/107.html"; 
+mapURL[106] = "../groups/108.html"; 
+mapURL[107] = "../groups/109.html"; 
+mapURL[108] = "../groups/110.html"; 
+mapURL[109] = "../groups/111.html"; 
+mapURL[110] = "../groups/112.html"; 
+mapURL[111] = "../groups/113.html"; 
+mapURL[112] = "../groups/114.html"; 
+mapURL[113] = "../groups/115.html"; 
+mapURL[114] = "../groups/116.html"; 
+mapURL[115] = "../groups/117.html"; 
+mapURL[116] = "../groups/118.html"; 
+mapURL[117] = "../groups/119.html"; 
+mapURL[118] = "../groups/120.html"; 
+mapURL[119] = "../groups/121.html"; 
+mapURL[120] = "../groups/122.html"; 
+mapURL[121] = "../groups/123.html"; 
+mapURL[122] = "../groups/124.html"; 
+mapURL[123] = "../groups/125.html"; 
+mapURL[124] = "../groups/126.html"; 
+mapURL[125] = "../groups/127.html"; 
+mapURL[126] = "../groups/128.html"; 
+mapURL[127] = "../groups/129.html"; 
+mapURL[128] = "../groups/130.html"; 
+mapURL[129] = "../groups/131.html"; 
+mapURL[130] = "../groups/132.html"; 
+mapURL[131] = "../groups/133.html"; 
+mapURL[132] = "../groups/134.html"; 
+mapURL[133] = "../groups/135.html"; 
+mapURL[134] = "../groups/136.html"; 
+mapURL[135] = "../groups/137.html"; 
+mapURL[136] = "../groups/138.html"; 
+mapURL[137] = "../groups/139.html"; 
+mapURL[138] = "../groups/140.html"; 
+mapURL[139] = "../groups/141.html"; 
+mapURL[140] = "../groups/142.html"; 
+mapURL[141] = "../groups/143.html"; 
+mapURL[142] = "../groups/144.html"; 
+mapURL[143] = "../groups/145.html"; 
+mapURL[144] = "../groups/146.html"; 
+mapURL[145] = "../groups/147.html"; 
+mapURL[146] = "../groups/148.html"; 
+mapURL[147] = "../groups/149.html"; 
+mapURL[148] = "../groups/150.html"; 
+mapURL[149] = "../groups/151.html"; 
+mapURL[150] = "../groups/152.html"; 
+mapURL[151] = "../groups/153.html"; 
+mapURL[152] = "../groups/154.html"; 
+mapURL[153] = "../groups/155.html"; 
+mapURL[154] = "../groups/156.html"; 
+mapURL[155] = "../groups/157.html"; 
+mapURL[156] = "../groups/158.html"; 
+mapURL[157] = "../groups/159.html"; 
+mapURL[158] = "../groups/160.html"; 
+mapURL[159] = "../groups/161.html"; 
+mapURL[160] = "../groups/162.html"; 
+mapURL[161] = "../groups/163.html"; 
+mapURL[162] = "../groups/164.html"; 
+mapURL[163] = "../groups/165.html"; 
+mapURL[164] = "../groups/166.html"; 
+mapURL[165] = "../groups/167.html"; 
+mapURL[166] = "../groups/168.html"; 
+mapURL[167] = "../groups/169.html"; 
+mapURL[168] = "../groups/170.html"; 
+mapURL[169] = "../groups/171.html"; 
+mapURL[170] = "../groups/172.html"; 
+mapURL[171] = "../groups/173.html"; 
+mapURL[172] = "../groups/174.html"; 
+mapURL[173] = "../groups/175.html"; 
+mapURL[174] = "../groups/176.html"; 
+mapURL[175] = "../groups/177.html"; 
+mapURL[176] = "../groups/178.html"; 
+mapURL[177] = "../groups/179.html"; 
+mapURL[178] = "../groups/180.html"; 
+ }; 
+var r = de.getObjectByUniqueId('63ef32f84e713e82ee35d26d0c7573cb').references = [{"media_references":{"types":[{"viewPort":"web","mediaTypeId":"00000000000000000000001200000001","url":"../media/182.mp3"}],"mediaId":"AEC3205241531AA1DC3613080001BF84"},"id":"AEC3205241531AA1DC3613080001BF84","label":"214","type":8,"uniqueId":"421cee3f75047362ac7bad6180f34462","url":"..\/media\/182.mp3","parentId":"E0DA205241531C43D43B130100031C9C"}];for (i in r) de.addObject(r[i]);</script><link href="../system/styles/delivery/web/default_content_styles.css" rel="stylesheet"/><!--[if lte IE 7]><link href="../system/styles/delivery/web/default_content_styles_ie7.css" rel="stylesheet"/><![endif]--><link href="../system/styles/override-reset-fonts-grids.css" rel="stylesheet"/><script src="../system/js/delivery/MediaController.js" language="javascript"></script><script language="javascript">OSDeliveryEngine.queueLoad('63ef32f84e713e82ee35d26d0c7573cb');
+</script><script language="javascript">de.addObject({"weight":0,"id":"E0DA205241531C5F700B130100038AE0","label":" Presentation","type":1,"contentType":33,"uniqueId":"71be89f21c09794c36a6d245affc9642","parentId":"E0DA205241531C5F700A130B00038ADC"});
+</script><script src="../system/js/OsList.js" language="javascript"></script><script language="javascript">var listE0DA205241531C5F700B130100038AE0= new OsList('E0DA205241531C5F700B130100038AE0');listE0DA205241531C5F700B130100038AE0.aniType=0;jQuery(document).ready(function(){listE0DA205241531C5F700B130100038AE0.init();
+de.queueAnimation(listE0DA205241531C5F700B130100038AE0,'E0DA205241531C5F700B130100038AE0', 'onLoad');});function applyListStyle()
+{
+jQuery("ol").each(function()
+{
+var typeAttr = jQuery(this).attr('type');
+if(typeof(typeAttr)!='undefined')
+{
+jQuery(this).find('li').each(function(){"+"
+var liStyle = '';
+if(typeAttr=='1')
+	liStyle = 'decimal';
+if(typeAttr=='a')
+	liStyle = 'lower-alpha';
+if(typeAttr=='A')
+	liStyle = 'upper-alpha';
+if(typeAttr=='i')
+	liStyle = 'lower-roman';
+if(typeAttr=='I')
+   liStyle = 'upper-roman';
+if(liStyle.length>0)
+	jQuery(this).css('list-style',liStyle);
+});
+}
+});
+}
+jQuery(document.body).on("load", function () {
+applyListStyle();
+});
+jQuery(document.body).on("click",function(){
+applyListStyle();
+})
+</script><script language="javascript">var listE0DA205241531C5F700B130100038AE0= new OsList('E0DA205241531C5F700B130100038AE0');listE0DA205241531C5F700B130100038AE0.aniType=0;jQuery(document).ready(function(){listE0DA205241531C5F700B130100038AE0.init();
+de.queueAnimation(listE0DA205241531C5F700B130100038AE0,'E0DA205241531C5F700B130100038AE0', 'onLoad');});OSDeliveryEngine.queueLoad('71be89f21c09794c36a6d245affc9642');
+</script><script language="javascript">de.addObject({"weight":0,"id":"E0DA205241531C5F700B130100038AE3","label":" Image","type":1,"contentType":39,"uniqueId":"50898ab97d9ec4f2eae87960411ff5f7","parentId":"E0DA205241531C5F700A130B00038ADC"});
+var r = de.getObjectByUniqueId('50898ab97d9ec4f2eae87960411ff5f7').references = [{"media_references":{"types":[{"viewPort":"xs","mediaTypeId":"00000000000000000000001200000007","url":"../media/791.jpg"},{"viewPort":"sm","mediaTypeId":"00000000000000000000001200000008","url":"../media/792.jpg"},{"viewPort":"md","mediaTypeId":"00000000000000000000001200000009","url":"../media/793.jpg"},{"viewPort":"lg","mediaTypeId":"0000000000000000000000120000000A","url":"../media/794.jpg"},{"viewPort":"xl","mediaTypeId":"0000000000000000000000120000000B","url":"../media/795.jpg"}],"mediaId":"E0DA205241531C7772A413080004D608"},"id":"E0DA205241531C7772A413080004D608","label":"11371","type":8,"uniqueId":"7f4dd29024f7bd939e712a017a9999fc","url":"..\/media\/790.jpg","parentId":"E0DA205241531C5F700B130100038AE3"}];for (i in r) de.addObject(r[i]);</script><script language="javascript">OSDeliveryEngine.queueLoad('50898ab97d9ec4f2eae87960411ff5f7');
+</script><div id="GE0DA205241531C5F700A130B00038ADC" class="group_container"><style></style><input id="hasAppliedEffect" value="false" name="hasAppliedEffect" type="hidden"/><style>#dle_E0DA205241531C5F700A130B00038ADC_0{position: absolute; top: 0; left: 0; clear: ; float: ; margin: ; padding: ; visibility: hidden;}#dle_E0DA205241531C5F700A130B00038ADC_1{width: 39%; clear: ; float: left; margin: ; padding: ; width*: 38%; display: inline-table;}#dle_E0DA205241531C5F700A130B00038ADC_2{width: 720px; position: absolute; top: 10px; right: 15px; clear: ; float: right; margin: ; padding: ; position*: relative; top*: 0px; right*: -10px;}</style><div id="dle_E0DA205241531C5F700A130B00038ADC_0" class="layout_container"><div id="dle_E0DA205241531C5F700A130B00038ADC_0_w" style="font-size:100%;background:none transparent;border:none;margin:0;padding:0"><div id="CE0DA205241531C5F700A130100038ADD" class="content_container element_39"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><table class="media_and_text_table"><tr><td><table class="media_table"><tr><td class="media_cell align_Left"><div><VIDEO id="vmediaobject_0.6632595980347918" SRC="../media/182.mp3" CONTROLS="CONTROLS" WIDTH="400" onerror="video_error(this);"><OBJECT id="mediaobject_0.6632595980347918" class="objectouter" CLASSID="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" WIDTH="400" HEIGHT="300"><PARAM NAME="url" value="../media/182.mp3"/><PARAM NAME="autostart" value="false"/></OBJECT></VIDEO><script language="javascript">if(typeof video_error == "undefined") function video_error(video_obj) { var obj = document.createElement("div");obj.innerHTML = video_obj.innerHTML;video_obj.parentNode.insertBefore(obj,video_obj);video_obj.parentNode.removeChild(video_obj);if(window.MediaController) { MediaController.players = [];MediaController.initAll(); } }</script></div></td></tr></table></td></tr></table></td></tr></table></td></tr></table></div></div></div><div id="dle_E0DA205241531C5F700A130B00038ADC_1" class="layout_container"><div id="dle_E0DA205241531C5F700A130B00038ADC_1_w" style="font-size:100%;background:none transparent;border:none;margin:0;padding:0"><div id="CE0DA205241531C5F700B130100038AE0" class="content_container element_33"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><div id="div_E0DA205241531C5F700B130100038AE0" class="list_block_div listtext"><ul id="list_E0DA205241531C5F700B130100038AE0" class="main_list list_type_bullets"><li id="itemE0DA205241531C5F700B130100038AE00" class="list_item"><span id="CE0DA205241531C5F700B130100038AE0DESC1" class="listtext">Indicates the relative level of severity of the hazard</span></li><li id="itemE0DA205241531C5F700B130100038AE01" class="list_item"><span id="CE0DA205241531C5F700B130100038AE0DESC2" class="listtext">Danger for the more severe hazards</span></li><li id="itemE0DA205241531C5F700B130100038AE02" class="list_item"><span id="CE0DA205241531C5F700B130100038AE0DESC3" class="listtext">Warning for the less severe hazards</span></li><li id="itemE0DA205241531C5F700B130100038AE03" class="list_item"><span id="CE0DA205241531C5F700B130100038AE0DESC4" class="listtext">Only one signal word on the label no matter how many hazards a material may have</span></li></ul></div></td></tr></table></td></tr></table></div></div></div><div id="dle_E0DA205241531C5F700A130B00038ADC_2" class="layout_container"><div id="dle_E0DA205241531C5F700A130B00038ADC_2_w" style="font-size:100%;background:none transparent;border:none;margin:0;padding:0"><div id="CE0DA205241531C5F700B130100038AE3" class="content_container element_39"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><table class="media_and_text_table"><tr><td><table class="media_table"><tr><td class="media_cell align_Left"><img width="720" height="442" alt="" src="../media/790.jpg"/></td></tr><tr><td class="caption_cell align_Left"><span id="CE0DA205241531C5F700B130100038AE3CAPTION" class="imagecaption">This is a sample label highlighting the signal word information.</span></td></tr></table></td></tr></table></td></tr></table></td></tr></table></div></div></div><div style="clear:both;"></div></div></div>
+</body>
+</html>

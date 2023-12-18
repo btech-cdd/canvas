@@ -1,0 +1,232 @@
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta http-equiv="X-UA-Compatible" content=""/> 
+
+
+<link rel="stylesheet" type="text/css" href="../system/js/yui/reset-fonts-grids/reset-fonts-grids.css" />
+<link rel="stylesheet" href="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/css/content.css" type="text/css"/>
+
+<script type="text/javascript" src="../system/js/jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../system/js/yui/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/js/groupController.js" language="javscript"></script>
+<script type="text/javascript" src="../system/js/util/ObjectFinder.js" language="javascript"></script>
+<script type="text/javascript" language="javascript">
+GroupEngine.remaining = "";
+GroupEngine.linear = "false";
+if(GroupEngine.remaining.length == 0 || isNaN(GroupEngine.remaining)){
+	GroupEngine.remaining = "10";
+}
+var viewerController = ObjectFinder.search(window, "ViewerController");
+var current = viewerController.current || {accessed: false};
+if(current.lastAccess && ((new Date()).getTime()-current.lastAccess>GroupEngine.remaining*1000)){
+	current.accessed = true;
+}	
+
+if(GroupEngine.remaining > 0 && !current.accessed && viewerController.events.changeFwd) {
+	viewerController.events.changeFwd.fire();
+}
+
+GroupEngine.numChildAssessments = 0;
+if (viewerController.current) {
+	for (var i=0; i<current.children.length; i++)
+	{
+		var contentType = current.children[i].contentType;
+		var isAssessment = (100 == contentType) || (101 == contentType) || (102 == contentType) || (103 == contentType) 
+							|| (104 == contentType) || (105 == contentType) || (107 == contentType)
+							|| (27 == contentType) || (31 == contentType);
+		if (isAssessment) {
+			GroupEngine.numChildAssessments++;	
+		}
+	}
+}
+jQuery(document).ready(function()
+{	
+	if(GroupEngine.linear == "true" && (GroupEngine.numChildAssessments > 0 || (GroupEngine.remaining > 0 && !current.accessed && viewerController.events.changeFwd))) {
+		viewerController.events.changeFwd.fire();
+	} else {
+		viewerController.events.timeout.fire();
+	}
+});
+</script>
+</head>
+<body class="reflection">
+	<!-- Evolution Content API  --><script type="text/javascript" src="../system/js/yui290/yahoo-dom-event/yahoo-dom-event.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/animation/animation-min.js?reloadme=12345" language="javascript"></script>
+<script language="Javascript"></script><div class="layout_container"><link href="../system/js/yui290/container/assets/skins/sam/container.css" rel="stylesheet"/><script type="text/javascript" src="../system/js/yui290/dragdrop/dragdrop-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/json/json-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-migrate-3.0.0.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/container/container-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/delivery/delivery_core.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-ui-1.12.1.min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-ui-effects-1.12.1.min.js?reloadme=12345" language="javascript"></script>
+<script language="javascript">var de = OSDeliveryEngine;
+de.themeId = "non_linear";
+de.userId = "dbarker";
+de.userRole = "00000000000000000000002C00000001";
+de.contextMap = {"11":"2E77205241531EC4B5D7130B0018CDA9","2":"2E77205241531EC4B5D713020018CDA8","3":"2E77205241531EC4B5CC13030018CB76","4":"E0DA205241531C7093CC1304000471D8"};
+de.uniqueIdContextMap = {"11":"311bb8532fc53f0ef762b8a48d211477","2":"49c2314a8e6c078da942e57088c8b323","3":"788cc80d515935d938c99e78da67736b","4":"1a12bccdb565af093b238a9d1a1d7351"};
+de.satisfaction = {"threshold":80,"type":0};
+de.linear = false;
+de.addObject({"id":"E0DA205241531C7093CC1304000471D8","label":"Movable Glass (GLA01)","type":4,"uniqueId":"1a12bccdb565af093b238a9d1a1d7351"});
+de.addObject({"id":"2E77205241531EC4B5CC13030018CB76","label":" Module 4 - Sunroofs","type":3,"uniqueId":"788cc80d515935d938c99e78da67736b","parentId":"E0DA205241531C7093CC1304000471D8"});
+de.addObject({"id":"2E77205241531EC4B5D713020018CDA8","label":" Module Wrap-Up","type":2,"uniqueId":"49c2314a8e6c078da942e57088c8b323","parentId":"2E77205241531EC4B5CC13030018CB76"});
+de.addObject({"id":"2E77205241531EC4B5D7130B0018CDA9","label":" Module Summary","type":11,"uniqueId":"311bb8532fc53f0ef762b8a48d211477","parentId":"2E77205241531EC4B5D713020018CDA8"});
+de.addObject({"weight":0,"id":"2E77205241531EC4B5D713010018CDAA","label":" Narration","type":1,"contentType":39,"uniqueId":"7994e5181358c790835dccf68f3aa245","parentId":"2E77205241531EC4B5D7130B0018CDA9"});
+var mapURL = de.urlMap; 
+if (null != mapURL && typeof(mapURL) != "undefined") { 
+mapURL[0] = "../groups/2.html"; 
+mapURL[1] = "../groups/3.html"; 
+mapURL[2] = "../groups/4.html"; 
+mapURL[3] = "../groups/5.html"; 
+mapURL[4] = "../groups/6.html"; 
+mapURL[5] = "../groups/7.html"; 
+mapURL[6] = "../groups/8.html"; 
+mapURL[7] = "../groups/9.html"; 
+mapURL[8] = "../groups/10.html"; 
+mapURL[9] = "../groups/11.html"; 
+mapURL[10] = "../groups/12.html"; 
+mapURL[11] = "../groups/13.html"; 
+mapURL[12] = "../groups/14.html"; 
+mapURL[13] = "../groups/15.html"; 
+mapURL[14] = "../groups/16.html"; 
+mapURL[15] = "../groups/17.html"; 
+mapURL[16] = "../groups/18.html"; 
+mapURL[17] = "../groups/19.html"; 
+mapURL[18] = "../groups/20.html"; 
+mapURL[19] = "../groups/21.html"; 
+mapURL[20] = "../groups/22.html"; 
+mapURL[21] = "../groups/23.html"; 
+mapURL[22] = "../groups/24.html"; 
+mapURL[23] = "../groups/25.html"; 
+mapURL[24] = "../groups/26.html"; 
+mapURL[25] = "../groups/27.html"; 
+mapURL[26] = "../groups/28.html"; 
+mapURL[27] = "../groups/29.html"; 
+mapURL[28] = "../groups/30.html"; 
+mapURL[29] = "../groups/31.html"; 
+mapURL[30] = "../groups/32.html"; 
+mapURL[31] = "../groups/33.html"; 
+mapURL[32] = "../groups/34.html"; 
+mapURL[33] = "../groups/35.html"; 
+mapURL[34] = "../groups/36.html"; 
+mapURL[35] = "../groups/37.html"; 
+mapURL[36] = "../groups/38.html"; 
+mapURL[37] = "../groups/39.html"; 
+mapURL[38] = "../groups/40.html"; 
+mapURL[39] = "../groups/41.html"; 
+mapURL[40] = "../groups/42.html"; 
+mapURL[41] = "../groups/43.html"; 
+mapURL[42] = "../groups/44.html"; 
+mapURL[43] = "../groups/45.html"; 
+mapURL[44] = "../groups/46.html"; 
+mapURL[45] = "../groups/47.html"; 
+mapURL[46] = "../groups/48.html"; 
+mapURL[47] = "../groups/49.html"; 
+mapURL[48] = "../groups/50.html"; 
+mapURL[49] = "../groups/51.html"; 
+mapURL[50] = "../groups/52.html"; 
+mapURL[51] = "../groups/53.html"; 
+mapURL[52] = "../groups/54.html"; 
+mapURL[53] = "../groups/55.html"; 
+mapURL[54] = "../groups/56.html"; 
+mapURL[55] = "../groups/57.html"; 
+mapURL[56] = "../groups/58.html"; 
+mapURL[57] = "../groups/59.html"; 
+mapURL[58] = "../groups/60.html"; 
+mapURL[59] = "../groups/61.html"; 
+mapURL[60] = "../groups/62.html"; 
+mapURL[61] = "../groups/63.html"; 
+mapURL[62] = "../groups/64.html"; 
+mapURL[63] = "../groups/65.html"; 
+mapURL[64] = "../groups/66.html"; 
+mapURL[65] = "../groups/67.html"; 
+mapURL[66] = "../groups/68.html"; 
+mapURL[67] = "../groups/69.html"; 
+mapURL[68] = "../groups/70.html"; 
+mapURL[69] = "../groups/71.html"; 
+mapURL[70] = "../groups/72.html"; 
+mapURL[71] = "../groups/73.html"; 
+mapURL[72] = "../groups/74.html"; 
+mapURL[73] = "../groups/75.html"; 
+mapURL[74] = "../groups/76.html"; 
+mapURL[75] = "../groups/77.html"; 
+mapURL[76] = "../groups/78.html"; 
+mapURL[77] = "../groups/79.html"; 
+mapURL[78] = "../groups/80.html"; 
+mapURL[79] = "../groups/81.html"; 
+mapURL[80] = "../groups/82.html"; 
+mapURL[81] = "../groups/83.html"; 
+mapURL[82] = "../groups/84.html"; 
+mapURL[83] = "../groups/85.html"; 
+mapURL[84] = "../groups/86.html"; 
+mapURL[85] = "../groups/87.html"; 
+mapURL[86] = "../groups/88.html"; 
+mapURL[87] = "../groups/89.html"; 
+mapURL[88] = "../groups/90.html"; 
+mapURL[89] = "../groups/91.html"; 
+mapURL[90] = "../groups/92.html"; 
+mapURL[91] = "../groups/93.html"; 
+mapURL[92] = "../groups/94.html"; 
+mapURL[93] = "../groups/95.html"; 
+mapURL[94] = "../groups/96.html"; 
+mapURL[95] = "../groups/97.html"; 
+mapURL[96] = "../groups/98.html"; 
+mapURL[97] = "../groups/99.html"; 
+mapURL[98] = "../groups/100.html"; 
+mapURL[99] = "../groups/101.html"; 
+mapURL[100] = "../groups/102.html"; 
+mapURL[101] = "../groups/103.html"; 
+mapURL[102] = "../groups/104.html"; 
+mapURL[103] = "../groups/105.html"; 
+mapURL[104] = "../groups/106.html"; 
+mapURL[105] = "../groups/107.html"; 
+mapURL[106] = "../groups/108.html"; 
+mapURL[107] = "../groups/109.html"; 
+mapURL[108] = "../groups/110.html"; 
+mapURL[109] = "../groups/111.html"; 
+mapURL[110] = "../groups/112.html"; 
+mapURL[111] = "../groups/113.html"; 
+mapURL[112] = "../groups/114.html"; 
+mapURL[113] = "../groups/115.html"; 
+mapURL[114] = "../groups/116.html"; 
+mapURL[115] = "../groups/117.html"; 
+ }; 
+var r = de.getObjectByUniqueId('7994e5181358c790835dccf68f3aa245').references = [{"media_references":{"types":[{"viewPort":"web","mediaTypeId":"00000000000000000000001200000001","url":"../media/727.mp3"}],"mediaId":"E699205241531D1682DE1308000B61F5"},"id":"E699205241531D1682DE1308000B61F5","label":"14778","type":8,"uniqueId":"399340ae196d7988474e2b3f3b48b45f","url":"..\/media\/727.mp3","parentId":"2E77205241531EC4B5D713010018CDAA"}];for (i in r) de.addObject(r[i]);</script><link href="../system/styles/delivery/web/default_content_styles.css" rel="stylesheet"/><!--[if lte IE 7]><link href="../system/styles/delivery/web/default_content_styles_ie7.css" rel="stylesheet"/><![endif]--><link href="../system/styles/override-reset-fonts-grids.css" rel="stylesheet"/><script src="../system/js/delivery/MediaController.js" language="javascript"></script><script language="javascript">OSDeliveryEngine.queueLoad('7994e5181358c790835dccf68f3aa245');
+</script><script language="javascript">de.addObject({"weight":0,"id":"2E77205241531EC4B5D713010018CDB2","label":" Presentation","type":1,"contentType":33,"uniqueId":"29d3d09701da679ca56c2aa8369378a6","parentId":"2E77205241531EC4B5D7130B0018CDA9"});
+</script><script src="../system/js/OsList.js" language="javascript"></script><script language="javascript">var list2E77205241531EC4B5D713010018CDB2= new OsList('2E77205241531EC4B5D713010018CDB2');list2E77205241531EC4B5D713010018CDB2.aniType=0;jQuery(document).ready(function(){list2E77205241531EC4B5D713010018CDB2.init();
+de.queueAnimation(list2E77205241531EC4B5D713010018CDB2,'2E77205241531EC4B5D713010018CDB2', 'onLoad');});OSDeliveryEngine.queueLoad('29d3d09701da679ca56c2aa8369378a6');
+function applyListStyle()
+{
+jQuery("ol").each(function()
+{
+var typeAttr = jQuery(this).attr('type');
+if(typeof(typeAttr)!='undefined')
+{
+jQuery(this).find('li').each(function(){"+"
+var liStyle = '';
+if(typeAttr=='1')
+	liStyle = 'decimal';
+if(typeAttr=='a')
+	liStyle = 'lower-alpha';
+if(typeAttr=='A')
+	liStyle = 'upper-alpha';
+if(typeAttr=='i')
+	liStyle = 'lower-roman';
+if(typeAttr=='I')
+   liStyle = 'upper-roman';
+if(liStyle.length>0)
+	jQuery(this).css('list-style',liStyle);
+});
+}
+});
+}
+jQuery(document.body).on("load", function () {
+applyListStyle();
+});
+jQuery(document.body).on("click",function(){
+applyListStyle();
+})
+</script><div id="G2E77205241531EC4B5D7130B0018CDA9" class="group_container"><style></style><input id="hasAppliedEffect" value="false" name="hasAppliedEffect" type="hidden"/><style>#dle_2E77205241531EC4B5D7130B0018CDA9_0{position: absolute; top: 0; left: 0; clear: ; float: ; margin: ; padding: ; visibility: hidden;}</style><div id="dle_2E77205241531EC4B5D7130B0018CDA9_0" class="layout_container"><div id="dle_2E77205241531EC4B5D7130B0018CDA9_0_w" style="font-size:100%;background:none transparent;border:none;margin:0;padding:0"><div id="C2E77205241531EC4B5D713010018CDAA" class="content_container element_39"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><table class="media_and_text_table"><tr><td><table class="media_table"><tr><td class="media_cell align_Left"><div><VIDEO id="vmediaobject_0.8607643312122082" SRC="../media/727.mp3" CONTROLS="CONTROLS" WIDTH="400" onerror="video_error(this);"><OBJECT id="mediaobject_0.8607643312122082" class="objectouter" CLASSID="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" WIDTH="400" HEIGHT="300"><PARAM NAME="url" value="../media/727.mp3"/><PARAM NAME="autostart" value="false"/></OBJECT></VIDEO><script language="javascript">if(typeof video_error == "undefined") function video_error(video_obj) { var obj = document.createElement("div");obj.innerHTML = video_obj.innerHTML;video_obj.parentNode.insertBefore(obj,video_obj);video_obj.parentNode.removeChild(video_obj);if(window.MediaController) { MediaController.players = [];MediaController.initAll(); } }</script></div></td></tr></table></td></tr></table></td></tr></table></td></tr></table></div></div></div><div id="dle_2E77205241531EC4B5D7130B0018CDA9_1" class="layout_container"><div id="dle_2E77205241531EC4B5D7130B0018CDA9_1_w" style="font-size:100%;background:none transparent;border:none;margin:0;padding:0"><div id="C2E77205241531EC4B5D713010018CDB2" class="content_container element_33"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td class="maintext_top_cell"><span id="C2E77205241531EC4B5D713010018CDB2DESC" class="maintext">Topics discussed in this module included:</span></td></tr><tr><td><div id="div_2E77205241531EC4B5D713010018CDB2" class="list_block_div listtext"><ul id="list_2E77205241531EC4B5D713010018CDB2" class="main_list list_type_bullets"><li id="item2E77205241531EC4B5D713010018CDB20" class="list_item"><span id="C2E77205241531EC4B5D713010018CDB2DESC1" class="listtext">types of sunroof assemblies.</span></li><li id="item2E77205241531EC4B5D713010018CDB21" class="list_item"><span id="C2E77205241531EC4B5D713010018CDB2DESC2" class="listtext">parts of sunroof assemblies.</span></li><li id="item2E77205241531EC4B5D713010018CDB22" class="list_item"><span id="C2E77205241531EC4B5D713010018CDB2DESC3" class="listtext">the replacement of sunroof assemblies.</span></li><li id="item2E77205241531EC4B5D713010018CDB23" class="list_item"><span id="C2E77205241531EC4B5D713010018CDB2DESC4" class="listtext">water leaks in sunroof assemblies.</span></li></ul></div></td></tr></table></td></tr></table></div></div></div><div style="clear:both;"></div></div></div>
+</body>
+</html>

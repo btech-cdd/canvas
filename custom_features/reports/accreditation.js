@@ -4,9 +4,6 @@
   //With assignments make sure to also grab if they did a text submission or other possible submission types
   //get comments if nothing submitted. Might be easiest to instead of attaching comments to rubric, just grab whatever appears on assignment submission and attach them to that. Then attach comments to quizzes, so the content gets all comments and rubrics is just a side thing like uploads.
 
-  //PUT INSTRUCTIONS FOR ADDING TO A DEPARTMENT HERE
-  //Try adding it to the whole school at some point
-  //https://btech.instructure.com/courses/498455/accreditation
   //https://bridgetools.dev/accreditation/lti.xml
   if (document.title === "BTECH Accreditation") {
     //abort if this has already been run on the page

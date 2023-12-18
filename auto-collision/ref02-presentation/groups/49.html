@@ -1,0 +1,329 @@
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta http-equiv="X-UA-Compatible" content=""/> 
+
+
+<link rel="stylesheet" type="text/css" href="../system/js/yui/reset-fonts-grids/reset-fonts-grids.css" />
+<link rel="stylesheet" href="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/css/content.css" type="text/css"/>
+
+<script type="text/javascript" src="../system/js/jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../system/js/yui/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/js/groupController.js" language="javscript"></script>
+<script type="text/javascript" src="../system/js/util/ObjectFinder.js" language="javascript"></script>
+<script type="text/javascript" language="javascript">
+GroupEngine.remaining = "";
+GroupEngine.linear = "false";
+if(GroupEngine.remaining.length == 0 || isNaN(GroupEngine.remaining)){
+	GroupEngine.remaining = "10";
+}
+var viewerController = ObjectFinder.search(window, "ViewerController");
+var current = viewerController.current || {accessed: false};
+if(current.lastAccess && ((new Date()).getTime()-current.lastAccess>GroupEngine.remaining*1000)){
+	current.accessed = true;
+}	
+
+if(GroupEngine.remaining > 0 && !current.accessed && viewerController.events.changeFwd) {
+	viewerController.events.changeFwd.fire();
+}
+
+GroupEngine.numChildAssessments = 0;
+if (viewerController.current) {
+	for (var i=0; i<current.children.length; i++)
+	{
+		var contentType = current.children[i].contentType;
+		var isAssessment = (100 == contentType) || (101 == contentType) || (102 == contentType) || (103 == contentType) 
+							|| (104 == contentType) || (105 == contentType) || (107 == contentType)
+							|| (27 == contentType) || (31 == contentType);
+		if (isAssessment) {
+			GroupEngine.numChildAssessments++;	
+		}
+	}
+}
+jQuery(document).ready(function()
+{	
+	if(GroupEngine.linear == "true" && (GroupEngine.numChildAssessments > 0 || (GroupEngine.remaining > 0 && !current.accessed && viewerController.events.changeFwd))) {
+		viewerController.events.changeFwd.fire();
+	} else {
+		viewerController.events.timeout.fire();
+	}
+});
+</script>
+</head>
+<body class="reflection">
+	<!-- Evolution Content API  --><script type="text/javascript" src="../system/js/yui290/yahoo-dom-event/yahoo-dom-event.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/animation/animation-min.js?reloadme=12345" language="javascript"></script>
+<script language="Javascript"></script><div class="layout_container"><link href="../system/js/yui290/container/assets/skins/sam/container.css" rel="stylesheet"/><script type="text/javascript" src="../system/js/yui290/dragdrop/dragdrop-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/json/json-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-migrate-3.0.0.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/container/container-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/delivery/delivery_core.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-ui-1.12.1.min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-ui-effects-1.12.1.min.js?reloadme=12345" language="javascript"></script>
+<script language="javascript">var de = OSDeliveryEngine;
+de.themeId = "non_linear";
+de.userId = "dbarker";
+de.userRole = "00000000000000000000002C00000001";
+de.contextMap = {"11":"2E77205241531EC626A2130B0018ED1A","2":"2E77205241531EC6269D13020018EC52","3":"2E77205241531EC6269D13030018EC51","4":"B21E205241531D436C261304000D6D9A"};
+de.uniqueIdContextMap = {"11":"461a02d97fb256ee9fdf3946c2125e09","2":"50b9e439fa22798f6e813e9564fd61b2","3":"7556c4040fd337db76048aac9dbd4d51","4":"72e0ddcf62610779a56bbfb337f1dcf5"};
+de.satisfaction = {"threshold":80,"type":0};
+de.linear = false;
+de.addObject({"id":"B21E205241531D436C261304000D6D9A","label":"Surface Preparation and Masking (REF02)","type":4,"uniqueId":"72e0ddcf62610779a56bbfb337f1dcf5"});
+de.addObject({"id":"2E77205241531EC6269D13030018EC51","label":" Module 2 - Finish Protection And Removal","type":3,"uniqueId":"7556c4040fd337db76048aac9dbd4d51","parentId":"B21E205241531D436C261304000D6D9A"});
+de.addObject({"id":"2E77205241531EC6269D13020018EC52","label":" Masking Or Removing Parts","type":2,"uniqueId":"50b9e439fa22798f6e813e9564fd61b2","parentId":"2E77205241531EC6269D13030018EC51"});
+de.addObject({"id":"2E77205241531EC626A2130B0018ED1A","label":" Reverse Masking With Paper","type":11,"uniqueId":"461a02d97fb256ee9fdf3946c2125e09","parentId":"2E77205241531EC6269D13020018EC52"});
+de.addObject({"weight":0,"id":"D6082052415322FC5D4913010042C2DE","label":" Blank Audio","type":1,"contentType":39,"uniqueId":"5405cfbcd50e00945e22bf27d3121ce5","parentId":"2E77205241531EC626A2130B0018ED1A"});
+var mapURL = de.urlMap; 
+if (null != mapURL && typeof(mapURL) != "undefined") { 
+mapURL[0] = "../groups/2.html"; 
+mapURL[1] = "../groups/3.html"; 
+mapURL[2] = "../groups/4.html"; 
+mapURL[3] = "../groups/5.html"; 
+mapURL[4] = "../groups/6.html"; 
+mapURL[5] = "../groups/7.html"; 
+mapURL[6] = "../groups/8.html"; 
+mapURL[7] = "../groups/9.html"; 
+mapURL[8] = "../groups/10.html"; 
+mapURL[9] = "../groups/11.html"; 
+mapURL[10] = "../groups/12.html"; 
+mapURL[11] = "../groups/13.html"; 
+mapURL[12] = "../groups/14.html"; 
+mapURL[13] = "../groups/15.html"; 
+mapURL[14] = "../groups/16.html"; 
+mapURL[15] = "../groups/17.html"; 
+mapURL[16] = "../groups/18.html"; 
+mapURL[17] = "../groups/19.html"; 
+mapURL[18] = "../groups/20.html"; 
+mapURL[19] = "../groups/21.html"; 
+mapURL[20] = "../groups/22.html"; 
+mapURL[21] = "../groups/23.html"; 
+mapURL[22] = "../groups/24.html"; 
+mapURL[23] = "../groups/25.html"; 
+mapURL[24] = "../groups/26.html"; 
+mapURL[25] = "../groups/27.html"; 
+mapURL[26] = "../groups/28.html"; 
+mapURL[27] = "../groups/29.html"; 
+mapURL[28] = "../groups/30.html"; 
+mapURL[29] = "../groups/31.html"; 
+mapURL[30] = "../groups/32.html"; 
+mapURL[31] = "../groups/33.html"; 
+mapURL[32] = "../groups/34.html"; 
+mapURL[33] = "../groups/35.html"; 
+mapURL[34] = "../groups/36.html"; 
+mapURL[35] = "../groups/37.html"; 
+mapURL[36] = "../groups/38.html"; 
+mapURL[37] = "../groups/39.html"; 
+mapURL[38] = "../groups/40.html"; 
+mapURL[39] = "../groups/41.html"; 
+mapURL[40] = "../groups/42.html"; 
+mapURL[41] = "../groups/43.html"; 
+mapURL[42] = "../groups/44.html"; 
+mapURL[43] = "../groups/45.html"; 
+mapURL[44] = "../groups/46.html"; 
+mapURL[45] = "../groups/47.html"; 
+mapURL[46] = "../groups/48.html"; 
+mapURL[47] = "../groups/49.html"; 
+mapURL[48] = "../groups/50.html"; 
+mapURL[49] = "../groups/51.html"; 
+mapURL[50] = "../groups/52.html"; 
+mapURL[51] = "../groups/53.html"; 
+mapURL[52] = "../groups/54.html"; 
+mapURL[53] = "../groups/55.html"; 
+mapURL[54] = "../groups/56.html"; 
+mapURL[55] = "../groups/57.html"; 
+mapURL[56] = "../groups/58.html"; 
+mapURL[57] = "../groups/59.html"; 
+mapURL[58] = "../groups/60.html"; 
+mapURL[59] = "../groups/61.html"; 
+mapURL[60] = "../groups/62.html"; 
+mapURL[61] = "../groups/63.html"; 
+mapURL[62] = "../groups/64.html"; 
+mapURL[63] = "../groups/65.html"; 
+mapURL[64] = "../groups/66.html"; 
+mapURL[65] = "../groups/67.html"; 
+mapURL[66] = "../groups/68.html"; 
+mapURL[67] = "../groups/69.html"; 
+mapURL[68] = "../groups/70.html"; 
+mapURL[69] = "../groups/71.html"; 
+mapURL[70] = "../groups/72.html"; 
+mapURL[71] = "../groups/73.html"; 
+mapURL[72] = "../groups/74.html"; 
+mapURL[73] = "../groups/75.html"; 
+mapURL[74] = "../groups/76.html"; 
+mapURL[75] = "../groups/77.html"; 
+mapURL[76] = "../groups/78.html"; 
+mapURL[77] = "../groups/79.html"; 
+mapURL[78] = "../groups/80.html"; 
+mapURL[79] = "../groups/81.html"; 
+mapURL[80] = "../groups/82.html"; 
+mapURL[81] = "../groups/83.html"; 
+mapURL[82] = "../groups/84.html"; 
+mapURL[83] = "../groups/85.html"; 
+mapURL[84] = "../groups/86.html"; 
+mapURL[85] = "../groups/87.html"; 
+mapURL[86] = "../groups/88.html"; 
+mapURL[87] = "../groups/89.html"; 
+mapURL[88] = "../groups/90.html"; 
+mapURL[89] = "../groups/91.html"; 
+mapURL[90] = "../groups/92.html"; 
+mapURL[91] = "../groups/93.html"; 
+mapURL[92] = "../groups/94.html"; 
+mapURL[93] = "../groups/95.html"; 
+mapURL[94] = "../groups/96.html"; 
+mapURL[95] = "../groups/97.html"; 
+mapURL[96] = "../groups/98.html"; 
+mapURL[97] = "../groups/99.html"; 
+mapURL[98] = "../groups/100.html"; 
+mapURL[99] = "../groups/101.html"; 
+mapURL[100] = "../groups/102.html"; 
+mapURL[101] = "../groups/103.html"; 
+mapURL[102] = "../groups/104.html"; 
+mapURL[103] = "../groups/105.html"; 
+mapURL[104] = "../groups/106.html"; 
+mapURL[105] = "../groups/107.html"; 
+mapURL[106] = "../groups/108.html"; 
+mapURL[107] = "../groups/109.html"; 
+mapURL[108] = "../groups/110.html"; 
+mapURL[109] = "../groups/111.html"; 
+mapURL[110] = "../groups/112.html"; 
+mapURL[111] = "../groups/113.html"; 
+mapURL[112] = "../groups/114.html"; 
+mapURL[113] = "../groups/115.html"; 
+mapURL[114] = "../groups/116.html"; 
+mapURL[115] = "../groups/117.html"; 
+mapURL[116] = "../groups/118.html"; 
+mapURL[117] = "../groups/119.html"; 
+mapURL[118] = "../groups/120.html"; 
+mapURL[119] = "../groups/121.html"; 
+mapURL[120] = "../groups/122.html"; 
+mapURL[121] = "../groups/123.html"; 
+mapURL[122] = "../groups/124.html"; 
+mapURL[123] = "../groups/125.html"; 
+ }; 
+</script><link href="../system/styles/delivery/web/default_content_styles.css" rel="stylesheet"/><!--[if lte IE 7]><link href="../system/styles/delivery/web/default_content_styles_ie7.css" rel="stylesheet"/><![endif]--><link href="../system/styles/override-reset-fonts-grids.css" rel="stylesheet"/><script src="../system/js/delivery/MediaController.js" language="javascript"></script><script language="javascript">OSDeliveryEngine.queueLoad('5405cfbcd50e00945e22bf27d3121ce5');
+</script><script language="javascript">de.addObject({"weight":0,"id":"2E77205241531EC626A213010018ED1B","label":" Presentation","type":1,"contentType":33,"uniqueId":"981f89786a094876c83e59a6e26904a","parentId":"2E77205241531EC626A2130B0018ED1A"});
+</script><script src="../system/js/OsList.js" language="javascript"></script><script language="javascript">var list2E77205241531EC626A213010018ED1B= new OsList('2E77205241531EC626A213010018ED1B');list2E77205241531EC626A213010018ED1B.aniType=0;jQuery(document).ready(function(){list2E77205241531EC626A213010018ED1B.init();
+de.queueAnimation(list2E77205241531EC626A213010018ED1B,'2E77205241531EC626A213010018ED1B', 'onLoad');});OSDeliveryEngine.queueLoad('981f89786a094876c83e59a6e26904a');
+function applyListStyle()
+{
+jQuery("ol").each(function()
+{
+var typeAttr = jQuery(this).attr('type');
+if(typeof(typeAttr)!='undefined')
+{
+jQuery(this).find('li').each(function(){"+"
+var liStyle = '';
+if(typeAttr=='1')
+	liStyle = 'decimal';
+if(typeAttr=='a')
+	liStyle = 'lower-alpha';
+if(typeAttr=='A')
+	liStyle = 'upper-alpha';
+if(typeAttr=='i')
+	liStyle = 'lower-roman';
+if(typeAttr=='I')
+   liStyle = 'upper-roman';
+if(liStyle.length>0)
+	jQuery(this).css('list-style',liStyle);
+});
+}
+});
+}
+jQuery(document.body).on("load", function () {
+applyListStyle();
+});
+jQuery(document.body).on("click",function(){
+applyListStyle();
+})
+</script><script language="javascript">de.addObject({"weight":0,"id":"2E77205241531EC626A213010018ED1F","label":" Slideshow","type":1,"contentType":10,"uniqueId":"4069ffa67cc7611d6fb1d68132ed30f3","parentId":"2E77205241531EC626A2130B0018ED1A"});
+var r = de.getObjectByUniqueId('4069ffa67cc7611d6fb1d68132ed30f3').references = [{"media_references":{"types":[{"viewPort":"xs","mediaTypeId":"00000000000000000000001200000007","url":"../media/506.jpg"},{"viewPort":"sm","mediaTypeId":"00000000000000000000001200000008","url":"../media/507.jpg"},{"viewPort":"md","mediaTypeId":"00000000000000000000001200000009","url":"../media/508.jpg"},{"viewPort":"lg","mediaTypeId":"0000000000000000000000120000000A","url":"../media/509.jpg"},{"viewPort":"xl","mediaTypeId":"0000000000000000000000120000000B","url":"../media/510.jpg"}],"mediaId":"B21E205241531D4A49551308000DE5EA"},"id":"B21E205241531D4A49551308000DE5EA","label":"15424","type":8,"uniqueId":"7298c2fc0a65429db222f8c216759f68","url":"..\/media\/497.jpg","parentId":"2E77205241531EC626A213010018ED1F"}, {"media_references":{"types":[{"viewPort":"xs","mediaTypeId":"00000000000000000000001200000007","url":"../media/501.jpg"},{"viewPort":"sm","mediaTypeId":"00000000000000000000001200000008","url":"../media/502.jpg"},{"viewPort":"md","mediaTypeId":"00000000000000000000001200000009","url":"../media/503.jpg"},{"viewPort":"lg","mediaTypeId":"0000000000000000000000120000000A","url":"../media/504.jpg"},{"viewPort":"xl","mediaTypeId":"0000000000000000000000120000000B","url":"../media/505.jpg"}],"mediaId":"B21E205241531D4A49561308000DE5EE"},"id":"B21E205241531D4A49561308000DE5EE","label":"15425","type":8,"uniqueId":"1e01dedae2ea573e96ad02e8c453d2b9","url":"..\/media\/498.jpg","parentId":"2E77205241531EC626A213010018ED1F"}, {"media_references":{"types":[{"viewPort":"xs","mediaTypeId":"00000000000000000000001200000007","url":"../media/511.jpg"},{"viewPort":"sm","mediaTypeId":"00000000000000000000001200000008","url":"../media/512.jpg"},{"viewPort":"md","mediaTypeId":"00000000000000000000001200000009","url":"../media/513.jpg"},{"viewPort":"lg","mediaTypeId":"0000000000000000000000120000000A","url":"../media/514.jpg"},{"viewPort":"xl","mediaTypeId":"0000000000000000000000120000000B","url":"../media/515.jpg"}],"mediaId":"B21E205241531D4A49571308000DE5F2"},"id":"B21E205241531D4A49571308000DE5F2","label":"15426","type":8,"uniqueId":"43e282618b777dfb7a9a2ee54b1d9c37","url":"..\/media\/499.jpg","parentId":"2E77205241531EC626A213010018ED1F"}, {"media_references":{"types":[{"viewPort":"xs","mediaTypeId":"00000000000000000000001200000007","url":"../media/516.jpg"},{"viewPort":"sm","mediaTypeId":"00000000000000000000001200000008","url":"../media/517.jpg"},{"viewPort":"md","mediaTypeId":"00000000000000000000001200000009","url":"../media/518.jpg"},{"viewPort":"lg","mediaTypeId":"0000000000000000000000120000000A","url":"../media/519.jpg"},{"viewPort":"xl","mediaTypeId":"0000000000000000000000120000000B","url":"../media/520.jpg"}],"mediaId":"B21E205241531D4A49581308000DE5F6"},"id":"B21E205241531D4A49581308000DE5F6","label":"15427","type":8,"uniqueId":"54380c99642f8fbda614b0b5d5ba42cf","url":"..\/media\/500.jpg","parentId":"2E77205241531EC626A213010018ED1F"}];for (i in r) de.addObject(r[i]);</script><script src="../system/js/slideshow.js" language="javascript"></script><script src="../system/players/audioplayer/libs/swfobject.js" language="javascript"></script><script src="../system/players/audioplayer/jquery.audioplayer.js" language="javascript"></script><script src="../system/js/jquery_plugins/blockui/jquery.blockUI-2.70.0.js" language="javascript"></script><script language="javascript">var c = ss2E77205241531EC626A213010018ED1F = new SlideShowRT();
+c.contentId = "2E77205241531EC626A213010018ED1F";
+c.slideCnt = 4;
+c.hasText = true;
+c.stackImages = false;
+c.autoPlay = false;
+c.autoPlayInterval = 5;
+c.textH = 0;
+c.textW = 720;
+c.crtlPos = "Middle";
+c.fadeEnable = true;
+c.autoScaleTextStage = true;
+c.textOf = " of ";
+var CONTROL_BUTTON_MAP = [];
+var tempButton;
+ var SlideShowStartButtonOn = new Image();
+     SlideShowStartButtonOn.src = '../themes/non_linear/2011_ss_start_on.gif';
+     SlideShowStartButtonOn.alt = "Slideshow start button with cursor on";
+ var SlideShowStartButtonOff = new Image();
+     SlideShowStartButtonOff.src = '../themes/non_linear/2011_ss_start_off.gif';
+     SlideShowStartButtonOff.alt = "Slideshow start button with cursor off";
+tempButton = {};
+tempButton.id = 'First';
+tempButton.on = SlideShowStartButtonOn;
+tempButton.off = SlideShowStartButtonOff;
+ var SlideShowStartButtonDisabled = new Image();
+     SlideShowStartButtonDisabled.src = '../themes/outstart/start_disabled.gif';
+     SlideShowStartButtonDisabled.alt = "Slideshow element Start button is disabled";
+tempButton.disabled = SlideShowStartButtonDisabled;
+tempButton.disabled_condition = 'first';
+CONTROL_BUTTON_MAP.push(tempButton);
+ var SlideShowBackButtonOn = new Image();
+     SlideShowBackButtonOn.src = '../themes/non_linear/2011_ss_prev_on.gif';
+     SlideShowBackButtonOn.alt = "Slideshow element Back button with cursor on";
+ var SlideShowBackButtonOff = new Image();
+     SlideShowBackButtonOff.src = '../themes/non_linear/2011_ss_prev_off.gif';
+     SlideShowBackButtonOff.alt = "Slideshow element Back button with cursor off";
+tempButton = {};
+tempButton.id = 'Previous';
+tempButton.on = SlideShowBackButtonOn;
+tempButton.off = SlideShowBackButtonOff;
+ var SlideShowBackButtonDisabled = new Image();
+     SlideShowBackButtonDisabled.src = '../themes/outstart/back_disabled.gif';
+     SlideShowBackButtonDisabled.alt = "Slideshow element Back button is disabled";
+tempButton.disabled = SlideShowBackButtonDisabled;
+tempButton.disabled_condition = 'first';
+CONTROL_BUTTON_MAP.push(tempButton);
+ var SlideShowForwardButtonOn = new Image();
+     SlideShowForwardButtonOn.src = '../themes/non_linear/2011_ss_next_on.gif';
+     SlideShowForwardButtonOn.alt = "Slideshow element forward button with cursor on";
+ var SlideShowForwardButtonOff = new Image();
+     SlideShowForwardButtonOff.src = '../themes/non_linear/2011_ss_next_off.gif';
+     SlideShowForwardButtonOff.alt = "Slideshow element forward button with cursor off";
+tempButton = {};
+tempButton.id = 'Next';
+tempButton.on = SlideShowForwardButtonOn;
+tempButton.off = SlideShowForwardButtonOff;
+CONTROL_BUTTON_MAP.push(tempButton);
+ var SlideShowEndButtonOn = new Image();
+     SlideShowEndButtonOn.src = '../themes/non_linear/2011_ss_end_on.gif';
+     SlideShowEndButtonOn.alt = "Button to move to end of a Slideshow with cursor on";
+ var SlideShowEndButtonOff = new Image();
+     SlideShowEndButtonOff.src = '../themes/non_linear/2011_ss_end_off.gif';
+     SlideShowEndButtonOff.alt = "Button to move to end of a Slideshow with cursor off";
+tempButton = {};
+tempButton.id = 'Last';
+tempButton.on = SlideShowEndButtonOn;
+tempButton.off = SlideShowEndButtonOff;
+ var SlideShowEndButtonDisabled = new Image();
+     SlideShowEndButtonDisabled.src = '../themes/outstart/end_disabled.gif';
+     SlideShowEndButtonDisabled.alt = "Slideshow element End button is disabled";
+tempButton.disabled = SlideShowEndButtonDisabled;
+tempButton.disabled_condition = 'last';
+CONTROL_BUTTON_MAP.push(tempButton);
+jQuery(document).ready(function(){
+ var anim = null;anim = new de.Anim(jQuery('#C2E77205241531EC626A213010018ED1FIMAGE1'),'fade',0,0,2000,{});ss2E77205241531EC626A213010018ED1F.anims.push(anim);
+anim = new de.Anim(jQuery('#C2E77205241531EC626A213010018ED1FIMAGE2'),'fade',0,0,2000,{});ss2E77205241531EC626A213010018ED1F.anims.push(anim);
+anim = new de.Anim(jQuery('#C2E77205241531EC626A213010018ED1FIMAGE3'),'',0,0,2000,{});ss2E77205241531EC626A213010018ED1F.anims.push(anim);
+anim = new de.Anim(jQuery('#C2E77205241531EC626A213010018ED1FIMAGE4'),'',0,0,2000,{});ss2E77205241531EC626A213010018ED1F.anims.push(anim);
+de.queueAnimation(ss2E77205241531EC626A213010018ED1F, '2E77205241531EC626A213010018ED1F', 'init');});
+OSDeliveryEngine.queueLoad('4069ffa67cc7611d6fb1d68132ed30f3');
+</script><div id="G2E77205241531EC626A2130B0018ED1A" class="group_container"><style></style><input id="hasAppliedEffect" value="false" name="hasAppliedEffect" type="hidden"/><style>#dle_2E77205241531EC626A2130B0018ED1A_0{position: absolute; top: 0; left: 0; clear: ; float: ; margin: ; padding: ; visibility: hidden;}#dle_2E77205241531EC626A2130B0018ED1A_1{width: 39%; clear: ; float: left; left: ; margin: ; padding: ; top: ; width*: 38%; display: inline-table;}#dle_2E77205241531EC626A2130B0018ED1A_2{width: 720px; position: absolute; right: 15px; top: 0px; clear: ; float: right; margin: ; padding: ; margin-top: 15px; right*: 2px;}</style><div id="dle_2E77205241531EC626A2130B0018ED1A_0" class="layout_container"><div id="dle_2E77205241531EC626A2130B0018ED1A_0_w" style="font-size:100%;background:none transparent;border:none;margin:0;padding:0"><div id="CD6082052415322FC5D4913010042C2DE" class="content_container element_39"><div class="title_container"><span id="CD6082052415322FC5D4913010042C2DETITLE" class="title">Title</span></div><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td class="intro_text_cell"><span id="CD6082052415322FC5D4913010042C2DEDESCRIPTION" class="maintext">Text</span></td></tr><tr><td><table class="media_and_text_table"><tr><td><table class="media_table"><tr><td class="media_cell align_Center"><img height="300" width="400"/></td></tr></table></td></tr></table></td></tr></table></td></tr></table></div></div></div><div id="dle_2E77205241531EC626A2130B0018ED1A_1" class="layout_container"><div id="dle_2E77205241531EC626A2130B0018ED1A_1_w" style="font-size:100%;background:none transparent;border:none;margin:0;padding:0"><div id="C2E77205241531EC626A213010018ED1B" class="content_container element_33"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><div id="div_2E77205241531EC626A213010018ED1B" class="list_block_div listtext"><ul id="list_2E77205241531EC626A213010018ED1B" class="main_list list_type_bullets"><li id="item2E77205241531EC626A213010018ED1B0" class="list_item"><span id="C2E77205241531EC626A213010018ED1BDESC1" class="listtext">Aids in a soft transition to the masking paper</span></li><li id="item2E77205241531EC626A213010018ED1B1" class="list_item"><span id="C2E77205241531EC626A213010018ED1BDESC2" class="listtext">Done by taping the masking paper over the repair area and folding the masking paper backwards </span></li><li id="item2E77205241531EC626A213010018ED1B2" class="list_item"><span id="C2E77205241531EC626A213010018ED1BDESC3" class="listtext">Used when masking along bodylines when only part of a panel is to be refinished</span></li></ul></div></td></tr></table></td></tr></table></div></div></div><div id="dle_2E77205241531EC626A2130B0018ED1A_2" class="layout_container"><div id="dle_2E77205241531EC626A2130B0018ED1A_2_w" style="font-size:100%;background:none transparent;border:none;margin:0;padding:0"><div id="C2E77205241531EC626A213010018ED1F" class="content_container element_10 ss_classic"><style type="text/css">#ssc_2E77205241531EC626A213010018ED1F { margin-left:40px;width:720px; text-align:center; border-width:1px; border-color:#000000; border-style:solid; }
+#bs_2E77205241531EC626A213010018ED1F { position:relative; width:720px; height:442px; border-width:0px; border-style:solid; border-color:#000000;}
+#bt_2E77205241531EC626A213010018ED1F { position:relative; width:720px; height:0px; }
+.si_2E77205241531EC626A213010018ED1F { position:absolute; visibility:hidden; left:0px;}
+.ta_2E77205241531EC626A213010018ED1F { position:absolute; visibility:hidden; left:0px;}
+.slideshowactive { visibility:visible; }
+.slideshowcounter { font-size:13px; font-family:  Arial; width:50px; text-align:center; color:#000000;}
+</style><table class="slideshow_image_table"><tr><td align="center" class="slideshow_image_cell"><div id="bs_2E77205241531EC626A213010018ED1F"><img width="720" style="top:0px;left:0px;" src="../media/497.jpg" height="442" class="si_2E77205241531EC626A213010018ED1F" id="C2E77205241531EC626A213010018ED1FIMAGE1" alt=""/><img width="720" style="top:0px;left:0px;" src="../media/500.jpg" height="442" class="si_2E77205241531EC626A213010018ED1F" id="C2E77205241531EC626A213010018ED1FIMAGE2" alt=""/><img width="720" style="top:0px;left:0px;" src="../media/499.jpg" height="442" class="si_2E77205241531EC626A213010018ED1F" id="C2E77205241531EC626A213010018ED1FIMAGE3" alt=""/><img width="720" style="top:0px;left:0px;" src="../media/498.jpg" height="442" class="si_2E77205241531EC626A213010018ED1F" id="C2E77205241531EC626A213010018ED1FIMAGE4" alt=""/></div></td></tr><tr><td align="center" class="slideshow_control_cell"><table id="sc_2E77205241531EC626A213010018ED1F"><tr><td><a id="aFirst2E77205241531EC626A213010018ED1F" href="javascript:void(0);" style="cursor:default" onclick="ss2E77205241531EC626A213010018ED1F.firstSlide();ss2E77205241531EC626A213010018ED1F.stopAutoSlide();return false;"><img alt="Slideshow element Start button is disabled" border="0" name="First2E77205241531EC626A213010018ED1F" src="../themes/outstart/start_disabled.gif"/></a></td><td><a id="aPrevious2E77205241531EC626A213010018ED1F" href="javascript:void(0);" style="cursor:default" onclick="ss2E77205241531EC626A213010018ED1F.previousSlide();ss2E77205241531EC626A213010018ED1F.stopAutoSlide();return false;"><img alt="Slideshow element Back button is disabled" border="0" name="Previous2E77205241531EC626A213010018ED1F" src="../themes/outstart/back_disabled.gif"/></a></td><td><span id="bc_2E77205241531EC626A213010018ED1F" class="slideshowcounter">1 of 4</span></td><td><a onmouseover="swapImage('Next2E77205241531EC626A213010018ED1F',SlideShowForwardButtonOn);return false;" id="aNext2E77205241531EC626A213010018ED1F" href="javascript:void(0);" onmouseout="swapImage('Next2E77205241531EC626A213010018ED1F',SlideShowForwardButtonOff);return false;" onclick="ss2E77205241531EC626A213010018ED1F.nextSlide();ss2E77205241531EC626A213010018ED1F.stopAutoSlide();return false;"><img alt="Slideshow element forward button with cursor on" border="0" name="Next2E77205241531EC626A213010018ED1F" src="../themes/non_linear/2011_ss_next_off.gif"/></a></td><td><a onmouseover="swapImage('Last2E77205241531EC626A213010018ED1F',SlideShowEndButtonOn);return false;" id="aLast2E77205241531EC626A213010018ED1F" href="javascript:void(0);" onmouseout="swapImage('Last2E77205241531EC626A213010018ED1F',SlideShowEndButtonOff);return false;" onclick="ss2E77205241531EC626A213010018ED1F.lastSlide();ss2E77205241531EC626A213010018ED1F.stopAutoSlide();return false;"><img alt="Button to move to end of a Slideshow with cursor on" border="0" name="Last2E77205241531EC626A213010018ED1F" src="../themes/non_linear/2011_ss_end_off.gif"/></a></td></tr></table></td></tr><tr><td align="center" class="slideshow_text_cell"><div id="bt_2E77205241531EC626A213010018ED1F" class="slideshowtext"><span id="C2E77205241531EC626A213010018ED1FTEXT1" class="ta_2E77205241531EC626A213010018ED1F">Reverse masking requires folding the masking paper back against itself.</span><span id="C2E77205241531EC626A213010018ED1FTEXT2" class="ta_2E77205241531EC626A213010018ED1F">Reverse masking helps eliminate a hard tape line.</span><span id="C2E77205241531EC626A213010018ED1FTEXT3" class="ta_2E77205241531EC626A213010018ED1F">Once the paper is folded back, it is taped in position.</span><span id="C2E77205241531EC626A213010018ED1FTEXT4" class="ta_2E77205241531EC626A213010018ED1F">Notice the curved edge of the masking. This provides the soft edge for refinishing.</span></div></td></tr></table></div></div></div><div style="clear:both;"></div></div></div>
+</body>
+</html>

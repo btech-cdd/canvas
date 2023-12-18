@@ -1,0 +1,83 @@
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta http-equiv="X-UA-Compatible" content=""/> 
+
+
+<link rel="stylesheet" type="text/css" href="../system/js/yui/reset-fonts-grids/reset-fonts-grids.css" />
+<link rel="stylesheet" href="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/css/content.css" type="text/css"/>
+
+<script type="text/javascript" src="../system/js/jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../system/js/yui/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/js/groupController.js" language="javscript"></script>
+<script type="text/javascript" src="../system/js/util/ObjectFinder.js" language="javascript"></script>
+<script type="text/javascript" language="javascript">
+GroupEngine.remaining = "";
+GroupEngine.linear = "false";
+if(GroupEngine.remaining.length == 0 || isNaN(GroupEngine.remaining)){
+	GroupEngine.remaining = "10";
+}
+var viewerController = ObjectFinder.search(window, "ViewerController");
+var current = viewerController.current || {accessed: false};
+if(current.lastAccess && ((new Date()).getTime()-current.lastAccess>GroupEngine.remaining*1000)){
+	current.accessed = true;
+}	
+
+if(GroupEngine.remaining > 0 && !current.accessed && viewerController.events.changeFwd) {
+	viewerController.events.changeFwd.fire();
+}
+
+GroupEngine.numChildAssessments = 0;
+if (viewerController.current) {
+	for (var i=0; i<current.children.length; i++)
+	{
+		var contentType = current.children[i].contentType;
+		var isAssessment = (100 == contentType) || (101 == contentType) || (102 == contentType) || (103 == contentType) 
+							|| (104 == contentType) || (105 == contentType) || (107 == contentType)
+							|| (27 == contentType) || (31 == contentType);
+		if (isAssessment) {
+			GroupEngine.numChildAssessments++;	
+		}
+	}
+}
+jQuery(document).ready(function()
+{	
+	if(GroupEngine.linear == "true" && (GroupEngine.numChildAssessments > 0 || (GroupEngine.remaining > 0 && !current.accessed && viewerController.events.changeFwd))) {
+		viewerController.events.changeFwd.fire();
+	} else {
+		viewerController.events.timeout.fire();
+	}
+});
+</script>
+</head>
+<body class="reflection">
+	<!-- Evolution Content API  --><script type="text/javascript" src="../system/js/yui290/yahoo-dom-event/yahoo-dom-event.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/animation/animation-min.js?reloadme=12345" language="javascript"></script>
+<script language="Javascript"></script><div id="G2E77205241531EC0F2FF130B00187144" class="group_container"><style></style><link href="../system/js/yui290/container/assets/skins/sam/container.css" rel="stylesheet"/><script type="text/javascript" src="../system/js/yui290/dragdrop/dragdrop-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/json/json-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-migrate-3.0.0.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/container/container-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/delivery/delivery_core.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-ui-1.12.1.min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-ui-effects-1.12.1.min.js?reloadme=12345" language="javascript"></script>
+<script language="javascript">var de = OSDeliveryEngine;
+de.themeId = "non_linear";
+de.userId = "dbarker";
+de.userRole = "00000000000000000000002C00000001";
+de.contextMap = {"11":"2E77205241531EC0F2FF130B00187144","2":"2E77205241531EC0F2FB130200187049","3":"2E77205241531EC0F2E9130300186C84","4":"E0DA205241531CBA884713040007DA07"};
+de.uniqueIdContextMap = {"11":"5543318cb11348401b6b47298bad99c2","2":"614819ffdb28061371abe0d4a1beabb6","3":"e8fcb8a7dd8c381e9719c4d90419f31","4":"194c11560ae9b90dcf14f9c82ce255ee"};
+de.satisfaction = {"threshold":80,"type":0};
+de.linear = false;
+de.addObject({"id":"E0DA205241531CBA884713040007DA07","label":"Cosmetic Straightening Steel (STS01)","type":4,"uniqueId":"194c11560ae9b90dcf14f9c82ce255ee"});
+de.addObject({"id":"2E77205241531EC0F2E9130300186C84","label":" Module 2 - Repairing Damage","type":3,"uniqueId":"e8fcb8a7dd8c381e9719c4d90419f31","parentId":"E0DA205241531CBA884713040007DA07"});
+de.addObject({"id":"2E77205241531EC0F2FB130200187049","label":" Weld-On Dent Removal","type":2,"uniqueId":"614819ffdb28061371abe0d4a1beabb6","parentId":"2E77205241531EC0F2E9130300186C84"});
+de.addObject({"id":"2E77205241531EC0F2FF130B00187144","label":" Video: Mini Stud Puller","type":11,"uniqueId":"5543318cb11348401b6b47298bad99c2","parentId":"2E77205241531EC0F2FB130200187049"});
+de.addObject({"weight":0,"id":"2E77205241531EC0F2FF130100187145","label":" Video","type":1,"contentType":39,"uniqueId":"13553d442675f80c59f364819fcd6c16","parentId":"2E77205241531EC0F2FF130B00187144"});
+var mapURL = de.urlMap; 
+if (null != mapURL && typeof(mapURL) != "undefined") { 
+mapURL[0] = "../groups/536.html"; 
+ }; 
+var r = de.getObjectByUniqueId('13553d442675f80c59f364819fcd6c16').references = [{"media_references":{"types":[{"viewPort":"web","mediaTypeId":"00000000000000000000001200000001","url":"../media/539.mp4"}],"mediaId":"E699205241531D38D5411308000CC56E"},"id":"E699205241531D38D5411308000CC56E","label":"15211","type":8,"uniqueId":"4fd2d9ab8428a5debae1a8b3bdc712d1","url":"..\/media\/539.mp4","parentId":"2E77205241531EC0F2FF130100187145"}];for (i in r) de.addObject(r[i]);</script><link href="../system/styles/delivery/web/default_content_styles.css" rel="stylesheet"/><!--[if lte IE 7]><link href="../system/styles/delivery/web/default_content_styles_ie7.css" rel="stylesheet"/><![endif]--><link href="../system/styles/override-reset-fonts-grids.css" rel="stylesheet"/><script src="../system/js/delivery/MediaController.js" language="javascript"></script><script language="javascript">OSDeliveryEngine.queueLoad('13553d442675f80c59f364819fcd6c16');
+</script><div id="C2E77205241531EC0F2FF130100187145" class="content_container element_39"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><table class="media_and_text_table"><tr><td><table class="media_table"><tr><td class="media_cell align_Left"><div><VIDEO id="vmediaobject_0.3366118266688156" SRC="../media/539.mp4" CONTROLS="CONTROLS" WIDTH="720" onerror="video_error(this);"><OBJECT id="mediaobject_0.3366118266688156" class="objectouter" CLASSID="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" WIDTH="720" HEIGHT="406"><PARAM NAME="url" value="../media/539.mp4"/><PARAM NAME="autostart" value="false"/></OBJECT></VIDEO><script language="javascript">if(typeof video_error == "undefined") function video_error(video_obj) { var obj = document.createElement("div");obj.innerHTML = video_obj.innerHTML;video_obj.parentNode.insertBefore(obj,video_obj);video_obj.parentNode.removeChild(video_obj);if(window.MediaController) { MediaController.players = [];MediaController.initAll(); } }</script></div></td></tr></table></td></tr></table></td></tr></table></td></tr></table></div></div>
+</body>
+</html>

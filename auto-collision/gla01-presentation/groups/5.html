@@ -1,0 +1,235 @@
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+<meta http-equiv="X-UA-Compatible" content=""/> 
+
+
+<link rel="stylesheet" type="text/css" href="../system/js/yui/reset-fonts-grids/reset-fonts-grids.css" />
+<link rel="stylesheet" href="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/css/content.css" type="text/css"/>
+
+<script type="text/javascript" src="../system/js/jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../system/js/yui/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="../resources/viewertemplate/8AA520524153237EF40C133E0044D94D/js/groupController.js" language="javscript"></script>
+<script type="text/javascript" src="../system/js/util/ObjectFinder.js" language="javascript"></script>
+<script type="text/javascript" language="javascript">
+GroupEngine.remaining = "";
+GroupEngine.linear = "false";
+if(GroupEngine.remaining.length == 0 || isNaN(GroupEngine.remaining)){
+	GroupEngine.remaining = "10";
+}
+var viewerController = ObjectFinder.search(window, "ViewerController");
+var current = viewerController.current || {accessed: false};
+if(current.lastAccess && ((new Date()).getTime()-current.lastAccess>GroupEngine.remaining*1000)){
+	current.accessed = true;
+}	
+
+if(GroupEngine.remaining > 0 && !current.accessed && viewerController.events.changeFwd) {
+	viewerController.events.changeFwd.fire();
+}
+
+GroupEngine.numChildAssessments = 0;
+if (viewerController.current) {
+	for (var i=0; i<current.children.length; i++)
+	{
+		var contentType = current.children[i].contentType;
+		var isAssessment = (100 == contentType) || (101 == contentType) || (102 == contentType) || (103 == contentType) 
+							|| (104 == contentType) || (105 == contentType) || (107 == contentType)
+							|| (27 == contentType) || (31 == contentType);
+		if (isAssessment) {
+			GroupEngine.numChildAssessments++;	
+		}
+	}
+}
+jQuery(document).ready(function()
+{	
+	if(GroupEngine.linear == "true" && (GroupEngine.numChildAssessments > 0 || (GroupEngine.remaining > 0 && !current.accessed && viewerController.events.changeFwd))) {
+		viewerController.events.changeFwd.fire();
+	} else {
+		viewerController.events.timeout.fire();
+	}
+});
+</script>
+</head>
+<body class="reflection">
+	<!-- Evolution Content API  --><script type="text/javascript" src="../system/js/yui290/yahoo-dom-event/yahoo-dom-event.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/animation/animation-min.js?reloadme=12345" language="javascript"></script>
+<script language="Javascript"></script><div class="layout_container"><link href="../system/js/yui290/container/assets/skins/sam/container.css" rel="stylesheet"/><script type="text/javascript" src="../system/js/yui290/dragdrop/dragdrop-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/json/json-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-migrate-3.0.0.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/yui290/container/container-min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/delivery/delivery_core.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-ui-1.12.1.min.js?reloadme=12345" language="javascript"></script>
+<script type="text/javascript" src="../system/js/jquery/jquery-ui-effects-1.12.1.min.js?reloadme=12345" language="javascript"></script>
+<script language="javascript">var de = OSDeliveryEngine;
+de.themeId = "non_linear";
+de.userId = "dbarker";
+de.userRole = "00000000000000000000002C00000001";
+de.contextMap = {"11":"66A32052415320421CE5130B0032061E","2":"66A32052415320421CE41302003205F7","3":"AEC3205241531A99DE1913030001B22B","4":"E0DA205241531C7093CC1304000471D8"};
+de.uniqueIdContextMap = {"11":"3557e8ca56f0cbae8aeb1b804a079861","2":"4eafa72a813752c20b16f30367b6aacd","3":"2683b13af741ce761304b80a365b792a","4":"1a12bccdb565af093b238a9d1a1d7351"};
+de.satisfaction = {"threshold":80,"type":0};
+de.linear = false;
+de.addObject({"id":"E0DA205241531C7093CC1304000471D8","label":"Movable Glass (GLA01)","type":4,"uniqueId":"1a12bccdb565af093b238a9d1a1d7351"});
+de.addObject({"id":"AEC3205241531A99DE1913030001B22B","label":" Introduction","type":3,"uniqueId":"2683b13af741ce761304b80a365b792a","parentId":"E0DA205241531C7093CC1304000471D8"});
+de.addObject({"id":"66A32052415320421CE41302003205F7","label":" Preliminaries And Introductions","type":2,"uniqueId":"4eafa72a813752c20b16f30367b6aacd","parentId":"AEC3205241531A99DE1913030001B22B"});
+de.addObject({"id":"66A32052415320421CE5130B0032061E","label":" Introductions And Housekeeping (cont\u2019d)","type":11,"uniqueId":"3557e8ca56f0cbae8aeb1b804a079861","parentId":"66A32052415320421CE41302003205F7"});
+de.addObject({"weight":0,"id":"66A32052415320421CE513010032061F","label":" Narration","type":1,"contentType":39,"uniqueId":"7454f31cfe4220ab83f86ae13fd082fd","parentId":"66A32052415320421CE5130B0032061E"});
+var mapURL = de.urlMap; 
+if (null != mapURL && typeof(mapURL) != "undefined") { 
+mapURL[0] = "../groups/2.html"; 
+mapURL[1] = "../groups/3.html"; 
+mapURL[2] = "../groups/4.html"; 
+mapURL[3] = "../groups/5.html"; 
+mapURL[4] = "../groups/6.html"; 
+mapURL[5] = "../groups/7.html"; 
+mapURL[6] = "../groups/8.html"; 
+mapURL[7] = "../groups/9.html"; 
+mapURL[8] = "../groups/10.html"; 
+mapURL[9] = "../groups/11.html"; 
+mapURL[10] = "../groups/12.html"; 
+mapURL[11] = "../groups/13.html"; 
+mapURL[12] = "../groups/14.html"; 
+mapURL[13] = "../groups/15.html"; 
+mapURL[14] = "../groups/16.html"; 
+mapURL[15] = "../groups/17.html"; 
+mapURL[16] = "../groups/18.html"; 
+mapURL[17] = "../groups/19.html"; 
+mapURL[18] = "../groups/20.html"; 
+mapURL[19] = "../groups/21.html"; 
+mapURL[20] = "../groups/22.html"; 
+mapURL[21] = "../groups/23.html"; 
+mapURL[22] = "../groups/24.html"; 
+mapURL[23] = "../groups/25.html"; 
+mapURL[24] = "../groups/26.html"; 
+mapURL[25] = "../groups/27.html"; 
+mapURL[26] = "../groups/28.html"; 
+mapURL[27] = "../groups/29.html"; 
+mapURL[28] = "../groups/30.html"; 
+mapURL[29] = "../groups/31.html"; 
+mapURL[30] = "../groups/32.html"; 
+mapURL[31] = "../groups/33.html"; 
+mapURL[32] = "../groups/34.html"; 
+mapURL[33] = "../groups/35.html"; 
+mapURL[34] = "../groups/36.html"; 
+mapURL[35] = "../groups/37.html"; 
+mapURL[36] = "../groups/38.html"; 
+mapURL[37] = "../groups/39.html"; 
+mapURL[38] = "../groups/40.html"; 
+mapURL[39] = "../groups/41.html"; 
+mapURL[40] = "../groups/42.html"; 
+mapURL[41] = "../groups/43.html"; 
+mapURL[42] = "../groups/44.html"; 
+mapURL[43] = "../groups/45.html"; 
+mapURL[44] = "../groups/46.html"; 
+mapURL[45] = "../groups/47.html"; 
+mapURL[46] = "../groups/48.html"; 
+mapURL[47] = "../groups/49.html"; 
+mapURL[48] = "../groups/50.html"; 
+mapURL[49] = "../groups/51.html"; 
+mapURL[50] = "../groups/52.html"; 
+mapURL[51] = "../groups/53.html"; 
+mapURL[52] = "../groups/54.html"; 
+mapURL[53] = "../groups/55.html"; 
+mapURL[54] = "../groups/56.html"; 
+mapURL[55] = "../groups/57.html"; 
+mapURL[56] = "../groups/58.html"; 
+mapURL[57] = "../groups/59.html"; 
+mapURL[58] = "../groups/60.html"; 
+mapURL[59] = "../groups/61.html"; 
+mapURL[60] = "../groups/62.html"; 
+mapURL[61] = "../groups/63.html"; 
+mapURL[62] = "../groups/64.html"; 
+mapURL[63] = "../groups/65.html"; 
+mapURL[64] = "../groups/66.html"; 
+mapURL[65] = "../groups/67.html"; 
+mapURL[66] = "../groups/68.html"; 
+mapURL[67] = "../groups/69.html"; 
+mapURL[68] = "../groups/70.html"; 
+mapURL[69] = "../groups/71.html"; 
+mapURL[70] = "../groups/72.html"; 
+mapURL[71] = "../groups/73.html"; 
+mapURL[72] = "../groups/74.html"; 
+mapURL[73] = "../groups/75.html"; 
+mapURL[74] = "../groups/76.html"; 
+mapURL[75] = "../groups/77.html"; 
+mapURL[76] = "../groups/78.html"; 
+mapURL[77] = "../groups/79.html"; 
+mapURL[78] = "../groups/80.html"; 
+mapURL[79] = "../groups/81.html"; 
+mapURL[80] = "../groups/82.html"; 
+mapURL[81] = "../groups/83.html"; 
+mapURL[82] = "../groups/84.html"; 
+mapURL[83] = "../groups/85.html"; 
+mapURL[84] = "../groups/86.html"; 
+mapURL[85] = "../groups/87.html"; 
+mapURL[86] = "../groups/88.html"; 
+mapURL[87] = "../groups/89.html"; 
+mapURL[88] = "../groups/90.html"; 
+mapURL[89] = "../groups/91.html"; 
+mapURL[90] = "../groups/92.html"; 
+mapURL[91] = "../groups/93.html"; 
+mapURL[92] = "../groups/94.html"; 
+mapURL[93] = "../groups/95.html"; 
+mapURL[94] = "../groups/96.html"; 
+mapURL[95] = "../groups/97.html"; 
+mapURL[96] = "../groups/98.html"; 
+mapURL[97] = "../groups/99.html"; 
+mapURL[98] = "../groups/100.html"; 
+mapURL[99] = "../groups/101.html"; 
+mapURL[100] = "../groups/102.html"; 
+mapURL[101] = "../groups/103.html"; 
+mapURL[102] = "../groups/104.html"; 
+mapURL[103] = "../groups/105.html"; 
+mapURL[104] = "../groups/106.html"; 
+mapURL[105] = "../groups/107.html"; 
+mapURL[106] = "../groups/108.html"; 
+mapURL[107] = "../groups/109.html"; 
+mapURL[108] = "../groups/110.html"; 
+mapURL[109] = "../groups/111.html"; 
+mapURL[110] = "../groups/112.html"; 
+mapURL[111] = "../groups/113.html"; 
+mapURL[112] = "../groups/114.html"; 
+mapURL[113] = "../groups/115.html"; 
+mapURL[114] = "../groups/116.html"; 
+mapURL[115] = "../groups/117.html"; 
+ }; 
+var r = de.getObjectByUniqueId('7454f31cfe4220ab83f86ae13fd082fd').references = [{"media_references":{"types":[{"viewPort":"web","mediaTypeId":"00000000000000000000001200000001","url":"../media/296.mp3"}],"mediaId":"AEC3205241531AA1DC3613080001BF84"},"id":"AEC3205241531AA1DC3613080001BF84","label":"214","type":8,"uniqueId":"536dda086a4386b43343367d005cf5b7","url":"..\/media\/296.mp3","parentId":"66A32052415320421CE41301003205F9"}];for (i in r) de.addObject(r[i]);</script><link href="../system/styles/delivery/web/default_content_styles.css" rel="stylesheet"/><!--[if lte IE 7]><link href="../system/styles/delivery/web/default_content_styles_ie7.css" rel="stylesheet"/><![endif]--><link href="../system/styles/override-reset-fonts-grids.css" rel="stylesheet"/><script src="../system/js/delivery/MediaController.js" language="javascript"></script><script language="javascript">OSDeliveryEngine.queueLoad('7454f31cfe4220ab83f86ae13fd082fd');
+</script><script language="javascript">de.addObject({"weight":0,"id":"66A32052415320421CE5130100320623","label":" Presentation","type":1,"contentType":33,"uniqueId":"7c8765084fa5c549207712c3dd2e5d83","parentId":"66A32052415320421CE5130B0032061E"});
+</script><script src="../system/js/OsList.js" language="javascript"></script><script language="javascript">var list66A32052415320421CE5130100320623= new OsList('66A32052415320421CE5130100320623');list66A32052415320421CE5130100320623.aniType=0;jQuery(document).ready(function(){list66A32052415320421CE5130100320623.init();
+de.queueAnimation(list66A32052415320421CE5130100320623,'66A32052415320421CE5130100320623', 'onLoad');});OSDeliveryEngine.queueLoad('7c8765084fa5c549207712c3dd2e5d83');
+function applyListStyle()
+{
+jQuery("ol").each(function()
+{
+var typeAttr = jQuery(this).attr('type');
+if(typeof(typeAttr)!='undefined')
+{
+jQuery(this).find('li').each(function(){"+"
+var liStyle = '';
+if(typeAttr=='1')
+	liStyle = 'decimal';
+if(typeAttr=='a')
+	liStyle = 'lower-alpha';
+if(typeAttr=='A')
+	liStyle = 'upper-alpha';
+if(typeAttr=='i')
+	liStyle = 'lower-roman';
+if(typeAttr=='I')
+   liStyle = 'upper-roman';
+if(liStyle.length>0)
+	jQuery(this).css('list-style',liStyle);
+});
+}
+});
+}
+jQuery(document.body).on("load", function () {
+applyListStyle();
+});
+jQuery(document.body).on("click",function(){
+applyListStyle();
+})
+</script><script language="javascript">de.addObject({"weight":0,"id":"66A32052415320421CE5130100320628","label":" Image","type":1,"contentType":39,"uniqueId":"40f7c85618b75297e746f0ffdb68ecf9","parentId":"66A32052415320421CE5130B0032061E"});
+var r = de.getObjectByUniqueId('40f7c85618b75297e746f0ffdb68ecf9').references = [{"media_references":{"types":[{"viewPort":"xs","mediaTypeId":"00000000000000000000001200000007","url":"../media/304.jpg"},{"viewPort":"sm","mediaTypeId":"00000000000000000000001200000008","url":"../media/305.jpg"},{"viewPort":"md","mediaTypeId":"00000000000000000000001200000009","url":"../media/306.jpg"},{"viewPort":"lg","mediaTypeId":"0000000000000000000000120000000A","url":"../media/307.jpg"},{"viewPort":"xl","mediaTypeId":"0000000000000000000000120000000B","url":"../media/308.jpg"}],"mediaId":"AEC3205241531AA8B60813080001EDA1"},"id":"AEC3205241531AA8B60813080001EDA1","label":"199","type":8,"uniqueId":"5f717bba64448c37202d5051a6f0c517","url":"..\/media\/303.jpg","parentId":"66A32052415320421CE5130100320628"}];for (i in r) de.addObject(r[i]);</script><script language="javascript">OSDeliveryEngine.queueLoad('40f7c85618b75297e746f0ffdb68ecf9');
+</script><div id="G66A32052415320421CE5130B0032061E" class="group_container"><style></style><input id="hasAppliedEffect" value="false" name="hasAppliedEffect" type="hidden"/><style>#dle_66A32052415320421CE5130B0032061E_0{position: absolute; top: 0; left: 0; clear: ; float: ; margin: ; padding: ; visibility: hidden;}#dle_66A32052415320421CE5130B0032061E_1{width: 39%; clear: ; float: left; margin: ; padding: ; width*: 38%; display: inline-table;}#dle_66A32052415320421CE5130B0032061E_2{width: 720px; position: absolute; top: 10px; right: 15px; clear: ; float: right; margin: ; padding: ; position*: relative; top*: 0px; right*: -10px;}</style><div id="dle_66A32052415320421CE5130B0032061E_0" class="layout_container"><div id="dle_66A32052415320421CE5130B0032061E_0_w" style="font-size:100%;background:none transparent;border:none;margin:0;padding:0"><div id="C66A32052415320421CE513010032061F" class="content_container element_39"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><table class="media_and_text_table"><tr><td><table class="media_table"><tr><td class="media_cell align_Left"><div><div id="mc0793572076349582"><noscript>This page requires javascript to be enabled<object id="mcobject0.6633441508929367" classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" height="1" width="1" class="objectouter"><param name="AUTOSTART" value="false"/><param name="WINDOWLESSVIDEO" value="1"/><param name="ALT" value=""/><param name="id" value="WM_0.27717979802328885"/><param name="url" value="../media/296.mp3"/><!--[if IE ]><!-- [endif]  --><!-- [if !IE]  --><object width="1" height="1" class="objectinner" autostart="false" data="../media/296.mp3" alt="" type="application/x-ms-wmp"><param name="data" value="../media/296.mp3"/><param name="AUTOSTART" value="false"/><param name="ALT" value=""/><param name="type" value="application/x-ms-wmp"/></object><!-- [endif]  --></object></noscript></div><script language="javascript">OSDeliveryEngine.createControl("mc0793572076349582","<object id=\"mcobject0.6633441508929367\" classid=\"clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6\" height=\"1\" width=\"1\" class=\"objectouter\"><param name=\"AUTOSTART\" value=\"false\"\/><param name=\"WINDOWLESSVIDEO\" value=\"1\"\/><param name=\"ALT\" value=\"\"\/><param name=\"id\" value=\"WM_0.27717979802328885\"\/><param name=\"url\" value=\"../media/296.mp3\"\/><!--[if IE ]><!-- [endif]  --><!-- [if !IE]  --><object width=\"1\" height=\"1\" class=\"objectinner\" autostart=\"false\" data=\"../media/296.mp3\" alt=\"\" type=\"application\/x-ms-wmp\"><param name=\"data\" value=\"../media/296.mp3\"\/><param name=\"AUTOSTART\" value=\"false\"\/><param name=\"ALT\" value=\"\"\/><param name=\"type\" value=\"application\/x-ms-wmp\"\/><\/object><!-- [endif]  --><\/object>",window);
+</script></div></td></tr></table></td></tr></table></td></tr></table></td></tr></table></div></div></div><div id="dle_66A32052415320421CE5130B0032061E_1" class="layout_container"><div id="dle_66A32052415320421CE5130B0032061E_1_w" style="font-size:100%;background:none transparent;border:none;margin:0;padding:0"><div id="C66A32052415320421CE5130100320623" class="content_container element_33"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><div id="div_66A32052415320421CE5130100320623" class="list_block_div listtext"><ul id="list_66A32052415320421CE5130100320623" class="main_list list_type_bullets"><li id="item66A32052415320421CE51301003206230" class="list_item"><span id="C66A32052415320421CE5130100320623DESC1" class="listtext"><i>my</i>I-CAR</span></li><li id="item66A32052415320421CE51301003206231" class="list_item"><span id="C66A32052415320421CE5130100320623DESC2" class="listtext">Post-Test procedures</span></li><li id="item66A32052415320421CE51301003206232" class="list_item"><span id="C66A32052415320421CE5130100320623DESC3" class="listtext">Class schedules</span></li><li id="item66A32052415320421CE51301003206233" class="list_item"><span id="C66A32052415320421CE5130100320623DESC4" class="listtext">Gold Class&trade;</span></li><li id="item66A32052415320421CE51301003206234" class="list_item"><span id="C66A32052415320421CE5130100320623DESC5" class="listtext">Platinum&trade;</span></li><li id="item66A32052415320421CE51301003206235" class="list_item"><span id="C66A32052415320421CE5130100320623DESC6" class="listtext">Professional Development Program&trade;</span></li></ul></div></td></tr></table></td></tr></table></div></div></div><div id="dle_66A32052415320421CE5130B0032061E_2" class="layout_container"><div id="dle_66A32052415320421CE5130B0032061E_2_w" style="font-size:100%;background:none transparent;border:none;margin:0;padding:0"><div id="C66A32052415320421CE5130100320628" class="content_container element_39"><table cellspacing="1" class="content_layout_outer_table" border="0" cellpadding="1"><tr><td class="indent"></td><td><table align="left" cellspacing="0" class="content_layout_inner_table" border="0" cellpadding="0"><tr><td><table class="media_and_text_table"><tr><td><table class="media_table"><tr><td class="media_cell align_Left"><img width="720" height="442" alt="" src="../media/303.jpg"/></td></tr></table></td></tr></table></td></tr></table></td></tr></table></div></div></div><div style="clear:both;"></div></div></div>
+</body>
+</html>
