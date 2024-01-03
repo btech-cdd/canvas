@@ -6,17 +6,18 @@ if (window.location.href.includes("btech.beta.instructure.com")) {
 }
 // BETA = false;
 var CDDIDS = [
-  1893418, //Josh 
-  1638854, //Mason
-  1869288, //Alan
-  2000557, //Charlotte
-  2048150, //Tiffany
-  2074560, //Ryan
-  2116084, //Mikaela
-  1894248, //Zoe
-  2135443, //Joseph
-  2134266, //Jackson
-  2118711, //Colton
+  1893418, // Josh 
+  1638854, // Mason
+  1869288, // Alan
+  2000557, // Charlotte
+  2048150, // Tiffany
+  2074560, // Ryan
+  2116084, // Mikaela
+  1894248, // Zoe
+  2135443, // Joseph
+  2134266, // Jackson
+  2118711, // Colton
+  2147128, // Katie
 ];
 
 function getCSSVar(cssvar) {
