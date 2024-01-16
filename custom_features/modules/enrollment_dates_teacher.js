@@ -96,6 +96,7 @@
   let suggestedDate = "";
   try {
     suggestedDate = await calcRecommendedEndDate();
+    console.log(suggestedDate);
   } catch (err) {
     console.log(err);
   }
@@ -114,6 +115,7 @@
           <span id="btech-enrollment-suggested-date" style="cursor: pointer;">
             ${dateToString(suggestedDate)}
           </span>
+          <span id="btech-enrollment-reset" style="cursor: pointer;">Reset</span>
         </div>
       </span>
     </div>
@@ -124,23 +126,46 @@
     $("#btech-enrollment-end-date").val(dateToString(suggestedDate));
     changeDate();
   });
+
+  $("#btech-enrollment-reset").click(() => {
+    $("#btech-enrollment-end-date").val("");
+    resetDate();
+  });
   let enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=${ENV.USER_ID}`))[0];
   let endAt = enrollment?.end_at;
+  function resetDate() {
+    //for...reasons, this is a day off
+    $.post("/api/v1/courses/" + ENV.COURSE_ID + "/enrollments",
+      {
+        enrollment: {
+          start_at: enrollment.start_at ?? enrollment.created_at ?? new Date(),
+          end_at: "",
+          user_id: enrollment.user.id,
+          course_section_id: enrollment.course_section_id,
+          type: enrollment.type,
+          enrollment_state: "active",
+          notify: false
+        }
+      }
+    );
+  }
   function changeDate() {
     let endAtDate = new Date(endAtEl.value);
     //for...reasons, this is a day off
     endAtDate.setDate(endAtDate.getDate() + 1);
     endAtDate.setTime(endAtDate.getTime() + (6 * 60 * 60 * 1000));
     $.post("/api/v1/courses/" + ENV.COURSE_ID + "/enrollments",
-      {enrollment: {
-        start_at: enrollment.start_at ?? enrollment.created_at ?? new Date(),
-        end_at: endAtDate,
-        user_id: enrollment.user.id,
-        course_section_id: enrollment.course_section_id,
-        type: enrollment.type,
-        enrollment_state: "active",
-        notify: false
-      }}
+      {
+        enrollment: {
+          start_at: enrollment.start_at ?? enrollment.created_at ?? new Date(),
+          end_at: endAtDate,
+          user_id: enrollment.user.id,
+          course_section_id: enrollment.course_section_id,
+          type: enrollment.type,
+          enrollment_state: "active",
+          notify: false
+        }
+      }
     );
   }
   $(endAtEl).change(changeDate);
