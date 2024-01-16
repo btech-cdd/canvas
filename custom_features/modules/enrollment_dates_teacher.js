@@ -111,11 +111,11 @@
         </div>
         <div>
           <input id="btech-enrollment-end-date" type="date" value=""> 
-          Suggested Date: 
-          <span id="btech-enrollment-suggested-date" style="cursor: pointer;">
+          <button id="btech-enrollment-reset" style="cursor: pointer;">Reset Date</button>
+          <button id="btech-enrollment-suggested-date" style="cursor: pointer;">Use Suggested Date</button>
+          <span>
             ${dateToString(suggestedDate)}
           </span>
-          <span id="btech-enrollment-reset" style="cursor: pointer;">Reset</span>
         </div>
       </span>
     </div>
