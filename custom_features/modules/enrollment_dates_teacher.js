@@ -113,13 +113,18 @@
           <input id="btech-enrollment-end-date" type="date" value=""> 
           <button id="btech-enrollment-reset" style="cursor: pointer;">Reset Date</button>
           <button id="btech-enrollment-suggested-date" style="cursor: pointer;">Use Suggested Date</button>
-          <span>
+          <span id="btech-enrollment-suggested-date-string">
             ${dateToString(suggestedDate)}
           </span>
         </div>
       </span>
     </div>
   `);
+
+  if (suggestedDate == "") {
+    $("#btech-enrollment-suggested-date").hide();
+    $("#btech-enrollment-suggested-date-string").hide();
+  }
 
   let endAtEl = document.getElementById("btech-enrollment-end-date");
   $("#btech-enrollment-suggested-date").click(() => {
