@@ -80,7 +80,7 @@ let VUE_APP = new Vue({
           for (l in lines) {
             let line = lines[l].trim();
             let mName = line.match(/^Title\:(.*)/);
-            if (mName) name = mTitle[1];
+            if (mName) name = mName[1];
 
             let mPrompt = line.match(/^Q?[0-9]+\.(.*)/);
             if (mPrompt) {
