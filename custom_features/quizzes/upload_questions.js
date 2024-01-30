@@ -69,6 +69,7 @@ let VUE_APP = new Vue({
         reader.readAsText(file);
         reader.onload = async () => {
           let lines = reader.result.split("\n");
+          let name = undefined; 
           lines.push(''); // kept having an issue where the last question wasn't being loaded if there's no empty line at the end, so just adding a blank line
           let quiz = [];
           let prompt = '';
@@ -78,6 +79,9 @@ let VUE_APP = new Vue({
           let numCorrect = 0;
           for (l in lines) {
             let line = lines[l].trim();
+            let mName = line.match(/^Title\:(.*)/);
+            if (mName) name = mTitle[1];
+
             let mPrompt = line.match(/^Q?[0-9]+\.(.*)/);
             if (mPrompt) {
                 prompt = mPrompt[1];
@@ -100,6 +104,7 @@ let VUE_APP = new Vue({
 
             if (answers.length > 1 && line == '') {
                 let question = {
+                  name: name,
                   prompt: prompt,
                   answers: answers,
                   comment: comment,
@@ -131,7 +136,7 @@ let VUE_APP = new Vue({
             if (numCorrect > 0 || question.prompt.includes("all that apply")) questionType = 'multiple_answers_question';
             await $.post(`/courses/${CURRENT_COURSE_ID}/question_banks/${bank.assessment_question_bank.id}/assessment_questions`, {
               question: {
-                question_name: "MC Question " + pad(+q + 1, 3),
+                question_name: question.name ?? "MC Question " + pad(+q + 1, 3),
                 question_type: questionType,
                 points_possible: 1,
                 question_text: `<p>${question.prompt}</p>`,
