@@ -146,7 +146,8 @@ let VUE_APP = new Vue({
             }); 
             console.log(q);
             console.log(quiz.length);
-            this.uploadProgress[file.name] = +q + 1 / quiz.length;
+            this.uploadProgress[file.name] = +q + (1 / quiz.length);
+            console.log(this.uploadProgress[file.name]);
             //trick vue into showing the change
             this.uploadProgress = JSON.parse(JSON.stringify(this.uploadProgress));
           }
