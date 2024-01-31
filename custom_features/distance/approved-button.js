@@ -26,7 +26,7 @@
   //get all module items in current course
   let items = await canvasGet('/api/v1/courses/' + ENV.COURSE_ID + '/modules?include[]=items&include[]=content_details');
   //set colors
-  let contentNotApprovedColor = "rgb(76, 88, 96)";
+  let contentNotApprovedColor = "rgb(166, 178, 186)";
   let contentApprovedColor = "rgb(11, 135, 75)";
 
 
