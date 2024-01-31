@@ -59,7 +59,7 @@
       menu.append(menuItemOrder);
 
       //delete unpublished button
-      let aTagDelete = $(`<a class="reorder_group icon-collection ui-corner-all" aria-label="Sort Assignment Group" id="ui-id-7" tabindex="-1" role="menuitem">Sort Items</a>`);
+      let aTagDelete = $(`<a class="reorder_group icon-trash ui-corner-all" aria-label="Sort Assignment Group" id="ui-id-7" tabindex="-1" role="menuitem">Delete Unpublished</a>`);
       let menuItemDelete = $(`<li class="ui-menu-item" role="presentation"></li>`);
       menuItemDelete.append(aTagDelete);
 
