@@ -43,7 +43,7 @@
 
           //module item actually has something
           console.log(item);
-          if (item.type == 'Page') item.content_id = item.page_url;
+          if (item.type == 'Page') item.content_id = item.id;
           if (item.url !== undefined && item.content_id > 0) {
               //get page element using element id
               let itemLiElId = "context_module_item_" + item.id;
