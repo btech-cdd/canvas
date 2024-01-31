@@ -42,6 +42,7 @@
           let item = module.items[i];
 
           //module item actually has something
+          console.log(item);
           if (item.url !== undefined && item.content_id > 0) {
               //get page element using element id
               let itemLiElId = "context_module_item_" + item.id;
