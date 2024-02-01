@@ -366,7 +366,8 @@
               for (let i = 0; i < assignmentsData.attachments.length; i++) {
                 let attachment = assignmentsData.attachments[i];
                 console.log(attachment);
-                await app.createIframe(attachment.url, (iframe) => {iframe.remove(); console.log(iframe);}, {});
+                let iframe = await app.createIframe(attachment.url, (iframe) => {iframe.remove(); console.log(iframe);}, {});
+                iframe.remove();
               }
             }
             //check if nothing has been gotten
@@ -529,7 +530,7 @@
                 func(iframe, content, data);
               }
             }
-            return;
+            return iframe;
           },
 
           async openModal(assignment) {
