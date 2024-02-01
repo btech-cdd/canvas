@@ -110,9 +110,6 @@
                   <span>
                     {{getSubmissionDate(submission)}}
                   </span>
-                  <span>
-                    {{submission.grade}} / {{currentAssignment.points_possible}}
-                  </span>
                 </div>
 
                 <div v-else>
@@ -168,6 +165,7 @@
         },
         methods: {
           getSubmissionDate(submission) {
+            console.log(submission);
             let date = submission.submitted_at;
             if (date === null) {
               date = submission.graded_at;
