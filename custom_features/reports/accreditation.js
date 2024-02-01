@@ -343,10 +343,10 @@
             //rubrics
             if (assignment.rubric != undefined) {
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
-              // await app.createIframe(url, app.downloadRubric, {
-              //   'submission': submission,
-              //   'assignment': assignment
-              // });
+              await app.createIframe(url, app.downloadRubric, {
+                'submission': submission,
+                'assignment': assignment
+              });
               app.needsToWait = true;
             } else {
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
@@ -365,7 +365,7 @@
               });
               for (let i = 0; i < assignmentsData.attachments.length; i++) {
                 let attachment = assignmentsData.attachments[i];
-                await app.createIframe(attachment.url);
+                // await app.createIframe(attachment.url);
               }
             }
             //check if nothing has been gotten
