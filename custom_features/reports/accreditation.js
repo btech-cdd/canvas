@@ -175,6 +175,7 @@
 
           // a filter to determine which submissions display and which don't
           getFilteredSubmissions(submissions) {
+            console.log(submissions);
             let app = this;
             let startDate = app.startDate;
             let endDate = app.endDate;
@@ -510,6 +511,7 @@
             let iframe = $('<iframe id="' + elId + '" style="width: 1200px;" src="' + url + '"></iframe>');
 
             $("#content").append(iframe);
+            iframe.hide();
             //This is unused. was for trying to convert an html element to a canvas then to a data url then to image then to pdf, but ran into cors issues.
             // $("#content").append("<div id='btech-export-" + id + "'></div>");
             let window = document.getElementById(elId).contentWindow;
