@@ -365,7 +365,7 @@
               });
               for (let i = 0; i < assignmentsData.attachments.length; i++) {
                 let attachment = assignmentsData.attachments[i];
-                // await app.createIframe(attachment.url);
+                await app.createIframe(attachment.url, (iframe) => iframe.remove(), {});
               }
             }
             //check if nothing has been gotten
@@ -421,7 +421,7 @@
               afterPrint: function () {
                 $('title').text(ogTitle);
                 app.preparingDocument = false;
-                // iframe.remove();
+                iframe.remove();
              ;
               }
             });
@@ -479,7 +479,7 @@
             window.onafterprint = (event) => {
               $('title').text(ogTitle);
               app.preparingDocument = false;
-              // iframe.remove();
+              iframe.remove();
             }
             window.focus();
             // setTimeout(function() { window.print(); }, 5000);
@@ -505,7 +505,7 @@
             window.onafterprint = (event) => {
               $('title').text(ogTitle);
               app.preparingDocument = false;
-              // iframe.remove();
+              iframe.remove();
             }
             window.focus();
             window.print();
