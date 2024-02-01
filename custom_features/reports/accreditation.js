@@ -341,13 +341,12 @@
             //append comments here and pull them from rubrics. If no text entry, just grab the comments
 
             //rubrics
-            console.log(assignment.rubric);
             if (assignment.rubric != undefined) {
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
-              await app.createIframe(url, app.downloadRubric, {
-                'submission': submission,
-                'assignment': assignment
-              });
+              // await app.createIframe(url, app.downloadRubric, {
+              //   'submission': submission,
+              //   'assignment': assignment
+              // });
               app.needsToWait = true;
             } else {
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
