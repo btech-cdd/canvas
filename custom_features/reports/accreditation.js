@@ -445,6 +445,7 @@
             });
             let ogTitle = $('title').text();
             $('title').text(title);
+            console.log(content.find("#rubric_holder").html());
             content.find("#rubric_holder").printThis({
               pageTitle: title,
               afterPrint: function () {
