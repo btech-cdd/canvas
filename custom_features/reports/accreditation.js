@@ -111,7 +111,7 @@
                     {{getSubmissionDate(submission)}}
                   </span>
                   <span>
-                    {{submisison.grade}} / {{currentAssignment.points_possible}}
+                    {{submission.grade}} / {{currentAssignment.points_possible}}
                   </span>
                 </div>
 
