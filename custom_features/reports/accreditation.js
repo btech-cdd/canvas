@@ -110,6 +110,9 @@
                   <span>
                     {{getSubmissionDate(submission)}}
                   </span>
+                  <span>
+                    {{submisison.grade}} / {{currentAssignment.points_possible}}
+                  </span>
                 </div>
 
                 <div v-else>
