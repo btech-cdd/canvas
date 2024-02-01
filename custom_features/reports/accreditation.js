@@ -365,7 +365,7 @@
               });
               for (let i = 0; i < assignmentsData.attachments.length; i++) {
                 let attachment = assignmentsData.attachments[i];
-                await app.createIframe(attachment.url, (iframe) => iframe.remove(), {});
+                await app.createIframe(attachment.url, (iframe) => {iframe.remove(); console.log(iframe);}, {});
               }
             }
             //check if nothing has been gotten
