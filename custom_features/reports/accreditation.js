@@ -451,7 +451,7 @@
               afterPrint: function () {
                 $('title').text(ogTitle);
                 app.preparingDocument = false;
-                iframe.remove();
+                // iframe.remove();
               }
             });
             return;
@@ -480,7 +480,7 @@
             window.onafterprint = (event) => {
               $('title').text(ogTitle);
               app.preparingDocument = false;
-              iframe.remove();
+              // iframe.remove();
             }
             window.focus();
             // setTimeout(function() { window.print(); }, 5000);
@@ -506,7 +506,7 @@
             window.onafterprint = (event) => {
               $('title').text(ogTitle);
               app.preparingDocument = false;
-              iframe.remove();
+              // iframe.remove();
             }
             window.focus();
             window.print();
