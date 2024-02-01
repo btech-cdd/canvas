@@ -200,6 +200,7 @@
             let output = [];
             for (let s = 0; s < submissions.length; s++) {
               let submission = submissions[s];
+              console.log(submission);
               //date filter
               let checkDate = false;
               let date = app.getSubmissionDate(submission);
