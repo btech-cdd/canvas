@@ -266,7 +266,6 @@
               let group = app.assignmentGroups[g];
               let assignments = group.assignments;
               let submittedAssignments = app.getSubmittedAssignments(assignments);
-              console.log(submittedAssignments);
               for (let a = 0; a < submittedAssignments.length; a++) {
                 let assignment = submittedAssignments[a];
                 if (assignment.id === assignmentId || assignmentId === '') {
@@ -511,7 +510,6 @@
             let iframe = $('<iframe id="' + elId + '" style="width: 1200px;" src="' + url + '"></iframe>');
 
             $("#content").append(iframe);
-            iframe.hide();
             //This is unused. was for trying to convert an html element to a canvas then to a data url then to image then to pdf, but ran into cors issues.
             // $("#content").append("<div id='btech-export-" + id + "'></div>");
             let window = document.getElementById(elId).contentWindow;
