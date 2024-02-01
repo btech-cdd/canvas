@@ -429,6 +429,7 @@
             return;
           },
           async downloadRubric(iframe, content, data) {
+            console.log("DOWNLOAD RUBRIC");
             let app = this;
             let title = data.assignment.name + "-" + data.submission.user.name + " submission rubric"
             let commentEl = app.getComments(data.submission);
