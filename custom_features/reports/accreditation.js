@@ -9,6 +9,11 @@
     //abort if this has already been run on the page
     //If you change id name, you'll have to update the css
     if ($('#accreditation').length > 0) return;
+    $.put('https://btech.instructure.com/api/v1/courses/566029/gradebook_settings', {
+        gradebook_settings: {
+            show_concluded_enrollments: true
+        }
+    });
 
     let rCheckInCourse = /^\/courses\/([0-9]+)/;
     if (rCheckInCourse.test(window.location.pathname)) {
