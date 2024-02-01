@@ -520,7 +520,9 @@
             //This is unused. was for trying to convert an html element to a canvas then to a data url then to image then to pdf, but ran into cors issues.
             // $("#content").append("<div id='btech-export-" + id + "'></div>");
             let window = document.getElementById(elId).contentWindow;
+            console.log("LOADING IFRAME " + id)
             window.onload = function () {
+              console.log("WINDOW LOADED " + id)
               let content = $(window.document.getElementsByTagName('body')[0]);
               let imgs = content.find('img');
               if (func !== null) {
@@ -529,6 +531,7 @@
             }
             return;
           },
+
           async openModal(assignment) {
             let app = this;
             app.showModal = true;
