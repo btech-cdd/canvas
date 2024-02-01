@@ -102,7 +102,7 @@
                     {{submission.user.name}}
                   </span>
                   <span>
-                    {{Math.round(submission.grade / currentAssignment.points_possible * 1000) / 10}}%
+                    {{Math.round(submission.score / currentAssignment.points_possible * 1000) / 10}}%
                   </span>
                   <span>
                     <i v-if="submission?.rubric_assessment" class='icon-check'></i>
@@ -165,7 +165,6 @@
         },
         methods: {
           getSubmissionDate(submission) {
-            console.log(submission);
             let date = submission.submitted_at;
             if (date === null) {
               date = submission.graded_at;
