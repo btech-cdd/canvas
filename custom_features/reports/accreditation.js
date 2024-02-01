@@ -200,7 +200,6 @@
             let output = [];
             for (let s = 0; s < submissions.length; s++) {
               let submission = submissions[s];
-              console.log(submission);
               //date filter
               let checkDate = false;
               let date = app.getSubmissionDate(submission);
@@ -303,7 +302,6 @@
 
           //THIS IS WHERE EVERYTHING GETS SORTED OUT AND ALL THE DOWNLOADS ARE INITIATED
           async downloadSubmission(assignment, submission) {
-            console.log(assignment);
             let app = this;
             let types = assignment.submission_types;
             app.preparingDocument = true;
@@ -336,7 +334,6 @@
 
             //text entry for assignments
             //append comments here and pull them from rubrics. If no text entry, just grab the comments
-            console.log(submission);
 
             //rubrics
             if (assignment.rubric != undefined) {
@@ -441,7 +438,6 @@
             });
             let ogTitle = $('title').text();
             $('title').text(title);
-            console.log(content.find('#rubric_holder'));
             content.find("#rubric_holder").printThis({
               pageTitle: title,
               afterPrint: function () {
@@ -530,6 +526,7 @@
             let app = this;
             app.showModal = true;
             app.currentAssignment = assignment;
+            console.log(assignment);
             app.submissions = [];
             // if (assignment.submissions.length == 0) {
             //   await app.getAllSubmissions(assignment.id);
