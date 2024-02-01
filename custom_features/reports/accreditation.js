@@ -175,7 +175,6 @@
 
           // a filter to determine which submissions display and which don't
           getFilteredSubmissions(submissions) {
-            console.log(submissions);
             let app = this;
             let startDate = app.startDate;
             let endDate = app.endDate;
@@ -267,6 +266,7 @@
               let group = app.assignmentGroups[g];
               let assignments = group.assignments;
               let submittedAssignments = app.getSubmittedAssignments(assignments);
+              console.log(submittedAssignments);
               for (let a = 0; a < submittedAssignments.length; a++) {
                 let assignment = submittedAssignments[a];
                 if (assignment.id === assignmentId || assignmentId === '') {
