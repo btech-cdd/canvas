@@ -432,31 +432,51 @@
           async downloadRubric(iframe, content, data) {
             console.log("DOWNLOAD RUBRIC");
             let app = this;
-            let title = data.assignment.name + "-" + data.submission.user.name + " submission rubric"
-            let commentEl = app.getComments(data.submission);
-            content.find("#rubric_holder").show();
-            content.find('#rubric_holder').prepend(`<div>${data.submission.body}</div>`);
-            content.find("#rubric_holder").prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
-            content.find("#rubric_holder").prepend("<div>Student:" + data.submission.user.name + "</div>");
-            content.find("#rubric_holder").prepend("<div>Title:" + data.assignment.name + "</div>");
-            content.find("#rubric_holder").append(commentEl);
-            content.find("#rubric_holder").css({
-              'max-height': '',
-              'overflow': 'visible'
+            let title = data.assignment.name + "-" + data.submission.user.name + " submission rubric";
+        
+            // Wait for the iframe to load
+            await new Promise(resolve => {
+                $(iframe).on('load', function() {
+                    let iframeContent = $(this).contents();
+        
+                    // Check if #rubric_holder is present
+                    let rubricHolder = iframeContent.find("#rubric_holder");
+                    if (rubricHolder.length > 0) {
+                        console.log("#rubric_holder is present");
+                        rubricHolder.show();
+                        rubricHolder.prepend(`<div>${data.submission.body}</div>`);
+                        rubricHolder.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
+                        rubricHolder.prepend("<div>Student:" + data.submission.user.name + "</div>");
+                        rubricHolder.prepend("<div>Title:" + data.assignment.name + "</div>");
+                        let commentEl = app.getComments(data.submission);
+                        rubricHolder.append(commentEl);
+                        rubricHolder.css({
+                          'max-height': '',
+                          'overflow': 'visible'
+                        });
+        
+                        // Continue with the rest of your function
+                        let ogTitle = $('title').text();
+                        $('title').text(title);
+                        console.log(rubricHolder.html());
+                        rubricHolder.printThis({
+                          pageTitle: title,
+                          afterPrint: function () {
+                            $('title').text(ogTitle);
+                            app.preparingDocument = false;
+                            iframe.remove();
+                          }
+                        });
+        
+                        resolve(); // Resolve the promise once everything is done
+                    } else {
+                        console.error("#rubric_holder not found");
+                        resolve(); // Resolve the promise even if #rubric_holder is not found
+                    }
+                });
             });
-            let ogTitle = $('title').text();
-            $('title').text(title);
-            console.log(content.find("#rubric_holder").html());
-            content.find("#rubric_holder").printThis({
-              pageTitle: title,
-              afterPrint: function () {
-                $('title').text(ogTitle);
-                app.preparingDocument = false;
-                iframe.remove();
-              }
-            });
-            return;
-          },
+        }
+        
           //Not currently working because of CORS
           async downloadNewQuiz(iframe, content, data) {
             let app = this;
