@@ -365,7 +365,6 @@
               });
               for (let i = 0; i < assignmentsData.attachments.length; i++) {
                 let attachment = assignmentsData.attachments[i];
-                console.log(attachment);
                 let iframe = await app.createIframe(attachment.url, (iframe) => {iframe.remove(); console.log(iframe);}, {});
                 iframe.remove();
               }
@@ -430,7 +429,6 @@
             return;
           },
           async downloadRubric(iframe, content, data) {
-            console.log("DOWNLOAD RUBRIC");
             let app = this;
             let title = data.assignment.name + "-" + data.submission.user.name + " submission rubric";
         
@@ -442,7 +440,6 @@
                 // Check if #rubric_holder is present
                 let rubricHolder = iframeContent.find("#rubric_holder");
                 if (rubricHolder.length > 0) {
-                  console.log("#rubric_holder is present");
                   rubricHolder.show();
                   rubricHolder.prepend(`<div>${data.submission.body}</div>`);
                   rubricHolder.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
@@ -458,7 +455,6 @@
                   // Continue with the rest of your function
                   let ogTitle = $('title').text();
                   $('title').text(title);
-                  console.log(rubricHolder.html());
                   rubricHolder.printThis({
                     pageTitle: title,
                     afterPrint: function () {
@@ -537,16 +533,15 @@
             let id = genId();
             let elId = 'btech-content-' + id
             let iframe = $('<iframe id="' + elId + '" style="width: 1200px;" src="' + url + '"></iframe>');
+            iframe.hide();
 
             $("#content").append(iframe);
             //This is unused. was for trying to convert an html element to a canvas then to a data url then to image then to pdf, but ran into cors issues.
             // $("#content").append("<div id='btech-export-" + id + "'></div>");
             let window = document.getElementById(elId).contentWindow;
-            console.log("LOADING IFRAME " + id)
             window.onload = function () {
-              console.log("WINDOW LOADED " + id)
               let content = $(window.document.getElementsByTagName('body')[0]);
-              let imgs = content.find('img');
+              let imgs = content.find('img'); // I believe this was done just to make sure the images were fully loaded. Was running into issues with quizzes where images didn't have a chance to load all the way. 
               if (func !== null) {
                 func(iframe, content, data);
               }
@@ -558,7 +553,6 @@
             let app = this;
             app.showModal = true;
             app.currentAssignment = assignment;
-            console.log(assignment);
             app.submissions = [];
             // if (assignment.submissions.length == 0) {
             //   await app.getAllSubmissions(assignment.id);
