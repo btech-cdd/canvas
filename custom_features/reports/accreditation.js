@@ -452,7 +452,6 @@
               afterPrint: function () {
                 $('title').text(ogTitle);
                 app.preparingDocument = false;
-                iframe.remove();
               }
             });
             return;
