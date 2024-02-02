@@ -434,7 +434,6 @@
             let app = this;
             let title = data.assignment.name + "-" + data.submission.user.name + " submission rubric"
             let commentEl = app.getComments(data.submission);
-            await getElement("#rubric_holder");
             content.find("#rubric_holder").show();
             content.find('#rubric_holder').prepend(`<div>${data.submission.body}</div>`);
             content.find("#rubric_holder").prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
