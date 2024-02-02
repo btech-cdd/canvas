@@ -436,46 +436,46 @@
         
             // Wait for the iframe to load
             await new Promise(resolve => {
-                $(iframe).on('load', function() {
-                    let iframeContent = $(this).contents();
-        
-                    // Check if #rubric_holder is present
-                    let rubricHolder = iframeContent.find("#rubric_holder");
-                    if (rubricHolder.length > 0) {
-                        console.log("#rubric_holder is present");
-                        rubricHolder.show();
-                        rubricHolder.prepend(`<div>${data.submission.body}</div>`);
-                        rubricHolder.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
-                        rubricHolder.prepend("<div>Student:" + data.submission.user.name + "</div>");
-                        rubricHolder.prepend("<div>Title:" + data.assignment.name + "</div>");
-                        let commentEl = app.getComments(data.submission);
-                        rubricHolder.append(commentEl);
-                        rubricHolder.css({
-                          'max-height': '',
-                          'overflow': 'visible'
-                        });
-        
-                        // Continue with the rest of your function
-                        let ogTitle = $('title').text();
-                        $('title').text(title);
-                        console.log(rubricHolder.html());
-                        rubricHolder.printThis({
-                          pageTitle: title,
-                          afterPrint: function () {
-                            $('title').text(ogTitle);
-                            app.preparingDocument = false;
-                            iframe.remove();
-                          }
-                        });
-        
-                        resolve(); // Resolve the promise once everything is done
-                    } else {
-                        console.error("#rubric_holder not found");
-                        resolve(); // Resolve the promise even if #rubric_holder is not found
+              $(iframe).on('load', function() {
+                let iframeContent = $(this).contents();
+    
+                // Check if #rubric_holder is present
+                let rubricHolder = iframeContent.find("#rubric_holder");
+                if (rubricHolder.length > 0) {
+                  console.log("#rubric_holder is present");
+                  rubricHolder.show();
+                  rubricHolder.prepend(`<div>${data.submission.body}</div>`);
+                  rubricHolder.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
+                  rubricHolder.prepend("<div>Student:" + data.submission.user.name + "</div>");
+                  rubricHolder.prepend("<div>Title:" + data.assignment.name + "</div>");
+                  let commentEl = app.getComments(data.submission);
+                  rubricHolder.append(commentEl);
+                  rubricHolder.css({
+                    'max-height': '',
+                    'overflow': 'visible'
+                  });
+  
+                  // Continue with the rest of your function
+                  let ogTitle = $('title').text();
+                  $('title').text(title);
+                  console.log(rubricHolder.html());
+                  rubricHolder.printThis({
+                    pageTitle: title,
+                    afterPrint: function () {
+                      $('title').text(ogTitle);
+                      app.preparingDocument = false;
+                      iframe.remove();
                     }
-                });
+                  });
+  
+                  resolve(); // Resolve the promise once everything is done
+                } else {
+                  console.error("#rubric_holder not found");
+                  resolve(); // Resolve the promise even if #rubric_holder is not found
+                }
+              });
             });
-        },
+          },
         
           //Not currently working because of CORS
           async downloadNewQuiz(iframe, content, data) {
