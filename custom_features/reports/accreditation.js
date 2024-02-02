@@ -475,7 +475,7 @@
                     }
                 });
             });
-        }
+        },
         
           //Not currently working because of CORS
           async downloadNewQuiz(iframe, content, data) {
