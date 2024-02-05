@@ -18,6 +18,7 @@ var CDDIDS = [
   2134266, // Jackson
   2118711, // Colton
   2147128, // Katie
+  1547292, // Leann (Student Servies)
 ];
 
 function getCSSVar(cssvar) {
