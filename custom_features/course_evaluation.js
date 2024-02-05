@@ -182,7 +182,7 @@
             background-color: #FFFFFF;
           "
         >
-          <input type="checkbox" v-model="" /> CDD Project Evaluation 
+          <input type="checkbox" /> Evaluation of a CDD involved improvement?
         </div>
         
         <!--BUTTONS-->
@@ -737,7 +737,6 @@
             }
           }
           if (!review.submitted && raterId == this.raterId) {
-            console.log(review);
             this.activeReview = review;
             if (init) {
               this.currentMenu = 'new';
