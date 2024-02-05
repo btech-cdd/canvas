@@ -182,7 +182,10 @@
             background-color: #FFFFFF;
           "
         >
-          <input type="checkbox" v-model="activeReview?.cdd_improvement" @change="setCDDImprovement(activeReview._id, activeReview.cdd_improvement)" /> CDD Project Evaluation 
+          <input 
+            type="checkbox" 
+            v-model="activeReview?.cdd_improvement" 
+          /> CDD Project Evaluation 
         </div>
         
         <!--BUTTONS-->
