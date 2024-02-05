@@ -182,7 +182,7 @@
             background-color: #FFFFFF;
           "
         >
-          <input type="checkbox" /> Changes in score are a part of a CDD involved improvement?
+          <input type="checkbox" /> CDD Project Evaluation 
         </div>
         
         <!--BUTTONS-->
