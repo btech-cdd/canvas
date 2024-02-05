@@ -182,7 +182,9 @@
             background-color: #FFFFFF;
           "
         >
-          <input type="checkbox" v-model="" /> CDD Project Evaluation 
+          <input 
+            type="checkbox" 
+          /> CDD Project Evaluation 
         </div>
         
         <!--BUTTONS-->
@@ -657,6 +659,15 @@
         }, "PUT");
         this.updating = false;
       },
+      setCDDImprovement: async function (reviewId, isCDDImprovement) {
+        console.log("IMPROVE")
+        this.updating = true;
+        await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/reviews/${reviewId}`, {
+          cdd_improvement: isCDDImprovement 
+        }, "PUT");
+        this.updating = false;
+
+      },
       submitReview: async function () {
         let review = this.activeReview;
         await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/review/${review._id}`, {
@@ -737,6 +748,7 @@
             }
           }
           if (!review.submitted && raterId == this.raterId) {
+            console.log(review);
             this.activeReview = review;
             if (init) {
               this.currentMenu = 'new';
