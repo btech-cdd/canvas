@@ -182,7 +182,7 @@
             background-color: #FFFFFF;
           "
         >
-          <input type="checkbox" /> Evaluation of a CDD involved improvement?
+          <input type="checkbox" v-model="" /> CDD Project Evaluation 
         </div>
         
         <!--BUTTONS-->
