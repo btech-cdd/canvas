@@ -174,6 +174,17 @@
             </div>
           </div>
         </div>
+
+        <div
+          style="
+            padding: 0.5rem;
+            margin: 0.5rem;
+            background-color: #FFFFFF;
+          "
+        >
+          <input style="checkbox" /> Changes in score are a part of a CDD involved improvement?
+        </div>
+        
         <!--BUTTONS-->
         <div
           style="
