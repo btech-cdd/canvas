@@ -182,7 +182,7 @@
             background-color: #FFFFFF;
           "
         >
-          <input style="checkbox" /> Changes in score are a part of a CDD involved improvement?
+          <input type="checkbox" /> Changes in score are a part of a CDD involved improvement?
         </div>
         
         <!--BUTTONS-->
