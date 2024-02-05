@@ -184,6 +184,7 @@
         >
           <input 
             type="checkbox" 
+            :value="activeReview.cdd_improvement"
             v-model="activeReview.cdd_improvement" 
             @change="setCDDImprovement(activeReview._id, activeReview.cdd_improvement)" 
           /> CDD Project Evaluation 
