@@ -666,7 +666,7 @@
         console.log(reviewId);
         console.log(this.activeReview);
         this.updating = true;
-        await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/reviews/${reviewId}`, {
+        await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/review/${reviewId}`, {
           cdd_improvement: isCDDImprovement 
         }, "PUT");
         this.updating = false;
