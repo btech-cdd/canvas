@@ -182,7 +182,7 @@
             background-color: #FFFFFF;
           "
         >
-          <input type="checkbox" v-model="activeReview?.cdd_improvement" /> CDD Project Evaluation 
+          <input type="checkbox" v-model="activeReview?.cdd_improvement" @change="setCDDImprovement(activeReview._id, activeReview.cdd_improvement)" /> CDD Project Evaluation 
         </div>
         
         <!--BUTTONS-->
@@ -656,6 +656,15 @@
           rating: rating
         }, "PUT");
         this.updating = false;
+      },
+      setCDDImprovement: async function (reviewId, isCDDImprovement) {
+        console.log("IMPROVE")
+        this.updating = true;
+        await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/reviews/${reviewId}`, {
+          cdd_improvement: isCDDImprovement 
+        }, "PUT");
+        this.updating = false;
+
       },
       submitReview: async function () {
         let review = this.activeReview;
