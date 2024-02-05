@@ -663,7 +663,8 @@
         this.updating = false;
       },
       setCDDImprovement: async function (reviewId, isCDDImprovement) {
-        console.log("IMPROVE")
+        console.log(reviewId);
+        console.log(this.activeReview);
         this.updating = true;
         await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/reviews/${reviewId}`, {
           cdd_improvement: isCDDImprovement 
