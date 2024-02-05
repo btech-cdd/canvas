@@ -107,6 +107,23 @@
       <div
         v-if="currentMenu == 'new'"
       >
+        <!-- MARK AS PROJECT EVALUATION -->
+        <div
+          style="
+            padding: 0.5rem;
+            margin: 0.5rem;
+            background-color: #FFFFFF;
+          "
+        >
+          <input 
+            type="checkbox" 
+            :value="activeReview.cdd_improvement"
+            v-model="activeReview.cdd_improvement" 
+            @change="setCDDImprovement(activeReview._id, activeReview.cdd_improvement)" 
+          /> CDD Project Evaluation 
+        </div>
+
+        <!-- RUBRIC -->
         <div
           v-for="topic in activeReview?.summary?.topics ?? []"
           style="
@@ -175,20 +192,6 @@
           </div>
         </div>
 
-        <div
-          style="
-            padding: 0.5rem;
-            margin: 0.5rem;
-            background-color: #FFFFFF;
-          "
-        >
-          <input 
-            type="checkbox" 
-            :value="activeReview.cdd_improvement"
-            v-model="activeReview.cdd_improvement" 
-            @change="setCDDImprovement(activeReview._id, activeReview.cdd_improvement)" 
-          /> CDD Project Evaluation 
-        </div>
         
         <!--BUTTONS-->
         <div
