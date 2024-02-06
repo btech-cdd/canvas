@@ -1,5 +1,5 @@
-$(".header-bar").append("<div id='btech-countdown'></div>");
-$(".header-bar").append("<div id='btech-student-progress-bar'></div>");
+$(".header-bar").after("<div id='btech-countdown'></div>");
+$(".header-bar").after("<div id='btech-student-progress-bar'></div>");
 $(".header-bar-right").css("width", "100%");
 var Countdown = {
   // Params
