@@ -353,7 +353,10 @@
       },
 
       addSidebarComment () {
-        console.log("COMMENT")
+        console.log("COMMENT");
+        let editor = tinymce.activeEditor;
+        let container = this.getContainer($(editor.selection.getNode()));
+        console.log(container);
       }
     }
   });
