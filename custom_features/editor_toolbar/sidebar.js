@@ -77,6 +77,9 @@
           @click="addCallout"
           class="icon-note-light"
         ></i>
+        <i
+          @click="addSidebarComment"
+          class="icon-discussion"
       </div>
 
       <div>
@@ -346,6 +349,10 @@
             ><strong>HEADER</strong></h2>
           </div>
         `);
+      },
+
+      addSidebarComment () {
+        console.log("COMMENT")
       }
     }
   });

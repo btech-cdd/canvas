@@ -1,18 +1,22 @@
 (async function () {
   //escape if not on the editor page
   if (!TOOLBAR.checkEditorPage()) return;
+
+  // BLACK BOX COVERS WORD UNTIL YOU HOVER OVER IT
   async function hideOnHover() {
     let editor = tinymce.activeEditor;
     let selection = editor.selection;
     editor.execCommand("mceReplaceContent", false, "<span class='btech-hover-show'><i>{$selection}</i></span>");
   }
 
+  // HOVER OVER A WORD AND SHOW THE DEFINITION
   async function hoverDefinition() {
     let editor = tinymce.activeEditor;
     let selection = editor.selection;
     editor.execCommand("mceReplaceContent", false, "<strong class='tooltip'>{$selection}<span class='tooltiptext'>-DEFINITION-</span></strong>");
   }
 
+  // GRAY CALLOUT BOX BUT WITHOUT A BOX SHADOW
   async function calloutBoxFlat() {
     let editor = tinymce.activeEditor;
     let selection = editor.selection;
@@ -24,6 +28,8 @@
       </div>
       `);
   }
+
+  // ORIGINAL GRAY CALLOUT, HAS A BOXSHADOW - HAVE RECEIVED COMPLAINTS THAT IT FEELS A BIT POPUP AD LIKE
   async function calloutBox() {
     let editor = tinymce.activeEditor;
     let selection = editor.selection;
@@ -34,6 +40,7 @@
     `);
   }
 
+  // ANOTHER CALLOUT, THIS ONE USES THE SET COLOR
   async function exampleBox() {
     let editor = tinymce.activeEditor;
     let selection = editor.selection;
@@ -59,6 +66,7 @@
       `);
   }
   
+  // SLIGHTLY MORE CONDENSE CALLOUT BOX THAT ALSO USES COLOR
   async function exampleBoxSmall() {
     let editor = tinymce.activeEditor;
     let selection = editor.selection;
@@ -80,6 +88,7 @@
       `);
   }
 
+  // FORMATS A CITATION
   function citationInsert(bg) {
     let editor = tinymce.activeEditor;
     let name = $("#citation-name").val();
@@ -117,6 +126,7 @@
       bg.remove();
     }
   }
+
   async function citationKeypress(bg) {
     let editor = tinymce.activeEditor;
     $(".citation-information").keypress(function (event) {
@@ -127,6 +137,7 @@
       event.stopPropagation();
     });
   }
+
   async function citation() {
     let bg = TOOLBAR.addBackground(false);
     let close = $(`<span class="btech-pill-text" style="background-color: black; color: white; cursor: pointer; user-select: none; position: absolute; right: 2rem;">Close</span>`);
@@ -168,6 +179,7 @@
     citationKeypress(bg);
   }
 
+  // AN AUTO FORMATTER FOR THE WHOLE PAGE. BARE BONES, BUT IS QUICK
   function formatPage() {
     let body = tinyMCE.activeEditor.getBody();
     let children = $(body).children();
@@ -220,6 +232,7 @@
     }
   }
 
+  // DOESN'T CURRENTLY WORK. MEANT TO BE AN AUTOMATIC WAY OF FINDING 
   function replaceExternalFiles() {
     let body = tinyMCE.activeEditor.getBody();
     let bodyText = $(body).html();
@@ -239,9 +252,10 @@
     });
   }
 
+  // EDITOR SOMETIMES TAKES A MINUTE TO LOAD, THIS WAITS UNTIL IT'S ALL READY
   await TOOLBAR.checkReady(0);
 
-  //Add in option to change color of exampleBox. IE, you click in it, it figures out he color selected, if you change the color, it changes the box
+  //Add in option to change color of exampleBox. IE, you click in it, it figures out the color selected, if you change the color, it changes the box
   TOOLBAR.toolbar.prepend(`<input type="color" id="btech-custom-editor-buttons-color" value="#d22232" style="width: 48px; padding: 4px; padding-right: 0px;" list="default-colors"/>
     <datalist id="default-colors">
       <option>#d22232</option>

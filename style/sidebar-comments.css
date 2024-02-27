@@ -1,11 +1,11 @@
-.sidebar-comments .highlighted-content {
+.btech-sidebar-highlighted-content {
   position: relative;
   border-left: 2px solid #000; /* Line connecting to the callout */
   padding-left: 10px;
   background-color: #f0f0f0; /* Highlight color */
 }
 
-.sidebar-comments .comment-box {
+.btech-sidebar-comment-box {
   position: absolute;
   left: 0;
   top: 0;
@@ -16,7 +16,7 @@
   border-radius: 5px;
 }
 
-.sidebar-comments .comment-box {
+.btech-sidebar-comment-box::after {
   content: '';
   position: absolute;
   top: 10px;
