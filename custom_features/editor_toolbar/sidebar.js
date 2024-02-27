@@ -80,6 +80,7 @@
         <i
           @click="addSidebarComment"
           class="icon-discussion"
+        ></i>
       </div>
 
       <div>
