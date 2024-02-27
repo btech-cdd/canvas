@@ -41,7 +41,7 @@
               comment.css({
                 'position': 'absolute'
                 , 'top': contentTop + 'px'
-                , 'left': '0px'
+                , 'right': '0px'
                 , 'width': (MARGIN_SIZE - 20) + 'px'
                 , 'border': '1px solid red'
                 , 'border-radius': '5px'
@@ -59,7 +59,7 @@
     var container = $('.show-content'); // Get the container
     container.css({
         'position': 'relative'
-        , 'padding-left': MARGIN_SIZE + 'px'
+        , 'padding-right': MARGIN_SIZE + 'px'
     });
     // Align the callout on initial load
     alignCallout();
