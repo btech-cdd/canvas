@@ -62,7 +62,7 @@
     var container = $('.show-content'); // Get the container
     container.css({
         'position': 'relative'
-        , 'pading-left': MARGIN_SIZE + 'px'
+        , 'padding-left': MARGIN_SIZE + 'px'
     });
     // Align the callout on initial load
     alignCallout();
