@@ -46,11 +46,7 @@
                 , 'border': '1px solid red'
                 , 'border-radius': '5px'
                 , 'padding': '5px'
-              })
-              comment.css('position', 'absolute'); // Ensure the comment is positioned absolutely within the container
-              comment.css('top', contentTop + 'px');
-              comment.css('left', '0px');
-              comment.css('width', MARGIN_SIZE + 'px');
+              });
           }
       });
   }
