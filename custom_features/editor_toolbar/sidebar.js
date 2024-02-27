@@ -360,7 +360,7 @@
         let commentId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         node.addClass(`btech-sidebar-content-${commentId}`);
         node.addClass('btech-sidebar-content')
-        let comment = $(`<div class='btech-sidebar-comment btech-sidebar-comment-${commentId}'>comment</div>`);
+        let comment = $(`<div class="btech-sidebar-comment btech-sidebar-comment-${commentId}" style="background-color: #FDD;">comment</div>`);
         node.after(comment);
       }
     }
