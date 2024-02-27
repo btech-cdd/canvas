@@ -9,6 +9,7 @@
 */
 (async function() {
 
+  const MARGIN_SIZE = 180;
   // Function to align the callout box with the paragraph
   function alignCallout() {
       var contents = $('.btech-sidebar-content');
@@ -37,10 +38,19 @@
 
               // Calculate the top position relative to the container
               let contentTop = content.offset().top - container.offset().top;
+              comment.css({
+                'position': 'absolute'
+                , 'top': contentTop + 'px'
+                , 'left': '0px'
+                , 'width': (MARGIN_SIZE - 20) + 'px'
+                , 'border': '1px solid red'
+                , 'border-radius': '5px'
+                , 'padding': '5px'
+              })
               comment.css('position', 'absolute'); // Ensure the comment is positioned absolutely within the container
               comment.css('top', contentTop + 'px');
               comment.css('left', '0px');
-              comment.css('width', '150px');
+              comment.css('width', MARGIN_SIZE + 'px');
           }
       });
   }
@@ -50,8 +60,10 @@
   if (contents.length > 0) {
     // if we actually have something here, then reformat the content box to have padding on the left 
     var container = $('.show-content'); // Get the container
-    container.css('position', 'relative');
-    container.css('padding-left', '150px');
+    container.css({
+        'position': 'relative'
+        , 'pading-left': MARGIN_SIZE + 'px'
+    });
     // Align the callout on initial load
     alignCallout();
 
