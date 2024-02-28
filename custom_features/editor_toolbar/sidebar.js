@@ -45,7 +45,7 @@
 
       <!--MODULES-->
       <div>
-        <input type="color" id="btech-custom-editor-buttons-color" value="#d22232" style="width: 48px; height: 28px; padding: 4px; padding-right: 0px;" list="default-colors"/>
+        <input type="color" id="btech-custom-editor-buttons-color" v-model="elColor" style="width: 48px; height: 28px; padding: 4px; padding-right: 0px;" list="default-colors"/>
         <datalist id="default-colors">
           <option>#d22232</option>
           <option>#2232d2</option>
@@ -117,7 +117,8 @@
           font: "#FFFFFF",
           bodyfont: "#000000",
           bg: "#FFFFFF"
-        } 
+        } ,
+        elColor: "#d22232"
       }
     },
     methods: {
