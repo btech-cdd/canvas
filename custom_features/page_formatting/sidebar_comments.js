@@ -38,7 +38,8 @@
 
               // Calculate the top position relative to the container
               let contentTop = content.offset().top - container.offset().top;
-              let border = comment.css('border')
+              let border = comment.css('border');
+              console.log(border);
               comment.css({
                 'position': 'absolute'
                 , 'top': contentTop + 'px'
