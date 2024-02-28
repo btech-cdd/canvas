@@ -38,12 +38,13 @@
 
               // Calculate the top position relative to the container
               let contentTop = content.offset().top - container.offset().top;
+              let border = comment.css('border')
               comment.css({
                 'position': 'absolute'
                 , 'top': contentTop + 'px'
                 , 'right': '0px'
                 , 'width': (MARGIN_SIZE - 20) + 'px'
-                , 'border': '1px solid red'
+                , 'border': border
                 , 'border-radius': '5px'
                 , 'padding': '5px'
                 , 'background-color': '#F8F8F8' 
