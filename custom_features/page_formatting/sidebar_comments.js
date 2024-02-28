@@ -46,7 +46,7 @@
                 , 'border': '1px solid red'
                 , 'border-radius': '5px'
                 , 'padding': '5px'
-                , 'background-color': '#F0F0F0' 
+                , 'background-color': '#F8F8F8' 
               });
           }
       });
