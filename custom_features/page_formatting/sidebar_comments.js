@@ -46,7 +46,7 @@
                 , 'border': '1px solid red'
                 , 'border-radius': '5px'
                 , 'padding': '5px'
-                , 'background-color': '#FEE' 
+                , 'background-color': '#EEE' 
               });
           }
       });
