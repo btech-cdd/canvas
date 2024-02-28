@@ -49,6 +49,8 @@
                 , 'padding': '5px'
                 , 'background-color': '#F8F8F8' 
               });
+              let ogBG = content.css('background-color');
+              comment.on( "mouseenter", ()=>{content.css({'background-color': '#EEE'})}).on( "mouseleave", ()=>{content.css({'background-color': ogBG})});
           }
       });
   }

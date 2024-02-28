@@ -378,7 +378,7 @@
         // if neither exists, then create the comment
         let commentId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         node.addClass(`btech-sidebar-content-${commentId}`);
-        node.addClass('btech-sidebar-content')
+        node.addClass('btech-sidebar-content');
         let comment = $(`<div class="btech-sidebar-comment btech-sidebar-comment-${commentId}" style="border: 1px solid ${this.elColor}; padding: 5px;">comment</div>`);
         node.after(comment);
 
