@@ -41,7 +41,7 @@
               let border = comment.css('border');
               console.log(border);
               let borderColorRegex = /rgb\(\d+,\s*\d+,\s*\d+\)/;
-              let match = borderStyle.match(regex);
+              let match = border.match(borderColorRegex);
               let highlightColor = "#F8F8F8";
               if (match) {
                 highlightColor = match[0];
