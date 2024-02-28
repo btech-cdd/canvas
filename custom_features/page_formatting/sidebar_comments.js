@@ -40,6 +40,13 @@
               let contentTop = content.offset().top - container.offset().top;
               let border = comment.css('border');
               console.log(border);
+              let borderColorRegex = /rgb\(\d+,\s*\d+,\s*\d+\)/;
+              let match = borderStyle.match(regex);
+              let highlightColor = "#F8F8F8";
+              if (match) {
+                highlightColor = match[0];
+
+              }
               comment.css({
                 'position': 'absolute'
                 , 'top': contentTop + 'px'
@@ -51,7 +58,7 @@
                 , 'background-color': '#F8F8F8' 
               });
               let ogBG = content.css('background-color');
-              comment.on( "mouseenter", ()=>{content.css({'background-color': '#EEE'})}).on( "mouseleave", ()=>{content.css({'background-color': ogBG})});
+              comment.on( "mouseenter", ()=>{content.css({'background-color': highlightColor})}).on( "mouseleave", ()=>{content.css({'background-color': ogBG})});
           }
       });
   }
