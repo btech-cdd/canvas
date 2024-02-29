@@ -45,7 +45,7 @@
     let password = randomPassword();
     try {
       await $.get(`/api/v1/users/${userId}/custom_data/temp_password?ns=edu.btech.cdd`, function(data) {
-        let weekAgo = new Date(currentDate.getTime() - (7 * 24 * 60 * 60 * 1000));
+        let weekAgo = new Date((new Date()).getTime() - (7 * 24 * 60 * 60 * 1000));
         if (data.data.reset_date < weekAgo) {
           password = data.data.password;
         }
