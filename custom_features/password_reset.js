@@ -45,19 +45,22 @@
     let password = randomPassword();
     try {
       await $.get(`/api/v1/users/${userId}/custom_data/temp_password?ns=edu.btech.cdd`, function(data) {
-        console.log(data);
-      });
-    } catch(err) {
-      await $.put(`/api/v1/users/${userId}/custom_data?ns=edu.btech.cdd`, {
-        data: {
-          password: password,
-          reset_date: new Date()
+        let weekAgo = new Date(currentDate.getTime() - (7 * 24 * 60 * 60 * 1000));
+        if (data.data.reset_date < weekAgo) {
+          password = data.data.password;
         }
       });
-      await $.get(`/api/v1/users/${userId}/custom_data/temp_password?ns=edu.btech.cdd`, function(data) {
-        console.log(data);
-      });
+    } catch (err) {
+      console.log(err);
     }
+    await $.put(`/api/v1/users/${userId}/custom_data/temp_password?ns=edu.btech.cdd`, {
+      data: {
+        password: password,
+        reset_date: new Date()
+      }
+    });
+    console.log(password);
+
     let body = {
       email: user.email,
       password: password,
