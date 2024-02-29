@@ -43,20 +43,16 @@
     let logins = await canvasGet(`/api/v1/users/${userId}/logins`);
     let login = logins[0];
     let password = randomPassword();
-    console.log("TRY");
     try {
       await $.get(`/api/v1/users/${userId}/custom_data/temp_password?ns=edu.btech.cdd`, (data) => {
-        console.log(data);
         let weekAgo = new Date((new Date()).getTime() - (7 * 24 * 60 * 60 * 1000));
 
         // reuse password if it's more recent than a week ago
         if (new Date(data.data.reset_date) > weekAgo) { 
           password = data.data.password;
-          console.log(password);
         }
       });
     } catch (err) {
-      console.log("FAIL")
       console.log(err);
     }
     await $.put(`/api/v1/users/${userId}/custom_data/temp_password?ns=edu.btech.cdd`, {
@@ -65,7 +61,6 @@
         reset_date: new Date()
       }
     });
-    console.log(password);
 
     let body = {
       email: user.email,
