@@ -42,7 +42,7 @@
               console.log(border);
               let borderColorRegex = /rgb\((\d+),\s*(\d+),\s*(\d+)\)/;;
               let match = border.match(borderColorRegex);
-              let highlightColor = "#F8F8F8";
+              let highlightColor = "rgba(0, 0, 0, 0.2)";
               if (match) {
                 [ , r, g, b]= match.map(Number);
                 highlightColor = `rgba(${r}, ${g}, ${b}, 0.2)`
