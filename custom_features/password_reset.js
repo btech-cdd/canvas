@@ -43,6 +43,21 @@
     let logins = await canvasGet(`/api/v1/users/${userId}/logins`);
     let login = logins[0];
     let password = randomPassword();
+    try {
+      await $.get(`/api/v1/users/${userId}/custom_data/temp_password?ns=edu.btech.cdd`, function(data) {
+        console.log(data);
+      });
+    } catch(err) {
+      await $.put(`/api/v1/users/${userId}/custom_data?ns=edu.btech.cdd`, {
+        data: {
+          password: password,
+          reset_date: new Date()
+        }
+      });
+      await $.get(`/api/v1/users/${userId}/custom_data/temp_password?ns=edu.btech.cdd`, function(data) {
+        console.log(data);
+      });
+    }
     let body = {
       email: user.email,
       password: password,
