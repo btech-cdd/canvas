@@ -45,7 +45,7 @@
               let highlightColor = "#F8F8F8";
               if (match) {
                 [ , r, g, b]= match.map(Number);
-                highlightColor = `rgba(${r}, ${g}, ${b}, 0.5)`
+                highlightColor = `rgba(${r}, ${g}, ${b}, 0.1)`
               }
 
               comment.css({
