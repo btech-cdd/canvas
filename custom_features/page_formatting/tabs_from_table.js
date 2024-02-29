@@ -11,7 +11,8 @@
     let optionHeader = "";
     let valueHeader = "";
     let caption = originalTable.find("caption").html();
-    if (caption !== null) {
+    console.log(caption);
+    if (caption !== null && caption !== undefined) {
       newTable.prepend("<div style='width: 100%; text-align: center;'>" + caption + "</div><br>");
     }
     let checkFirst = false;
