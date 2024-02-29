@@ -48,7 +48,9 @@
       await $.get(`/api/v1/users/${userId}/custom_data/temp_password?ns=edu.btech.cdd`, (data) => {
         console.log(data);
         let weekAgo = new Date((new Date()).getTime() - (7 * 24 * 60 * 60 * 1000));
-        if (data.data.reset_date < weekAgo) {
+
+        // reuse password if it's more recent than a week ago
+        if (new Date(data.data.reset_date) > weekAgo) { 
           password = data.data.password;
           console.log(password);
         }
