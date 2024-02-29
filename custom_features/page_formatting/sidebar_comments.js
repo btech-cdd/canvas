@@ -40,13 +40,14 @@
               let contentTop = content.offset().top - container.offset().top;
               let border = comment.css('border');
               console.log(border);
-              let borderColorRegex = /rgb\(\d+,\s*\d+,\s*\d+\)/;
+              let borderColorRegex = /rgb\((\d+),\s*(\d+),\s*(\d+)\)/;;
               let match = border.match(borderColorRegex);
               let highlightColor = "#F8F8F8";
               if (match) {
-                highlightColor = match[0];
-
+                [ , r, g, b]= match.map(Number);
+                highlightColor = `rgba(${r}, ${g}, ${b}, 0.5)`
               }
+
               comment.css({
                 'position': 'absolute'
                 , 'top': contentTop + 'px'
