@@ -224,7 +224,7 @@
               'text-align': 'center',
             });
             header.addClass("btech-sections-header");
-            header.wrapInner(`<span class='btech-sections-header-content' style="background-color: ${customColor};"></span>`);
+            header.wrapInner(`<span class='btech-sections-header-content' style="background-color: ${customColor}; color: #FFFFFF"></span>`);
             $(arrGroup).wrapAll("<div class='btech-sections' style='border: 1px solid #ddd; background-color: " + bgColor + "; padding: 5px; padding-top: 15px; margin-top: 25px;'></div>");
           }
           headerNum = i;
