@@ -186,6 +186,7 @@
     let headerNum = -1;
     let headerName = null;
     let alt = true;
+    let customColor = $("#btech-custom-editor-buttons-color").val();
     $(body).find('.btech-sections').each(function () {
       $(this).contents().unwrap();
     });
@@ -223,7 +224,7 @@
               'text-align': 'center',
             });
             header.addClass("btech-sections-header");
-            header.wrapInner("<span class='btech-sections-header-content'></span>");
+            header.wrapInner(`<span class='btech-sections-header-content' style="background-color: ${customColor};"></span>`);
             $(arrGroup).wrapAll("<div class='btech-sections' style='border: 1px solid #ddd; background-color: " + bgColor + "; padding: 5px; padding-top: 15px; margin-top: 25px;'></div>");
           }
           headerNum = i;
