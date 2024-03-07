@@ -148,6 +148,7 @@
 
           let sections = await canvasGet("/api/v1/courses/" + this.courseId + "/sections?include[]=students")
           this.sections = sections;
+          console.log(sections);
         },
         data: function () {
           return {
