@@ -119,7 +119,7 @@
                     {{getSubmissionDate(submission)}}
                   </span>
                   <span>
-                    {{campuses?.[submission.user.id] ?? ''}}
+                    {{campuses?.[submission.user.id] ?? 'Loading'}}
                   </span>
                 </div>
 
@@ -155,16 +155,21 @@
 
           let sections = await canvasGet("/api/v1/courses/" + this.courseId + "/sections?include[]=students")
           this.sections = sections;
+
+          // Load campus information
           for (let s in sections) {
             let section = sections[s];
             for (let st in section.students) {
               let student = section.students[st];
-              let userData = await bridgetools.req(`https://reports.bridgetools.dev/api/students/${student.id}`);
-              if (userData.courses?.[courseCode]?.campus) {
-                let campus = userData.courses?.[courseCode]?.campus;
-                if (campus == 'LC') campus = 'Logan Campus';
-                else if (campus == 'BC') campus = 'Brigham City Campus';
-                this.campuses[student.id] = campus;
+              if (!(student.id in this.campuses)) {
+                this.campuses[student.id] = '-';
+                let userData = await bridgetools.req(`https://reports.bridgetools.dev/api/students/${student.id}`);
+                if (userData.courses?.[courseCode]?.campus) {
+                  let campus = userData.courses?.[courseCode]?.campus;
+                  if (campus == 'LC') campus = 'Logan Campus';
+                  else if (campus == 'BC') campus = 'Brigham City Campus';
+                  this.campuses[student.id] = campus;
+                }
               }
             }
           }
