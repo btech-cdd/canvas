@@ -129,7 +129,7 @@
         el: "#accreditation",
         mounted: async function () {
           this.courseId = CURRENT_COURSE_ID;
-          await $.get("/api/v1/courses/" + this.courseId).done(function (data) {
+          await $.get("/api/v1/courses/" + this.courseId).done((data) => {
             this.courseData = data;
           });
           let courseCode = this.courseData.course_code;
