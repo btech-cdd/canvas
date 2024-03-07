@@ -128,13 +128,13 @@
       new Vue({
         el: "#accreditation",
         mounted: async function () {
-          this.courseId = CURRENT_COURSE_ID;
-          await $.get("/api/v1/courses/" + this.courseId).done((data) => {
-            this.courseData = data;
+          let app = this;
+          app.courseId = CURRENT_COURSE_ID;
+          await $.get("/api/v1/courses/" + app.courseId).done(function (data) {
+            app.courseData = data;
           });
-          console.log(this.courseData);
           let courseCode = this.courseData.course_code;
-          await $.get("/api/v1/courses/" + this.courseId + "/assignment_groups?include[]=assignments&per_page=100").done(function (data) {
+          await $.get("/api/v1/courses/" + app.courseId + "/assignment_groups?include[]=assignments&per_page=100").done(function (data) {
             for (let i = 0; i < data.length; i++) {
               let group = data[i];
               for (let j = 0; j < group.assignments.length; j++) {
@@ -142,14 +142,13 @@
                 data[i].assignments[j].loaded = false;
               }
             }
-            this.assignmentGroups = data;
+            app.assignmentGroups = data;
           });
 
-          this.getAllSubmissions();
+          app.getAllSubmissions();
 
-          let sections = await canvasGet("/api/v1/courses/" + this.courseId + "/sections?include[]=students")
-          this.sections = sections;
-          console.log(this.sections);
+          let sections = await canvasGet("/api/v1/courses/" + app.courseId + "/sections?include[]=students")
+          app.sections = sections;
         },
         data: function () {
           return {
@@ -157,7 +156,6 @@
             courseData: {},
             enrollments: [],
             courseId: null,
-            courseCode: null,
             currentUser: '',
             showModal: false,
             preparingDocument: false,
