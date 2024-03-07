@@ -133,6 +133,7 @@
             this.courseData = data;
           });
           let courseCode = this.courseData.course_code;
+          console.log(courseCode);
           await $.get("/api/v1/courses/" + this.courseId + "/assignment_groups?include[]=assignments&per_page=100").done((data) => {
             for (let i = 0; i < data.length; i++) {
               let group = data[i];
@@ -148,6 +149,16 @@
 
           let sections = await canvasGet("/api/v1/courses/" + this.courseId + "/sections?include[]=students")
           this.sections = sections;
+          for (let s in sections) {
+            let section = sections[s];
+            for (let st in section.students) {
+              let student = section.students[st];
+              let userData = await bridgetools.req(`https://reports.bridgetools.dev/api/students/${student.id}`);
+              if (courseCode in userData.courses) {
+                console.log(userData.sortable_name + ': ' + userData.courses[courseCode]?.campus)
+              }
+            }
+          }
           console.log(sections);
         },
         data: function () {
@@ -167,6 +178,7 @@
             section: '',
             needsToWait: false,
             sortBy: "name",
+            campuses: {}
           }
         },
         methods: {
