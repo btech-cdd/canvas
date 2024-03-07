@@ -119,7 +119,7 @@
                     {{getSubmissionDate(submission)}}
                   </span>
                   <span>
-                    {{campuses?.[submission.user.id] ?? 'Loading'}}
+                    {{campuses?.[submission.user.id] ?? 'Loading...'}}
                   </span>
                 </div>
 
