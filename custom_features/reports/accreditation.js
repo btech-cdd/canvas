@@ -92,6 +92,9 @@
                   <span>
                     <b>Date Submitted</b>
                   </span>
+                  <span>
+                    <b>Campus</b>
+                  </span>
                 </div>
 
                 <div class="submission-row" v-for='submission in getFilteredSubmissions(submissions)'>
@@ -114,6 +117,9 @@
                   </span>
                   <span>
                     {{getSubmissionDate(submission)}}
+                  </span>
+                  <span>
+                    {{campuses?.[submission.user.id] ?? ''}}
                   </span>
                 </div>
 
@@ -154,8 +160,11 @@
             for (let st in section.students) {
               let student = section.students[st];
               let userData = await bridgetools.req(`https://reports.bridgetools.dev/api/students/${student.id}`);
-              if (courseCode in userData.courses) {
-                console.log(userData.sortable_name + ': ' + userData.courses[courseCode]?.campus)
+              if (userData.courses?.[courseCode]?.campus) {
+                let campus = userData.courses?.[courseCode]?.campus;
+                if (campus == 'LC') campus = 'Logan Campus';
+                else if (campus == 'BC') campus = 'Brigham City Campus';
+                this.campuses[student.id] = campus;
               }
             }
           }
