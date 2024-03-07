@@ -132,6 +132,7 @@
           await $.get("/api/v1/courses/" + this.courseId).done((data) => {
             this.courseData = data;
           });
+          console.log(this.courseData);
           let courseCode = this.courseData.course_code;
           await $.get("/api/v1/courses/" + this.courseId + "/assignment_groups?include[]=assignments&per_page=100").done(function (data) {
             for (let i = 0; i < data.length; i++) {
