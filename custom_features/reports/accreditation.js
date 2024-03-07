@@ -513,6 +513,9 @@
             let url = '/courses/' + app.courseId + '/assignments/' + data.assignment.id + '/submissions/' + data.submission.user.id + '?preview=1';
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
+            if (this.campuses?.[data.submission.user.id] ?? '' != '') {
+              content.prepend("<div>Campus:" + this.campuses[data.submission.user.id] + "</div>");
+            }
             content.prepend("<div>Title:" + data.assignment.name + "</div>");
             content.append(`<iframe src='`+url+`' 
                               width='800px' 
@@ -545,6 +548,9 @@
             let commentEl = app.getComments(data.submission);
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
+            if (this.campuses?.[data.submission.user.id] ?? '' != '') {
+              content.prepend("<div>Campus:" + this.campuses[data.submission.user.id] + "</div>");
+            }
             content.prepend("<div>Title:" + data.assignment.name + "</div>");
             content.append(commentEl);
             let ogTitle = $('title').text();
