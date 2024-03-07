@@ -162,7 +162,7 @@
             for (let st in section.students) {
               let student = section.students[st];
               if (!(student.id in this.campuses)) {
-                this.campuses[student.id] = '-';
+                this.campuses[student.id] = '';
                 let userData = await bridgetools.req(`https://reports.bridgetools.dev/api/students/${student.id}`);
                 if (userData.courses?.[courseCode]?.campus) {
                   let campus = userData.courses?.[courseCode]?.campus;
@@ -437,6 +437,9 @@
             content.show();
             content.prepend("<div>Submitted:" + app.getSubmissionDate(data.submission) + "</div>");
             content.prepend("<div>Student:" + data.submission.user.name + "</div>");
+            if (this.campuses?.[data.submission.user.id] ?? '' != '') {
+              content.prepend("<div>Campus:" + this.campuses[data.submission.user.id] + "</div>");
+            }
             content.prepend("<div>Title:" + data.assignment.name + "</div>");
             content.prepend("<div>Course:" + app.courseData.name + " (" + app.courseData.course_code + ")" + "</div>");
 
