@@ -161,10 +161,12 @@
             let section = sections[s];
             for (let st in section.students) {
               let student = section.students[st];
+              let userData = await bridgetools.req(`https://reports.bridgetools.dev/api/students/${student.id}`);
+              if (!(student.id in this.enrollmentTypes)) {
+                this.enrollmentTypes[student.id] = userData.enrollment_type;
+              }
               if (!(student.id in this.campuses)) {
                 this.campuses[student.id] = '';
-                let userData = await bridgetools.req(`https://reports.bridgetools.dev/api/students/${student.id}`);
-                console.log(userData);
                 if (userData.courses?.[courseCode]?.campus) {
                   let campus = userData.courses?.[courseCode]?.campus;
                   if (campus == 'LC') campus = 'Logan Campus';
