@@ -474,6 +474,9 @@
                   rubricHolder.prepend(`<div>${data.submission.body}</div>`);
                   rubricHolder.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
                   rubricHolder.prepend("<div>Student:" + data.submission.user.name + "</div>");
+                  if (this.campuses?.[data.submission.user.id] ?? '' != '') {
+                    content.prepend("<div>Campus:" + this.campuses[data.submission.user.id] + "</div>");
+                  }
                   rubricHolder.prepend("<div>Title:" + data.assignment.name + "</div>");
                   let commentEl = app.getComments(data.submission);
                   rubricHolder.append(commentEl);
