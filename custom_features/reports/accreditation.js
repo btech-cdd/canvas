@@ -168,7 +168,7 @@
             for (let st in section.students) {
               let student = section.students[st];
               let userData = await bridgetools.req(`https://reports.bridgetools.dev/api/students/${student.id}`);
-              console.log(userData.Data.sortable_name);
+              console.log(userData?.sortable_name);
               console.log(userData);
               if (!(student.id in this.enrollmentTypes)) {
                 this.enrollmentTypes[student.id] = userData.enrollment_type;
