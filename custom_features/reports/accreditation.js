@@ -84,7 +84,7 @@
                     <b>Student Name</b>
                   </span>
                   <span>
-                    <b>Certificate Seeker</b>
+                    <b>CS Student</b>
                   </span>
                   <span>
                     <b>Score</b>
