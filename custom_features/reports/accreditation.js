@@ -84,6 +84,9 @@
                     <b>Student Name</b>
                   </span>
                   <span>
+                    <b>Certificate Seeker</b>
+                  </span>
+                  <span>
                     <b>Score</b>
                   </span>
                   <span>
@@ -108,6 +111,9 @@
                   </div>
                   <span>
                     {{submission.user.name}}
+                  </span>
+                  <span>
+                    <i v-if="enrollmentTypes?.[submissin.user.id] == 'CS'" class='icon-check'></i>
                   </span>
                   <span>
                     {{Math.round(submission.score / currentAssignment.points_possible * 1000) / 10}}%
