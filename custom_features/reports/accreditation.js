@@ -113,7 +113,7 @@
                     {{submission.user.name}}
                   </span>
                   <span>
-                    <i v-if="enrollmentTypes?.[submissin.user.id] == 'CS'" class='icon-check'></i>
+                    <i v-if="enrollmentTypes?.[submission.user.id] == 'CS'" class='icon-check'></i>
                   </span>
                   <span>
                     {{Math.round(submission.score / currentAssignment.points_possible * 1000) / 10}}%
