@@ -113,7 +113,7 @@
                     {{submission.user.name}}
                   </span>
                   <span>
-                    enrollmentTypes?.[submission.user.id] ?? ''
+                    {{enrollmentTypes?.[submission.user.id] ?? ''}}
                   </span>
                   <span>
                     {{Math.round(submission.score / currentAssignment.points_possible * 1000) / 10}}%
