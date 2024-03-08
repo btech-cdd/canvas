@@ -45,7 +45,7 @@
                   <h4 class="ic-notification__title">
                     Your Grade! 
                   </h4>
-                  <p class="notification_message">The default grade show by Canvas only takes into account graded items, and may <strong>NOT</strong> reflect your final grade. You may uncheck the box below to show your actual grade including ungraded assignments. Assignments which show a - by them have not been submitted.</p>
+                  <p class="notification_message">The default grade shown by Canvas only takes into account graded items, and may <strong>NOT</strong> reflect your final grade. You may uncheck the box below to show your actual grade including ungraded assignments. Assignments which show a - by them have not been submitted.</p>
                   <p>Contact your instructor if you have any questions about your grade.</p>
                 </div>
               </div>
