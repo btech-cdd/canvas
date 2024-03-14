@@ -61,6 +61,7 @@
         message.text = "";
         for (let d in docs) {
           let doc = docs[d];
+          console.log(doc);
           content = `<p><a href="${doc.url}">${doc.name}</a></p>`;
           include = false;
           for (let p in doc.pages) {
