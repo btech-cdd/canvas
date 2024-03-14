@@ -79,7 +79,7 @@
           }
         ],
         "temperature": 0.9,
-        "max_tokens": 6000,
+        "max_tokens": 4000,
         "top_p": 1,
         "frequency_penalty": 0,
         "presence_penalty": 0.6,
