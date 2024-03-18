@@ -1,4 +1,5 @@
 (async function() {
+  return;
   function createModal() {
       let modal = $(`
             <div class='btech-modal' style='display: inline-block;'>
