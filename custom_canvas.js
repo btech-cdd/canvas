@@ -194,6 +194,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
             if (IS_BLUEPRINT) feature('blueprint_association_links');
             feature('modules/convert_to_page');
             if (IS_ME) feature('instructional/glossary');
+            feature("report_broken_content", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             //COURSE SPECIFIC FEATURES
             //DEPARTMENT SPECIFIC IMPORTS
 
