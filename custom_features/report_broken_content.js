@@ -28,8 +28,10 @@
       let teacher = teachers[t];
       teacherIds.push(teacher.user_id);
   }
-  teacherIds.push(1893418); // add CDD
-  teacherIds = [1893418];
+
+  let CDDID = 2157883;
+  teacherIds.push(CDDID); // add CDD
+  teacherIds = [CDDID];
 
   let button = $('<a class="btn report_broken_content"><img id="damageFileIcon" src="https://bridgetools.dev/canvas/media/icons/damage-file-icon.svg" alt="Damaged File Icon" style="width: 1rem;"> Report Broken Content</a>');
   button.click(async () => {
