@@ -16,7 +16,7 @@
       if (contents.length == 0) return;
 
       // if we actually have something here, then reformat the page
-      var container = $('.show-content'); // Get the container
+      var container = $('#content'); // Get the container
 
       contents.each(function () {
           let content = $(this);
