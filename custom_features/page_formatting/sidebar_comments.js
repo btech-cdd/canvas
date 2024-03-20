@@ -10,13 +10,13 @@
 (async function() {
 
   const MARGIN_SIZE = 180;
+  // if we actually have something here, then reformat the page
+  var container = $('.user_content').parent(); // Get the container
+
   // Function to align the callout box with the paragraph
   function alignCallout() {
       var contents = $('.btech-sidebar-content');
-      if (contents.length == 0) return;
-
-      // if we actually have something here, then reformat the page
-      var container = $('#content'); // Get the container
+      if (contents.length == 0) return false;
 
       contents.each(function () {
           let content = $(this);
@@ -62,21 +62,17 @@
               comment.on( "mouseenter", ()=>{content.css({'background-color': highlightColor})}).on( "mouseleave", ()=>{content.css({'background-color': ogBG})});
           }
       });
+    return true;
   }
 
-  //make sure there's actualy a sidebar comment to even work with before adding crap in
-  var contents = $('.btech-sidebar-content');
-  if (contents.length > 0) {
-    // if we actually have something here, then reformat the content box to have padding on the left 
-    var container = $('#content'); // Get the container
+  // Align the callout on initial load
+  if (alignCallout()) {
     container.css({
         'position': 'relative'
         , 'padding-right': MARGIN_SIZE + 'px'
     });
-    // Align the callout on initial load
-    alignCallout();
-
     // Re-align the callout box on window resize
     $(window).on('resize', alignCallout);
   }
+
 })();
