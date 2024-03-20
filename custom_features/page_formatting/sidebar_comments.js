@@ -68,7 +68,7 @@
   var contents = $('.btech-sidebar-content');
   if (contents.length > 0) {
     // if we actually have something here, then reformat the content box to have padding on the left 
-    var container = $('.show-content'); // Get the container
+    var container = $('.user_content'); // Get the container
     container.css({
         'position': 'relative'
         , 'padding-right': MARGIN_SIZE + 'px'
