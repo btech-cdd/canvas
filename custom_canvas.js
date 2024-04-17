@@ -18,6 +18,8 @@ var CDDIDS = [
   2134266, // Jackson
   2118711, // Colton
   2147128, // Katie
+  2159901, // Celine
+  2158921, // Erin
   1547292, // Leann (Student Servies)
 ];
 
