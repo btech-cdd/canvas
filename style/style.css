@@ -337,7 +337,8 @@ div.btech-formatted-content-banner img {
   box-sizing: border-box;
   overflow: auto; /* Enable scroll if needed */
   background-color: #FFF; /* Fallback color */
-  border: 1px solid #EEE;
+  background-color: rgba(255, 255, 255, 0.8); /* Fallback color */
+  border: 1px solid #ddd;
   z-index: 999999;
 }
 
