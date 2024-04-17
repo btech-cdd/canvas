@@ -328,12 +328,12 @@ div.btech-formatted-content-banner img {
   display: none; /* Hidden by default */
   position: absolute; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  margin: 1rem;
+  padding: 2rem; /* Location of the box */
+  margin: 2rem;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  width: calc(100% - 4rem); /* Full width */
+  height: calc(100% - 4rem); /* Full height */
   box-sizing: border-box;
   overflow: auto; /* Enable scroll if needed */
   background-color: #FFF; /* Fallback color */
