@@ -326,7 +326,7 @@ div.btech-formatted-content-banner img {
 
 .btech-zoomed-image-modal {
   display: none; /* Hidden by default */
-  position: absolute; /* Stay in place */
+  position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   padding: 2rem; /* Location of the box */
   margin: 2rem;
