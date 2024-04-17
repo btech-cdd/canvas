@@ -334,6 +334,7 @@ div.btech-formatted-content-banner img {
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
+  box-sizing: border-box;
   overflow: auto; /* Enable scroll if needed */
   background-color: #FFF; /* Fallback color */
   border: 1px solid #EEE;
