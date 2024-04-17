@@ -338,6 +338,7 @@ div.btech-formatted-content-banner img {
   overflow: auto; /* Enable scroll if needed */
   background-color: #FFF; /* Fallback color */
   border: 1px solid #EEE;
+  z-index: 999999;
 }
 
 .btech-zoomed-image-modal-conent {
