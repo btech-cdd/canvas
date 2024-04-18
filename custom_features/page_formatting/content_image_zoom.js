@@ -24,9 +24,7 @@
       
       $('#content').append(modal);
 
-      $(".btech-zoomed-image-modal-close").click(function(e) {
-        console.log('close');
-        e.preventDefault();
+      modal.find('.btech-zoomed-image-modal-close').click(function(e) {
         modal.remove();
         e.stopPropagation();
       });
