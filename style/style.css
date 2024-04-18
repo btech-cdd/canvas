@@ -331,9 +331,9 @@ div.btech-formatted-content-banner img {
   padding: 2rem; /* Location of the box */
   margin: 2rem;
   left: 85px;
-  top: 10%;
+  top: 4rem;
   width: calc(100% - 4rem - 85px); /* Full width */
-  height: 80%; /* Full height */
+  height: calc(100% - 8rem); /* Full height */
   box-sizing: border-box;
   overflow: auto; /* Enable scroll if needed */
   background-color: #FFF; /* Fallback color */
