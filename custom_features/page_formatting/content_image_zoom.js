@@ -1,7 +1,7 @@
 (function() {
   var showingImage = false;
   console.log("image click")
-  $("#content img").each(() => {
+  $("#content img").each(function() {
     $(this).click(() => {
       if (!showingImage) {
         showingImage = true;
