@@ -24,11 +24,11 @@
       
       $('#content').append(modal);
 
-      $('.btech-zoomed-image-modal-scroll-left').click(function(e) {
+      $('.btech-zoomed-image-modal-content-scroll-left').click(function(e) {
         srcIndex -= 1;
         if (srcIndex < 0) srcIndex = srcs.length - 1;
         src = srcs[srcIndex];
-        $('#btech-zoomed-image-modal-img').attr('src', scr);
+        $('#btech-zoomed-image-modal-content-img').attr('src', scr);
         e.stopPropagation();
       });
 
