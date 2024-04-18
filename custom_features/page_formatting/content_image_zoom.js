@@ -24,6 +24,13 @@
       
       $('#content').append(modal);
 
+      $(".btech-zoomed-image-modal-close").click(function(e) {
+        console.log('close');
+        e.preventDefault();
+        modal.remove();
+        e.stopPropagation();
+      });
+
       $('.btech-zoomed-image-modal-content-scroll-left').click(function(e) {
         e.preventDefault();
         srcIndex -= 1;
@@ -40,12 +47,6 @@
         e.stopPropagation();
       });
 
-      $(".btech-zoomed-image-modal-close").click(function(e) {
-        console.log('close');
-        e.preventDefault();
-        modal.remove();
-        e.stopPropagation();
-      });
     });
   });
 })();
