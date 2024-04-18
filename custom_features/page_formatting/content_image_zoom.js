@@ -7,10 +7,7 @@
         srcs.push($(this).attr('src'));
       });
       let srcIndex = srcs.indexOf(src);
-      console.log(srcs);
-      console.log(srcIndex);
       if ($("#btech-zoomed-image-modal-img").length > 0) return;
-      console.log("CLICKY");
       let modal = $(`
         <div style="display: block;" class="btech-zoomed-image-modal">
           <span class="btech-zoomed-image-modal-close">&times;</span>
