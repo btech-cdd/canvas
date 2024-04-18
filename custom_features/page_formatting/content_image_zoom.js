@@ -14,6 +14,7 @@
         `);
         $('#content').append(modal);
         let src = img.attr("src");
+        console.log(src);
         $("#btech-zoomed-image-modal-img").attr("src", src);
 
         $(".btech-zoomed-image-modal-close").click(function(e) {
