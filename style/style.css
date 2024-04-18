@@ -357,8 +357,19 @@ div.btech-formatted-content-banner img {
   transition: 0.3s;
   z-index: 1000000;
 }
+
+.btech-zoomed-image-modal-close,
+.btech-zoomed-image-modal-content-scroll-left,
+.btech-zoomed-image-modal-content-scroll-right {
+  color: #ddd;
+}
+
 .btech-zoomed-image-modal-close:hover,
-.btech-zoomed-image-modal-close:focus {
+.btech-zoomed-image-modal-content-scroll-left:hover,
+.btech-zoomed-image-modal-content-scroll-right:hover,
+.btech-zoomed-image-modal-close:focus,
+.btech-zoomed-image-modal-content-scroll-left:focus,
+.btech-zoomed-image-modal-content-scroll-right:focus {
   color: #bbb;
   text-decoration: none;
   cursor: pointer;
