@@ -329,9 +329,9 @@ div.btech-formatted-content-banner img {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   padding: 2rem; /* Location of the box */
-  left: 85px;
+  left: calc(85px + 2rem);
   top: 4rem;
-  width: calc(100% - 2rem - 85px); /* Full width */
+  width: calc(100% - 4rem - 85px); /* Full width */
   height: calc(100% - 8rem); /* Full height */
   box-sizing: border-box;
   overflow: auto; /* Enable scroll if needed */
