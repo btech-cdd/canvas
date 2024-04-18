@@ -1,6 +1,10 @@
 (function() {
   $(document).ready(function() {
     $("#content").on("click", "img:not(.btech-zoomed-image-modal-content)", function() {
+      let srcs = [];
+      $('#content img').each(function () {
+        console.log($(this).attr('src'));
+      })
       if ($("#btech-zoomed-image-modal-img").length > 0) return;
       console.log("CLICKY");
       let src = $(this).attr("src");
