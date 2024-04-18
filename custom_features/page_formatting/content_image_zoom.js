@@ -1,6 +1,6 @@
 (function() {
   console.log("image click")
-  $("#content img").each(() => {
+  $("#content img").each(function () {
     let img = $(this);
     if (!img.hasClass('btech-zoomed-image-modal-content')) {
       img.click(() => {
