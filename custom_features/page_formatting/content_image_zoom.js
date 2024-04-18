@@ -1,4 +1,6 @@
+console.log("image click?")
 $(document).ready(function() {
+    console.log("image click")
     $("#content img").click(function() {
         console.log("CLICKY");
         let modal = $(`
