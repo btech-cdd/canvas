@@ -3,14 +3,10 @@
     $("#content").on("click", "img:not(.btech-zoomed-image-modal-content)", function() {
       let src = $(this).attr("src");
       let srcs = [];
-      let srcIndex = 0;
       $('#content img').each(function () {
-        let otherSource = $(this).attr('src');
-        if (src = otherSource) {
-          sourceIndex = srcs.length;
-        }
-        srcs.push(otherSource);
+        srcs.push($(this).attr('src'));
       });
+      let srcIndex = srcs.indexOf(src);
       console.log(srcs);
       console.log(srcIndex);
       if ($("#btech-zoomed-image-modal-img").length > 0) return;
