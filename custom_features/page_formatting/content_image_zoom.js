@@ -35,7 +35,9 @@
       $('.btech-zoomed-image-modal-scroll-right').click(function(e) {
         srcIndex += 1;
         if (srcIndex >= srcs.length) srcIndex = 0;
+        console.log(srcIndex);
         src = srcs[srcIndex];
+        console.log(src);
         $('#btech-zoomed-image-modal-img').attr('src', src);
         e.stopPropagation();
       });
