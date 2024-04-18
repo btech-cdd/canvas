@@ -16,9 +16,10 @@
         let src = img.attr("src");
         $("#btech-zoomed-image-modal-img").attr("src", src);
 
-        $(".btech-zoomed-image-modal-close").click(function() {
+        $(".btech-zoomed-image-modal-close").click(function(e) {
           console.log("close")
           modal.remove();
+          e.stopPropagation(); // Stop the click event from bubbling up
         });
       });
     }
