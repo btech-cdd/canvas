@@ -355,6 +355,7 @@ div.btech-formatted-content-banner img {
   font-size: 40px;
   font-weight: bold;
   transition: 0.3s;
+  z-index: 1000000;
 }
 .btech-zoomed-image-modal-close:hover,
 .btech-zoomed-image-modal-close:focus {

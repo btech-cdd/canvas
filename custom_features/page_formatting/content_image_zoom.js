@@ -1,10 +1,4 @@
 (function() {
-  $(document).on('click', '.btech-zoomed-image-modal-close', function(e) {
-    console.log("Close clicked");
-    $('.btech-zoomed-image-modal').remove();
-    e.stopPropagation();
-});
-
   $(document).ready(function() {
     $("#content").on("click", "img:not(.btech-zoomed-image-modal-content)", function() {
       let src = $(this).attr("src");
