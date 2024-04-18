@@ -11,7 +11,7 @@
       console.log(srcIndex);
       if ($("#btech-zoomed-image-modal-img").length > 0) return;
       console.log("CLICKY");
-     let modal = $(`
+      let modal = $(`
         <div style="display: block;" class="btech-zoomed-image-modal">
           <span class="btech-zoomed-image-modal-close">&times;</span>
           <span class="btech-zoomed-image-modal-content-scroll-left" style="position: absolute; left: 10px; top: 50%; cursor: pointer; user-select: none;">&#9664;</span> <!-- Left arrow -->
@@ -28,7 +28,7 @@
         srcIndex -= 1;
         if (srcIndex < 0) srcIndex = srcs.length - 1;
         src = srcs[srcIndex];
-        $('#btech-zoomed-image-modal-content-img').attr('src', scr);
+        $('#btech-zoomed-image-modal-content-img').attr('src', src);
         e.stopPropagation();
       });
 
@@ -36,7 +36,7 @@
         srcIndex += 1;
         if (srcIndex >= srcs.length) srcIndex = 0;
         src = srcs[srcIndex];
-        $('#btech-zoomed-image-modal-img').attr('src', scr);
+        $('#btech-zoomed-image-modal-img').attr('src', src);
         e.stopPropagation();
       });
 
