@@ -41,6 +41,7 @@
       });
 
       $(".btech-zoomed-image-modal-close").click(function(e) {
+        e.preventDefault();
         modal.remove();
         e.stopPropagation();
       });
