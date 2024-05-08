@@ -4,19 +4,19 @@
   if (TOOLBAR.checkEditorPage()) {
     await TOOLBAR.checkReady();
 
-    TOOLBAR.addButtonIcon("icon-gradebook", "Grading Scheme", async function () {
-      let editor = tinymce.activeEditor;
-      editor.execCommand("mceInsertContent", false, `
-        <p class="btech-grading-scheme btech-hidden" style="border: 1px solid black;">This will be replaced by a table populated with the course Grading Scheme.</p>
-      `);
-    });
+    // TOOLBAR.addButtonIcon("icon-gradebook", "Grading Scheme", async function () {
+    //   let editor = tinymce.activeEditor;
+    //   editor.execCommand("mceInsertContent", false, `
+    //     <p class="btech-grading-scheme btech-hidden" style="border: 1px solid black;">This will be replaced by a table populated with the course Grading Scheme.</p>
+    //   `);
+    // });
 
-    TOOLBAR.addButtonIcon("icon-assignment", "Assignment Groups", async function () {
-      let editor = tinymce.activeEditor;
-      editor.execCommand("mceInsertContent", false, `
-        <p class="btech-assignment-groups btech-hidden" style="border: 1px solid black;">This will be replaced by a table populated with the course Assignment Groups.</p>
-      `);
-    });
+    // TOOLBAR.addButtonIcon("icon-assignment", "Assignment Groups", async function () {
+    //   let editor = tinymce.activeEditor;
+    //   editor.execCommand("mceInsertContent", false, `
+    //     <p class="btech-assignment-groups btech-hidden" style="border: 1px solid black;">This will be replaced by a table populated with the course Assignment Groups.</p>
+    //   `);
+    // });
   }
 
   async function genSchemeElements() {
@@ -167,6 +167,6 @@
       $(this).html("Loading...");
     });
   }
-  // genAssignmentElements();
-  // genSchemeElements();
+  genAssignmentElements();
+  genSchemeElements();
 })();
