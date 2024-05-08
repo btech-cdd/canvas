@@ -38,7 +38,7 @@
         let newColor = this.hexToRgb($("#btech-recolor-new-color").val());
         let body = tinyMCE.activeEditor.getBody();
         let content = tinyMCE.activeEditor.getContent();
-        let updatedContent = $(content);
+        let updatedContent = $(`<div>${content}</div>`);
         console.log(existingColor);
         console.log(newColor);
         $(updatedContent).find('*').each(function() {
