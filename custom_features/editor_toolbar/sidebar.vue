@@ -58,18 +58,22 @@
         <rce-modal-header-banner
           :defaultimg="defaultimg"
           :get-container="getContainer"
+          :init-formatted-content="initFormattedContent"
         ></rce-modal-header-banner>
         <rce-modal-header-hex
           :defaultimg="defaultimg"
           :get-container="getContainer"
+          :init-formatted-content="initFormattedContent"
         ></rce-modal-header-hex>
         <rce-modal-banner
           :defaultimg="defaultimg"
           :get-container="getContainer"
+          :init-formatted-content="initFormattedContent"
         ></rce-modal-banner>
         <rce-modal-image-right
           :defaultimg="defaultimg"
           :get-container="getContainer"
+          :init-formatted-content="initFormattedContent"
         ></rce-modal-image-right>
       </div>
 

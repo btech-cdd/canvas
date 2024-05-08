@@ -12,7 +12,7 @@
         type: String,
         default: ""
       },
-      getContainer: {
+      initFormattedContent: {
         type: Function,
         default: () => {}
       }
