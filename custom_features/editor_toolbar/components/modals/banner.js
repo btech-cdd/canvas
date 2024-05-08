@@ -8,6 +8,10 @@
       ></i>
     `,
     props: {
+      color: {
+        type: String,
+        default: "#FFFFFF"
+      },
       deafultimg: {
         type: String,
         default: ""
@@ -62,7 +66,7 @@
             <h2
               style="
                 margin-top: -2rem;
-                background-color: #D22232;
+                background-color: ${this.color};
                 color: #FFFFFF;
                 position: relative;
                 z-index: 2;

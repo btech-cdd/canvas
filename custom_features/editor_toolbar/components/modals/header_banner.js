@@ -8,6 +8,10 @@
       ></i>
     `,
     props: {
+      color: {
+        type: String,
+        default: "#FFFFFF"
+      },
       defaultimg: {
         type: String,
         default: ""
