@@ -39,7 +39,7 @@
         let body = tinyMCE.activeEditor.getBody();
         console.log(existingColor);
         console.log(newColor);
-        $(body).html().find('*').each(function() {
+        $(body).find('*').each(function() {
           // Check each element's CSS properties
           if ($(this).css('color') === existingColor) { // #d22232 in RGB
               $(this).css('color', newColor);
@@ -93,7 +93,7 @@
           <option>#000000</option>
           <option>#FFFFFF</option>
         </datalist>
-        <a class='btn' id="recolor-submit">Create</a>
+        <a class='btn' id="recolor-submit">Recolor</a>
         `);
         let submit = $("#recolor-submit");
         submit.click(() => {
