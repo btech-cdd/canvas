@@ -276,7 +276,7 @@
     });
   }
 
-  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/sidebarComment.js').done(function () {
+  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/sidebar_comment.js').done(function () {
     postLoad();
   });
 
