@@ -37,9 +37,11 @@
         let existingColor = this.hexToRgb($("#btech-recolor-existing-color").val());
         let newColor = this.hexToRgb($("#btech-recolor-new-color").val());
         let body = tinyMCE.activeEditor.getBody();
+        let content = tinyMCE.activeEditor.getContent();
+        let updatedContent = $(content);
         console.log(existingColor);
         console.log(newColor);
-        $(body).find('*').each(function() {
+        $(updatedContent).find('*').each(function() {
           // Check each element's CSS properties
           if ($(this).css('color') === existingColor) { // #d22232 in RGB
               $(this).css('color', newColor);
@@ -52,7 +54,7 @@
           }
         });
        
-        // editor.execCommand("mceReplaceContent", false, `<p>`+citationString+`</p>`);
+        tinyMCE.activeEditor.setContent(updatedContent.html())
         bg.remove();
       },
 
