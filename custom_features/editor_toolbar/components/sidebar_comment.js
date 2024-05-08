@@ -1,12 +1,10 @@
 (async function() {
   Vue.component('rce-sidebar-comment', {
     template: ` 
-      <div>
-        <i
-          @click="addSidebarComment"
-          class="icon-discussion"
-        ></i>
-      </div> 
+      <i
+        @click="create"
+        class="icon-discussion"
+      ></i>
     `,
     props: {
       color: {
@@ -24,7 +22,7 @@
 
     methods: {
       // CREATES A COMMENT THAT APPEARS IN THE RIGHT MARGIN (PADDING) OF THE PAGE AND MOVES TO THE TOP OF THE ASSOCIATED ELEMENT EVEN ON PAGE RESIZE
-      addSidebarComment () {
+      create() {
         console.log("COMMENT");
         let editor = tinymce.activeEditor;
         let node = $(editor.selection.getNode());

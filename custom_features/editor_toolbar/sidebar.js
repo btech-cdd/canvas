@@ -15,7 +15,7 @@
         return {
           minimized: false,
           width: 250,
-          defaultImg: 'https://bridgetools.dev/canvas/media/image-placeholder.png',
+          defaultimg: 'https://bridgetools.dev/canvas/media/image-placeholder.png',
           colors: {
             primary: "#D22232",
             secondary: "#B11121",
@@ -42,59 +42,6 @@
           $('#wrapper').css('margin-right', '0px');
           this.minimized = true;
         },
-        addGradebookModal: function () {
-          let editor = tinymce.activeEditor;
-          editor.execCommand("mceInsertContent", false, `
-            <p class="btech-grading-scheme btech-hidden" style="border: 1px solid black;">This will be replaced by a table populated with the course Grading Scheme.</p>
-          `);
-        },
-        addHexImage: function() {
-          let editor = tinymce.activeEditor;
-          editor.execCommand("mceInsertContent", false, `
-            <div
-              class="btech-hex-mask"
-              style="
-                width: 200px; /* Adjust the size as per your needs */
-                height: 230px;
-                position: relative;
-                margin: 0 auto;
-                display: inline-block;
-                clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-              "
-            >
-              <img
-                src="${this.defaultImg}"
-                style="
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
-                  transform: rotate(30deg);
-                "
-              />
-            </div>
-          `);
-
-        },
-        addCallout: function () {
-          let editor = tinymce.activeEditor;
-          let selection = editor.selection;
-          let selectionContent = selection.getContent();
-          console.log(selectionContent);
-          if (selectionContent !== "") {
-            editor.execCommand("mceReplaceContent", false, `
-              <div class="btech-callout-box flat">
-              ${selectionContent}
-              </div>
-            `);
-          } else {
-            editor.execCommand("mceInsertContent", false, `
-              <div class="btech-callout-box flat">
-                <p>Callout Content</p>
-              </div>
-            `);
-          }
-        },
-
 
         initFormattedContent: function () {
           let editor = tinymce.activeEditor;
@@ -132,7 +79,7 @@
             >
               <img
                 style="width: 100%;"
-                src="${this.defaultImg}"
+                src="${this.defaultimg}"
               />
               <div>
                 <p>TEXT</p>
@@ -160,7 +107,7 @@
               </div>
               <img
                 style="width: 100%;"
-                src="${this.defaultImg}"
+                src="${this.defaultimg}"
               />
             </div>
           `)
@@ -197,7 +144,7 @@
                   style="
                     width:100%;
                   "
-                  src="${this.defaultImg}"
+                  src="${this.defaultimg}"
                 >
               </div>
 
@@ -249,7 +196,7 @@
                   style="
                     width:100%;
                   "
-                  src="${this.defaultImg}"
+                  src="${this.defaultimg}"
                 >
               </div>
 

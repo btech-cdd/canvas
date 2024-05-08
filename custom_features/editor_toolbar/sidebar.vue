@@ -75,14 +75,10 @@
 
       <!--ELEMENTS-->
       <div>
-        <i
-          @click="addHexImage"
-          class="icon-image"
-        ></i>
-        <i
-          @click="addCallout"
-          class="icon-note-light"
-        ></i>
+        <rce-hex-image
+          :defaultimg="defaultimg"
+        ></rce-hex-image>
+        <rce-callout></rce-callout>
         <rce-sidebar-comment
           :color="elColor"
         ></rce-sidebar-comment>
