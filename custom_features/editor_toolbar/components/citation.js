@@ -94,7 +94,7 @@
         <a class='btn' id="citation-submit">Create</a>
         `);
         let addAuthor = $("#citation-add-author");
-        addAuthor.click(function () {
+        addAuthor.click(() => {
           $("#citation-authors").append(`
         <div class="citation-author">
           <input placeholder="first name" style='width: 49%; height: 40px; box-sizing: border-box;' type="text" class="citation-information first-name">
@@ -104,7 +104,7 @@
           this.citationKeypress(bg);
         });
         let submit = $("#citation-submit");
-        submit.click(function () {
+        submit.click(() => {
           this.citationInsert(bg);
         });
         this.citationKeypress(bg);
