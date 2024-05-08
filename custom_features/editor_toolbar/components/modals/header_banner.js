@@ -29,28 +29,53 @@
       // CREATES A COMMENT THAT APPEARS IN THE RIGHT MARGIN (PADDING) OF THE PAGE AND MOVES TO THE TOP OF THE ASSOCIATED ELEMENT EVEN ON PAGE RESIZE
       create: function () {
         let editor = tinymce.activeEditor;
-        let container = this.getContainer($(editor.selection.getNode()));
-        console.log(this.defaultimg);
-        container.after(`
+        let body = editor.getBody();
+        this.initFormattedContent();
+        let wrapper = $($(body).find('.btech-formatted-content-wrapper')[0]);
+        wrapper.prepend(`
           <div
             class="
               btech-formatted-content-modal
-              btech-formatted-content-image-right-wrapper
+              btech-formatted-content-banner-wrapper
             "
             style="
-              display: grid;
-              grid-template-columns: 2fr 1fr;
-            "
+              width: 100%;
+            " 
           >
-            <div>
-              <p>TEXT</p>
+            <div
+              style="
+                width: 100%;
+                height: 10rem;
+                overflow: hidden;
+                position: relative;
+                z-index: 1;
+              " 
+            >
+              <img 
+                style="
+                  width:100%;
+                "
+                src="${this.defaultimg}"
+              >
             </div>
-            <img
-              style="width: 100%;"
-              src="${this.defaultimg}"
-            />
+
+            <h2
+              style="
+                margin-top: -2rem;
+                background-color: #D22232;
+                color: #FFFFFF;
+                position: relative;
+                z-index: 2;
+                font-size: 2rem;
+                display: inline-block;
+                margin-left: -2rem;
+                padding-left: 3rem;
+                width: 90%;
+                border: 0.25rem solid #FFFFFF;
+              " 
+            ><strong>HEADER</strong></h2>
           </div>
-        `)
+        `);
       },
     },
 
