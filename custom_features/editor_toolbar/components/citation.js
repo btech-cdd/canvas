@@ -63,7 +63,7 @@
         $(".citation-information").keypress(function (event) {
           var keycode = (event.keyCode ? event.keyCode : event.which);
           if (keycode == '13') {
-            citationInsert(bg);
+            this.citationInsert(bg);
           }
           event.stopPropagation();
         });
@@ -101,13 +101,13 @@
           <input placeholder="last name" style='width: 49%; height: 40px; box-sizing: border-box;' type="text" class="citation-information last-name">
         </div>
         `);
-          citationKeypress(bg);
+          this.citationKeypress(bg);
         });
         let submit = $("#citation-submit");
         submit.click(function () {
-          citationInsert(bg);
+          this.citationInsert(bg);
         });
-        citationKeypress(bg);
+        this.citationKeypress(bg);
       }
 
     }, 
