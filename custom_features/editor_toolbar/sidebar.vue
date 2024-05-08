@@ -87,6 +87,8 @@
           :defaultimg="defaultimg"
         ></rce-hex-image-hide>
 
+        <rce-citation></rce-citation>
+
         <rce-information-box
           :color="elColor"
         ></rce-information-box>
