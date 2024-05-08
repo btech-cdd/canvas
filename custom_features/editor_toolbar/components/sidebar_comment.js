@@ -4,6 +4,7 @@
       <i
         @click="create"
         class="icon-discussion"
+        title="Create a callout that moves to the side of the page and highlights selected content."
       ></i>
     `,
     props: {

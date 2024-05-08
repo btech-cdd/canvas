@@ -70,6 +70,7 @@
   $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/sidebar_comment.js').done(function () {
   $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/hex_image.js').done(function () {
   $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/callout.js').done(function () {
+  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/citation.js').done(function () {
   $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/information_box.js').done(function () {
   $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/image_left.js').done(function () {
   $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/image_right.js').done(function () {
