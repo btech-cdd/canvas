@@ -167,6 +167,6 @@
       $(this).html("Loading...");
     });
   }
-  genAssignmentElements();
-  genSchemeElements();
+  // genAssignmentElements();
+  // genSchemeElements();
 })();
