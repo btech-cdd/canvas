@@ -224,7 +224,11 @@
   }
 
   $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/sidebar_comment.js').done(function () {
+  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/hex_image.js').done(function () {
+  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/callout.js').done(function () {
     postLoad();
+  });
+  });
   });
 
 
