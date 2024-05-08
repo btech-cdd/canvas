@@ -20,6 +20,7 @@
 
       contents.each(function () {
           let content = $(this);
+          content.remove();
           var classes = content.attr('class').split(/\s+/); // Split classes into an array
           var contentId;
 
