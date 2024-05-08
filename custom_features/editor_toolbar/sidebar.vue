@@ -61,18 +61,18 @@
           :get-container="getContainer"
           :init-formatted-content="initFormattedContent"
         ></rce-modal-header-banner>
-        <rce-modal-header-hex
+        <rce-modal-header-hex-hide
           :defaultimg="defaultimg"
           :color="elColor"
           :get-container="getContainer"
           :init-formatted-content="initFormattedContent"
-        ></rce-modal-header-hex>
-        <rce-modal-banner
+        ></rce-modal-header-hex-hide>
+        <rce-modal-banner-hide
           :defaultimg="defaultimg"
           :color="elColor"
           :get-container="getContainer"
           :init-formatted-content="initFormattedContent"
-        ></rce-modal-banner>
+        ></rce-modal-banner-hide>
         <rce-modal-image-right
           :defaultimg="defaultimg"
           :get-container="getContainer"

@@ -64,7 +64,7 @@
             <h2
               style="
                 margin-top: -2rem;
-                background-color: var(--colors-primary);
+                background-color: ${this.color};
                 color: var(--colors-font);
                 position: relative;
                 z-index: 2;
