@@ -8,7 +8,7 @@
       ></i>
     `,
     props: {
-      deafaultimg: {
+      defaultimg: {
         type: String,
         default: ""
       },
