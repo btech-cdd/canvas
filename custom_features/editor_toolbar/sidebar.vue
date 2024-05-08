@@ -53,6 +53,10 @@
           <option>#000000</option>
           <option>#FFFFFF</option>
         </datalist>
+        <!--Need to create a button that let's the user take a color on the page and recolor every element to the new color.-->
+        <!-- Easiest way would be to create a datalist like above and then pull every color on the page and put it in the list.-->
+        <!-- Then have a second data list for creating the new color. Hit recolor and it does a find replace-->
+        <rce-recolor></rce-recolor>
       </div>
       <div>
         <rce-modal-header-banner
