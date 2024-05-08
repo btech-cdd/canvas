@@ -3,7 +3,7 @@
     template: ` 
       <i
         @click="citation"
-        class="icon-note-light"
+        class="icon-compose"
         title="Create a gray, centered callout box."
       ></i>
     `,
