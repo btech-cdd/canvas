@@ -8,7 +8,7 @@
       ></i>
     `,
     props: {
-      deafultimg: {
+      deafaultimg: {
         type: String,
         default: ""
       },
@@ -29,7 +29,7 @@
       // CREATES A COMMENT THAT APPEARS IN THE RIGHT MARGIN (PADDING) OF THE PAGE AND MOVES TO THE TOP OF THE ASSOCIATED ELEMENT EVEN ON PAGE RESIZE
       create: function () {
         let editor = tinymce.activeEditor;
-        let container = getContainer($(editor.selection.getNode()));
+        let container = this.getContainer($(editor.selection.getNode()));
         container.after(`
           <div
             class="

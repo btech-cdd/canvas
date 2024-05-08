@@ -8,7 +8,7 @@
       ></i>
     `,
     props: {
-      deafultimg: {
+      deafaultimg: {
         type: String,
         default: ""
       },
