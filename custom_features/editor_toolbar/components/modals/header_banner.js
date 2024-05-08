@@ -36,6 +36,7 @@
         let body = editor.getBody();
         this.initFormattedContent();
         let wrapper = $($(body).find('.btech-formatted-content-wrapper')[0]);
+        console.log(this.color);
         wrapper.prepend(`
           <div
             class="
@@ -66,7 +67,7 @@
             <h2
               style="
                 margin-top: -2rem;
-                background-color: #D22232;
+                background-color: ${this.color};
                 color: #FFFFFF;
                 position: relative;
                 z-index: 2;
