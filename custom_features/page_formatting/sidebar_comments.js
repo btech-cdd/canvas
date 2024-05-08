@@ -20,7 +20,6 @@
 
       contents.each(function () {
           let content = $(this);
-          content.remove();
           var classes = content.attr('class').split(/\s+/); // Split classes into an array
           var contentId;
 
@@ -60,7 +59,7 @@
                 , 'background-color': '#F8F8F8' 
               });
               let ogBG = content.css('background-color');
-              comment.on( "mouseenter", ()=>{content.remove(); content.css({'background-color': highlightColor + ' !important'})}).on( "mouseleave", ()=>{content.css({'background-color': ogBG})});
+              comment.on( "mouseenter", ()=>{console.log(content); content.css({'background-color': highlightColor + ' !important'})}).on( "mouseleave", ()=>{content.css({'background-color': ogBG})});
           }
       });
     return true;
