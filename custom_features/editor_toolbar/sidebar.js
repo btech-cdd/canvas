@@ -1,6 +1,6 @@
 (async function() {
   const WIDTH = 200;
-  async function postload() {
+  async function postLoad() {
     let vueString = '';
     await $.get(SOURCE_URL + '/custom_features/editor_toolbar/sidebar.vue', null, function (html) {
       vueString = html.replace("<template>", "").replace("</template>", "");
