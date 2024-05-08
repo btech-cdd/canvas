@@ -83,6 +83,7 @@
         <rce-hex-image-hide
           :defaultimg="defaultimg"
         ></rce-hex-image-hide>
+
         <rce-information-box
           :color="elColor"
         ></rce-information-box>
