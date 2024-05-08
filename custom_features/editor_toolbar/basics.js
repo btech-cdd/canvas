@@ -187,6 +187,9 @@
     let headerName = null;
     let alt = true;
     let customColor = $("#btech-custom-editor-buttons-color").val();
+    $(body).find('.btech-formatted-content-wrapper').each(function () {
+      $(this).contents().unwrap();
+    });
     $(body).find('.btech-sections').each(function () {
       $(this).contents().unwrap();
     });
