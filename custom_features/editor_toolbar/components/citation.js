@@ -4,7 +4,7 @@
       <i
         @click="citation"
         class="icon-compose"
-        title="Create a gray, centered callout box."
+        title="Create an in text citation."
       ></i>
     `,
     props: {
