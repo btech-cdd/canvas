@@ -1,10 +1,10 @@
 (async function() {
-  Vue.component('rce-hex-image', {
+  Vue.component('rce-modal-image-right', {
     template: ` 
       <i
         @click="create"
         class="icon-image"
-        title="Create a hex shaped image."
+        title="Create a content modal with an image on the right and text content on the left."
       ></i>
     `,
     props: {
@@ -25,29 +25,27 @@
       // CREATES A COMMENT THAT APPEARS IN THE RIGHT MARGIN (PADDING) OF THE PAGE AND MOVES TO THE TOP OF THE ASSOCIATED ELEMENT EVEN ON PAGE RESIZE
       create: function () {
         let editor = tinymce.activeEditor;
-        editor.execCommand("mceInsertContent", false, `
+        let container = this.getContainer($(editor.selection.getNode()));
+        container.after(`
           <div
-            class="btech-hex-mask"
+            class="
+              btech-formatted-content-modal
+              btech-formatted-content-image-right-wrapper
+            "
             style="
-              width: 200px; /* Adjust the size as per your needs */
-              height: 230px;
-              position: relative;
-              margin: 0 auto;
-              display: inline-block;
-              clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+              display: grid;
+              grid-template-columns: 2fr 1fr;
             "
           >
+            <div>
+              <p>TEXT</p>
+            </div>
             <img
+              style="width: 100%;"
               src="${this.defaultimg}"
-              style="
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transform: rotate(30deg);
-              "
             />
           </div>
-        `);
+        `)
       },
     },
 

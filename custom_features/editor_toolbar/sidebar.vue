@@ -55,29 +55,26 @@
         </datalist>
       </div>
       <div>
-        <i
-          @click="addBannerModal"
-          class="icon-text"
-        ></i>
-        <i
-          @click="addHeaderBannerModal"
-          class="icon-text"
-        ></i>
-        <i
-          @click="addHeaderHexModal"
-          class="icon-text"
-        ></i>
-        <i
-          @click="addImageRightModal"
-          class="icon-image"
-        ></i>
+        <rce-modal-header-banner
+          :defaultimg="defaultimg"
+        ></rce-modal-header-banner>
+        <rce-modal-header-hex
+          :defaultimg="defaultimg"
+        ></rce-modal-header-hex>
+        <rce-modal-banner
+          :defaultimg="defaultimg"
+        ></rce-modal-banner>
+        <rce-modal-image-right
+          :defaultimg="defaultimg"
+        ></rce-modal-image-right>
       </div>
 
       <!--ELEMENTS-->
       <div>
-        <rce-hex-image
+        <!--Hex image not working right now, so added hide to the component tag so nothing shows up-->
+        <rce-hex-image-hide
           :defaultimg="defaultimg"
-        ></rce-hex-image>
+        ></rce-hex-image-hide>
         <rce-callout></rce-callout>
         <rce-sidebar-comment
           :color="elColor"
