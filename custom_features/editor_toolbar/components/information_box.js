@@ -3,7 +3,7 @@
     template: ` 
       <i
         @click="create"
-        class="icon-note-light"
+        class="icon-unmuted"
         title="Create an information box that uses the selected color."
       ></i>
     `,
