@@ -22,8 +22,8 @@
     // FORMATS A CITATION
       recolorSubmit: function (bg) {
         let editor = tinymce.activeEditor;
-        let existingColor = $("#existing-color").val();
-        let newColor = $("#new-color").val();
+        let existingColor = $("#btech-recolor-existing-color").val();
+        let newColor = $("#btech-recolor-new-color").val();
         console.log(existingColor);
         console.log(newColor);
        
