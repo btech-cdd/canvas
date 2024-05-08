@@ -18,16 +18,28 @@
     },
 
     methods: {
+      hexToRgb: function (hex) {
+        // Remove the hash at the beginning of the hex code if it exists
+        hex = hex.replace(/^#/, '');
+
+        // Parse the hex string into integer values for red, green, and blue
+        var r = parseInt(hex.substring(0, 2), 16);
+        var g = parseInt(hex.substring(2, 4), 16);
+        var b = parseInt(hex.substring(4, 6), 16);
+
+        // Return the RGB representation
+        return `rgb(${r}, ${g}, ${b})`;
+      },
       // CREATES A COMMENT THAT APPEARS IN THE RIGHT MARGIN (PADDING) OF THE PAGE AND MOVES TO THE TOP OF THE ASSOCIATED ELEMENT EVEN ON PAGE RESIZE
     // FORMATS A CITATION
       recolorSubmit: function (bg) {
         let editor = tinymce.activeEditor;
-        let existingColor = $("#btech-recolor-existing-color").val();
-        let newColor = $("#btech-recolor-new-color").val();
+        let existingColor = this.hexToRgb($("#btech-recolor-existing-color").val());
+        let newColor = this.hexToRgb($("#btech-recolor-new-color").val());
         let body = tinyMCE.activeEditor.getBody();
         console.log(existingColor);
         console.log(newColor);
-        $(body).find('*').each(function() {
+        $(body).html().find('*').each(function() {
           // Check each element's CSS properties
           if ($(this).css('color') === existingColor) { // #d22232 in RGB
               $(this).css('color', newColor);
