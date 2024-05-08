@@ -140,7 +140,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
 
     //OTHER FEATURES
     $.getScript("https://cdn.jsdelivr.net/npm/vue@2.6.12").done(function () {
-      if (IS_ME || currentUser == 2147128) feature("editor_toolbar/sidebar", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
+      featureCDD("editor_toolbar/sidebar", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
       featureCDD("course_evaluation", {}, /^\/courses\/[0-9]+/);
       $.getScript(SOURCE_URL + "/course_data/course_hours.js").done(() => {
         console.log(COURSE_HOURS);
