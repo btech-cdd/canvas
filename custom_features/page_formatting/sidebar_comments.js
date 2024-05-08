@@ -61,9 +61,9 @@
               });
               let ogBG = content.css('background-color');
               comment.on("mouseenter", function() {
-                addImportantStyle('.btech-sidebar-content-' + contentId, 'background-color', highlightColor);
+                $('.btech-sidebar-content-' + contentId).css({'background-color': highlightColor});
               }).on("mouseleave", function() {
-                addImportantStyle('.btech-sidebar-content-' + contentId, 'background-color', ogBG);
+                $('.btech-sidebar-content-' + contentId).css({'background-color': ogBG});
               });
 
           }
