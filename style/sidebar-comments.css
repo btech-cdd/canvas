@@ -1,9 +1,10 @@
-.btech-sidebar-content {
+/* I don't know what this is here for. I don't remember adding it and it makes callouts look kind of weird. */
+/* .btech-sidebar-content {
   position: relative;
-  border-left: 2px solid #000; /* Line connecting to the callout */
+  border-left: 2px solid #000;
   padding-left: 10px;
-  background-color: #f0f0f0; /* Highlight color */
-}
+  background-color: #f0f0f0;
+} */
 
 .btech-sidebar-comment-box {
   position: absolute;
