@@ -57,16 +57,19 @@
       <div>
         <rce-modal-header-banner
           :defaultimg="defaultimg"
+          :color="elColor"
           :get-container="getContainer"
           :init-formatted-content="initFormattedContent"
         ></rce-modal-header-banner>
         <rce-modal-header-hex
           :defaultimg="defaultimg"
+          :color="elColor"
           :get-container="getContainer"
           :init-formatted-content="initFormattedContent"
         ></rce-modal-header-hex>
         <rce-modal-banner
           :defaultimg="defaultimg"
+          :color="elColor"
           :get-container="getContainer"
           :init-formatted-content="initFormattedContent"
         ></rce-modal-banner>
