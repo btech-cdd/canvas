@@ -1,25 +1,5 @@
 (async function() {
   const WIDTH = 200;
-  function initFormattedContent () {
-    let editor = tinymce.activeEditor;
-    let body = editor.getBody();
-    $(body).find('.btech-formatted-content-wrapper').each(() => {
-      $(this).unwrap();
-    });
-    $(body).contents().wrap(`<div class="btech-formatted-content-wrapper"></div>`);
-  }
-
-  function getContainer (element) {
-    let container = element;
-    //loop until parent is 
-    while (container.parent().prop("tagName") != "body" && !container.parent().hasClass("btech-formatted-content-wrapper")) {
-      if (container != $(container.parent())) break;
-      container = $(container.parent());
-      console.log(container);
-    }
-    return container;
-  }
-
   async function postLoad() {
     let vueString = '';
     await $.get(SOURCE_URL + '/custom_features/editor_toolbar/sidebar.vue', null, function (html) {
@@ -63,6 +43,25 @@
           this.minimized = true;
         },
 
+        initFormattedContent: function () {
+          let editor = tinymce.activeEditor;
+          let body = editor.getBody();
+          $(body).find('.btech-formatted-content-wrapper').each(() => {
+            $(this).unwrap();
+          });
+          $(body).contents().wrap(`<div class="btech-formatted-content-wrapper"></div>`);
+        },
+
+        getContainer: function (element) {
+          let container = element;
+          //loop until parent is 
+          while (container.parent().prop("tagName") != "body" && !container.parent().hasClass("btech-formatted-content-wrapper")) {
+            if (container != $(container.parent())) break;
+            container = $(container.parent());
+            console.log(container);
+          }
+          return container;
+        },
       }
     });
   }

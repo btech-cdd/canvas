@@ -12,6 +12,10 @@
         type: String,
         default: ""
       },
+      getContainer: {
+        type: Function,
+        default: () => {}
+      }
     },
     computed: {},
     data() {
