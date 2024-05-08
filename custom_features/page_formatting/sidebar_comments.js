@@ -35,6 +35,7 @@
               // Move the corresponding comment
               var commentSelector = '.btech-sidebar-comment-' + contentId;
               var comment = $(commentSelector);
+              let commentContent = $('.btech-sidebar-content-' + contentId);
 
               // Calculate the top position relative to the container
               let contentTop = content.offset().top - container.offset().top;
@@ -59,7 +60,12 @@
                 , 'background-color': '#F8F8F8' 
               });
               let ogBG = content.css('background-color');
-              comment.on( "mouseenter", ()=>{content.css({'background-color': highlightColor + ' !important'})}).on( "mouseleave", ()=>{content.css({'background-color': ogBG})});
+              comment.on("mouseenter", function() {
+                addImportantStyle('.btech-sidebar-content-' + contentId, 'background-color', highlightColor);
+              }).on("mouseleave", function() {
+                addImportantStyle('.btech-sidebar-content-' + contentId, 'background-color', ogBG);
+              });
+
           }
       });
     return true;
