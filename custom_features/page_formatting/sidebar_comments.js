@@ -59,7 +59,7 @@
                 , 'background-color': '#F8F8F8' 
               });
               let ogBG = content.css('background-color');
-              comment.on( "mouseenter", ()=>{content.hide(); content.css({'background-color': highlightColor + ' !important'})}).on( "mouseleave", ()=>{content.css({'background-color': ogBG})});
+              comment.on( "mouseenter", ()=>{content.remove(); content.css({'background-color': highlightColor + ' !important'})}).on( "mouseleave", ()=>{content.css({'background-color': ogBG})});
           }
       });
     return true;
