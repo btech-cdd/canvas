@@ -56,10 +56,6 @@
       </div>
       <div>
         <i
-          @click="addGradebookModal"
-          class="icon-gradebook"
-        ></i>
-        <i
           @click="addBannerModal"
           class="icon-text"
         ></i>
@@ -87,10 +83,9 @@
           @click="addCallout"
           class="icon-note-light"
         ></i>
-        <i
-          @click="addSidebarComment"
-          class="icon-discussion"
-        ></i>
+        <rce-sidebar-comment
+          :color="elColor"
+        ></rce-sidebar-comment>
       </div>
 
       <div>
