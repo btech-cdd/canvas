@@ -24,8 +24,21 @@
         let editor = tinymce.activeEditor;
         let existingColor = $("#btech-recolor-existing-color").val();
         let newColor = $("#btech-recolor-new-color").val();
+        let body = tinyMCE.activeEditor.getBody();
         console.log(existingColor);
         console.log(newColor);
+        $(body).find('*').each(function() {
+          // Check each element's CSS properties
+          if ($(this).css('color') === existingColor) { // #d22232 in RGB
+              $(this).css('color', newColor);
+          }
+          if ($(this).css('background-color') === existingColor) {
+              $(this).css('background-color', newColor);
+          }
+          if ($(this).css('border-color') === existingColor) {
+              $(this).css('border-color', newColor);
+          }
+        });
        
         // editor.execCommand("mceReplaceContent", false, `<p>`+citationString+`</p>`);
         bg.remove();
