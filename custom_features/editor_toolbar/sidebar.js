@@ -67,7 +67,7 @@
     });
     let toggleMenuButton = $('<span><i class="icon-edit"></i></span>')
     toggleMenuButton.click(() => {
-      console.log(app);
+      app.minimized = false;
     })
     $('span[title="Editor Statusbar"]').prepend(toggleMenuButton);
   }
