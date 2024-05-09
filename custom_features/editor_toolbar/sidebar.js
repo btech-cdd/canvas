@@ -6,7 +6,7 @@
       vueString = html.replace("<template>", "").replace("</template>", "");
     }, 'text');
     $('body').append(vueString);
-    new Vue({
+    let app = new Vue({
       el: '#btech-editor-vue',
       mounted: async function () {
         $('#wrapper').css('margin-right', `${this.width}px`);
@@ -65,6 +65,11 @@
         },
       }
     });
+    let toggleMenuButton = $('<span><i class="icon-edit"></i></span>')
+    toggleMenuButton.click(() => {
+      console.log(app);
+    })
+    $('span[title="Editor Statusbar"]').prepend(toggleMenuButton);
   }
 
   $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/sidebar_comment.js').done(function () {
