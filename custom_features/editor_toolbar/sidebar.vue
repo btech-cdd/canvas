@@ -8,24 +8,7 @@
     style="position: fixed; top: 0; height: 100%; background-color: #f1f1f1;"
   >
     <div
-      v-if="minimized"
-      @click="maximize"
-      style="
-        position: absolute;
-        top: 2rem;
-        background-color: #d22232;
-        color: white;
-        padding: 0.5rem;
-        cursor: pointer;
-      "
-      :style="{
-        'right': width + 'px'
-      }"
-    >
-      <i class="icon-edit"></i>
-    </div>
-    <div
-      v-else
+      v-if="!minimized" 
     >
       <div 
         style="
