@@ -65,7 +65,7 @@
         },
       }
     });
-    let toggleMenuButton = $('<span><i class="icon-edit"></i></span>')
+    let toggleMenuButton = $('<span><i style="color: black;" class="icon-edit"></i></span>')
     toggleMenuButton.click(() => {
       app.maximize();
     })
