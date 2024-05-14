@@ -29,7 +29,15 @@
         let selectionContent = selection.getContent();
         if (selectionContent !== "") {
           editor.execCommand("mceReplaceContent", false, `
-            <div class="btech-callout-box flat">
+            <div 
+              style="
+                background-color: #F6F6F6;
+                padding: 0.5rem;
+                margin: 0.5rem auto 1rem auto;;
+                width: 90%;
+                max-width: 50ch;
+              "
+            >
             <h3 style="
               margin-top: -1.5rem; 
               text-align: center; 
