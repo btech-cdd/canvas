@@ -82,6 +82,7 @@
   await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/image_right.js').done(function () {});
   await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/header_banner.js').done(function () {});
   await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/modal_header_left.js').done(function () {});
+  await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/modal_header_right.js').done(function () {});
   await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/header_hex.js').done(function () {});
   await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/banner.js').done(function () {});
   postLoad();
