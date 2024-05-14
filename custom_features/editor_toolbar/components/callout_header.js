@@ -51,6 +51,7 @@
                 display: inline-block; 
                 margin: auto; 
                 width: 80%;
+                "
               >
                 <strong>HEADER</strong>
               </span>
