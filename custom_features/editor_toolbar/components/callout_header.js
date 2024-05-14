@@ -1,5 +1,5 @@
 (async function() {
-  Vue.component('rce-callout', {
+  Vue.component('rce-callout-header', {
     template: ` 
       <i
         @click="create"
