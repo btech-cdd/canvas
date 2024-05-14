@@ -19,7 +19,7 @@
       <div 
         style="
           text-align: center;
-          background-color: #d22232;
+          background-color: #B30B0F;
           color: white;
           cursor: pointer;
           user-select: none;

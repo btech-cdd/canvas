@@ -24,7 +24,7 @@
             bodyfont: "#000000",
             bg: "#FFFFFF"
           } ,
-          elColor: "#d22232"
+          elColor: "#B30B0F"
         }
       },
       methods: {
