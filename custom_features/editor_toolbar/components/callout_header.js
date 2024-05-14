@@ -36,6 +36,7 @@
                 margin: 0.5rem auto 1rem auto;;
                 width: 90%;
                 max-width: 50ch;
+                border: 1px solid #DDD;
               "
             >
             <h3 style="
