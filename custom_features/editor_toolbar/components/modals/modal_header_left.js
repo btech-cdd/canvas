@@ -1,4 +1,5 @@
 (async function() {
+  console.log("MODAL HEADER LEFT");
   Vue.component('rce-modal-header-left', {
     template: ` 
       <i
