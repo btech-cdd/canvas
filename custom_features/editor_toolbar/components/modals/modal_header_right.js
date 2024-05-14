@@ -1,10 +1,10 @@
 (async function() {
-  Vue.component('rce-modal-header-left', {
+  Vue.component('rce-modal-header-right', {
     template: ` 
       <i
         @click="create"
         class="icon-text"
-        title="Create a left aligned header at the top of the current modal."
+        title="Create a right aligned header at the top of the current modal."
       ></i>
     `,
     props: {
@@ -39,14 +39,15 @@
           <h2
             style="
               margin-top: -2rem;
+              text-align: right;
               background-color: ${this.color};
               color: #FFFFFF;
               position: relative;
               z-index: 2;
               font-size: 2rem;
               display: inline-block;
-              margin-left: -2rem;
-              padding-left: 3rem;
+              margin-right: -2rem;
+              padding-right: 3rem;
               width: 90%;
               border: 0.25rem solid #FFFFFF;
             " 
@@ -58,3 +59,4 @@
     destroyed: function () {}
   });
 })();
+
