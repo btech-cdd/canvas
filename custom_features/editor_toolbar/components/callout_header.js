@@ -26,19 +26,23 @@
         if (selectionContent !== "") {
           editor.execCommand("mceReplaceContent", false, `
             <div class="btech-callout-box flat">
-            <h3
-              style="
-                margin-top: -2rem;
-                text-align: right;
+            <h3 style="
+              margin-top: -1.5rem; 
+              text-align: center; 
+              font-size: 1.5rem;"
+            >
+              <span style="
                 background-color: ${this.color};
-                color: #FFFFFF;
-                position: relative;
-                z-index: 2;
-                font-size: 1.5rem;
-                display: inline-block;
-                margin: auto;
-              " 
-            ><strong>HEADER</strong></h3>
+                color: #ffffff; 
+                z-index: 2; 
+                display: inline-block; 
+                margin: auto; 
+                padding-left: 1rem; 
+                padding-right: 1rem;"
+              >
+                <strong>HEADER</strong>
+              </span>
+            </h3>
             ${selectionContent}
             </div>
           `);
