@@ -33,7 +33,6 @@
         container.after(`
           <div
             class="
-              btech-formatted-content-modal
               btech-formatted-content-image-right-wrapper
             "
             style="
