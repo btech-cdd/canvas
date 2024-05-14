@@ -8,6 +8,10 @@
       ></i>
     `,
     props: {
+      color: {
+        type: String,
+        default: '#d22232'
+      }
     },
     computed: {},
     data() {
