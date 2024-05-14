@@ -50,8 +50,7 @@
                 z-index: 2; 
                 display: inline-block; 
                 margin: auto; 
-                padding-left: 1rem; 
-                padding-right: 1rem;"
+                width: 80%;
               >
                 <strong>HEADER</strong>
               </span>
