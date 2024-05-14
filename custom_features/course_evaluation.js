@@ -523,8 +523,8 @@
         bridgetools: bridgetools,
         activeUpdater: undefined,
         colors: {
-          primary: "#D22232",
-          secondary: "#B11121",
+          primary: "#B30B0F",
+          secondary: "#A10102",
           callout: "#F1F1F1",
           font: "#FFFFFF",
           bodyfont: "#000000",

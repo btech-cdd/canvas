@@ -356,9 +356,9 @@ async function _init() {
     editor.addShortcut("ctrl+alt+q", "Insert a citation.", citation);
     topPart.after("<div id='btech-custom-editor-buttons-container'></div>");
     let customButtonsContainer = $("#btech-custom-editor-buttons-container");
-    customButtonsContainer.prepend(`<input type="color" id="btech-custom-editor-buttons-color" value="#d22232" style="width: 48px; padding: 4px; padding-right: 0px;" list="default-colors"/>
+    customButtonsContainer.prepend(`<input type="color" id="btech-custom-editor-buttons-color" value="#B30B0F" style="width: 48px; padding: 4px; padding-right: 0px;" list="default-colors"/>
     <datalist id="default-colors">
-      <option>#d22232</option>
+      <option>#B30B0F</option>
       <option>#2232d2</option>
       <option>#32A852</option>
       <option>#E2A208</option>
