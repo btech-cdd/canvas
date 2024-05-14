@@ -16,6 +16,10 @@
       getContainer: {
         type: Function,
         default: () => {}
+      },
+      color: {
+        type: String,
+        default: '#d22232'
       }
     },
     computed: {},
