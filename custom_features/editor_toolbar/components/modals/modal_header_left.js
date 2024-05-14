@@ -36,7 +36,7 @@
         editor.selection.select(editor.selection.getNode(), true);
         editor.selection.collapse(true);
         tinymce.activeEditor.execCommand('mceInsertContent', false, `
-          <div style="background-color: #FFFFFF; margin-top: 1rem; border: 1px solid #DDD; padding: 0.5rem;">
+          <div style="background-color: #FFFFFF; margin-top: 1rem; padding: 0.5rem;">
             <h2
               style="
                 margin-top: -2rem;
