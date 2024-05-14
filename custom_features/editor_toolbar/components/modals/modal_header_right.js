@@ -48,7 +48,7 @@
               display: inline-block;
               padding-right: 1rem;
               width: 90%;
-              margin-left: 10%;
+              margin-left: calc(10% - 1rem);
               border: 0.25rem solid #FFFFFF;
             " 
           ><strong>HEADER</strong></h2>
