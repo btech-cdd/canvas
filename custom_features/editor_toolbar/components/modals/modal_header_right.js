@@ -38,7 +38,6 @@
         tinymce.activeEditor.execCommand('mceInsertContent', false, `
           <h2
             style="
-              margin-top: -2rem;
               text-align: right;
               background-color: ${this.color};
               color: #FFFFFF;
@@ -49,6 +48,7 @@
               margin-right: -2rem;
               padding-right: 3rem;
               width: 90%;
+              margin-left: 10%;
               border: 0.25rem solid #FFFFFF;
             " 
           ><strong>HEADER</strong></h2>
