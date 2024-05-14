@@ -50,13 +50,13 @@
                 z-index: 2; 
                 display: inline-block; 
                 margin: auto; 
-                width: 80%;
+                width: 90%;
                 "
               >
-                <strong>HEADER</strong>
+                <strong>Callout Header</strong>
               </span>
             </h3>
-            ${selectionContent}
+            <p>${selectionContent}</p>
             </div>
           `);
         } else {
