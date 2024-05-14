@@ -27,8 +27,11 @@
         let editor = tinymce.activeEditor;
         let selection = editor.selection;
         let selectionContent = selection.getContent();
+        let innerContent = "Callout Content";
         if (selectionContent !== "") {
-          editor.execCommand("mceReplaceContent", false, `
+          innerContent = selectionContent;
+        }
+        let content = `
             <div 
               style="
                 background-color: #F6F6F6;
@@ -56,15 +59,13 @@
                 <strong>Callout Header</strong>
               </span>
             </h3>
-            <p>${selectionContent}</p>
+            <p>${innerContent}</p>
             </div>
-          `);
+          `
+        if (selectionContent !== "") {
+          editor.execCommand("mceReplaceContent", false, content);
         } else {
-          editor.execCommand("mceInsertContent", false, `
-            <div class="btech-callout-box flat">
-              <p>Callout Content</p>
-            </div>
-          `);
+          editor.execCommand("mceInsertContent", false, content);
         }
       },
     },
