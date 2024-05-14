@@ -45,8 +45,7 @@
               z-index: 2;
               font-size: 2rem;
               display: inline-block;
-              margin-right: -2rem;
-              padding-right: 3rem;
+              padding-right: 1rem;
               width: 90%;
               margin-left: 10%;
               border: 0.25rem solid #FFFFFF;
