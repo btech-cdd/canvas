@@ -33,10 +33,10 @@
       // CREATES A COMMENT THAT APPEARS IN THE RIGHT MARGIN (PADDING) OF THE PAGE AND MOVES TO THE TOP OF THE ASSOCIATED ELEMENT EVEN ON PAGE RESIZE
       create: function () {
         let editor = tinymce.activeEditor;
-        editor.selection.select(editor.selection.getNode(), true);
-        editor.selection.collapse(true);
+        editor.selection.select(editor.selection.getNode(), false);
+        editor.selection.collapse(false);
         tinymce.activeEditor.execCommand('mceInsertContent', false, `
-          <div style="background-color: #F6F6F6; margin-top: 1rem; border: 1px solid #DDD">
+          <div style="background-color: #F6F6F6; margin-top: 1rem; border: 1px solid #DDD; padding: 0.5rem;">
             <h2
               style="
                 margin-top: -2rem;
