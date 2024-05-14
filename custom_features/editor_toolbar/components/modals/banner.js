@@ -77,7 +77,6 @@
                 margin-left: -2rem;
                 padding-left: 3rem;
                 width: 90%;
-                border: 0.25rem solid #FFFFFF;
               " 
             ><strong>HEADER</strong></h2>
           </div>
