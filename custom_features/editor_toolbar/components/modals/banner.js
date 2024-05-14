@@ -36,6 +36,8 @@
         let body = editor.getBody();
         this.initFormattedContent();
         let wrapper = $($(body).find('.btech-formatted-content-wrapper')[0]);
+        // look into a way to do gradient background colors
+        // background-image: linear-gradient(90deg, rgba(154,6,8,1) 0%, rgba(179,11,15,1) 64%,rgba(210,34,50,1)  100%);
         wrapper.prepend(`
           <div
             class="
