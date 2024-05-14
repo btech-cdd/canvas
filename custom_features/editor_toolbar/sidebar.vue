@@ -54,6 +54,12 @@
           :get-container="getContainer"
           :init-formatted-content="initFormattedContent"
         ></rce-modal-header-banner>
+        <rce-modal-header-left
+          :defaultimg="defaultimg"
+          :color="elColor"
+          :get-container="getContainer"
+          :init-formatted-content="initFormattedContent"
+        ></rce-modal-header-left>
         <rce-modal-header-hex-hide
           :defaultimg="defaultimg"
           :color="elColor"
