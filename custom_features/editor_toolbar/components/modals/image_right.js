@@ -29,8 +29,9 @@
       // CREATES A COMMENT THAT APPEARS IN THE RIGHT MARGIN (PADDING) OF THE PAGE AND MOVES TO THE TOP OF THE ASSOCIATED ELEMENT EVEN ON PAGE RESIZE
       create: function () {
         let editor = tinymce.activeEditor;
-        let container = this.getContainer($(editor.selection.getNode()));
-        container.after(`
+        editor.selection.select(editor.selection.getNode(), true);
+        editor.selection.collapse(true);
+        tinymce.activeEditor.execCommand('mceInsertContent', false, `
           <div
             class="
               btech-formatted-content-image-right-wrapper
