@@ -17,9 +17,9 @@
           width: 250,
           defaultimg: 'https://bridgetools.dev/canvas/media/image-placeholder.png',
           colors: {
-            primary: "#D22232",
-            secondary: "#B11121",
-            callout: "#F1F1F1",
+            primary: "#B30B0F",
+            secondary: "#A10102",
+            callout: "#F6F6F6",
             font: "#FFFFFF",
             bodyfont: "#000000",
             bg: "#FFFFFF"
