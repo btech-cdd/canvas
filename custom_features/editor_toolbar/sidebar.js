@@ -72,31 +72,18 @@
     $('span[title="Editor Statusbar"]').prepend(toggleMenuButton);
   }
 
-  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/sidebar_comment.js').done(function () {
-  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/hex_image.js').done(function () {
-  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/callout.js').done(function () {
-  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/citation.js').done(function () {
-  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/information_box.js').done(function () {
-  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/recolor.js').done(function () {
-  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/image_left.js').done(function () {
-  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/image_right.js').done(function () {
-  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/header_banner.js').done(function () {
-  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/modal_header_left.js').done(function () {
-  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/header_hex.js').done(function () {
-  $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/banner.js').done(function () {
-    postLoad();
-  });
-  });
-  });
-  });
-  });
-  });
-  });
-  });
-  });
-  });
-  });
-  });
-
+  await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/sidebar_comment.js').done(function () {});
+  await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/hex_image.js').done(function () {});
+  await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/callout.js').done(function () {});
+  await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/citation.js').done(function () {});
+  await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/information_box.js').done(function () {});
+  await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/recolor.js').done(function () {});
+  await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/image_left.js').done(function () {});
+  await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/image_right.js').done(function () {});
+  await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/header_banner.js').done(function () {});
+  await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/modal_header_left.js').done(function () {});
+  await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/header_hex.js').done(function () {});
+  await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/modals/banner.js').done(function () {});
+  postLoad();
 
 })();
