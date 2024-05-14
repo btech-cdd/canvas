@@ -98,6 +98,9 @@
           :color="elColor"
         ></rce-information-box>
         <rce-callout></rce-callout>
+        <rce-callout-header
+          :color="elColor"
+        ></rce-callout-header>
         <rce-sidebar-comment
           :color="elColor"
         ></rce-sidebar-comment>

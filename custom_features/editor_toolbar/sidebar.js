@@ -75,6 +75,7 @@
   await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/sidebar_comment.js').done(function () {});
   await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/hex_image.js').done(function () {});
   await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/callout.js').done(function () {});
+  await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/callout_header.js').done(function () {});
   await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/citation.js').done(function () {});
   await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/information_box.js').done(function () {});
   await $.getScript(SOURCE_URL + '/custom_features/editor_toolbar/components/recolor.js').done(function () {});
