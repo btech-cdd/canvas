@@ -35,7 +35,7 @@
                 padding: 0.5rem;
                 margin: 0.5rem auto 1rem auto;;
                 width: 90%;
-                max-width: 50ch;
+                max-width: 60ch;
                 border: 1px solid #DDD;
               "
             >
