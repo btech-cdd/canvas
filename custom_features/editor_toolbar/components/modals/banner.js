@@ -81,6 +81,9 @@
               " 
             ><strong>HEADER</strong></h2>
           </div>
+          <div style="background-color: #ffffff; margin-top: 1rem; padding: 0.5rem;">
+            <p>CONTENT</p>
+          </div>
         `);
       },
     },

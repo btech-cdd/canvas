@@ -46,15 +46,16 @@
                 z-index: 2;
                 font-size: 2rem;
                 display: inline-block;
-                margin-left: -2rem;
-                padding-left: 3rem;
-                width: 90%;
+                margin-left: -1rem;
+                padding-left: 2rem;
+                width: calc(90% - 1rem);
               " 
             ><strong>HEADER</strong></h2>
             <div>
               <p>CONTENT</p>
             </div>
           </div>
+          <p>&nbsp;</p>
         `)
       },
     },

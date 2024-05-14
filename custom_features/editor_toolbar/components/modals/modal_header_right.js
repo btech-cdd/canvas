@@ -47,8 +47,8 @@
                 z-index: 2;
                 font-size: 2rem;
                 display: inline-block;
-                padding-right: 1rem;
-                width: 90%;
+                padding-right: 2rem;
+                width: calc(90% - 1rem);
                 margin-left: calc(10%);
               " 
             ><strong>HEADER</strong></h2>
