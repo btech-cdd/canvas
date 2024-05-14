@@ -35,7 +35,8 @@
       create: function () {
         let editor = tinymce.activeEditor;
         let container = this.getContainer($(editor.selection.getNode()));
-        container.prepend(`
+        editor.execCommand("InsertNewBlockAfter");
+        tinymce.activeEditor.execCommand('mceInsertContent', false, `
           <h2
             style="
               margin-top: -2rem;
