@@ -34,7 +34,7 @@
       <div>
         <input type="color" id="btech-custom-editor-buttons-color" v-model="elColor" style="width: 48px; height: 28px; padding: 4px; padding-right: 0px;" list="default-colors"/>
         <datalist id="default-colors">
-          <option>#d22232</option>
+          <option>#B30B0F</option>
           <option>#2232d2</option>
           <option>#1f89e5</option>
           <option>#32A852</option>

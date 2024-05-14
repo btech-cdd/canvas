@@ -10,7 +10,7 @@
     props: {
       color: {
         type: String,
-        default: '#d22232'
+        default: '#FFFFFF'
       }
     },
     computed: {},
