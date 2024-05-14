@@ -38,6 +38,7 @@
         tinymce.activeEditor.execCommand('mceInsertContent', false, `
           <h2
             style="
+              margin-top: -2rem;
               background-color: ${this.color};
               color: #FFFFFF;
               position: relative;
