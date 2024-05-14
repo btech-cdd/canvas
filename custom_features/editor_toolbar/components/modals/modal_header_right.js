@@ -49,8 +49,8 @@
                 display: inline-block;
                 padding-right: 1rem;
                 width: 90%;
-                margin-left: calc(10% - 1rem);
-                border: 0.25rem solid #FFFFFF;
+                margin-left: calc(10%);
+                border: 0.25rem solid #F6F6F6;
               " 
             ><strong>HEADER</strong></h2>
             <div>
