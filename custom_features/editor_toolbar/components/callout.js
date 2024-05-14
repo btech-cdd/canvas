@@ -39,7 +39,7 @@
                 border: 1px solid #DDD;
               "
             >
-            ${selectionContent}
+             <p>${selectionContent}</p>
             </div>
           `);
         } else {
