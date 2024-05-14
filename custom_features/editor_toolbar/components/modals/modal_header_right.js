@@ -36,22 +36,27 @@
         editor.selection.select(editor.selection.getNode(), true);
         editor.selection.collapse(true);
         tinymce.activeEditor.execCommand('mceInsertContent', false, `
-          <h2
-            style="
-              margin-top: -2rem;
-              text-align: right;
-              background-color: ${this.color};
-              color: #FFFFFF;
-              position: relative;
-              z-index: 2;
-              font-size: 2rem;
-              display: inline-block;
-              padding-right: 1rem;
-              width: 90%;
-              margin-left: calc(10% - 1rem);
-              border: 0.25rem solid #FFFFFF;
-            " 
-          ><strong>HEADER</strong></h2>
+          <div style="background-color: #F0F0F0; margin-top: 1rem;">
+            <h2
+              style="
+                margin-top: -2rem;
+                text-align: right;
+                background-color: ${this.color};
+                color: #FFFFFF;
+                position: relative;
+                z-index: 2;
+                font-size: 2rem;
+                display: inline-block;
+                padding-right: 1rem;
+                width: 90%;
+                margin-left: calc(10% - 1rem);
+                border: 0.25rem solid #FFFFFF;
+              " 
+            ><strong>HEADER</strong></h2>
+            <div>
+              <p>CONTENT</p>
+            </div>
+          </div>
         `)
       },
     },
