@@ -29,13 +29,33 @@
         let selectionContent = selection.getContent();
         if (selectionContent !== "") {
           editor.execCommand("mceReplaceContent", false, `
-            <div class="btech-callout-box flat">
+            <div
+              style="
+                background-color: #F6F6F6;
+                padding: 0.5rem;
+                margin: 0.5rem auto 1rem auto;;
+                width: 90%;
+                max-width: 60ch;
+                border: 1px solid #DDD;
+              "
+            >
             ${selectionContent}
             </div>
           `);
         } else {
+          editor.selection.select(editor.selection.getNode(), false);
+          editor.selection.collapse(false);
           editor.execCommand("mceInsertContent", false, `
-            <div class="btech-callout-box flat">
+            <div 
+              style="
+                background-color: #F6F6F6;
+                padding: 0.5rem;
+                margin: 0.5rem auto 1rem auto;;
+                width: 90%;
+                max-width: 60ch;
+                border: 1px solid #DDD;
+              "
+            >
               <p>Callout Content</p>
             </div>
           `);

@@ -65,6 +65,8 @@
         if (selectionContent !== "") {
           editor.execCommand("mceReplaceContent", false, content);
         } else {
+          editor.selection.select(editor.selection.getNode(), false);
+          editor.selection.collapse(false);
           editor.execCommand("mceInsertContent", false, content);
         }
       },
