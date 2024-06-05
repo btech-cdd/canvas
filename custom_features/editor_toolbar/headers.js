@@ -25,6 +25,8 @@
     'icon-info',
     'icon-materials-required',
     'icon-check',
+    'icon-replied',
+    'icon-search',
     'bcon-faucet'
   ];
   //escape if not on the editor page
