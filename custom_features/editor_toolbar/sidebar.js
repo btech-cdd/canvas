@@ -54,7 +54,6 @@
 
         getContainer: function (element) {
           let container = element;
-          console.log(container);
           //loop until parent is 
           while (container.parent().prop("tagName") != "body" && !container.parent().hasClass("btech-formatted-content-wrapper")) {
             if (container != $(container.parent())) break;

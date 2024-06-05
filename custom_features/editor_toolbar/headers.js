@@ -24,6 +24,7 @@
     'icon-ms-ppt',
     'icon-info',
     'icon-materials-required',
+    'icon-check',
     'bcon-faucet'
   ];
   //escape if not on the editor page
