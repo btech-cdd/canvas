@@ -1,11 +1,12 @@
 (async function() {
   Vue.component('rce-modal-banner', {
     template: ` 
-      <i
+      <img
         @click="create"
         class="icon-image"
         title="Create a banner image."
-      ></i>
+        src="/media/editor-icons/EditorIcon_HeaderRightText_.png"
+      ></img>
     `,
     props: {
       color: {
