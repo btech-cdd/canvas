@@ -89,6 +89,18 @@
           :init-formatted-content="initFormattedContent"
         ></rce-modal-header-right>
 
+        <rce-modal-image-right
+          :defaultimg="defaultimg"
+          :get-container="getContainer"
+          :init-formatted-content="initFormattedContent"
+        ></rce-modal-image-right>
+        <rce-modal-image-left
+          :defaultimg="defaultimg"
+          :get-container="getContainer"
+          :init-formatted-content="initFormattedContent"
+        ></rce-modal-image-left>
+
+        <!-- hidden modals -->
         <rce-modal-header-hex-hide
           :defaultimg="defaultimg"
           :color="elColor"
@@ -101,16 +113,6 @@
           :get-container="getContainer"
           :init-formatted-content="initFormattedContent"
         ></rce-modal-banner-hide>
-        <rce-modal-image-right
-          :defaultimg="defaultimg"
-          :get-container="getContainer"
-          :init-formatted-content="initFormattedContent"
-        ></rce-modal-image-right>
-        <rce-modal-image-left
-          :defaultimg="defaultimg"
-          :get-container="getContainer"
-          :init-formatted-content="initFormattedContent"
-        ></rce-modal-image-left>
 
         <!-- ELEMENTS -->
         <rce-callout></rce-callout>
@@ -118,17 +120,18 @@
           :color="elColor"
         ></rce-callout-header>
 
-        <!--Hex image not working right now, so added hide to the component tag so nothing shows up-->
-        <rce-hex-image-hide
-          :defaultimg="defaultimg"
-        ></rce-hex-image-hide>
-
+        <!-- Missing Icons -->
         <rce-information-box
           :color="elColor"
         ></rce-information-box>
         <rce-sidebar-comment
           :color="elColor"
         ></rce-sidebar-comment>
+
+        <!--Hex image not working right now, so added hide to the component tag so nothing shows up-->
+        <rce-hex-image-hide
+          :defaultimg="defaultimg"
+        ></rce-hex-image-hide>
       </div>
 
       <div>
