@@ -34,7 +34,9 @@
       <div
         style="
           display: grid;
-          grid-row: auto auto;
+          grid-template-columns: auto auto;
+          grid-auto-rows: auto;
+          gap: 10px;
         " 
       >
         <div>
