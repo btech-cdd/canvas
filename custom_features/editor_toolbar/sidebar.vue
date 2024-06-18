@@ -34,7 +34,7 @@
       <div
         style="
           display: grid;
-          grid-template-columns: auto auto;
+          grid-template-columns: 1fr 1fr;
           grid-auto-rows: auto;
           gap: 10px;
         " 
@@ -108,6 +108,7 @@
         <rce-callout-header
           :color="elColor"
         ></rce-callout-header>
+
         <!--Hex image not working right now, so added hide to the component tag so nothing shows up-->
         <rce-hex-image-hide
           :defaultimg="defaultimg"
