@@ -1,11 +1,11 @@
 (async function() {
   Vue.component('rce-modal-image-left', {
     template: ` 
-      <i
+      <rce-editor-icon
         @click="create"
-        class="icon-image"
         title="Create a content modal with an image on the left and text content on the right."
-      ></i>
+        :icon="'ImageText.png'"
+      ></rce-editor-icon>
     `,
     props: {
       defaultimg: {

@@ -4,7 +4,7 @@
       <rce-editor-icon
         @click="create"
         title="Create a left aligned header at the top of the current modal."
-        :icon="'EditorIcon_HeaderLeftText_.png'"
+        :icon="'HeaderLeftText.png'"
       ></rce-editor-icon>
     `,
     props: {
