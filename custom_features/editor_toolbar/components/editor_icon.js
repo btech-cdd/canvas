@@ -2,7 +2,6 @@
   Vue.component('rce-editor-icon', {
     template: ` 
       <div
-        class="icon-text"
       >
         <img
           :src="'https://bridgetools.dev/canvas/media/editor-icons/' + icon"
