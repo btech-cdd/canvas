@@ -97,6 +97,11 @@
           :get-container="getContainer"
           :init-formatted-content="initFormattedContent"
         ></rce-modal-image-right>
+        <rce-modal-image-left
+          :defaultimg="defaultimg"
+          :get-container="getContainer"
+          :init-formatted-content="initFormattedContent"
+        ></rce-modal-image-left>
 
         <!-- ELEMENTS -->
         <!--Hex image not working right now, so added hide to the component tag so nothing shows up-->
