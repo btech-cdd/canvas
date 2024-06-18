@@ -1,12 +1,14 @@
 (async function() {
   Vue.component('rce-modal-header-right', {
     template: ` 
-      <img
-        @click="create"
-        class="icon-text"
-        title="Create a right aligned header at the top of the current modal."
-        src="https://bridgetools.dev/canvas/media/editor-icons/EditorIcon_HeaderRightText_.png"
-      ></img>
+      <div>
+        <img
+          @click="create"
+          class="icon-text"
+          title="Create a right aligned header at the top of the current modal."
+          src="https://bridgetools.dev/canvas/media/editor-icons/EditorIcon_HeaderRightText_.png"
+        ></img>
+      </div>
     `,
     props: {
       defaultimg: {
