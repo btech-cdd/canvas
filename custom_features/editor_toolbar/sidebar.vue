@@ -57,12 +57,16 @@
         </div>
         <!-- QUOTES -->
         <div></div>
+
         <rce-modal-header-banner
           :defaultimg="defaultimg"
           :color="elColor"
           :get-container="getContainer"
           :init-formatted-content="initFormattedContent"
         ></rce-modal-header-banner>
+        <!-- Video -->
+        <div></div>
+
         <rce-modal-header-left
           :defaultimg="defaultimg"
           :color="elColor"
