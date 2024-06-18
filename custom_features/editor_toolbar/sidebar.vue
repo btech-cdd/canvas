@@ -65,7 +65,7 @@
           :init-formatted-content="initFormattedContent"
         ></rce-modal-header-banner>
         <!-- Video -->
-        <div></div>
+        <rce-editor-icon :icon="'EditorIcon_Video_.png'"></rce-editor-icon>
 
         <rce-modal-header-left
           :defaultimg="defaultimg"
