@@ -56,7 +56,7 @@
           <rce-recolor></rce-recolor>
         </div>
         <!-- QUOTES -->
-        <div></div>
+        <rce-editor-icon :icon="'Quote.png'"></rce-editor-icon>
 
         <rce-modal-header-banner
           :defaultimg="defaultimg"
@@ -65,7 +65,7 @@
           :init-formatted-content="initFormattedContent"
         ></rce-modal-header-banner>
         <!-- Video -->
-        <rce-editor-icon :icon="'EditorIcon_Video_.png'"></rce-editor-icon>
+        <rce-editor-icon :icon="'Video.png'"></rce-editor-icon>
 
         <rce-modal-header-left
           :defaultimg="defaultimg"
