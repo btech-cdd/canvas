@@ -1,11 +1,11 @@
 (async function() {
   Vue.component('rce-recolor', {
     template: ` 
-      <i
+      <rce-editor-icon
         @click="recolor"
-        class="icon-materials-required"
         title="Swap existing colors for new colors."
-      ></i>
+        :icon="'ColorSwap.png'"
+      ></rce-editor-icon>
     `,
     props: {
     },
