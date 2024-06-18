@@ -1,11 +1,11 @@
 (async function() {
   Vue.component('rce-modal-header-left', {
     template: ` 
-      <i
+      <rce-editor-icon
         @click="create"
-        class="icon-text"
         title="Create a left aligned header at the top of the current modal."
-      ></i>
+        :icon="'EditorIcon_HeaderLeftText_.png'"
+      ></rce-editor-icon>
     `,
     props: {
       defaultimg: {

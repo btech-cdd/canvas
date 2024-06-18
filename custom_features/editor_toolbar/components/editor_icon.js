@@ -1,8 +1,7 @@
 (async function() {
   Vue.component('rce-editor-icon', {
     template: ` 
-      <div
-      >
+      <div>
         <img
           :src="'https://bridgetools.dev/canvas/media/editor-icons/' + icon"
         ></img>
