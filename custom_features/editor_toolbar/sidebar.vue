@@ -56,7 +56,7 @@
           <rce-recolor></rce-recolor>
         </div>
         <!-- QUOTES -->
-        <rce-editor-icon :icon="'Quote.png'"></rce-editor-icon>
+        <rce-citation></rce-citation>
 
         <rce-modal-header-banner
           :defaultimg="defaultimg"
@@ -104,20 +104,18 @@
         ></rce-modal-image-left>
 
         <!-- ELEMENTS -->
+        <rce-callout></rce-callout>
+        <rce-callout-header
+          :color="elColor"
+        ></rce-callout-header>
         <!--Hex image not working right now, so added hide to the component tag so nothing shows up-->
         <rce-hex-image-hide
           :defaultimg="defaultimg"
         ></rce-hex-image-hide>
 
-        <rce-citation></rce-citation>
-
         <rce-information-box
           :color="elColor"
         ></rce-information-box>
-        <rce-callout></rce-callout>
-        <rce-callout-header
-          :color="elColor"
-        ></rce-callout-header>
         <rce-sidebar-comment
           :color="elColor"
         ></rce-sidebar-comment>

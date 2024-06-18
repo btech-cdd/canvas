@@ -1,11 +1,11 @@
 (async function() {
   Vue.component('rce-citation', {
     template: ` 
-      <i
+      <rce-editor-icon
         @click="citation"
-        class="icon-compose"
         title="Create an in text citation."
-      ></i>
+        :icon="'Quote.png'"
+      ></rce-editor-icon>
     `,
     props: {
     },
