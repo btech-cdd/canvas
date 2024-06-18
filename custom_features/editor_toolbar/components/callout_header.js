@@ -1,11 +1,11 @@
 (async function() {
   Vue.component('rce-callout-header', {
     template: ` 
-      <i
+      <rce-editor-icon
         @click="create"
-        class="icon-note-light"
-        title="Create a gray, centered callout box."
-      ></i>
+        title="Create a gray, centered callout box with a header."
+        :icon="'CalloutHeader.png'"
+      ></rce-editor-icon>
     `,
     props: {
       color: {
