@@ -43,7 +43,7 @@
         console.log(newColor);
         $(updatedContent).find('*').each(function() {
           // Check each element's CSS properties
-          if ($(this).css('color') === existingColor) { // #d22232 in RGB
+          if ($(this).css('color') === existingColor) { 
               $(this).css('color', newColor);
           }
           if ($(this).css('background-color') === existingColor) {
