@@ -12,13 +12,15 @@
       let srcIndex = srcs.indexOf(src);
       if ($("#btech-zoomed-image-modal-img").length > 0) return;
       let modal = $(`
-        <div style="display: block;" class="btech-zoomed-image-modal">
-          <span class="btech-zoomed-image-modal-close">&times;</span>
-          <span class="btech-zoomed-image-modal-content-scroll-left" style="position: absolute; left: 10px; top: 50%; cursor: pointer; user-select: none;">&#9664;</span>
-          <div style="text-align: center; position: relative;">
-            <img class="btech-zoomed-image-modal-content" id="btech-zoomed-image-modal-img" src="${src}">
+        <div class="btech-zoomed-image-modal-bg">
+          <div style="display: block;" class="btech-zoomed-image-modal">
+            <span class="btech-zoomed-image-modal-close">&times;</span>
+            <span class="btech-zoomed-image-modal-content-scroll-left" style="position: absolute; left: 10px; top: 50%; cursor: pointer; user-select: none;">&#9664;</span>
+            <div style="text-align: center; position: relative;">
+              <img class="btech-zoomed-image-modal-content" id="btech-zoomed-image-modal-img" src="${src}">
+            </div>
+            <span class="btech-zoomed-image-modal-content-scroll-right" style="position: absolute; right: 10px; top: 50%; cursor: pointer; user-select: none;">&#9654;</span>
           </div>
-          <span class="btech-zoomed-image-modal-content-scroll-right" style="position: absolute; right: 10px; top: 50%; cursor: pointer; user-select: none;">&#9654;</span>
         </div>
       `);
       

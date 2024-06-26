@@ -327,6 +327,12 @@ div.btech-formatted-content-banner img {
 
 
 .btech-zoomed-image-modal {
+  background-color: rgba(0,0,0,0.5);
+  width: 100vw;
+  height: 100vh;
+}
+
+.btech-zoomed-image-modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
