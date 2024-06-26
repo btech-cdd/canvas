@@ -1,6 +1,9 @@
 (function() {
   $(document).ready(function() {
     $("#content").on("click", "img:not(.btech-zoomed-image-modal-content)", function() {
+      if ($(this).parent().is("a")) {
+        return; // Exit the function if the parent is an <a> tag
+      }
       let src = $(this).attr("src");
       let srcs = [];
       $('#content img').each(function () {
@@ -20,6 +23,12 @@
       `);
       
       $('#content').append(modal);
+
+      modal.on("click", function(event) {
+        if ($(event.target).is(modal)) {
+            modal.remove();
+        }
+      });
 
       $(".btech-zoomed-image-modal-close").click(function(e) {
         e.preventDefault();
