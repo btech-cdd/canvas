@@ -353,7 +353,6 @@ div.btech-formatted-content-banner img {
   position: absolute;
   top: 15px;
   right: 35px;
-  color: #ddd;
   font-size: 40px;
   font-weight: bold;
   transition: 0.3s;
@@ -363,7 +362,7 @@ div.btech-formatted-content-banner img {
 .btech-zoomed-image-modal-close,
 .btech-zoomed-image-modal-content-scroll-left,
 .btech-zoomed-image-modal-content-scroll-right {
-  color: #ddd;
+  color: #888;
 }
 
 .btech-zoomed-image-modal-close:hover,
@@ -372,7 +371,7 @@ div.btech-formatted-content-banner img {
 .btech-zoomed-image-modal-close:focus,
 .btech-zoomed-image-modal-content-scroll-left:focus,
 .btech-zoomed-image-modal-content-scroll-right:focus {
-  color: #bbb;
+  color: #555;
   text-decoration: none;
   cursor: pointer;
 }
