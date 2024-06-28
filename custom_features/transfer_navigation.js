@@ -57,10 +57,14 @@ transferNavigation.click(async function () {
                 value: progress
             });
             if (tab !== undefined) {
-                await $.put(`/api/v1/courses/${course.id}/tabs/${tab.id}`, {
-                    position: tab.position,
-                    hidden: tab.hidden ?? false
-                })
+                try {
+                  await $.put(`/api/v1/courses/${course.id}/tabs/${tab.id}`, {
+                      position: tab.position,
+                      hidden: tab.hidden ?? false
+                  })
+                } catch (err) {
+                  console.log(err);
+                }
             }
         }
     }
