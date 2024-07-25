@@ -56,7 +56,7 @@
     let relevantObjectivesString = ``;
     for (let i = 1; i < objectives.length; i++) {
       let objective = objectives[i];
-      relevantObjectivesString += `<div>${objective.objective_text}</div>`;
+      relevantObjectivesString += `<div>${assignmentReview.objectives.includes(objective.objective_id) ? '&#10003;' : ''}${objective.objective_text}</div>`;
     }
     let relevantObjectivesEl = $(`<div>${relevantObjectivesString}</div>`);
     $('#sidebar_content').append(relevantObjectivesEl);
