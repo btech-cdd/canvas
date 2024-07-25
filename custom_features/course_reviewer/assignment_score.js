@@ -7,12 +7,12 @@
     console.log(err);
   }
   const bloomsColors = {
-    'remember': '#d222d2',
-    'understand': '#2222d2',
-    'apply': '#22d222',
-    'analyze': '#d2d222',
-    'evaluate': '#d28222',
-    'create': '#d22232' 
+    'remember': '#a222a2',
+    'understand': '#2222a2',
+    'apply': '#22a222',
+    'analyze': '#a2a222',
+    'evaluate': '#a27222',
+    'create': '#a22232' 
   }
   if (assignmentReviews?.length > 0) {
     let assignmentReview = assignmentReviews[0];
