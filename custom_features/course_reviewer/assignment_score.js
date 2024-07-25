@@ -64,6 +64,8 @@
     } catch (err) {
       console.log(err);
     }
+
+    console.log(rubricReview);
     if (rubricReviews) {
       let rubricReviewEl = $(`
         <div style="padding: 8px 0;">
