@@ -77,7 +77,7 @@
             <span style="width: 5rem; display: inline-block;">Granularity</span><span>${ clarityEmoji?.[rubricReview.granularity] ?? ''}</span>
           </div>
           <div title="Grading levels are divided in a logical way that allows students to understand why they got the score they got. It also enagles students to know how to improve.">
-            <span style="width: 5rem; display: inline-block;">Grading Levels</span><span>${ clarityEmoji?.[rubricReview.grading_levels] ?? ''}</span>
+            <span style="width: 5rem; display: inline-block;">Scoring</span><span>${ clarityEmoji?.[rubricReview.grading_levels] ?? ''}</span>
           </div>
           <div title="The writing is clear and free from spelling and grammar errors.">
             <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ clarityEmoji?.[rubricReview.writing_quality] ?? ''}</span>
