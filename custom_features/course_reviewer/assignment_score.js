@@ -33,8 +33,12 @@
       year = match[2];
       console.log(courseCode);
       console.log(year);
-      objectives = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${courseCode}/year/${year}/objectives`);
-      console.log(objectives);
+      let objectivesData = [];
+      objectivesData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${courseCode}/year/${year}/objectives`);
+      for (let o in objectivesData) {
+        let objective = objectivesData[o];
+        objectives[objective.objective_id] = objective;
+      }
     } else {
       console.log("NO SIS ID FOUND");
     }
@@ -47,6 +51,8 @@
     $("#aside").css({
       'height': '90vh'
     });
+
+    console.log(assignmentReview);
 
 
     let reviewEl = $(`
