@@ -1,8 +1,8 @@
 (async function () {
   // do we have a review?
-  let assignmentReviews = [];
+  let assignmentReview;
   try {
-    assignmentReviews = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`);
+    assignmentReview = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`);
   } catch (err) {
     console.log(err);
   }
@@ -20,9 +20,7 @@
     '&#128528',
     '&#128512;',
   ]
-  console.log(assignmentReviews)
-  if (assignmentReviews?.length > 0) {
-    let assignmentReview = assignmentReviews[0];
+  if (assignmentReview) {
     console.log(assignmentReview);    
     $('#sidebar_content').css({
       'position': 'sticky',
@@ -62,12 +60,11 @@
     $('#sidebar_content').append(reviewEl);
 
     try {
-      rubricReviews = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}/rubric`);
+      rubricReview = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}/rubric`);
     } catch (err) {
       console.log(err);
     }
-    if (rubricReviews?.length > 0) {
-      let rubricReview = rubricReviews[0];
+    if (rubricReviews) {
       let rubricReviewEl = $(`
         <div style="padding: 8px 0;">
           <h2>Rubric Review</h2>
