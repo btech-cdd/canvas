@@ -37,7 +37,7 @@
     let reviewEl = $(`
       <div style="padding: 8px 0;">
         <h2>Assignment Review</h2>
-        <div>
+        <div style="margin-bottom: 0.5rem;">
           <span style="background-color: ${bloomsColors?.[assignmentReview.blooms.toLowerCase()] ?? '#000000'}; color: #FFFFFF; padding: 0.5rem; border-radius: 0.5rem;">${assignmentReview.blooms}</span>
         </div>
         <div>
@@ -52,7 +52,7 @@
         <div>
           <span style="width: 5rem;">Career Relevance</span><span>${ assignmentReview.career_relevance? '&#128512;' : '&#128546;'}</span>
         </div>
-        <div>
+        <div style="margin-top: 0.5rem;">
           <h2>AI Feedback</h2>
           <p>${assignmentReview.feedback}</p>
         </div>
