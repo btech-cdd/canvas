@@ -53,7 +53,12 @@
     });
 
     console.log(assignmentReview);
-
+    let relevantObjectivesString = ``;
+    for (let i = 1; i < objectives.length; i++) {
+      let objective = objectives[i];
+      relevantObjectivesString += `<div>${objective.objective_text}</div>`;
+    }
+    let relevantObjectivesEl = $(`<div>${relevantObjectivesString}</div>`);
 
     let reviewEl = $(`
       <div style="padding: 8px 0;">
