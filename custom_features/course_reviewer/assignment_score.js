@@ -28,7 +28,7 @@
 
     console.log(assignmentReview.blooms);
 
-    $('#sidebar_content').append(`
+    let reviewEl = $(`
       <div style="padding: 8px 0;">
         <h2>Assignment Review</h2>
         <div>
@@ -36,6 +36,8 @@
           Chunked Content <span>${ assignmentReview.chunkedContent ? '&#128512;' : '&#128546;'}</span>
         </div>
       </div> 
-      `)
+      `);
+    console.log(reviewEl);
+    $('#sidebar_content').append(reviewEl);
   }
 })();
