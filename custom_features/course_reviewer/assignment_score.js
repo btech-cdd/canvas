@@ -26,6 +26,8 @@
       'height': '90vh'
     });
 
+    console.log(assignmentReview.blooms);
+
     $('#sidebar_content').append(`
       <div style="padding: 8px 0;">
         <h2>Assignment Review</h2>
