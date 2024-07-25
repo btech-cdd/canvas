@@ -14,6 +14,12 @@
     'evaluate': '#a27222',
     'create': '#a22232' 
   }
+  const clarityEmoji = [
+    '',
+    '&#128546',
+    '&#128528',
+    '&#128512;',
+  ]
   if (assignmentReviews?.length > 0) {
     let assignmentReview = assignmentReviews[0];
     console.log(assignmentReview);    
@@ -35,7 +41,19 @@
           Blooms Level <span style="background-color: ${bloomsColors?.[assignmentReview.blooms.toLowerCase()] ?? '#000000'}; color: #FFFFFF; padding: 0.5rem; border-radius: 0.5rem;">${assignmentReview.blooms}</span>
         </div>
         <div>
-          Chunked Content <span>${ assignmentReview.chunkedContent ? '&#128512;' : '&#128546;'}</span>
+          Clarity <span>${ clarityEmoji?.[assignmentReview.clarity] ?? ''}</span>
+        </div>
+        <div>
+          Chunked Content <span>${ assignmentReview.chunked_content ? '&#128512;' : '&#128546;'}</span>
+        </div>
+        <div>
+          Includes Outcomes<span>${ assignmentReview.includes_outcomes? '&#128512;' : '&#128546;'}</span>
+        </div>
+        <div>
+          Career Relevance<span>${ assignmentReview.career_relevance? '&#128512;' : '&#128546;'}</span>
+        </div>
+        <div>
+          <p>${assignmentReview.feedback}</p>
         </div>
       </div> 
       `);
