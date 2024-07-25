@@ -23,14 +23,15 @@
   if (assignmentReview) {
     let objectives = [];
     let courseData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
+    console.log(courseData):
 
     let regex = /^([A-Z]{4} \d{4}).*(\d{4})(?=[A-Z]{2})/;
     let match = courseData.sis_course_id.match(regex);
 
     if (match) {
       courseCode = match[1];
-      year = match[2]
-      let objectives = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${courseCode}/year/${year}/objectives`);
+      year = match[2];
+      objectives = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${courseCode}/year/${year}/objectives`);
       console.log(objectives);
     } else {
       console.log("NO SIS ID FOUND");
