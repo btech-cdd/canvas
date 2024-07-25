@@ -32,7 +32,7 @@
       <div style="padding: 8px 0;">
         <h2>Assignment Review</h2>
         <div>
-          Blooms Level <span style="background-color: ${bloomsColors?.[assignmentReview.blooms.toLowerCase()] ?? '#FFFFFF'}>${assignmentReview.blooms}</span>
+          Blooms Level <span style="background-color: ${bloomsColors?.[assignmentReview.blooms.toLowerCase()] ?? '#FFFFFF'}">${assignmentReview.blooms}</span>
           Chunked Content <span>${ assignmentReview.chunkedContent ? '&#128512;' : '&#128546;'}</span>
         </div>
       </div> 
