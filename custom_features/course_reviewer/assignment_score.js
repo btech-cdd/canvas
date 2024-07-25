@@ -50,7 +50,7 @@
           <span style="width: 5rem; display: inline-block;">Outcomes</span><span>${ assignmentReview.includes_outcomes? '&#128512;' : '&#128546;'}</span>
         </div>
         <div>
-          <span style="width: 5rem; display: inline-block;">Relevance</span><span>${ assignmentReview.career_relevance? '&#128512;' : '&#128546;'}</span>
+          <span style="width: 5rem; display: inline-block;">Industry</span><span>${ assignmentReview.career_relevance? '&#128512;' : '&#128546;'}</span>
         </div>
         <div style="margin-top: 0.5rem; display: inline-block;">
           <h2>AI Feedback</h2>
