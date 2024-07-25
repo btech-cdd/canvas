@@ -1,4 +1,5 @@
 (async function () {
+  console.log("ASSIGNMENT SCORE")
   $('#sidebar_content').css({
     'position': 'sticky',
     'top': 0,
