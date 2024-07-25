@@ -2,7 +2,7 @@
   // do we have a review?
   let assignmentReviews = [];
   try {
-    assignmentReviews = await bridgetoolsReq('https://reports.bridgetools.dev/api/courses/586001/assignments/6280836');
+    assignmentReviews = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`);
   } catch (err) {
     console.log(err);
   }
