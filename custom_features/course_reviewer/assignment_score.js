@@ -66,7 +66,7 @@
     }
 
     console.log(rubricReview);
-    if (rubricReviews) {
+    if (rubricReview) {
       let rubricReviewEl = $(`
         <div style="padding: 8px 0;">
           <h2>Rubric Review</h2>
