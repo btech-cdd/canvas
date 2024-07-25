@@ -37,22 +37,22 @@
     let reviewEl = $(`
       <div style="padding: 8px 0;">
         <h2>Assignment Review</h2>
-        <div style="margin-bottom: 0.5rem;">
-          <span style="background-color: ${bloomsColors?.[assignmentReview.blooms.toLowerCase()] ?? '#000000'}; color: #FFFFFF; padding: 0.5rem; border-radius: 0.5rem;">${assignmentReview.blooms}</span>
+        <div style="margin-bottom: 0.5rem; display: inline-block;">
+          <span style="background-color: ${bloomsColors?.[assignmentReview.blooms.toLowerCase()] ?? '#000000'}; color: #FFFFFF; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${assignmentReview.blooms}</span>
         </div>
         <div>
-          <span style="width: 5rem;">Clarity</span><span>${ clarityEmoji?.[assignmentReview.clarity] ?? ''}</span>
+          <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ clarityEmoji?.[assignmentReview.clarity] ?? ''}</span>
         </div>
         <div>
-          <span style="width: 5rem;">Chunked Content</span><span>${ assignmentReview.chunked_content ? '&#128512;' : '&#128546;'}</span>
+          <span style="width: 5rem; display: inline-block;">Chunking</span><span>${ assignmentReview.chunked_content ? '&#128512;' : '&#128546;'}</span>
         </div>
         <div>
-          <span style="width: 5rem;">Includes Outcomes</span><span>${ assignmentReview.includes_outcomes? '&#128512;' : '&#128546;'}</span>
+          <span style="width: 5rem; display: inline-block;">Outcomes</span><span>${ assignmentReview.includes_outcomes? '&#128512;' : '&#128546;'}</span>
         </div>
         <div>
-          <span style="width: 5rem;">Career Relevance</span><span>${ assignmentReview.career_relevance? '&#128512;' : '&#128546;'}</span>
+          <span style="width: 5rem; display: inline-block;">Relevance</span><span>${ assignmentReview.career_relevance? '&#128512;' : '&#128546;'}</span>
         </div>
-        <div style="margin-top: 0.5rem;">
+        <div style="margin-top: 0.5rem; display: inline-block;">
           <h2>AI Feedback</h2>
           <p>${assignmentReview.feedback}</p>
         </div>
