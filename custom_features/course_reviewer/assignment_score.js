@@ -25,7 +25,7 @@
     console.log(courseData);
     let courseCode = courseData.course_code;
     console.log(courseCode);
-    let objectives = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`);
+    // let objectives = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`);
     $('#sidebar_content').css({
       'position': 'sticky',
       'top': 0,
