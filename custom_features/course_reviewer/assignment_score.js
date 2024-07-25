@@ -38,21 +38,22 @@
       <div style="padding: 8px 0;">
         <h2>Assignment Review</h2>
         <div>
-          Blooms Level <span style="background-color: ${bloomsColors?.[assignmentReview.blooms.toLowerCase()] ?? '#000000'}; color: #FFFFFF; padding: 0.5rem; border-radius: 0.5rem;">${assignmentReview.blooms}</span>
+          <span style="background-color: ${bloomsColors?.[assignmentReview.blooms.toLowerCase()] ?? '#000000'}; color: #FFFFFF; padding: 0.5rem; border-radius: 0.5rem;">${assignmentReview.blooms}</span>
         </div>
         <div>
-          Clarity <span>${ clarityEmoji?.[assignmentReview.clarity] ?? ''}</span>
+          <span style="width: 5rem;">Clarity</span><span>${ clarityEmoji?.[assignmentReview.clarity] ?? ''}</span>
         </div>
         <div>
-          Chunked Content <span>${ assignmentReview.chunked_content ? '&#128512;' : '&#128546;'}</span>
+          <span style="width: 5rem;">Chunked Content</span><span>${ assignmentReview.chunked_content ? '&#128512;' : '&#128546;'}</span>
         </div>
         <div>
-          Includes Outcomes<span>${ assignmentReview.includes_outcomes? '&#128512;' : '&#128546;'}</span>
+          <span style="width: 5rem;">Includes Outcomes</span><span>${ assignmentReview.includes_outcomes? '&#128512;' : '&#128546;'}</span>
         </div>
         <div>
-          Career Relevance<span>${ assignmentReview.career_relevance? '&#128512;' : '&#128546;'}</span>
+          <span style="width: 5rem;">Career Relevance</span><span>${ assignmentReview.career_relevance? '&#128512;' : '&#128546;'}</span>
         </div>
         <div>
+          <h2>AI Feedback</h2>
           <p>${assignmentReview.feedback}</p>
         </div>
       </div> 
