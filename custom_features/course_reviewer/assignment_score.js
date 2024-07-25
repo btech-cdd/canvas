@@ -59,6 +59,7 @@
       relevantObjectivesString += `<div>${objective.objective_text}</div>`;
     }
     let relevantObjectivesEl = $(`<div>${relevantObjectivesString}</div>`);
+    $('#sidebar_content').append(reviewEl);
 
     let reviewEl = $(`
       <div style="padding: 8px 0;">
