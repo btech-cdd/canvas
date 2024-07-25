@@ -37,7 +37,7 @@
     let reviewEl = $(`
       <div style="padding: 8px 0;">
         <h2>Assignment Review</h2>
-        <div style="margin-bottom: 0.5rem; display: inline-block;">
+        <div title="The bloom's taxonomy level of this assignment." style="margin-bottom: 0.5rem; display: inline-block;">
           <span style="background-color: ${bloomsColors?.[assignmentReview.blooms.toLowerCase()] ?? '#000000'}; color: #FFFFFF; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${assignmentReview.blooms}</span>
         </div>
         <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
