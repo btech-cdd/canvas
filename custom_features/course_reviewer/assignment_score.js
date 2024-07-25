@@ -59,7 +59,7 @@
       let isRelevant = assignmentReview.objectives.includes(objective.objective_id);
       relevantObjectivesString += `<div style="${isRelevant ? '' : 'color: #CCC;'}"><span style="width: 1rem; display: inline-block;">${isRelevant ? '&#10003;' : ''}</span>${objective.objective_text}</div>`;
     }
-    let relevantObjectivesEl = $(`<div>${relevantObjectivesString}</div>`);
+    let relevantObjectivesEl = $(`<div><h2>Relevant Objectives</h2>${relevantObjectivesString}</div>`);
     $('#sidebar_content').append(relevantObjectivesEl);
 
     let reviewEl = $(`
