@@ -31,6 +31,8 @@
     if (match) {
       courseCode = match[1];
       year = match[2];
+      console.log(courseCode);
+      console.log(year);
       objectives = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${courseCode}/year/${year}/objectives`);
       console.log(objectives);
     } else {
