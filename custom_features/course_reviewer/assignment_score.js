@@ -21,7 +21,6 @@
     '&#128512;',
   ]
   if (assignmentReview) {
-    console.log(assignmentReview);    
     $('#sidebar_content').css({
       'position': 'sticky',
       'top': 0,
@@ -31,7 +30,6 @@
       'height': '90vh'
     });
 
-    console.log(assignmentReview.blooms);
 
     let reviewEl = $(`
       <div style="padding: 8px 0;">
@@ -65,7 +63,6 @@
       console.log(err);
     }
 
-    console.log(rubricReview);
     if (rubricReview) {
       let rubricReviewEl = $(`
         <div style="padding: 8px 0;">
