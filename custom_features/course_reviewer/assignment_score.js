@@ -21,7 +21,7 @@
     '&#128512;',
   ]
   if (assignmentReview) {
-    let courseData = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`);
+    let courseData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     console.log(courseData);
     let courseCode = courseData.course_code;
     console.log(courseCode);
