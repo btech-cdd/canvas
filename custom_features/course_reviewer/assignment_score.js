@@ -20,6 +20,7 @@
     '&#128528',
     '&#128512;',
   ]
+  console.log(assignmentReviews)
   if (assignmentReviews?.length > 0) {
     let assignmentReview = assignmentReviews[0];
     console.log(assignmentReview);    
