@@ -30,7 +30,7 @@
       year = match[2];
       let description = assignmentData.description;
       let rubric = JSON.stringify(assignmentData.rubric);
-      let data = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${courseData.id}/assignments/${assignmentData.id}/reevaluate`, reqdata={
+      let data = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseData.id}/assignments/${assignmentData.id}/evaluate`, reqdata={
           courseCode: courseCode,
           year: year,
           description: description,
@@ -54,7 +54,7 @@
     container.empty();
     let assignmentReview;
     try {
-      assignmentReview = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`);
+      assignmentReview = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`);
     } catch (err) {
       console.log(err);
     }
@@ -84,7 +84,7 @@
         courseCode = match[1];
         year = match[2];
         let objectivesData = [];
-        objectivesData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${courseCode}/year/${year}/objectives`);
+        objectivesData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseCode}/year/${year}/objectives`);
         for (let o in objectivesData) {
           let objective = objectivesData[o];
           objectives[objective.objective_id] = objective;
@@ -129,7 +129,7 @@
       container.append(reviewEl);
 
       try {
-        rubricReview = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}/rubric`);
+        rubricReview = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}/rubric`);
       } catch (err) {
         console.log(err);
       }
