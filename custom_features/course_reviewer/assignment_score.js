@@ -149,5 +149,5 @@
       console.log("NO SIS ID FOUND");
     }
   });
-  $('#sidebar_content').append(rubricReviewEl);
+  $('#sidebar_content').append(evaluateButton);
 })();
