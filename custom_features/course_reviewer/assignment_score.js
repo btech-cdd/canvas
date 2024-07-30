@@ -122,6 +122,7 @@
     }
   }
 
+  await refreshAssignmentData();
   //reevaluate button
   let evaluateButton = $('<span style="background-color: black; color: white; border-radius: 0.25rem; padding: 0.25rem;">Evaluate</span>')
   evaluateButton.click(async function() {
@@ -135,14 +136,15 @@
     if (match) {
       courseCode = match[1];
       year = match[2];
-    let description = assignmentData.description;
-        let rubric = JSON.stringify(assignmentData.rubric);
+      let description = assignmentData.description;
+      let rubric = JSON.stringify(assignmentData.rubric);
       let data = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${courseData.id}/assignments/${assignmentData.id}/reevaluate`, reqdata={
           courseCode: courseCode,
           year: year,
           description: description,
           rubric: rubric
       }, type="POST");
+      await refreshAssignmentData();
     } else {
       console.log("NO SIS ID FOUND");
     }
