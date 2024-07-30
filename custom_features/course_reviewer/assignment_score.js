@@ -7,7 +7,47 @@
   $("#aside").css({
     'height': '90vh'
   });
+
+  //reevaluate button
+  let evaluateButton = $('<span id="btech-evaluate-button" style="cursor: pointer; background-color: black; color: white; border-radius: 0.25rem; padding: 0.25rem;">Evaluate</span>')
   let container = $('<div id="btech-course-reviewer-container"></div>')
+
+  evaluateButton.click(async function() {
+    evaluateButton.css({
+      'background-color': '#888',
+      color: 'white'
+    });
+    container.html('evaluating...')
+    let courseData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
+    let assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
+    console.log(assignmentData);
+
+    let regex = /^([A-Z]{4} \d{4}).*(\d{4})(?=[A-Z]{2})/;
+    let match = courseData.sis_course_id.match(regex);
+
+    if (match) {
+      courseCode = match[1];
+      year = match[2];
+      let description = assignmentData.description;
+      let rubric = JSON.stringify(assignmentData.rubric);
+      let data = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${courseData.id}/assignments/${assignmentData.id}/reevaluate`, reqdata={
+          courseCode: courseCode,
+          year: year,
+          description: description,
+          rubric: rubric
+      }, type="POST");
+      await refreshAssignmentData();
+    } else {
+      console.log("NO SIS ID FOUND");
+    }
+    evaluateButton.css({
+      'background-color': 'black',
+      color: 'white'
+    });
+  });
+  $('#sidebar_content').append(evaluateButton);
+
+  // container for the evaluation itself
   $("#sidebar_content").append(container);
   // do we have a review?
   async function refreshAssignmentData() {
@@ -123,39 +163,4 @@
   }
 
   await refreshAssignmentData();
-  //reevaluate button
-  let evaluateButton = $('<span id="btech-evaluate-button" style="cursor: pointer; background-color: black; color: white; border-radius: 0.25rem; padding: 0.25rem;">Evaluate</span>')
-  evaluateButton.click(async function() {
-    evaluateButton.css({
-      'background-color': '#888',
-      color: 'white'
-    });
-    let courseData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
-    let assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
-    console.log(assignmentData);
-
-    let regex = /^([A-Z]{4} \d{4}).*(\d{4})(?=[A-Z]{2})/;
-    let match = courseData.sis_course_id.match(regex);
-
-    if (match) {
-      courseCode = match[1];
-      year = match[2];
-      let description = assignmentData.description;
-      let rubric = JSON.stringify(assignmentData.rubric);
-      let data = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${courseData.id}/assignments/${assignmentData.id}/reevaluate`, reqdata={
-          courseCode: courseCode,
-          year: year,
-          description: description,
-          rubric: rubric
-      }, type="POST");
-      await refreshAssignmentData();
-    } else {
-      console.log("NO SIS ID FOUND");
-    }
-    evaluateButton.css({
-      'background-color': 'black',
-      color: 'white'
-    });
-  });
-  $('#sidebar_content').append(evaluateButton);
 })();
