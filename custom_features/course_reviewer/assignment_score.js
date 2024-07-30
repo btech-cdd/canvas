@@ -75,7 +75,6 @@
     if (assignmentReview) {
       let objectives = [];
       let courseData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
-      console.log(courseData);
 
       let regex = /^([A-Z]{4} \d{4}).*(\d{4})(?=[A-Z]{2})/;
       let match = courseData.sis_course_id.match(regex);

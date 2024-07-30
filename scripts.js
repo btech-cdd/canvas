@@ -195,7 +195,6 @@ $.delete = function (url, data) {
 }
 
 async function bridgetoolsReq(url, reqdata = {}, type = "GET") {
-  console.log(type);
   $.put = function (url, data) {
     return $.ajax({
       url: url,
