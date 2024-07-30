@@ -126,7 +126,10 @@
   //reevaluate button
   let evaluateButton = $('<span style="cursor: pointer; background-color: black; color: white; border-radius: 0.25rem; padding: 0.25rem;">Evaluate</span>')
   evaluateButton.click(async function() {
-    evaluateButton.hide();
+    evaluateButton.css({
+      background_color: 'gray',
+      color: 'white'
+    });
     let courseData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     let assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
     console.log(assignmentData);
@@ -151,5 +154,8 @@
     }
   });
   $('#sidebar_content').append(evaluateButton);
-  evaluateButton.show();
+  evaluateButton.css({
+    background_color: 'black',
+    color: 'white'
+  });
 })();
