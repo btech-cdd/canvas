@@ -149,13 +149,13 @@
           rubric: rubric
       }, type="POST");
       await refreshAssignmentData();
+      evaluateButton.css({
+        background_color: 'black',
+        color: 'white'
+      });
     } else {
       console.log("NO SIS ID FOUND");
     }
   });
   $('#sidebar_content').append(evaluateButton);
-  evaluateButton.css({
-    background_color: 'black',
-    color: 'white'
-  });
 })();
