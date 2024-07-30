@@ -2,7 +2,7 @@
   // do we have a review?
   let assignmentReview;
   try {
-    assignmentReview = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`);
+    assignmentReview = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`);
   } catch (err) {
     console.log(err);
   }
@@ -34,7 +34,7 @@
       console.log(courseCode);
       console.log(year);
       let objectivesData = [];
-      objectivesData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${courseCode}/year/${year}/objectives`);
+      objectivesData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseCode}/year/${year}/objectives`);
       for (let o in objectivesData) {
         let objective = objectivesData[o];
         objectives[objective.objective_id] = objective;
@@ -89,7 +89,7 @@
     $('#sidebar_content').append(reviewEl);
 
     try {
-      rubricReview = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}/rubric`);
+      rubricReview = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}/rubric`);
     } catch (err) {
       console.log(err);
     }
