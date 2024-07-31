@@ -64,9 +64,9 @@
     }
 
     let objectivesQueryString = '';
-    for (let o in assignmentReview.objectives) {
+    for (let o in assignmentReviewData.objectives) {
       if (o > 0) objectivesQueryString += '&';
-      objectivesQueryString += 'objectives[]=' + assignmentReview.objectives[o];
+      objectivesQueryString += 'objectives[]=' + assignmentReviewData.objectives[o];
     }
     try {
       relatedAssignments = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments?${objectivesQueryString}`);
