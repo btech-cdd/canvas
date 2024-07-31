@@ -8,8 +8,8 @@
     'create': '#a22232' 
   }
   const emoji = [
-    '&#128546',
-    '&#128528',
+    '&#128546;',
+    '&#128528;',
     '&#128512;',
   ]
 
@@ -192,12 +192,12 @@
     let rubricScore = undefined;
     if (rubricReviewData) {
       rubricScore = Math.round(
-        (
+        ((
           rubricReviewData.criteria
           + rubricReviewData.granularity
           + rubricReviewData.grading_levels
           + rubricReviewData.writing_quality
-        ) / 4
+        ) / 4) - 1
       );
       if (rubricScore > 2) rubricScore = 2;
       console.log(rubricScore)
