@@ -263,13 +263,12 @@
 
     let rubricScore = undefined;
     if (rubricReviewData) {
-      console.log(rubricReviewData);
-      Math.round(
+      rubricScore = Math.round(
         (
-          (rubricReviewData.criteria ? 1 : 0)
-          + (rubricReviewData.granularity ? 1 : 0)
-          + (rubricReviewData.grading_levels ? 1 : 0)
-          + (rubricReviewData.writing_quality ? 1 : 0)
+          rubricReviewData.criteria
+          + rubricReviewData.granularity
+          + rubricReviewData.grading_levels
+          + rubricReviewData.writing_quality
         ) / 4
       );
       if (rubricScore > 2) rubricScore = 2;
