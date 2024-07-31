@@ -263,6 +263,7 @@
 
     let rubricScore = undefined;
     if (rubricReviewData) {
+      console.log(rubricReviewData);
       Math.round(
         (
           (rubricReviewData.criteria ? 1 : 0)
