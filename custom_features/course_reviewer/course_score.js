@@ -215,6 +215,7 @@
     if (courseReviewData) {
       // containerEl.append(generateRelevantObjectivesEl());
       containerEl.append(generateObjectivesEl());
+      containerEl.append(generateBloomsEl());
       containerEl.append(generateDetailedAssignmentReviewEl());
       // containerEl.append(generateDetailedRubricReviewEl());
       containerEl.append(generateTopicTagsEl());
