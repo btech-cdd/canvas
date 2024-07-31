@@ -131,6 +131,7 @@
       }
     });
     let modalContent = $('body .btech-modal-content-inner');
+    console.log("Populate modal");
     generateDetailedContent(modalContent);
   });
 
