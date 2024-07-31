@@ -42,7 +42,6 @@
           let item = module.items[i];
 
           //module item actually has something
-          console.log(item);
           if (item.type == 'Page') item.content_id = item.id;
           if (item.url !== undefined && item.content_id > 0) {
               //get page element using element id
