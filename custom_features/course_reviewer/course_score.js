@@ -14,7 +14,7 @@
   ]
 
 
-  var courseData, assignmentData, assignmentReviewsData, courseReviewData, rubricReviewData, objectivesData, relatedAssignments, courseCode, year;
+  var courseData, assignmentReviewsData, courseReviewData, rubricReviewsData, objectivesData, courseCode, year, bloomsCounts, topicTagsCounts, objectivesCounts;
   async function refreshData() {
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     // assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
@@ -42,9 +42,9 @@
       console.log(err);
     }
 
-    let bloomsCounts = {};
-    let topicTagsCounts = {};
-    let objectivesCounts = {};
+    bloomsCounts = {};
+    topicTagsCounts = {};
+    objectivesCounts = {};
 
     for (let a in assignmentReviewsData) {
       let assignment = assignmentReviewsData[a];
@@ -147,20 +147,6 @@
     return $('<div></div>')
   }
 
-  function generateRelatedAssignmentsEl() {
-    console.log("APPEND!")
-    let el = $(`
-      <div>
-        <h2>Related Assignments</h2>
-      </div>
-    `);
-    for (let i in relatedAssignments) {
-      let relatedAssignment = relatedAssignments[i];
-      let aTag = $(`<div><a href="/courses/${relatedAssignment.course_id}/assignments/${relatedAssignment.assignment_id}" target="_blank">${relatedAssignment.canvas_data.name}</a></div>`);
-      el.append(aTag);
-    }
-    return el
-  }
   function generateTopicTagsEl() {
     let el = $(`
       <div>
@@ -177,7 +163,7 @@
 
   // do we have a review?
   async function generateDetailedContent(containerEl) {
-    if (assignmentReviewData) {
+    if (courseReviewData) {
       // containerEl.append(generateRelevantObjectivesEl());
       // containerEl.append(generateDetailedAssignmentReviewEl());
       // containerEl.append(generateDetailedRubricReviewEl());
