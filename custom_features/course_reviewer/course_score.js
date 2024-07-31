@@ -42,35 +42,36 @@
       console.log(err);
     }
 
-    let blooms = {};
-    let topicTags = {};
-    let objectives = {};
+    let bloomsCounts = {};
+    let topicTagsCounts = {};
+    let objectivesCounts = {};
 
     for (let a in assignmentReviewsData) {
       let assignment = assignmentReviewsData[a];
 
       // blooms
-      if (assignment.blooms && blooms?.[assignment.blooms] === undefined) blooms[assignment.blooms] = 0;
-      blooms[assignment.blooms] += 1;
+      if (assignment.blooms && bloomsCounts?.[assignment.blooms] === undefined) bloomsCounts[assignment.blooms] = 0;
+      bloomsCounts[assignment.blooms] += 1;
 
       // topic tags
       for (let t in assignment?.topic_tags ?? []) {
         let tag = assignment.topic_tags[t];
-        if (topicTags?.[tag] === undefined) topicTags[tag] = 0;
-        topicTags[tag]  += 1;
+        if (topicTagsCounts?.[tag] === undefined) topicTagsCounts[tag] = 0;
+        topicTagsCounts[tag]  += 1;
       }
 
       // topic tags
-      for (let t in assignment?.topic_tags ?? []) {
-        let tag = assignment.topic_tags[t];
-        if (topicTags?.[tag] === undefined) topicTags[tag] = 0;
-        topicTags[tag]  += 1;
+      for (let o in assignment?.objectives?? []) {
+        let objective = assignment.objectives[o];
+        if (objectivesCounts?.[objective] === undefined) objectivesCounts[tag] = 0;
+        objectivesCounts[tag]  += 1;
       }
       console.log(assignment);
       break;
     }
     console.log(blooms);
     console.log(topicTags);
+    console.log(objectivesCounts);
 
     return true;
   }
