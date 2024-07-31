@@ -9,8 +9,23 @@
   });
 
   //reevaluate button
-  let evaluateButton = $('<span id="btech-evaluate-button" style="cursor: pointer; background-color: black; color: white; border-radius: 0.25rem; padding: 0.25rem;">Evaluate</span>')
-  let container = $('<div id="btech-course-reviewer-container"></div>')
+  let evaluateButton = $(`
+    <span 
+      id="btech-evaluate-button" 
+      style="cursor: pointer; background-color: black; color: white; border-radius: 0.25rem; padding: 0.25rem;"
+    >
+      Evaluate
+    </span>
+  `);
+  let container = $('<div id="btech-course-reviewer-container"></div>');
+  let detailedReportButton = $(`
+    <span 
+      id="btech-evaluate-button" 
+      style="cursor: pointer; background-color: black; color: white; border-radius: 0.25rem; padding: 0.25rem;"
+    >
+     Detailed Report 
+    </span>
+  `);
 
   evaluateButton.click(async function() {
     evaluateButton.css({
@@ -46,10 +61,22 @@
   });
   $('#sidebar_content').append(evaluateButton);
 
+  detailedReportButton.click(async function () {
+    $("body").append(`
+      <div class='btech-modal' style='display: inline-block;'>
+        <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
+        <div class='btech-modal-content' style='max-width: 500px;'>
+          <div class='btech-modal-content-inner'></div>
+        </div>
+      </div>
+    `);
+    let modal = $('body .btech-modal-content-inner');
+    generateDetailedContent(modal);
+  });
   // container for the evaluation itself
   $("#sidebar_content").append(container);
   // do we have a review?
-  async function refreshAssignmentData() {
+  async function generateDetailedContent(containerEl) {
     container.empty();
     let assignmentReview;
     try {
@@ -62,6 +89,7 @@
       if (o > 0) objectivesQueryString += '&';
       objectivesQueryString += 'objectives[]=' + assignmentReview.objectives[o];
     }
+
     let relatedAssignments = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments?${objectivesQueryString}`);
     console.log(assignmentReview);
     console.log(relatedAssignments);
@@ -106,7 +134,7 @@
         relevantObjectivesString += `<div style="${isRelevant ? '' : 'color: #CCC;'}"><span style="width: 1rem; display: inline-block;">${isRelevant ? '&#10003;' : ''}</span>${objective.objective_text}</div>`;
       }
       let relevantObjectivesEl = $(`<div><h2>Relevant Objectives</h2>${relevantObjectivesString}</div>`);
-      container.append(relevantObjectivesEl);
+      containerEl.append(relevantObjectivesEl);
 
       let reviewEl = $(`
         <div style="padding: 8px 0;">
@@ -132,7 +160,7 @@
           </div>
         </div> 
         `);
-      container.append(reviewEl);
+      containerEl.append(reviewEl);
 
       try {
         rubricReview = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}/rubric`);
@@ -163,7 +191,7 @@
           </div> 
 
           `);
-        container.append(rubricReviewEl);
+        containerEl.append(rubricReviewEl);
       }
     }
   }
