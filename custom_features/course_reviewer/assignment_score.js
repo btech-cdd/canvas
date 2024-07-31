@@ -225,10 +225,10 @@
     `);
     for (let i in relatedAssignments) {
       let relatedAssignment = relatedAssignments[i];
+      console.log(relatedAssignment);
       let aTag = $(`<div><a href="/courses/${relatedAssignment.course_id}/assignments/${relatedAssignment.assignment_id}" target="_blank">${relatedAssignment.canvas_data.name}</a></div>`);
       el.append(aTag);
     }
-    console.log(el);
     return el
   }
 
