@@ -193,11 +193,11 @@
     if (rubricReviewData) {
       rubricScore = Math.round(
         ((
-          rubricReviewData.criteria
-          + rubricReviewData.granularity
-          + rubricReviewData.grading_levels
-          + rubricReviewData.writing_quality
-        ) / 4) - 1
+          (rubricReviewData.criteria - 1)
+          + (rubricReviewData.granularity - 1)
+          + (rubricReviewData.grading_levels - 1)
+          + (rubricReviewData.writing_quality - 1)
+        ) / 4) 
       );
       if (rubricScore > 2) rubricScore = 2;
       console.log(rubricScore)
