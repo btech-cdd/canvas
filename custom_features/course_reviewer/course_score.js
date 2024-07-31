@@ -201,5 +201,5 @@
 
 
   await refreshData();
-  $('#course_show_secondary').append(detailedReportButton);
+  $(".header-bar-right__buttons").prepend(detailedReportButton);
 })();
