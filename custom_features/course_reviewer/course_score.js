@@ -42,10 +42,25 @@
       console.log(err);
     }
 
+    let blooms = {};
+    let topicTags = {};
+
     for (let a in assignmentReviewsData) {
       let assignment = assignmentReviewsData[a];
-      console.log(assignment);
+
+      // blooms
+      if (blooms?.[assignment.blooms] === undefined) blooms[assignment.blooms] = 0;
+      blooms[assignment.blooms] += 1;
+
+      for (let t in assignment.topic_tags) {
+        let tag = assignment.topic_tags[t];
+        if (topicTags?.[tag] === undefined) topicTags[tag] = 0;
+        topicTags[tag]  += 1;
+      }
+      // topic tags
     }
+    console.log(blooms);
+    console.log(topicTags);
 
     return true;
   }
