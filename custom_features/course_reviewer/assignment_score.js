@@ -257,5 +257,5 @@
   $('#sidebar_content').append(evaluateButton);
   $('#sidebar_content').append(detailedReportButton);
   $("#sidebar_content").append(container);
-  await generateContent();
+  await generateContent(container);
 })();
