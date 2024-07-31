@@ -223,7 +223,7 @@
     }
     return el
   }
-  function generateTopictagsEl() {
+  function generateTopicTagsEl() {
     let el = $(`
       <div>
         <h2>Key Topics</h2>
@@ -243,6 +243,7 @@
       containerEl.append(generateRelevantObjectivesEl());
       containerEl.append(generateDetailedAssignmentReviewEl());
       containerEl.append(generateDetailedRubricReviewEl());
+      containerEl.append(generateTopicTagsEl());
       containerEl.append(generateRelatedAssignmentsEl());
     }
   }
