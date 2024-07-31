@@ -160,7 +160,7 @@
     for (let o in objectivesData) {
       let objective = objectivesData[o];
       console.log(objective);
-      let usage = (Math.round(objectivesCounts[objective.objective_id] / assignmentReviewsData.length) * 1000) / 10;
+      let usage = Math.round((objectivesCounts[objective.objective_id] / assignmentReviewsData.length) * 1000) / 10;
       let topicEl = $(`<div><span style="display: inline-block; width: 3rem;">${usage}%</span><span>${objective.objective_text.trim()}</span></div>`);
       el.append(topicEl);
     }
