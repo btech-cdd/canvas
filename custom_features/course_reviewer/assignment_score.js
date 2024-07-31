@@ -98,7 +98,7 @@
         rubric: rubric
     }, type="POST");
 
-    if (await refreshData()) await refreshReport();
+    if (await refreshData()) await generateContent();
 
     evaluateButton.css({
       'background-color': 'black',
@@ -257,5 +257,5 @@
   $('#sidebar_content').append(evaluateButton);
   $('#sidebar_content').append(detailedReportButton);
   $("#sidebar_content").append(container);
-  await refreshReport();
+  await generateContent();
 })();
