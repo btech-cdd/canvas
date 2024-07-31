@@ -90,6 +90,23 @@
       if (assignment.career_relevance !== undefined) assignmentCounts.career_relevance += assignment.career_relevance? 1 : 0;
       if (assignment.provides_feedback !== undefined) assignmentCounts.provides_feedback += assignment.provides_feedback? 1 : 0;
       if (assignment.clarity !== undefined) assignmentCounts.clarity += assignment.clarity;
+
+      let assignmentScore = Math.round(((
+        (assignment.clarity - 1) // 1-3, so -1 to get to 0-2
+        + (assignment.chunked_content ? 1 : 0)
+        + (assignment.includes_outcomes ? 1 : 0)
+        + (assignment.career_relevance ? 1 : 0)
+        + (assignment.objectives > 0 ? 1 : 0)
+        + (assignment.provides_feedback > 0 ? 1 : 0)
+      ) / 7) // divide by total points
+      * 3); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
+      if (assignmentScore > 2) assignmentScore = 2;
+      if (emoji?.[assignmentScore]) {
+        let assignmentScoreEl = $(`<span class="ig-distance-approved" style="cursor: pointer; float: right;">${emoji?.[assignmentScore]}</span>`);
+        let itemClass = ".Assignment_" + assignment.assignment_id;
+        let titleEl = $(itemClass + " div.ig-info");
+        titleEl.after(assignmentScoreEl);
+      }
     }
     console.log(bloomsCounts);
     console.log(topicTagsCounts);
