@@ -145,6 +145,7 @@
   function generateDetailedAssignmentReviewEl() {
     let averageClarity = Math.round(assignmentCounts.clarity / assignmentReviewsData.length)
     if (averageClarity > 2) averageClarity = 2;
+    console.log(averageClarity);
     let usageChunkedContent = Math.round((assignmentCounts.chunked_content / assignmentReviewsData.length) * 1000) / 10;
     let usageIncludesOutcomes = Math.round((assignmentCounts.includes_outcomes/ assignmentReviewsData.length) * 1000) / 10;
     let usageCareerRelevance = Math.round((assignmentCounts.career_relevance / assignmentReviewsData.length) * 1000) / 10;
