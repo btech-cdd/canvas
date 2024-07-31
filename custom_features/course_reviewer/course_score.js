@@ -160,7 +160,8 @@
     for (let o in objectivesData) {
       let objective = objectivesData[o];
       console.log(objective);
-      let topicEl = $(``);
+      let usage = ((objectivesCounts[objective.objective_id] / assignmentReviewsData.length) * 1000) / 10;
+      let topicEl = $(`<div><span style="width: 3rem;">${usage}%</span><span>${objective.objective_text.trim()}</span></div>`);
       el.append(topicEl);
     }
     return el
