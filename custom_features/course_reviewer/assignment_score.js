@@ -231,7 +231,7 @@
     `);
     for (let i in assignmentReviewData.topic_tags) {
       let topic = assignmentReviewData.topic_tags[i];
-      let topicEl = $(`<span style="padding: 0.25rem; background-color: black; color: white; border-radius: 0.25rem; margin: 0.25rem 0;">${topic}</span>`);
+      let topicEl = $(`<span style="padding: 0.25rem; background-color: black; color: white; border-radius: 0.25rem; margin: 0 0.25rem;">${topic}</span>`);
       el.append(topicEl);
     }
     return el
