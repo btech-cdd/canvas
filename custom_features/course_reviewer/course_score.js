@@ -44,6 +44,7 @@
 
     let blooms = {};
     let topicTags = {};
+    let objectives = {};
 
     for (let a in assignmentReviewsData) {
       let assignment = assignmentReviewsData[a];
@@ -52,12 +53,21 @@
       if (assignment.blooms && blooms?.[assignment.blooms] === undefined) blooms[assignment.blooms] = 0;
       blooms[assignment.blooms] += 1;
 
+      // topic tags
       for (let t in assignment?.topic_tags ?? []) {
         let tag = assignment.topic_tags[t];
         if (topicTags?.[tag] === undefined) topicTags[tag] = 0;
         topicTags[tag]  += 1;
       }
+
       // topic tags
+      for (let t in assignment?.topic_tags ?? []) {
+        let tag = assignment.topic_tags[t];
+        if (topicTags?.[tag] === undefined) topicTags[tag] = 0;
+        topicTags[tag]  += 1;
+      }
+      console.log(assignment);
+      break;
     }
     console.log(blooms);
     console.log(topicTags);
