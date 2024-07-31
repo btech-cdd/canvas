@@ -85,6 +85,10 @@
   `);
   //button is added after data refresh
   evaluateButton.click(async function() {
+    detailedReportButton.css({
+      'background-color': '#888',
+      color: 'white'
+    });
     evaluateButton.css({
       'background-color': '#888',
       color: 'white'
@@ -102,6 +106,10 @@
 
     if (await refreshData()) await generateContent();
 
+    detailedReportButton.css({
+      'background-color': 'black',
+      color: 'white'
+    });
     evaluateButton.css({
       'background-color': 'black',
       color: 'white'
