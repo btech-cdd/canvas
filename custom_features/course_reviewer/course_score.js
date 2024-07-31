@@ -89,7 +89,7 @@
       assignmentCounts.chunked_content += assignment.clarity ? 1 : 0;
       assignmentCounts.career_relevance += assignment.clarity ? 1 : 0;
       assignmentCounts.provides_feedback += assignment.clarity ? 1 : 0;
-      console.log(assignment);
+      console.log(assignment.clarity);
       assignmentCounts.clarity += assignment.clarity;
     }
     console.log(bloomsCounts);
