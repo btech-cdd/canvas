@@ -79,12 +79,9 @@
 
   //reevaluate button
   let evaluateButton = $(`
-    <span 
-      id="btech-evaluate-button" 
-      style="cursor: pointer; background-color: black; color: white; border-radius: 0.25rem; padding: 0.25rem;"
-    >
-      Evaluate
-    </span>
+    <a class="btn" id="btech-evaluate-button" rel="nofollow" >
+      Run Evaluator 
+    </a>
   `);
   //button is added after data refresh
   evaluateButton.click(async function() {
@@ -112,7 +109,7 @@
   });
 
   let detailedReportButton = $(`
-    <a class="btn" id="btech-evaluate-button" rel="nofollow" >
+    <a class="btn" id="btech-detailed-evaluation-button" rel="nofollow" >
       Detailed Report 
     </a>
   `);
