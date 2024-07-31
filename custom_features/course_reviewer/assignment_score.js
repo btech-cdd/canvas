@@ -65,7 +65,7 @@
     $("body").append(`
       <div class='btech-modal' style='display: inline-block;'>
         <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
-        <div class='btech-modal-content' style='max-width: 500px;'>
+        <div class='btech-modal-content' style='max-width: 800px;'>
           <div class='btech-modal-content-inner'></div>
         </div>
       </div>
