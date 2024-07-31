@@ -265,10 +265,10 @@
     if (rubricReviewData) {
       Math.round(
         (
-          rubricReviewData.criteria ? 1 : 0
-          + rubricReviewData.granularity ? 1 : 0
-          + rubricReviewData.grading_levels ? 1 : 0
-          + rubricReviewData.writing_quality ? 1 : 0
+          (rubricReviewData.criteria ? 1 : 0)
+          + (rubricReviewData.granularity ? 1 : 0)
+          + (rubricReviewData.grading_levels ? 1 : 0)
+          + (rubricReviewData.writing_quality ? 1 : 0)
         ) / 4
       );
       if (rubricScore > 2) rubricScore = 2;
