@@ -18,6 +18,7 @@
   async function refreshData() {
     console.log(ENV.COURSE_ID);
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
+    console.log(courseData);
     courseReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
     console.log(courseReviewData);
     // assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
