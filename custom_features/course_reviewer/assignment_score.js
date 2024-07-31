@@ -107,12 +107,9 @@
   });
 
   let detailedReportButton = $(`
-    <span 
-      id="btech-evaluate-button" 
-      style="cursor: pointer; background-color: black; color: white; border-radius: 0.25rem; padding: 0.25rem;"
-    >
-     Detailed Report 
-    </span>
+    <a class="btn" id="btech-evaluate-button" rel="nofollow" >
+      Detailed Report 
+    </a>
   `);
   detailedReportButton.click(async function () {
     $("body").append(`
@@ -274,7 +271,7 @@
 
   await refreshData();
   $('#sidebar_content').append(evaluateButton);
-  $('#sidebar_content').append(detailedReportButton);
   $("#sidebar_content").append(container);
+  $('#sidebar_content').append(detailedReportButton);
   await generateContent(container);
 })();
