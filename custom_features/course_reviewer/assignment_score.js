@@ -223,6 +223,19 @@
     }
     return el
   }
+  function generateTopictagsEl() {
+    let el = $(`
+      <div>
+        <h2>Key Topics</h2>
+      </div>
+    `);
+    for (let i in assignmentReviewData.topic_tags) {
+      let topic = assignmentReviewData.topic_tags[i];
+      let topicEl = $(`<span>${topic}</span>`);
+      el.append(topicEl);
+    }
+    return el
+  }
 
   // do we have a review?
   async function generateDetailedContent(containerEl) {
