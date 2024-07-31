@@ -263,6 +263,7 @@
       ) / 4
     );
     if (rubricScore > 2) rubricScore = 2;
+    console.log(rubricScore);
     let el = $(`
       <div style="padding: 8px 0;">
         <div title="The bloom's taxonomy level of this assignment." style="margin-bottom: 0.5rem; text-align: center;">
@@ -272,7 +273,7 @@
           <h2>Assignment Quality</h2>
           <div style="text-align: center;"><span style="font-size: 2rem;">${ emoji?.[averageScore] ?? ''}</span></div>
         </div>
-        <div title="Average score for rubric review.">
+        <div title="${Average score for rubric review.}">
           <h2>Rubric Quality</h2>
           <div style="text-align: center;"><span style="font-size: 2rem;">${ emoji?.[rubricScore] ?? '&#128561'}</span></div>
         </div>
