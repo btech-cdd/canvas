@@ -102,7 +102,7 @@
       * 3); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
       if (assignmentScore > 2) assignmentScore = 2;
       if (emoji?.[assignmentScore]) {
-        let assignmentScoreEl = $(`<span class="ig-distance-approved" style="cursor: pointer; float: right;">${emoji?.[assignmentScore]}</span>`);
+        let assignmentScoreEl = $(`<span class="ig-assignment-score" style="cursor: pointer; float: right;">${emoji?.[assignmentScore]}</span>`);
         let itemClass = ".Assignment_" + assignment.assignment_id;
         let titleEl = $(itemClass + " div.ig-info");
         titleEl.after(assignmentScoreEl);
