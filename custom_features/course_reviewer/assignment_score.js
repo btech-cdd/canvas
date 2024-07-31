@@ -211,12 +211,25 @@
     return $('<div></div>')
   }
 
+  function generateRelatedAssignmentsEl() {
+    for (let i in relatedAssignments) {
+      let assignment = relatedAssignments[i];
+      console.log(assignment);
+    }
+    let el = $(`
+      <div>
+      </div>
+    `);
+    return el
+  }
+
   // do we have a review?
   async function generateDetailedContent(containerEl) {
     if (assignmentReviewData) {
       containerEl.append(generateRelevantObjectivesEl());
       containerEl.append(generateDetailedAssignmentReviewEl());
       containerEl.append(generateDetailedRubricReviewEl());
+      containerEl.append(generateRelatedAssignmentsEl());
     }
   }
 
