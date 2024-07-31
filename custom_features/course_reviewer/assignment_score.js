@@ -27,18 +27,12 @@
     </span>
   `);
 
-  evaluateButton.click(async function() {
-    evaluateButton.css({
-      'background-color': '#888',
-      color: 'white'
-    });
-    container.html('evaluating...')
-    let courseData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
-    let assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
-
+  var courseData, assignmentData, assignmentReviewData, courseReviewData;
+  async function refreshData() {
+    courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
+    assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
     let regex = /^([A-Z]{4} \d{4}).*(\d{4})(?=[A-Z]{2})/;
     let match = courseData.sis_course_id.match(regex);
-
     if (match) {
       courseCode = match[1];
       year = match[2];
@@ -50,10 +44,22 @@
           description: description,
           rubric: rubric
       }, type="POST");
-      await refreshAssignmentData();
+      return true;
     } else {
       console.log("NO SIS ID FOUND");
     }
+    return false;
+  }
+
+  evaluateButton.click(async function() {
+    evaluateButton.css({
+      'background-color': '#888',
+      color: 'white'
+    });
+    container.html('evaluating...')
+
+    if (await refreshData()) await refreshReport();
+
     evaluateButton.css({
       'background-color': 'black',
       color: 'white'
@@ -203,9 +209,10 @@
     }
   }
 
-  async function refreshAssignmentData() {
+  async function refreshReport() {
     console.log('refresh');
   }
 
-  await refreshAssignmentData();
+  await refreshData();
+  await refreshReport();
 })();
