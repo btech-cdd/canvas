@@ -57,7 +57,14 @@
     } catch (err) {
       console.log(err);
     }
+    let objectivesQueryString = '';
+    for (let o in assignmentReview.objectives) {
+      if (o > 0) objectivesQueryString += '&';
+      objectivesQueryString += 'objectives[]=' + assignmentReview.objectives[o];
+    }
+    let relatedAssignments = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments?${objectivesQueryString}`);
     console.log(assignmentReview);
+    console.log(relatedAssignments);
     const bloomsColors = {
       'remember': '#a222a2',
       'understand': '#2222a2',
