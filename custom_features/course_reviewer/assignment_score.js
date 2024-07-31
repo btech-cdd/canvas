@@ -217,6 +217,7 @@
   }
 
   async function generateRelatedAssignmentsEl() {
+    console.log("APPEND!")
     let el = $(`
       <div>
         <h2>Related Assignments</h2>
@@ -227,6 +228,7 @@
       let aTag = $(`<div><a href="/courses/${relatedAssignment.course_id}/assignments/${relatedAssignment.assignment_id}" target="_blank">${relatedAssignment.name}</a></div>`);
       el.append(aTag);
     }
+    console.log(el);
     return el
   }
 
