@@ -63,7 +63,7 @@
       // topic tags
       for (let o in assignment?.objectives?? []) {
         let objective = assignment.objectives[o];
-        if (objectivesCounts?.[objective] === undefined) objectivesCounts[tag] = 0;
+        if (objectivesCounts?.[objective] === undefined) objectivesCounts[objective] = 0;
         objectivesCounts[tag]  += 1;
       }
       console.log(assignment);
