@@ -163,10 +163,13 @@
           <span style="width: 5rem; display: inline-block;">Chunking</span><span>${ assignmentReviewData.chunked_content ? '&#128512;' : '&#128546;'}</span>
         </div>
         <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-          <span style="width: 5rem; display: inline-block;">Outcomes</span><span>${ assignmentReviewData.includes_outcomes? '&#128512;' : '&#128546;'}</span>
+          <span style="width: 5rem; display: inline-block;">Outcomes</span><span>${ assignmentReviewData.includes_outcomes ? '&#128512;' : '&#128546;'}</span>
         </div>
         <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-          <span style="width: 5rem; display: inline-block;">Industry</span><span>${ assignmentReviewData.career_relevance? '&#128512;' : '&#128546;'}</span>
+          <span style="width: 5rem; display: inline-block;">Industry</span><span>${ assignmentReviewData.career_relevance ? '&#128512;' : '&#128546;'}</span>
+        </div>
+        <div title="The assignment explicitly states how this students will receive documented feedback.">
+          <span style="width: 5rem; display: inline-block;">Feedback</span><span>${ assignmentReviewData.provides_feedback ? '&#128512;' : '&#128546;'}</span>
         </div>
         <div title="The assignment contains a rubric.">
           <span style="width: 5rem; display: inline-block;">Rubric</span><span>${ rubricReviewData ? '&#128512;' : '&#128546;'}</span>
