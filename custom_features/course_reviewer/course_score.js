@@ -105,7 +105,7 @@
         let assignmentScoreEl = $(`<span class="ig-assignment-score" style="cursor: pointer; float: right;">${emoji?.[assignmentScore]}</span>`);
         let itemClass = ".Assignment_" + assignment.assignment_id;
         let titleEl = $(itemClass + " div.ig-info");
-        titleEl.after(assignmentScoreEl);
+        titleEl.before(assignmentScoreEl);
       }
     }
     console.log(bloomsCounts);
