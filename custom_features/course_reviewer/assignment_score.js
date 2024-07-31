@@ -51,6 +51,11 @@
     }
     try {
       relatedAssignments = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments?${objectivesQueryString}`);
+      for (let i in relatedAssignments) {
+        let relatedAssignment = relatedAssignments[i];
+        let relatedAssignmentData = await canvasGet(`/api/v1/courses/${relatedAssignment.course_id}/assignments/${relatedAssignment.assignment_id}`);
+        relatedAssignment.canvas_data = relatedAssignmentData;
+      }
     } catch (err) {
       relatedAssignments = [];
       console.log(err);
@@ -211,15 +216,16 @@
     return $('<div></div>')
   }
 
-  function generateRelatedAssignmentsEl() {
-    for (let i in relatedAssignments) {
-      let assignment = relatedAssignments[i];
-      console.log(assignment);
-    }
+  async function generateRelatedAssignmentsEl() {
     let el = $(`
       <div>
       </div>
     `);
+    for (let i in relatedAssignments) {
+      let relatedAssignment = relatedAssignments[i];
+      let aTag = $(`<div><a href="/courses/${assignment.course_id}/assignments/${assignment.assignment_id}" target="_blank">${relatedAssignment.name}</a></div>`);
+      el.append(aTag);
+    }
     return el
   }
 
