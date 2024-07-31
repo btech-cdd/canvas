@@ -49,10 +49,10 @@
       let assignment = assignmentReviewsData[a];
 
       // blooms
-      if (blooms?.[assignment.blooms] === undefined) blooms[assignment.blooms] = 0;
+      if (assignment.blooms && blooms?.[assignment.blooms] === undefined) blooms[assignment.blooms] = 0;
       blooms[assignment.blooms] += 1;
 
-      for (let t in assignment.topic_tags) {
+      for (let t in assignment?.topic_tags ?? []) {
         let tag = assignment.topic_tags[t];
         if (topicTags?.[tag] === undefined) topicTags[tag] = 0;
         topicTags[tag]  += 1;
