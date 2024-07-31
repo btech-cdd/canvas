@@ -150,6 +150,21 @@
     return $('<div></div>')
   }
 
+  function generateObjectivesEl() {
+    console.log("GEN")
+    let el = $(`
+      <div>
+        <h2>Objectives</h2>
+      </div>
+    `);
+    for (let o in objectivesData) {
+      let objective = objectivesData[o];
+      console.log(objective);
+      let topicEl = $(``);
+      el.append(topicEl);
+    }
+    return el
+  }
   function generateTopicTagsEl() {
     console.log("GEN")
     let el = $(`
