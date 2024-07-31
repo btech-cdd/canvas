@@ -216,7 +216,7 @@
     return $('<div></div>')
   }
 
-  async function generateRelatedAssignmentsEl() {
+  function generateRelatedAssignmentsEl() {
     console.log("APPEND!")
     let el = $(`
       <div>
