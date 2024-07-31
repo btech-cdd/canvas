@@ -186,6 +186,7 @@
       // containerEl.append(generateRelevantObjectivesEl());
       // containerEl.append(generateDetailedAssignmentReviewEl());
       // containerEl.append(generateDetailedRubricReviewEl());
+      containerEl.append(generateObjectivesEl());
       containerEl.append(generateTopicTagsEl());
       // containerEl.append(generateRelatedAssignmentsEl());
     }
