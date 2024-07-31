@@ -197,5 +197,9 @@
     }
   }
 
+  async function refreshAssignmentData() {
+    console.log('refresh');
+  }
+
   await refreshAssignmentData();
 })();
