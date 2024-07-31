@@ -152,9 +152,6 @@
     let el = $(`
       <div style="padding: 8px 0;">
        <h2>Assignment Review</h2>
-        <div title="The bloom's taxonomy level of this assignment." style="margin-bottom: 0.5rem; display: inline-block;">
-          <span style="background-color: ${bloomsColors?.[assignmentReviewData.blooms.toLowerCase()] ?? '#000000'}; color: #FFFFFF; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${assignmentReviewData.blooms}</span>
-        </div>
         <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
           <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
         </div>
