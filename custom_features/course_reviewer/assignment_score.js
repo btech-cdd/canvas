@@ -85,14 +85,8 @@
   `);
   //button is added after data refresh
   evaluateButton.click(async function() {
-    detailedReportButton.css({
-      'background-color': '#888',
-      color: 'white'
-    });
-    evaluateButton.css({
-      'background-color': '#888',
-      color: 'white'
-    });
+    detailedReportButton.hide();
+    evaluateButton.hide();
     container.html('evaluating...');
 
     let description = assignmentData.description;
@@ -104,16 +98,10 @@
         rubric: rubric
     }, type="POST");
 
-    if (await refreshData()) await generateContent();
+    if (await refreshData()) await generateContent(container);
 
-    detailedReportButton.css({
-      'background-color': 'black',
-      color: 'white'
-    });
-    evaluateButton.css({
-      'background-color': 'black',
-      color: 'white'
-    });
+    detailedReportButton.show();
+    evaluateButton.show();
   });
 
   let detailedReportButton = $(`
