@@ -177,6 +177,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         }
         if (rCheckInCourse.test(window.location.pathname)) {
           feature("distance/approved-button", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
+          feature("course_reviewer/course_score", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
           IS_BLUEPRINT = !(ENV.BLUEPRINT_COURSES_DATA === undefined)
           $.get('/api/v1/courses/' + CURRENT_COURSE_ID, function (courseData) {
             CURRENT_DEPARTMENT_ID = courseData.account_id;
