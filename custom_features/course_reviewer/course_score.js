@@ -14,7 +14,7 @@
   ]
 
 
-  var courseData, assignmentReviewsData, courseReviewData, rubricReviewsData, objectivesData, courseCode, year, bloomsCounts, topicTagsCounts, objectivesCounts;
+  var courseData, assignmentReviewsData, courseReviewData, rubricReviewsData, objectivesData, courseCode, year, bloomsCounts, topicTagsCounts, objectivesCounts, assignmentCounts;
   async function refreshData() {
     console.log(ENV.COURSE_ID);
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
@@ -49,6 +49,13 @@
     bloomsCounts = {};
     topicTagsCounts = {};
     objectivesCounts = {};
+    assignmentCounts = {
+      includes_outcomes: 0,
+      chunked_content: 0,
+      career_relevance: 0,
+      provides_feedback: 0,
+      clarity: 0
+    };
 
     for (let a in assignmentReviewsData) {
       let assignment = assignmentReviewsData[a];
@@ -76,6 +83,13 @@
           objectivesCounts[objective]  += 1;
         }
       }
+
+      // other scores
+      assignmentCounts.includes_outcomes += assignment.clarity ? 1 : 0;
+      assignmentCounts.chunked_content += assignment.clarity ? 1 : 0;
+      assignmentCounts.career_relevance += assignment.clarity ? 1 : 0;
+      assignmentCounts.provides_feedback += assignment.clarity ? 1 : 0;
+      assignmentCounts.clarity += assignment.clarity;
     }
     console.log(bloomsCounts);
     console.log(topicTagsCounts);
@@ -129,9 +143,33 @@
   }
 
   function generateDetailedAssignmentReviewEl() {
+    let averageClarity = Math.round(assignmentCounts.clarity / assignmentReviewsData.length)
+    if (averageClarity > 2) averageClarity = 2;
+    let usageChunkedContent = Math.round((assignmentCounts.chunked_content / assignmentReviewsData.length) * 1000) / 10;
+    let usageIncludesOutcomes = Math.round((assignmentCounts.includes_outcomes/ assignmentReviewsData.length) * 1000) / 10;
+    let usageCareerRelevance = Math.round((assignmentCounts.career_relevance / assignmentReviewsData.length) * 1000) / 10;
+    let usageProvidesFeedback = Math.round((assignmentCounts.provides_feedback / assignmentReviewsData.length) * 1000) / 10;
     let el = $(`
       <div style="padding: 8px 0;">
-        
+       <h2>Assignment Review</h2>
+        <div title="The bloom's taxonomy level of this assignment." style="margin-bottom: 0.5rem; display: inline-block;">
+          <span style="background-color: ${bloomsColors?.[assignmentReviewData.blooms.toLowerCase()] ?? '#000000'}; color: #FFFFFF; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${assignmentReviewData.blooms}</span>
+        </div>
+        <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
+          <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
+        </div>
+        <div title="Content is chunked with headers, call out boxes, lists, etc.">
+          <span style="width: 5rem; display: inline-block;">Chunking</span><span>${ usageChunkedContent }%</span>
+        </div>
+        <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
+          <span style="width: 5rem; display: inline-block;">Outcomes</span><span>${ usageIncludesOutcomes }%</span>
+        </div>
+        <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
+          <span style="width: 5rem; display: inline-block;">Industry</span><span>${ usageCareerRelevance }%</span>
+        </div>
+        <div title="The assignment explicitly states how this students will receive documented feedback.">
+          <span style="width: 5rem; display: inline-block;">Feedback</span><span>${ usageProvidesFeedback }%</span>
+        </div>
       </div> 
       `);
     return el;
@@ -185,7 +223,7 @@
   async function generateDetailedContent(containerEl) {
     if (courseReviewData) {
       // containerEl.append(generateRelevantObjectivesEl());
-      // containerEl.append(generateDetailedAssignmentReviewEl());
+      containerEl.append(generateDetailedAssignmentReviewEl());
       // containerEl.append(generateDetailedRubricReviewEl());
       containerEl.append(generateObjectivesEl());
       containerEl.append(generateTopicTagsEl());
