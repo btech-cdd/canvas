@@ -101,7 +101,6 @@
       }
     });
     let modalContent = $('body .btech-modal-content-inner');
-    console.log("Populate modal");
     generateDetailedContent(modalContent);
   });
 
@@ -148,6 +147,7 @@
   }
 
   function generateTopicTagsEl() {
+    console.log("GEN")
     let el = $(`
       <div>
         <h2>Key Topics</h2>
