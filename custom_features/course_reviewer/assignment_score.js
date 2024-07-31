@@ -1,4 +1,5 @@
 (async function () {
+
   const bloomsColors = {
     'remember': '#a222a2',
     'understand': '#2222a2',

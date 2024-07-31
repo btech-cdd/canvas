@@ -14,7 +14,7 @@
   ]
 
 
-  var courseData, assignmentData, assignmentReviewData, courseReviewData, rubricReviewData, objectivesData, relatedAssignments, courseCode, year;
+  var courseData, assignmentData, assignmentReviewsData, courseReviewData, rubricReviewData, objectivesData, relatedAssignments, courseCode, year;
   async function refreshData() {
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
@@ -29,27 +29,10 @@
       year = '';
     }
     try {
-      assignmentReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`);
+      assignmentReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments`);
     } catch (err) {
       console.log(err);
       return false;
-    }
-
-    let objectivesQueryString = '';
-    for (let o in assignmentReviewData.objectives) {
-      if (o > 0) objectivesQueryString += '&';
-      objectivesQueryString += 'objectives[]=' + assignmentReviewData.objectives[o];
-    }
-    try {
-      relatedAssignments = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments?${objectivesQueryString}`);
-      for (let i in relatedAssignments) {
-        let relatedAssignment = relatedAssignments[i];
-        let relatedAssignmentData = (await canvasGet(`/api/v1/courses/${relatedAssignment.course_id}/assignments/${relatedAssignment.assignment_id}`))[0];
-        relatedAssignment.canvas_data = relatedAssignmentData;
-      }
-    } catch (err) {
-      relatedAssignments = [];
-      console.log(err);
     }
 
     try {
@@ -59,41 +42,8 @@
       console.log(err);
     }
 
-    try {
-      rubricReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}/rubric`);
-    } catch (err) {
-      rubricReviewData = undefined;
-      console.log(err);
-    }
     return true;
   }
-
-  //reevaluate button
-  let evaluateButton = $(`
-    <a class="btn" id="btech-evaluate-button" rel="nofollow" >
-      Run Evaluator 
-    </a>
-  `);
-  //button is added after data refresh
-  evaluateButton.click(async function() {
-    detailedReportButton.hide();
-    evaluateButton.hide();
-    container.html('evaluating...');
-
-    let description = assignmentData.description;
-    let rubric = JSON.stringify(assignmentData.rubric);
-    await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseData.id}/assignments/${assignmentData.id}/evaluate`, reqdata={
-        courseCode: courseCode,
-        year: year,
-        description: description,
-        rubric: rubric
-    }, type="POST");
-
-    if (await refreshData()) await generateContent(container);
-
-    detailedReportButton.show();
-    evaluateButton.show();
-  });
 
   let detailedReportButton = $(`
     <a class="btn" id="btech-detailed-evaluation-button" rel="nofollow" >
@@ -143,29 +93,7 @@
   function generateDetailedAssignmentReviewEl() {
     let el = $(`
       <div style="padding: 8px 0;">
-        <h2>Assignment Review</h2>
-        <div title="The bloom's taxonomy level of this assignment." style="margin-bottom: 0.5rem; display: inline-block;">
-          <span style="background-color: ${bloomsColors?.[assignmentReviewData.blooms.toLowerCase()] ?? '#000000'}; color: #FFFFFF; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${assignmentReviewData.blooms}</span>
-        </div>
-        <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-          <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ emoji?.[assignmentReviewData.clarity - 1] ?? ''}</span>
-        </div>
-        <div title="Content is chunked with headers, call out boxes, lists, etc.">
-          <span style="width: 5rem; display: inline-block;">Chunking</span><span>${ assignmentReviewData.chunked_content ? '&#10004;' : '&#10008;'}</span>
-        </div>
-        <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-          <span style="width: 5rem; display: inline-block;">Outcomes</span><span>${ assignmentReviewData.includes_outcomes ? '&#10004;' : '&#10008;'}</span>
-        </div>
-        <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-          <span style="width: 5rem; display: inline-block;">Industry</span><span>${ assignmentReviewData.career_relevance ? '&#10004;' : '&#10008;'}</span>
-        </div>
-        <div title="The assignment explicitly states how this students will receive documented feedback.">
-          <span style="width: 5rem; display: inline-block;">Feedback</span><span>${ assignmentReviewData.provides_feedback ? '&#10004;' : '&#10008;'}</span>
-        </div>
-        <div title="Additional feedback generated by the AI reviewer" style="margin-top: 0.5rem; display: inline-block;">
-          <h2>AI Feedback</h2>
-          <p>${assignmentReviewData.feedback}</p>
-        </div>
+        
       </div> 
       `);
     return el;
@@ -175,23 +103,7 @@
     if (rubricReviewData) {
       let el = $(`
         <div style="padding: 8px 0;">
-          <h2>Rubric Review</h2>
-          <div title="Criteria are clear and relevant to the rubric.">
-            <span style="width: 5rem; display: inline-block;">Criteria</span><span>${ emoji?.[rubricReviewData.criteria - 1] ?? ''}</span>
-          </div>
-          <div title="Criteria are appropriately chunked. There are no overlapping criteria. Complex skills or steps have been broken down into individual criterion.">
-            <span style="width: 5rem; display: inline-block;">Granularity</span><span>${ emoji?.[rubricReviewData.granularity - 1] ?? ''}</span>
-          </div>
-          <div title="Grading levels are divided in a logical way that allows students to understand why they got the score they got. It also enagles students to know how to improve.">
-            <span style="width: 5rem; display: inline-block;">Scoring</span><span>${ emoji?.[rubricReviewData.grading_levels - 1] ?? ''}</span>
-          </div>
-          <div title="The writing is clear and free from spelling and grammar errors.">
-            <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ emoji?.[rubricReviewData.writing_quality - 1] ?? ''}</span>
-          </div>
-          <div title="Additional feedback generated by the AI reviewer" style="margin-top: 0.5rem; display: inline-block;">
-            <h2>AI Feedback</h2>
-            <p>${rubricReviewData.feedback}</p>
-          </div>
+          
         </div> 
 
       `);
@@ -220,8 +132,8 @@
         <h2>Key Topics</h2>
       </div>
     `);
-    for (let i in assignmentReviewData.topic_tags) {
-      let topic = assignmentReviewData.topic_tags[i];
+    for (let i in courseReviewData.topic_tags) {
+      let topic = courseReviewData.topic_tags[i];
       let topicEl = $(`<span style="padding: 0.25rem; background-color: black; color: white; border-radius: 0.25rem; margin: 0 0.25rem;">${topic}</span>`);
       el.append(topicEl);
     }
@@ -231,11 +143,11 @@
   // do we have a review?
   async function generateDetailedContent(containerEl) {
     if (assignmentReviewData) {
-      containerEl.append(generateRelevantObjectivesEl());
-      containerEl.append(generateDetailedAssignmentReviewEl());
-      containerEl.append(generateDetailedRubricReviewEl());
+      // containerEl.append(generateRelevantObjectivesEl());
+      // containerEl.append(generateDetailedAssignmentReviewEl());
+      // containerEl.append(generateDetailedRubricReviewEl());
       containerEl.append(generateTopicTagsEl());
-      containerEl.append(generateRelatedAssignmentsEl());
+      // containerEl.append(generateRelatedAssignmentsEl());
     }
   }
 
@@ -287,14 +199,7 @@
     return el;
   }
 
-  async function generateContent(containerEl) {
-    containerEl.empty();
-    containerEl.append(generateAssignmentReviewEl());
-  }
 
   await refreshData();
-  $('#sidebar_content').append(evaluateButton);
-  $("#sidebar_content").append(container);
-  $('#sidebar_content').append(detailedReportButton);
-  await generateContent(container);
+  $('#course_show_secondary').append(detailedReportButton);
 })();
