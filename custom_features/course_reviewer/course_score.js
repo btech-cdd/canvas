@@ -223,9 +223,9 @@
   async function generateDetailedContent(containerEl) {
     if (courseReviewData) {
       // containerEl.append(generateRelevantObjectivesEl());
+      containerEl.append(generateObjectivesEl());
       containerEl.append(generateDetailedAssignmentReviewEl());
       // containerEl.append(generateDetailedRubricReviewEl());
-      containerEl.append(generateObjectivesEl());
       containerEl.append(generateTopicTagsEl());
       // containerEl.append(generateRelatedAssignmentsEl());
     }
