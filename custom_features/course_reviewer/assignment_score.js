@@ -70,8 +70,14 @@
         </div>
       </div>
     `);
-    let modal = $('body .btech-modal-content-inner');
-    generateDetailedContent(modal);
+    let modal = $('body .btech-modal');
+    modal.on("click", function(event) {
+      if ($(event.target).is(modal)) {
+          modal.remove();
+      }
+    });
+    let modalContent = $('body .btech-modal-content-inner');
+    generateDetailedContent(modalContent);
   });
   $('#sidebar_content').append(detailedReportButton);
   // container for the evaluation itself
