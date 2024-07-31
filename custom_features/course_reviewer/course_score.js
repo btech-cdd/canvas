@@ -64,7 +64,7 @@
       for (let o in assignment?.objectives?? []) {
         let objective = assignment.objectives[o];
         if (objectivesCounts?.[objective] === undefined) objectivesCounts[objective] = 0;
-        objectivesCounts[tag]  += 1;
+        objectivesCounts[objective]  += 1;
       }
       console.log(assignment);
       break;
