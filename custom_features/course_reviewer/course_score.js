@@ -66,11 +66,9 @@
         if (objectivesCounts?.[objective] === undefined) objectivesCounts[objective] = 0;
         objectivesCounts[objective]  += 1;
       }
-      console.log(assignment);
-      break;
     }
-    console.log(blooms);
-    console.log(topicTags);
+    console.log(bloomsCounts);
+    console.log(topicTagsCounts);
     console.log(objectivesCounts);
 
     return true;
