@@ -122,26 +122,6 @@
     generateDetailedContent(modalContent);
   });
 
-  // container for the evaluation itself
-  let container = $('<div id="btech-course-reviewer-container"></div>');
-
-  function generateRelevantObjectivesEl() {
-    let objectives = [];
-    for (let o in objectivesData) {
-      let objective = objectivesData[o];
-      objectives[objective.objective_id] = objective;
-    }
-
-    let relevantObjectivesString = ``;
-    for (let i = 1; i < objectives.length; i++) {
-      let objective = objectives[i];
-      let isRelevant = assignmentReviewData.objectives.includes(objective.objective_id);
-      relevantObjectivesString += `<div style="${isRelevant ? '' : 'color: #CCC;'}"><span style="width: 1rem; display: inline-block;">${isRelevant ? '&#10003;' : ''}</span>${objective.objective_text}</div>`;
-    }
-    let relevantObjectivesEl = $(`<div><h2>Relevant Objectives</h2>${relevantObjectivesString}</div>`);
-    return relevantObjectivesEl;
-  }
-
   function generateDetailedAssignmentReviewEl() {
     let averageClarity = Math.round(assignmentCounts.clarity / assignmentReviewsData.length)
     if (averageClarity > 2) averageClarity = 2;
@@ -187,7 +167,6 @@
   }
 
   function generateObjectivesEl() {
-    console.log("GEN")
     let el = $(`
       <div>
         <h2>Objectives</h2>
@@ -198,6 +177,20 @@
       console.log(objective);
       let usage = Math.round((objectivesCounts[objective.objective_id] / assignmentReviewsData.length) * 1000) / 10;
       let topicEl = $(`<div><span style="display: inline-block; width: 4rem;">${usage}%</span><span>${objective.objective_text.trim()}</span></div>`);
+      el.append(topicEl);
+    }
+    return el
+  }
+  function generateBloomsEl() {
+    let el = $(`
+      <div>
+        <h2>Blooms</h2>
+      </div>
+    `);
+    for (let blooms in bloomsCounts) {
+      let count = bloomsCounts[blooms];
+      let usage = Math.round((count / assignmentReviewsData.length) * 1000) / 10;
+      let topicEl = $(`<div><span style="display: inline-block; width: 4rem;">${usage}%</span><span>${blooms}</span></div>`);
       el.append(topicEl);
     }
     return el
