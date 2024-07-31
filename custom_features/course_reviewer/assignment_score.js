@@ -73,6 +73,7 @@
     let modal = $('body .btech-modal-content-inner');
     generateDetailedContent(modal);
   });
+  $('#sidebar_content').append(detailedReportButton);
   // container for the evaluation itself
   $("#sidebar_content").append(container);
   // do we have a review?
