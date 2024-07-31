@@ -223,7 +223,7 @@
     `);
     for (let i in relatedAssignments) {
       let relatedAssignment = relatedAssignments[i];
-      let aTag = $(`<div><a href="/courses/${assignment.course_id}/assignments/${assignment.assignment_id}" target="_blank">${relatedAssignment.name}</a></div>`);
+      let aTag = $(`<div><a href="/courses/${relatedAssignment.course_id}/assignments/${relatedAssignment.assignment_id}" target="_blank">${relatedAssignment.name}</a></div>`);
       el.append(aTag);
     }
     return el
