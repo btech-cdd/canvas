@@ -18,6 +18,7 @@
   async function refreshData() {
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     courseReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
+    console.log(courseReviewData);
     // assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
     let regex = /^([A-Z]{4} \d{4}).*(\d{4})(?=[A-Z]{2})/;
     let match = courseData.sis_course_id.match(regex);
