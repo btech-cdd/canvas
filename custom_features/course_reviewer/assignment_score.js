@@ -53,7 +53,7 @@
       relatedAssignments = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments?${objectivesQueryString}`);
       for (let i in relatedAssignments) {
         let relatedAssignment = relatedAssignments[i];
-        let relatedAssignmentData = await canvasGet(`/api/v1/courses/${relatedAssignment.course_id}/assignments/${relatedAssignment.assignment_id}`);
+        let relatedAssignmentData = (await canvasGet(`/api/v1/courses/${relatedAssignment.course_id}/assignments/${relatedAssignment.assignment_id}`))[0];
         relatedAssignment.canvas_data = relatedAssignmentData;
       }
     } catch (err) {
@@ -225,8 +225,7 @@
     `);
     for (let i in relatedAssignments) {
       let relatedAssignment = relatedAssignments[i];
-      console.log(relatedAssignment);
-      let aTag = $(`<div><a href="/courses/${relatedAssignment.course_id}/assignments/${relatedAssignment.assignment_id}" target="_blank">${relatedAssignment.canvas_data.title}</a></div>`);
+      let aTag = $(`<div><a href="/courses/${relatedAssignment.course_id}/assignments/${relatedAssignment.assignment_id}" target="_blank">${relatedAssignment.canvas_data.name}</a></div>`);
       el.append(aTag);
     }
     return el
