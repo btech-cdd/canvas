@@ -16,6 +16,7 @@
 
   var courseData, assignmentReviewsData, courseReviewData, rubricReviewsData, objectivesData, courseCode, year, bloomsCounts, topicTagsCounts, objectivesCounts;
   async function refreshData() {
+    console.log(ENV.COURSE_ID);
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     courseReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
     console.log(courseReviewData);
