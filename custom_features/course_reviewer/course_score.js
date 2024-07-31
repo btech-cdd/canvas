@@ -50,21 +50,27 @@
       let assignment = assignmentReviewsData[a];
 
       // blooms
-      if (assignment.blooms && bloomsCounts?.[assignment.blooms] === undefined) bloomsCounts[assignment.blooms] = 0;
-      bloomsCounts[assignment.blooms] += 1;
-
-      // topic tags
-      for (let t in assignment?.topic_tags ?? []) {
-        let tag = assignment.topic_tags[t];
-        if (topicTagsCounts?.[tag] === undefined) topicTagsCounts[tag] = 0;
-        topicTagsCounts[tag]  += 1;
+      if (assignment.blooms) {
+        if (bloomsCounts?.[assignment.blooms] === undefined) bloomsCounts[assignment.blooms] = 0;
+        bloomsCounts[assignment.blooms] += 1;
       }
 
       // topic tags
-      for (let o in assignment?.objectives?? []) {
-        let objective = assignment.objectives[o];
-        if (objectivesCounts?.[objective] === undefined) objectivesCounts[objective] = 0;
-        objectivesCounts[objective]  += 1;
+      if (assignment.topic_tags) {
+        for (let t in assignment?.topic_tags ?? []) {
+          let tag = assignment.topic_tags[t];
+          if (topicTagsCounts?.[tag] === undefined) topicTagsCounts[tag] = 0;
+          topicTagsCounts[tag]  += 1;
+        }
+      }
+
+      // objectives 
+      if (assignment.objectives) {
+        for (let o in assignment?.objectives?? []) {
+          let objective = assignment.objectives[o];
+          if (objectivesCounts?.[objective] === undefined) objectivesCounts[objective] = 0;
+          objectivesCounts[objective]  += 1;
+        }
       }
     }
     console.log(bloomsCounts);
