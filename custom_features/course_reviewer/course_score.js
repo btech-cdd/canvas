@@ -200,6 +200,6 @@
   }
 
 
-  await refreshData();
+  // await refreshData();
   $(".header-bar-right__buttons").prepend(detailedReportButton);
 })();
