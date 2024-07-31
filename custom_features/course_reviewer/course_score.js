@@ -17,7 +17,7 @@
   var courseData, assignmentData, assignmentReviewsData, courseReviewData, rubricReviewData, objectivesData, relatedAssignments, courseCode, year;
   async function refreshData() {
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
-    assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
+    // assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
     let regex = /^([A-Z]{4} \d{4}).*(\d{4})(?=[A-Z]{2})/;
     let match = courseData.sis_course_id.match(regex);
     if (match) {
@@ -40,6 +40,11 @@
     } catch (err) {
       objectivesData = [];
       console.log(err);
+    }
+
+    for (let a in assignmentReviewsData) {
+      let assignment = assignmentReviewsData[a];
+      console.log(assignment);
     }
 
     return true;
@@ -200,6 +205,6 @@
   }
 
 
-  // await refreshData();
+  await refreshData();
   $(".header-bar-right__buttons").prepend(detailedReportButton);
 })();
