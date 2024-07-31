@@ -23,24 +23,6 @@
     '&#128512;',
   ]
 
-  //reevaluate button
-  let evaluateButton = $(`
-    <span 
-      id="btech-evaluate-button" 
-      style="cursor: pointer; background-color: black; color: white; border-radius: 0.25rem; padding: 0.25rem;"
-    >
-      Evaluate
-    </span>
-  `);
-  let container = $('<div id="btech-course-reviewer-container"></div>');
-  let detailedReportButton = $(`
-    <span 
-      id="btech-evaluate-button" 
-      style="cursor: pointer; background-color: black; color: white; border-radius: 0.25rem; padding: 0.25rem;"
-    >
-     Detailed Report 
-    </span>
-  `);
 
   var courseData, assignmentData, assignmentReviewData, courseReviewData, rubricReviewData, objectivesData, relatedAssignments, courseCode, year;
   async function refreshData() {
@@ -91,6 +73,16 @@
     return true;
   }
 
+  //reevaluate button
+  let evaluateButton = $(`
+    <span 
+      id="btech-evaluate-button" 
+      style="cursor: pointer; background-color: black; color: white; border-radius: 0.25rem; padding: 0.25rem;"
+    >
+      Evaluate
+    </span>
+  `);
+  //button is added after data refresh
   evaluateButton.click(async function() {
     evaluateButton.css({
       'background-color': '#888',
@@ -114,8 +106,15 @@
       color: 'white'
     });
   });
-  $('#sidebar_content').append(evaluateButton);
 
+  let detailedReportButton = $(`
+    <span 
+      id="btech-evaluate-button" 
+      style="cursor: pointer; background-color: black; color: white; border-radius: 0.25rem; padding: 0.25rem;"
+    >
+     Detailed Report 
+    </span>
+  `);
   detailedReportButton.click(async function () {
     $("body").append(`
       <div class='btech-modal' style='display: inline-block;'>
@@ -134,9 +133,9 @@
     let modalContent = $('body .btech-modal-content-inner');
     generateDetailedContent(modalContent);
   });
-  $('#sidebar_content').append(detailedReportButton);
+
   // container for the evaluation itself
-  $("#sidebar_content").append(container);
+  let container = $('<div id="btech-course-reviewer-container"></div>');
 
   function generateRelevantObjectivesEl() {
     let objectives = [];
@@ -226,5 +225,8 @@
   }
 
   await refreshData();
+  $('#sidebar_content').append(evaluateButton);
+  $('#sidebar_content').append(detailedReportButton);
+  $("#sidebar_content").append(container);
   await refreshReport();
 })();
