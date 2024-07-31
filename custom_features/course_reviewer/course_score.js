@@ -85,12 +85,11 @@
       }
 
       // other scores
-      assignmentCounts.includes_outcomes += assignment.clarity ? 1 : 0;
-      assignmentCounts.chunked_content += assignment.clarity ? 1 : 0;
-      assignmentCounts.career_relevance += assignment.clarity ? 1 : 0;
-      assignmentCounts.provides_feedback += assignment.clarity ? 1 : 0;
-      console.log(assignment.clarity);
-      assignmentCounts.clarity += assignment.clarity;
+      if (assignment.includes_outcomes !== undefined) assignmentCounts.includes_outcomes += assignment.includes_outcomes ? 1 : 0;
+      if (assignment.chunked_content !== undefined) assignmentCounts.chunked_content += assignment.chunked_content ? 1 : 0;
+      if (assignment.career_relevance !== undefined) assignmentCounts.career_relevance += assignment.career_relevance? 1 : 0;
+      if (assignment.provides_feedback !== undefined) assignmentCounts.provides_feedback += assignment.provides_feedback? 1 : 0;
+      if (assignment.clarity !== undefined) assignmentCounts.clarity += assignment.clarity;
     }
     console.log(bloomsCounts);
     console.log(topicTagsCounts);
