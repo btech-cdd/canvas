@@ -219,6 +219,7 @@
   async function generateRelatedAssignmentsEl() {
     let el = $(`
       <div>
+        <h2>Related Assignments</h2>
       </div>
     `);
     for (let i in relatedAssignments) {
