@@ -232,6 +232,7 @@
       + (data.supporting_media ? 1 : 0)
     ) / 6) // divide by total points
     * 3); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
+    console.log(averageScore);
     if (averageScore > 2) averageScore = 2;
 
     let el = $(`
