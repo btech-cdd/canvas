@@ -5,7 +5,8 @@
     'apply': '#22a222',
     'analyze': '#a2a222',
     'evaluate': '#a27222',
-    'create': '#a22232' 
+    'create': '#a22232',
+    'n/a': '#a3a3a3'
   }
 
   function genBloomsChart(data) {
