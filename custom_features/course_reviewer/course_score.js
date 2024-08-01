@@ -249,7 +249,7 @@
       el.append(topicEl);
     }
 
-    // I think it's worth pointing out there are 0% with no objectives
+    // I think it's worth including even if there are 0% with no objectives
     // if (objectivesCounts['n/a'] > 0) {
 
     // }
