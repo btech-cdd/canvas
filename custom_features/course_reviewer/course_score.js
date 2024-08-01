@@ -217,7 +217,7 @@
       * 3); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
       if (assignmentScore > 2) assignmentScore = 2;
       if (emoji?.[assignmentScore]) {
-        $(`.Assignment_${assignment.assignment_id} div.ig-info .ig-btech-evaluation-score`).html(emoji?.[assignmentScore]);
+        $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html(emoji?.[assignmentScore]);
       }
     }
 
