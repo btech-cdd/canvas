@@ -255,8 +255,9 @@
       + (data.modeling ? 1 : 0)
       + (data.objectives > 0 ? 1 : 0)
     ) / 8) // divide by total points
-    * 3); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
+    * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
     if (averageScore > 2) averageScore = 2;
+    if (averageScore < 0) averageScore = 0;
 
     let rubricScore = undefined;
     if (rubricReviewData) {
