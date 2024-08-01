@@ -114,6 +114,13 @@
     bloomsCounts = {};
     topicTagsCounts = {};
     objectivesCounts = {};
+    pageCounts = {
+      includes_outcomes: 0,
+      chunked_content: 0,
+      career_relevance: 0,
+      supporting_media: 0,
+      clarity: 0
+    }
     assignmentCounts = {
       includes_outcomes: 0,
       chunked_content: 0,
@@ -122,8 +129,39 @@
       modeling: 0,
       clarity: 0
     };
-    pageCounts = {
+    for (let o in pageReviewsData) {
+      let page = pageReviewsData[o];
+      // topic tags
+      if (page.topic_tags) {
+        for (let t in page?.topic_tags ?? []) {
+          let tag = page.topic_tags[t];
+          if (topicTagsCounts?.[tag] === undefined) topicTagsCounts[tag] = 0;
+          topicTagsCounts[tag]  += 1;
+        }
+      }
 
+      // other scores
+      if (page.includes_outcomes !== undefined) assignmentCounts.includes_outcomes += assignment.includes_outcomes ? 1 : 0;
+      if (page.chunked_content !== undefined) assignmentCounts.chunked_content += assignment.chunked_content ? 1 : 0;
+      if (page.career_relevance !== undefined) assignmentCounts.career_relevance += assignment.career_relevance? 1 : 0;
+      if (page.supporting_media!== undefined) assignmentCounts.provides_feedback += assignment.provides_feedback? 1 : 0;
+      if (page.clarity !== undefined) assignmentCounts.clarity += assignment.clarity;
+
+      let pageScore = Math.round(((
+        (page.clarity - 1) // 1-3, so -1 to get to 0-2
+        + (page.chunked_content ? 1 : 0)
+        + (page.includes_outcomes ? 1 : 0)
+        + (page.career_relevance ? 1 : 0)
+        + (page.supporting_media ? 1 : 0)
+      ) / 6) // divide by total points
+      * 3); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
+      if (pageScore > 2) pageScore = 2;
+      if (emoji?.[pageScore]) {
+        let pageScoreEl = $(`<span class="ig-assignment-score" style="cursor: pointer; float: right;">${emoji?.[assignmentScore]}</span>`);
+        let itemClass = ".Assignment_" + assignment.assignment_id;
+        let titleEl = $(itemClass + " div.ig-info");
+        titleEl.before(assignmentScoreEl);
+      }
     }
 
     for (let a in assignmentReviewsData) {
@@ -170,8 +208,8 @@
         + (assignment.includes_outcomes ? 1 : 0)
         + (assignment.career_relevance ? 1 : 0)
         + (assignment.objectives > 0 ? 1 : 0)
-        + (assignment.modeling > 0 ? 1 : 0)
         + (assignment.provides_feedback > 0 ? 1 : 0)
+        + (assignment.modeling > 0 ? 1 : 0)
       ) / 8) // divide by total points
       * 3); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
       if (assignmentScore > 2) assignmentScore = 2;
@@ -182,9 +220,6 @@
         titleEl.before(assignmentScoreEl);
       }
     }
-    console.log(bloomsCounts);
-    console.log(topicTagsCounts);
-    console.log(objectivesCounts);
 
     return true;
   }

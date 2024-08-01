@@ -23,7 +23,7 @@
       year = '';
     }
     try {
-      pageReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/pages/${ENV.WIKI_PAGE.url}`);
+      pageReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/pages/${ENV.WIKI_PAGE.page_id}`);
     } catch (err) {
       console.log(err);
       return false;
@@ -68,7 +68,7 @@
     container.html('evaluating...');
 
     let description = ENV.WIKI_PAGE.body;
-    await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/pages/${ENV.WIKI_PAGE.url}/evaluate`, reqdata={
+    await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/pages/${ENV.WIKI_PAGE.page_id}/evaluate`, reqdata={
         courseCode: courseCode,
         year: year,
         description: description,
