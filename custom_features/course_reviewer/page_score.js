@@ -261,5 +261,5 @@
   $('aside#right-side').append(evaluateButton);
   $("aside#right-side").append(container);
   $('aside#right-side').append(detailedReportButton);
-  await generateContent(container);
+  if (pageReviewData?.page_id) await generateContent(container);
 })();
