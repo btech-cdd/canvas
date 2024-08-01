@@ -249,7 +249,7 @@
   });
 
   function generateDetailedAssignmentReviewEl() {
-    let averageClarity = Math.round(assignmentCounts.clarity / assignmentReviewsData.length)
+    let averageClarity = Math.floor(assignmentCounts.clarity / assignmentReviewsData.length)
     if (averageClarity > 2) averageClarity = 2;
     console.log(averageClarity);
     let usageChunkedContent = Math.round((assignmentCounts.chunked_content / assignmentReviewsData.length) * 1000) / 10;
