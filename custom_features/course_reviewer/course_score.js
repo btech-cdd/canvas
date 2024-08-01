@@ -159,7 +159,7 @@
       console.log(page)
       if (emoji?.[pageScore]) {
         let pageScoreEl = $(`<span class="ig-assignment-score" style="cursor: pointer; float: right;">${emoji?.[pageScore]}</span>`);
-        let itemClass = ".WikiPage" + page.page_id;
+        let itemClass = ".WikiPage_" + page.page_id;
         let titleEl = $(itemClass + " div.ig-info");
         titleEl.before(pageScoreEl);
       }
