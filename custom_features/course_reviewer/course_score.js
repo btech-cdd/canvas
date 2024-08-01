@@ -290,7 +290,7 @@
       // containerEl.append(generateRelevantObjectivesEl());
       containerEl.append(generateObjectivesEl());
       containerEl.append(generateBloomsEl());
-      genBloomsChart();
+      genBloomsChart(bloomsCounts);
       containerEl.append(generateDetailedAssignmentReviewEl());
       // containerEl.append(generateDetailedRubricReviewEl());
       containerEl.append(generateTopicTagsEl());
