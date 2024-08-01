@@ -190,11 +190,9 @@
   }
 
   function generateObjectivesEl() {
-    let noObjectives = Math.round((objectivesCounts['n/a'] / assignmentReviewsData.length) * 1000) / 10;
     let el = $(`
       <div>
         <h2>Objectives</h2>
-        <div><span style="display: inline-block; width: 4rem;">${noObjectives}%</span><span><i>No Objectives</i></span></div>
       </div>
     `);
     for (let o in objectivesData) {
@@ -204,6 +202,12 @@
       let topicEl = $(`<div><span style="display: inline-block; width: 4rem;">${usage}%</span><span>${objective.objective_text.trim()}</span></div>`);
       el.append(topicEl);
     }
+
+    let noObjectives = Math.round((objectivesCounts['n/a'] / assignmentReviewsData.length) * 1000) / 10;
+    let noObjectivesEl = $(`
+      <div><span style="display: inline-block; width: 4rem;">${noObjectives}%</span><span><i>No Objectives</i></span></div>
+    `);
+    el.append(noObjectivesEl)
     return el
   }
   function generateBloomsEl() {
