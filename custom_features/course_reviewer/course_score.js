@@ -163,10 +163,7 @@
       if (pageScore > 2) pageScore = 2;
       console.log(page)
       if (emoji?.[pageScore]) {
-        let pageScoreEl = $(`<span class="ig-btech-evaluation-score" style="cursor: pointer; float: right;">${emoji?.[pageScore]}</span>`);
-        let itemClass = ".WikiPage_" + page.page_id;
-        let titleEl = $(itemClass + " div.ig-info");
-        titleEl.before(pageScoreEl);
+        $(`.WikiPage_${page.page_id} div.ig-info .ig-btech-evaluation-score`).html(emoji?.[pageScore]);
       }
     }
 
@@ -220,7 +217,7 @@
       * 3); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
       if (assignmentScore > 2) assignmentScore = 2;
       if (emoji?.[assignmentScore]) {
-        $(`.Assignment_${assignment.assignment_id} div.ig-info .btech-evaluation-score`).html(emoji?.[assignmentScore]);
+        $(`.Assignment_${assignment.assignment_id} div.ig-info .ig-btech-evaluation-score`).html(emoji?.[assignmentScore]);
       }
     }
 
