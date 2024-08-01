@@ -53,7 +53,6 @@
       g.append("text")
           .attr("transform", d => `translate(${labelArc.centroid(d)})`)
           .attr("dy", "0.35em")
-          .style("fill", "white")
           .text(d => (d.data[0] == 'n/a' ? '' : d.data[0]));
   }
 
