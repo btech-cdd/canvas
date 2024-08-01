@@ -57,7 +57,7 @@
               .style("display", "flex")
               .style("align-items", "center")
               .style("line-height", "1rem")
-              .style("margin-bottom: 2px")
+              .style("margin-bottom", "2px")
               .html(`<div class="key-color" style="background-color: ${color}; width: 1rem; height: 1rem; margin-right: 1rem; display: inline-block;"></div><div style="display: inline-block;">${label}</div>`);
       });
   }
