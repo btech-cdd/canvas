@@ -60,6 +60,9 @@
       Object.entries(bloomsColors).forEach(([label, color]) => {
           key.append("div")
               .attr("class", "key-item")
+              .style("display", "flex")
+              .style("align-items", "center")
+              .style("margin-bottom", "5px")
               .html(`<div class="key-color" style="background-color: ${color}; width: 1rem; height: 1rem; margin-right: 1rem; display: inline-block;"></div><div style="display: inline-block;">${label}</div>`);
       });
   }
