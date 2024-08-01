@@ -86,7 +86,6 @@
 
     let description = assignmentData.description;
     let rubric = JSON.stringify(assignmentData.rubric);
-    console.log(assignmentData.rubric);
     await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseData.id}/assignments/${assignmentData.id}/evaluate`, reqdata={
         courseCode: courseCode,
         year: year,
@@ -121,7 +120,6 @@
       }
     });
     let modalContent = $('body .btech-modal-content-inner');
-    console.log("Populate modal");
     generateDetailedContent(modalContent);
   });
 
@@ -209,7 +207,6 @@
   }
 
   function generateRelatedAssignmentsEl() {
-    console.log("APPEND!")
     let el = $(`
       <div>
         <h2>Related Assignments</h2>

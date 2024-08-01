@@ -36,6 +36,7 @@
     }
     try {
       relatedPages = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/pages?${objectivesQueryString}`);
+      console.log(relatedPages);
       for (let i in relatedPages) {
         let relatedPage = relatedPages[i];
         let relatedPageData = (await canvasGet(`/api/v1/courses/${relatedPage.course_id}/pages/${relatedPage.page_id}`))[0];
@@ -101,7 +102,6 @@
       }
     });
     let modalContent = $('body .btech-modal-content-inner');
-    console.log("Populate modal");
     generateDetailedContent(modalContent);
   });
 
@@ -186,7 +186,6 @@
   }
 
   function generateRelatedPagesEl() {
-    console.log("APPEND!")
     let el = $(`
       <div>
         <h2>Related Pages</h2>
