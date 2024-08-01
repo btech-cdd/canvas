@@ -6,7 +6,7 @@
     'analyze': '#B1D983',
     'evaluate': '#88C1E6',
     'create': '#8390C4',
-    'n/a': '#a3a3a3'
+    'n/a': '#C4C4C4'
   }
 
   function genBloomsChart(data) {
