@@ -86,6 +86,7 @@
 
     let description = assignmentData.description;
     let rubric = JSON.stringify(assignmentData.rubric);
+    console.log(assignmentData.rubric);
     await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseData.id}/assignments/${assignmentData.id}/evaluate`, reqdata={
         courseCode: courseCode,
         year: year,
