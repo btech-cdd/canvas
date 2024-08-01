@@ -161,7 +161,7 @@
       ) / 6) // divide by total points
       * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
       if (pageScore > 2) pageScore = 2;
-      if (averageScore < 0) averageScore = 0;
+      if (pageScore < 0) pageScore = 0;
       console.log(page)
       if (emoji?.[pageScore]) {
         $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`).html(emoji?.[pageScore]);
@@ -217,7 +217,7 @@
       ) / 8) // divide by total points
       * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
       if (assignmentScore > 2) assignmentScore = 2;
-      if (averageScore < 0) averageScore = 0;
+      if (assignmentScore < 0) assignmentScore = 0;
       if (emoji?.[assignmentScore]) {
         $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html(emoji?.[assignmentScore]);
       }
