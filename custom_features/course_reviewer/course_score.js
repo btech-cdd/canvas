@@ -249,13 +249,15 @@
       el.append(topicEl);
     }
 
-    if (objectivesCounts['n/a'] > 0) {
-      let noObjectives = Math.round((objectivesCounts['n/a'] / assignmentReviewsData.length) * 1000) / 10;
-      let noObjectivesEl = $(`
-        <div><span style="display: inline-block; width: 4rem; margin-top: 1rem;">${noObjectives}%</span><span><i>No Objectives</i></span></div>
-      `);
-      el.append(noObjectivesEl)
-    }
+    // I think it's worth pointing out there are 0% with no objectives
+    // if (objectivesCounts['n/a'] > 0) {
+
+    // }
+    let noObjectives = Math.round((objectivesCounts['n/a'] / assignmentReviewsData.length) * 1000) / 10;
+    let noObjectivesEl = $(`
+      <div><span style="display: inline-block; width: 4rem; margin-top: 1rem;">${noObjectives}%</span><span><i>No Objectives</i></span></div>
+    `);
+    el.append(noObjectivesEl)
     return el
   }
   function generateBloomsEl() {
