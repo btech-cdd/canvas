@@ -79,12 +79,15 @@
       }
 
       // objectives 
-      if (assignment.objectives) {
+      objectivesCounts['n/a'] = 0; // slot for no objectives
+      if ((assignment?.objectives ?? []).length > 0) {
         for (let o in assignment?.objectives?? []) {
           let objective = assignment.objectives[o];
           if (objectivesCounts?.[objective] === undefined) objectivesCounts[objective] = 0;
           objectivesCounts[objective]  += 1;
         }
+      } else {
+        objectivesCounts['n/a/'] += 1;
       }
 
       // other scores
@@ -187,9 +190,11 @@
   }
 
   function generateObjectivesEl() {
+    let noObjectives = Math.round((objectivesCounts['n/a'] / assignmentReviewsData.length) * 1000) / 10;
     let el = $(`
       <div>
         <h2>Objectives</h2>
+        <div><span style="display: inline-block; width: 4rem;">${noObjectives}%</span><span><i>No Objectives</i></span></div>
       </div>
     `);
     for (let o in objectivesData) {
