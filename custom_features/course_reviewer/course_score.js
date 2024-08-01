@@ -63,7 +63,8 @@
               .style("width", "1rem")
               .style("height", "1rem")
               .style("margin-right", "0.5rem")
-              .html(`<div class="key-color" style="background-color: ${color};"></div><div>${label}</div>`);
+              .style("background-color", color)
+              .html(`<div class="key-color"></div><div>${label}</div>`);
       });
   }
 
