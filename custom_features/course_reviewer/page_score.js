@@ -224,7 +224,7 @@
 
   function generatePageReviewEl() {
     let data = pageReviewData;
-    let averageScore = Math.round(((
+    let averageScore = Math.floor(((
       (data.clarity - 1) // 1-3, so -1 to get to 0-2
       + (data.chunked_content ? 1 : 0)
       + (data.includes_outcomes ? 1 : 0)

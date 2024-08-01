@@ -152,7 +152,7 @@
       if (page.supporting_media!== undefined) pageCounts.supporting_media += page.supporting_media? 1 : 0;
       if (page.clarity !== undefined) pageCounts.clarity += page.clarity;
 
-      let pageScore = Math.round(((
+      let pageScore = Math.floor(((
         (page.clarity - 1) // 1-3, so -1 to get to 0-2
         + (page.chunked_content ? 1 : 0)
         + (page.includes_outcomes ? 1 : 0)
@@ -205,7 +205,7 @@
       if (assignment.modeling !== undefined) assignmentCounts.modeling += assignment.modeling ? 1 : 0;
       if (assignment.clarity !== undefined) assignmentCounts.clarity += assignment.clarity;
 
-      let assignmentScore = Math.round(((
+      let assignmentScore = Math.floor(((
         (assignment.clarity - 1) // 1-3, so -1 to get to 0-2
         + (assignment.chunked_content ? 1 : 0)
         + (assignment.includes_outcomes ? 1 : 0)
@@ -366,7 +366,7 @@
 
   function generateAssignmentReviewEl() {
     let data = assignmentReviewData;
-    let averageScore = Math.round(((
+    let averageScore = Math.floor(((
       (data.clarity - 1) // 1-3, so -1 to get to 0-2
       + (data.chunked_content ? 1 : 0)
       + (data.includes_outcomes ? 1 : 0)
@@ -379,7 +379,7 @@
 
     let rubricScore = undefined;
     if (rubricReviewData) {
-      rubricScore = Math.round(
+      rubricScore = Math.floor(
         ((
           (rubricReviewData.criteria - 1)
           + (rubricReviewData.granularity - 1)
