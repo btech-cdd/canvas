@@ -141,11 +141,11 @@
       }
 
       // other scores
-      if (page.includes_outcomes !== undefined) assignmentCounts.includes_outcomes += assignment.includes_outcomes ? 1 : 0;
-      if (page.chunked_content !== undefined) assignmentCounts.chunked_content += assignment.chunked_content ? 1 : 0;
-      if (page.career_relevance !== undefined) assignmentCounts.career_relevance += assignment.career_relevance? 1 : 0;
-      if (page.supporting_media!== undefined) assignmentCounts.provides_feedback += assignment.provides_feedback? 1 : 0;
-      if (page.clarity !== undefined) assignmentCounts.clarity += assignment.clarity;
+      if (page.includes_outcomes !== undefined) pageCounts.includes_outcomes += page.includes_outcomes ? 1 : 0;
+      if (page.chunked_content !== undefined) pageCounts.chunked_content += page.chunked_content ? 1 : 0;
+      if (page.career_relevance !== undefined) pageCounts.career_relevance += page.career_relevance? 1 : 0;
+      if (page.supporting_media!== undefined) pageCounts.supporting_media += page.supporting_media? 1 : 0;
+      if (page.clarity !== undefined) pageCounts.clarity += page.clarity;
 
       let pageScore = Math.round(((
         (page.clarity - 1) // 1-3, so -1 to get to 0-2
