@@ -11,8 +11,8 @@
 
   function genBloomsChart(data) {
       // Set dimensions and radius
-      const width = 200;
-      const height = 200;
+      const width = 150;
+      const height = 150;
       const radius = Math.min(width, height) / 2;
 
       // Create an arc generator
@@ -269,7 +269,7 @@
       <div>
         <h2>Blooms</h2>
         <div style="display: flex; align-items: center;" class="blooms-chart-container">
-        <svg style="width: 250px; height: 250px; margin-right: 20px;" class="blooms-chart"></svg>
+        <svg style="width: 150px; height: 150px; margin-right: 20px;" class="blooms-chart"></svg>
         <div style="display: flex; flex-direction: column; justify-content: center;" class="blooms-chart-key"></div>
         </div>
       </div>
