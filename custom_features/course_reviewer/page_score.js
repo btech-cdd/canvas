@@ -1,5 +1,4 @@
 (async function () {
-  console.log("PAGE")
   const emoji = [
     // '&#128546',
     // '&#128528',
@@ -259,8 +258,8 @@
   }
 
   await refreshData();
-  $('#sidebar_content').append(evaluateButton);
-  $("#sidebar_content").append(container);
-  $('#sidebar_content').append(detailedReportButton);
+  $('aside#right-side').append(evaluateButton);
+  $("aside#right-side").append(container);
+  $('aside#right-side').append(detailedReportButton);
   await generateContent(container);
 })();
