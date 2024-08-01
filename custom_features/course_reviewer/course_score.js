@@ -156,6 +156,7 @@
       ) / 6) // divide by total points
       * 3); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
       if (pageScore > 2) pageScore = 2;
+      console.log(page)
       if (emoji?.[pageScore]) {
         let pageScoreEl = $(`<span class="ig-assignment-score" style="cursor: pointer; float: right;">${emoji?.[pageScore]}</span>`);
         let itemClass = ".WikiPage" + page.page_id;
