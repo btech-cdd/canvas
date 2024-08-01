@@ -256,7 +256,7 @@
     containerEl.append(generatePageReviewEl());
   }
 
-  // await refreshData();
+  await refreshData();
   $("#right-side-wrapper").css("display", "block");
   $('aside#right-side').append(evaluateButton);
   $("aside#right-side").append(container);
