@@ -1,4 +1,5 @@
 (async function () {
+  console.log("PAGE")
   const emoji = [
     // '&#128546',
     // '&#128528',
