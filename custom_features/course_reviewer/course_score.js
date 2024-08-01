@@ -11,8 +11,8 @@
 
   function genBloomsChart(data) {
       // Set dimensions and radius
-      const width = 250;
-      const height = 250;
+      const width = 200;
+      const height = 200;
       const radius = Math.min(width, height) / 2;
 
       // Create an arc generator
@@ -49,12 +49,6 @@
           .style("stroke", "white")
           .style("fill", d => bloomsColors[d.data[0]]);
 
-      // Append text labels
-      g.append("text")
-          .attr("transform", d => `translate(${labelArc.centroid(d)})`)
-          .attr("dy", "0.35em")
-          .text(d => (d.data[0] == 'n/a' ? '' : d.data[0]));
-
       // Create key for colors
       const key = d3.select(".blooms-chart-key");
       Object.entries(bloomsColors).forEach(([label, color]) => {
@@ -62,7 +56,6 @@
               .attr("class", "key-item")
               .style("display", "flex")
               .style("align-items", "center")
-              .style("margin-bottom", "5px")
               .html(`<div class="key-color" style="background-color: ${color}; width: 1rem; height: 1rem; margin-right: 1rem; display: inline-block;"></div><div style="display: inline-block;">${label}</div>`);
       });
   }
