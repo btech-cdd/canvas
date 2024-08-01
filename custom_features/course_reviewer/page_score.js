@@ -74,7 +74,7 @@
         description: description,
     }, type="POST");
 
-    // if (await refreshData()) await generateContent(container);
+    if (await refreshData()) await generateContent(container);
 
     detailedReportButton.show();
     evaluateButton.show();
