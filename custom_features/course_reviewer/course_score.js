@@ -54,6 +54,14 @@
           .attr("transform", d => `translate(${labelArc.centroid(d)})`)
           .attr("dy", "0.35em")
           .text(d => (d.data[0] == 'n/a' ? '' : d.data[0]));
+
+      // Create key for colors
+      const key = d3.select(".blooms-chart-key");
+      Object.entries(bloomsColors).forEach(([label, color]) => {
+          key.append("div")
+              .attr("class", "key-item")
+              .html(`<div class="key-color" style="background-color: ${color};"></div><div>${label}</div>`);
+      });
   }
 
   const emoji = [
@@ -264,7 +272,10 @@
     let el = $(`
       <div>
         <h2>Blooms</h2>
-        <svg style="width: 250px; height: 250px;" class="blooms-chart"></svg>
+        <div style="display: flex; align-items: center;" class="blooms-chart-container">
+        <svg style="width: 250px; height: 250px; margin-right: 20px;" class="blooms-chart"></svg>
+        <div style="display: flex; flex-direction: column; justify-content: center;" class="blooms-chart-key"></div>
+        </div>
       </div>
     `);
     // for (let blooms in bloomsCounts) {
