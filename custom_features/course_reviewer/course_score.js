@@ -71,6 +71,11 @@
     '🥇'
   ]
 
+  $(".context_module_item").each(function() {
+    let el = $(this);
+    let infoEl = el.find('div.ig-info')
+    infoEl.before(`<span class="ig-btech-evaluation-score" style="font-size: 1rem;">⚪</span>`)
+  });
 
   var courseData, assignmentReviewsData, pageReviewsData, courseReviewData, rubricReviewsData, objectivesData, courseCode, year, bloomsCounts, topicTagsCounts, objectivesCounts, assignmentCounts;
   async function refreshData() {
@@ -158,7 +163,7 @@
       if (pageScore > 2) pageScore = 2;
       console.log(page)
       if (emoji?.[pageScore]) {
-        let pageScoreEl = $(`<span class="ig-assignment-score" style="cursor: pointer; float: right;">${emoji?.[pageScore]}</span>`);
+        let pageScoreEl = $(`<span class="ig-btech-evaluation-score" style="cursor: pointer; float: right;">${emoji?.[pageScore]}</span>`);
         let itemClass = ".WikiPage_" + page.page_id;
         let titleEl = $(itemClass + " div.ig-info");
         titleEl.before(pageScoreEl);
@@ -215,10 +220,7 @@
       * 3); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
       if (assignmentScore > 2) assignmentScore = 2;
       if (emoji?.[assignmentScore]) {
-        let assignmentScoreEl = $(`<span class="ig-assignment-score" style="cursor: pointer; float: right;">${emoji?.[assignmentScore]}</span>`);
-        let itemClass = ".Assignment_" + assignment.assignment_id;
-        let titleEl = $(itemClass + " div.ig-info");
-        titleEl.before(assignmentScoreEl);
+        $(`.Assignment_${assignment.assignment_id} div.ig-info .btech-evaluation-score`).html(emoji?.[assignmentScore]);
       }
     }
 
