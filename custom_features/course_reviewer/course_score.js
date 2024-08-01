@@ -10,8 +10,8 @@
 
   function genBloomsChart(data) {
       // Set dimensions and radius
-      const width = 500;
-      const height = 500;
+      const width = 250;
+      const height = 250;
       const radius = Math.min(width, height) / 2;
 
       // Create an arc generator
