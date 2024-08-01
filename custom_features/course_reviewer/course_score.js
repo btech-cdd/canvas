@@ -251,7 +251,7 @@
 
     let noObjectives = Math.round((objectivesCounts['n/a'] / assignmentReviewsData.length) * 1000) / 10;
     let noObjectivesEl = $(`
-      <div><span style="display: inline-block; width: 4rem;">${noObjectives}%</span><span><i>No Objectives</i></span></div>
+      <div><span style="display: inline-block; width: 4rem; margin-top: 1rem;">${noObjectives}%</span><span><i>No Objectives</i></span></div>
     `);
     el.append(noObjectivesEl)
     return el
