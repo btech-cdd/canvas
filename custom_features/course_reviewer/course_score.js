@@ -7,6 +7,53 @@
     'evaluate': '#a27222',
     'create': '#a22232' 
   }
+
+  function genBloomsChart(data) {
+      // Set dimensions and radius
+      const width = 500;
+      const height = 500;
+      const radius = Math.min(width, height) / 2;
+
+      // Create an arc generator
+      const arc = d3.arc()
+          .outerRadius(radius - 10)
+          .innerRadius(0);
+
+      // Create a label arc generator
+      const labelArc = d3.arc()
+          .outerRadius(radius - 40)
+          .innerRadius(radius - 40);
+
+      // Create a pie generator
+      const pie = d3.pie()
+          .sort(null)
+          .value(d => d[1]);
+
+      // Select the SVG element and set its dimensions
+      const svg = d3.select("svg.blooms-chart")
+          .attr("width", width)
+          .attr("height", height)
+          .append("g")
+          .attr("transform", `translate(${width / 2},${height / 2})`);
+
+      // Bind data to the pie chart
+      const g = svg.selectAll(".arc")
+          .data(pie(Object.entries(data)))
+          .enter().append("g")
+          .attr("class", "arc");
+
+      // Append path elements for each slice
+      g.append("path")
+          .attr("d", arc)
+          .style("fill", d => bloomsColors[d.data[0]]);
+
+      // Append text labels
+      g.append("text")
+          .attr("transform", d => `translate(${labelArc.centroid(d)})`)
+          .attr("dy", "0.35em")
+          .text(d => d.data[0]);
+  }
+
   const emoji = [
     // '&#128546;',
     // '&#128528;',
@@ -19,11 +66,8 @@
 
   var courseData, assignmentReviewsData, courseReviewData, rubricReviewsData, objectivesData, courseCode, year, bloomsCounts, topicTagsCounts, objectivesCounts, assignmentCounts;
   async function refreshData() {
-    console.log(ENV.COURSE_ID);
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
-    console.log(courseData);
     courseReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
-    console.log(courseReviewData);
     // assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
     let regex = /^([A-Z]{4} \d{4}).*(\d{4})(?=[A-Z]{2})/;
     let match = courseData.sis_course_id.match(regex);
@@ -214,14 +258,15 @@
     let el = $(`
       <div>
         <h2>Blooms</h2>
+        <svg style="width: 250px; height: 250px;" class="blooms-chart"></svg>
       </div>
     `);
-    for (let blooms in bloomsCounts) {
-      let count = bloomsCounts[blooms];
-      let usage = Math.round((count / assignmentReviewsData.length) * 1000) / 10;
-      let topicEl = $(`<div><span style="display: inline-block; width: 4rem;">${usage}%</span><span>${blooms}</span></div>`);
-      el.append(topicEl);
-    }
+    // for (let blooms in bloomsCounts) {
+    //   let count = bloomsCounts[blooms];
+    //   let usage = Math.round((count / assignmentReviewsData.length) * 1000) / 10;
+    //   let topicEl = $(`<div><span style="display: inline-block; width: 4rem;">${usage}%</span><span>${blooms}</span></div>`);
+    //   el.append(topicEl);
+    // }
     return el
   }
   function generateTopicTagsEl() {
@@ -245,6 +290,7 @@
       // containerEl.append(generateRelevantObjectivesEl());
       containerEl.append(generateObjectivesEl());
       containerEl.append(generateBloomsEl());
+      genBloomsChart();
       containerEl.append(generateDetailedAssignmentReviewEl());
       // containerEl.append(generateDetailedRubricReviewEl());
       containerEl.append(generateTopicTagsEl());
