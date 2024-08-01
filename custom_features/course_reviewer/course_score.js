@@ -51,6 +51,7 @@
       g.append("text")
           .attr("transform", d => `translate(${labelArc.centroid(d)})`)
           .attr("dy", "0.35em")
+          .style("color", "white")
           .text(d => d.data[0]);
   }
 
