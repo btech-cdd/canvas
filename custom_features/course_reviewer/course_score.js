@@ -40,7 +40,8 @@
       const g = svg.selectAll(".arc")
           .data(pie(Object.entries(data)))
           .enter().append("g")
-          .attr("class", "arc");
+          .attr("class", "arc")
+          .style("fill", "white");
 
       // Append path elements for each slice
       g.append("path")
