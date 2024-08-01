@@ -302,8 +302,7 @@
   $('#sidebar_content').append(evaluateButton);
   $("#sidebar_content").append(container);
   $('#sidebar_content').append(detailedReportButton);
-  if (assignmentReviewData) {
-    console.log(assignmentReviewData)
+  if (assignmentReviewData?.assignment_id) {
     await generateContent(container);
   }
 })();
