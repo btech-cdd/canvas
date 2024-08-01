@@ -118,7 +118,7 @@
     let relevantObjectivesString = ``;
     for (let i = 1; i < objectives.length; i++) {
       let objective = objectives[i];
-      let isRelevant = PageReviewData.objectives.includes(objective.objective_id);
+      let isRelevant = pageReviewData.objectives.includes(objective.objective_id);
       relevantObjectivesString += `<div style="${isRelevant ? '' : 'color: #CCC;'}"><span style="width: 1rem; display: inline-block;">${isRelevant ? '&#10003;' : ''}</span>${objective.objective_text}</div>`;
     }
     let relevantObjectivesEl = $(`<div><h2>Relevant Objectives</h2>${relevantObjectivesString}</div>`);
@@ -129,9 +129,6 @@
     let el = $(`
       <div style="padding: 8px 0;">
         <h2>Page Review</h2>
-        <div title="The bloom's taxonomy level of this page." style="margin-bottom: 0.5rem; display: inline-block;">
-          <span style="background-color: ${bloomsColors?.[pageReviewData.blooms.toLowerCase()]}; color: #000000; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${pageReviewData.blooms}</span>
-        </div>
         <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
           <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ emoji?.[pageReviewData.clarity - 1] ?? ''}</span>
         </div>
@@ -143,6 +140,9 @@
         </div>
         <div title="The page explicitly states how this page is relevant to what students will do in industry.">
           <span style="width: 5rem; display: inline-block;">Industry</span><span>${ pageReviewData.career_relevance ? '&#10004;' : '&#10008;'}</span>
+        </div>
+        <div title="The page includes supporting media such as graphics and/or videos.">
+          <span style="width: 5rem; display: inline-block;">Media</span><span>${ pageReviewData.supporting_media? '&#10004;' : '&#10008;'}</span>
         </div>
         <div title="The page explicitly states how this students will receive documented feedback.">
           <span style="width: 5rem; display: inline-block;">Feedback</span><span>${ pageReviewData.provides_feedback ? '&#10004;' : '&#10008;'}</span>
@@ -216,11 +216,10 @@
   // do we have a review?
   async function generateDetailedContent(containerEl) {
     if (pageReviewData) {
-      containerEl.append(generateRelevantObjectivesEl());
+      // containerEl.append(generateRelevantObjectivesEl());
       containerEl.append(generateDetailedPageReviewEl());
-      containerEl.append(generateDetailedRubricReviewEl());
       containerEl.append(generateTopicTagsEl());
-      containerEl.append(generateRelatedPagesEl());
+      // containerEl.append(generateRelatedPagesEl());
     }
   }
 
