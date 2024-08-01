@@ -1,8 +1,8 @@
 (async function () {
   const bloomsColors = {
     'remember': '#F58E74',
-    'understand': '#FEE06E',
-    'apply': '#FEC06E',
+    'understand': '#FEB06E',
+    'apply': '#FEE06E',
     'analyze': '#B1D983',
     'evaluate': '#88C1E6',
     'create': '#8390C4',
