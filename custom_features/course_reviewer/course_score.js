@@ -5,7 +5,7 @@
     'apply': '#FEE06E',
     'analyze': '#B1D983',
     'evaluate': '#88C1E6',
-    'create': '#8390C4',
+    'create': '#A380C4',
     'n/a': '#C4C4C4'
   }
 
