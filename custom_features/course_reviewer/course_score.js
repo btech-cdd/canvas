@@ -163,7 +163,7 @@
       if (pageScore > 2) pageScore = 2;
       console.log(page)
       if (emoji?.[pageScore]) {
-        $(`.WikiPage_${page.page_id} div.ig-info .ig-btech-evaluation-score`).html(emoji?.[pageScore]);
+        $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`).html(emoji?.[pageScore]);
       }
     }
 
