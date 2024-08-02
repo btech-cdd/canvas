@@ -36,6 +36,7 @@
         let group = await $.get(`https://btech.instructure.com/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/groups/${questionGroupIds[i]}`);
         console.log(group);
         let bank = await $.get(`https://btech.instructure.com/courses/${ENV.COURSE_ID}/question_banks/${group.assessment_question_bank_id}/questions?page=1`);
+        console.log(bank);
         bankQuestions.concat(shuffleArray(bank.questions).slice(0, group.pick_count));
     }
     return bankQuestions;
@@ -69,7 +70,6 @@
       }
       questionStrings.push(`<quiz_item><quesiton_id>${question.id}</quesiton_id>${questionSimplified}</quiz_item>`);
     }
-    console.log(questionStrings);
     questionStrings = shuffleArray(questionStrings).slice(0, 25);
     let questionsString= '';
     for (let q in questionStrings) {
@@ -117,6 +117,7 @@
   });
 
   async function refreshData() {
+    console.log("REFRESH DATA");
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     quizData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}`))[0];
     let regex = /^([A-Z]{4} \d{4}).*(\d{4})(?=[A-Z]{2})/;
