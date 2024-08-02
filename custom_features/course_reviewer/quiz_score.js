@@ -70,13 +70,13 @@
       questionStrings.push(`<quiz_item><quesiton_id>${question.id}</quesiton_id>${questionSimplified}</quiz_item>`);
     }
     questionStrings = shuffleArray(questionStrings).slice(0, 25);
-    let quizString = '';
+    let questionsString= '';
     for (let q in questionStrings) {
         let questionString = questionStrings[q];
-        quizString += questionString;
+        questionsString += questionString;
     }
-    let quizQuestionsString = `<course_id>${ENV.COURSE_ID}</course_id><quiz_id>${ENV.QUIZ.id}</quiz_id><quiz_questions>${quizString}</quiz_questions>`;
-    return quizQuestionsString;
+    console.log(questionsString)
+    return questionsString;
   }
 
   //reevaluate button
