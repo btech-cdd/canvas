@@ -38,7 +38,7 @@
         let bank = await $.get(`https://btech.instructure.com/courses/${ENV.COURSE_ID}/question_banks/${group.assessment_question_bank_id}/questions?page=1`);
         let questions = shuffleArray(bank.questions).slice(0, group.pick_count);
         console.log(questions);
-        bankQuestions.concat(questions.slice(0, group.pick_count));
+        bankQuestions += questions;
         console.log(bankQuestions);
     }
     return bankQuestions;
