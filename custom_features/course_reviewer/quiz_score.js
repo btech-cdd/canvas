@@ -69,6 +69,7 @@
       }
       questionStrings.push(`<quiz_item><quesiton_id>${question.id}</quesiton_id>${questionSimplified}</quiz_item>`);
     }
+    console.log(questionStrings);
     questionStrings = shuffleArray(questionStrings).slice(0, 25);
     let questionsString= '';
     for (let q in questionStrings) {
