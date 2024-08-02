@@ -5,6 +5,24 @@
 // then need to pull questions that aren't in a bank separately
 */
 (async function () {
+  const bloomsColors = {
+    'remember': '#F56E74',
+    'understand': '#FEB06E',
+    'apply': '#FEE06E',
+    'analyze': '#B1D983',
+    'evaluate': '#88C1E6',
+    'create': '#A380C4',
+    'n/a': '#C4C4C4'
+  }
+  const emoji = [
+    // '&#128546',
+    // '&#128528',
+    // '&#128512;',
+    '🥉',
+    '🥈',
+    '🥇'
+  ]
+
   var questionsList = [], quizReviewData = {}, quizData = {};
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
