@@ -36,8 +36,8 @@
         let group = await $.get(`https://btech.instructure.com/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/groups/${questionGroupIds[i]}`);
         console.log(group);
         let bank = await $.get(`https://btech.instructure.com/courses/${ENV.COURSE_ID}/question_banks/${group.assessment_question_bank_id}/questions?page=1`);
-        let questions = shuffleArray(bank.questions);
-        console.log(group.pick_count);
+        let questions = shuffleArray(bank.questions).slice(0, group.pick_count);
+        console.log(questions);
         bankQuestions.concat(questions.slice(0, group.pick_count));
         console.log(bankQuestions);
     }
