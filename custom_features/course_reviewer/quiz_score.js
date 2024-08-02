@@ -101,10 +101,11 @@
 
   }
 
-  async function generateContent(container) {
-    
+  async function generateContent(containerEl) {
+    containerEl.empty();
   }
 
+  let container = $('<div id="btech-course-reviewer-container"></div>');
   await refreshData();
   $('#sidebar_content').append(evaluateButton);
   $("#sidebar_content").append(container);
