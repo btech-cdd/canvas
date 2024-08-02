@@ -5,7 +5,7 @@
 // then need to pull questions that aren't in a bank separately
 */
 (async function () {
-  var questionsList = [], questionStatistics = {}, quizReviewData = {}, quizData = {};
+  var questionsList = [], quizReviewData = {}, quizData = {};
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       // Generate a random index between 0 and i (inclusive)
@@ -90,13 +90,15 @@
     detailedReportButton.hide();
     evaluateButton.hide();
     container.html('evaluating...');
-
+    let statistics = processQuestionStatistics();
+    let questionsString = genQuizQuestionString();
     let description = ENV.QUIZ.description;
     await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/evaluate`, reqdata={
         courseCode: courseCode,
         year: year,
         description: description,
-        statistics: questionStatistics 
+        questions: questionsString,
+        statistics: statistics 
     }, type="POST");
 
     if (await refreshData()) await generateContent(container);
