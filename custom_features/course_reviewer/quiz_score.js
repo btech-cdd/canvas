@@ -137,6 +137,7 @@
     }
 
     questionsList = await getQuizBankQuestionData();
+    console.log(questionsList);
 
     let objectivesQueryString = '';
     for (let o in quizReviewData.objectives) {
