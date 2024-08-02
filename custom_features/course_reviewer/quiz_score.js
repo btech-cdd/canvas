@@ -34,10 +34,9 @@
     let bankQuestions= [];
     for (let i in questionGroupIds) {
         let group = await $.get(`https://btech.instructure.com/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/groups/${questionGroupIds[i]}`);
-        console.log(group);
         let bank = await $.get(`https://btech.instructure.com/courses/${ENV.COURSE_ID}/question_banks/${group.assessment_question_bank_id}/questions?page=1`);
-        console.log(bank);
         bankQuestions.concat(shuffleArray(bank.questions).slice(0, group.pick_count));
+        console.log(bankQuestions);
     }
     return bankQuestions;
   }
