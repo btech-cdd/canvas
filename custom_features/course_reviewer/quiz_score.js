@@ -136,6 +136,8 @@
       return false;
     }
 
+    questionsList = await getQuizBankQuestionData();
+
     let objectivesQueryString = '';
     for (let o in quizReviewData.objectives) {
       if (o > 0) objectivesQueryString += '&';
