@@ -5,7 +5,7 @@
 // then need to pull questions that aren't in a bank separately
 */
 (async function () {
-  var questionsList = [];
+  var questionsList = [], questionStatistics = {}, questionReviewData = {}, quizData = {};
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       // Generate a random index between 0 and i (inclusive)
@@ -41,7 +41,7 @@
     return bankQuestions;
   }
 
-  function processQuestionStats() {
+  function processQuestionStatistics() {
     let hasFeedback = 0;
     for (let q in questionsList) {
       let question = questionsList[q];
@@ -87,6 +87,22 @@
   `);
   //button is added after data refresh
   evaluateButton.click(async function() {
+    detailedReportButton.hide();
+    evaluateButton.hide();
+    container.html('evaluating...');
+
+    let description = ENV.QUIZ.description;
+    await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/evaluate`, reqdata={
+        courseCode: courseCode,
+        year: year,
+        description: description,
+        statistics: questionStatistics 
+    }, type="POST");
+
+    if (await refreshData()) await generateContent(container);
+
+    detailedReportButton.show();
+    evaluateButton.show();
   });
 
   let detailedReportButton = $(`
@@ -98,6 +114,39 @@
   });
 
   async function refreshData() {
+    courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
+    quizData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}`))[0];
+    let regex = /^([A-Z]{4} \d{4}).*(\d{4})(?=[A-Z]{2})/;
+    let match = courseData.sis_course_id.match(regex);
+    if (match) {
+      courseCode = match[1];
+      year = match[2];
+    } else {
+      console.log("NO SIS ID FOUND");
+      courseCode = '';
+      year = '';
+    }
+    try {
+      quizReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}`);
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+
+    let objectivesQueryString = '';
+    for (let o in assignmentReviewData.objectives) {
+      if (o > 0) objectivesQueryString += '&';
+      objectivesQueryString += 'objectives[]=' + assignmentReviewData.objectives[o];
+    }
+
+    try {
+      objectivesData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseCode}/year/${year}/objectives`);
+    } catch (err) {
+      objectivesData = [];
+      console.log(err);
+    }
+
+    return true;
 
   }
 
@@ -110,6 +159,6 @@
   $('#sidebar_content').append(evaluateButton);
   $("#sidebar_content").append(container);
   $('#sidebar_content').append(detailedReportButton);
-  // if (assignmentReviewData?.assignment_id) await generateContent(container);
+  if (quizReviewData?.quiz_id) await generateContent(container);
 
 })();
