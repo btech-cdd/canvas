@@ -134,9 +134,9 @@
     }
 
     let objectivesQueryString = '';
-    for (let o in assignmentReviewData.objectives) {
+    for (let o in quizReviewData.objectives) {
       if (o > 0) objectivesQueryString += '&';
-      objectivesQueryString += 'objectives[]=' + assignmentReviewData.objectives[o];
+      objectivesQueryString += 'objectives[]=' + quizReviewData.objectives[o];
     }
 
     try {
