@@ -75,7 +75,6 @@
         let questionString = questionStrings[q];
         questionsString += questionString;
     }
-    console.log(questionsString)
     return questionsString;
   }
 
@@ -116,7 +115,6 @@
   });
 
   async function refreshData() {
-    console.log("REFRESH DATA");
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     quizData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}`))[0];
     let regex = /^([A-Z]{4} \d{4}).*(\d{4})(?=[A-Z]{2})/;
@@ -131,13 +129,13 @@
     }
     try {
       quizReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}`);
+      console.log(quizReviewData);
     } catch (err) {
       console.log(err);
       return false;
     }
 
     questionsList = await getQuizBankQuestionData();
-    console.log(questionsList);
 
     let objectivesQueryString = '';
     for (let o in quizReviewData.objectives) {
