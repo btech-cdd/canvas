@@ -1,13 +1,5 @@
 (async function () {
-  const bloomsColors = {
-    'remember': '#F56E74',
-    'understand': '#FEB06E',
-    'apply': '#FEE06E',
-    'analyze': '#B1D983',
-    'evaluate': '#88C1E6',
-    'create': '#A380C4',
-    'n/a': '#C4C4C4'
-  }
+  await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/scripts.js");
 
   function genBloomsChart(data) {
       // Set dimensions and radius
@@ -62,14 +54,6 @@
       });
   }
 
-  const emoji = [
-    // '&#128546;',
-    // '&#128528;',
-    // '&#128512;',
-    '🥉',
-    '🥈',
-    '🥇'
-  ]
 
   $(".context_module_item").each(function() {
     let el = $(this);
@@ -324,6 +308,8 @@
     generateDetailedContent(modalContent);
   });
 
+
+
   function generateDetailedAssignmentReviewEl() {
     let averageClarity = Math.floor(assignmentCounts.clarity / assignmentReviewsData.length)
     if (averageClarity > 2) averageClarity = 2;
@@ -428,6 +414,8 @@
       containerEl.append(generateBloomsEl());
       genBloomsChart(bloomsCounts);
       containerEl.append(generateDetailedAssignmentReviewEl());
+      containerEl.append(generateDetailedQuizReviewEl());
+      containerEl.append(generateDetailedPageReviewEl());
       // containerEl.append(generateDetailedRubricReviewEl());
       containerEl.append(generateTopicTagsEl());
       // containerEl.append(generateRelatedAssignmentsEl());
