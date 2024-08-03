@@ -194,7 +194,7 @@
 
       // objectives 
       objectivesCounts['n/a'] = 0; // slot for no objectives
-      if ((assignment?.objectives ?? []).length > 0) {
+      if ((quiz?.objectives ?? []).length > 0) {
         for (let o in quiz?.objectives?? []) {
           let objective = quiz.objectives[o];
           if (objectivesCounts?.[objective] === undefined) objectivesCounts[objective] = 0;
