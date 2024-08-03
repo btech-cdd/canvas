@@ -106,7 +106,7 @@
   evaluateButton.click(async function() {
     detailedReportButton.hide();
     evaluateButton.hide();
- af  container.html('evaluating...');
+    container.html('evaluating...');
     let statistics = processQuestionStatistics();
     let questionsString = genQuizQuestionString();
     console.log(questionsString);
