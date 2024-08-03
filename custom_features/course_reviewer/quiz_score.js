@@ -70,11 +70,11 @@
 
     let bankQuestions = [];
     for (let q in preProcessedBankQuestions) {
-      let question = preProcessedBankQuestions[q];
+      let question = preProcessedBankQuestions[q].assessment_question;
       for (let qd in question.question_data) {
         question[qd] = question.question_data[qd];
       }
-      bankQuestions.push(question.assessment_question);
+      bankQuestions.push(question);
     }
     return bankQuestions;
   }
