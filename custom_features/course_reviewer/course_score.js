@@ -94,19 +94,25 @@
       year = '';
     }
 
+    // get quiz data
+    try {
+      quizReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes`);
+    } catch (err) {
+      console.log(err);
+    }
+
     // get assignmetn data
     try {
       assignmentReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments`);
     } catch (err) {
       console.log(err);
-      return false;
     }
 
+    // get page data
     try {
       pageReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/pages`);
     } catch (err) {
       console.log(err);
-      return false;
     }
 
     try {
@@ -165,6 +171,63 @@
       console.log(page)
       if (emoji?.[pageScore]) {
         $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`).html(emoji?.[pageScore]);
+      }
+    }
+
+    for (let q in quizReviewsData) {
+      let quiz = quizReviewsData[q];
+
+      // blooms
+      if (quiz.blooms) {
+        if (bloomsCounts?.[quiz.blooms] === undefined) bloomsCounts[quiz.blooms] = 0;
+        bloomsCounts[quiz.blooms] += 1;
+      }
+
+      // topic tags
+      if (quiz.topic_tags) {
+        for (let t in quiz?.topic_tags ?? []) {
+          let tag = quiz.topic_tags[t];
+          if (topicTagsCounts?.[tag] === undefined) topicTagsCounts[tag] = 0;
+          topicTagsCounts[tag]  += 1;
+        }
+      }
+
+      // objectives 
+      objectivesCounts['n/a'] = 0; // slot for no objectives
+      if ((assignment?.objectives ?? []).length > 0) {
+        for (let o in quiz?.objectives?? []) {
+          let objective = quiz.objectives[o];
+          if (objectivesCounts?.[objective] === undefined) objectivesCounts[objective] = 0;
+          objectivesCounts[objective]  += 1;
+        }
+      } else {
+        objectivesCounts['n/a/'] += 1;
+      }
+
+      // // other scores
+      // if (assignment.includes_outcomes !== undefined) assignmentCounts.includes_outcomes += assignment.includes_outcomes ? 1 : 0;
+      // if (assignment.chunked_content !== undefined) assignmentCounts.chunked_content += assignment.chunked_content ? 1 : 0;
+      // if (assignment.career_relevance !== undefined) assignmentCounts.career_relevance += assignment.career_relevance? 1 : 0;
+      // if (assignment.provides_feedback !== undefined) assignmentCounts.provides_feedback += assignment.provides_feedback? 1 : 0;
+      // if (assignment.modeling !== undefined) assignmentCounts.modeling += assignment.modeling ? 1 : 0;
+      // if (assignment.clarity !== undefined) assignmentCounts.clarity += assignment.clarity;
+
+      let quizScore = Math.floor(((
+        (quiz.clarity) // 0-2
+        + (quiz.chunked_content ? 1 : 0)
+        + (quiz.includes_outcomes ? 1 : 0)
+        + (quiz.career_relevance ? 1 : 0)
+        + (quiz.instructions ? 1 : 0)
+        + (quiz.preparation ? 1 : 0)
+        + (quiz.provides_feedback ? 1 : 0)
+        + (quiz.objectives > 0 ? 1 : 0)
+      ) / 8) // divide by total points
+      * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
+      if (quizScore > 2) quizScore = 2;
+      if (quizScore < 0) quizScore = 0;
+
+      if (emoji?.[quizScore]) {
+        $(`.Quiz_${quiz.quiz_id} span.ig-btech-evaluation-score`).html(emoji?.[quizScore]);
       }
     }
 
