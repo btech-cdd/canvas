@@ -335,7 +335,7 @@
     return el;
   }
 
-  function generateDetailedQuizQuetionsReviewEl() {
+  function generateDetailedQuizQuestionsReviewEl() {
     let el = $(`
       <div style="padding: 8px 0;">
         <h2>Questions Review</h2>
