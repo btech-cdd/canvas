@@ -184,6 +184,43 @@
   });
 
 
+  function generateDetailedQuizReviewEl() {
+    let averageClarity = Math.floor(quizCounts.clarity / quizReviewsData.length)
+    if (averageClarity > 2) averageClarity = 2;
+    let usageChunkedContent = Math.round((quizCounts.chunked_content / quizReviewsData.length) * 1000) / 10;
+    let usageIncludesOutcomes = Math.round((quizCounts.includes_outcomes/ quizReviewsData.length) * 1000) / 10;
+    let usageCareerRelevance = Math.round((quizCounts.career_relevance / quizReviewsData.length) * 1000) / 10;
+    let usageProvidesFeedback = Math.round((quizCounts.provides_feedback / quizReviewsData.length) * 1000) / 10;
+    let usageInstructions = Math.round((quizCounts.instructions / quizReviewsData.length) * 1000) / 10;
+    let usagePreparation = Math.round((quizCounts.preparation / quizReviewsData.length) * 1000) / 10;
+    let el = $(`
+      <div style="padding: 8px 0;">
+       <h2>Assignment Review</h2>
+        <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
+          <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
+        </div>
+        <div title="Content is chunked with headers, call out boxes, lists, etc.">
+          <span style="width: 5rem; display: inline-block;">Chunking</span><span>${ usageChunkedContent }%</span>
+        </div>
+        <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
+          <span style="width: 5rem; display: inline-block;">Outcomes</span><span>${ usageIncludesOutcomes }%</span>
+        </div>
+        <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
+          <span style="width: 5rem; display: inline-block;">Industry</span><span>${ usageCareerRelevance }%</span>
+        </div>
+        <div title="The assignment explicitly states how this students will receive documented feedback.">
+          <span style="width: 5rem; display: inline-block;">Feedback</span><span>${ usageProvidesFeedback }%</span>
+        </div>
+        <div title="The assignment explicitly states how this students will receive documented feedback.">
+          <span style="width: 5rem; display: inline-block;">Instructions</span><span>${ usageInstructions }%</span>
+        </div>
+        <div title="The assignment explicitly states how this students will receive documented feedback.">
+          <span style="width: 5rem; display: inline-block;">Preparation</span><span>${ usagePreparation }%</span>
+        </div>
+      </div> 
+      `);
+    return el;
+  }
 
   function generateDetailedAssignmentReviewEl() {
     let averageClarity = Math.floor(assignmentCounts.clarity / assignmentReviewsData.length)
@@ -290,7 +327,7 @@
       genBloomsChart(bloomsCounts);
       containerEl.append(generateDetailedAssignmentReviewEl());
       containerEl.append(generateDetailedQuizReviewEl());
-      containerEl.append(generateDetailedPageReviewEl());
+      // containerEl.append(generateDetailedPageReviewEl());
       // containerEl.append(generateDetailedRubricReviewEl());
       containerEl.append(generateTopicTagsEl());
       // containerEl.append(generateRelatedAssignmentsEl());
