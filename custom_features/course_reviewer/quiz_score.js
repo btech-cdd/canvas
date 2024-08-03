@@ -48,6 +48,7 @@
       // The captured group contains the question bank ID
         if (!questionGroupIds.includes(match[1])) questionGroupIds.push(match[1]);
     }
+    console.log(questionGroupIds);
 
     let bankQuestions= [];
     for (let i in questionGroupIds) {
