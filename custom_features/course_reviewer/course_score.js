@@ -29,6 +29,7 @@
     // get quiz data
     try {
       quizReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes`);
+      console.log(quizReviewsData);
     } catch (err) {
       console.log(err);
     }
