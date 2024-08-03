@@ -189,6 +189,7 @@
 
     //quiz questions
     let averageQuestionScore = 0;
+    console.log(data.questions);
     if (data?.questions) {
       averageQuestionScore = Math.floor(((
         (data.questions.options_concise) // 0-2
