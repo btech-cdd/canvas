@@ -61,7 +61,7 @@
   }
 
   async function getQuizQuestionData() {
-    let quizQuestions = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}`);
+    let quizQuestions = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/questions`);
     console.log(quizQuestions);
     return quizQuestions;
   }
