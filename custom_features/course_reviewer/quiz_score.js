@@ -321,7 +321,7 @@
           <span style="width: 5rem; display: inline-block;">Industry</span><span>${ quizReviewData.career_relevance ? '&#10004;' : '&#10008;'}</span>
         </div>
         <div title="The assignment explicitly states how this students will receive documented feedback.">
-          <span style="width: 5rem; display: inline-block;">Clear Instructions</span><span>${ quizReviewData.instructions ? '&#10004;' : '&#10008;'}</span>
+          <span style="width: 5rem; display: inline-block;">Instructions</span><span>${ quizReviewData.instructions ? '&#10004;' : '&#10008;'}</span>
         </div>
         <div title="The assignment explicitly states how this students will receive documented feedback.">
           <span style="width: 5rem; display: inline-block;">Preparation</span><span>${ quizReviewData.preparation ? '&#10004;' : '&#10008;'}</span>
