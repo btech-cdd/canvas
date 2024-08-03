@@ -71,7 +71,6 @@
     let bankQuestions = [];
     for (let q in preProcessedBankQuestions) {
       let question = preProcessedBankQuestions[q];
-      console.log(question);
       bankQuestions.push(question.assessment_question);
     }
     return bankQuestions;
