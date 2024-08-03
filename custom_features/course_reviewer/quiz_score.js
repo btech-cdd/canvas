@@ -196,21 +196,7 @@
     let averageScore = calcQuizScore(data); 
     
     //quiz questions
-    let averageQuestionScore = 0;
-    if (data?.questions) {
-      averageQuestionScore = Math.floor(((
-        (data.questions.options_concise) // 0-2
-        + (data.questions.options_length)
-        + (data.questions.options_quality)
-        + (data.questions.options_sentence_completion)
-        + (data.questions.prompt_clarity)
-        + (data.questions.prompt_complete_sentence)
-        + (data.questions.prompt_positive)
-      ) / 9) // divide by total points
-      * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
-      if (averageQuestionScore > 2) averageQuestionScore = 2;
-      if (averageQuestionScore < 0) averageQuetsionScore = 0;
-    }
+    let averageQuestionScore = calcQuizQuestionScore(data);
 
     let el = $(`
       <div style="padding: 8px 0;">
@@ -305,6 +291,9 @@
         <h2>Questions Review</h2>
         <div title="The bloom's taxonomy level of this quiz." style="margin-bottom: 0.5rem; display: inline-block;">
           <span style="background-color: ${bloomsColors?.[quizReviewData.blooms.toLowerCase()]}; color: #000000; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${quizReviewData.blooms}</span>
+        </div>
+        <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
+          <span style="width: 5rem; display: inline-block;">Prompt Quality</span><span>${ emoji?.[Math.round(quizReviewData.questions.prompt_quality)] ?? ''}</span>
         </div>
         <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
           <span style="width: 5rem; display: inline-block;">Prompt Clarity</span><span>${ emoji?.[Math.round(quizReviewData.questions.prompt_clarity)] ?? ''}</span>

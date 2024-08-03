@@ -97,6 +97,27 @@ function calcQuizScore(quiz) {
     return quizScore;
 }
 
+function calcQuizQuestionScore(quiz) {
+    let averageQuestionScore = 0;
+    if (quiz?.questions) {
+      averageQuestionScore = Math.floor(((
+        (quiz.questions.prompt_quality) // 0-2
+        + (quiz.questions.prompt_clarity)
+        + (quiz.questions.prompt_positive)
+        + (quiz.questions.prompt_complete_sentence)
+        + (quiz.questions.options_quality)
+        + (quiz.questions.options_clarity)
+        + (quiz.questions.options_length)
+        + (quiz.questions.options_sentence_completion)
+        + (quiz.questions.options_concise)
+        + (quiz.questions.incorrect_answer_quality)
+      ) / 9) // divide by total points
+      * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
+      if (averageQuestionScore > 2) averageQuestionScore = 2;
+      if (averageQuestionScore < 0) averageQuestionScore = 0;
+    }
+}
+
 function calcAssignmentScore(assignment) {
     let assignmentScore = Math.floor(((
         (assignment.clarity - 1) // 1-3, so -1 to get to 0-2
