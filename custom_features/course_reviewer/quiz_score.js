@@ -35,7 +35,12 @@
   }
 
   async function getQuizBankQuestionData() {
-    let htmlString = await $.get(`https://btech.instructure.com/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/edit`);
+    let htmlString = '';
+    try {
+      htmlString = await $.get(`https://btech.instructure.com/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/edit`);
+    } catch (err) {
+      console.log(err);
+    }
     // Regex to match the question bank IDs
     const regexGroupId = /groups\/(\d+)/g;
 
