@@ -1,58 +1,6 @@
 (async function () {
   await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/scripts.js");
 
-  function genBloomsChart(data) {
-      // Set dimensions and radius
-      const width = 150;
-      const height = 150;
-      const radius = Math.min(width, height) / 2;
-
-      // Create an arc generator
-      const arc = d3.arc()
-          .outerRadius(radius - 10)
-          .innerRadius(0);
-
-      // Create a label arc generator
-      const labelArc = d3.arc()
-          .outerRadius(radius - 40)
-          .innerRadius(radius - 40);
-
-      // Create a pie generator
-      const pie = d3.pie()
-          .sort(null)
-          .value(d => d[1]);
-
-      // Select the SVG element and set its dimensions
-      const svg = d3.select("svg.blooms-chart")
-          .attr("width", width)
-          .attr("height", height)
-          .append("g")
-          .attr("transform", `translate(${width / 2},${height / 2})`);
-
-      // Bind data to the pie chart
-      const g = svg.selectAll(".arc")
-          .data(pie(Object.entries(data)))
-          .enter().append("g")
-          .attr("class", "arc");
-
-      // Append path elements for each slice
-      g.append("path")
-          .attr("d", arc)
-          .style("stroke", "white")
-          .style("fill", d => bloomsColors[d.data[0]]);
-
-      // Create key for colors
-      const key = d3.select(".blooms-chart-key");
-      Object.entries(bloomsColors).forEach(([label, color]) => {
-          key.append("div")
-              .attr("class", "key-item")
-              .style("display", "flex")
-              .style("align-items", "center")
-              .style("line-height", "1rem")
-              .style("margin-bottom", "2px")
-              .html(`<div class="key-color" style="background-color: ${color}; width: 1rem; height: 1rem; margin-right: 1rem; display: inline-block;"></div><div style="display: inline-block;">${label}</div>`);
-      });
-  }
 
 
   $(".context_module_item").each(function() {
@@ -133,17 +81,19 @@
       instructions: 0,
       preparation: 0,
     };
+
+    objectivesCounts = {};
+    objectivesCounts =  addObjectives(objectivesCounts, pageReviewsData);
+    objectivesCounts =  addObjectives(objectivesCounts, assignmentReviewsData);
+    objectivesCounts =  addObjectives(objectivesCounts, quizReviewsData);
+
+    topicTagsCounts = {};
+    topicTagsCounts =  addTopics(topicTagsCounts, pageReviewsData);
+    topicTagsCounts =  addTopics(topicTagsCounts, assignmentReviewsData);
+    topicTagsCounts =  addTopics(topicTagsCounts, quizReviewsData);
+
     for (let o in pageReviewsData) {
       let page = pageReviewsData[o];
-      // topic tags
-      if (page.topic_tags) {
-        for (let t in page?.topic_tags ?? []) {
-          let tag = page.topic_tags[t];
-          if (topicTagsCounts?.[tag] === undefined) topicTagsCounts[tag] = 0;
-          topicTagsCounts[tag]  += 1;
-        }
-      }
-
       // other scores
       if (page.includes_outcomes !== undefined) pageCounts.includes_outcomes += page.includes_outcomes ? 1 : 0;
       if (page.chunked_content !== undefined) pageCounts.chunked_content += page.chunked_content ? 1 : 0;
@@ -151,17 +101,7 @@
       if (page.supporting_media!== undefined) pageCounts.supporting_media += page.supporting_media? 1 : 0;
       if (page.clarity !== undefined) pageCounts.clarity += page.clarity;
 
-      let pageScore = Math.floor(((
-        (page.clarity - 1) // 1-3, so -1 to get to 0-2
-        + (page.chunked_content ? 1 : 0)
-        + (page.includes_outcomes ? 1 : 0)
-        + (page.career_relevance ? 1 : 0)
-        + (page.supporting_media ? 1 : 0)
-      ) / 6) // divide by total points
-      * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
-      if (pageScore > 2) pageScore = 2;
-      if (pageScore < 0) pageScore = 0;
-      console.log(page)
+      let pageScore = calcPageScore(page);
       if (emoji?.[pageScore]) {
         $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`).html(emoji?.[pageScore]);
       }
@@ -176,29 +116,8 @@
         bloomsCounts[quiz.blooms] += 1;
       }
 
-      // topic tags
-      if (quiz.topic_tags) {
-        for (let t in quiz?.topic_tags ?? []) {
-          let tag = quiz.topic_tags[t];
-          if (topicTagsCounts?.[tag] === undefined) topicTagsCounts[tag] = 0;
-          topicTagsCounts[tag]  += 1;
-        }
-      }
-
-      // objectives 
-      objectivesCounts['n/a'] = 0; // slot for no objectives
-      if ((quiz?.objectives ?? []).length > 0) {
-        for (let o in quiz?.objectives?? []) {
-          let objective = quiz.objectives[o];
-          if (objectivesCounts?.[objective] === undefined) objectivesCounts[objective] = 0;
-          objectivesCounts[objective]  += 1;
-        }
-      } else {
-        objectivesCounts['n/a/'] += 1;
-      }
 
       // // other scores
-      console.log(quiz);
       if (quiz.includes_outcomes !== undefined) quizCounts.includes_outcomes += quiz.includes_outcomes ? 1 : 0;
       if (quiz.chunked_content !== undefined) quizCounts.chunked_content += quiz.chunked_content ? 1 : 0;
       if (quiz.career_relevance !== undefined) quizCounts.career_relevance += quiz.career_relevance ? 1 : 0;
@@ -207,19 +126,7 @@
       if (quiz.preparation !== undefined) quizCounts.preparation += quiz.preparation ? 1 : 0;
       if (quiz.clarity !== undefined) quizCounts.clarity += quiz.clarity;
 
-      let quizScore = Math.floor(((
-        (quiz.clarity) // 0-2
-        + (quiz.chunked_content ? 1 : 0)
-        + (quiz.includes_outcomes ? 1 : 0)
-        + (quiz.career_relevance ? 1 : 0)
-        + (quiz.instructions ? 1 : 0)
-        + (quiz.preparation ? 1 : 0)
-        + (quiz.provides_feedback ? 1 : 0)
-        + (quiz.objectives > 0 ? 1 : 0)
-      ) / 8) // divide by total points
-      * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
-      if (quizScore > 2) quizScore = 2;
-      if (quizScore < 0) quizScore = 0;
+      let quizScore = calcQuizScore(quiz);
 
       if (emoji?.[quizScore]) {
         $(`.Quiz_${quiz.quiz_id} span.ig-btech-evaluation-score`).html(emoji?.[quizScore]);
@@ -235,27 +142,6 @@
         bloomsCounts[assignment.blooms] += 1;
       }
 
-      // topic tags
-      if (assignment.topic_tags) {
-        for (let t in assignment?.topic_tags ?? []) {
-          let tag = assignment.topic_tags[t];
-          if (topicTagsCounts?.[tag] === undefined) topicTagsCounts[tag] = 0;
-          topicTagsCounts[tag]  += 1;
-        }
-      }
-
-      // objectives 
-      objectivesCounts['n/a'] = 0; // slot for no objectives
-      if ((assignment?.objectives ?? []).length > 0) {
-        for (let o in assignment?.objectives?? []) {
-          let objective = assignment.objectives[o];
-          if (objectivesCounts?.[objective] === undefined) objectivesCounts[objective] = 0;
-          objectivesCounts[objective]  += 1;
-        }
-      } else {
-        objectivesCounts['n/a/'] += 1;
-      }
-
       // other scores
       if (assignment.includes_outcomes !== undefined) assignmentCounts.includes_outcomes += assignment.includes_outcomes ? 1 : 0;
       if (assignment.chunked_content !== undefined) assignmentCounts.chunked_content += assignment.chunked_content ? 1 : 0;
@@ -264,18 +150,7 @@
       if (assignment.modeling !== undefined) assignmentCounts.modeling += assignment.modeling ? 1 : 0;
       if (assignment.clarity !== undefined) assignmentCounts.clarity += assignment.clarity;
 
-      let assignmentScore = Math.floor(((
-        (assignment.clarity - 1) // 1-3, so -1 to get to 0-2
-        + (assignment.chunked_content ? 1 : 0)
-        + (assignment.includes_outcomes ? 1 : 0)
-        + (assignment.career_relevance ? 1 : 0)
-        + (assignment.objectives > 0 ? 1 : 0)
-        + (assignment.provides_feedback > 0 ? 1 : 0)
-        + (assignment.modeling > 0 ? 1 : 0)
-      ) / 8) // divide by total points
-      * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
-      if (assignmentScore > 2) assignmentScore = 2;
-      if (assignmentScore < 0) assignmentScore = 0;
+      let assignmentScore = calcAssignmentScore(assignment);
       if (emoji?.[assignmentScore]) {
         $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html(emoji?.[assignmentScore]);
       }
