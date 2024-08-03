@@ -37,7 +37,14 @@
   async function getQuizBankQuestionData() {
     let htmlString = '';
     try {
-      htmlString = await $.get(`https://btech.instructure.com/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/edit`);
+      // htmlString = await $.get(`https://btech.instructure.com/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/edit`);
+      htmlString = await $.ajax({
+        url: `https://btech.instructure.com/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/edit`,
+        method: 'GET',
+        headers: {
+          'Accept': 'text/html'
+        }
+      });
     } catch (err) {
       console.log(err);
     }
