@@ -37,7 +37,6 @@
   async function getQuizBankQuestionData() {
     let htmlString = '';
     try {
-      // htmlString = await $.get(`https://btech.instructure.com/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/edit`);
       htmlString = await $.ajax({
         url: `https://btech.instructure.com/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/edit`,
         method: 'GET',
@@ -73,9 +72,7 @@
     for (let q in preProcessedBankQuestions) {
       let question = preProcessedBankQuestions[q];
       console.log(question);
-      // bankQuestions.push({
-      //   question
-      // })
+      bankQuestions.push(question.assessment_question);
     }
     return bankQuestions;
   }
@@ -100,7 +97,7 @@
   function genQuizQuestionString() {
     let questionStrings = [];
     for (let q in questionsList) {
-      let question = questionsList[q].assessment_question;
+      let question = questionsList[q];
       let questionSimplified = '';
       questionSimplified += `<question_type>${question.question_data.question_type}</question_type>`;
       questionSimplified += `<question_prompt>${question.question_data.question_text}</question_prompt>`;
