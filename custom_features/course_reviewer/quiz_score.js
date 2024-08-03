@@ -71,6 +71,9 @@
     let bankQuestions = [];
     for (let q in preProcessedBankQuestions) {
       let question = preProcessedBankQuestions[q];
+      for (let qd in question.question_data) {
+        question[qd] = question.question_data[qd];
+      }
       bankQuestions.push(question.assessment_question);
     }
     return bankQuestions;
@@ -99,10 +102,10 @@
       let question = questionsList[q];
       console.log(question);
       let questionSimplified = '';
-      questionSimplified += `<question_type>${question.question_data.question_type}</question_type>`;
-      questionSimplified += `<question_prompt>${question.question_data.question_text}</question_prompt>`;
-      for (let a = 0; a < question.question_data.answers.length; a++) {
-        let answer = question.question_data.answers[a];
+      questionSimplified += `<question_type>${question.question_type}</question_type>`;
+      questionSimplified += `<question_prompt>${question.question_text}</question_prompt>`;
+      for (let a = 0; a < question.answers.length; a++) {
+        let answer = question.answers[a];
         let isCorrect = answer.weight > 0;
         let questionAnswer = answer?.html ?? answer.text;
         if (isCorrect) {questionSimplified += `<answer_correct>${questionAnswer}</answer_correct>`;}
