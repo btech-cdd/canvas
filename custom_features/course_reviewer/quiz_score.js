@@ -37,7 +37,7 @@
   async function getQuizBankQuestionData() {
     let htmlString = '';
     try {
-      htmlString = await $.get(`https://btech.instructure.com/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/edit`);
+      htmlString = await $.get(`https://btech.instructure.com/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/take?preview=1`);
     } catch (err) {
       console.log(err);
     }
@@ -92,7 +92,6 @@
 
   function genQuizQuestionString() {
     let questionStrings = [];
-    console.log(questionsList);
     for (let q in questionsList) {
       let question = questionsList[q].assessment_question;
       let questionSimplified = '';
