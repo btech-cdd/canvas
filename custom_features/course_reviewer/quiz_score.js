@@ -53,7 +53,6 @@
       // The captured group contains the question bank ID
         if (!questionGroupIds.includes(match[1])) questionGroupIds.push(match[1]);
     }
-    console.log(questionGroupIds);
 
     let bankQuestions= [];
     for (let i in questionGroupIds) {
@@ -67,7 +66,6 @@
 
   async function getQuizQuestionData() {
     let quizQuestions = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/questions`);
-    console.log(quizQuestions);
     return quizQuestions;
   }
 
@@ -85,6 +83,7 @@
 
   function genQuizQuestionString() {
     let questionStrings = [];
+    console.log(questionsList);
     for (let q in questionsList) {
       let question = questionsList[q].assessment_question;
       let questionSimplified = '';
@@ -153,13 +152,11 @@
       courseCode = match[1];
       year = match[2];
     } else {
-      console.log("NO SIS ID FOUND");
       courseCode = '';
       year = '';
     }
     try {
       quizReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}`);
-      console.log(quizReviewData);
     } catch (err) {
       console.log(err);
       return false;
@@ -170,7 +167,6 @@
     questionsList.push(...bankQuestionsList);
     let quizQuestionsList = await getQuizQuestionData();
     questionsList.push(...quizQuestionsList);
-    console.log(questionsList);
 
     let objectivesQueryString = '';
     for (let o in quizReviewData.objectives) {
@@ -206,7 +202,6 @@
 
     //quiz questions
     let averageQuestionScore = 0;
-    console.log(data.questions);
     if (data?.questions) {
       averageQuestionScore = Math.floor(((
         (data.questions.options_concise) // 0-2
