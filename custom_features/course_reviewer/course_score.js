@@ -77,7 +77,7 @@
     infoEl.before(`<span class="ig-btech-evaluation-score" style="font-size: 1rem;">⚪</span>`)
   });
 
-  var courseData, assignmentReviewsData, pageReviewsData, courseReviewData, rubricReviewsData, objectivesData, courseCode, year, bloomsCounts, topicTagsCounts, objectivesCounts, assignmentCounts;
+  var courseData, assignmentReviewsData, pageReviewsData, quizReviewsData, courseReviewData, rubricReviewsData, objectivesData, courseCode, year, bloomsCounts, topicTagsCounts, objectivesCounts, assignmentCounts;
   async function refreshData() {
     // get course level data
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
@@ -139,6 +139,15 @@
       provides_feedback: 0,
       modeling: 0,
       clarity: 0
+    };
+    quizCounts = {
+      clarity: 0,
+      includes_outcomes: 0,
+      chunked_content: 0,
+      career_relevance: 0,
+      provides_feedback: 0,
+      instructions: 0,
+      preparation: 0,
     };
     for (let o in pageReviewsData) {
       let page = pageReviewsData[o];
@@ -205,12 +214,14 @@
       }
 
       // // other scores
-      // if (assignment.includes_outcomes !== undefined) assignmentCounts.includes_outcomes += assignment.includes_outcomes ? 1 : 0;
-      // if (assignment.chunked_content !== undefined) assignmentCounts.chunked_content += assignment.chunked_content ? 1 : 0;
-      // if (assignment.career_relevance !== undefined) assignmentCounts.career_relevance += assignment.career_relevance? 1 : 0;
-      // if (assignment.provides_feedback !== undefined) assignmentCounts.provides_feedback += assignment.provides_feedback? 1 : 0;
-      // if (assignment.modeling !== undefined) assignmentCounts.modeling += assignment.modeling ? 1 : 0;
-      // if (assignment.clarity !== undefined) assignmentCounts.clarity += assignment.clarity;
+      console.log(quiz);
+      if (quiz.includes_outcomes !== undefined) quizCounts.includes_outcomes += quiz.includes_outcomes ? 1 : 0;
+      if (quiz.chunked_content !== undefined) quizCounts.chunked_content += quiz.chunked_content ? 1 : 0;
+      if (quiz.career_relevance !== undefined) quizCounts.career_relevance += quiz.career_relevance ? 1 : 0;
+      if (quiz.provides_feedback !== undefined) quizCounts.provides_feedback += quiz.provides_feedback ? 1 : 0;
+      if (quiz.instructions !== undefined) quizCounts.instructions += quiz.instructions ? 1 : 0;
+      if (quiz.preparation !== undefined) quizCounts.preparation += quiz.preparation ? 1 : 0;
+      if (quiz.clarity !== undefined) quizCounts.clarity += quiz.clarity;
 
       let quizScore = Math.floor(((
         (quiz.clarity) // 0-2
