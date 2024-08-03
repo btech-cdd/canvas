@@ -109,7 +109,6 @@
     container.html('evaluating...');
     let statistics = processQuestionStatistics();
     let questionsString = genQuizQuestionString();
-    console.log(questionsString);
     let description = ENV.QUIZ.description;
     await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/evaluate`, reqdata={
         courseCode: courseCode,
@@ -155,6 +154,7 @@
     }
 
     questionsList = await getQuizBankQuestionData();
+    console.log(questionsList);
 
     let objectivesQueryString = '';
     for (let o in quizReviewData.objectives) {
