@@ -139,11 +139,11 @@ function addObjectives(counts, dataList) {
         if ((data?.objectives ?? []).length > 0) {
             for (let o in data?.objectives?? []) {
                 let objective = data.objectives[o];
-                if (objectivesCounts?.[objective] === undefined) objectivesCounts[objective] = 0;
-                objectivesCounts[objective]  += 1;
+                if (counts?.[objective] === undefined) counts[objective] = 0;
+                counts[objective]  += 1;
             }
         } else {
-            objectivesCounts['n/a/'] += 1;
+            counts['n/a/'] += 1;
         }
     }
     return counts;
