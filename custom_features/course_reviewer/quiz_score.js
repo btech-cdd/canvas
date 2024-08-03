@@ -188,18 +188,21 @@
     if (averageScore < 0) averageScore = 0;
 
     //quiz questions
-    let averageQuestionScore = Math.floor(((
-      (data.questions.options_concise) // 0-2
-      + (data.questions.options_length)
-      + (data.questions.options_quality)
-      + (data.questions.options_sentence_completion)
-      + (data.questions.prompt_clarity)
-      + (data.questions.prompt_complete_sentence)
-      + (data.questions.prompt_positive)
-    ) / 9) // divide by total points
-    * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
-    if (averageQuestionScore > 2) averageQuestionScore = 2;
-    if (averageQuestionScore < 0) averageQuetsionScore = 0;
+    let averageQuestionScore = 0;
+    if (data?.questions) {
+      averageQuestionScore = Math.floor(((
+        (data.questions.options_concise) // 0-2
+        + (data.questions.options_length)
+        + (data.questions.options_quality)
+        + (data.questions.options_sentence_completion)
+        + (data.questions.prompt_clarity)
+        + (data.questions.prompt_complete_sentence)
+        + (data.questions.prompt_positive)
+      ) / 9) // divide by total points
+      * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
+      if (averageQuestionScore > 2) averageQuestionScore = 2;
+      if (averageQuestionScore < 0) averageQuetsionScore = 0;
+    }
 
     let el = $(`
       <div style="padding: 8px 0;">
