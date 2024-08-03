@@ -60,6 +60,12 @@
     return bankQuestions;
   }
 
+  async function getQuizQuestionData() {
+    let quizQuestions = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}`);
+    console.log(quizQuestions);
+    return quizQuestions;
+  }
+
   function processQuestionStatistics() {
     let hasFeedback = 0;
     for (let q in questionsList) {
@@ -154,7 +160,11 @@
       return false;
     }
 
-    questionsList = await getQuizBankQuestionData();
+    questionsList = []
+    let bankQuestionsList = await getQuizBankQuestionData();
+    questionsList.push(...bankQuestionsList);
+    let quizQuestionsList = await getQuizQuestionData();
+    questionsList.push(...quizQuestionsList);
     console.log(questionsList);
 
     let objectivesQueryString = '';
