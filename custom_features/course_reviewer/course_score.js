@@ -185,6 +185,7 @@
 
 
   function generateDetailedQuizReviewEl() {
+    console.log(quizCounts);
     let averageClarity = Math.floor(quizCounts.clarity / quizReviewsData.length)
     if (averageClarity > 2) averageClarity = 2;
     let usageChunkedContent = Math.round((quizCounts.chunked_content / quizReviewsData.length) * 1000) / 10;
@@ -195,7 +196,7 @@
     let usagePreparation = Math.round((quizCounts.preparation / quizReviewsData.length) * 1000) / 10;
     let el = $(`
       <div style="padding: 8px 0;">
-       <h2>Assignment Review</h2>
+       <h2>Quiz Review</h2>
         <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
           <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
         </div>
