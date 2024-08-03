@@ -5,34 +5,9 @@
 // then need to pull questions that aren't in a bank separately
 */
 (async function () {
-  const bloomsColors = {
-    'remember': '#F56E74',
-    'understand': '#FEB06E',
-    'apply': '#FEE06E',
-    'analyze': '#B1D983',
-    'evaluate': '#88C1E6',
-    'create': '#A380C4',
-    'n/a': '#C4C4C4'
-  }
-  const emoji = [
-    // '&#128546',
-    // '&#128528',
-    // '&#128512;',
-    '🥉',
-    '🥈',
-    '🥇'
-  ]
+  await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/scripts.js");
 
   var questionsList = [], quizReviewData = {}, quizData = {};
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      // Generate a random index between 0 and i (inclusive)
-      const j = Math.floor(Math.random() * (i + 1));
-      // Swap elements array[i] and array[j]
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
 
   async function getQuizBankQuestionData() {
     let htmlString = '';
@@ -100,7 +75,6 @@
     let questionStrings = [];
     for (let q in questionsList) {
       let question = questionsList[q];
-      console.log(question);
       let questionSimplified = '';
       questionSimplified += `<question_type>${question.question_type}</question_type>`;
       questionSimplified += `<question_prompt>${question.question_text}</question_prompt>`;
@@ -217,20 +191,8 @@
   }
   function generateQuizReviewEl() {
     let data = quizReviewData;
-    let averageScore = Math.floor(((
-      (data.clarity) // 0-2
-      + (data.chunked_content ? 1 : 0)
-      + (data.includes_outcomes ? 1 : 0)
-      + (data.career_relevance ? 1 : 0)
-      + (data.instructions ? 1 : 0)
-      + (data.preparation ? 1 : 0)
-      + (data.provides_feedback ? 1 : 0)
-      + (data.objectives > 0 ? 1 : 0)
-    ) / 8) // divide by total points
-    * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
-    if (averageScore > 2) averageScore = 2;
-    if (averageScore < 0) averageScore = 0;
-
+    let averageScore = calcQuizScore(data); 
+    
     //quiz questions
     let averageQuestionScore = 0;
     if (data?.questions) {
@@ -374,7 +336,6 @@
 
   async function generateDetailedContent(containerEl) {
     if (quizReviewData) {
-      console.log(quizReviewData);
       containerEl.append(generateRelevantObjectivesEl());
       containerEl.append(generateDetailedQuizReviewEl());
       containerEl.append(generateDetailedQuizQuestionsReviewEl());
