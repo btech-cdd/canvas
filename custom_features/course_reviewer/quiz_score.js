@@ -163,6 +163,7 @@
     }
     try {
       quizReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}`);
+      console.log(quizReviewData);
     } catch (err) {
       console.log(err);
       return false;
