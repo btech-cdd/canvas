@@ -97,6 +97,7 @@
     let questionStrings = [];
     for (let q in questionsList) {
       let question = questionsList[q];
+      console.log(question);
       let questionSimplified = '';
       questionSimplified += `<question_type>${question.question_data.question_type}</question_type>`;
       questionSimplified += `<question_prompt>${question.question_data.question_text}</question_prompt>`;
