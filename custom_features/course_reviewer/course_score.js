@@ -29,7 +29,6 @@
     // get quiz data
     try {
       quizReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes`);
-      console.log(quizReviewsData);
     } catch (err) {
       console.log(err);
     }
@@ -127,6 +126,7 @@
       if (quiz.instructions !== undefined) quizCounts.instructions += quiz.instructions ? 1 : 0;
       if (quiz.preparation !== undefined) quizCounts.preparation += quiz.preparation ? 1 : 0;
       if (quiz.clarity !== undefined) quizCounts.clarity += quiz.clarity;
+      console.log(quizCounts);
 
       let quizScore = calcQuizScore(quiz);
 
@@ -187,7 +187,6 @@
 
 
   function generateDetailedQuizReviewEl() {
-    console.log(quizCounts);
     let averageClarity = Math.floor(quizCounts.clarity / quizReviewsData.length)
     if (averageClarity > 2) averageClarity = 2;
     let usageChunkedContent = Math.round((quizCounts.chunked_content / quizReviewsData.length) * 1000) / 10;
@@ -228,7 +227,6 @@
   function generateDetailedAssignmentReviewEl() {
     let averageClarity = Math.floor(assignmentCounts.clarity / assignmentReviewsData.length)
     if (averageClarity > 2) averageClarity = 2;
-    console.log(averageClarity);
     let usageChunkedContent = Math.round((assignmentCounts.chunked_content / assignmentReviewsData.length) * 1000) / 10;
     let usageIncludesOutcomes = Math.round((assignmentCounts.includes_outcomes/ assignmentReviewsData.length) * 1000) / 10;
     let usageCareerRelevance = Math.round((assignmentCounts.career_relevance / assignmentReviewsData.length) * 1000) / 10;
@@ -277,7 +275,6 @@
     `);
     for (let o in objectivesData) {
       let objective = objectivesData[o];
-      console.log(objective);
       let usage = Math.round((objectivesCounts[objective.objective_id] / assignmentReviewsData.length) * 1000) / 10;
       let topicEl = $(`<div><span style="display: inline-block; width: 4rem;">${usage}%</span><span>${objective.objective_text.trim()}</span></div>`);
       el.append(topicEl);
@@ -307,7 +304,6 @@
     return el
   }
   function generateTopicTagsEl() {
-    console.log("GEN")
     let el = $(`
       <div>
         <h2>Key Topics</h2>
