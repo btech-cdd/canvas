@@ -188,6 +188,8 @@
       creator_name: ENV.current_user.display_name
     }
     bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/users/${ENV.USER_ID}/end_dates`, postData, "POST");
+    if (is_extension) alert("Extension Set");
+    else alert("End Date Updated")
   }
   $(endAtEl).change(changeDate);
   if (endAt !== undefined && endAt !== null) {
