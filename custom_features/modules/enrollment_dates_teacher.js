@@ -142,7 +142,7 @@
     for (let d in dates) {
       let date = dates[d];
       console.log(date);
-      modalContent.append(`<div>${}`)
+      modalContent.append(`<div>${date.end_date} - Created By: ${date.creator_name} At: ${date.created}${date.is_extension ? '<b>EXT</b>' : ''}</div>`)
     }
     let modal = $('body .btech-modal');
     modal.on("click", function(event) {
