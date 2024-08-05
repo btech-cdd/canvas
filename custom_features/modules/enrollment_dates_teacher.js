@@ -1,6 +1,5 @@
 (async function() {
   function dateToString(date) {
-    console.log(date);
     if (!date) return "N/A"
     // Get the current year
     const year = date.getUTCFullYear();
@@ -100,7 +99,6 @@
   let suggestedDate = "";
   try {
     suggestedDate = await calcRecommendedEndDate();
-    console.log(suggestedDate);
   } catch (err) {
     console.log(err);
   }
@@ -145,7 +143,6 @@
     let dates = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/users/${ENV.USER_ID}/end_dates`);
     for (let d in dates) {
       let date = dates[d];
-      console.log(date);
       modalContent.append(`<div><span style="width: 2.5rem; display: inline-block;">${date.is_extension ? '<b>EXT</b>' : ''}</span><span style="width: 6rem; display: inline-block;">${dateToString(new Date(date.end_date))}</span>Created By: ${date.creator_name} @ ${dateToString(new Date(date.created))}</div>`)
     }
     let modal = $('body .btech-modal');
