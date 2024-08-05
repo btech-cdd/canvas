@@ -119,7 +119,6 @@
 
 
       // // other scores
-      console.log(quiz);
       if (quiz.includes_outcomes !== undefined) quizCounts.includes_outcomes += quiz.includes_outcomes ? 1 : 0;
       if (quiz.chunked_content !== undefined) quizCounts.chunked_content += quiz.chunked_content ? 1 : 0;
       if (quiz.career_relevance !== undefined) quizCounts.career_relevance += quiz.career_relevance ? 1 : 0;
@@ -127,7 +126,6 @@
       if (quiz.instructions !== undefined) quizCounts.instructions += quiz.instructions ? 1 : 0;
       if (quiz.preparation !== undefined) quizCounts.preparation += quiz.preparation ? 1 : 0;
       if (quiz.clarity !== undefined) quizCounts.clarity += quiz.clarity;
-      console.log(quizCounts);
 
       let quizScore = calcQuizScore(quiz);
 
@@ -192,6 +190,12 @@
     reevaluateButton.click(async function() {
       let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
       console.log(assignments);
+      let publishedAssignments = [];
+      for (let a in assignments) {
+        let assignment = assignments[a];
+        console.log(assignment);
+        await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
+      }
       let quizzes = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/quizzes`);
       console.log(quizzes);
       let pages = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/pages`);

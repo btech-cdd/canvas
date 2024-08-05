@@ -180,3 +180,13 @@ function addObjectives(counts, dataList) {
     }
     return counts;
 }
+
+
+async function evaluateAssignment(courseId, courseCode, year, assignmentId, description, rubric) {
+  await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/assignments/${assignmentId}/evaluate`, reqdata={
+      courseCode: courseCode,
+      year: year,
+      description: description,
+      rubric: rubric
+  }, type="POST");
+}
