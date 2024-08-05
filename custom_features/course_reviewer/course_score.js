@@ -318,6 +318,7 @@
 
   // do we have a review?
   async function generateDetailedContent(containerEl) {
+    containerEl.empty();
     if (courseReviewData) {
       // containerEl.append(generateRelevantObjectivesEl());
       containerEl.append(generateObjectivesEl());
@@ -341,13 +342,13 @@
       containerEl.append(assignmentsEl);
       assignmentsEl.html('Loading Assignments...');
       let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
+      assignmentsEl.html(`0 / ${assignments.length} Assignments Reviewed`);
       console.log(assignments);
       for (let a in assignments) {
         let assignment = assignments[a];
         if (assignment.published) {
           console.log(assignment);
           await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
-          break;
         }
         assignmentsEl.html(`${a} / ${assignments.length} Assignments Reviewed`);
       }
