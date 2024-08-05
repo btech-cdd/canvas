@@ -1,7 +1,7 @@
 (async function() {
   function dateToString(date) {
     console.log(date);
-    if (!date) return ""
+    if (!date || date?.length < 1) return ""
     // Get the current year
     const year = date.getUTCFullYear();
     
