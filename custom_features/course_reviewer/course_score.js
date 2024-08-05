@@ -182,25 +182,6 @@
     });
     let modalContent = $('body .btech-modal-content-inner');
     generateDetailedContent(modalContent);
-    let reevaluateButtonContainer= $("<div></div>");
-    let reevaluateButton = $("<button>Score All Items</button>");
-    reevaluateButtonContainer.append(reevaluateButton);
-    modalContent.append(reevaluateButtonContainer);
-    modalContent.append('<div>Put on the kettle and throw on a movie because this will take a while.</div>')
-    reevaluateButton.click(async function() {
-      let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
-      console.log(assignments);
-      let publishedAssignments = [];
-      for (let a in assignments) {
-        let assignment = assignments[a];
-        console.log(assignment);
-        await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
-      }
-      let quizzes = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/quizzes`);
-      console.log(quizzes);
-      let pages = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/pages`);
-      console.log(pages);
-    });
   });
 
 
@@ -349,6 +330,32 @@
       containerEl.append(generateTopicTagsEl());
       // containerEl.append(generateRelatedAssignmentsEl());
     }
+    let reevaluateButtonContainer= $("<div></div>");
+    let reevaluateButton = $("<button>Score All Items</button>");
+    reevaluateButtonContainer.append(reevaluateButton);
+    modalContent.append(reevaluateButtonContainer);
+    modalContent.append('<div>Put on the kettle and throw on a movie because this will take a while.</div>')
+    reevaluateButton.click(async function() {
+      containerEl.empty();
+      let assignmentsEl = $('<div></div>');
+      assignmentsEl.html('Loading Assignments...');
+      let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
+      console.log(assignments);
+      for (let a in assignments) {
+        let assignment = assignments[a];
+        if (assignment.published) {
+          console.log(assignment);
+          await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
+          break;
+        }
+        assignmentsEl.html(`${a} / ${assignments.length} Assignments Reviewed`);
+      }
+      let quizzes = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/quizzes`);
+      console.log(quizzes);
+      let pages = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/pages`);
+      console.log(pages);
+      generateDetailedContent(containerEl);
+    });
   }
 
   await refreshData();
