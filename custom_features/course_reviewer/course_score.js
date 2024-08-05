@@ -184,6 +184,19 @@
     });
     let modalContent = $('body .btech-modal-content-inner');
     generateDetailedContent(modalContent);
+    let reevaluateButtonContainer= $("<div></div>");
+    let reevaluateButton = $("<button>Score All Items</button>");
+    reevaluateButtonContainer.append(reevaluateButton);
+    modalContent.append(reevaluateButtonContainer);
+    modalContent.append('<div>Put on the kettle and throw on a movie because this will take a while.</div>')
+    reevaluateButton.click(async function() {
+      let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
+      console.log(assignments);
+      let quizzes = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/quizzes`);
+      console.log(quizzes);
+      let pages = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/pages`);
+      console.log(pages);
+    });
   });
 
 
