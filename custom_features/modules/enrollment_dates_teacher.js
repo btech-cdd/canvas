@@ -127,6 +127,8 @@
     $("#btech-enrollment-suggested-date-string").hide();
   }
 
+  let isExtensionEl = document.getElementById("btech-enrollment-is-extension");
+
   let endAtEl = document.getElementById("btech-enrollment-end-date");
   $("#btech-enrollment-suggested-date").click(() => {
     $("#btech-enrollment-end-date").val(dateToString(suggestedDate));
@@ -135,6 +137,7 @@
 
   $("#btech-enrollment-reset").click(() => {
     $("#btech-enrollment-end-date").val("");
+    $("#btech-enrollment-is-extension").prop('checked', false);
     resetDate();
   });
   let enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=${ENV.USER_ID}`))[0];
@@ -157,6 +160,9 @@
   }
   function changeDate() {
     let endAtDate = new Date(endAtEl.value);
+    let isExtension = isExtensionEl.prop('checked');
+    //reset is extension
+    $("#btech-enrollment-is-extension").prop('checked', false);
     //for...reasons, this is a day off
     endAtDate.setDate(endAtDate.getDate() + 1);
     endAtDate.setTime(endAtDate.getTime() + (6 * 60 * 60 * 1000));
@@ -173,11 +179,14 @@
         }
       }
     );
-    bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/users/${ENV.USER_ID}/end_dates`, {
+    let postData = {
       canvas_user_id: ENV.USER_ID,
       canvas_course_id: ENV.COURSE_ID,
-      canvas_section_id: enrollment.course_section_id
-    }, "POST");
+      canvas_section_id: enrollment.course_section_id,
+      is_extension: isExtension
+    }
+    console.log(postData);
+    // bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/users/${ENV.USER_ID}/end_dates`, postData, "POST");
   }
   $(endAtEl).change(changeDate);
   if (endAt !== undefined && endAt !== null) {
