@@ -338,6 +338,7 @@
     reevaluateButton.click(async function() {
       containerEl.empty();
       let assignmentsEl = $('<div></div>');
+      containerEl.append(assignmentsEl);
       assignmentsEl.html('Loading Assignments...');
       let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
       console.log(assignments);
@@ -350,8 +351,14 @@
         }
         assignmentsEl.html(`${a} / ${assignments.length} Assignments Reviewed`);
       }
+      let quizzesEl = $('<div></div>');
+      containerEl.append(quizzesEl);
+      quizzesEl.html('Loading Quizzes...');
       let quizzes = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/quizzes`);
-      console.log(quizzes);
+
+      let pagesEl = $('<div></div>');
+      containerEl.append(pagesEl);
+      pagesEl.html('Loading Pages...');
       let pages = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/pages`);
       console.log(pages);
       generateDetailedContent(containerEl);
