@@ -160,7 +160,7 @@
   }
   function changeDate() {
     let endAtDate = new Date(endAtEl.value);
-    let isExtension = isExtensionEl.prop('checked');
+    let isExtension = $("#btech-enrollment-is-extension").prop('checked');
     //reset is extension
     $("#btech-enrollment-is-extension").prop('checked', false);
     //for...reasons, this is a day off
