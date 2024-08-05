@@ -183,10 +183,11 @@
       canvas_user_id: ENV.USER_ID,
       canvas_course_id: ENV.COURSE_ID,
       canvas_section_id: enrollment.course_section_id,
-      is_extension: isExtension
+      is_extension: isExtension,
+      creator_id: ENV.current_user.id,
+      creator_name: ENV.current_user.display_name
     }
-    console.log(postData);
-    // bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/users/${ENV.USER_ID}/end_dates`, postData, "POST");
+    bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/users/${ENV.USER_ID}/end_dates`, postData, "POST");
   }
   $(endAtEl).change(changeDate);
   if (endAt !== undefined && endAt !== null) {
