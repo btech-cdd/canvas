@@ -333,8 +333,8 @@
     let reevaluateButtonContainer= $("<div></div>");
     let reevaluateButton = $("<button>Score All Items</button>");
     reevaluateButtonContainer.append(reevaluateButton);
-    modalContent.append(reevaluateButtonContainer);
-    modalContent.append('<div>Put on the kettle and throw on a movie because this will take a while.</div>')
+    containerEl.append(reevaluateButtonContainer);
+    containerEl.append('<div>Put on the kettle and throw on a movie because this will take a while.</div>')
     reevaluateButton.click(async function() {
       containerEl.empty();
       let assignmentsEl = $('<div></div>');
