@@ -117,6 +117,7 @@
           <span id="btech-enrollment-suggested-date-string">
             ${dateToString(suggestedDate)}
           </span>
+          <button id="btech-enrollment-view-all-dates" style="cursor: pointer;">View All Dates</button>
         </div>
       </span>
     </div>
@@ -127,7 +128,28 @@
     $("#btech-enrollment-suggested-date-string").hide();
   }
 
-  let isExtensionEl = document.getElementById("btech-enrollment-is-extension");
+  $("#btech-enrollment-view-all-dates").click(async () => {
+    $("body").append(`
+      <div class='btech-modal' style='display: inline-block;'>
+        <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
+        <div class='btech-modal-content' style='max-width: 800px;'>
+          <div class='btech-modal-content-inner'></div>
+        </div>
+      </div>
+    `);
+    let modalContent = $('body .btech-modal-content-inner');
+    let dates = await bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/users/${ENV.USER_ID}/end_dates`);
+    for (let d in dates) {
+      let date = dates[d];
+      console.log(date);
+    }
+    let modal = $('body .btech-modal');
+    modal.on("click", function(event) {
+      if ($(event.target).is(modal)) {
+          modal.remove();
+      }
+    });
+  });
 
   let endAtEl = document.getElementById("btech-enrollment-end-date");
   $("#btech-enrollment-suggested-date").click(() => {
