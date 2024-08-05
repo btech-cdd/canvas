@@ -142,6 +142,7 @@
     for (let d in dates) {
       let date = dates[d];
       console.log(date);
+      modalContent.append(`<div>${}`)
     }
     let modal = $('body .btech-modal');
     modal.on("click", function(event) {
@@ -206,6 +207,7 @@
       canvas_course_id: ENV.COURSE_ID,
       canvas_section_id: enrollment.course_section_id,
       is_extension: isExtension,
+      end_date: endAtDate,
       creator_id: ENV.current_user.id,
       creator_name: ENV.current_user.display_name
     }
