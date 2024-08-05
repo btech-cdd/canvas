@@ -172,7 +172,7 @@
         }
       }
     );
-    bridgetoolsReq(`https://reports.bridgetools.dev/courses/${ENV.COURSE_ID}/users/${ENV.USER_ID}/end_dates`, {
+    bridgetoolsReq(`https://reports.bridgetools.dev/api/courses/${ENV.COURSE_ID}/users/${ENV.USER_ID}/end_dates`, {
       canvas_user_id: ENV.USER_ID,
       canvas_course_id: ENV.COURSE_ID,
       canvas_section_id: enrollment.course_section_id
