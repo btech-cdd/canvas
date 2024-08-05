@@ -1,15 +1,18 @@
 (async function() {
   function dateToString(date) {
     console.log(date);
-    if (!date || date?.length < 1) return ""
+    if (!date) return ""
     // Get the current year
     const year = date.getUTCFullYear();
+    if (!year) return "";
     
     // Get the current month (0-indexed, so we add 1)
     const month = ('0' + (date.getUTCMonth() + 1)).slice(-2);
+    if (!month) return "";
     
     // Get the current day of the month
     const day = ('0' + date.getUTCDate()).slice(-2);
+    if (!day) return "";
     return `${year}-${month}-${day}`;
   }
   async function calcRecommendedEndDate() {
