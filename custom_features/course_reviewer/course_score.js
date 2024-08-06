@@ -437,7 +437,7 @@
           }
           await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
         }
-        assignmentsEl.html(`${a + 1} / ${assignments.length} Assignments Reviewed`);
+        assignmentsEl.html(`${parseInt(a) + 1} / ${assignments.length} Assignments Reviewed`);
       }
 
       let pagesEl = $('<div></div>');
