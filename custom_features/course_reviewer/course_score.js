@@ -255,19 +255,6 @@
     return el;
   }
 
-  function generateDetailedRubricReviewEl() {
-    if (rubricReviewData) {
-      let el = $(`
-        <div style="padding: 8px 0;">
-          
-        </div> 
-
-      `);
-      return el;
-    }
-    return $('<div></div>')
-  }
-
   function generateObjectivesEl() {
     let el = $(`
       <div>
