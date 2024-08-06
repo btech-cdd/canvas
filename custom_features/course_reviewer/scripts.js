@@ -196,7 +196,7 @@ async function evaluateAssignment(courseId, courseCode, year, assignmentId, desc
   }, type="POST");
 }
 
-function processQuestionStatistics() {
+function processQuestionStatistics(questionsList) {
   let hasFeedback = 0;
   for (let q in questionsList) {
     let question = questionsList[q];
@@ -297,8 +297,8 @@ async function genNewQuizzesQuestionsList(courseId, quizId) {
 }
 
 async function evaluateNewQuiz(courseId, courseCode, year, quizId, description) {
-  let statistics = processQuestionStatistics();
   let questionsList = await genNewQuizzesQuestionsList(); 
+  let statistics = processQuestionStatistics(questionsList);
   await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/quizzes/${quizId}/evaluate`, reqdata={
       courseCode: courseCode,
       year: year,
@@ -309,8 +309,8 @@ async function evaluateNewQuiz(courseId, courseCode, year, quizId, description) 
 }
 
 async function evaluateQuiz(courseId, courseCode, year, quizId, description) {
-  let statistics = processQuestionStatistics();
   let questionsList = await genQuestionsList(courseId, quizId);
+  let statistics = processQuestionStatistics(questionsList);
   let questionsString = genQuizQuestionString(questionsList);
   await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/quizzes/${quizId}/evaluate`, reqdata={
       courseCode: courseCode,
