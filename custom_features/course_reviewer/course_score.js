@@ -405,26 +405,39 @@
           continue;
         }
         console.log(assignment);
-        let updatedAt = new Date(assignment.updated_at);
-        for (let r in assignmentReviewsData) {
-          let review = assignmentReviewsData[r];
-          console.log(review);
-        }
-        break
+        let assignmentUpdatedAt = new Date(assignment.updated_at);
 
         //check if last updated is sooner than last reviewed
 
+        // NEW QUIZZES
         if (assignment.is_quiz_lti_assignment) {
           // let newQuiz = await $.get(`/api/quiz/v1/courses/${ENV.COURSE_ID}/quizzes/${assignment.id}`);
           // await evaluateNewQuiz(ENV.COURSE_ID, courseCode, year, assignment.id, newQuiz.description);
         }
+        // CLASSIC QUIZZES
         else if (assignment.is_quiz_assignment) {
+          for (let r in quizReviewsData) {
+            let review = quizReviewsData[r];
+            if (review.quiz_id == assignment.quiz_id) {
+              let reviewUpdatedAt = new Date(review.last_update);
+              if (reviewUpdatedAt < assignmentUpdatedAt) continue; // skip anything reviewed more recently than the last update
+            }
+          }
           await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignment.quiz_id, assignment.description);
         }
+        // LTIS
         else if (assignment.submission_types.includes('external_tool')) {
           // ltis, possibly could have a database of ltis that have been reviewed manually and put in that score
         }
+        // TRADITIONAL ASSIGNMENTS
         else {
+          for (let r in assignmentReviewsData) {
+            let review = assignmentReviewsData[r];
+            if (review.assignment_id == assignment.id) {
+              let reviewUpdatedAt = new Date(review.last_update);
+              if (reviewUpdatedAt < assignmentUpdatedAt) continue; // skip anything reviewed more recently than the last update
+            }
+          }
           await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
         }
         assignmentsEl.html(`${a + 1} / ${assignments.length} Assignments Reviewed`);
