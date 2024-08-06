@@ -399,6 +399,7 @@
       let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
       assignmentsEl.html(`0 / ${assignments.length} Assignments Reviewed`);
       for (let a in assignments) {
+        break
         let assignment = assignments[a];
         if (!assignment.published || assignment.points_possible <= 0) {
           continue;
@@ -406,8 +407,6 @@
 
         if (assignment.is_quiz_lti_assignment) {
           // let newQuiz = await $.get(`/api/quiz/v1/courses/${ENV.COURSE_ID}/quizzes/${assignment.id}`);
-          // console.log("NEW QUIZ");
-          // console.log(newQuiz);
           // await evaluateNewQuiz(ENV.COURSE_ID, courseCode, year, assignment.id, newQuiz.description);
         }
         else if (assignment.is_quiz_assignment) {
@@ -421,28 +420,18 @@
         }
         assignmentsEl.html(`${a + 1} / ${assignments.length} Assignments Reviewed`);
       }
-      // let quizzesEl = $('<div></div>');
-      // containerEl.append(quizzesEl);
-      // quizzesEl.html('Loading Quizzes...');
-      // let quizzes = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/quizzes`);
-      // quizzesEl.html(`0 / ${quizzes.length} Quizzes Reviewed`);
-      // for (let q in quizzes) {
-      //   let quiz = quizzes[q];
-      //   if (
-      //     !quiz.published 
-      //     || ((quiz?.description ?? '') == '' && (quiz?.question_types ?? []).length <= 0) 
-      //     || quiz.points_possible <= 0
-      //   ) {
-      //     continue;
-      //   }
-      //   await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
-      //   assignmentsEl.html(`${a + 1} / ${assignments.length} Assignments Reviewed`);
-      // }
 
       let pagesEl = $('<div></div>');
       containerEl.append(pagesEl);
       pagesEl.html('Loading Pages...');
       let pages = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/pages`);
+      for (let p in pages) {
+        let page = pages[p];
+        if (page.published) {
+          console.log(page);
+          // await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
+        }
+      }
       console.log(pages);
       generateDetailedContent(containerEl);
     });
