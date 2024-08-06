@@ -418,6 +418,7 @@
         }
         // CLASSIC QUIZZES
         else if (assignment.is_quiz_assignment) {
+          let skip = false;
           for (let r in quizReviewsData) {
             let review = quizReviewsData[r];
             if (review.quiz_id == assignment.quiz_id) {
@@ -425,6 +426,7 @@
               if (reviewUpdatedAt < assignmentUpdatedAt) continue; // skip anything reviewed more recently than the last update
             }
           }
+          if (skip) continue;
           console.log(assignment);
           await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignment.quiz_id, assignment.description);
         }
@@ -434,14 +436,15 @@
         }
         // TRADITIONAL ASSIGNMENTS
         else {
+          let skip = false;
           for (let r in assignmentReviewsData) {
             let review = assignmentReviewsData[r];
             if (review.assignment_id == assignment.id) {
               let reviewUpdatedAt = new Date(review.last_update);
-              console.log(reviewUpdatedAt);
-              if (reviewUpdatedAt < assignmentUpdatedAt) continue; // skip anything reviewed more recently than the last update
+              if (reviewUpdatedAt < assignmentUpdatedAt) skip = true; // skip anything reviewed more recently than the last update
             }
           }
+          if (skip) continue;
           console.log(assignment);
           console.log(assignmentUpdatedAt);
           await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
