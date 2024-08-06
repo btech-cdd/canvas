@@ -440,8 +440,12 @@
           for (let r in assignmentReviewsData) {
             let review = assignmentReviewsData[r];
             if (review.assignment_id == assignment.id) {
+              console.log("MATCH");
               let reviewUpdatedAt = new Date(review.last_update);
-              if (reviewUpdatedAt < assignmentUpdatedAt) skip = true; // skip anything reviewed more recently than the last update
+              console.log(reviewUpdatedAt);
+              if (reviewUpdatedAt < assignmentUpdatedAt) {
+                skip = true; // skip anything reviewed more recently than the last update
+              }
             }
           }
           console.log(skip);
