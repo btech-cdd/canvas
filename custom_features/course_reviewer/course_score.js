@@ -272,13 +272,13 @@
     let averageClarity = Math.floor(assignmentCounts.clarity / assignmentReviewsData.length)
     if (averageClarity > 2) averageClarity = 2;
     let usageChunkedContent = Math.round((assignmentCounts.chunked_content / assignmentReviewsData.length) * 1000) / 10;
-    let emojiChunkedContent = calcEmoji(assignmentCounts.chunked_content / assignmentReviewesData.length);
+    let emojiChunkedContent = calcEmoji(assignmentCounts.chunked_content / assignmentReviewsData.length);
     let usageIncludesOutcomes = Math.round((assignmentCounts.includes_outcomes/ assignmentReviewsData.length) * 1000) / 10;
-    let emojiIncludesOutcomes = calcEmoji(assignmentCounts.includes_outcomes / assignmentReviewesData.length);
+    let emojiIncludesOutcomes = calcEmoji(assignmentCounts.includes_outcomes / assignmentReviewsData.length);
     let usageCareerRelevance = Math.round((assignmentCounts.career_relevance / assignmentReviewsData.length) * 1000) / 10;
-    let emojiCareerRelevance = calcEmoji(assignmentCounts.career_relevance / assignmentReviewesData.length);
+    let emojiCareerRelevance = calcEmoji(assignmentCounts.career_relevance / assignmentReviewsData.length);
     let usageProvidesFeedback = Math.round((assignmentCounts.provides_feedback / assignmentReviewsData.length) * 1000) / 10;
-    let emojiProvidesFeedback = calcEmoji(assignmentCounts.provides_feedback / assignmentReviewesData.length);
+    let emojiProvidesFeedback = calcEmoji(assignmentCounts.provides_feedback / assignmentReviewsData.length);
     let el = $(`
       <div style="padding: 8px 0;">
        <h2>Assignment Review</h2>
