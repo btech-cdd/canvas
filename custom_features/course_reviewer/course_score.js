@@ -6,19 +6,46 @@
   $(".context_module_item").each(function() {
     let el = $(this);
     let infoEl = el.find('div.ig-info')
-    infoEl.before(`<span class="ig-btech-evaluation-score" style="font-size: 1rem;">⚪</span>`)
+    infoEl.before(`<span class="ig-btech-evaluation-score" style="font-size: 1rem;"></span>`)
   });
-  $(".context_external_tool span.ig-btech-evaluation-score").each(function() {
-    let el = $(this);
-    el.html(`🚫`);
-  })
-  $(".context_module_sub_header span.ig-btech-evaluation-score").each(function() {
-    let el = $(this);
-    el.html(``);
-  })
 
-  var courseData, assignmentsData, assignmentReviewsData, pageReviewsData, quizReviewsData, courseReviewData, rubricReviewsData, objectivesData, courseCode, year, bloomsCounts, topicTagsCounts, objectivesCounts, assignmentCounts;
+
+  var 
+    courseData
+    , externalContentCount
+    , contentCount
+    , assignmentsData
+    , assignmentReviewsData
+    , pageReviewsData
+    , quizReviewsData
+    , courseReviewData
+    , rubricReviewsData
+    , objectivesData
+    , courseCode
+    , year
+    , bloomsCounts
+    , topicTagsCounts
+    , objectivesCounts
+    , assignmentCounts;
+
   async function refreshData() {
+    contentCount = 0;
+    externalContentCount = 0;
+    $(".context_module_item span.ig-btech-evaluation-score").each(function() {
+      let el = $(this);
+      el.html(`⚪`);
+      contentCount += 1;
+    });
+    $(".context_external_tool span.ig-btech-evaluation-score").each(function() {
+      let el = $(this);
+      el.html(`🚫`);
+      externalContentCount += 1;
+    });
+    $(".context_module_sub_header span.ig-btech-evaluation-score").each(function() {
+      let el = $(this);
+      el.html(``);
+      contentCount -= 1;
+    });
     // get course level data
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     courseReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
@@ -41,7 +68,7 @@
       console.log(err);
     }
 
-    // get assignmetn data
+    // get assignment data
     try {
       assignmentReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments`);
       assignmentsData = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
@@ -49,6 +76,7 @@
         let assignment = assignmentsData[a];
         if (assignment.submission_types.includes('external_tool')) {
           $(`.Assignment_${assignment.id} span.ig-btech-evaluation-score`).html('🚫');
+          externalContentCount += 1;
         }
       }
     } catch (err) {
