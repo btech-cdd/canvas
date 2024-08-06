@@ -252,22 +252,22 @@
           <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
         </div>
         <div title="Content is chunked with headers, call out boxes, lists, etc.">
-          <span style="width: 6rem; display: inline-block;">Chunking</span><span>${ emojiChunkedContent }%</span>
+          <span style="width: 6rem; display: inline-block;">Chunking</span><span>${ emojiChunkedContent }</span>
         </div>
         <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-          <span style="width: 6rem; display: inline-block;">Outcomes</span><span>${ emojiIncludesOutcomes }%</span>
+          <span style="width: 6rem; display: inline-block;">Outcomes</span><span>${ emojiIncludesOutcomes }</span>
         </div>
         <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-          <span style="width: 6rem; display: inline-block;">Industry</span><span>${ emojiCareerRelevance }%</span>
+          <span style="width: 6rem; display: inline-block;">Industry</span><span>${ emojiCareerRelevance }</span>
         </div>
         <div title="The assignment explicitly states how this students will receive documented feedback.">
-          <span style="width: 6rem; display: inline-block;">Feedback</span><span>${ emojiProvidesFeedback }%</span>
+          <span style="width: 6rem; display: inline-block;">Feedback</span><span>${ emojiProvidesFeedback }</span>
         </div>
         <div title="The assignment explicitly states how this students will receive documented feedback.">
-          <span style="width: 6rem; display: inline-block;">Instructions</span><span>${ emojiInstructions }%</span>
+          <span style="width: 6rem; display: inline-block;">Instructions</span><span>${ emojiInstructions }</span>
         </div>
         <div title="The assignment explicitly states how this students will receive documented feedback.">
-          <span style="width: 6rem; display: inline-block;">Preparation</span><span>${ emojiPreparation }%</span>
+          <span style="width: 6rem; display: inline-block;">Preparation</span><span>${ emojiPreparation }</span>
         </div>
       </div> 
       `);
