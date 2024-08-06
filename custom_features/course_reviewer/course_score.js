@@ -36,6 +36,10 @@
       el.html(`⚪`);
       contentCount += 1;
     });
+    $(".external_url span.ig-btech-evaluation-score").each(function() {
+      let el = $(this);
+      el.html(`🚫`);
+    });
     $(".context_external_tool span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
       el.html(`🚫`);
