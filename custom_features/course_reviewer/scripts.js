@@ -244,7 +244,6 @@ async function genNewQuizzesQuestionsList(courseId, quizId) {
 async function evaluateNewQuiz(courseId, courseCode, year, quizId, description) {
   let statistics = processQuestionStatistics();
   let questionsList = await genNewQuizzesQuestionsList(); 
-  let description = ENV.QUIZ.description;
   await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/quizzes/${quizId}/evaluate`, reqdata={
       courseCode: courseCode,
       year: year,
