@@ -69,7 +69,7 @@
     evaluateButton.hide();
     container.html('evaluating...');
 
-    await evaluatePage(courseId, courseCode, year, ENV.WIKI_PAGE.page_id, ENV.WIKI_PAGE.body);
+    await evaluatePage(ENV.COURSE_ID, courseCode, year, ENV.WIKI_PAGE.page_id, ENV.WIKI_PAGE.body);
     if (await refreshData()) await generateContent(container);
 
     detailedReportButton.show();
