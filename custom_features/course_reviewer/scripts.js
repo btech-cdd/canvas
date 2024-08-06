@@ -283,11 +283,11 @@ async function getQuizQuestionData(courseId, quizId) {
   return quizQuestions;
 }
 
-async function genQuestionsList() {
+async function genQuestionsList(courseId, quizId) {
   let questionsList = []
-  let bankQuestionsList = await getQuizBankQuestionData(ENV.COURSE_ID, ENV.QUIZ.id);
+  let bankQuestionsList = await getQuizBankQuestionData(courseId, quizId);
   questionsList.push(...bankQuestionsList);
-  let quizQuestionsList = await getQuizQuestionData(ENV.COURSE_ID, ENV.QUIZ_ID);
+  let quizQuestionsList = await getQuizQuestionData(courseId, quizId);
   questionsList.push(...quizQuestionsList);
   return questionsList;
 }
@@ -309,7 +309,6 @@ async function evaluateNewQuiz(courseId, courseCode, year, quizId, description) 
 }
 
 async function evaluateQuiz(courseId, courseCode, year, quizId, description) {
-  console.log(quizId);
   let questionsList = await genQuestionsList(courseId, quizId);
   let statistics = processQuestionStatistics(questionsList);
   let questionsString = genQuizQuestionString(questionsList);
