@@ -360,10 +360,12 @@
           // console.log(assignment);
           // await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignment.quiz_id, assignment.description);
         }
-        else {
-          console.log(assignment.submission_types)
+        else if (assignment.submission_types.includes('external_tool')) {
+          console.log(assignment);
         }
-        // await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
+        else {
+          // await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
+        }
         assignmentsEl.html(`${a + 1} / ${assignments.length} Assignments Reviewed`);
       }
       // let quizzesEl = $('<div></div>');
