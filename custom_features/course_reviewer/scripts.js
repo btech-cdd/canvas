@@ -309,6 +309,7 @@ async function evaluateNewQuiz(courseId, courseCode, year, quizId, description) 
 }
 
 async function evaluateQuiz(courseId, courseCode, year, quizId, description) {
+  console.log(quizId);
   let questionsList = await genQuestionsList(courseId, quizId);
   let statistics = processQuestionStatistics(questionsList);
   let questionsString = genQuizQuestionString(questionsList);
