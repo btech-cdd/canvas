@@ -403,6 +403,7 @@
         if (!assignment.published || assignment.points_possible <= 0) {
           continue;
         }
+        console.log(assignment);
         let updatedAt = new Date(assignment.updated_at);
         for (let r in assignmentReviewsData) {
           let review = assignmentReviewsData[r];
@@ -437,6 +438,7 @@
         let page = pages[p];
         if (page.published) {
           console.log(page);
+          break;
           await evaluatePage(ENV.COURSE_ID, courseCode, year, page.page_id, page.body);
         }
       }
