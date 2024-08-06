@@ -432,6 +432,7 @@
         //check if last updated is sooner than last reviewed
         let page = pages[p];
         if (page.published) {
+          console.log(page);
           await evaluatePage(ENV.COURSE_ID, courseCode, year, page.page_id, page.body);
         }
       }
