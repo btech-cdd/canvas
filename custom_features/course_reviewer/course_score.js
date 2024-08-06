@@ -426,6 +426,7 @@
               console.log(assignment.title);
               console.log(reviewUpdatedAt);
               console.log(assignmentUpdatedAt);
+              console.log(new Date());
               console.log(reviewUpdatedAt > assignmentUpdatedAt);
               if (reviewUpdatedAt > assignmentUpdatedAt) skip = true; // skip anything reviewed more recently than the last update
             }
