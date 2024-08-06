@@ -1,4 +1,5 @@
 (async function () {
+  await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/scripts.js");
   const bloomsColors = {
     'remember': '#F56E74',
     'understand': '#FEB06E',
@@ -84,15 +85,10 @@
     evaluateButton.hide();
     container.html('evaluating...');
 
+    let assignmentId = assignmentData.id;
     let description = assignmentData.description;
     let rubric = JSON.stringify(assignmentData.rubric);
-    await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseData.id}/assignments/${assignmentData.id}/evaluate`, reqdata={
-        courseCode: courseCode,
-        year: year,
-        description: description,
-        rubric: rubric
-    }, type="POST");
-
+    await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignmentId, description, rubric);
     if (await refreshData()) await generateContent(container);
 
     detailedReportButton.show();

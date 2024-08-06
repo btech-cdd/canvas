@@ -6,11 +6,45 @@
   $(".context_module_item").each(function() {
     let el = $(this);
     let infoEl = el.find('div.ig-info')
-    infoEl.before(`<span class="ig-btech-evaluation-score" style="font-size: 1rem;">⚪</span>`)
+    infoEl.before(`<span class="ig-btech-evaluation-score" style="font-size: 1rem;"></span>`)
   });
 
-  var courseData, assignmentReviewsData, pageReviewsData, quizReviewsData, courseReviewData, rubricReviewsData, objectivesData, courseCode, year, bloomsCounts, topicTagsCounts, objectivesCounts, assignmentCounts;
+
+  var 
+    courseData
+    , externalContentCount
+    , contentCount
+    , assignmentsData
+    , assignmentReviewsData
+    , pageReviewsData
+    , quizReviewsData
+    , courseReviewData
+    , rubricReviewsData
+    , objectivesData
+    , courseCode
+    , year
+    , bloomsCounts
+    , topicTagsCounts
+    , objectivesCounts
+    , assignmentCounts;
+
   async function refreshData() {
+    contentCount = 0;
+    externalContentCount = 0;
+    $(".context_module_item span.ig-btech-evaluation-score").each(function() {
+      let el = $(this);
+      el.html(`⚪`);
+      contentCount += 1;
+    });
+    $(".context_external_tool span.ig-btech-evaluation-score").each(function() {
+      let el = $(this);
+      el.html(`🚫`);
+    });
+    $(".context_module_sub_header span.ig-btech-evaluation-score").each(function() {
+      let el = $(this);
+      el.html(``);
+      contentCount -= 1;
+    });
     // get course level data
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     courseReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
@@ -33,12 +67,24 @@
       console.log(err);
     }
 
-    // get assignmetn data
+    // get assignment data
     try {
       assignmentReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments`);
+      assignmentsData = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
+      for (let a in assignmentsData) {
+        let assignment = assignmentsData[a];
+        if (assignment.submission_types.includes('external_tool')) {
+          $(`.Assignment_${assignment.id} span.ig-btech-evaluation-score`).html('🚫');
+        }
+      }
     } catch (err) {
       console.log(err);
     }
+
+    $("span.ig-btech-evaluation-score").each(function() {
+      let el = $(this);
+      if (el.html() == `🚫`) externalContentCount += 1;
+    });
 
     // get page data
     try {
@@ -83,7 +129,7 @@
     };
 
     objectivesCounts = {};
-    objectivesCounts =  addObjectives(objectivesCounts, pageReviewsData);
+    // objectivesCounts =  addObjectives(objectivesCounts, pageReviewsData);
     objectivesCounts =  addObjectives(objectivesCounts, assignmentReviewsData);
     objectivesCounts =  addObjectives(objectivesCounts, quizReviewsData);
 
@@ -91,7 +137,6 @@
     topicTagsCounts =  addTopics(topicTagsCounts, pageReviewsData);
     topicTagsCounts =  addTopics(topicTagsCounts, assignmentReviewsData);
     topicTagsCounts =  addTopics(topicTagsCounts, quizReviewsData);
-    console.log(topicTagsCounts);
 
     for (let o in pageReviewsData) {
       let page = pageReviewsData[o];
@@ -119,7 +164,6 @@
 
 
       // // other scores
-      console.log(quiz);
       if (quiz.includes_outcomes !== undefined) quizCounts.includes_outcomes += quiz.includes_outcomes ? 1 : 0;
       if (quiz.chunked_content !== undefined) quizCounts.chunked_content += quiz.chunked_content ? 1 : 0;
       if (quiz.career_relevance !== undefined) quizCounts.career_relevance += quiz.career_relevance ? 1 : 0;
@@ -127,7 +171,6 @@
       if (quiz.instructions !== undefined) quizCounts.instructions += quiz.instructions ? 1 : 0;
       if (quiz.preparation !== undefined) quizCounts.preparation += quiz.preparation ? 1 : 0;
       if (quiz.clarity !== undefined) quizCounts.clarity += quiz.clarity;
-      console.log(quizCounts);
 
       let quizScore = calcQuizScore(quiz);
 
@@ -191,34 +234,40 @@
     let averageClarity = Math.floor(quizCounts.clarity / quizReviewsData.length)
     if (averageClarity > 2) averageClarity = 2;
     let usageChunkedContent = Math.round((quizCounts.chunked_content / quizReviewsData.length) * 1000) / 10;
+    let emojiChunkedContent = calcEmoji(quizCounts.chunked_content / quizReviewsData.length);
     let usageIncludesOutcomes = Math.round((quizCounts.includes_outcomes/ quizReviewsData.length) * 1000) / 10;
+    let emojiIncludesOutcomes = calcEmoji(quizCounts.includes_outcomes / quizReviewsData.length);
     let usageCareerRelevance = Math.round((quizCounts.career_relevance / quizReviewsData.length) * 1000) / 10;
+    let emojiCareerRelevance = calcEmoji(quizCounts.career_relevance / quizReviewsData.length);
     let usageProvidesFeedback = Math.round((quizCounts.provides_feedback / quizReviewsData.length) * 1000) / 10;
+    let emojiProvidesFeedback = calcEmoji(quizCounts.provides_feedback / quizReviewsData.length);
     let usageInstructions = Math.round((quizCounts.instructions / quizReviewsData.length) * 1000) / 10;
+    let emojiInstructions = calcEmoji(quizCounts.instructions / quizReviewsData.length);
     let usagePreparation = Math.round((quizCounts.preparation / quizReviewsData.length) * 1000) / 10;
+    let emojiPreparation = calcEmoji(quizCounts.preparation / quizReviewsData.length);
     let el = $(`
       <div style="padding: 8px 0;">
        <h2>Quiz Review</h2>
         <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-          <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
+          <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
         </div>
         <div title="Content is chunked with headers, call out boxes, lists, etc.">
-          <span style="width: 5rem; display: inline-block;">Chunking</span><span>${ usageChunkedContent }%</span>
+          <span style="width: 6rem; display: inline-block;">Chunking</span><span>${ emojiChunkedContent }</span>
         </div>
         <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-          <span style="width: 5rem; display: inline-block;">Outcomes</span><span>${ usageIncludesOutcomes }%</span>
+          <span style="width: 6rem; display: inline-block;">Outcomes</span><span>${ emojiIncludesOutcomes }</span>
         </div>
         <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-          <span style="width: 5rem; display: inline-block;">Industry</span><span>${ usageCareerRelevance }%</span>
+          <span style="width: 6rem; display: inline-block;">Industry</span><span>${ emojiCareerRelevance }</span>
         </div>
         <div title="The assignment explicitly states how this students will receive documented feedback.">
-          <span style="width: 5rem; display: inline-block;">Feedback</span><span>${ usageProvidesFeedback }%</span>
+          <span style="width: 6rem; display: inline-block;">Feedback</span><span>${ emojiProvidesFeedback }</span>
         </div>
         <div title="The assignment explicitly states how this students will receive documented feedback.">
-          <span style="width: 5rem; display: inline-block;">Instructions</span><span>${ usageInstructions }%</span>
+          <span style="width: 6rem; display: inline-block;">Instructions</span><span>${ emojiInstructions }</span>
         </div>
         <div title="The assignment explicitly states how this students will receive documented feedback.">
-          <span style="width: 5rem; display: inline-block;">Preparation</span><span>${ usagePreparation }%</span>
+          <span style="width: 6rem; display: inline-block;">Preparation</span><span>${ emojiPreparation }</span>
         </div>
       </div> 
       `);
@@ -229,26 +278,30 @@
     let averageClarity = Math.floor(assignmentCounts.clarity / assignmentReviewsData.length)
     if (averageClarity > 2) averageClarity = 2;
     let usageChunkedContent = Math.round((assignmentCounts.chunked_content / assignmentReviewsData.length) * 1000) / 10;
+    let emojiChunkedContent = calcEmoji(assignmentCounts.chunked_content / assignmentReviewsData.length);
     let usageIncludesOutcomes = Math.round((assignmentCounts.includes_outcomes/ assignmentReviewsData.length) * 1000) / 10;
+    let emojiIncludesOutcomes = calcEmoji(assignmentCounts.includes_outcomes / assignmentReviewsData.length);
     let usageCareerRelevance = Math.round((assignmentCounts.career_relevance / assignmentReviewsData.length) * 1000) / 10;
+    let emojiCareerRelevance = calcEmoji(assignmentCounts.career_relevance / assignmentReviewsData.length);
     let usageProvidesFeedback = Math.round((assignmentCounts.provides_feedback / assignmentReviewsData.length) * 1000) / 10;
+    let emojiProvidesFeedback = calcEmoji(assignmentCounts.provides_feedback / assignmentReviewsData.length);
     let el = $(`
       <div style="padding: 8px 0;">
        <h2>Assignment Review</h2>
         <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-          <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
+          <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
         </div>
         <div title="Content is chunked with headers, call out boxes, lists, etc.">
-          <span style="width: 5rem; display: inline-block;">Chunking</span><span>${ usageChunkedContent }%</span>
+          <span style="width: 6rem; display: inline-block;">Chunking</span><span>${ emojiChunkedContent }</span>
         </div>
         <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-          <span style="width: 5rem; display: inline-block;">Outcomes</span><span>${ usageIncludesOutcomes }%</span>
+          <span style="width: 6rem; display: inline-block;">Outcomes</span><span>${ emojiIncludesOutcomes }</span>
         </div>
         <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-          <span style="width: 5rem; display: inline-block;">Industry</span><span>${ usageCareerRelevance }%</span>
+          <span style="width: 6rem; display: inline-block;">Industry</span><span>${ emojiCareerRelevance }</span>
         </div>
         <div title="The assignment explicitly states how this students will receive documented feedback.">
-          <span style="width: 5rem; display: inline-block;">Feedback</span><span>${ usageProvidesFeedback }%</span>
+          <span style="width: 6rem; display: inline-block;">Feedback</span><span>${ emojiProvidesFeedback }</span>
         </div>
       </div> 
       `);
@@ -263,8 +316,8 @@
     `);
     for (let o in objectivesData) {
       let objective = objectivesData[o];
-      let usage = Math.round((objectivesCounts[objective.objective_id] / assignmentReviewsData.length) * 1000) / 10;
-      let topicEl = $(`<div><span style="display: inline-block; width: 4rem;">${usage}%</span><span>${objective.objective_text.trim()}</span></div>`);
+      let usage = Math.round((objectivesCounts[objective.objective_id] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10;
+      let topicEl = $(`<div><span style="display: inline-block; width: 4rem;">${isNaN(usage) ? 0 : usage}%</span><span>${objective.objective_text.trim()}</span></div>`);
       el.append(topicEl);
     }
 
@@ -304,12 +357,23 @@
     }
     return el
   }
+  function generateExternalContentEl() {
+    let el = $(`
+      <div>
+        <h2>Contracted Courseware</h2>
+        <div>3rd Party Items: ${externalContentCount} Item(s) (${Math.round((externalContentCount / contentCount) * 1000) / 10}%)</div>
+      </div>
+    `);
+    return el
+  }
 
   // do we have a review?
   async function generateDetailedContent(containerEl) {
+    containerEl.empty();
     if (courseReviewData) {
       // containerEl.append(generateRelevantObjectivesEl());
       containerEl.append(generateObjectivesEl());
+      containerEl.append(generateExternalContentEl());
       containerEl.append(generateBloomsEl());
       genBloomsChart(bloomsCounts);
       containerEl.append(generateDetailedAssignmentReviewEl());
@@ -319,6 +383,73 @@
       containerEl.append(generateTopicTagsEl());
       // containerEl.append(generateRelatedAssignmentsEl());
     }
+    let reevaluateButtonContainer= $("<div></div>");
+    let reevaluateButton = $("<button>Score All Items</button>");
+    reevaluateButtonContainer.append(reevaluateButton);
+    containerEl.append(reevaluateButtonContainer);
+    containerEl.append('<div>Put on the kettle and throw on a movie because this will take a while.</div>')
+    reevaluateButton.click(async function() {
+      containerEl.empty();
+      let assignmentsEl = $('<div></div>');
+      containerEl.append(assignmentsEl);
+      assignmentsEl.html('Loading Assignments...');
+      let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
+      assignmentsEl.html(`0 / ${assignments.length} Assignments Reviewed`);
+      for (let a in assignments) {
+        let assignment = assignments[a];
+        if (!assignment.published || assignment.points_possible <= 0) {
+          continue;
+        }
+        // Used for checking if assignment needs to be reviewed again
+        let assignmentUpdatedAt = new Date(assignment.updated_at);
+
+        // NEW QUIZZES
+        if (assignment.is_quiz_lti_assignment) {
+          // let newQuiz = await $.get(`/api/quiz/v1/courses/${ENV.COURSE_ID}/quizzes/${assignment.id}`);
+          // await evaluateNewQuiz(ENV.COURSE_ID, courseCode, year, assignment.id, newQuiz.description);
+        }
+        // CLASSIC QUIZZES
+        else if (assignment.is_quiz_assignment) {
+          for (let r in quizReviewsData) {
+            let review = quizReviewsData[r];
+            if (review.quiz_id == assignment.quiz_id) {
+              let reviewUpdatedAt = new Date(review.last_update);
+              if (reviewUpdatedAt < assignmentUpdatedAt) continue; // skip anything reviewed more recently than the last update
+            }
+          }
+          await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignment.quiz_id, assignment.description);
+        }
+        // LTIS
+        else if (assignment.submission_types.includes('external_tool')) {
+          // ltis, possibly could have a database of ltis that have been reviewed manually and put in that score
+        }
+        // TRADITIONAL ASSIGNMENTS
+        else {
+          for (let r in assignmentReviewsData) {
+            let review = assignmentReviewsData[r];
+            if (review.assignment_id == assignment.id) {
+              let reviewUpdatedAt = new Date(review.last_update);
+              if (reviewUpdatedAt < assignmentUpdatedAt) continue; // skip anything reviewed more recently than the last update
+            }
+          }
+          await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
+        }
+        assignmentsEl.html(`${parseInt(a) + 1} / ${assignments.length} Assignments Reviewed`);
+      }
+
+      let pagesEl = $('<div></div>');
+      containerEl.append(pagesEl);
+      pagesEl.html('Loading Pages...');
+      let pages = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/pages?include[]=body`);
+      for (let p in pages) {
+        //check if last updated is sooner than last reviewed
+        let page = pages[p];
+        if (page.published) {
+          await evaluatePage(ENV.COURSE_ID, courseCode, year, page.page_id, page.body);
+        }
+      }
+      generateDetailedContent(containerEl);
+    });
   }
 
   await refreshData();
