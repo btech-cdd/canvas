@@ -455,6 +455,7 @@
         if (page.published) {
           await evaluatePage(ENV.COURSE_ID, courseCode, year, page.page_id, page.body);
         }
+        pagesEl.html(`0 / ${pages.length} Pages Reviewed`);
       }
       generateDetailedContent(containerEl);
     });
