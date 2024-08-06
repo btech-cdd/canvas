@@ -423,7 +423,7 @@
             let review = quizReviewsData[r];
             if (review.quiz_id == assignment.quiz_id) {
               let reviewUpdatedAt = new Date(review.last_update);
-              if (reviewUpdatedAt < assignmentUpdatedAt) continue; // skip anything reviewed more recently than the last update
+              if (reviewUpdatedAt < assignmentUpdatedAt) skip = true; // skip anything reviewed more recently than the last update
             }
           }
           if (skip) continue;
@@ -444,6 +444,7 @@
               if (reviewUpdatedAt < assignmentUpdatedAt) skip = true; // skip anything reviewed more recently than the last update
             }
           }
+          console.log(skip);
           if (skip) continue;
           console.log(assignment);
           console.log(assignmentUpdatedAt);
