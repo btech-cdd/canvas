@@ -424,7 +424,7 @@
             if (review.quiz_id == assignment.quiz_id) {
               let reviewUpdatedAt = new Date(review.last_update);
               console.log(assignment.title);
-              console.log(reviewUdpatedAt);
+              console.log(reviewUpdatedAt);
               console.log(assignmentUpdatedAt);
               console.log(reviewUpdatedAt > assignmentUpdatedAt);
               if (reviewUpdatedAt > assignmentUpdatedAt) skip = true; // skip anything reviewed more recently than the last update
