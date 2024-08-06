@@ -272,9 +272,13 @@
     let averageClarity = Math.floor(assignmentCounts.clarity / assignmentReviewsData.length)
     if (averageClarity > 2) averageClarity = 2;
     let usageChunkedContent = Math.round((assignmentCounts.chunked_content / assignmentReviewsData.length) * 1000) / 10;
+    let emojiChunkedContent = calcEmoji(assignmentCounts.chunked_content / assignmentReviewesData.length);
     let usageIncludesOutcomes = Math.round((assignmentCounts.includes_outcomes/ assignmentReviewsData.length) * 1000) / 10;
+    let emojiIncludesOutcomes = calcEmoji(assignmentCounts.includes_outcomes / assignmentReviewesData.length);
     let usageCareerRelevance = Math.round((assignmentCounts.career_relevance / assignmentReviewsData.length) * 1000) / 10;
+    let emojiCareerRelevance = calcEmoji(assignmentCounts.career_relevance / assignmentReviewesData.length);
     let usageProvidesFeedback = Math.round((assignmentCounts.provides_feedback / assignmentReviewsData.length) * 1000) / 10;
+    let emojiProvidesFeedback = calcEmoji(assignmentCounts.provides_feedback / assignmentReviewesData.length);
     let el = $(`
       <div style="padding: 8px 0;">
        <h2>Assignment Review</h2>
@@ -282,16 +286,16 @@
           <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
         </div>
         <div title="Content is chunked with headers, call out boxes, lists, etc.">
-          <span style="width: 5rem; display: inline-block;">Chunking</span><span>${ usageChunkedContent }%</span>
+          <span style="width: 5rem; display: inline-block;">Chunking</span><span>${ emojiChunkedContent }</span>
         </div>
         <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-          <span style="width: 5rem; display: inline-block;">Outcomes</span><span>${ usageIncludesOutcomes }%</span>
+          <span style="width: 5rem; display: inline-block;">Outcomes</span><span>${ emojiIncludesOutcomes }</span>
         </div>
         <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-          <span style="width: 5rem; display: inline-block;">Industry</span><span>${ usageCareerRelevance }%</span>
+          <span style="width: 5rem; display: inline-block;">Industry</span><span>${ emojiCareerRelevance }</span>
         </div>
         <div title="The assignment explicitly states how this students will receive documented feedback.">
-          <span style="width: 5rem; display: inline-block;">Feedback</span><span>${ usageProvidesFeedback }%</span>
+          <span style="width: 5rem; display: inline-block;">Feedback</span><span>${ emojiProvidesFeedback }</span>
         </div>
       </div> 
       `);

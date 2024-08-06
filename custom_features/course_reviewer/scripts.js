@@ -7,6 +7,12 @@ const emoji = [
     '🥇'
 ];
 
+function calcEmoji(perc) {
+  if (perc < 0.5) return emoji[0]; // bronze
+  if (perc < 0.8) return emoji[1]; // bronze
+  return emoji[0]; // bronze
+}
+
 const emojiTF = [
   '❌',
   '✔️'
