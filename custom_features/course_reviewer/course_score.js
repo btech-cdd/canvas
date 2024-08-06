@@ -8,7 +8,7 @@
     let infoEl = el.find('div.ig-info')
     infoEl.before(`<span class="ig-btech-evaluation-score" style="font-size: 1rem;">⚪</span>`)
   });
-  $(".context_external_tool").each(function() {
+  $(".context_external_tool span.ig-btech-evaluation-score").each(function() {
     let el = $(this);
     el.html(`🚫`);
   })
