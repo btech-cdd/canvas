@@ -124,7 +124,7 @@ function calcQuizQuestionScore(quiz) {
         + (quiz.questions.options_concise)
         + (quiz.questions.incorrect_answer_quality)
       ) / 9) // divide by total points
-      * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
+      * 2); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
       if (averageQuestionScore > 2) averageQuestionScore = 2;
       if (averageQuestionScore < 0) averageQuestionScore = 0;
     }
@@ -140,7 +140,7 @@ function calcAssignmentScore(assignment) {
         + (assignment.provides_feedback > 0 ? 1 : 0)
         + (assignment.modeling > 0 ? 1 : 0)
         ) / 8) // divide by total points
-    * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
+    * 2); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
     if (assignmentScore > 2) assignmentScore = 2;
     if (assignmentScore < 0) assignmentScore = 0;
     return assignmentScore;
@@ -154,7 +154,7 @@ function calcPageSCore(page) {
         + (page.career_relevance ? 1 : 0)
         + (page.supporting_media ? 1 : 0)
         ) / 6) // divide by total points
-    * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
+    * 2); // multiply by 2 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
     if (pageScore > 2) pageScore = 2;
     if (pageScore < 0) pageScore = 0;
     return pageScore;
@@ -333,9 +333,6 @@ async function evaluateQuiz(courseId, courseCode, year, quizId, description) {
 }
 
 async function evaluatePage(courseId, courseCode, year, pageId, description) {
-  console.log(courseId);
-  console.log(pageId);
-  console.log(description);
   await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/pages/${pageId}/evaluate`, reqdata={
       courseCode: courseCode,
       year: year,
