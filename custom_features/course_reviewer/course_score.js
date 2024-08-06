@@ -36,15 +36,19 @@
       el.html(`⚪`);
       contentCount += 1;
     });
-    $(".external_url span.ig-btech-evaluation-score").each(function() {
+    $(".context_module_item.attachment span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
       el.html(`🚫`);
     });
-    $(".context_external_tool span.ig-btech-evaluation-score").each(function() {
+    $(".context_module_item.external_url span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
       el.html(`🚫`);
     });
-    $(".context_module_sub_header span.ig-btech-evaluation-score").each(function() {
+    $(".context_module_item.context_external_tool span.ig-btech-evaluation-score").each(function() {
+      let el = $(this);
+      el.html(`🚫`);
+    });
+    $(".context_module_item.context_module_sub_header span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
       el.html(``);
       contentCount -= 1;
