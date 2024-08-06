@@ -443,7 +443,7 @@
               console.log("MATCH");
               let reviewUpdatedAt = new Date(review.last_update);
               console.log(reviewUpdatedAt);
-              if (reviewUpdatedAt < assignmentUpdatedAt) {
+              if (reviewUpdatedAt > assignmentUpdatedAt) {
                 skip = true; // skip anything reviewed more recently than the last update
               }
             }
