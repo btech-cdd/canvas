@@ -358,6 +358,15 @@
     }
     return el
   }
+  function generateExternalContentEl() {
+    let el = $(`
+      <div>
+        <h2>External Content</h2>
+        <div>${externalContentCount} Item(s) (${Math.round((contentCount / externalContentCount) * 1000) / 10}%) are 3rd Party Content</div>
+      </div>
+    `);
+    return el
+  }
 
   // do we have a review?
   async function generateDetailedContent(containerEl) {
@@ -365,6 +374,7 @@
     if (courseReviewData) {
       // containerEl.append(generateRelevantObjectivesEl());
       containerEl.append(generateObjectivesEl());
+      containerEl.append(generateExternalContentEl());
       containerEl.append(generateBloomsEl());
       genBloomsChart(bloomsCounts);
       containerEl.append(generateDetailedAssignmentReviewEl());
