@@ -146,7 +146,7 @@ function calcAssignmentScore(assignment) {
     return assignmentScore;
 }
 
-function calcPageSCore(page) {
+function calcPageScore(page) {
     let pageScore = Math.floor(((
         (page.clarity - 1) // 1-3, so -1 to get to 0-2
         + (page.chunked_content ? 1 : 0)
