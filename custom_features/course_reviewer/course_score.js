@@ -12,7 +12,7 @@
     let el = $(this);
     el.html(`🚫`);
   })
-  $(".ontext_module_sub_header span.ig-btech-evaluation-score").each(function() {
+  $(".context_module_sub_header span.ig-btech-evaluation-score").each(function() {
     let el = $(this);
     el.html(`🚫`);
   })
