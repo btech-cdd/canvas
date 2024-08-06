@@ -438,10 +438,12 @@
             let review = assignmentReviewsData[r];
             if (review.assignment_id == assignment.id) {
               let reviewUpdatedAt = new Date(review.last_update);
+              console.log(reviewUpdatedAt);
               if (reviewUpdatedAt < assignmentUpdatedAt) continue; // skip anything reviewed more recently than the last update
             }
           }
           console.log(assignment);
+          console.log(assignmentUpdatedAt);
           await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
         }
         assignmentsEl.html(`${parseInt(a) + 1} / ${assignments.length} Assignments Reviewed`);
