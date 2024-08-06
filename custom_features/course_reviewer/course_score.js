@@ -12,6 +12,10 @@
     let el = $(this);
     el.html(`🚫`);
   })
+  $(".ontext_module_sub_header span.ig-btech-evaluation-score").each(function() {
+    let el = $(this);
+    el.html(`🚫`);
+  })
 
   var courseData, assignmentsData, assignmentReviewsData, pageReviewsData, quizReviewsData, courseReviewData, rubricReviewsData, objectivesData, courseCode, year, bloomsCounts, topicTagsCounts, objectivesCounts, assignmentCounts;
   async function refreshData() {
