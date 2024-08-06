@@ -257,7 +257,6 @@ async function evaluateQuiz(courseId, courseCode, year, quizId, description) {
   let statistics = processQuestionStatistics();
   let questionsList = await genQuestionsList(courseId, quizId);
   let questionsString = genQuizQuestionString(questionsList);
-  let description = ENV.QUIZ.description;
   await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/quizzes/${quizId}/evaluate`, reqdata={
       courseCode: courseCode,
       year: year,
