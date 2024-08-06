@@ -262,7 +262,7 @@ async function getQuizBankQuestionData(courseId, quizId) {
   let preProcessedBankQuestions = [];
   for (let i in questionGroupIds) {
     let group = await $.get(`https://btech.instructure.com/api/v1/courses/${courseId}/quizzes/${quizId}/groups/${questionGroupIds[i]}`);
-    if (group?.assessment_question_bank_id !== undefiend) {
+    if (group?.assessment_question_bank_id !== undefined) {
       console.log(group);
       let bank = await $.get(`https://btech.instructure.com/courses/${courseId}/question_banks/${group.assessment_question_bank_id}/questions?page=1`);
       console.log(bank);
