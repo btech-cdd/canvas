@@ -7,6 +7,10 @@ const emoji = [
     '🥇'
 ]
 
+const emojiTF = [
+
+]
+
 const bloomsColors = {
     'remember': '#F56E74',
     'understand': '#FEB06E',

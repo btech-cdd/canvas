@@ -9,7 +9,7 @@
     infoEl.before(`<span class="ig-btech-evaluation-score" style="font-size: 1rem;">⚪</span>`)
   });
 
-  var courseData, assignmentReviewsData, pageReviewsData, quizReviewsData, courseReviewData, rubricReviewsData, objectivesData, courseCode, year, bloomsCounts, topicTagsCounts, objectivesCounts, assignmentCounts;
+  var courseData, assignmentsData, assignmentReviewsData, pageReviewsData, quizReviewsData, courseReviewData, rubricReviewsData, objectivesData, courseCode, year, bloomsCounts, topicTagsCounts, objectivesCounts, assignmentCounts;
   async function refreshData() {
     // get course level data
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
@@ -36,6 +36,13 @@
     // get assignmetn data
     try {
       assignmentReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments`);
+      assignmentsData = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
+      for (let a in assignmentsData) {
+        let assignment = assignmentsData[a];
+        if (assignment.includes('external_tool')) {
+          $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html('🚫');
+        }
+      }
     } catch (err) {
       console.log(err);
     }
