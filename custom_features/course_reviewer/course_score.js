@@ -70,7 +70,6 @@
     // get assignment data
     try {
       assignmentReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments`);
-      console.log(assignmentReviewsData);
       assignmentsData = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
       for (let a in assignmentsData) {
         let assignment = assignmentsData[a];
@@ -404,10 +403,8 @@
         if (!assignment.published || assignment.points_possible <= 0) {
           continue;
         }
-        console.log(assignment);
+        // Used for checking if assignment needs to be reviewed again
         let assignmentUpdatedAt = new Date(assignment.updated_at);
-
-        //check if last updated is sooner than last reviewed
 
         // NEW QUIZZES
         if (assignment.is_quiz_lti_assignment) {
@@ -451,8 +448,6 @@
         //check if last updated is sooner than last reviewed
         let page = pages[p];
         if (page.published) {
-          console.log(page);
-          break;
           await evaluatePage(ENV.COURSE_ID, courseCode, year, page.page_id, page.body);
         }
       }
