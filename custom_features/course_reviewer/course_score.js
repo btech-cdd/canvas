@@ -365,7 +365,7 @@
     let el = $(`
       <div>
         <h2>External Content</h2>
-        <div>${externalContentCount} Item(s) (${Math.round((contentCount / externalContentCount) * 1000) / 10}%) are 3rd Party Content</div>
+        <div>${externalContentCount} Item(s) (${Math.round((externalContentCount / contentCount) * 1000) / 10}%) are 3rd Party Content</div>
       </div>
     `);
     return el
