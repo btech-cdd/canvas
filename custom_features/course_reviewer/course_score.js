@@ -399,11 +399,12 @@
       let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
       assignmentsEl.html(`0 / ${assignments.length} Assignments Reviewed`);
       for (let a in assignments) {
-        break
         let assignment = assignments[a];
         if (!assignment.published || assignment.points_possible <= 0) {
           continue;
         }
+
+        //check if last updated is sooner than last reviewed
 
         if (assignment.is_quiz_lti_assignment) {
           // let newQuiz = await $.get(`/api/quiz/v1/courses/${ENV.COURSE_ID}/quizzes/${assignment.id}`);
@@ -426,16 +427,12 @@
       pagesEl.html('Loading Pages...');
       let pages = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/pages?include[]=body`);
       for (let p in pages) {
+        //check if last updated is sooner than last reviewed
         let page = pages[p];
         if (page.published) {
-          console.log(page);
-          let pageData = await $.get(`/api/v1/courses/${ENV.COURSE_ID}/pages/${page.page_id}`);
-          console.log(pageData);
           await evaluatePage(ENV.COURSE_ID, courseCode, year, page.page_id, page.body);
-          break;
         }
       }
-      console.log(pages);
       generateDetailedContent(containerEl);
     });
   }
