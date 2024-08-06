@@ -403,6 +403,8 @@
         if (!assignment.published || assignment.points_possible <= 0) {
           continue;
         }
+        console.log(assignment);
+        break
 
         //check if last updated is sooner than last reviewed
 
