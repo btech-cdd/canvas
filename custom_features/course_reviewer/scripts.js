@@ -324,3 +324,11 @@ async function evaluateQuiz(courseId, courseCode, year, quizId, description) {
       statistics: statistics 
   }, type="POST");
 }
+
+async function evaluatePage(courseId, courseCode, year, pageId, description) {
+  await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/pages/${pageId}/evaluate`, reqdata={
+      courseCode: courseCode,
+      year: year,
+      description: description,
+  }, type="POST");
+}

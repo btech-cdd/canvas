@@ -424,12 +424,15 @@
       let pagesEl = $('<div></div>');
       containerEl.append(pagesEl);
       pagesEl.html('Loading Pages...');
-      let pages = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/pages`);
+      let pages = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/pages?include[]=body`);
       for (let p in pages) {
         let page = pages[p];
         if (page.published) {
           console.log(page);
-          // await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
+          let pageData = await $.get(`/api/v1/courses/${ENV.COURSE_ID}/pages/${page.page_id}`);
+          console.log(pageData);
+          await evaluatePage(ENV.COURSE_ID, courseCode, year, page.page_id, page.body);
+          break;
         }
       }
       console.log(pages);

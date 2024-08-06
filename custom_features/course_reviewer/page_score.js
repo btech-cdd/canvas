@@ -68,13 +68,7 @@
     evaluateButton.hide();
     container.html('evaluating...');
 
-    let description = ENV.WIKI_PAGE.body;
-    await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/pages/${ENV.WIKI_PAGE.page_id}/evaluate`, reqdata={
-        courseCode: courseCode,
-        year: year,
-        description: description,
-    }, type="POST");
-
+    await evaluatePage(courseId, courseCode, year, ENV.WIKI_PAGE.page_id, ENV.WIKI_PAGE.body);
     if (await refreshData()) await generateContent(container);
 
     detailedReportButton.show();
