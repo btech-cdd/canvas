@@ -1,4 +1,5 @@
 (async function () {
+  await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/scripts.js");
   const emoji = [
     // '&#128546',
     // '&#128528',

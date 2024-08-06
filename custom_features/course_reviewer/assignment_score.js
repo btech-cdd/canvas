@@ -1,4 +1,5 @@
 (async function () {
+  await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/scripts.js");
   const bloomsColors = {
     'remember': '#F56E74',
     'understand': '#FEB06E',
