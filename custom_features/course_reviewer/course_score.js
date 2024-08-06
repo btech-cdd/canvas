@@ -39,7 +39,6 @@
     $(".context_external_tool span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
       el.html(`🚫`);
-      externalContentCount += 1;
     });
     $(".context_module_sub_header span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
@@ -76,12 +75,16 @@
         let assignment = assignmentsData[a];
         if (assignment.submission_types.includes('external_tool')) {
           $(`.Assignment_${assignment.id} span.ig-btech-evaluation-score`).html('🚫');
-          externalContentCount += 1;
         }
       }
     } catch (err) {
       console.log(err);
     }
+
+    $("span.ig-btech-evaluation-score").each(function() {
+      let el = $(this);
+      if (el.html() == `🚫`) externalContentCount += 1;
+    });
 
     // get page data
     try {
