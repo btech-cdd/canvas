@@ -320,7 +320,7 @@
     for (let o in objectivesData) {
       let objective = objectivesData[o];
       let usage = Math.round((objectivesCounts[objective.objective_id] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10;
-      let topicEl = $(`<div><span style="display: inline-block; width: 4rem;">${usage ?? 0}%</span><span>${objective.objective_text.trim()}</span></div>`);
+      let topicEl = $(`<div><span style="display: inline-block; width: 4rem;">${isNaN(usage) ? 0 : usage}%</span><span>${objective.objective_text.trim()}</span></div>`);
       el.append(topicEl);
     }
 
