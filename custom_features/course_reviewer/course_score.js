@@ -412,15 +412,13 @@
           // await evaluateNewQuiz(ENV.COURSE_ID, courseCode, year, assignment.id, newQuiz.description);
         }
         else if (assignment.is_quiz_assignment) {
-          // console.log("CLASSIC QUIZ");
-          // console.log(assignment);
-          // await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignment.quiz_id, assignment.description);
+          await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignment.quiz_id, assignment.description);
         }
         else if (assignment.submission_types.includes('external_tool')) {
-          console.log(assignment);
+          // ltis, possibly could have a database of ltis that have been reviewed manually and put in that score
         }
         else {
-          // await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
+          await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
         }
         assignmentsEl.html(`${a + 1} / ${assignments.length} Assignments Reviewed`);
       }
