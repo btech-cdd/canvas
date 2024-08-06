@@ -425,6 +425,7 @@
               if (reviewUpdatedAt < assignmentUpdatedAt) continue; // skip anything reviewed more recently than the last update
             }
           }
+          console.log(assignment);
           await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignment.quiz_id, assignment.description);
         }
         // LTIS
@@ -440,6 +441,7 @@
               if (reviewUpdatedAt < assignmentUpdatedAt) continue; // skip anything reviewed more recently than the last update
             }
           }
+          console.log(assignment);
           await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
         }
         assignmentsEl.html(`${parseInt(a) + 1} / ${assignments.length} Assignments Reviewed`);
