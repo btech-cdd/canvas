@@ -5,11 +5,12 @@ const emoji = [
     '🥉',
     '🥈',
     '🥇'
-]
+];
 
 const emojiTF = [
-
-]
+  '❌',
+  '✔️'
+];
 
 const bloomsColors = {
     'remember': '#F56E74',
@@ -230,6 +231,56 @@ function genQuizQuestionString(questionsList) {
       questionsString += questionString;
   }
   return questionsString;
+}
+
+async function getQuizBankQuestionData(courseId, quizId) {
+  let htmlString = '';
+  try {
+    htmlString = await $.ajax({
+      url: `https://btech.instructure.com/courses/${courseId}/quizzes/${quizId}/edit`,
+      method: 'GET',
+      headers: {
+        'Accept': 'text/html'
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+  // Regex to match the question bank IDs
+  const regexGroupId = /groups\/(\d+)/g;
+
+  // Array to store the question bank IDs
+  const questionGroupIds = [];
+  let match;
+
+  // Loop through all matches in the string
+  while ((match = regexGroupId.exec(htmlString)) !== null) {
+    // The captured group contains the question bank ID
+      if (!questionGroupIds.includes(match[1])) questionGroupIds.push(match[1]);
+  }
+
+  let preProcessedBankQuestions = [];
+  for (let i in questionGroupIds) {
+      let group = await $.get(`https://btech.instructure.com/api/v1/courses/${courseId}/quizzes/${quizId}/groups/${questionGroupIds[i]}`);
+      let bank = await $.get(`https://btech.instructure.com/courses/${courseId}/question_banks/${group.assessment_question_bank_id}/questions?page=1`);
+      let questions = shuffleArray(bank.questions).slice(0, group.pick_count);
+      preProcessedBankQuestions.push(...questions);
+  }
+
+  let bankQuestions = [];
+  for (let q in preProcessedBankQuestions) {
+    let question = preProcessedBankQuestions[q].assessment_question;
+    for (let qd in question.question_data) {
+      question[qd] = question.question_data[qd];
+    }
+    bankQuestions.push(question);
+  }
+  return bankQuestions;
+}
+
+async function getQuizQuestionData(courseId, quizId) {
+  let quizQuestions = await canvasGet(`/api/v1/courses/${courseId}/quizzes/${quizId}/questions`);
+  return quizQuestions;
 }
 
 async function genQuestionsList() {
