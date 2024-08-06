@@ -102,8 +102,8 @@ function calcQuizScore(quiz) {
         + (quiz.preparation ? 1 : 0)
         + (quiz.provides_feedback ? 1 : 0)
         + (quiz.objectives > 0 ? 1 : 0)
-        ) / 8) // divide by total points
-    * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
+        ) / 9) // divide by total points
+    * 2); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
     if (quizScore > 2) quizScore = 2;
     if (quizScore < 0) quizScore = 0;
     return quizScore;
@@ -123,7 +123,7 @@ function calcQuizQuestionScore(quiz) {
         + (quiz.questions.options_sentence_completion)
         + (quiz.questions.options_concise)
         + (quiz.questions.incorrect_answer_quality)
-      ) / 9) // divide by total points
+      ) / 11) // divide by total points
       * 2); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
       if (averageQuestionScore > 2) averageQuestionScore = 2;
       if (averageQuestionScore < 0) averageQuestionScore = 0;
@@ -270,9 +270,7 @@ async function getQuizBankQuestionData(courseId, quizId) {
   for (let i in questionGroupIds) {
     let group = await $.get(`https://btech.instructure.com/api/v1/courses/${courseId}/quizzes/${quizId}/groups/${questionGroupIds[i]}`);
     if (group?.assessment_question_bank_id) {
-      console.log(group);
       let bank = await $.get(`https://btech.instructure.com/courses/${courseId}/question_banks/${group.assessment_question_bank_id}/questions?page=1`);
-      console.log(bank);
       let questions = shuffleArray(bank.questions).slice(0, group.pick_count);
       preProcessedBankQuestions.push(...questions);
     }
