@@ -263,6 +263,7 @@ async function getQuizBankQuestionData(courseId, quizId) {
   for (let i in questionGroupIds) {
       let group = await $.get(`https://btech.instructure.com/api/v1/courses/${courseId}/quizzes/${quizId}/groups/${questionGroupIds[i]}`);
       let bank = await $.get(`https://btech.instructure.com/courses/${courseId}/question_banks/${group.assessment_question_bank_id}/questions?page=1`);
+      console.log(bank);
       let questions = shuffleArray(bank.questions).slice(0, group.pick_count);
       preProcessedBankQuestions.push(...questions);
   }

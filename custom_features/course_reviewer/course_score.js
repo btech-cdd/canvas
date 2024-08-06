@@ -137,7 +137,6 @@
     topicTagsCounts =  addTopics(topicTagsCounts, pageReviewsData);
     topicTagsCounts =  addTopics(topicTagsCounts, assignmentReviewsData);
     topicTagsCounts =  addTopics(topicTagsCounts, quizReviewsData);
-    console.log(topicTagsCounts);
 
     for (let o in pageReviewsData) {
       let page = pageReviewsData[o];
