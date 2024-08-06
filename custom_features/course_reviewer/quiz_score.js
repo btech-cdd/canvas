@@ -7,13 +7,13 @@
 (async function () {
   await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/scripts.js");
 
-  var questionsList = [], quizReviewData = {}, quizData = {};
+  var quizReviewData = {}, quizData = {};
 
-  async function getQuizBankQuestionData() {
+  async function getQuizBankQuestionData(courseId, quizId) {
     let htmlString = '';
     try {
       htmlString = await $.ajax({
-        url: `https://btech.instructure.com/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/edit`,
+        url: `https://btech.instructure.com/courses/${courseId}/quizzes/${quizId}/edit`,
         method: 'GET',
         headers: {
           'Accept': 'text/html'
@@ -37,8 +37,8 @@
 
     let preProcessedBankQuestions = [];
     for (let i in questionGroupIds) {
-        let group = await $.get(`https://btech.instructure.com/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/groups/${questionGroupIds[i]}`);
-        let bank = await $.get(`https://btech.instructure.com/courses/${ENV.COURSE_ID}/question_banks/${group.assessment_question_bank_id}/questions?page=1`);
+        let group = await $.get(`https://btech.instructure.com/api/v1/courses/${courseId}/quizzes/${quizId}/groups/${questionGroupIds[i]}`);
+        let bank = await $.get(`https://btech.instructure.com/courses/${courseId}/question_banks/${group.assessment_question_bank_id}/questions?page=1`);
         let questions = shuffleArray(bank.questions).slice(0, group.pick_count);
         preProcessedBankQuestions.push(...questions);
     }
@@ -54,47 +54,11 @@
     return bankQuestions;
   }
 
-  async function getQuizQuestionData() {
-    let quizQuestions = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/questions`);
+  async function getQuizQuestionData(courseId, quizId) {
+    let quizQuestions = await canvasGet(`/api/v1/courses/${courseId}/quizzes/${quizId}/questions`);
     return quizQuestions;
   }
 
-  function processQuestionStatistics() {
-    let hasFeedback = 0;
-    for (let q in questionsList) {
-      let question = questionsList[q];
-      if ((question?.correct_comments?.length ?? 0 > 0) || (question?.incorrect_comments?.length ?? 0 > 0)) hasFeedback += 1;
-    }
-    let percHasFeedback = hasFeedback / questionsList.length;
-    return {
-      feedback: percHasFeedback
-    }
-  }
-
-  function genQuizQuestionString() {
-    let questionStrings = [];
-    for (let q in questionsList) {
-      let question = questionsList[q];
-      let questionSimplified = '';
-      questionSimplified += `<question_type>${question.question_type}</question_type>`;
-      questionSimplified += `<question_prompt>${question.question_text}</question_prompt>`;
-      for (let a = 0; a < question.answers.length; a++) {
-        let answer = question.answers[a];
-        let isCorrect = answer.weight > 0;
-        let questionAnswer = answer?.html ?? answer.text;
-        if (isCorrect) {questionSimplified += `<answer_correct>${questionAnswer}</answer_correct>`;}
-        else {questionSimplified += `<answer_option>${questionAnswer}</answer_option>`;}
-      }
-      questionStrings.push(`<quiz_item><quesiton_id>${question.id}</quesiton_id>${questionSimplified}</quiz_item>`);
-    }
-    questionStrings = shuffleArray(questionStrings).slice(0, 25);
-    let questionsString= '';
-    for (let q in questionStrings) {
-        let questionString = questionStrings[q];
-        questionsString += questionString;
-    }
-    return questionsString;
-  }
 
   //reevaluate button
   let evaluateButton = $(`
@@ -107,17 +71,7 @@
     detailedReportButton.hide();
     evaluateButton.hide();
     container.html('evaluating...');
-    let statistics = processQuestionStatistics();
-    let questionsString = genQuizQuestionString();
-    console.log(questionsString);
-    let description = ENV.QUIZ.description;
-    await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}/evaluate`, reqdata={
-        courseCode: courseCode,
-        year: year,
-        description: description,
-        questions: questionsString,
-        statistics: statistics 
-    }, type="POST");
+    await evaluateQuiz(ENV.COURSE_ID, courseCode, year, quizData.id, quizData.description)
 
     if (await refreshData()) await generateContent(container);
 
@@ -168,12 +122,6 @@
       console.log(err);
       return false;
     }
-
-    questionsList = []
-    let bankQuestionsList = await getQuizBankQuestionData();
-    questionsList.push(...bankQuestionsList);
-    let quizQuestionsList = await getQuizQuestionData();
-    questionsList.push(...quizQuestionsList);
 
     let objectivesQueryString = '';
     for (let o in quizReviewData.objectives) {

@@ -343,19 +343,45 @@
       assignmentsEl.html('Loading Assignments...');
       let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
       assignmentsEl.html(`0 / ${assignments.length} Assignments Reviewed`);
-      console.log(assignments);
       for (let a in assignments) {
         let assignment = assignments[a];
-        if (assignment.published) {
-          console.log(assignment);
-          await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
+        if (!assignment.published) {
+          continue;
         }
-        assignmentsEl.html(`${a} / ${assignments.length} Assignments Reviewed`);
+
+        if (assignment.is_quiz_lti_assignment) {
+          // let newQuiz = await $.get(`/api/quiz/v1/courses/${ENV.COURSE_ID}/quizzes/${assignment.id}`);
+          console.log("NEW QUIZ");
+          console.log(assignment);
+          evaluateNewQuiz(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description);
+        }
+        else if (assignment.is_quiz_assignment) {
+          console.log("CLASSIC QUIZ");
+          console.log(assignment);
+        }
+        else if ((assignment?.description ?? '') == '' && assignment?.rubric == undefined) {
+          continue;
+        }
+        // await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
+        assignmentsEl.html(`${a + 1} / ${assignments.length} Assignments Reviewed`);
       }
-      let quizzesEl = $('<div></div>');
-      containerEl.append(quizzesEl);
-      quizzesEl.html('Loading Quizzes...');
-      let quizzes = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/quizzes`);
+      // let quizzesEl = $('<div></div>');
+      // containerEl.append(quizzesEl);
+      // quizzesEl.html('Loading Quizzes...');
+      // let quizzes = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/quizzes`);
+      // quizzesEl.html(`0 / ${quizzes.length} Quizzes Reviewed`);
+      // for (let q in quizzes) {
+      //   let quiz = quizzes[q];
+      //   if (
+      //     !quiz.published 
+      //     || ((quiz?.description ?? '') == '' && (quiz?.question_types ?? []).length <= 0) 
+      //     || quiz.points_possible <= 0
+      //   ) {
+      //     continue;
+      //   }
+      //   await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
+      //   assignmentsEl.html(`${a + 1} / ${assignments.length} Assignments Reviewed`);
+      // }
 
       let pagesEl = $('<div></div>');
       containerEl.append(pagesEl);
