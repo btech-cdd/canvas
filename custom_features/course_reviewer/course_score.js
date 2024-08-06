@@ -427,7 +427,6 @@
             }
           }
           if (skip) continue;
-          console.log(assignment);
           await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignment.quiz_id, assignment.description);
         }
         // LTIS
@@ -440,18 +439,13 @@
           for (let r in assignmentReviewsData) {
             let review = assignmentReviewsData[r];
             if (review.assignment_id == assignment.id) {
-              console.log("MATCH");
               let reviewUpdatedAt = new Date(review.last_update);
-              console.log(reviewUpdatedAt);
               if (reviewUpdatedAt > assignmentUpdatedAt) {
                 skip = true; // skip anything reviewed more recently than the last update
               }
             }
           }
-          console.log(skip);
           if (skip) continue;
-          console.log(assignment);
-          console.log(assignmentUpdatedAt);
           await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
         }
         assignmentsEl.html(`${parseInt(a) + 1} / ${assignments.length} Assignments Reviewed`);
