@@ -345,22 +345,23 @@
       assignmentsEl.html(`0 / ${assignments.length} Assignments Reviewed`);
       for (let a in assignments) {
         let assignment = assignments[a];
-        if (!assignment.published) {
+        if (!assignment.published || assignment.points_possible <= 0) {
           continue;
         }
 
         if (assignment.is_quiz_lti_assignment) {
           // let newQuiz = await $.get(`/api/quiz/v1/courses/${ENV.COURSE_ID}/quizzes/${assignment.id}`);
-          console.log("NEW QUIZ");
-          console.log(assignment);
-          evaluateNewQuiz(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description);
+          // console.log("NEW QUIZ");
+          // console.log(newQuiz);
+          // await evaluateNewQuiz(ENV.COURSE_ID, courseCode, year, assignment.id, newQuiz.description);
         }
         else if (assignment.is_quiz_assignment) {
-          console.log("CLASSIC QUIZ");
-          console.log(assignment);
+          // console.log("CLASSIC QUIZ");
+          // console.log(assignment);
+          // await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignment.quiz_id, assignment.description);
         }
-        else if ((assignment?.description ?? '') == '' && assignment?.rubric == undefined) {
-          continue;
+        else {
+          console.log(assignment.submission_types)
         }
         // await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
         assignmentsEl.html(`${a + 1} / ${assignments.length} Assignments Reviewed`);
