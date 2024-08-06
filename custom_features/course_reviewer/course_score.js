@@ -8,6 +8,10 @@
     let infoEl = el.find('div.ig-info')
     infoEl.before(`<span class="ig-btech-evaluation-score" style="font-size: 1rem;">⚪</span>`)
   });
+  $(".context_external_tool").each(function() {
+    let el = $(this);
+    el.html(`🚫`);
+  })
 
   var courseData, assignmentsData, assignmentReviewsData, pageReviewsData, quizReviewsData, courseReviewData, rubricReviewsData, objectivesData, courseCode, year, bloomsCounts, topicTagsCounts, objectivesCounts, assignmentCounts;
   async function refreshData() {
