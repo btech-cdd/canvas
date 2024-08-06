@@ -70,6 +70,7 @@
     // get assignment data
     try {
       assignmentReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments`);
+      console.log(assignmentReviewsData);
       assignmentsData = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
       for (let a in assignmentsData) {
         let assignment = assignmentsData[a];
