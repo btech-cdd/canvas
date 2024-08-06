@@ -333,6 +333,9 @@ async function evaluateQuiz(courseId, courseCode, year, quizId, description) {
 }
 
 async function evaluatePage(courseId, courseCode, year, pageId, description) {
+  console.log(courseId);
+  console.log(pageId);
+  console.log(description);
   await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/pages/${pageId}/evaluate`, reqdata={
       courseCode: courseCode,
       year: year,
