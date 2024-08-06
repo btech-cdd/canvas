@@ -403,7 +403,11 @@
         if (!assignment.published || assignment.points_possible <= 0) {
           continue;
         }
-        console.log(assignment);
+        let updatedAt = new Date(assignment.updated_at);
+        for (let r in assignmentReviewsData) {
+          let review = assignmentReviewsData[r];
+          console.log(review);
+        }
         break
 
         //check if last updated is sooner than last reviewed
