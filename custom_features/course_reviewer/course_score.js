@@ -39,7 +39,7 @@
       assignmentsData = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
       for (let a in assignmentsData) {
         let assignment = assignmentsData[a];
-        if (assignment.includes('external_tool')) {
+        if (assignment.external_tools.includes('external_tool')) {
           $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html('🚫');
         }
       }
