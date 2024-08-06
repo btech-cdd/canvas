@@ -14,7 +14,7 @@
   })
   $(".context_module_sub_header span.ig-btech-evaluation-score").each(function() {
     let el = $(this);
-    el.html(`🚫`);
+    el.html(``);
   })
 
   var courseData, assignmentsData, assignmentReviewsData, pageReviewsData, quizReviewsData, courseReviewData, rubricReviewsData, objectivesData, courseCode, year, bloomsCounts, topicTagsCounts, objectivesCounts, assignmentCounts;
