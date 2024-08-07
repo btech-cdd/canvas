@@ -103,7 +103,7 @@ function calcQuizScore(quiz) {
         + (quiz.provides_feedback ? 1 : 0)
         + (quiz.objectives > 0 ? 1 : 0)
         ) / 8) // divide by total points
-    * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
+    * 2); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
     if (quizScore > 2) quizScore = 2;
     if (quizScore < 0) quizScore = 0;
     return quizScore;
@@ -124,7 +124,7 @@ function calcQuizQuestionScore(quiz) {
         + (quiz.questions.options_concise)
         + (quiz.questions.incorrect_answer_quality)
       ) / 9) // divide by total points
-      * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
+      * 2); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
       if (averageQuestionScore > 2) averageQuestionScore = 2;
       if (averageQuestionScore < 0) averageQuestionScore = 0;
     }
@@ -137,10 +137,10 @@ function calcAssignmentScore(assignment) {
         + (assignment.includes_outcomes ? 1 : 0)
         + (assignment.career_relevance ? 1 : 0)
         + (assignment.objectives > 0 ? 1 : 0)
-        + (assignment.provides_feedback > 0 ? 1 : 0)
         + (assignment.modeling > 0 ? 1 : 0)
+        + (assignment.objectives > 0 ? 1 : 0)
         ) / 8) // divide by total points
-    * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
+    * 2); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
     if (assignmentScore > 2) assignmentScore = 2;
     if (assignmentScore < 0) assignmentScore = 0;
     return assignmentScore;
