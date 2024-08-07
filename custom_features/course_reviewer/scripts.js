@@ -132,7 +132,7 @@ function calcQuizQuestionScore(quiz) {
 
 function calcAssignmentScore(assignment) {
     let assignmentScore = Math.floor(((
-        (assignment.clarity - 1) // 1-3, so -1 to get to 0-2
+        (assignment.clarity) // 0 - 2
         + (assignment.chunked_content ? 1 : 0)
         + (assignment.includes_outcomes ? 1 : 0)
         + (assignment.career_relevance ? 1 : 0)
@@ -149,7 +149,7 @@ function calcAssignmentScore(assignment) {
 
 function calcPageScore(page) {
     let pageScore = Math.floor(((
-        (page.clarity - 1) // 1-3, so -1 to get to 0-2
+        (page.clarity) // 0-2
         + (page.chunked_content ? 1 : 0)
         + (page.includes_outcomes ? 1 : 0)
         + (page.career_relevance ? 1 : 0)
