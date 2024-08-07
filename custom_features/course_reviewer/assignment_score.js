@@ -147,7 +147,7 @@
           <span style="background-color: ${bloomsColors?.[assignmentReviewData.blooms.toLowerCase()]}; color: #000000; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${assignmentReviewData.blooms}</span>
         </div>
         <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-          <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ emoji?.[assignmentReviewData.clarity - 1] ?? ''}</span>
+          <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ emoji?.[assignmentReviewData.clarity] ?? ''}</span>
         </div>
         <div title="Content is chunked with headers, call out boxes, lists, etc.">
           <span style="width: 5rem; display: inline-block;">Chunking</span><span>${ assignmentReviewData.chunked_content ? emojiTF[1] : emojiTF[0]}</span>
