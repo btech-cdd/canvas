@@ -242,18 +242,7 @@
 
   function generateAssignmentReviewEl() {
     let data = assignmentReviewData;
-    let averageScore = Math.floor(((
-      (data.clarity - 1) // 1-3, so -1 to get to 0-2
-      + (data.chunked_content ? 1 : 0)
-      + (data.includes_outcomes ? 1 : 0)
-      + (data.career_relevance ? 1 : 0)
-      + (data.provides_feedback ? 1 : 0)
-      + (data.modeling ? 1 : 0)
-      + (data.objectives > 0 ? 1 : 0)
-    ) / 8) // divide by total points
-    * 3) - 1; // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
-    if (averageScore > 2) averageScore = 2;
-    if (averageScore < 0) averageScore = 0;
+    let averageScore = calcAssignmentScore(data);
 
     let rubricScore = undefined;
     if (rubricReviewData) {
