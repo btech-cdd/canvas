@@ -36,11 +36,19 @@
       el.html(`⚪`);
       contentCount += 1;
     });
-    $(".context_external_tool span.ig-btech-evaluation-score").each(function() {
+    $(".context_module_item.attachment span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
       el.html(`🚫`);
     });
-    $(".context_module_sub_header span.ig-btech-evaluation-score").each(function() {
+    $(".context_module_item.external_url span.ig-btech-evaluation-score").each(function() {
+      let el = $(this);
+      el.html(`🚫`);
+    });
+    $(".context_module_item.context_external_tool span.ig-btech-evaluation-score").each(function() {
+      let el = $(this);
+      el.html(`🚫`);
+    });
+    $(".context_module_item.context_module_sub_header span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
       el.html(``);
       contentCount -= 1;
@@ -308,19 +316,6 @@
     return el;
   }
 
-  function generateDetailedRubricReviewEl() {
-    if (rubricReviewData) {
-      let el = $(`
-        <div style="padding: 8px 0;">
-          
-        </div> 
-
-      `);
-      return el;
-    }
-    return $('<div></div>')
-  }
-
   function generateObjectivesEl() {
     let el = $(`
       <div>
@@ -423,13 +418,20 @@
         }
         // CLASSIC QUIZZES
         else if (assignment.is_quiz_assignment) {
+          let skip = false;
           for (let r in quizReviewsData) {
             let review = quizReviewsData[r];
             if (review.quiz_id == assignment.quiz_id) {
               let reviewUpdatedAt = new Date(review.last_update);
-              if (reviewUpdatedAt < assignmentUpdatedAt) continue; // skip anything reviewed more recently than the last update
+              console.log(assignment.title);
+              console.log(reviewUpdatedAt);
+              console.log(assignmentUpdatedAt);
+              console.log(new Date());
+              console.log(reviewUpdatedAt > assignmentUpdatedAt);
+              if (reviewUpdatedAt > assignmentUpdatedAt) skip = true; // skip anything reviewed more recently than the last update
             }
           }
+          if (skip) continue;
           await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignment.quiz_id, assignment.description);
         }
         // LTIS
@@ -438,13 +440,17 @@
         }
         // TRADITIONAL ASSIGNMENTS
         else {
+          let skip = false;
           for (let r in assignmentReviewsData) {
             let review = assignmentReviewsData[r];
             if (review.assignment_id == assignment.id) {
               let reviewUpdatedAt = new Date(review.last_update);
-              if (reviewUpdatedAt < assignmentUpdatedAt) continue; // skip anything reviewed more recently than the last update
+              if (reviewUpdatedAt > assignmentUpdatedAt) {
+                skip = true; // skip anything reviewed more recently than the last update
+              }
             }
           }
+          if (skip) continue;
           await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
         }
         assignmentsEl.html(`${parseInt(a) + 1} / ${assignments.length} Assignments Reviewed`);
@@ -460,6 +466,7 @@
         if (page.published) {
           await evaluatePage(ENV.COURSE_ID, courseCode, year, page.page_id, page.body);
         }
+        pagesEl.html(`0 / ${pages.length} Pages Reviewed`);
       }
       generateDetailedContent(containerEl);
     });
