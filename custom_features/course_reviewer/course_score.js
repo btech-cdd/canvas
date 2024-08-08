@@ -458,14 +458,17 @@
       let pages = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/pages?include[]=body`);
       pagesEl.html(`0 / ${pages.length} Pages Reviewed`);
       for (let p in pages) {
+        let page = pages[p];
         //check if last updated is sooner than last reviewed
         pagesEl.html(`${p} / ${pages.length} Pages Reviewed`);
-        let page = pages[p];
+        console.log(page);
         if (page.published) {
           await evaluatePage(ENV.COURSE_ID, courseCode, year, page.page_id, page.body);
         }
+        break;
       }
       pagesEl.html(`${pages.length} Pages Reviewed`);
+
       generateDetailedContent(containerEl);
     });
   }
