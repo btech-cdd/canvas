@@ -242,6 +242,7 @@ async function generateDetailedContent(
           if (review.assignment_id == assignment.id) {
             let reviewUpdatedAt = new Date(review.last_update);
             if (reviewUpdatedAt > assignmentUpdatedAt) {
+              console.log(review);
               skip = true; // skip anything reviewed more recently than the last update
             }
           }
