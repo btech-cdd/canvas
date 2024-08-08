@@ -314,7 +314,8 @@
 
   function calcCourseScore() {
     let score = 0;
-    let quizScore = calcCourseQuizScore(quizCounts, quizReviewsData.length);
+    let quizScore = calcCourseQuizScore(quizCounts, quizReviewsData.length) * quizReviewsData.length;
+    let assignmentScore = calcCourseQuizScore(assignmentCounts, assignmentReviewsData.length) * assignmentReviewsData.length;
     score += quizScore
     return score; 
   }
