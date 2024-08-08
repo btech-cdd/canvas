@@ -1,6 +1,15 @@
 (async function () {
   await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/scripts.js");
 
+  // jQuery easing functions (if not included already)
+  $.easing.easeInOutQuad = function (x, t, b, c, d) {
+      if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+      return -c / 2 * ((--t) * (t - 2) - 1) + b;
+  };
+
+  $.easing.easeOutQuad = function (x, t, b, c, d) {
+      return -c * (t /= d) * (t - 2) + b;
+  };
 
 
   $(".context_module_item").each(function() {
@@ -254,15 +263,6 @@
         });
     });
 
-    // jQuery easing functions (if not included already)
-    $.easing.easeInOutQuad = function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return c / 2 * t * t + b;
-        return -c / 2 * ((--t) * (t - 2) - 1) + b;
-    };
-
-    $.easing.easeOutQuad = function (x, t, b, c, d) {
-        return -c * (t /= d) * (t - 2) + b;
-    };
   }
 
   detailedReportButton.click(async function () {
