@@ -265,8 +265,26 @@
 
   }
 
+  detailedReportButton.click(async function () {
+    $("body").append(`
+      <div class='btech-modal' style='display: inline-block;'>
+        <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
+        <div class='btech-modal-content' style='max-width: 800px;'>
+          <div class='btech-modal-content-inner'></div>
+        </div>
+      </div>
+    `);
+    let modal = $('body .btech-modal');
+    modal.on("click", function(event) {
+      if ($(event.target).is(modal)) {
+          modal.remove();
+      }
+    });
+    let modalContent = $('body .btech-modal-content-inner');
+    generateDetailedContent(modalContent);
+  });
 
-  function overallQuizScore(counts, numReviews) {
+  function calcCourseQuizScore(counts, numReviews) {
     let total = counts.clarity 
       + counts.chunked_content 
       + counts.includes_outcomes 
@@ -276,11 +294,11 @@
       + counts.preparation;
     total /= numReviews;
     console.log(total);
-    return total;
+
   }
 
   function generateDetailedQuizReviewEl() {
-    let overallQuizScore = overallQuizScore(quizCounts, quizReviewsData.length);
+    let overallQuizScore = calcCourseQuizScore(quizCounts, quizReviewsData.length);
     let averageClarity = Math.floor(quizCounts.clarity / quizReviewsData.length)
     if (averageClarity > 2) averageClarity = 2;
     let usageChunkedContent = Math.round((quizCounts.chunked_content / quizReviewsData.length) * 1000) / 10;
@@ -526,24 +544,6 @@
   }
 
   await refreshData();
-  detailedReportButton.click(async function () {
-    $("body").append(`
-      <div class='btech-modal' style='display: inline-block;'>
-        <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
-        <div class='btech-modal-content' style='max-width: 800px;'>
-          <div class='btech-modal-content-inner'></div>
-        </div>
-      </div>
-    `);
-    let modal = $('body .btech-modal');
-    modal.on("click", function(event) {
-      if ($(event.target).is(modal)) {
-          modal.remove();
-      }
-    });
-    let modalContent = $('body .btech-modal-content-inner');
-    generateDetailedContent(modalContent);
-  });
   $(document).ready(function() {
     addButton(detailedReportButton);
   })
