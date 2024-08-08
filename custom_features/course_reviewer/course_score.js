@@ -462,8 +462,19 @@
         let page = pages[p];
         //check if last updated is sooner than last reviewed
         pagesEl.html(`${p} / ${pages.length} Pages Reviewed`);
-        console.log(page);
         if (page.published) {
+          let pageUpdatedAt = new Date(page.updated_at);
+          let skip = false;
+          for (let r in pageReviewsData) {
+            let review = pageReviewsData[r];
+            if (review.page_id == page.id) {
+              let reviewUpdatedAt = new Date(review.last_update);
+              if (reviewUpdatedAt > pageUpdatedAt) {
+                skip = true; // skip anything reviewed more recently than the last update
+              }
+            }
+          }
+          if (skip) continue;
           await evaluatePage(ENV.COURSE_ID, courseCode, year, page.page_id, page.body);
         }
         break;
