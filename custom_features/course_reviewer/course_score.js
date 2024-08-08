@@ -314,9 +314,10 @@
 
   function calcCourseScore() {
     let score = 0;
-    let quizScore = calcCourseQuizScore(quizCounts, quizReviewsData.length) * quizReviewsData.length;
-    let assignmentScore = calcCourseQuizScore(assignmentCounts, assignmentReviewsData.length) * assignmentReviewsData.length;
-    score += quizScore
+    let quizScore = calcCourseQuizScore(quizCounts, 1);
+    let assignmentScore = calcCourseAssignmentScore(assignmentCounts, 1);
+    let totalItems = quizReviewsData.length + assignmentReviewsData.length
+    score += (quizScore + assignmentScore) / totalItems;
     return score; 
   }
 
