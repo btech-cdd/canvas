@@ -292,8 +292,11 @@
       , objectivesCounts
       , assignmentReviewsData
       , assignmentCounts
+      , rubricReviewsData
+      , rubricCounts
       , quizReviewsData
       , quizCounts
+      , quizQuestionCounts
       , pageReviewsData
       , pageCounts
       , externalContentCounts

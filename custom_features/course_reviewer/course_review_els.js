@@ -1,12 +1,41 @@
-function generateDetailedQuizReviewEl() {
-  let averageClarity = Math.floor(quizCounts.clarity / quizReviewsData.length)
+function generateDetailedPageReviewEl(counts, num) {
+  let averageClarity = Math.floor(counts.clarity / num)
   if (averageClarity > 2) averageClarity = 2;
-  let emojiChunkedContent = calcEmoji(quizCounts.chunked_content / quizReviewsData.length);
-  let emojiIncludesOutcomes = calcEmoji(quizCounts.includes_outcomes / quizReviewsData.length);
-  let emojiCareerRelevance = calcEmoji(quizCounts.career_relevance / quizReviewsData.length);
-  let emojiProvidesFeedback = calcEmoji(quizCounts.provides_feedback / quizReviewsData.length);
-  let emojiInstructions = calcEmoji(quizCounts.instructions / quizReviewsData.length);
-  let emojiPreparation = calcEmoji(quizCounts.preparation / quizReviewsData.length);
+  let emojiChunkedContent = calcEmoji(counts.chunked_content / num);
+  let emojiIncludesOutcomes = calcEmoji(counts.includes_outcomes / num);
+  let emojiCareerRelevance = calcEmoji(counts.career_relevance / num);
+  let emojiSupportingMedia = calcEmoji(counts.supporting_media / num);
+  let el = $(`
+    <div style="padding: 8px 0;">
+      <h2>Quiz Review</h2>
+      <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
+        <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
+      </div>
+      <div title="Content is chunked with headers, call out boxes, lists, etc.">
+        <span style="width: 6rem; display: inline-block;">Chunking</span><span>${ emojiChunkedContent }</span>
+      </div>
+      <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
+        <span style="width: 6rem; display: inline-block;">Outcomes</span><span>${ emojiIncludesOutcomes }</span>
+      </div>
+      <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
+        <span style="width: 6rem; display: inline-block;">Industry</span><span>${ emojiCareerRelevance }</span>
+      </div>
+      <div title="The assignment explicitly states how this students will receive documented feedback.">
+        <span style="width: 6rem; display: inline-block;">Media</span><span>${ emojiSupportingMedia }</span>
+      </div>
+    </div> 
+    `);
+  return el;
+}
+function generateDetailedQuizReviewEl(counts, num) {
+  let averageClarity = Math.floor(counts.clarity / num)
+  if (averageClarity > 2) averageClarity = 2;
+  let emojiChunkedContent = calcEmoji(counts.chunked_content / num);
+  let emojiIncludesOutcomes = calcEmoji(counts.includes_outcomes / num);
+  let emojiCareerRelevance = calcEmoji(counts.career_relevance / num);
+  let emojiProvidesFeedback = calcEmoji(counts.provides_feedback / num);
+  let emojiInstructions = calcEmoji(counts.instructions / num);
+  let emojiPreparation = calcEmoji(counts.preparation / num);
   let el = $(`
     <div style="padding: 8px 0;">
       <h2>Quiz Review</h2>
@@ -36,14 +65,14 @@ function generateDetailedQuizReviewEl() {
   return el;
 }
 
-function generateDetailedAssignmentReviewEl() {
-  let averageClarity = Math.floor(assignmentCounts.clarity / assignmentReviewsData.length)
+function generateDetailedAssignmentReviewEl(counts, num) {
+  let averageClarity = Math.floor(counts.clarity / num)
   if (averageClarity > 2) averageClarity = 2;
-  let emojiChunkedContent = calcEmoji(assignmentCounts.chunked_content / assignmentReviewsData.length);
-  let emojiIncludesOutcomes = calcEmoji(assignmentCounts.includes_outcomes / assignmentReviewsData.length);
-  let emojiCareerRelevance = calcEmoji(assignmentCounts.career_relevance / assignmentReviewsData.length);
-  let emojiProvidesFeedback = calcEmoji(assignmentCounts.provides_feedback / assignmentReviewsData.length);
-  let emojiModeling = calcEmoji(assignmentCounts.modeling / assignmentReviewsData.length);
+  let emojiChunkedContent = calcEmoji(counts.chunked_content / num);
+  let emojiIncludesOutcomes = calcEmoji(counts.includes_outcomes / num);
+  let emojiCareerRelevance = calcEmoji(counts.career_relevance / num);
+  let emojiProvidesFeedback = calcEmoji(counts.provides_feedback / num);
+  let emojiModeling = calcEmoji(counts.modeling / num);
   let el = $(`
     <div style="padding: 8px 0;">
       <h2>Assignment Review</h2>
@@ -137,8 +166,11 @@ async function generateDetailedContent(
     , objectivesCounts
     , assignmentReviewsData
     , assignmentCounts
+    , rubricReviewsData
+    , rubricCounts
     , quizReviewsData
     , quizCounts
+    , quizQuestionCounts
     , pageReviewsData
     , pageCounts
     , externalContentCounts
@@ -152,10 +184,11 @@ async function generateDetailedContent(
     containerEl.append(generateExternalContentEl(externalContentCounts, totalContentCounts));
     containerEl.append(generateBloomsEl());
     genBloomsChart(bloomsCounts);
-    containerEl.append(generateDetailedAssignmentReviewEl());
-    containerEl.append(generateDetailedQuizReviewEl());
-    // containerEl.append(generateDetailedPageReviewEl());
-    // containerEl.append(generateDetailedRubricReviewEl());
+    containerEl.append(generateDetailedAssignmentReviewEl(assignmentCounts, assignmentReviewsData.length));
+    containerEl.append(generateDetailedQuizReviewEl(quizCounts, quizReviewsData.length));
+    // containerEl.append(generateDetailedQuizReviewEl(quizReviewsData, quizQuestionCounts));
+    containerEl.append(generateDetailedPageReviewEl(pageCounts, pageReviewsData.length));
+    // containerEl.append(generateDetailedRubricReviewEl(rubricReviewsData, rubricCounts));
     containerEl.append(generateTopicTagsEl());
     // containerEl.append(generateRelatedAssignmentsEl());
   }
