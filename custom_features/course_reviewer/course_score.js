@@ -265,24 +265,6 @@
 
   }
 
-  detailedReportButton.click(async function () {
-    $("body").append(`
-      <div class='btech-modal' style='display: inline-block;'>
-        <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
-        <div class='btech-modal-content' style='max-width: 800px;'>
-          <div class='btech-modal-content-inner'></div>
-        </div>
-      </div>
-    `);
-    let modal = $('body .btech-modal');
-    modal.on("click", function(event) {
-      if ($(event.target).is(modal)) {
-          modal.remove();
-      }
-    });
-    let modalContent = $('body .btech-modal-content-inner');
-    generateDetailedContent(modalContent);
-  });
 
   function overallQuizScore(counts, numReviews) {
     let total = counts.clarity 
@@ -544,6 +526,24 @@
   }
 
   await refreshData();
+  detailedReportButton.click(async function () {
+    $("body").append(`
+      <div class='btech-modal' style='display: inline-block;'>
+        <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
+        <div class='btech-modal-content' style='max-width: 800px;'>
+          <div class='btech-modal-content-inner'></div>
+        </div>
+      </div>
+    `);
+    let modal = $('body .btech-modal');
+    modal.on("click", function(event) {
+      if ($(event.target).is(modal)) {
+          modal.remove();
+      }
+    });
+    let modalContent = $('body .btech-modal-content-inner');
+    generateDetailedContent(modalContent);
+  });
   $(document).ready(function() {
     addButton(detailedReportButton);
   })
