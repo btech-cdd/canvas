@@ -39,7 +39,7 @@
     , assignmentCounts;
 
   async function refreshData() {
-    totalContentCount = 0;
+    totalContentCounts = 0;
     externalContentCounts = 0;
     $(".context_module_item span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
@@ -298,6 +298,7 @@
       , pageCounts
       , externalContentCounts
       , totalContentCounts
+      , bloomsCounts
     );
   });
 

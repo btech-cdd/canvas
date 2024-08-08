@@ -143,6 +143,7 @@ async function generateDetailedContent(
     , pageCounts
     , externalContentCounts
     , totalContentCounts
+    , bloomsCounts
   ) {
   containerEl.empty();
   if (courseReviewData) {
