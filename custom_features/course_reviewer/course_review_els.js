@@ -184,7 +184,6 @@ async function generateDetailedContent(
     containerEl.append(generateDetailedAssignmentReviewEl(assignmentCounts, assignmentReviewsData.length));
     containerEl.append(generateDetailedQuizReviewEl(quizCounts, quizReviewsData.length));
     // containerEl.append(generateDetailedQuizReviewEl(quizReviewsData, quizQuestionCounts));
-    console.log(pageCounts);
     containerEl.append(generateDetailedPageReviewEl(pageCounts, pageReviewsData.length));
     // containerEl.append(generateDetailedRubricReviewEl(rubricReviewsData, rubricCounts));
     containerEl.append(generateTopicTagsEl(courseReviewData));
