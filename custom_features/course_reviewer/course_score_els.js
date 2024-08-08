@@ -224,7 +224,7 @@ async function generateDetailedContent(
           let review = quizReviewsData[r];
           if (review.quiz_id == assignment.quiz_id) {
             let reviewUpdatedAt = new Date(review.last_update);
-            if (reviewUpdatedAt > assignmentUpdatedAt) skip = true; // skip anything reviewed more recently than the last update
+            if (reviewUpdatedAt > assignmentUpdatedAt && (review.embedding ?? []).length > 0) skip = true; // skip anything reviewed more recently than the last update
           }
         }
         if (skip) continue;
@@ -241,10 +241,7 @@ async function generateDetailedContent(
           let review = assignmentReviewsData[r];
           if (review.assignment_id == assignment.id) {
             let reviewUpdatedAt = new Date(review.last_update);
-            if (reviewUpdatedAt > assignmentUpdatedAt) {
-              console.log(review);
-              skip = true; // skip anything reviewed more recently than the last update
-            }
+            if (reviewUpdatedAt > assignmentUpdatedAt && (review.embedding ?? []).length > 0) skip = true; // skip anything reviewed more recently than the last update
           }
         }
         // if (skip) continue;
@@ -269,9 +266,7 @@ async function generateDetailedContent(
           let review = pageReviewsData[r];
           if (review.page_id == page.id) {
             let reviewUpdatedAt = new Date(review.last_update);
-            if (reviewUpdatedAt > pageUpdatedAt) {
-              skip = true; // skip anything reviewed more recently than the last update
-            }
+            if (reviewUpdatedAt > pageUpdatedAt && (review.embedding ?? []).length > 0) skip = true; // skip anything reviewed more recently than the last update
           }
         }
         if (skip) continue;
