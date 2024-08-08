@@ -294,8 +294,9 @@
       + counts.includes_outcomes 
       + counts.career_relevance 
       + counts.provides_feedback 
-      + counts.modeling;
-    total /= (numReviews * 7);
+      + counts.instructions 
+      + counts.preparation;
+    total /= (numReviews * 8);
     return total;
   }
 
@@ -306,8 +307,7 @@
       + counts.includes_outcomes 
       + counts.career_relevance 
       + counts.provides_feedback 
-      + counts.instructions 
-      + counts.preparation;
+      + counts.modeling;
     total /= (numReviews * 7);
     return total;
   }
@@ -316,7 +316,7 @@
     let score = 0;
     let quizScore = calcCourseQuizScore(quizCounts, 1);
     let assignmentScore = calcCourseAssignmentScore(assignmentCounts, 1);
-    let totalItems = quizReviewsData.length + assignmentReviewsData.length
+    let totalItems = quizReviewsData.length + assignmentReviewsData.length;
     score += (quizScore + assignmentScore) / totalItems;
     return score; 
   }
