@@ -214,7 +214,7 @@
   }
 
   let detailedReportButton = $('<div></div>').attr('id', 'btech-detailed-evaluation-button');
-  function addButton() {
+  function addButton(detailedReportButton) {
     // Create the icon element
 
     // Apply inline styles
@@ -531,5 +531,5 @@
   }
 
   await refreshData();
-  addButton();
+  addButton(detailedReportButton);
 })();
