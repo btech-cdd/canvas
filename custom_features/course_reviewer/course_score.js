@@ -236,6 +236,7 @@
       'height': '3rem',
       'padding': '0.5rem',
       'font-size': '2rem',
+      'text-align': 'center',
       'background-color': '#E8E8E8',
       'border': '1px solid #888',
       'border-radius': '50%',
