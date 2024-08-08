@@ -288,6 +288,7 @@
   });
 
   function calcCoursePageScore(counts, numReviews) {
+    console.log(counts);
     let total = counts.clarity 
       + counts.chunked_content 
       + counts.includes_outcomes 
@@ -328,7 +329,8 @@
     let quizScore = calcCourseQuizScore(quizCounts, 1);
     let assignmentScore = calcCourseAssignmentScore(assignmentCounts, 1);
     let totalItems = quizReviewsData.length + assignmentReviewsData.length + pageReviewsData.length;
-    score += (quizScore + assignmentScore + pageScore) / totalItems;
+    score = (quizScore + assignmentScore + pageScore) / totalItems;
+    console.log(score);
     return score; 
   }
 
