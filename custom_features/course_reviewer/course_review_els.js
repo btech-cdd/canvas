@@ -7,7 +7,7 @@ function generateDetailedPageReviewEl(counts, num) {
   let emojiSupportingMedia = calcEmoji(counts.supporting_media / num);
   let el = $(`
     <div style="padding: 8px 0;">
-      <h2>Quiz Review</h2>
+      <h2>Page Review</h2>
       <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
         <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
       </div>
