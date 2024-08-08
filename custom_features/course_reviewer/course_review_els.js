@@ -186,7 +186,7 @@ async function generateDetailedContent(
     // containerEl.append(generateDetailedQuizReviewEl(quizReviewsData, quizQuestionCounts));
     containerEl.append(generateDetailedPageReviewEl(pageCounts, pageReviewsData.length));
     // containerEl.append(generateDetailedRubricReviewEl(rubricReviewsData, rubricCounts));
-    containerEl.append(generateTopicTagsEl(courseReviewData));
+    // containerEl.append(generateTopicTagsEl(courseReviewData));
     // containerEl.append(generateRelatedAssignmentsEl());
   }
   let reevaluateButtonContainer= $("<div></div>");
