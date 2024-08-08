@@ -36,7 +36,12 @@
     , bloomsCounts
     , topicTagsCounts
     , objectivesCounts
-    , assignmentCounts;
+    , assignmentCounts
+    , quizCounts
+    , quizQuestionCounts
+    , pageCounts
+    , rubricCounts
+    ;
 
   async function refreshData() {
     totalContentCounts = 0;
@@ -121,6 +126,12 @@
     bloomsCounts = {};
     topicTagsCounts = {};
     objectivesCounts = {};
+    rubricCounts = {
+      criteria: 0,
+      granularity: 0,
+      grading_levels: 0,
+      writing_quality: 0,
+    }
     pageCounts = {
       includes_outcomes: 0,
       chunked_content: 0,
@@ -144,6 +155,18 @@
       provides_feedback: 0,
       instructions: 0,
       preparation: 0,
+    };
+    quizQuestionCounts = {
+      promptQuality: 0,
+      prompt_clarity: 0,
+      prompt_positive: 0,
+      prompt_complete_sentence: 0,
+      options_quality: 0,
+      options_clarity: 0,
+      options_length: 0,
+      options_sentence_completion: 0,
+      options_incorrect_answer_quality: 0,
+      options_concise: 0,
     };
 
     objectivesCounts = {};
