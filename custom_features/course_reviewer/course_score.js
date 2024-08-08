@@ -294,6 +294,18 @@
       + counts.includes_outcomes 
       + counts.career_relevance 
       + counts.provides_feedback 
+      + counts.modeling;
+    total /= (numReviews * 7);
+    return total;
+  }
+
+  function calcCourseAssignmentScore(counts, numReviews) {
+    console.log(counts);
+    let total = counts.clarity 
+      + counts.chunked_content 
+      + counts.includes_outcomes 
+      + counts.career_relevance 
+      + counts.provides_feedback 
       + counts.instructions 
       + counts.preparation;
     total /= (numReviews * 7);
@@ -362,6 +374,7 @@
     let emojiCareerRelevance = calcEmoji(assignmentCounts.career_relevance / assignmentReviewsData.length);
     let usageProvidesFeedback = Math.round((assignmentCounts.provides_feedback / assignmentReviewsData.length) * 1000) / 10;
     let emojiProvidesFeedback = calcEmoji(assignmentCounts.provides_feedback / assignmentReviewsData.length);
+    let emojiProvidesModeling = calcEmoji(assignmentCounts.modeling / assignmentReviewsData.length);
     let el = $(`
       <div style="padding: 8px 0;">
        <h2>Assignment Review</h2>
@@ -379,6 +392,9 @@
         </div>
         <div title="The assignment explicitly states how this students will receive documented feedback.">
           <span style="width: 6rem; display: inline-block;">Feedback</span><span>${ emojiProvidesFeedback }</span>
+        </div>
+        <div title="The assignment explicitly states how this students will receive documented feedback.">
+          <span style="width: 6rem; display: inline-block;">Modeling</span><span>${ emojiModeling }</span>
         </div>
       </div> 
       `);
