@@ -7,7 +7,7 @@ function generateDetailedPageReviewEl(counts, num) {
   let emojiSupportingMedia = calcEmoji(counts.supporting_media / num);
   let el = $(`
     <div style="padding: 8px 0;">
-      <h2>Page Review</h2>
+      <h2>Pages</h2>
       <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
         <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
       </div>
@@ -38,7 +38,7 @@ function generateDetailedQuizReviewEl(counts, num) {
   let emojiPreparation = calcEmoji(counts.preparation / num);
   let el = $(`
     <div style="padding: 8px 0;">
-      <h2>Quiz Review</h2>
+      <h2>Quizzes</h2>
       <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
         <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
       </div>
@@ -75,7 +75,7 @@ function generateDetailedAssignmentReviewEl(counts, num) {
   let emojiModeling = calcEmoji(counts.modeling / num);
   let el = $(`
     <div style="padding: 8px 0;">
-      <h2>Assignment Review</h2>
+      <h2>Assignments</h2>
       <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
         <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
       </div>
@@ -187,6 +187,7 @@ async function generateDetailedContent(
     containerEl.append(generateDetailedAssignmentReviewEl(assignmentCounts, assignmentReviewsData.length));
     containerEl.append(generateDetailedQuizReviewEl(quizCounts, quizReviewsData.length));
     // containerEl.append(generateDetailedQuizReviewEl(quizReviewsData, quizQuestionCounts));
+    console.log(pageCounts);
     containerEl.append(generateDetailedPageReviewEl(pageCounts, pageReviewsData.length));
     // containerEl.append(generateDetailedRubricReviewEl(rubricReviewsData, rubricCounts));
     containerEl.append(generateTopicTagsEl(courseReviewData));
