@@ -404,6 +404,7 @@
       let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
       assignmentsEl.html(`0 / ${assignments.length} Assignments Reviewed`);
       for (let a in assignments) {
+        assignmentsEl.html(`${parseInt(a)} / ${assignments.length} Assignments Reviewed`);
         let assignment = assignments[a];
         if (!assignment.published || assignment.points_possible <= 0) {
           continue;
@@ -448,8 +449,8 @@
           if (skip) continue;
           await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
         }
-        assignmentsEl.html(`${parseInt(a) + 1} / ${assignments.length} Assignments Reviewed`);
       }
+      assignmentsEl.html(`${assignments.length} Assignments Reviewed`);
 
       let pagesEl = $('<div></div>');
       containerEl.append(pagesEl);
