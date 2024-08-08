@@ -293,13 +293,18 @@
       + counts.provides_feedback 
       + counts.instructions 
       + counts.preparation;
-    total /= numReviews;
-    console.log(total);
+    total /= (numReviews * 7);
     return total;
   }
 
+  function calcCourseScore() {
+    let score = 0;
+    let quizScore = calcCourseQuizScore(quizCounts, quizReviewsData.length);
+    score += quizScore
+    return score; 
+  }
+
   function generateDetailedQuizReviewEl() {
-    let overallQuizScore = calcCourseQuizScore(quizCounts, quizReviewsData.length);
     let averageClarity = Math.floor(quizCounts.clarity / quizReviewsData.length)
     if (averageClarity > 2) averageClarity = 2;
     let usageChunkedContent = Math.round((quizCounts.chunked_content / quizReviewsData.length) * 1000) / 10;
@@ -546,6 +551,9 @@
 
   await refreshData();
   $(document).ready(function() {
+    let courseScore = calcCourseScore();
+    let emoji = calcEmoji(courseScore);
+    detailedReportButton.html(emoji);
     addButton(detailedReportButton);
   })
 })();
