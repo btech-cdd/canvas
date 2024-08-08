@@ -141,7 +141,6 @@ function calcAssignmentScore(assignment) {
         + (assignment.objectives > 0 ? 1 : 0)
         ) / 8) // divide by total points
     * 2); // multiply by 2 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
-        console.log(assignmentScore)
     if (assignmentScore > 2) assignmentScore = 2;
     if (assignmentScore < 0) assignmentScore = 0;
     return assignmentScore;
