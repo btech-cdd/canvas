@@ -159,6 +159,8 @@ function generateExternalContentEl(externalContentCounts, contentCounts) {
 async function generateDetailedContent(
     containerEl
     , courseReviewData
+    , courseCode
+    , year
     , objectivesData
     , objectivesCounts
     , assignmentReviewsData

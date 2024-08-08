@@ -1,6 +1,6 @@
 (async function () {
   await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/scripts.js");
-  await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/course_review_els.js");
+  await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/course_score_els.js");
 
   // jQuery easing functions (if not included already)
   $.easing.easeInOutQuad = function (x, t, b, c, d) {
@@ -311,6 +311,8 @@
     generateDetailedContent(
       modalContent
       , courseReviewData
+      , courseCode
+      , year
       , objectivesData
       , objectivesCounts
       , assignmentReviewsData
