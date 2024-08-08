@@ -451,7 +451,7 @@
             }
           }
           if (skip) continue;
-          await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
+          // await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
         }
         assignmentsEl.html(`${parseInt(a) + 1} / ${assignments.length} Assignments Reviewed`);
       }
