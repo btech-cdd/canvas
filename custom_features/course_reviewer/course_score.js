@@ -44,7 +44,7 @@
     $(".context_module_item span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
       el.html(`⚪`);
-      totalContentCount += 1;
+      totalContentCounts += 1;
     });
     $(".context_module_item.attachment span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
