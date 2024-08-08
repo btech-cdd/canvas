@@ -70,7 +70,7 @@ function generateDetailedAssignmentReviewEl() {
   return el;
 }
 
-function generateObjectivesEl() {
+function generateObjectivesEl(objectivesData, objectivesCounts, numReviews) {
   let el = $(`
     <div>
       <h2>Objectives</h2>
@@ -78,7 +78,7 @@ function generateObjectivesEl() {
   `);
   for (let o in objectivesData) {
     let objective = objectivesData[o];
-    let usage = Math.round((objectivesCounts[objective.objective_id] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10;
+    let usage = Math.round((objectivesCounts[objective.objective_id] / (numReviews)) * 1000) / 10;
     let topicEl = $(`<div><span style="display: inline-block; width: 4rem;">${isNaN(usage) ? 0 : usage}%</span><span>${objective.objective_text.trim()}</span></div>`);
     el.append(topicEl);
   }
@@ -119,23 +119,36 @@ function generateTopicTagsEl() {
   }
   return el
 }
-function generateExternalContentEl() {
+function generateExternalContentEl(externalContentCounts, contentCounts) {
   let el = $(`
     <div>
       <h2>Contracted Courseware</h2>
-      <div>3rd Party Items: ${externalContentCount} Item(s) (${Math.round((externalContentCount / contentCount) * 1000) / 10}%)</div>
+      <div>3rd Party Items: ${externalContentCounts} Item(s) (${Math.round((externalContentCounts / contentCounts) * 1000) / 10}%)</div>
     </div>
   `);
   return el
 }
 
 // do we have a review?
-async function generateDetailedContent(containerEl) {
+async function generateDetailedContent(
+    containerEl
+    , courseReviewData
+    , objectivesData
+    , objectivesCounts
+    , assignmentReviewsData
+    , assignmentCounts
+    , quizReviewsData
+    , quizCounts
+    , pageReviewsData
+    , pageCounts
+    , externalContentCounts
+    , totalContentCounts
+  ) {
   containerEl.empty();
   if (courseReviewData) {
     // containerEl.append(generateRelevantObjectivesEl());
-    containerEl.append(generateObjectivesEl());
-    containerEl.append(generateExternalContentEl());
+    containerEl.append(generateObjectivesEl(objectivesData, objectivesCounts, assignmentReviewsData.length + quizReviewsData.length));
+    containerEl.append(generateExternalContentEl(externalContentCounts, totalContentCounts));
     containerEl.append(generateBloomsEl());
     genBloomsChart(bloomsCounts);
     containerEl.append(generateDetailedAssignmentReviewEl());

@@ -22,7 +22,7 @@
 
   var 
     courseData
-    , externalContentCount
+    , externalContentCounts
     , contentCount
     , assignmentsData
     , assignmentReviewsData
@@ -39,12 +39,12 @@
     , assignmentCounts;
 
   async function refreshData() {
-    contentCount = 0;
-    externalContentCount = 0;
+    totalContentCount = 0;
+    externalContentCounts = 0;
     $(".context_module_item span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
       el.html(`⚪`);
-      contentCount += 1;
+      totalContentCount += 1;
     });
     $(".context_module_item.attachment span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
@@ -101,7 +101,7 @@
 
     $("span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
-      if (el.html() == `🚫`) externalContentCount += 1;
+      if (el.html() == `🚫`) externalContentCounts += 1;
     });
 
     // get page data
@@ -285,7 +285,20 @@
       }
     });
     let modalContent = $('body .btech-modal-content-inner');
-    generateDetailedContent(modalContent);
+    generateDetailedContent(
+      modalContent
+      , courseReviewData
+      , objectivesData
+      , objectivesCounts
+      , assignmentReviewsData
+      , assignmentCounts
+      , quizReviewsData
+      , quizCounts
+      , pageReviewsData
+      , pageCounts
+      , externalContentCounts
+      , totalContentCounts
+    );
   });
 
   function calcCoursePageScore(counts, numReviews) {
