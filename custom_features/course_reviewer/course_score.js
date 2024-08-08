@@ -213,11 +213,58 @@
     return true;
   }
 
-  let detailedReportButton = $(`
-    <a class="btn" id="btech-detailed-evaluation-button" rel="nofollow" >
-      Detailed Report 
-    </a>
-  `);
+  let detailedReportButton = $('<div></div>').attr('id', 'btech-detailed-evaluation-button');
+  function addButton() {
+    // Create the icon element
+
+    // Apply inline styles
+    detailedReportButton.css({
+      'position': 'fixed',
+      'cursor': 'pointer',
+      'bottom': '25px',
+      'right': '20px',
+      'width': '50px',
+      'height': '50px',
+      'background-color': '#E8E8E8',
+      'border': '1px solid #888',
+      'border-radius': '50%',
+      'z-index': '1000', // Ensure it is above other elements
+    });
+
+    // Append the icon to the body
+    $('body').append(detailedReportButton);
+
+    // Smooth bounce animation using jQuery
+    detailedReportButton.animate({bottom: '50px'}, 200, 'easeInOutQuad', function() {
+        detailedReportButton.animate({bottom: '15px'}, 220, 'easeInOutQuad', function() {
+            detailedReportButton.animate({bottom: '40px'}, 180, 'easeInOutQuad', function() {
+                detailedReportButton.animate({bottom: '20px'}, 200, 'easeInOutQuad', function() {    
+                    detailedReportButton.animate({bottom: '25px'}, 100, 'easeInOutQuad', function() {
+                    });
+                });
+            });
+        });
+    });
+
+    // Ensure the icon stays in the bottom right corner on scroll
+    $(window).scroll(function() {
+        detailedReportButton.css({
+            'bottom': '25px',
+            'right': '20px'
+        });
+    });
+
+    // jQuery easing functions (if not included already)
+    $.easing.easeInOutQuad = function (x, t, b, c, d) {
+        if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+        return -c / 2 * ((--t) * (t - 2) - 1) + b;
+    };
+
+    $.easing.easeOutQuad = function (x, t, b, c, d) {
+        return -c * (t /= d) * (t - 2) + b;
+    };
+  }
+
   detailedReportButton.click(async function () {
     $("body").append(`
       <div class='btech-modal' style='display: inline-block;'>
@@ -484,5 +531,5 @@
   }
 
   await refreshData();
-  $(".header-bar-right__buttons").prepend(detailedReportButton);
+  addButton();
 })();
