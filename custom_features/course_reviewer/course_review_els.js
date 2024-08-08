@@ -99,7 +99,7 @@ function generateDetailedAssignmentReviewEl(counts, num) {
   return el;
 }
 
-function generateObjectivesEl(objectivesData, objectivesCounts, numReviews) {
+function generateObjectivesEl(objectivesData, objectivesCounts, num) {
   let el = $(`
     <div>
       <h2>Objectives</h2>
@@ -107,7 +107,7 @@ function generateObjectivesEl(objectivesData, objectivesCounts, numReviews) {
   `);
   for (let o in objectivesData) {
     let objective = objectivesData[o];
-    let usage = Math.round((objectivesCounts[objective.objective_id] / (numReviews)) * 1000) / 10;
+    let usage = Math.round((objectivesCounts[objective.objective_id] / (num)) * 1000) / 10;
     let topicEl = $(`<div><span style="display: inline-block; width: 4rem;">${isNaN(usage) ? 0 : usage}%</span><span>${objective.objective_text.trim()}</span></div>`);
     el.append(topicEl);
   }
@@ -116,7 +116,7 @@ function generateObjectivesEl(objectivesData, objectivesCounts, numReviews) {
   // if (objectivesCounts['n/a'] > 0) {
 
   // }
-  let noObjectives = Math.round((objectivesCounts['n/a'] / assignmentReviewsData.length) * 1000) / 10;
+  let noObjectives = Math.round((objectivesCounts['n/a'] / num) * 1000) / 10;
   let noObjectivesEl = $(`
     <div><span style="display: inline-block; width: 4rem; margin-top: 1rem;">${noObjectives}%</span><span><i>No Objectives</i></span></div>
   `);
