@@ -325,7 +325,7 @@
 
   function calcCourseScore() {
     let score = 0;
-    let pageScore = calcCoursePageScore(quizCounts, 1);
+    let pageScore = calcCoursePageScore(pageCounts, 1);
     let quizScore = calcCourseQuizScore(quizCounts, 1);
     let assignmentScore = calcCourseAssignmentScore(assignmentCounts, 1);
     let totalItems = quizReviewsData.length + assignmentReviewsData.length + pageReviewsData.length;
