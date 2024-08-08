@@ -1,7 +1,6 @@
 function generateDetailedPageReviewEl(counts, num) {
-  let averageClarity = Math.floor(counts.clarity / num)
+  let averageClarity = counts.clarity / (num * 2);
   console.log(averageClarity);
-  if (averageClarity > 2) averageClarity = 2;
   let emojiChunkedContent = calcEmoji(counts.chunked_content / num);
   let emojiIncludesOutcomes = calcEmoji(counts.includes_outcomes / num);
   let emojiCareerRelevance = calcEmoji(counts.career_relevance / num);
