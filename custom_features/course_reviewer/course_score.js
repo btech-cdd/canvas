@@ -284,8 +284,21 @@
     generateDetailedContent(modalContent);
   });
 
+  function overallQuizScore(counts, numReviews) {
+    let total = counts.clarity 
+      + counts.chunked_content 
+      + counts.includes_outcomes 
+      + counts.career_relevance 
+      + counts.provides_feedback 
+      + counts.instructions 
+      + counts.preparation;
+    total /= numReviews;
+    console.log(total);
+    return total;
+  }
 
   function generateDetailedQuizReviewEl() {
+    let overallQuizScore = overallQuizScore(quizCounts, quizReviewsData.length);
     let averageClarity = Math.floor(quizCounts.clarity / quizReviewsData.length)
     if (averageClarity > 2) averageClarity = 2;
     let usageChunkedContent = Math.round((quizCounts.chunked_content / quizReviewsData.length) * 1000) / 10;
