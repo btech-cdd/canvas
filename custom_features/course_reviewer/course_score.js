@@ -456,14 +456,16 @@
       containerEl.append(pagesEl);
       pagesEl.html('Loading Pages...');
       let pages = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/pages?include[]=body`);
+      pagesEl.html(`0 / ${pages.length} Pages Reviewed`);
       for (let p in pages) {
         //check if last updated is sooner than last reviewed
+        pagesEl.html(`${p} / ${pages.length} Pages Reviewed`);
         let page = pages[p];
         if (page.published) {
           await evaluatePage(ENV.COURSE_ID, courseCode, year, page.page_id, page.body);
         }
-        pagesEl.html(`0 / ${pages.length} Pages Reviewed`);
       }
+      pagesEl.html(`${pages.length} Pages Reviewed`);
       generateDetailedContent(containerEl);
     });
   }
