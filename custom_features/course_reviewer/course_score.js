@@ -404,6 +404,7 @@
       let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
       assignmentsEl.html(`0 / ${assignments.length} Assignments Reviewed`);
       for (let a in assignments) {
+        break
         assignmentsEl.html(`${parseInt(a)} / ${assignments.length} Assignments Reviewed`);
         let assignment = assignments[a];
         if (!assignment.published || assignment.points_possible <= 0) {
