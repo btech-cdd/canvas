@@ -531,5 +531,7 @@
   }
 
   await refreshData();
-  addButton(detailedReportButton);
+  $(document).ready(function() {
+    addButton(detailedReportButton);
+  })
 })();
