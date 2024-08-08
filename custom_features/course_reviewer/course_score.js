@@ -477,7 +477,6 @@
           if (skip) continue;
           await evaluatePage(ENV.COURSE_ID, courseCode, year, page.page_id, page.body);
         }
-        break;
       }
       pagesEl.html(`${pages.length} Pages Reviewed`);
 
