@@ -1,6 +1,5 @@
 function generateDetailedPageReviewEl(counts, num) {
-  let averageClarity = counts.clarity / (num * 2);
-  console.log(averageClarity);
+  let emojiClarity = calcEmoji(counts.clarity / (num * 2));
   let emojiChunkedContent = calcEmoji(counts.chunked_content / num);
   let emojiIncludesOutcomes = calcEmoji(counts.includes_outcomes / num);
   let emojiCareerRelevance = calcEmoji(counts.career_relevance / num);
@@ -9,7 +8,7 @@ function generateDetailedPageReviewEl(counts, num) {
     <div style="padding: 8px 0;">
       <h2>Pages</h2>
       <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-        <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
+        <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emojiClarity }</span>
       </div>
       <div title="Content is chunked with headers, call out boxes, lists, etc.">
         <span style="width: 6rem; display: inline-block;">Chunking</span><span>${ emojiChunkedContent }</span>
@@ -28,8 +27,7 @@ function generateDetailedPageReviewEl(counts, num) {
   return el;
 }
 function generateDetailedQuizReviewEl(counts, num) {
-  let averageClarity = Math.floor(counts.clarity / num)
-  if (averageClarity > 2) averageClarity = 2;
+  let emojiClarity = calcEmoji(counts.clarity / (num * 2));
   let emojiChunkedContent = calcEmoji(counts.chunked_content / num);
   let emojiIncludesOutcomes = calcEmoji(counts.includes_outcomes / num);
   let emojiCareerRelevance = calcEmoji(counts.career_relevance / num);
@@ -40,7 +38,7 @@ function generateDetailedQuizReviewEl(counts, num) {
     <div style="padding: 8px 0;">
       <h2>Quizzes</h2>
       <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-        <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
+        <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emojiClarity }</span>
       </div>
       <div title="Content is chunked with headers, call out boxes, lists, etc.">
         <span style="width: 6rem; display: inline-block;">Chunking</span><span>${ emojiChunkedContent }</span>
@@ -66,8 +64,7 @@ function generateDetailedQuizReviewEl(counts, num) {
 }
 
 function generateDetailedAssignmentReviewEl(counts, num) {
-  let averageClarity = Math.floor(counts.clarity / num)
-  if (averageClarity > 2) averageClarity = 2;
+  let emojiClarity = calcEmoji(counts.clarity / (num * 2));
   let emojiChunkedContent = calcEmoji(counts.chunked_content / num);
   let emojiIncludesOutcomes = calcEmoji(counts.includes_outcomes / num);
   let emojiCareerRelevance = calcEmoji(counts.career_relevance / num);
@@ -77,7 +74,7 @@ function generateDetailedAssignmentReviewEl(counts, num) {
     <div style="padding: 8px 0;">
       <h2>Assignments</h2>
       <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-        <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emoji?.[averageClarity - 1] ?? ''}</span>
+        <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emojiClarity }</span>
       </div>
       <div title="Content is chunked with headers, call out boxes, lists, etc.">
         <span style="width: 6rem; display: inline-block;">Chunking</span><span>${ emojiChunkedContent }</span>
