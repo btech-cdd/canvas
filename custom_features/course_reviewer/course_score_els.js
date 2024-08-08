@@ -246,7 +246,7 @@ async function generateDetailedContent(
             }
           }
         }
-        if (skip) continue;
+        // if (skip) continue;
         await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
       }
     }
