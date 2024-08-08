@@ -287,6 +287,16 @@
     generateDetailedContent(modalContent);
   });
 
+  function calcCoursePageScore(counts, numReviews) {
+    let total = counts.clarity 
+      + counts.chunked_content 
+      + counts.includes_outcomes 
+      + counts.career_relevance 
+      + counts.supporting_media
+    total /= (numReviews * 6);
+    return total;
+  }
+
   function calcCourseQuizScore(counts, numReviews) {
     console.log(counts);
     let total = counts.clarity 
@@ -314,10 +324,11 @@
 
   function calcCourseScore() {
     let score = 0;
+    let pageScore = calcCoursePageScore(quizCounts, 1);
     let quizScore = calcCourseQuizScore(quizCounts, 1);
     let assignmentScore = calcCourseAssignmentScore(assignmentCounts, 1);
-    let totalItems = quizReviewsData.length + assignmentReviewsData.length;
-    score += (quizScore + assignmentScore) / totalItems;
+    let totalItems = quizReviewsData.length + assignmentReviewsData.length + pageReviewsData.length;
+    score += (quizScore + assignmentScore + pageScore) / totalItems;
     return score; 
   }
 
