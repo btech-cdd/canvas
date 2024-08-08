@@ -294,7 +294,7 @@
       + counts.preparation;
     total /= numReviews;
     console.log(total);
-
+    return total;
   }
 
   function generateDetailedQuizReviewEl() {
