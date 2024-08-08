@@ -389,7 +389,7 @@
     let emojiCareerRelevance = calcEmoji(assignmentCounts.career_relevance / assignmentReviewsData.length);
     let usageProvidesFeedback = Math.round((assignmentCounts.provides_feedback / assignmentReviewsData.length) * 1000) / 10;
     let emojiProvidesFeedback = calcEmoji(assignmentCounts.provides_feedback / assignmentReviewsData.length);
-    let emojiProvidesModeling = calcEmoji(assignmentCounts.modeling / assignmentReviewsData.length);
+    let emojiModeling = calcEmoji(assignmentCounts.modeling / assignmentReviewsData.length);
     let el = $(`
       <div style="padding: 8px 0;">
        <h2>Assignment Review</h2>
