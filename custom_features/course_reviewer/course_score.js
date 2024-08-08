@@ -285,6 +285,7 @@
   });
 
   function calcCourseQuizScore(counts, numReviews) {
+    console.log(counts);
     let total = counts.clarity 
       + counts.chunked_content 
       + counts.includes_outcomes 
