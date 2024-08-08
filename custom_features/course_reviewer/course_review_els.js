@@ -135,7 +135,7 @@ function generateBloomsEl() {
   `);
   return el
 }
-function generateTopicTagsEl() {
+function generateTopicTagsEl(courseReviewData) {
   let el = $(`
     <div>
       <h2>Key Topics</h2>
@@ -189,7 +189,7 @@ async function generateDetailedContent(
     // containerEl.append(generateDetailedQuizReviewEl(quizReviewsData, quizQuestionCounts));
     containerEl.append(generateDetailedPageReviewEl(pageCounts, pageReviewsData.length));
     // containerEl.append(generateDetailedRubricReviewEl(rubricReviewsData, rubricCounts));
-    containerEl.append(generateTopicTagsEl());
+    containerEl.append(generateTopicTagsEl(courseReviewData));
     // containerEl.append(generateRelatedAssignmentsEl());
   }
   let reevaluateButtonContainer= $("<div></div>");
