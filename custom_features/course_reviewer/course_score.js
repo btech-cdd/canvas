@@ -72,23 +72,9 @@
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     courseReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
 
-    let regex = /^([A-Z]{4} \d{4}).*(\d{4})(?=[A-Z]{2})/;
-    let match = (courseData?.sis_course_id ?? '').match(regex);
-    if (match) {
-      courseCode = match[1];
-      year = match[2];
-    } else {
-      console.log("NO SIS ID FOUND");
-      match = ((courseData.course_code ?? '') + ' 2024XX').match(regex);
-      if (match) {
-        courseCode = match[1];
-        year = match[2];
-      } else {
-        console.log("NO COURSE CODE FOUND");
-        courseCode = '';
-        year = '';
-      }
-    }
+    let courseCodeYear = getCourseCodeYear(courseData);
+    year = courseCodeYear.year;
+    courseCode = courseCodeYear.courseCode;
 
     // get quiz data
     try {
