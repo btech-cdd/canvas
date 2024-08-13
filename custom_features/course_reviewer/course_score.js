@@ -73,14 +73,21 @@
     courseReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
 
     let regex = /^([A-Z]{4} \d{4}).*(\d{4})(?=[A-Z]{2})/;
-    let match = courseData.sis_course_id.match(regex);
+    let match = (courseData?.sis_course_id ?? '').match(regex);
     if (match) {
       courseCode = match[1];
       year = match[2];
     } else {
       console.log("NO SIS ID FOUND");
-      courseCode = '';
-      year = '';
+      match = ((courseData.course_code ?? '') + ' 2024XX').match(regex);
+      if (match) {
+        courseCode = match[1];
+        year = match[2];
+      } else {
+        console.log("NO COURSE CODE FOUND");
+        courseCode = '';
+        year = '';
+      }
     }
 
     // get quiz data
