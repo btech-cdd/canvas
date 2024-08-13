@@ -23,16 +23,9 @@
   async function refreshData() {
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
-    let regex = /^([A-Z]{4} \d{4}).*(\d{4})(?=[A-Z]{2})/;
-    let match = courseData.sis_course_id.match(regex);
-    if (match) {
-      courseCode = match[1];
-      year = match[2];
-    } else {
-      console.log("NO SIS ID FOUND");
-      courseCode = '';
-      year = '';
-    }
+    let courseCodeYear = getCourseCodeYear(courseData);
+    year = courseCodeYear.year;
+    courseCode = courseCodeYear.courseCode;
     try {
       assignmentReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`);
     } catch (err) {
