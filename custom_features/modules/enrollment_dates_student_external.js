@@ -1,30 +1,34 @@
 /*
-  This script has two elements, the progress bar and the countdown timer
-  Both elements use the difference between the enrollment end_at variable and the enrollment start_at variables
-  If either start_at or end_at doesn't exist, the script checks various other dates to find a next best date
+  OVERVIEW
+    This script has two elements, the progress bar and the countdown timer
+    Both elements use the difference between the enrollment end_at variable and the enrollment start_at variables
+    If either start_at or end_at doesn't exist, the script checks various other dates to find a next best date
 
-  Progress Bar
+  PROGRESS BAR
     The progress bar has two elements. The course progress and the recommended Progress
     Course Progress 
-      REQUIRES: nothing, it can figure out progress based on existing data 
-      This calculates progress based on final_score / current_score
-        This formula is the simplest way of calculating progress because it takes into account assignment group weighting
-        CAVEAT: It assumes weighted points are equivalent to progres. e.g. An assignment worth 10% of the grade = 10% of the student's progress in the course
-    Recommended Progress
-      REQUIRES: start date and end date. Start date should always exist, end date may not
-      This will be placed behind the Course Progress bar so a student will only see the recommded progress if they're behind.
+    REQUIRES: nothing, it can figure out progress based on existing data 
+    This calculates progress based on final_score / current_score
+      This formula is the simplest way of calculating progress because it takes into account assignment group weighting
+      CAVEAT: It assumes weighted points are equivalent to progres. e.g. An assignment worth 10% of the grade = 10% of the student's progress in the course
+  RECOMMENDED PROGRESS 
+    REQUIRES: start date and end date. Start date should always exist, end date may not
+    This will be placed behind the Course Progress bar so a student will only see the recommded progress if they're behind.
 
-  
-  Countdown Timer
+
+  COUNTDOWN TIMER 
     REQUIRES: end date
     This will create a bunch of cards that show the time remaining. Shows days unless they've reached final_countdown_days, then shows hours, minutes, seconds to increase urgency
+
+  HOW TO IMPORT
+    Copy and paste the following 3 lines of code into your custom_canvas.js file
+
+  (async function() {
+    await $.getScript("https://bridgetools.dev/canvas/custom_featuers/modules/enrollment_dates_student_external.js");
+  })()
     
 */
 
-// Add containers for the different elements to the modules header bar
-$(".header-bar").after("<div id='btech-countdown'></div>");
-$(".header-bar").after("<div id='btech-student-progress-bar'></div>");
-$(".header-bar-right").css("width", "100%");
 
 // Create object to manage progress bar and countdown timer
 var Countdown = {
@@ -37,43 +41,11 @@ var Countdown = {
   disabledDepartments: [
   ],
 
-  // BTECH SPECIFIC
-  // This is Bridgerland Technincal College specific. You'll want to replace this with your own logic
-  // See below for a potential starting point for your own logic
-  calcEndDate: async function() {
-    let section, course, term;
-    // Currently, CE courses are set with an extra 30 days after the end date (to allow for extensions)
-    // I'm only adding section, course, and enrollment term end dates if it's CS
-    let enrollmentType = '';
-    if (course.sis_course_id.search(/CE$/)) enrollmentType == 'CE';
-    else if (course.sis_course_id.search(/CS$/)) enrollmentType == 'CS';
-    // if cs and there's no enrollment end_at, get the section end_at
-    if (!this.enrollment.end_at && enrollmentType == 'CS') {
-      let sectionURL = `/api/v1/courses/${ENV.COURSE_ID}/sections/${this.enrollment.course_section_id}`;
-      section = (await $.get(sectionURL))
-      this.enrollment.end_at = section.end_at;
-    }
-
-    // cs and still no end_at, check the course end date
-    if (!this.enrollment.end_at && enrollmentType == 'CS') {
-      let courseURL = `/api/v1/courses/${ENV.COURSE_ID}`;
-      course = (await $.get(courseURL));
-      this.enrollment.conditionalDisplay = true;
-      this.enrollment.end_at = course.end_at;
-    }
-
-
-    // if STILL no end_at, get the term end at
-    if (!this.enrollment.end_at && enrollmentType == 'CS') {
-      let termURL = `/api/v1/accounts/3/terms/${course.enrollment_term_id}`;
-      term = (await $.get(termURL));
-      this.enrollment.end_at = term.end_at;
-    }
-  },
-
-
   /*
-    // This is a starting point for a calcEndDate script for institutions outside of Bridgerland Technical College
+    This is a starting point for a calcEndDate script for institutions outside of Bridgerland Technical College
+    How you handle figuring out end dates may vary by institution
+    This one simply checks enrollment, seciton, course, and finally term to see if an end date exists
+  */
   calcEndDate: async function() {
     let section, course, term;
     if (!this.enrollment?.end_at) {
@@ -102,56 +74,46 @@ var Countdown = {
 
     return;
   },
-  */
 
+  /*
+    Entry point for the whole thing
+  */
   init: async function() {
     if (!ENV.current_user_is_student) return; //only show this for students
 
     // get the enrollment data using the api
     this.enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self&type[]=StudentEnrollment`))[0];
     
-    // BTECH SPECIFIC
-    // There are some Bridgerland Technical College specific reasons we wouldn't want to show the countdown tiemr
-    this.enrollment.conditionalDisplay = false; 
-
     // sometimes there's a created_at date but not a start_at date. But if both exist
     //// start_at takes priority because sometimes enrollments are created before the student has the chance to do anything in the course
     if (this.enrollment.start_at == undefined) this.enrollment.start_at = this.enrollment.created_at;
 
     // Try and find an end_at date if one hasn't been set
-    // This involves a bit of Bridgerland Technical College specific setup, so this will need to be adjusted if adopting
     this.calcEndDate();
 
     // Do we have dates needed for the progress bar and the countdown to work?
     let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
 
-    // BTECH SPECIFIC
-    // check if department has opted out
-    let checkDepartment = !this.disabledDepartments.includes(CURRENT_DEPARTMENT_ID);
-
-    // BTECH SPECIFIC
-    // if this is a conditional display, don't show it if the deadline's more than 30 days away
-    let checkNumDays = (!this.enrollment.conditionalDisplay || (this.calcTimeVals()).days < 30);
-
-    // BTECH SPECIFIC
-    // if you aren't using the BTECH specific stuff, remove the checkDepartment, this can be simplified ot a simple if (!checkValidDates) return;
-    if (!checkValidDates && !checkDepartment) return;
+    if (!checkValidDates) return;
     this.initProgress();
-    if (!checkValidDates || !checkNumDays) return;
     this.initCountdown();
 
     // Animate countdown to the end 
     this.count();    
   },
   
-  // Initialize the countdown  
+  /*
+    Initialize the countdown  
+  */
   calcProgress: function() {
     let grades = this.enrollment.grades;
     let progress = (grades.current_score ? (grades.final_score / grades.current_score) : 0);
     return progress;
   },
 
-  // calculate progress, calculate recommended progress, create the html element for the progress bar
+  /*
+    calculate progress, calculate recommended progress, create the html element for the progress bar
+  */
   initProgress: function() {
     let progress = Math.round(this.calcProgress() * 100);
     let recommendedProgress = Math.round(this.calcRecommendedProgress() * 100);
@@ -165,7 +127,9 @@ var Countdown = {
     $("#btech-student-progress-bar").append(el);
   },
 
-  // create the html element for the countdown timer
+  /*
+    create the html element for the countdown timer
+  */
   initCountdown: function() {
     let groups = [
       'DAYS',
@@ -217,7 +181,9 @@ var Countdown = {
   },
 
 
-  // calculate the recommended progress if there is an end date
+  /*
+    calculate the recommended progress if there is an end date
+  */
   calcRecommendedProgress: function() {
     let recommendedProgress = 0;
     try {
@@ -234,7 +200,9 @@ var Countdown = {
     return recommendedProgress;
   },
 
-  // calculate the ammount of time remaining between now and the enrollment end date
+  /*
+    calculate the ammount of time remaining between now and the enrollment end date
+  */
   calcTimeRemaining: function () {
     let data = this.enrollment; 
     let endAt = Date.parse(data.end_at);
@@ -246,7 +214,9 @@ var Countdown = {
     return days;
   },
 
-  // see if there's any time left on the timer.
+  /*
+    see if there's any time left on the timer.
+  */
   calcTimeVals: function() {
     let time = this.calcTimeRemaining();
     // If the count down is finished, write some text
@@ -277,7 +247,9 @@ var Countdown = {
     }, 1000);    
   },
   
-  // the card flip animation
+  /*
+    the card flip animation
+  */
   animateFigure: function($el, value) {
 		let $top         = $el.find('.top');
     let $bottom      = $el.find('.bottom');
@@ -313,7 +285,9 @@ var Countdown = {
     });    
   },
   
-  // get string values for each time piece and then run the card flip if needed 
+  /*
+    get string values for each time piece and then run the card flip if needed 
+  */
   checkCards: function(value, $els) {
     let $el_1 = $els.find(".part1");
     let $el_2 = $els.find(".part2");
@@ -338,4 +312,10 @@ var Countdown = {
     if(fig_3_value !== value.charAt(2)) this.animateFigure($el_3, value.charAt(2));
   }
 };
+
+// Add containers for the different elements to the modules header bar
+$(".header-bar").after("<div id='btech-countdown'></div>");
+$(".header-bar").after("<div id='btech-student-progress-bar'></div>");
+$(".header-bar-right").css("width", "100%");
+// start it off
 Countdown.init();
