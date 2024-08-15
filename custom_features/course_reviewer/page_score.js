@@ -125,7 +125,7 @@
       <div style="padding: 8px 0;">
         <h2>Page Review</h2>
         <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-          <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ emoji?.[pageReviewData.clarity - 1] ?? ''}</span>
+          <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ emoji?.[pageReviewData.clarity] ?? ''}</span>
         </div>
         <div title="Content is chunked with headers, call out boxes, lists, etc.">
           <span style="width: 5rem; display: inline-block;">Chunking</span><span>${ pageReviewData.chunked_content ? emojiTF[1] : emojiTF[0]}</span>

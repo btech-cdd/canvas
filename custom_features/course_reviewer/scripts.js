@@ -11,7 +11,7 @@ function calcEmoji(perc) {
   if (isNaN(perc)) return '';
   if (perc < 0.5) return emoji[0]; // bronze
   if (perc < 0.8) return emoji[1]; // bronze
-  return emoji[0]; // bronze
+  return emoji[2]; // bronze
 }
 
 const emojiTF = [
@@ -132,15 +132,15 @@ function calcQuizQuestionScore(quiz) {
 
 function calcAssignmentScore(assignment) {
     let assignmentScore = Math.floor(((
-        (assignment.clarity - 1) // 1-3, so -1 to get to 0-2
+        (assignment.clarity) // 0 - 2
         + (assignment.chunked_content ? 1 : 0)
         + (assignment.includes_outcomes ? 1 : 0)
         + (assignment.career_relevance ? 1 : 0)
         + (assignment.objectives > 0 ? 1 : 0)
-        + (assignment.provides_feedback > 0 ? 1 : 0)
         + (assignment.modeling > 0 ? 1 : 0)
+        + (assignment.objectives > 0 ? 1 : 0)
         ) / 8) // divide by total points
-    * 2); // multiply by 3 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
+    * 2); // multiply by 2 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
     if (assignmentScore > 2) assignmentScore = 2;
     if (assignmentScore < 0) assignmentScore = 0;
     return assignmentScore;
@@ -148,7 +148,7 @@ function calcAssignmentScore(assignment) {
 
 function calcPageScore(page) {
     let pageScore = Math.floor(((
-        (page.clarity - 1) // 1-3, so -1 to get to 0-2
+        (page.clarity) // 0-2
         + (page.chunked_content ? 1 : 0)
         + (page.includes_outcomes ? 1 : 0)
         + (page.career_relevance ? 1 : 0)
