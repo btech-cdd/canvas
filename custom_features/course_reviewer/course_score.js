@@ -1,7 +1,7 @@
 (async function () {
   await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/scripts.js");
   await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/course_score_els.js");
-  await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/course_score_els.js");
+  await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/course_scripts.js");
 
   // jQuery easing functions (if not included already)
   $.easing.easeInOutQuad = function (x, t, b, c, d) {
@@ -126,30 +126,7 @@
       grading_levels: 0,
       writing_quality: 0,
     }
-    pageCounts = {
-      includes_outcomes: 0,
-      chunked_content: 0,
-      career_relevance: 0,
-      supporting_media: 0,
-      clarity: 0
-    }
-    assignmentCounts = {
-      includes_outcomes: 0,
-      chunked_content: 0,
-      career_relevance: 0,
-      provides_feedback: 0,
-      modeling: 0,
-      clarity: 0
-    };
-    quizCounts = {
-      clarity: 0,
-      includes_outcomes: 0,
-      chunked_content: 0,
-      career_relevance: 0,
-      provides_feedback: 0,
-      instructions: 0,
-      preparation: 0,
-    };
+    
     quizQuestionCounts = {
       promptQuality: 0,
       prompt_clarity: 0,
@@ -173,14 +150,9 @@
     topicTagsCounts =  addTopics(topicTagsCounts, assignmentReviewsData);
     topicTagsCounts =  addTopics(topicTagsCounts, quizReviewsData);
 
+    pageCounts = calcCoursePageCounts(pageReviewsData);
     for (let o in pageReviewsData) {
       let page = pageReviewsData[o];
-      // other scores
-      if (page.includes_outcomes !== undefined) pageCounts.includes_outcomes += page.includes_outcomes ? 1 : 0;
-      if (page.chunked_content !== undefined) pageCounts.chunked_content += page.chunked_content ? 1 : 0;
-      if (page.career_relevance !== undefined) pageCounts.career_relevance += page.career_relevance? 1 : 0;
-      if (page.supporting_media!== undefined) pageCounts.supporting_media += page.supporting_media? 1 : 0;
-      if (page.clarity !== undefined) pageCounts.clarity += page.clarity;
 
       let pageScore = calcPageScore(page);
       if (emoji?.[pageScore]) {
@@ -188,6 +160,7 @@
       }
     }
 
+    quizCounts = calcCourseQuizCounts(quizReviewsData);
     for (let q in quizReviewsData) {
       let quiz = quizReviewsData[q];
 
@@ -197,16 +170,6 @@
         bloomsCounts[quiz.blooms] += 1;
       }
 
-
-      // // other scores
-      if (quiz.includes_outcomes !== undefined) quizCounts.includes_outcomes += quiz.includes_outcomes ? 1 : 0;
-      if (quiz.chunked_content !== undefined) quizCounts.chunked_content += quiz.chunked_content ? 1 : 0;
-      if (quiz.career_relevance !== undefined) quizCounts.career_relevance += quiz.career_relevance ? 1 : 0;
-      if (quiz.provides_feedback !== undefined) quizCounts.provides_feedback += quiz.provides_feedback ? 1 : 0;
-      if (quiz.instructions !== undefined) quizCounts.instructions += quiz.instructions ? 1 : 0;
-      if (quiz.preparation !== undefined) quizCounts.preparation += quiz.preparation ? 1 : 0;
-      if (quiz.clarity !== undefined) quizCounts.clarity += quiz.clarity;
-
       let quizScore = calcQuizScore(quiz);
 
       if (emoji?.[quizScore]) {
@@ -214,6 +177,7 @@
       }
     }
 
+    assignmentCounts = calcCourseAssignmentCounts(assignmentReviewsData);
     for (let a in assignmentReviewsData) {
       let assignment = assignmentReviewsData[a];
 
@@ -222,14 +186,6 @@
         if (bloomsCounts?.[assignment.blooms] === undefined) bloomsCounts[assignment.blooms] = 0;
         bloomsCounts[assignment.blooms] += 1;
       }
-
-      // other scores
-      if (assignment.includes_outcomes !== undefined) assignmentCounts.includes_outcomes += assignment.includes_outcomes ? 1 : 0;
-      if (assignment.chunked_content !== undefined) assignmentCounts.chunked_content += assignment.chunked_content ? 1 : 0;
-      if (assignment.career_relevance !== undefined) assignmentCounts.career_relevance += assignment.career_relevance? 1 : 0;
-      if (assignment.provides_feedback !== undefined) assignmentCounts.provides_feedback += assignment.provides_feedback? 1 : 0;
-      if (assignment.modeling !== undefined) assignmentCounts.modeling += assignment.modeling ? 1 : 0;
-      if (assignment.clarity !== undefined) assignmentCounts.clarity += assignment.clarity;
 
       let assignmentScore = calcAssignmentScore(assignment);
       if (emoji?.[assignmentScore]) {
@@ -324,48 +280,7 @@
     );
   });
 
-  function calcCoursePageScore(counts, numReviews) {
-    let total = counts.clarity 
-      + counts.chunked_content 
-      + counts.includes_outcomes 
-      + counts.career_relevance 
-      + counts.supporting_media
-    total /= (numReviews * 6);
-    return total;
-  }
-
-  function calcCourseQuizScore(counts, numReviews) {
-    let total = counts.clarity 
-      + counts.chunked_content 
-      + counts.includes_outcomes 
-      + counts.career_relevance 
-      + counts.provides_feedback 
-      + counts.instructions 
-      + counts.preparation;
-    total /= (numReviews * 8);
-    return total;
-  }
-
-  function calcCourseAssignmentScore(counts, numReviews) {
-    let total = counts.clarity 
-      + counts.chunked_content 
-      + counts.includes_outcomes 
-      + counts.career_relevance 
-      + counts.provides_feedback 
-      + counts.modeling;
-    total /= (numReviews * 7);
-    return total;
-  }
-
-  function calcCourseScore() {
-    let score = 0;
-    let pageScore = calcCoursePageScore(pageCounts, 1);
-    let quizScore = calcCourseQuizScore(quizCounts, 1);
-    let assignmentScore = calcCourseAssignmentScore(assignmentCounts, 1);
-    let totalItems = quizReviewsData.length + assignmentReviewsData.length + pageReviewsData.length;
-    score = (quizScore + assignmentScore + pageScore) / totalItems;
-    return score; 
-  }
+  
 
   await refreshData();
   $(document).ready(function() {

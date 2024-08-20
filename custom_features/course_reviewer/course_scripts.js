@@ -5,7 +5,8 @@ function calcCourseAssignmentCounts(assignmentReviews) {
     career_relevance: 0,
     provides_feedback: 0,
     modeling: 0,
-    clarity: 0
+    clarity: 0,
+    num_reviews: assignmentReviews.length,
   };
   for (let a in assignmentReviews) {
     let assignment = assignmentReviews[a];
@@ -21,28 +22,75 @@ function calcCourseAssignmentCounts(assignmentReviews) {
   return counts;
 }
 
-function calcCourseAssignmentScore(counts, numReviews) {
+function calcCourseAssignmentScore(counts) {
   let total = counts.clarity 
     + counts.chunked_content 
     + counts.includes_outcomes 
     + counts.career_relevance 
     + counts.provides_feedback 
     + counts.modeling;
-  total /= (numReviews * 7);
+  total /= (7 * counts.num_reviews);
   return total;
 }
 
-function calcCoursePageScore(counts, numReviews) {
+function calcCoursePageCounts(pageReviews) {
+  let counts = {
+    includes_outcomes: 0,
+    chunked_content: 0,
+    career_relevance: 0,
+    supporting_media: 0,
+    clarity: pageReviews.length
+  }
+  for (let o in pageReviews) {
+    let page = pageReviews[o];
+    // other scores
+    if (page.includes_outcomes !== undefined) counts.includes_outcomes += page.includes_outcomes ? 1 : 0;
+    if (page.chunked_content !== undefined) counts.chunked_content += page.chunked_content ? 1 : 0;
+    if (page.career_relevance !== undefined) counts.career_relevance += page.career_relevance? 1 : 0;
+    if (page.supporting_media!== undefined) counts.supporting_media += page.supporting_media? 1 : 0;
+    if (page.clarity !== undefined) counts.clarity += page.clarity;
+  }
+  return counts;
+}
+
+function calcCoursePageScore(counts) {
   let total = counts.clarity 
     + counts.chunked_content 
     + counts.includes_outcomes 
     + counts.career_relevance 
     + counts.supporting_media
-  total /= (numReviews * 6);
+  total /= (6 * counts.num_reviews);
   return total;
 }
 
-function calcCourseQuizScore(counts, numReviews) {
+function calcCourseQuizCounts(quizReviews) {
+  counts = {
+    clarity: 0,
+    includes_outcomes: 0,
+    chunked_content: 0,
+    career_relevance: 0,
+    provides_feedback: 0,
+    instructions: 0,
+    preparation: 0,
+    num_reviews: quizReviews.length,
+  };
+  for (let q in quizReviews) {
+    let quiz = quizReviews[q];
+
+
+    // // other scores
+    if (quiz.includes_outcomes !== undefined) counts.includes_outcomes += quiz.includes_outcomes ? 1 : 0;
+    if (quiz.chunked_content !== undefined) counts.chunked_content += quiz.chunked_content ? 1 : 0;
+    if (quiz.career_relevance !== undefined) counts.career_relevance += quiz.career_relevance ? 1 : 0;
+    if (quiz.provides_feedback !== undefined) counts.provides_feedback += quiz.provides_feedback ? 1 : 0;
+    if (quiz.instructions !== undefined) counts.instructions += quiz.instructions ? 1 : 0;
+    if (quiz.preparation !== undefined) counts.preparation += quiz.preparation ? 1 : 0;
+    if (quiz.clarity !== undefined) counts.clarity += quiz.clarity;
+  }
+  return counts;
+}
+
+function calcCourseQuizScore(counts) {
   let total = counts.clarity 
     + counts.chunked_content 
     + counts.includes_outcomes 
@@ -50,18 +98,18 @@ function calcCourseQuizScore(counts, numReviews) {
     + counts.provides_feedback 
     + counts.instructions 
     + counts.preparation;
-  total /= (numReviews * 8);
+  total /= (8 * counts.num_reviews);
   return total;
 }
 
 
 
-function calcCourseScore() {
+function calcCourseScore(pageCounts, quizCounts, assignmentCounts) {
   let score = 0;
-  let pageScore = calcCoursePageScore(pageCounts, 1);
-  let quizScore = calcCourseQuizScore(quizCounts, 1);
-  let assignmentScore = calcCourseAssignmentScore(assignmentCounts, 1);
-  let totalItems = quizReviewsData.length + assignmentReviewsData.length + pageReviewsData.length;
+  let pageScore = calcCoursePageScore(pageCounts) * pageCounts.num_reviews;
+  let quizScore = calcCourseQuizScore(quizCounts) * quizCounts.num_reviews;
+  let assignmentScore = calcCourseAssignmentScore(assignmentCounts) * assignmentCounts.num_reviews;
+  let totalItems = quizCounts.num_reviews + assignmentCounts.num_reviews + pageCounts.num_reviews;
   score = (quizScore + assignmentScore + pageScore) / totalItems;
   return score; 
 }
