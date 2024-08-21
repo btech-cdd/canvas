@@ -44,6 +44,7 @@ function calcCoursePageCounts(pageReviews) {
   }
   for (let o in pageReviews) {
     let page = pageReviews[o];
+    console.log(page);
     // other scores
     if (page.includes_outcomes !== undefined) counts.includes_outcomes += page.includes_outcomes ? 1 : 0;
     if (page.chunked_content !== undefined) counts.chunked_content += page.chunked_content ? 1 : 0;
