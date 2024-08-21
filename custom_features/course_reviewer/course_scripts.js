@@ -69,7 +69,6 @@ function calcCourseQuizCounts(quizReviews) {
     includes_outcomes: 0,
     chunked_content: 0,
     career_relevance: 0,
-    provides_feedback: 0,
     instructions: 0,
     preparation: 0,
     num_reviews: quizReviews.length,
@@ -82,7 +81,6 @@ function calcCourseQuizCounts(quizReviews) {
     if (quiz.includes_outcomes !== undefined) counts.includes_outcomes += quiz.includes_outcomes ? 1 : 0;
     if (quiz.chunked_content !== undefined) counts.chunked_content += quiz.chunked_content ? 1 : 0;
     if (quiz.career_relevance !== undefined) counts.career_relevance += quiz.career_relevance ? 1 : 0;
-    if (quiz.provides_feedback !== undefined) counts.provides_feedback += quiz.provides_feedback ? 1 : 0;
     if (quiz.instructions !== undefined) counts.instructions += quiz.instructions ? 1 : 0;
     if (quiz.preparation !== undefined) counts.preparation += quiz.preparation ? 1 : 0;
     if (quiz.clarity !== undefined) counts.clarity += quiz.clarity;
@@ -95,10 +93,9 @@ function calcCourseQuizScore(counts) {
     + counts.chunked_content 
     + counts.includes_outcomes 
     + counts.career_relevance 
-    + counts.provides_feedback 
     + counts.instructions 
     + counts.preparation;
-  total /= (8 * counts.num_reviews);
+  total /= (7 * counts.num_reviews);
   return total;
 }
 
