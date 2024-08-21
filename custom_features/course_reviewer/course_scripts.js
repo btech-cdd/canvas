@@ -39,7 +39,8 @@ function calcCoursePageCounts(pageReviews) {
     chunked_content: 0,
     career_relevance: 0,
     supporting_media: 0,
-    clarity: pageReviews.length
+    clarity: 0,
+    num_reviews: pageReviews.length
   }
   for (let o in pageReviews) {
     let page = pageReviews[o];
