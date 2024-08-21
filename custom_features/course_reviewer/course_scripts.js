@@ -114,6 +114,7 @@ function calcCourseScore(pageCounts, quizCounts, assignmentCounts) {
   let assignmentScore = assignmentCounts.num_reviews > 0 ? (calcCourseAssignmentScore(assignmentCounts) * assignmentCounts.num_reviews) : 0;
   console.log(assignmentScore);
   let totalItems = quizCounts.num_reviews + assignmentCounts.num_reviews + pageCounts.num_reviews;
+  console.log(totalItems);
   score = totalItems > 0 ? (quizScore + assignmentScore + pageScore) / totalItems : 0;
   return score; 
 }
