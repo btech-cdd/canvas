@@ -228,7 +228,11 @@ async function generateDetailedContent(
           }
         }
         if (skip) continue;
-        await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignment.quiz_id, assignment.description);
+        try {
+          await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignment.quiz_id, assignment.description);
+        } catch (err) {
+          console.log(err);
+        }
       }
       // LTIS
       else if (assignment.submission_types.includes('external_tool')) {
@@ -245,7 +249,11 @@ async function generateDetailedContent(
           }
         }
         // if (skip) continue;
-        await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
+        try {
+          await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
+        } catch (err) {
+          console.log(err);
+        }
       }
     }
     assignmentsEl.html(`${assignments.length} Assignments Reviewed`);
@@ -270,7 +278,11 @@ async function generateDetailedContent(
           }
         }
         if (skip) continue;
-        await evaluatePage(ENV.COURSE_ID, courseCode, year, page.page_id, page.body);
+        try {
+          await evaluatePage(ENV.COURSE_ID, courseCode, year, page.page_id, page.body);
+        } catch (err) {
+          console.log(err);
+        }
       }
     }
     pagesEl.html(`${pages.length} Pages Reviewed`);
