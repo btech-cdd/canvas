@@ -106,6 +106,9 @@ function calcCourseQuizScore(counts) {
 
 function calcCourseScore(pageCounts, quizCounts, assignmentCounts) {
   let score = 0;
+  console.log(pageCounts);
+  console.log(quizCounts);
+  console.log(assignmentCounts);
   let pageScore = calcCoursePageScore(pageCounts) * pageCounts.num_reviews;
   let quizScore = calcCourseQuizScore(quizCounts) * quizCounts.num_reviews;
   let assignmentScore = calcCourseAssignmentScore(assignmentCounts) * assignmentCounts.num_reviews;
