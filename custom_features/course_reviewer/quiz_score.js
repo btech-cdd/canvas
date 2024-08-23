@@ -31,6 +31,17 @@
     evaluateButton.show();
   });
 
+  //reevaluate button
+  let ignoreButton = $(`
+    <a class="btn" id="btech-ignore-evaluation-button" rel="nofollow" >
+      Ignore 
+    </a>
+  `);
+
+  ignoreButton.click(async function() {
+    ignoreItem(ENV.COURSE_ID, 'quizzes', quizData.id)
+  })
+
   let detailedReportButton = $(`
     <a class="btn" id="btech-detailed-evaluation-button" rel="nofollow" >
       Detailed Report 

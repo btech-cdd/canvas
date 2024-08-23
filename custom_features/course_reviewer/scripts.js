@@ -353,6 +353,12 @@ async function evaluateQuiz(courseId, courseCode, year, quizId, description) {
   }, type="POST");
 }
 
+async function ignoreItem(courseId, itemType, itemId, ignore=true) {
+  await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/${itemType}/${itemId}`, reqdata={
+    ignore: ignore
+  }, type="POST");
+}
+
 async function evaluatePage(courseId, courseCode, year, pageId, description) {
   await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/pages/${pageId}/evaluate`, reqdata={
       courseCode: courseCode,
