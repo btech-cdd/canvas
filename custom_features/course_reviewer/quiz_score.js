@@ -248,6 +248,7 @@
   let container = $('<div id="btech-course-reviewer-container"></div>');
   await refreshData();
   $('#sidebar_content').append(evaluateButton);
+  $('#sidebar_content').append(ignoreButton);
   $("#sidebar_content").append(container);
   $('#sidebar_content').append(detailedReportButton);
   if (quizReviewData?.quiz_id) await generateContent(container);
