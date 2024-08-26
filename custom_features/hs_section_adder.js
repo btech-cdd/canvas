@@ -147,24 +147,22 @@
             // Prevent the default checkbox toggle behavior
             event.preventDefault();
 
-            this.$nextTick(() => {
-              if (event.shiftKey && this.lastChecked !== null) {
-                let start = Math.min(this.lastChecked, index);
-                let end = Math.max(this.lastChecked, index);
-                
-                // Get the value from the last checked checkbox
-                let shouldCheck = list[this.lastChecked].include;
-                
-                // Apply the value to all checkboxes between lastChecked and the current one
-                for (let i = start; i <= end; i++) {
-                  list[i].include = shouldCheck;
-                }
-              } else {
-                // If not holding shift, toggle the current checkbox
-                list[index].include = !list[index].include;
+            if (event.shiftKey && this.lastChecked !== null) {
+              let start = Math.min(this.lastChecked, index);
+              let end = Math.max(this.lastChecked, index);
+              
+              // Get the value from the last checked checkbox
+              let include = list[this.lastChecked].include;
+              
+              // Apply the value to all checkboxes between lastChecked and the current one
+              for (let i = start; i <= end; i++) {
+                list[i].include = include;
               }
-              this.lastChecked = index;
-            });
+            } else {
+              // If not holding shift, toggle the current checkbox
+              list[index].include = !list[index].include;
+            }
+            this.lastChecked = index;
           }
         }
       });
