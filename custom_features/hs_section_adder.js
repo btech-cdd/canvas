@@ -144,9 +144,9 @@
         },
         methods: {
           handleCheck(event, index, list) {
+            event.preventDefault();
             this.$nextTick(() => {
               if (event.shiftKey && this.lastChecked !== null) {
-                console.log(list[this.lastChecked].include)
                 let start = Math.min(this.lastChecked, index);
                 let end = Math.max(this.lastChecked, index);
                 
