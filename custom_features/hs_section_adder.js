@@ -56,7 +56,7 @@
                     style="margin-right: 0.5rem;"
                     type="checkbox" 
                     v-model="course.include"
-                    @click="handleCheck($event, c, courses)"
+                    @change="handleCheck($event, c, courses)"
                     >
                   <span style="display: inline-block; width: 6rem;">{{ course.course_code }}</span>
                   <span>{{ course.name }}</span>
