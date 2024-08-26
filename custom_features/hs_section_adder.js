@@ -152,7 +152,7 @@
         methods: {
           async process() {
             let courses = this.courses.filter(course => course.include)
-              .sort((a, b) => a.name.localeCompare(b.name));
+              .sort((a, b) => a.course_code.localeCompare(b.course_code));
             let sections = this.sections.filter(section => section.include)
               .sort((a, b) => a.name.localeCompare(b.name));
             for (let c in courses) {
