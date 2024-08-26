@@ -68,11 +68,11 @@
             </div>
             <div>
               <div 
-                v-for="(section, s) in sections" :key="c"
+                v-for="(section, s) in sections" :key="s"
                 >
                 <div
                   :style="{
-                    'background-color': c % 2 == 0 ? 'white' : '#EEE'
+                    'background-color': s % 2 == 0 ? 'white' : '#EEE'
                   }"
                 >
                   <input style="margin-right: 0.5rem;" type="checkbox" v-model="section.include">
