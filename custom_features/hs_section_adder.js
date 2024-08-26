@@ -27,6 +27,12 @@
           </div>
       </div>
     `);
+    modal.on("click", function(event) {
+      if ($(event.target).is(modal)) {
+          modal.remove();
+      }
+    });
+    // let modalContent = $('body .btech-modal-content-inner');
     $("body").append(modal);
     return modal;
   }
