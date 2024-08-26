@@ -181,7 +181,7 @@
                 });
                 console.log(newSec);
               }
-              this.processProgress = (c + 1) / courses.length;
+              this.processProgress = (parseInt(c) + 1) / courses.length;
             }
           },
           handleCheck(event, index, list) {
