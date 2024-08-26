@@ -153,7 +153,9 @@
             let sections = this.sections.filter(section => section.include);
             for (let c in courses) {
               let course = courses[c];
+              console.log(course);
               let existingSections = await canvasGet(`/api/v1/courses/${course.id}/sections`);
+              console.log(existingSections);
               for (let s in sections) {
                 let section = sections[s];
                 let exists = false;
@@ -162,6 +164,7 @@
                   if (section.name == existingSection.name) exists = true;
                 }
                 if (exists) continue;
+                console.log(section);
                 let newSec = await $.post(`/api/v1/courses/${course.id}/sections`, {
                   course_section: {
                     name: section.name
