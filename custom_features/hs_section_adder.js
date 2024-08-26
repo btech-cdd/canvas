@@ -64,6 +64,7 @@
           this.courses = courses.filter(course => {
             return course.sis_course_id != undefined
           });
+          this.courses.push({});
         },
         data: function () {
           return {
