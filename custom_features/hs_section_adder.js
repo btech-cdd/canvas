@@ -144,28 +144,27 @@
         },
         methods: {
           handleCheck(event, index, list) {
-            // Prevent the default checkbox toggle behavior
-            event.preventDefault();
+    // Check if the Shift key is held
+    if (event.shiftKey && this.lastChecked !== null) {
+      // Wait for the DOM to update
+      this.$nextTick(() => {
+        let start = Math.min(this.lastChecked, index);
+        let end = Math.max(this.lastChecked, index);
 
-            if (event.shiftKey && this.lastChecked !== null) {
-              let start = Math.min(this.lastChecked, index);
-              let end = Math.max(this.lastChecked, index);
-              
-              // Get the value from the last checked checkbox
-              let include = list[this.lastChecked].include;
-              
-              // Apply the value to all checkboxes between lastChecked and the current one
-              for (let i = start; i <= end; i++) {
-                list[i].include = include;
-              }
-            } else {
-              // If not holding shift, toggle the current checkbox
-              console.log(index);
-              console.log(list[index]);
-              list[index].include = !list[index].include;
-            }
-            this.lastChecked = index;
-          }
+        // Get the value from the last checked checkbox
+        let include = list[this.lastChecked].include;
+
+        // Apply the value to all checkboxes between lastChecked and the current one
+        for (let i = start; i <= end; i++) {
+          list[i].include = include;
+        }
+      });
+    } else {
+      // If not holding shift, toggle the current checkbox's include state
+      list[index].include = !list[index].include;
+    }
+    this.lastChecked = index;
+  }
         }
       });
       modal.on("click", function(event) {
