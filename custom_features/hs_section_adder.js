@@ -18,16 +18,6 @@
     createCourseButton.after(sectionAdderSpan);
 
     const BTECH_HS_LIST = [
-      "Bear River HS AM",
-      "Box Elder HS AM",
-      "Green Canyon HS AM",
-      "Logan HS AM",
-      "Mt Crest HS AM",
-      "Rich HS AM",
-      "Ridgeline HS AM",
-      "Sky View HS AM",
-      "Teacher Training",
-      "InTech HS AM"
     ]
     function createModal() {
       let modal = $(`
@@ -68,11 +58,32 @@
                 </div>
               </div>
             </div>
-            <button @click="step = 'select sections'">Next</button>
+            <div><button @click="step = 'select sections'">Next</button></div>
           </div>
           <div
             v-if="step == 'select sections'"
           >
+            <div>
+              Select High Schools to add as sections.
+            </div>
+            <div>
+              <div 
+                v-for="(section, s) in sections" :key="c"
+                >
+                <div
+                  :style="{
+                    'background-color': c % 2 == 0 ? 'white' : '#EEE'
+                  }"
+                >
+                  <input style="margin-right: 0.5rem;" type="checkbox" v-model="section.include">
+                  <span>{{ section.name }}</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button @click="step = 'select courses'">Back</button>
+              <button @click="step = 'select sections'">Next</button>
+            </div>
           </div>
           <div
             v-if="step == 'confirm'"
@@ -93,11 +104,31 @@
           this.courses = courses.filter(course => {
             return course.sis_course_id != undefined;
           });
+          hs_list.forEach(hs => {
+            this.sections.push({
+              name: hs,
+              include: false
+            })
+          })
+
         },
         data: function () {
           return {
             step: 'select courses',
-            courses: []
+            courses: [],
+            sections: [],
+            hs_list: [
+              "Bear River HS AM",
+              "Box Elder HS AM",
+              "Green Canyon HS AM",
+              "Logan HS AM",
+              "Mt Crest HS AM",
+              "Rich HS AM",
+              "Ridgeline HS AM",
+              "Sky View HS AM",
+              "Teacher Training",
+              "InTech HS AM"
+            ]
           };
         }
       });
