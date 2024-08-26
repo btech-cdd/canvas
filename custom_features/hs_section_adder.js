@@ -159,7 +159,7 @@
                 let exists = false;
                 for (let es in existingSections) {
                   let existingSection = existingSections[es];
-                  if (section == existingSection.name) exists = true;
+                  if (section.name == existingSection.name) exists = true;
                 }
                 if (exists) continue;
                 console.log(section);
