@@ -144,8 +144,8 @@
         },
         methods: {
           handleCheck(event, index, list) {
-            if (event.shiftKey && this.lastChecked !== null) {
-              this.$nextTick(() => {
+            this.$nextTick(() => {
+              if (event.shiftKey && this.lastChecked !== null) {
                 console.log(list[this.lastChecked].include)
                 let start = Math.min(this.lastChecked, index);
                 let end = Math.max(this.lastChecked, index);
@@ -153,9 +153,9 @@
                 for (let i = start; i <= end; i++) {
                   list[i].include = list[this.lastChecked].include;
                 }
-              });
-            }
-            this.lastChecked = index;
+              }
+              this.lastChecked = index;
+            });
           }
         }
       });
