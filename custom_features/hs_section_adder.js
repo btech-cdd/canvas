@@ -49,21 +49,37 @@
       let content = $(modal.find('.btech-modal-content-inner')[0]);
       content.append(`
         <div id="btech-hs-sections-adder-vue">
-          <div>Select Course to which you want to add Sections</div>
-          <div>
-            <div 
-              v-for="(course, c) in courses" :key="c"
-              >
-              <div
-                :style="{
-                  'background-color': c % 2 == 0 ? 'white' : '#EEE'
-                }"
-              >
-                <input style="margin-right: 0.5rem;" type="checkbox" v-model="course.include">
-                <span style="display: inline-block; width: 6rem;">{{ course.course_code }}</span>
-                <span>{{ course.name }}</span>
+          <div
+            v-if="step == 'select courses'
+          >
+            <div>Select Course to which you want to add Sections</div>
+            <div>
+              <div 
+                v-for="(course, c) in courses" :key="c"
+                >
+                <div
+                  :style="{
+                    'background-color': c % 2 == 0 ? 'white' : '#EEE'
+                  }"
+                >
+                  <input style="margin-right: 0.5rem;" type="checkbox" v-model="course.include">
+                  <span style="display: inline-block; width: 6rem;">{{ course.course_code }}</span>
+                  <span>{{ course.name }}</span>
+                </div>
               </div>
             </div>
+          </div>
+          <div
+            v-if="step == 'select sections'
+          >
+          </div>
+          <div
+            v-if="step == 'confirm'
+          >
+          </div>
+          <div
+            v-if="step == 'process'
+          >
           </div>
         </div>
       `);
@@ -79,6 +95,7 @@
         },
         data: function () {
           return {
+            step: 'select courses',
             courses: []
           };
         }
