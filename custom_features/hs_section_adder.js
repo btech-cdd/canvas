@@ -144,18 +144,16 @@
         },
         methods: {
           handleCheck(event, index, list) {
-            event.preventDefault();
-            this.$nextTick(() => {
-              if (event.shiftKey && this.lastChecked !== null) {
-                let start = Math.min(this.lastChecked, index);
-                let end = Math.max(this.lastChecked, index);
-                
-                for (let i = start; i <= end; i++) {
-                  list[i].include = list[this.lastChecked].include;
-                }
+            if (event.shiftKey && this.lastChecked !== null) {
+              event.preventDefault();
+              let start = Math.min(this.lastChecked, index);
+              let end = Math.max(this.lastChecked, index);
+              
+              for (let i = start; i <= end; i++) {
+                list[i].include = list[this.lastChecked].include;
               }
-              this.lastChecked = index;
-            });
+            }
+            this.lastChecked = index;
           }
         }
       });
