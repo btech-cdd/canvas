@@ -58,7 +58,7 @@
                 :style="{
                   'background-color': c % 2 == 0 ? 'white' : '#EEE'
                 }"
-              ><input type="checkbox" :checked="course.include">{{ c }} - {{ course.name }}</div>
+              ><input type="checkbox" v-model="course.include">{{ c }} - {{ course.name }}</div>
             </div>
           </div>
         </div>
