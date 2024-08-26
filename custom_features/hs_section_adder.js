@@ -50,10 +50,12 @@
       content.append(`
         <div class="#btech-hs-sections-adder-vue">
           <div>Select Course to which you want to add Sections</div>
-          <div
-            v-for='(course, c) in courses"
-          >
-            {{c}} - {{course.name}}
+          <div>
+            <div
+              v-for="(course, c) in courses"
+            >
+              {{c}} - {{course.name}}
+            </div>
           </div>
         </div>
       `);
