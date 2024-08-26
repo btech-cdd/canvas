@@ -107,8 +107,8 @@
           <div
             v-if="step == 'process'"
           >
-            Progress: {{ Math.round(processProgress * 100)}}%
-            Adding Section {{processSection}} to Course {{processCourse}}
+            <div>Progress: {{ Math.round(processProgress * 100)}}%</div>
+            <div>Adding Section {{processSection}} to Course {{processCourse}}</div>
           </div>
         </div>
       `);
