@@ -118,7 +118,7 @@
           courses.forEach(course => course.include = false);
           this.courses = courses.filter(course => {
             return course.sis_course_id != undefined;
-          }).sort();
+          }).sort((a, b) => a.name > b.name);
           this.hs_list.forEach(hs => {
             this.sections.push({
               name: hs,
