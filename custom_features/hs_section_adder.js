@@ -145,6 +145,7 @@
         methods: {
           handleCheck(event, index, list) {
             if (event.shiftKey && this.lastChecked !== null) {
+              console.log(list[this.lastChecked].include)
               let start = Math.min(this.lastChecked, index);
               let end = Math.max(this.lastChecked, index);
               
