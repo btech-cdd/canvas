@@ -160,6 +160,8 @@
               }
             } else {
               // If not holding shift, toggle the current checkbox
+              console.log(index);
+              console.log(list[index]);
               list[index].include = !list[index].include;
             }
             this.lastChecked = index;
