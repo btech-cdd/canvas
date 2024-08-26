@@ -52,7 +52,12 @@
                     'background-color': c % 2 == 0 ? 'white' : '#EEE'
                   }"
                 >
-                  <input style="margin-right: 0.5rem;" type="checkbox" v-model="course.include">
+                  <input 
+                    style="margin-right: 0.5rem;"
+                    type="checkbox" 
+                    v-model="course.include"
+                    @click="handleCheck($event, c, courses)"
+                    >
                   <span style="display: inline-block; width: 6rem;">{{ course.course_code }}</span>
                   <span>{{ course.name }}</span>
                 </div>
@@ -119,6 +124,7 @@
         },
         data: function () {
           return {
+            lastChecked: null,
             step: 'courses',
             courses: [],
             sections: [],
@@ -135,6 +141,19 @@
               "InTech HS AM"
             ]
           };
+        },
+        methods: {
+          handleCheck(event, index, list) {
+            if (event.shiftKey && this.lastChecked !== null) {
+              let start = Math.min(this.lastChecked, index);
+              let end = Math.max(this.lastChecked, index);
+              
+              for (let i = start; i <= end; i++) {
+                list[i].include = true;
+              }
+            }
+            this.lastChecked = index;
+          }
         }
       });
       modal.on("click", function(event) {
