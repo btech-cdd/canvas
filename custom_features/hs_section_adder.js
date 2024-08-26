@@ -1,7 +1,7 @@
 (async function() {
   let createCourseButton = $($("#content").find("[aria-label='Create new course']")[0]).parent();
   let sectionAdderSpan = $('<span></span>');
-  let sectionAdderButton = $(createCourseButton.html().replace('Course', 'Section').replace('Create new course', 'Add HS sections'));
+  let sectionAdderButton = $(createCourseButton.html().replace('Course', 'HS Sections').replace('Create new course', 'Add HS sections'));
   sectionAdderSpan.append(sectionAdderButton);
   createCourseButton.after(sectionAdderSpan);
 
