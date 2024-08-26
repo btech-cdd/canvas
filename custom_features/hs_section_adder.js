@@ -48,7 +48,7 @@
       let modal = createModal();
       let content = $(modal.find('.btech-modal-content-inner')[0]);
       content.append(`
-        <div class="#btech-hs-sections-adder-vue">
+        <div class="btech-hs-sections-adder-vue">
           <div>Select Course to which you want to add Sections</div>
           <div>
             <div
