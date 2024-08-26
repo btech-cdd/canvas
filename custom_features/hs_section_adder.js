@@ -58,8 +58,9 @@
     console.log(courses);
     for (let c in courses) {
       let course = courses[c];
-      console.log(course);
-      content.append(`<div>${course.name}</div>`);
+      if (course.sis_course_id) {
+        content.append(`<div><input type='checkbox'>${course.name}</div>`);
+      }
     }
   })
 
