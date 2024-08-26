@@ -80,7 +80,12 @@
                     'background-color': s % 2 == 0 ? 'white' : '#EEE'
                   }"
                 >
-                  <input style="margin-right: 0.5rem;" type="checkbox" v-model="section.include">
+                  <input 
+                    style="margin-right: 0.5rem;"
+                    type="checkbox" 
+                    v-model="section.include"
+                    @click="handleCheck($event, s, sections)"
+                    >
                   <span>{{ section.name }}</span>
                 </div>
               </div>
@@ -96,7 +101,7 @@
             <div>Do you wish to add {{courses.filter(course => course.include).length}} section(s) to {{sections.filter(section => section.include).length}} course(s)?</div>
             <div>
               <button @click="step = 'sections'">Back</button>
-              <button @click="step = 'process'">Confirm</button>
+              <button @click="step = 'process'; process();">Confirm</button>
             </div>
           </div>
           <div
@@ -143,6 +148,17 @@
           };
         },
         methods: {
+          process() {
+            let courses = this.courses.filter(course => course.include);
+            let sections = this.sections.filter(section => section.include);
+            for (let c in courses) {
+              let course = courses[c];
+              console.log(course);
+              for (let s in sections) {
+                let section = sections[s];
+              }
+            }
+          },
           handleCheck(event, index, list) {
             // Check if the Shift key is held
             this.$nextTick(() => {
