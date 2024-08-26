@@ -59,7 +59,7 @@
       for (let c in courses) {
         let course = courses[c];
         if (course.sis_course_id) {
-          content.append(`<div><input type='checkbox'>${course.name}</div>`);
+          content.append(`<div class="btech-hs-section-adder-course course-${course.id}"><input type='checkbox'><span width="5rem">${course.course_code}</span><span>${course.name}</span></div>`);
         }
       }
     })
