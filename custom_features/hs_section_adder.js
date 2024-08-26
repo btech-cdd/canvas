@@ -50,7 +50,7 @@
       content.append(`
         <div id="btech-hs-sections-adder-vue">
           <div
-            v-if="step == 'select courses'
+            v-if="step == 'select courses'"
           >
             <div>Select Course to which you want to add Sections</div>
             <div>
@@ -70,15 +70,15 @@
             </div>
           </div>
           <div
-            v-if="step == 'select sections'
+            v-if="step == 'select sections'"
           >
           </div>
           <div
-            v-if="step == 'confirm'
+            v-if="step == 'confirm'"
           >
           </div>
           <div
-            v-if="step == 'process'
+            v-if="step == 'process'"
           >
           </div>
         </div>
