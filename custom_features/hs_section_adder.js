@@ -56,7 +56,7 @@
                     style="margin-right: 0.5rem;"
                     type="checkbox" 
                     v-model="course.include"
-                    @change="handleCheck($event, c, courses)"
+                    @click="handleCheck($event, c, courses)"
                     >
                   <span style="display: inline-block; width: 6rem;">{{ course.course_code }}</span>
                   <span>{{ course.name }}</span>
@@ -145,13 +145,15 @@
         methods: {
           handleCheck(event, index, list) {
             if (event.shiftKey && this.lastChecked !== null) {
-              console.log(list[this.lastChecked].include)
-              let start = Math.min(this.lastChecked, index);
-              let end = Math.max(this.lastChecked, index);
-              
-              for (let i = start; i <= end; i++) {
-                list[i].include = list[this.lastChecked].include;
-              }
+              this.$nextTick(() => {
+                console.log(list[this.lastChecked].include)
+                let start = Math.min(this.lastChecked, index);
+                let end = Math.max(this.lastChecked, index);
+                
+                for (let i = start; i <= end; i++) {
+                  list[i].include = list[this.lastChecked].include;
+                }
+              });
             }
             this.lastChecked = index;
           }
