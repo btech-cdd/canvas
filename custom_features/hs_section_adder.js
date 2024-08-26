@@ -16,53 +16,53 @@
     let sectionAdderButton = $(createCourseButton.html().replace('Course', 'HS Sections').replace('Create new course', 'Add HS sections'));
     sectionAdderSpan.append(sectionAdderButton);
     createCourseButton.after(sectionAdderSpan);
-  }
 
-  const BTECH_HS_LIST = [
-    "Bear River HS AM",
-    "Box Elder HS AM",
-    "Green Canyon HS AM",
-    "Logan HS AM",
-    "Mt Crest HS AM",
-    "Rich HS AM",
-    "Ridgeline HS AM",
-    "Sky View HS AM",
-    "Teacher Training",
-    "InTech HS AM"
-  ]
-  function createModal() {
-    let modal = $(`
-      <div class='btech-modal' style='display: inline-block;'>
-          <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
-          <div class='btech-modal-content' style='max-width: 500px;'>
-              <div class='btech-modal-content-inner'>
-              </div>
-          </div>
-      </div>
-    `);
-    modal.on("click", function(event) {
-      if ($(event.target).is(modal)) {
-          modal.remove();
-      }
-    });
-    // let modalContent = $('body .btech-modal-content-inner');
-    $("body").append(modal);
-    return modal;
-  }
-
-  sectionAdderButton.click(async function() {
-    let modal = createModal();
-    let content = $(modal.find('.btech-modal-content-inner')[0]);
-    content.append("<span>COURSE</span>");
-
-    let courses = await canvasGet(`/api/v1/accounts/${accountId}/courses?enrollment_term_id=${enrollmentTermId}`);
-    console.log(courses);
-    for (let c in courses) {
-      let course = courses[c];
-      if (course.sis_course_id) {
-        content.append(`<div><input type='checkbox'>${course.name}</div>`);
-      }
+    const BTECH_HS_LIST = [
+      "Bear River HS AM",
+      "Box Elder HS AM",
+      "Green Canyon HS AM",
+      "Logan HS AM",
+      "Mt Crest HS AM",
+      "Rich HS AM",
+      "Ridgeline HS AM",
+      "Sky View HS AM",
+      "Teacher Training",
+      "InTech HS AM"
+    ]
+    function createModal() {
+      let modal = $(`
+        <div class='btech-modal' style='display: inline-block;'>
+            <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
+            <div class='btech-modal-content' style='max-width: 500px;'>
+                <div class='btech-modal-content-inner'>
+                </div>
+            </div>
+        </div>
+      `);
+      modal.on("click", function(event) {
+        if ($(event.target).is(modal)) {
+            modal.remove();
+        }
+      });
+      // let modalContent = $('body .btech-modal-content-inner');
+      $("body").append(modal);
+      return modal;
     }
-  })
 
+    sectionAdderButton.click(async function() {
+      let modal = createModal();
+      let content = $(modal.find('.btech-modal-content-inner')[0]);
+      content.append("<span>COURSE</span>");
+
+      let courses = await canvasGet(`/api/v1/accounts/${accountId}/courses?enrollment_term_id=${enrollmentTermId}`);
+      console.log(courses);
+      for (let c in courses) {
+        let course = courses[c];
+        if (course.sis_course_id) {
+          content.append(`<div><input type='checkbox'>${course.name}</div>`);
+        }
+      }
+    })
+
+  }
 })();
