@@ -150,7 +150,7 @@
               let end = Math.max(this.lastChecked, index);
               
               for (let i = start; i <= end; i++) {
-                list[i].include = true;
+                list[i].include = list[this.lastChecked].include;
               }
             }
             this.lastChecked = index;
