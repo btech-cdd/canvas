@@ -15,7 +15,7 @@
     "Ridgeline HS AM",
     "Sky View HS AM",
     "Teacher Training",
-    "Inteach HS AM"
+    "InTech HS AM"
   ]
   function createModal() {
     let modal = $(`
@@ -49,6 +49,11 @@
     content.append("<span>COURSE</span>");
 
     let courses = await canvasGet(`/api/v1/accoutns/${accountId}/courses?enrollment_term_id=${enrollmentTermId}`);
+    for (let c in courses) {
+      let course = courses[c];
+      console.log(course);
+      content.append(`<div>${course.name}</div>`);
+    }
     console.log(courses);
   })
 
