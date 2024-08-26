@@ -51,7 +51,12 @@
         <div id="btech-hs-sections-adder-vue">
           <div>Select Course to which you want to add Sections</div>
           <div>
-            <div v-for="(course, c) in courses" :key="c">
+            <div 
+              v-for="(course, c) in courses" :key="c"
+              :style={
+                'background-color': c % 2 == 0 ? 'white' : '#EEE'
+              }
+              >
               {{ c }} - {{ course.name }}
             </div>
           </div>
@@ -65,7 +70,6 @@
           this.courses = courses.filter(course => {
             return course.sis_course_id != undefined;
           });
-          this.courses.push({});
         },
         data: function () {
           return {
