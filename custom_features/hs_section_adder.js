@@ -149,7 +149,7 @@
               let start = Math.min(this.lastChecked, index);
               let end = Math.max(this.lastChecked, index);
               
-              for (let i = start; i <= end; i++) {
+              for (let i = start; i <= end + 1; i++) {
                 list[i].include = list[this.lastChecked].include;
               }
             }
