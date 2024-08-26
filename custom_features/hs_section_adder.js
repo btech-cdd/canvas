@@ -49,12 +49,12 @@
     content.append("<span>COURSE</span>");
 
     let courses = await canvasGet(`/api/v1/accoutns/${accountId}/courses?enrollment_term_id=${enrollmentTermId}`);
+    console.log(courses);
     for (let c in courses) {
       let course = courses[c];
       console.log(course);
       content.append(`<div>${course.name}</div>`);
     }
-    console.log(courses);
   })
 
 })();
