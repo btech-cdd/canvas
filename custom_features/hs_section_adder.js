@@ -40,7 +40,7 @@
       content.append(`
         <div id="btech-hs-sections-adder-vue">
           <div
-            v-if="step == 'select courses'"
+            v-if="step == 'courses'"
           >
             <div>Select Course to which you want to add Sections</div>
             <div>
@@ -58,10 +58,10 @@
                 </div>
               </div>
             </div>
-            <div><button @click="step = 'select sections'">Next</button></div>
+            <div><button @click="step = 'sections'">Select Sections</button></div>
           </div>
           <div
-            v-if="step == 'select sections'"
+            v-if="step == 'sections'"
           >
             <div>
               Select High Schools to add as sections.
@@ -81,12 +81,16 @@
               </div>
             </div>
             <div>
-              <button @click="step = 'select courses'">Back</button>
-              <button @click="step = 'select sections'">Next</button>
+              <button @click="step = 'courses'">Back</button>
+              <button @click="step = 'confirm'">Add Sections</button>
             </div>
           </div>
           <div
             v-if="step == 'confirm'"
+            <div>
+              <button @click="step = 'sections'">Back</button>
+              <button @click="step = 'process'">Confirm</button>
+            </div>
           >
           </div>
           <div
@@ -114,7 +118,7 @@
         },
         data: function () {
           return {
-            step: 'select courses',
+            step: 'courses',
             courses: [],
             sections: [],
             hs_list: [
