@@ -116,9 +116,11 @@
         mounted: async function () {
           let courses = await canvasGet(`/api/v1/accounts/${accountId}/courses?enrollment_term_id=${enrollmentTermId}`);
           courses.forEach(course => course.include = false);
-          this.courses = courses.filter(course => {
+          this.courses = courses
+          .filter(course => {
             return course.sis_course_id != undefined;
-          }).sort((a, b) => a.name > b.name);
+          })
+          .sort((a, b) => a.name.localeCompare(b.name));
           this.hs_list.forEach(hs => {
             this.sections.push({
               name: hs,
@@ -149,8 +151,10 @@
         },
         methods: {
           async process() {
-            let courses = this.courses.filter(course => course.include);
-            let sections = this.sections.filter(section => section.include);
+            let courses = this.courses.filter(course => course.include)
+              .sort((a, b) => a.name.localeCompare(b.name));
+            let sections = this.sections.filter(section => section.include)
+              .sort((a, b) => a.name.localeCompare(b.name));
             for (let c in courses) {
               let course = courses[c];
               console.log(course);
