@@ -56,10 +56,12 @@
 
       let courses = await canvasGet(`/api/v1/accounts/${accountId}/courses?enrollment_term_id=${enrollmentTermId}`);
       console.log(courses);
+      let odd = false;
       for (let c in courses) {
         let course = courses[c];
         if (course.sis_course_id) {
-          content.append(`<div class="btech-hs-section-adder-course course-${course.id}"><input style="margin-right: 1rem;" type='checkbox'><span style="display: inline-block; width: 6rem;" width="5rem">${course.course_code}</span><span>${course.name}</span></div>`);
+          content.append(`<div style="background-color: ${odd ? 'white' : '#AAA'}" class="btech-hs-section-adder-course course-${course.id}"><input style="margin-right: 1rem;" type='checkbox'><span style="display: inline-block; width: 6rem;" width="5rem">${course.course_code}</span><span>${course.name}</span></div>`);
+          odd = !odd;
         }
       }
     })
