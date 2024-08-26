@@ -48,30 +48,29 @@
       let modal = createModal();
       let content = $(modal.find('.btech-modal-content-inner')[0]);
       content.append(`
-        <div class="btech-hs-sections-adder-vue">
+        <div id="btech-hs-sections-adder-vue">
           <div>Select Course to which you want to add Sections</div>
           <div>
-            <div
-              v-for="(course, c) in courses"
-            >
-              {{c}} - {{course.name}}
+            <div v-for="(course, c) in courses" :key="c">
+              {{ c }} - {{ course.name }}
             </div>
           </div>
         </div>
       `);
+
       let app = new Vue({
         el: '#btech-hs-sections-adder-vue',
         mounted: async function () {
           let courses = await canvasGet(`/api/v1/accounts/${accountId}/courses?enrollment_term_id=${enrollmentTermId}`);
           this.courses = courses.filter(course => {
-            return course.sis_course_id != undefined
+            return course.sis_course_id != undefined;
           });
           this.courses.push({});
         },
         data: function () {
           return {
             courses: []
-          }
+          };
         }
       });
       modal.on("click", function(event) {
