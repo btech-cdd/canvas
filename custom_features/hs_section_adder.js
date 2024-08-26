@@ -61,31 +61,6 @@
             <div><button @click="step = 'sections'">Select Sections</button></div>
           </div>
           <div
-            v-if="step == 'sections'"
-          >
-            <div>
-              Select High Schools to add as sections.
-            </div>
-            <div>
-              <div 
-                v-for="(section, s) in sections" :key="s"
-                >
-                <div
-                  :style="{
-                    'background-color': s % 2 == 0 ? 'white' : '#EEE'
-                  }"
-                >
-                  <input style="margin-right: 0.5rem;" type="checkbox" v-model="section.include">
-                  <span>{{ section.name }}</span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <button @click="step = 'courses'">Back</button>
-              <button @click="step = 'confirm'">Add Sections</button>
-            </div>
-          </div>
-          <div
             v-if="step == 'confirm'"
             <div>
               <button @click="step = 'sections'">Back</button>
