@@ -162,12 +162,12 @@
                   if (section.name == existingSection.name) exists = true;
                 }
                 if (exists) continue;
-                await $.post(`/api/v1/courses/${course.id}/sections`, {
+                let newSec = await $.post(`/api/v1/courses/${course.id}/sections`, {
                   course_section: {
                     name: section.name
                   }
-                })
-                console.log(section);
+                });
+                console.log(newSec);
               }
             }
           },
