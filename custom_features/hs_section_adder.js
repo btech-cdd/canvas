@@ -120,6 +120,7 @@
           .filter(course => {
             return course.sis_course_id != undefined;
           })
+          .sort((a, b) => a.course_code.localeCompare(b.course_code));
           this.hs_list.forEach(hs => {
             this.sections.push({
               name: hs,
