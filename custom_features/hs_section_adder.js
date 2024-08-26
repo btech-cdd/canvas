@@ -55,9 +55,9 @@
               v-for="(course, c) in courses" :key="c"
               >
               <div
-                :style={
+                :style="{
                   'background-color': c % 2 == 0 ? 'white' : '#EEE'
-                }
+                }"
               >{{ c }} - {{ course.name }}</div>
             </div>
           </div>
