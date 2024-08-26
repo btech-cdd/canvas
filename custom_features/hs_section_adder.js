@@ -148,14 +148,21 @@
           };
         },
         methods: {
-          process() {
+          async process() {
             let courses = this.courses.filter(course => course.include);
             let sections = this.sections.filter(section => section.include);
             for (let c in courses) {
               let course = courses[c];
-              console.log(course);
+              let existingSections = await canvasGet(`/api/v1/courses/${course.id}/sections`);
               for (let s in sections) {
                 let section = sections[s];
+                let exists = false;
+                for (let es in existingSections) {
+                  let existingSection = existingSections[es];
+                  if (section == existingSection.name) exists = true;
+                }
+                if (exists) continue;
+                console.log(section);
               }
             }
           },
