@@ -54,7 +54,7 @@
     let content = $(modal.find('.btech-modal-content-inner')[0]);
     content.append("<span>COURSE</span>");
 
-    let courses = await canvasGet(`/api/v1/accoutns/${accountId}/courses?enrollment_term_id=${enrollmentTermId}`);
+    let courses = await canvasGet(`/api/v1/accounts/${accountId}/courses?enrollment_term_id=${enrollmentTermId}`);
     console.log(courses);
     for (let c in courses) {
       let course = courses[c];
