@@ -39,11 +39,6 @@
             </div>
         </div>
       `);
-      modal.on("click", function(event) {
-        if ($(event.target).is(modal)) {
-            modal.remove();
-        }
-      });
       // let modalContent = $('body .btech-modal-content-inner');
       $("body").append(modal);
       return modal;
@@ -52,18 +47,34 @@
     sectionAdderButton.click(async function() {
       let modal = createModal();
       let content = $(modal.find('.btech-modal-content-inner')[0]);
-      content.append("<span>COURSE</span>");
-
-      let courses = await canvasGet(`/api/v1/accounts/${accountId}/courses?enrollment_term_id=${enrollmentTermId}`);
-      console.log(courses);
-      let odd = false;
-      for (let c in courses) {
-        let course = courses[c];
-        if (course.sis_course_id) {
-          content.append(`<div style="background-color: ${odd ? 'white' : '#EEE'}" class="btech-hs-section-adder-course course-${course.id}"><input style="margin-right: 1rem;" type='checkbox'><span style="display: inline-block; width: 6rem;" width="5rem">${course.course_code}</span><span>${course.name}</span></div>`);
-          odd = !odd;
+      content.append(`
+        <div class="#btech-hs-sections-adder-vue">
+          <div>Select Course to which you want to add Sections</div>
+          <div
+            v-for='(course, c) in courses"
+          >
+            {{c}} - {{course.name}}
+          </div>
+        </div>
+      `);
+      let app = new Vue({
+        el: '#btech-hs-sections-adder-vue',
+        mounted: async function () {
+          let courses = await canvasGet(`/api/v1/accounts/${accountId}/courses?enrollment_term_id=${enrollmentTermId}`);
+          this.courses = courses.filter(course => course.sis_course_id != undefined)
+        },
+        data: function () {
+          return {
+            courses: []
+          }
         }
-      }
+      });
+      modal.on("click", function(event) {
+        if ($(event.target).is(modal)) {
+          app.$delete();
+          modal.remove();
+        }
+      });
     })
 
   }
