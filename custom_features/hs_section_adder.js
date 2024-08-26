@@ -107,6 +107,8 @@
           <div
             v-if="step == 'process'"
           >
+            Progress: {{ Math.round(processProgress * 100)}}%
+            Adding Section {{processSection}} to Course {{processCourse}}
           </div>
         </div>
       `);
@@ -146,7 +148,10 @@
               "Sky View HS AM",
               "Teacher Training",
               "InTech HS AM"
-            ]
+            ],
+            processProgress: 0,
+            processCourse: '',
+            processSection: '',
           };
         },
         methods: {
@@ -157,11 +162,11 @@
               .sort((a, b) => a.name.localeCompare(b.name));
             for (let c in courses) {
               let course = courses[c];
-              console.log(course);
+              this.processCourse = course.name;
               let existingSections = await canvasGet(`/api/v1/courses/${course.id}/sections`);
-              console.log(existingSections);
               for (let s in sections) {
                 let section = sections[s];
+                this.processSection = section.name;
                 let exists = false;
                 for (let es in existingSections) {
                   let existingSection = existingSections[es];
@@ -176,6 +181,7 @@
                 });
                 console.log(newSec);
               }
+              this.processProgress = (c + 1) / courses.length;
             }
           },
           handleCheck(event, index, list) {
