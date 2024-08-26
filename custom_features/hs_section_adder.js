@@ -61,7 +61,10 @@
         el: '#btech-hs-sections-adder-vue',
         mounted: async function () {
           let courses = await canvasGet(`/api/v1/accounts/${accountId}/courses?enrollment_term_id=${enrollmentTermId}`);
-          this.courses = courses.filter(course => course.sis_course_id != undefined)
+          this.courses = courses.filter(course => {
+            console.log(course.sis_coruse_id)
+            return course.sis_course_id != undefined
+        })
         },
         data: function () {
           return {

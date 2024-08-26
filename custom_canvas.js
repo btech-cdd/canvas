@@ -107,7 +107,6 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
 
     //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
     featureCDD('copy_to_next_year', {}, /^\/accounts\/[0-9]+$/);
-    featureCDD('hs_section_adder', {}, /^\/accounts\/[0-9]+$/);
     if (rCheckInCourse.test(window.location.pathname)) {
       feature('modules/course_features');
       //I'm putting concluding students in here as well vvv
@@ -144,6 +143,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
 
     //OTHER FEATURES
     $.getScript("https://cdn.jsdelivr.net/npm/vue@2.6.12").done(function () {
+      featureCDD('hs_section_adder', {}, /^\/accounts\/[0-9]+$/);
       // featureCDD("editor_toolbar/sidebar", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
       // featureCDD("course_reviewer/sidebar", {}, /^\/courses\/[0-9]+/);
       // featureCDD("course_reviewer/assignment_score", {}, /^\/courses\/[0-9]+\/assignments\/[0-9]+/);
