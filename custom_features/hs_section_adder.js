@@ -88,11 +88,11 @@
           <div
             v-if="step == 'confirm'"
           >
+            <div>Do you wish to add {{courses.filter(course => course.include).length}} to {{sections.filter(section => section.include).length}} courses?</div>
             <div>
               <button @click="step = 'sections'">Back</button>
               <button @click="step = 'process'">Confirm</button>
             </div>
-          >
           </div>
           <div
             v-if="step == 'process'"
