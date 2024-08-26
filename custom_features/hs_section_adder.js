@@ -62,10 +62,8 @@
         mounted: async function () {
           let courses = await canvasGet(`/api/v1/accounts/${accountId}/courses?enrollment_term_id=${enrollmentTermId}`);
           this.courses = courses.filter(course => {
-            console.log(course.sis_course_id)
             return course.sis_course_id != undefined
           });
-          console.log(this.courses);
         },
         data: function () {
           return {
@@ -75,7 +73,7 @@
       });
       modal.on("click", function(event) {
         if ($(event.target).is(modal)) {
-          app.$delete();
+          app.$destroy();
           modal.remove();
         }
       });
