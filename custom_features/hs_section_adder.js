@@ -68,6 +68,7 @@
                 </div>
               </div>
             </div>
+            <button @click="step = 'select sections'">Next</button>
           </div>
           <div
             v-if="step == 'select sections'"
