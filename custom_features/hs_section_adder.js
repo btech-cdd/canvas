@@ -58,7 +58,7 @@
                 :style="{
                   'background-color': c % 2 == 0 ? 'white' : '#EEE'
                 }"
-              >{{ c }} - {{ course.name }}</div>
+              ><input type="checkbox" :checked="course.include">{{ c }} - {{ course.name }}</div>
             </div>
           </div>
         </div>
@@ -68,6 +68,7 @@
         el: '#btech-hs-sections-adder-vue',
         mounted: async function () {
           let courses = await canvasGet(`/api/v1/accounts/${accountId}/courses?enrollment_term_id=${enrollmentTermId}`);
+          courses.foreach(course => course.include = false);
           this.courses = courses.filter(course => {
             return course.sis_course_id != undefined;
           });
