@@ -10,7 +10,7 @@
   const accountId = match ? match[1] : null;
   // Extract the enrollment_term_id from the search parameters
   const enrollmentTermId = url.searchParams.get('enrollment_term_id'); // "1110"
-  if (accountId != 3 && enrollmentTermId) {
+  if (accountId != 3) {
     let createCourseButton = $($("#content").find("[aria-label='Create new course']")[0]).parent();
     let sectionAdderSpan = $('<span></span>');
     let sectionAdderButton = $(createCourseButton.html().replace('Course', 'HS Sections').replace('Create new course', 'Add HS sections'));
