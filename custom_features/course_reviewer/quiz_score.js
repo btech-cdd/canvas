@@ -31,6 +31,17 @@
     evaluateButton.show();
   });
 
+  //reevaluate button
+  let ignoreButton = $(`
+    <a class="btn" id="btech-ignore-evaluation-button" rel="nofollow" >
+      Ignore 
+    </a>
+  `);
+
+  ignoreButton.click(async function() {
+    ignoreItem(ENV.COURSE_ID, 'quizzes', quizData.id)
+  })
+
   let detailedReportButton = $(`
     <a class="btn" id="btech-detailed-evaluation-button" rel="nofollow" >
       Detailed Report 
@@ -237,6 +248,7 @@
   let container = $('<div id="btech-course-reviewer-container"></div>');
   await refreshData();
   $('#sidebar_content').append(evaluateButton);
+  $('#sidebar_content').append(ignoreButton);
   $("#sidebar_content").append(container);
   $('#sidebar_content').append(detailedReportButton);
   if (quizReviewData?.quiz_id) await generateContent(container);
