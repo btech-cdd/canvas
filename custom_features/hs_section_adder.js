@@ -60,7 +60,7 @@
                     @click="handleCheck($event, c, courses)"
                     >
                   <span style="display: inline-block; width: 6rem;">{{ course.course_code }}</span>
-                  <span><a :href="'/courses/' + course.id" target="_blank">{{ course.name }}</a></span>
+                  <span><a :href="'/courses/' + course.id + '/settings#tab-sections'" target="_blank">{{ course.name }}</a></span>
                 </div>
               </div>
             </div>
