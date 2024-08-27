@@ -207,6 +207,9 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
             feature("report_broken_content", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             //COURSE SPECIFIC FEATURES
             //DEPARTMENT SPECIFIC IMPORTS
+            if (IS_TEACHER) {
+              feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
+            }
 
             if (CURRENT_DEPARTMENT_ID == 4218) { // DATA ANALYTICS
               externalFeature("https://cdn.datacamp.com/datacamp-light-latest.min.js", /^\/courses\/([0-9]+)\/(pages|assignments|quizzes|discussion_topics)\/[0-9]+(\?|$)/); //really just available to data analytics
@@ -221,9 +224,6 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
               feature("rubrics/attempts_data", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
               feature("rubrics/gen_comment", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
               //This is currently disabled because it was decided it might be more confusing for students to see a grade that was only part of their final grade.
-              if (IS_TEACHER) {
-                feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
-              }
             }
             if (CURRENT_DEPARTMENT_ID === 3833) { //business
               feature("department_specific/business_hs");
@@ -236,10 +236,8 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
             }
             if (CURRENT_DEPARTMENT_ID === 3847) { //meats
               feature("grades_page/highlighted_grades_page_items", {}, /^\/courses\/[0-9]+\/grades\/[0-9]+/);
-              feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
             }
             if (CURRENT_DEPARTMENT_ID === 3837) { //auto collision
-              feature("speed_grader/split_screen", {}, /^\/courses\/[0-9]+\/gradebook\/speed_grader/);
             }
             if (CURRENT_DEPARTMENT_ID === 3840 || CURRENT_DEPARTMENT_ID === 3839) { //media design & drafting
             }
