@@ -9,7 +9,6 @@
   // Extract the account_id if the regex matched
   const accountId = match ? match[1] : null;
   // Extract the enrollment_term_id from the search parameters
-  const enrollmentTermId = url.searchParams.get('enrollment_term_id'); // "1110"
   if (accountId != 3) {
     let createCourseButton = $($("#content").find("[aria-label='Create new course']")[0]).parent();
     let sectionAdderSpan = $('<span></span>');
@@ -35,6 +34,8 @@
     }
 
     sectionAdderButton.click(async function() {
+      const enrollmentTermId = url.searchParams.get('enrollment_term_id'); // "1110"
+      if (enrollmentTermId == undefined) return;
       let modal = createModal();
       let content = $(modal.find('.btech-modal-content-inner')[0]);
       content.append(`
