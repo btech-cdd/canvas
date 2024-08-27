@@ -10,46 +10,41 @@ $(document).ready(function() {
             // Check if the #enhanced-rubric-assessment-tray element has been added to the DOM
             const $target = $('#enhanced-rubric-assessment-tray');
             if ($target.length) {
-                // Set the width to 200px
+                // Set the width to match the right side width
                 $target.css('width', $("#right_side").css("width"));
-            }
-            // remove if buttons already exist
-            $("#btech-enhanced-rubric-assessment-collapse").remove();
-            $("#btech-enhanced-rubric-assessment-expand").remove();
 
-            // create buttons
-            let $collapseButton = $(`<span id="btech-enhanced-rubric-assessment-collapse" style="cursor: pointer; user-select: none;">▼</span>`);
-            let $expandButton = $(`<span id="btech-enhanced-rubric-assessment-expand" style="cursor: pointer; user-select: none;">▲</span>`);
-            $expandButton.hide();
-
-            // collapse button shrinks it and then pushes it to the bottom
-            $collapseButton.click(() => {
-                let $target = $('#enhanced-rubric-assessment-tray');
-                if ($target.length) {
-                    // Set the width to 200px
-                    $target.css('height', '4rem');
-                    $target.css('top', `calc(${$("#right_side").css("height")} - 4rem`);
-                    $expandButton.show();
-                    $collapseButton.hide();
-                }
-            });
-
-            // expand button just resets
-            $expandButton.click(() => {
-                let $target = $('#enhanced-rubric-assessment-tray');
-                if ($target.length) {
-                    // Set the width to 200px
-                    $target.css('height', '');
-                    $target.css('top', ``);
+                // Check if buttons already exist, if so, skip the addition
+                if (!$("#btech-enhanced-rubric-assessment-collapse").length && !$("#btech-enhanced-rubric-assessment-expand").length) {
+                    // Create buttons
+                    let $collapseButton = $(`<span id="btech-enhanced-rubric-assessment-collapse" style="cursor: pointer; user-select: none;">▼</span>`);
+                    let $expandButton = $(`<span id="btech-enhanced-rubric-assessment-expand" style="cursor: pointer; user-select: none;">▲</span>`);
                     $expandButton.hide();
-                    $collapseButton.show();
+
+                    // Collapse button shrinks it and then pushes it to the bottom
+                    $collapseButton.click(() => {
+                        if ($target.length) {
+                            $target.css('height', '4rem');
+                            $target.css('top', `calc(${$("#right_side").css("height")} - 4rem`);
+                            $expandButton.show();
+                            $collapseButton.hide();
+                        }
+                    });
+
+                    // Expand button resets the tray to its original state
+                    $expandButton.click(() => {
+                        if ($target.length) {
+                            $target.css('height', '');
+                            $target.css('top', ``);
+                            $expandButton.hide();
+                            $collapseButton.show();
+                        }
+                    });
+
+                    // Insert the buttons before the rubric header
+                    $('div[aria-label="Rubric Assessment Tray"] [data-testid="rubric-assessment-header"]').before($collapseButton);
+                    $('div[aria-label="Rubric Assessment Tray"] [data-testid="rubric-assessment-header"]').before($expandButton);
                 }
-            });
-
-            // pop those buttons in
-            $('div[aria-label="Rubric Assessment Tray"] [data-testid="rubric-assessment-header"]').before($collapseButton);
-            $('div[aria-label="Rubric Assessment Tray"] [data-testid="rubric-assessment-header"]').before($expandButton);
-
+            }
         });
     });
 
