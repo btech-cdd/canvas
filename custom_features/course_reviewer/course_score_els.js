@@ -206,39 +206,30 @@ function updateReviewProgress(data) {
 }
 
 async function checkReviewProgress () {
-  let course = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
+  try {
+    let course = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
 
-  // place holder until more robust data is available
-  reviewerProgressData.processed = Math.round(course.current_update_progress); // Example increment
-  reviewerProgressData.remaining = 100 - reviewerProgressData.processed; // Example decrement
+    let reviewerProgressData = {};
+    // place holder until more robust data is available
+    reviewerProgressData.processed = Math.round(course.current_update_progress ?? 0); // Example increment
+    reviewerProgressData.remaining = 100 - reviewerProgressData.processed; // Example decrement
 
-  updateReviewProgress(reviewerProgressData);
+    updateReviewProgress(reviewerProgressData);
+    console.log('Progress updated:', reviewerProgressData);
+
+    // Check if progress is 100%
+    if (reviewerProgressData.processed >= 1 || reviewerProgressData == undefined) {
+      let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts);
+      let emoji = calcEmoji(courseScore);
+      detailedReportButton.html(emoji);
+    }
+  } catch (error) {
+    console.error('Error fetching course data:', error);
+  }
 }
 async function initReviewProgressInterval() {
-  // Initial data
-  let reviewerProgressData = { processed: 0, remaining: 1 };
-
-  // Function to perform the periodic check
-  async function updateProgress() {
-    try {
-      // Make the request
-      checkReviewProgress();
-      // Log the result (for debugging purposes)
-      console.log('Progress updated:', reviewerProgressData);
-
-      // Check if progress is 100%
-      if (reviewerProgressData.processed >= 1 || reviewerProgressData == undefined) {
-        let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts);
-        let emoji = calcEmoji(courseScore);
-        detailedReportButton.html(emoji);
-      }
-    } catch (error) {
-      console.error('Error fetching course data:', error);
-    }
-  }
-
   // Run the updateProgress function every 10 seconds
-  let intervalId = setInterval(updateProgress, 10000);
+  let intervalId = setInterval(checkReviewProgress, 10000);
 }
 
 // do we have a review?
