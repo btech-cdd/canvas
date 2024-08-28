@@ -168,6 +168,7 @@ function updateReviewProgress(data) {
   const svg = d3.select('#btech-detailed-evaluation-button')
       .html('') // Clear any existing content
       .append('svg')
+      .attr('class', 'btech-reviewer-progress-circle') // Set the class here
       .attr('width', size)
       .attr('height', size)
       .append('g')
@@ -236,16 +237,14 @@ async function generateDetailedContent(
     // containerEl.append(generateRelatedAssignmentsEl());
   }
 
-  if (runningReviewer) {
+  if (d3.select('.btech-reviewer-progress-circle').node()) {
     let reevaluateButtonContainer= $("<div></div>");
     let reevaluateButton = $("<button>Score All Items</button>");
     reevaluateButtonContainer.append(reevaluateButton);
     containerEl.append(reevaluateButtonContainer);
     containerEl.append('<div>Put on the kettle and throw on a movie because this will take a while.</div>')
+
     reevaluateButton.click(async function() {
-
-
-
       // Bind data to the pie chart
       let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
       assignments = assignments.filter(assignment => (assignment.published && assignment.points_possible > 0));
