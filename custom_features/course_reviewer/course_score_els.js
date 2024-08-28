@@ -208,6 +208,7 @@ function updateReviewProgress(data) {
 async function checkReviewProgress () {
   try {
     let course = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
+    console.log(course);
 
     let reviewerProgressData = {};
     // place holder until more robust data is available
