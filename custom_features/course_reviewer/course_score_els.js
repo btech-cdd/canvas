@@ -237,7 +237,7 @@ async function generateDetailedContent(
     // containerEl.append(generateRelatedAssignmentsEl());
   }
 
-  if (d3.select('.btech-reviewer-progress-circle').node()) {
+  if (!d3.select('.btech-reviewer-progress-circle').node()) {
     let reevaluateButtonContainer= $("<div></div>");
     let reevaluateButton = $("<button>Score All Items</button>");
     reevaluateButtonContainer.append(reevaluateButton);
