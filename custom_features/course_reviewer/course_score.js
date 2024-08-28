@@ -289,6 +289,7 @@
   await refreshData();
   $(document).ready(async function() {
     let progressCounts = await checkReviewProgress(pageCounts, quizCounts, assignmentCounts);
+    console.log(progressCounts);
     if (progressCounts.remaining == 0) {
       updateReviewProgress(progressCounts);
     } else {
