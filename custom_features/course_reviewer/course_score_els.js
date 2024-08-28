@@ -248,6 +248,8 @@ async function generateDetailedContent(
     containerEl.append('<div>Put on the kettle and throw on a movie because this will take a while.</div>')
 
     reevaluateButton.click(async function() {
+      let modal = $('body .btech-modal');
+      modal.remove();
       $("#btech-detailed-evaluation-button").empty();
       // Bind data to the pie chart
       let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
