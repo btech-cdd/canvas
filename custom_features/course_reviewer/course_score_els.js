@@ -205,7 +205,7 @@ function updateReviewProgress(data) {
   return svg;
 }
 
-async function checkReviewProgress () {
+async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts) {
   try {
     let course = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
     console.log(course);
@@ -219,7 +219,7 @@ async function checkReviewProgress () {
     console.log('Progress updated:', reviewerProgressData);
 
     // Check if progress is 100%
-    if (reviewerProgressData.processed >= 1 || reviewerProgressData == undefined) {
+    if (reviewerProgressData.processed >= 100 || reviewerProgressData == undefined) {
       let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts);
       let emoji = calcEmoji(courseScore);
       detailedReportButton.html(emoji);
@@ -228,9 +228,11 @@ async function checkReviewProgress () {
     console.error('Error fetching course data:', error);
   }
 }
-async function initReviewProgressInterval() {
+async function initReviewProgressInterval(pageCounts, quizCounts, assignmentCounts) {
   // Run the updateProgress function every 10 seconds
-  let intervalId = setInterval(checkReviewProgress, 10000);
+  let intervalId = setInterval(function () {
+    checkReviewProgress(pageCounts, quizCounts, assignmentCounts)
+  }, 10000);
 }
 
 // do we have a review?
