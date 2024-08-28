@@ -212,7 +212,7 @@ async function checkReviewProgress () {
 
     let reviewerProgressData = {};
     // place holder until more robust data is available
-    reviewerProgressData.processed = Math.round(course.current_update_progress ?? 0); // Example increment
+    reviewerProgressData.processed = Math.round((course.current_update_progress ?? 0) * 100); // Example increment
     reviewerProgressData.remaining = 100 - reviewerProgressData.processed; // Example decrement
 
     updateReviewProgress(reviewerProgressData);
