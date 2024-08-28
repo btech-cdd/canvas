@@ -205,7 +205,16 @@ function updateReviewProgress(data) {
   return svg;
 }
 
-async function checkReviewProgress() {
+async function checkReviewProgress () {
+  let course = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
+
+  // place holder until more robust data is available
+  reviewerProgressData.processed = Math.round(course.current_update_progress); // Example increment
+  reviewerProgressData.remaining = 100 - reviewerProgressData.processed; // Example decrement
+
+  updateReviewProgress(reviewerProgressData);
+}
+async function initReviewProgressInterval() {
   // Initial data
   let reviewerProgressData = { processed: 0, remaining: 1 };
 
@@ -213,14 +222,7 @@ async function checkReviewProgress() {
   async function updateProgress() {
     try {
       // Make the request
-      let course = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
-
-      // place holder until more robust data is available
-      reviewerProgressData.processed = Math.round(course.current_update_progress); // Example increment
-      reviewerProgressData.remaining = 100 - reviewerProgressData.processed; // Example decrement
-
-      updateReviewProgress(reviewerProgressData);
-
+      checkReviewProgress();
       // Log the result (for debugging purposes)
       console.log('Progress updated:', reviewerProgressData);
 
