@@ -291,6 +291,7 @@
     let progressCounts = await checkReviewProgress(pageCounts, quizCounts, assignmentCounts);
     console.log("COUNTS FOUND")
     console.log(progressCounts);
+    addButton(detailedReportButton);
     if (progressCounts.remaining == 0) {
       let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts);
       let emoji = calcEmoji(courseScore);
@@ -299,6 +300,5 @@
       updateReviewProgress(progressCounts);
     }
     initReviewProgressInterval(pageCounts, quizCounts, assignmentCounts);
-    addButton(detailedReportButton);
   })
 })();
