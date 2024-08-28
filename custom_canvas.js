@@ -146,9 +146,9 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
       featureCDD('hs_section_adder', {}, /^\/accounts\/[0-9]+$/);
       // featureCDD("editor_toolbar/sidebar", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
       // featureCDD("course_reviewer/sidebar", {}, /^\/courses\/[0-9]+/);
-      featureCDD("course_reviewer/assignment_score", {}, /^\/courses\/[0-9]+\/assignments\/[0-9]+/);
-      featureCDD("course_reviewer/quiz_score", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+/);
-      featureCDD("course_reviewer/page_score", {}, /^\/courses\/[0-9]+\/pages\/.+/);
+      if (IS_ME) featureCDD("course_reviewer/assignment_score", {}, /^\/courses\/[0-9]+\/assignments\/[0-9]+/);
+      if (IS_ME) featureCDD("course_reviewer/quiz_score", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+/);
+      if (IS_ME) featureCDD("course_reviewer/page_score", {}, /^\/courses\/[0-9]+\/pages\/.+/);
       $.getScript(SOURCE_URL + "/course_data/course_hours.js").done(() => {
         //GENERAL FEATURES
         //feature("reports/dashboard/banner-report", {}, /^\/$/);
@@ -181,7 +181,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         if (rCheckInCourse.test(window.location.pathname)) {
           feature("distance/approved-button", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
           $.getScript("https://bridgetools.dev/canvas/external-libraries/d3.v7.js");
-          featureCDD("course_reviewer/course_score", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
+          if (IS_ME) featureCDD("course_reviewer/course_score", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
           IS_BLUEPRINT = !(ENV.BLUEPRINT_COURSES_DATA === undefined)
           $.get('/api/v1/courses/' + CURRENT_COURSE_ID, function (courseData) {
             CURRENT_DEPARTMENT_ID = courseData.account_id;
