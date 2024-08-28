@@ -14,13 +14,14 @@
   };
 
 
+  // insert empty icons for unscored items
   $(".context_module_item").each(function() {
     let el = $(this);
     let infoEl = el.find('div.ig-info')
     infoEl.before(`<span class="ig-btech-evaluation-score" style="font-size: 1rem;"></span>`)
   });
 
-
+  // init vars
   var 
     courseData
     , externalContentCounts
@@ -42,7 +43,9 @@
     , quizQuestionCounts
     , pageCounts
     , rubricCounts
+    , runningReviewer
     ;
+    runningReviewer = false;
 
   async function refreshData() {
     totalContentCounts = 0;
@@ -196,6 +199,7 @@
     return true;
   }
 
+  // add button
   let detailedReportButton = $('<div></div>').attr('id', 'btech-detailed-evaluation-button');
   function addButton(detailedReportButton) {
     // Create the icon element

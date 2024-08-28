@@ -155,6 +155,50 @@ function generateExternalContentEl(externalContentCounts, contentCounts) {
   return el
 }
 
+function updateReviewProgress(data) {
+  let color = {
+    'quiz': 'green',
+    'assignment': 'red',
+    'page': 'blue'
+  };
+  // Set dimensions and radius
+  const size = 2.75 * 16; // Convert rem to pixels (assuming 1rem = 16px)
+  const radius = 0.9 * size / 2; // Adjust radius to fit within the container
+
+  const svg = d3.select('#btech-detailed-evaluation-button')
+      .html('') // Clear any existing content
+      .append('svg')
+      .attr('width', size)
+      .attr('height', size)
+      .append('g')
+      .attr('transform', `translate(${size / 2},${size / 2}) rotate(0)`); // Center and rotate to start from the top
+
+  // Create an arc generator
+  const arc = d3.arc()
+      .outerRadius(radius)
+      .innerRadius(radius * 0.5); // Adjust this value to control the size of the hole
+
+  // Create a label arc generator
+  const labelArc = d3.arc()
+      .outerRadius(radius)
+      .innerRadius(radius);
+
+  // Create a pie generator
+  const pie = d3.pie()
+      .sort(null)
+      .value(d => d[1]);
+  const g = svg.selectAll(".arc")
+    .data(pie(Object.entries(data)))
+    .enter().append("g")
+    .attr("class", "arc");
+
+  // Append path elements for each slice
+  g.append("path")
+    .attr("d", arc)
+    .style("fill", d => color?.[d.data[0]] ?? 'none');
+  return svg;
+}
+
 // do we have a review?
 async function generateDetailedContent(
     containerEl
@@ -191,83 +235,98 @@ async function generateDetailedContent(
     // containerEl.append(generateTopicTagsEl(courseReviewData));
     // containerEl.append(generateRelatedAssignmentsEl());
   }
-  let reevaluateButtonContainer= $("<div></div>");
-  let reevaluateButton = $("<button>Score All Items</button>");
-  reevaluateButtonContainer.append(reevaluateButton);
-  containerEl.append(reevaluateButtonContainer);
-  containerEl.append('<div>Put on the kettle and throw on a movie because this will take a while.</div>')
-  reevaluateButton.click(async function() {
-    containerEl.empty();
-    let assignmentsEl = $('<div></div>');
-    containerEl.append(assignmentsEl);
-    assignmentsEl.html('Loading Assignments...');
-    let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
-    assignmentsEl.html(`0 / ${assignments.length} Assignments Reviewed`);
-    for (let a in assignments) {
-      assignmentsEl.html(`${parseInt(a)} / ${assignments.length} Assignments Reviewed`);
-      let assignment = assignments[a];
-      if (!assignment.published || assignment.points_possible <= 0) {
-        continue;
-      }
-      // Used for checking if assignment needs to be reviewed again
-      let assignmentUpdatedAt = new Date(assignment.updated_at);
 
-      // NEW QUIZZES
-      if (assignment.is_quiz_lti_assignment) {
-        // let newQuiz = await $.get(`/api/quiz/v1/courses/${ENV.COURSE_ID}/quizzes/${assignment.id}`);
-        // await evaluateNewQuiz(ENV.COURSE_ID, courseCode, year, assignment.id, newQuiz.description);
-      }
-      // CLASSIC QUIZZES
-      else if (assignment.is_quiz_assignment) {
-        let skip = false;
-        for (let r in quizReviewsData) {
-          let review = quizReviewsData[r];
-          if (review.quiz_id == assignment.quiz_id) {
-            let reviewUpdatedAt = new Date(review.last_update);
-            if (reviewUpdatedAt > assignmentUpdatedAt && (review.embedding ?? []).length > 0) skip = true; // skip anything reviewed more recently than the last update
+  if (runningReviewer) {
+    let reevaluateButtonContainer= $("<div></div>");
+    let reevaluateButton = $("<button>Score All Items</button>");
+    reevaluateButtonContainer.append(reevaluateButton);
+    containerEl.append(reevaluateButtonContainer);
+    containerEl.append('<div>Put on the kettle and throw on a movie because this will take a while.</div>')
+    reevaluateButton.click(async function() {
+
+
+
+      // Bind data to the pie chart
+      let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
+      assignments = assignments.filter(assignment => (assignment.published && assignment.points_possible > 0));
+      let pages = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/pages?include[]=body`);
+      pages = pages.filter(page => page.published)
+      let reviewerProgressData = {
+        'other': 0,
+        'assignments': 0,
+        'quizzes': 0,
+        'pages': 0,
+        'pending': assignments.length + pages.length,
+      };
+      updateReviewProgress(reviewerProgressData);
+
+      for (let a in assignments) {
+        let assignment = assignments[a];
+        // Used for checking if assignment needs to be reviewed again
+        let assignmentUpdatedAt = new Date(assignment.updated_at);
+
+        // NEW QUIZZES
+        if (assignment.is_quiz_lti_assignment) {
+          reviewerProgressData['pending'] -= 1;
+          reviewerProgressData['quizzes'] += 1;
+          updateReviewProgress(reviewerProgressData);
+          // let newQuiz = await $.get(`/api/quiz/v1/courses/${ENV.COURSE_ID}/quizzes/${assignment.id}`);
+          // await evaluateNewQuiz(ENV.COURSE_ID, courseCode, year, assignment.id, newQuiz.description);
+        }
+        // CLASSIC QUIZZES
+        else if (assignment.is_quiz_assignment) {
+          reviewerProgressData['pending'] -= 1;
+          reviewerProgressData['quizzes'] += 1;
+          updateReviewProgress(reviewerProgressData);
+          let skip = false;
+          for (let r in quizReviewsData) {
+            let review = quizReviewsData[r];
+            if (review.quiz_id == assignment.quiz_id) {
+              let reviewUpdatedAt = new Date(review.last_update);
+              if (reviewUpdatedAt > assignmentUpdatedAt && (review.embedding ?? []).length > 0) skip = true; // skip anything reviewed more recently than the last update
+            }
+          }
+          if (skip) continue;
+          try {
+            await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignment.quiz_id, assignment.description);
+          } catch (err) {
+            console.log(err);
           }
         }
-        if (skip) continue;
-        try {
-          await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignment.quiz_id, assignment.description);
-        } catch (err) {
-          console.log(err);
+        // LTIS
+        else if (assignment.submission_types.includes('external_tool')) {
+          reviewerProgressData['pending'] -= 1;
+          reviewerProgressData['other'] += 1;
+          updateReviewProgress(reviewerProgressData);
+          // ltis, possibly could have a database of ltis that have been reviewed manually and put in that score
         }
-      }
-      // LTIS
-      else if (assignment.submission_types.includes('external_tool')) {
-        // ltis, possibly could have a database of ltis that have been reviewed manually and put in that score
-      }
-      // TRADITIONAL ASSIGNMENTS
-      else {
-        let skip = false;
-        for (let r in assignmentReviewsData) {
-          let review = assignmentReviewsData[r];
-          if (review.assignment_id == assignment.id) {
-            let reviewUpdatedAt = new Date(review.last_update);
-            if (reviewUpdatedAt > assignmentUpdatedAt && (review.embedding ?? []).length > 0) skip = true; // skip anything reviewed more recently than the last update
+        // TRADITIONAL ASSIGNMENTS
+        else {
+          reviewerProgressData['pending'] -= 1;
+          reviewerProgressData['assignments'] += 1;
+          updateReviewProgress(reviewerProgressData);
+          let skip = false;
+          for (let r in assignmentReviewsData) {
+            let review = assignmentReviewsData[r];
+            if (review.assignment_id == assignment.id) {
+              let reviewUpdatedAt = new Date(review.last_update);
+              if (reviewUpdatedAt > assignmentUpdatedAt && (review.embedding ?? []).length > 0) skip = true; // skip anything reviewed more recently than the last update
+            }
+          }
+          // if (skip) continue;
+          try {
+            await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
+          } catch (err) {
+            console.log(err);
           }
         }
-        // if (skip) continue;
-        try {
-          await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
-        } catch (err) {
-          console.log(err);
-        }
       }
-    }
-    assignmentsEl.html(`${assignments.length} Assignments Reviewed`);
-
-    let pagesEl = $('<div></div>');
-    containerEl.append(pagesEl);
-    pagesEl.html('Loading Pages...');
-    let pages = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/pages?include[]=body`);
-    pagesEl.html(`0 / ${pages.length} Pages Reviewed`);
-    for (let p in pages) {
-      let page = pages[p];
-      //check if last updated is sooner than last reviewed
-      pagesEl.html(`${p} / ${pages.length} Pages Reviewed`);
-      if (page.published) {
+      for (let p in pages) {
+        reviewerProgressData['pending'] -= 1;
+        reviewerProgressData['pages'] += 1;
+        updateReviewProgress(reviewerProgressData);
+        let page = pages[p];
+        //check if last updated is sooner than last reviewed
         let pageUpdatedAt = new Date(page.updated_at);
         let skip = false;
         for (let r in pageReviewsData) {
@@ -284,9 +343,8 @@ async function generateDetailedContent(
           console.log(err);
         }
       }
-    }
-    pagesEl.html(`${pages.length} Pages Reviewed`);
 
-    generateDetailedContent(containerEl);
-  });
+      generateDetailedContent(containerEl);
+    });
+  }
 }
