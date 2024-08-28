@@ -214,14 +214,12 @@ async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts) {
     reviewerProgressData.processed = Math.round((course.current_update_progress ?? 0) * 100); // Example increment
     reviewerProgressData.remaining = 100 - reviewerProgressData.processed; // Example decrement
 
-    updateReviewProgress(reviewerProgressData);
-
-    // Check if progress is 100%
-    console.log(course);
     if (course.current_update_progress >= 1 || course.current_update_progress == undefined) {
       let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts);
       let emoji = calcEmoji(courseScore);
       $('#btech-detailed-evaluation-button').html(emoji);
+    } else {
+      updateReviewProgress(reviewerProgressData);
     }
   } catch (error) {
     console.error('Error fetching course data:', error);
