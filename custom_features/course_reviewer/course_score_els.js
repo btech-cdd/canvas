@@ -206,6 +206,7 @@ function updateReviewProgress(data) {
 }
 
 async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts) {
+  console.log("CHECK REVIEW PROGRESS");
   try {
     let course = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
     console.log(course);
@@ -219,7 +220,7 @@ async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts) {
     console.log('Progress updated:', reviewerProgressData);
 
     // Check if progress is 100%
-    if (reviewerProgressData.processed >= 100 || reviewerProgressData == undefined) {
+    if (course.current_update_progress >= 1 || course.current_update_progress == undefined) {
       let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts);
       let emoji = calcEmoji(courseScore);
       detailedReportButton.html(emoji);
