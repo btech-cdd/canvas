@@ -287,11 +287,11 @@
   
 
   await refreshData();
-  $(document).ready(function() {
+  $(document).ready(async function() {
     let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts);
     let emoji = calcEmoji(courseScore);
     detailedReportButton.html(emoji);
-    checkReviewProgress();
+    await checkReviewProgress();
     initReviewProgressInterval();
     addButton(detailedReportButton);
   })
