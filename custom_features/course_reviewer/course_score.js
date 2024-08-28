@@ -291,6 +291,7 @@
     let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts);
     let emoji = calcEmoji(courseScore);
     detailedReportButton.html(emoji);
+    checkReviewProgress();
     initReviewProgressInterval();
     addButton(detailedReportButton);
   })
