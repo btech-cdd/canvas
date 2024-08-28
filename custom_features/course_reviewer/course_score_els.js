@@ -221,7 +221,7 @@ async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts) {
     if (course.current_update_progress >= 1 || course.current_update_progress == undefined) {
       let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts);
       let emoji = calcEmoji(courseScore);
-      detailedReportButton.html(emoji);
+      $('#btech-detailed-evaluation-button').html(emoji);
     }
   } catch (error) {
     console.error('Error fetching course data:', error);
