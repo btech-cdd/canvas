@@ -207,11 +207,11 @@ function updateReviewProgress(data) {
 
 async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts) {
   console.log("CHECK REVIEW PROGRESS");
+  let reviewerProgressData = { processed: 0, remaining: 0};
   try {
     let course = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
     console.log(course);
 
-    let reviewerProgressData = {};
     // place holder until more robust data is available
     reviewerProgressData.processed = Math.round((course.current_update_progress ?? 0) * 100); // Example increment
     reviewerProgressData.remaining = 100 - reviewerProgressData.processed; // Example decrement
@@ -228,6 +228,7 @@ async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts) {
   } catch (error) {
     console.error('Error fetching course data:', error);
   }
+  return reviewerProgressData;
 }
 async function initReviewProgressInterval(pageCounts, quizCounts, assignmentCounts) {
   // Run the updateProgress function every 10 seconds

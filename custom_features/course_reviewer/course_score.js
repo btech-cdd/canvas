@@ -288,8 +288,15 @@
 
   await refreshData();
   $(document).ready(async function() {
+    let progressCounts = await checkReviewProgress(pageCounts, quizCounts, assignmentCounts);
+    if (progressCounts.remaining == 0) {
+      updateReviewProgress(progressCounts);
+    } else {
+      let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts);
+      let emoji = calcEmoji(courseScore);
+      detailedReportButton.html(emoji);
+    }
     initReviewProgressInterval(pageCounts, quizCounts, assignmentCounts);
     addButton(detailedReportButton);
-    await checkReviewProgress(pageCounts, quizCounts, assignmentCounts);
   })
 })();
