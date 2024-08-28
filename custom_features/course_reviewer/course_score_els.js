@@ -157,9 +157,12 @@ function generateExternalContentEl(externalContentCounts, contentCounts) {
 
 function updateReviewProgress(data) {
   let color = {
-    'quiz': 'green',
-    'assignment': 'red',
-    'page': 'blue'
+    'quizzes': '#1e65A7',
+    'new_quizzes': '#192E5B',
+    'assignments': '#25B396',
+    'pages': '#70CED0',
+    'other': '#00743F',
+    'unused_yellow': '#F1A104'
   };
   // Set dimensions and radius
   const size = 2.75 * 16; // Convert rem to pixels (assuming 1rem = 16px)
@@ -245,6 +248,7 @@ async function generateDetailedContent(
     containerEl.append('<div>Put on the kettle and throw on a movie because this will take a while.</div>')
 
     reevaluateButton.click(async function() {
+      $("#btech-detailed-evaluation-button").empty();
       // Bind data to the pie chart
       let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
       assignments = assignments.filter(assignment => (assignment.published && assignment.points_possible > 0));
