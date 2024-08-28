@@ -211,7 +211,7 @@ async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts) {
     let course = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
 
     // place holder until more robust data is available
-    reviewerProgressData.processed = Math.round((course.current_update_progress ?? 0) * 100); // Example increment
+    reviewerProgressData.processed = Math.round((course.current_update_progress ?? 1) * 100); // Example increment
     reviewerProgressData.remaining = 100 - reviewerProgressData.processed; // Example decrement
 
     if (course.current_update_progress >= 1 || course.current_update_progress == undefined) {
