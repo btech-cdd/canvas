@@ -147,6 +147,7 @@
     <p>Name of Image, Book, Article, Video, etc.*</p>
     <input style='width: 100%; height: 40px; box-sizing: border-box;' type="text" class="citation-information" id="citation-name">
     <p>Author(s)*</p>
+    <p>Must include a last name, if unknown, put unkown</p>
     <div id="citation-authors">
       <div class="citation-author">
         <input placeholder="first name" style='width: 49%; height: 40px; box-sizing: border-box;' type="text" class="citation-information first-name" id="citation-author-first">
