@@ -288,8 +288,8 @@
 
   await refreshData();
   $(document).ready(async function() {
-    await checkReviewProgress(pageCounts, quizCounts, assignmentCounts);
     initReviewProgressInterval(pageCounts, quizCounts, assignmentCounts);
     addButton(detailedReportButton);
+    await checkReviewProgress(pageCounts, quizCounts, assignmentCounts);
   })
 })();
