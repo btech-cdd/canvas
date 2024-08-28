@@ -215,6 +215,8 @@ async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts) {
     reviewerProgressData.processed = Math.round((course.current_update_progress ?? 0) * 100); // Example increment
     reviewerProgressData.remaining = 100 - reviewerProgressData.processed; // Example decrement
 
+    console.log("RUNNING CHECK")
+    console.log(reviewerProgressData)
     updateReviewProgress(reviewerProgressData);
 
     // Check if progress is 100%
