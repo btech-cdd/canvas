@@ -162,7 +162,9 @@ function updateReviewProgress(data) {
     'assignments': '#25B396',
     'pages': '#70CED0',
     'other': '#00743F',
-    'unused_yellow': '#F1A104'
+    'unused_yellow': '#F1A104',
+    // temp color
+    'processed': '#1e65A7'
   };
   // Set dimensions and radius
   const size = 2.75 * 16; // Convert rem to pixels (assuming 1rem = 16px)
@@ -201,6 +203,40 @@ function updateReviewProgress(data) {
     .attr("d", arc)
     .style("fill", d => color?.[d.data[0]] ?? 'none');
   return svg;
+}
+
+async function checkReviewProgress() {
+  // Initial data
+  let reviewerProgressData = { processed: 0, remaining: 1 };
+
+  // Function to perform the periodic check
+  async function updateProgress() {
+    try {
+      // Make the request
+      let course = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
+
+      // place holder until more robust data is available
+      reviewerProgressData.processed = Math.round(course.current_update_progress); // Example increment
+      reviewerProgressData.remaining = 100 - reviewerProgressData.processed; // Example decrement
+
+      updateReviewProgress(reviewerProgressData);
+
+      // Log the result (for debugging purposes)
+      console.log('Progress updated:', reviewerProgressData);
+
+      // Check if progress is 100%
+      if (reviewerProgressData.processed >= 1 || reviewerProgressData == undefined) {
+        let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts);
+        let emoji = calcEmoji(courseScore);
+        detailedReportButton.html(emoji);
+      }
+    } catch (error) {
+      console.error('Error fetching course data:', error);
+    }
+  }
+
+  // Run the updateProgress function every 10 seconds
+  let intervalId = setInterval(updateProgress, 10000);
 }
 
 // do we have a review?
@@ -251,103 +287,10 @@ async function generateDetailedContent(
       let modal = $('body .btech-modal');
       modal.remove();
       $("#btech-detailed-evaluation-button").empty();
-      // Bind data to the pie chart
-      let assignments = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
-      assignments = assignments.filter(assignment => (assignment.published && assignment.points_possible > 0));
-      let pages = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/pages?include[]=body`);
-      pages = pages.filter(page => page.published)
-      let reviewerProgressData = {
-        'other': 0,
-        'assignments': 0,
-        'quizzes': 0,
-        'pages': 0,
-        'pending': assignments.length + pages.length,
-      };
-      updateReviewProgress(reviewerProgressData);
-
-      for (let a in assignments) {
-        let assignment = assignments[a];
-        // Used for checking if assignment needs to be reviewed again
-        let assignmentUpdatedAt = new Date(assignment.updated_at);
-
-        // NEW QUIZZES
-        if (assignment.is_quiz_lti_assignment) {
-          reviewerProgressData['pending'] -= 1;
-          reviewerProgressData['quizzes'] += 1;
-          updateReviewProgress(reviewerProgressData);
-          // let newQuiz = await $.get(`/api/quiz/v1/courses/${ENV.COURSE_ID}/quizzes/${assignment.id}`);
-          // await evaluateNewQuiz(ENV.COURSE_ID, courseCode, year, assignment.id, newQuiz.description);
-        }
-        // CLASSIC QUIZZES
-        else if (assignment.is_quiz_assignment) {
-          reviewerProgressData['pending'] -= 1;
-          reviewerProgressData['quizzes'] += 1;
-          updateReviewProgress(reviewerProgressData);
-          let skip = false;
-          for (let r in quizReviewsData) {
-            let review = quizReviewsData[r];
-            if (review.quiz_id == assignment.quiz_id) {
-              let reviewUpdatedAt = new Date(review.last_update);
-              if (reviewUpdatedAt > assignmentUpdatedAt && (review.embedding ?? []).length > 0) skip = true; // skip anything reviewed more recently than the last update
-            }
-          }
-          if (skip) continue;
-          try {
-            await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignment.quiz_id, assignment.description);
-          } catch (err) {
-            console.log(err);
-          }
-        }
-        // LTIS
-        else if (assignment.submission_types.includes('external_tool')) {
-          reviewerProgressData['pending'] -= 1;
-          reviewerProgressData['other'] += 1;
-          updateReviewProgress(reviewerProgressData);
-          // ltis, possibly could have a database of ltis that have been reviewed manually and put in that score
-        }
-        // TRADITIONAL ASSIGNMENTS
-        else {
-          reviewerProgressData['pending'] -= 1;
-          reviewerProgressData['assignments'] += 1;
-          updateReviewProgress(reviewerProgressData);
-          let skip = false;
-          for (let r in assignmentReviewsData) {
-            let review = assignmentReviewsData[r];
-            if (review.assignment_id == assignment.id) {
-              let reviewUpdatedAt = new Date(review.last_update);
-              if (reviewUpdatedAt > assignmentUpdatedAt && (review.embedding ?? []).length > 0) skip = true; // skip anything reviewed more recently than the last update
-            }
-          }
-          // if (skip) continue;
-          try {
-            await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignment.id, assignment.description, JSON.stringify(assignment.rubric));
-          } catch (err) {
-            console.log(err);
-          }
-        }
-      }
-      for (let p in pages) {
-        reviewerProgressData['pending'] -= 1;
-        reviewerProgressData['pages'] += 1;
-        updateReviewProgress(reviewerProgressData);
-        let page = pages[p];
-        //check if last updated is sooner than last reviewed
-        let pageUpdatedAt = new Date(page.updated_at);
-        let skip = false;
-        for (let r in pageReviewsData) {
-          let review = pageReviewsData[r];
-          if (review.page_id == page.id) {
-            let reviewUpdatedAt = new Date(review.last_update);
-            if (reviewUpdatedAt > pageUpdatedAt && (review.embedding ?? []).length > 0) skip = true; // skip anything reviewed more recently than the last update
-          }
-        }
-        if (skip) continue;
-        try {
-          await evaluatePage(ENV.COURSE_ID, courseCode, year, page.page_id, page.body);
-        } catch (err) {
-          console.log(err);
-        }
-      }
+   
+      updateReviewProgress({processed: 0, remaining: 1});
+      await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/evaluate_content`, {course_code: courseCode, year: year}, 'POST');
+      checkReviewProgress();
 
       generateDetailedContent(containerEl);
     });
