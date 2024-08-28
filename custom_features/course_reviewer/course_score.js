@@ -289,8 +289,6 @@
   await refreshData();
   $(document).ready(async function() {
     let progressCounts = await checkReviewProgress(pageCounts, quizCounts, assignmentCounts);
-    console.log("COUNTS FOUND")
-    console.log(progressCounts);
     addButton(detailedReportButton);
     if (progressCounts.remaining == 0) {
       let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts);
