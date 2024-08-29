@@ -235,7 +235,7 @@ async function generateDetailedContent(
           let usage = Math.round((this.objectivesCounts[objective.objective_id] / (num)) * 1000) / 10;
           this.objectivesData[o].usage = usage;
         }
-        console.log(this.rubricCounts);
+        console.log(this.rubricReviewsData);
       },
       data: function () {
         return {
