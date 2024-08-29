@@ -204,21 +204,7 @@ async function generateDetailedContent(
       </div> 
     </div>
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-      <div style="padding: 8px 0;">
-        <h2>Rubrics</h2>
-        <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-          <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(rubricCounts.writing_quality / (rubricReviewsData.length * 2)) }}</span>
-        </div>
-        <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-          <span style="width: 6rem; display: inline-block;">Criteria</span><span>{{ calcEmoji(rubricCounts.criteria / (rubricReviewsData.length * 2)) }}</span>
-        </div>
-        <div title="Content is chunked with headers, call out boxes, lists, etc.">
-          <span style="width: 6rem; display: inline-block;">Granularity</span><span>{{ calcEmoji(rubricCounts.granularity / (rubricReviewsData.length * 2)) }}</span>
-        </div>
-        <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-          <span style="width: 6rem; display: inline-block;">Scoring</span><span>{{ calcEmoji(rubricCounts.grading_levels / (rubricReviewsData.length * 2)) }}</span>
-        </div>
-      </div>
+      
     </div>
 
     <div v-if="!d3.select('.btech-reviewer-progress-circle').node()">
