@@ -265,7 +265,7 @@ async function generateDetailedContent(
     </div>
     <div>
       <h2>Contracted Courseware</h2>
-      <div>3rd Party Items: {{externalContentCounts}} Item(s) ({{Math.round((externalContentCounts / contentCounts) * 1000) / 10}%})</div>
+      <div>3rd Party Items: {{externalContentCounts}} Item(s) ({{Math.round((externalContentCounts / contentCounts) * 1000) / 10}}%)</div>
     </div>
   `);
   if (courseReviewData) {
