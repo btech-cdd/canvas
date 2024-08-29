@@ -267,6 +267,31 @@ async function generateDetailedContent(
       <h2>Contracted Courseware</h2>
       <div>3rd Party Items: {{externalContentCounts}} Item(s) ({{Math.round((externalContentCounts / totalContentCounts) * 1000) / 10}}%)</div>
     </div>
+    <div>
+      <h2>Blooms</h2>
+      <div style="display: flex; align-items: center;" class="blooms-chart-container">
+      <svg style="width: 150px; height: 150px; margin-right: 20px;" class="blooms-chart"></svg>
+      <div style="display: flex; flex-direction: column; justify-content: center;" class="blooms-chart-key"></div>
+      </div>
+    </div>
+    <div style="padding: 8px 0;">
+      <h2>Pages</h2>
+      <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
+        <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(counts.clarity / (pageReviewsData.length * 2)) }}</span>
+      </div>
+      <div title="Content is chunked with headers, call out boxes, lists, etc.">
+        <span style="width: 6rem; display: inline-block;">Chunking</span><span>{{ calcEmoji(counts.chunked_content / pageReviewsData.length) }}</span>
+      </div>
+      <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
+        <span style="width: 6rem; display: inline-block;">Outcomes</span><span>{{ calcEmoji(counts.includes_outcomes / pageReviewsData.length) }}</span>
+      </div>
+      <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
+        <span style="width: 6rem; display: inline-block;">Industry</span><span>{{ calcEmoji(counts.career_relevance / pageReviewsData.length) }}</span>
+      </div>
+      <div title="The assignment explicitly states how this students will receive documented feedback.">
+        <span style="width: 6rem; display: inline-block;">Media</span><span>{{ calcEmoji(counts.supporting_media / pageReviewsData.length) }}</span>
+      </div>
+    </div> 
   `);
   if (courseReviewData) {
     let APP = new Vue({
@@ -283,6 +308,7 @@ async function generateDetailedContent(
         return {
           objectivesData: objectivesData,
           objectivesCounts: objectivesCounts,
+          pageReviewsData: pageReviewsData,
           assignmentReviewsData: assignmentReviewsData,
           quizReviewsData: quizReviewsData,
           externalContentCounts: externalContentCounts,
@@ -295,12 +321,12 @@ async function generateDetailedContent(
     // containerEl.append(generateRelevantObjectivesEl());
     // containerEl.append(generateObjectivesEl(objectivesData, objectivesCounts, assignmentReviewsData.length + quizReviewsData.length));
     // containerEl.append(generateExternalContentEl(externalContentCounts, totalContentCounts));
-    containerEl.append(generateBloomsEl());
+    // containerEl.append(generateBloomsEl());
     genBloomsChart(bloomsCounts);
     containerEl.append(generateDetailedAssignmentReviewEl(assignmentCounts, assignmentReviewsData.length));
     containerEl.append(generateDetailedQuizReviewEl(quizCounts, quizReviewsData.length));
     // containerEl.append(generateDetailedQuizReviewEl(quizReviewsData, quizQuestionCounts));
-    containerEl.append(generateDetailedPageReviewEl(pageCounts, pageReviewsData.length));
+    // containerEl.append(generateDetailedPageReviewEl(pageCounts, pageReviewsData.length));
     // containerEl.append(generateDetailedRubricReviewEl(rubricReviewsData, rubricCounts));
     // containerEl.append(generateTopicTagsEl(courseReviewData));
     // containerEl.append(generateRelatedAssignmentsEl());
