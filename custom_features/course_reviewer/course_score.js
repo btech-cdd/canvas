@@ -101,6 +101,12 @@
       console.log(err);
     }
 
+    try {
+      rubricReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/rubrics`);
+    } catch (err) {
+      console.log(err);
+    }
+
     $("span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
       if (el.html() == `🚫`) externalContentCounts += 1;
