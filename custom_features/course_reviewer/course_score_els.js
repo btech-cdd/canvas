@@ -1,137 +1,4 @@
-function generateDetailedPageReviewEl(counts, num) {
-  let emojiClarity = calcEmoji(counts.clarity / (num * 2));
-  let emojiChunkedContent = calcEmoji(counts.chunked_content / num);
-  let emojiIncludesOutcomes = calcEmoji(counts.includes_outcomes / num);
-  let emojiCareerRelevance = calcEmoji(counts.career_relevance / num);
-  let emojiSupportingMedia = calcEmoji(counts.supporting_media / num);
-  let el = $(`
-    <div style="padding: 8px 0;">
-      <h2>Pages</h2>
-      <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-        <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emojiClarity }</span>
-      </div>
-      <div title="Content is chunked with headers, call out boxes, lists, etc.">
-        <span style="width: 6rem; display: inline-block;">Chunking</span><span>${ emojiChunkedContent }</span>
-      </div>
-      <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-        <span style="width: 6rem; display: inline-block;">Outcomes</span><span>${ emojiIncludesOutcomes }</span>
-      </div>
-      <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-        <span style="width: 6rem; display: inline-block;">Industry</span><span>${ emojiCareerRelevance }</span>
-      </div>
-      <div title="The assignment explicitly states how this students will receive documented feedback.">
-        <span style="width: 6rem; display: inline-block;">Media</span><span>${ emojiSupportingMedia }</span>
-      </div>
-    </div> 
-    `);
-  return el;
-}
-function generateDetailedQuizReviewEl(counts, num) {
-  let emojiClarity = calcEmoji(counts.clarity / (num * 2));
-  let emojiChunkedContent = calcEmoji(counts.chunked_content / num);
-  let emojiIncludesOutcomes = calcEmoji(counts.includes_outcomes / num);
-  let emojiCareerRelevance = calcEmoji(counts.career_relevance / num);
-  let emojiProvidesFeedback = calcEmoji(counts.provides_feedback / num);
-  let emojiInstructions = calcEmoji(counts.instructions / num);
-  let emojiPreparation = calcEmoji(counts.preparation / num);
-  let el = $(`
-    <div style="padding: 8px 0;">
-      <h2>Quizzes</h2>
-      <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-        <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emojiClarity }</span>
-      </div>
-      <div title="Content is chunked with headers, call out boxes, lists, etc.">
-        <span style="width: 6rem; display: inline-block;">Chunking</span><span>${ emojiChunkedContent }</span>
-      </div>
-      <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-        <span style="width: 6rem; display: inline-block;">Outcomes</span><span>${ emojiIncludesOutcomes }</span>
-      </div>
-      <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-        <span style="width: 6rem; display: inline-block;">Industry</span><span>${ emojiCareerRelevance }</span>
-      </div>
-      <div title="The assignment explicitly states how this students will receive documented feedback.">
-        <span style="width: 6rem; display: inline-block;">Feedback</span><span>${ emojiProvidesFeedback }</span>
-      </div>
-      <div title="The assignment explicitly states how this students will receive documented feedback.">
-        <span style="width: 6rem; display: inline-block;">Instructions</span><span>${ emojiInstructions }</span>
-      </div>
-      <div title="The assignment explicitly states how this students will receive documented feedback.">
-        <span style="width: 6rem; display: inline-block;">Preparation</span><span>${ emojiPreparation }</span>
-      </div>
-    </div> 
-    `);
-  return el;
-}
 
-function generateDetailedAssignmentReviewEl(counts, num) {
-  let emojiClarity = calcEmoji(counts.clarity / (num * 2));
-  let emojiChunkedContent = calcEmoji(counts.chunked_content / num);
-  let emojiIncludesOutcomes = calcEmoji(counts.includes_outcomes / num);
-  let emojiCareerRelevance = calcEmoji(counts.career_relevance / num);
-  let emojiProvidesFeedback = calcEmoji(counts.provides_feedback / num);
-  let emojiModeling = calcEmoji(counts.modeling / num);
-  let el = $(`
-    <div style="padding: 8px 0;">
-      <h2>Assignments</h2>
-      <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-        <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ emojiClarity }</span>
-      </div>
-      <div title="Content is chunked with headers, call out boxes, lists, etc.">
-        <span style="width: 6rem; display: inline-block;">Chunking</span><span>${ emojiChunkedContent }</span>
-      </div>
-      <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-        <span style="width: 6rem; display: inline-block;">Outcomes</span><span>${ emojiIncludesOutcomes }</span>
-      </div>
-      <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-        <span style="width: 6rem; display: inline-block;">Industry</span><span>${ emojiCareerRelevance }</span>
-      </div>
-      <div title="The assignment explicitly states how this students will receive documented feedback.">
-        <span style="width: 6rem; display: inline-block;">Feedback</span><span>${ emojiProvidesFeedback }</span>
-      </div>
-      <div title="The assignment explicitly states how this students will receive documented feedback.">
-        <span style="width: 6rem; display: inline-block;">Modeling</span><span>${ emojiModeling }</span>
-      </div>
-    </div> 
-    `);
-  return el;
-}
-
-function generateObjectivesEl(objectivesData, objectivesCounts, num) {
-  let el = $(`
-    <div>
-      <h2>Objectives</h2>
-    </div>
-  `);
-  for (let o in objectivesData) {
-    let objective = objectivesData[o];
-    let usage = Math.round((objectivesCounts[objective.objective_id] / (num)) * 1000) / 10;
-    let topicEl = $(`<div><span style="display: inline-block; width: 4rem;">${isNaN(usage) ? 0 : usage}%</span><span>${objective.objective_text.trim()}</span></div>`);
-    el.append(topicEl);
-  }
-
-  // I think it's worth including even if there are 0% with no objectives
-  // if (objectivesCounts['n/a'] > 0) {
-
-  // }
-  let noObjectives = Math.round((objectivesCounts['n/a'] / num) * 1000) / 10;
-  let noObjectivesEl = $(`
-    <div><span style="display: inline-block; width: 4rem; margin-top: 1rem;">${noObjectives}%</span><span><i>No Objectives</i></span></div>
-  `);
-  el.append(noObjectivesEl)
-  return el
-}
-function generateBloomsEl() {
-  let el = $(`
-    <div>
-      <h2>Blooms</h2>
-      <div style="display: flex; align-items: center;" class="blooms-chart-container">
-      <svg style="width: 150px; height: 150px; margin-right: 20px;" class="blooms-chart"></svg>
-      <div style="display: flex; flex-direction: column; justify-content: center;" class="blooms-chart-key"></div>
-      </div>
-    </div>
-  `);
-  return el
-}
 function generateTopicTagsEl(courseReviewData) {
   let el = $(`
     <div>
@@ -278,60 +145,60 @@ async function generateDetailedContent(
       <div style="padding: 8px 0;">
         <h2>Assignments</h2>
         <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-          <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ calcEmoji(assignmentCounts.clarity / (assignmentReviewsData.length * 2)) }</span>
+          <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(assignmentCounts.clarity / (assignmentReviewsData.length * 2)) }}</span>
         </div>
         <div title="Content is chunked with headers, call out boxes, lists, etc.">
-          <span style="width: 6rem; display: inline-block;">Chunking</span><span>${ calcEmoji(assignmentCounts.chunked_content / assignmentReviewsData.length) }</span>
+          <span style="width: 6rem; display: inline-block;">Chunking</span><span>{{ calcEmoji(assignmentCounts.chunked_content / assignmentReviewsData.length) }}</span>
         </div>
         <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-          <span style="width: 6rem; display: inline-block;">Outcomes</span><span>${ calcEmoji(assignmentCounts.includes_outcomes / assignmentReviewsData.length) }</span>
+          <span style="width: 6rem; display: inline-block;">Outcomes</span><span>{{ calcEmoji(assignmentCounts.includes_outcomes / assignmentReviewsData.length) }}</span>
         </div>
         <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-          <span style="width: 6rem; display: inline-block;">Industry</span><span>${ calcEmoji(assignmentCounts.career_relevance / assignmentReviewsData.length) }</span>
+          <span style="width: 6rem; display: inline-block;">Industry</span><span>{{ calcEmoji(assignmentCounts.career_relevance / assignmentReviewsData.length) }}</span>
         </div>
-        <div title="The assignment explicitly states how this students will receive documented feedback.">
-          <span style="width: 6rem; display: inline-block;">Feedback</span><span>${ calcEmoji(assignmentCounts.provides_feedback / assignmentReviewsData.length) }</span>
+        <div title="The assignment explicitly states how students will receive documented feedback.">
+          <span style="width: 6rem; display: inline-block;">Feedback</span><span>{{ calcEmoji(assignmentCounts.provides_feedback / assignmentReviewsData.length) }}</span>
         </div>
-        <div title="The assignment explicitly states how this students will receive documented feedback.">
-          <span style="width: 6rem; display: inline-block;">Modeling</span><span>${ calcEmoji(assignmentCounts.modeling / assignmentReviewsData.length) }</span>
+        <div title="The assignment models for students what a well done completed product looks like. This may be done through video, graphics, uploaded files, etc.">
+          <span style="width: 6rem; display: inline-block;">Modeling</span><span>{{ calcEmoji(assignmentCounts.modeling / assignmentReviewsData.length) }}</span>
         </div>
       </div>
       <div style="padding: 8px 0;">
         <h2>Quizzes</h2>
-        <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-          <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ calcEmoji(quizCounts.clarity / (quizReviewsData.length * 2)) }</span>
+        <div title="Content is written clearly and without lots of extraneous information.">
+          <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(quizCounts.clarity / (quizReviewsData.length * 2)) }}</span>
         </div>
         <div title="Content is chunked with headers, call out boxes, lists, etc.">
-          <span style="width: 6rem; display: inline-block;">Chunking</span><span>${ calcEmoji(quizCounts.chunked_content / quizReviewsData.length) }</span>
+          <span style="width: 6rem; display: inline-block;">Chunking</span><span>{{ calcEmoji(quizCounts.chunked_content / quizReviewsData.length) }}</span>
         </div>
-        <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-          <span style="width: 6rem; display: inline-block;">Outcomes</span><span>${ calcEmoji(quizCounts.includes_outcomes / quizReviewsData.length) }</span>
+        <div title="The purpose of this quiz is clearly stated through its intended learning outcomes.">
+          <span style="width: 6rem; display: inline-block;">Outcomes</span><span>{{ calcEmoji(quizCounts.includes_outcomes / quizReviewsData.length) }}</span>
         </div>
-        <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-          <span style="width: 6rem; display: inline-block;">Industry</span><span>${ calcEmoji(quizCounts.career_relevance / quizReviewsData.length) }</span>
+        <div title="The quiz explicitly states how this quiz is relevant to what students will do in industry.">
+          <span style="width: 6rem; display: inline-block;">Industry</span><span>{{ calcEmoji(quizCounts.career_relevance / quizReviewsData.length) }}</span>
         </div>
-        <div title="The assignment explicitly states how this students will receive documented feedback.">
-          <span style="width: 6rem; display: inline-block;">Instructions</span><span>${ calcEmoji(quizCounts.instructions / quizReviewsData.length) }</span>
+        <div title="The quiz gives instructions on what to expect in the quiz (e.g. which chapters are covered, what types of questions, how long to set aside, where the test will be held).">
+          <span style="width: 6rem; display: inline-block;">Instructions</span><span>{{ calcEmoji(quizCounts.instructions / quizReviewsData.length) }}</span>
         </div>
-        <div title="The assignment explicitly states how this students will receive documented feedback.">
-          <span style="width: 6rem; display: inline-block;">Preparation</span><span>${ calcEmoji(quizCounts.preparation / quizReviewsData.length) }</span>
+        <div title="The quiz gives guidance on how students should prepare before taking the quiz.">
+          <span style="width: 6rem; display: inline-block;">Preparation</span><span>{{ calcEmoji(quizCounts.preparation / quizReviewsData.length) }}</span>
         </div>
       </div>
       <div style="padding: 8px 0;">
         <h2>Pages</h2>
-        <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
+        <div title="Content is written clearly without lots of extraneous information.">
           <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(pageCounts.clarity / (pageReviewsData.length * 2)) }}</span>
         </div>
         <div title="Content is chunked with headers, call out boxes, lists, etc.">
           <span style="width: 6rem; display: inline-block;">Chunking</span><span>{{ calcEmoji(pageCounts.chunked_content / pageReviewsData.length) }}</span>
         </div>
-        <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
+        <div title="The purpose of this page is clearly stated through its intended learning outcomes.">
           <span style="width: 6rem; display: inline-block;">Outcomes</span><span>{{ calcEmoji(pageCounts.includes_outcomes / pageReviewsData.length) }}</span>
         </div>
-        <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
+        <div title="The page explicitly states how this content is relevant to what students will do in industry.">
           <span style="width: 6rem; display: inline-block;">Industry</span><span>{{ calcEmoji(pageCounts.career_relevance / pageReviewsData.length) }}</span>
         </div>
-        <div title="The assignment explicitly states how this students will receive documented feedback.">
+        <div title="The page includes supporting media such as graphics, videos, or uploaded documents.">
           <span style="width: 6rem; display: inline-block;">Media</span><span>{{ calcEmoji(pageCounts.supporting_media / pageReviewsData.length) }}</span>
         </div>
       </div> 
@@ -381,17 +248,7 @@ async function generateDetailedContent(
         }
       }
     });
-    // containerEl.append(generateRelevantObjectivesEl());
-    // containerEl.append(generateObjectivesEl(objectivesData, objectivesCounts, assignmentReviewsData.length + quizReviewsData.length));
-    // containerEl.append(generateExternalContentEl(externalContentCounts, totalContentCounts));
-    // containerEl.append(generateBloomsEl());
     genBloomsChart(bloomsCounts);
-    // containerEl.append(generateDetailedAssignmentReviewEl(assignmentCounts, assignmentReviewsData.length));
     containerEl.append(generateDetailedQuizReviewEl(quizCounts, quizReviewsData.length));
-    // containerEl.append(generateDetailedQuizReviewEl(quizReviewsData, quizQuestionCounts));
-    // containerEl.append(generateDetailedPageReviewEl(pageCounts, pageReviewsData.length));
-    // containerEl.append(generateDetailedRubricReviewEl(rubricReviewsData, rubricCounts));
-    // containerEl.append(generateTopicTagsEl(courseReviewData));
-    // containerEl.append(generateRelatedAssignmentsEl());
   }
 }
