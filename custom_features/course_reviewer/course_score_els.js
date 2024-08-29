@@ -249,6 +249,5 @@ async function generateDetailedContent(
       }
     });
     genBloomsChart(bloomsCounts);
-    containerEl.append(generateDetailedQuizReviewEl(quizCounts, quizReviewsData.length));
   }
 }
