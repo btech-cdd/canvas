@@ -245,6 +245,8 @@ async function generateDetailedContent(
           pageCounts: pageCounts,
           assignmentReviewsData: assignmentReviewsData,
           assignmentCounts: assignmentCounts,
+          rubricReviewsData: rubricReviewsData,
+          rubricCounts: rubricCounts,
           quizReviewsData: quizReviewsData,
           quizCounts: quizCounts,
           externalContentCounts: externalContentCounts,
