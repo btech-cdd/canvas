@@ -206,7 +206,7 @@
         $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html('🚫');
       } else if (emoji?.[assignmentScore]) {
         $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html(
-          `<div class="btech-course-reviewer-assignment-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[assignmentScore]}</div><divclass="btech-course-reviewer-assignment-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`
+          `<div class="btech-course-reviewer-assignment-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[assignmentScore]}</div><div class="btech-course-reviewer-assignment-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`
         );
         if (!assignment.rubric) {
           $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score .btech-course-reviewer-assignment-score-right`).html(
