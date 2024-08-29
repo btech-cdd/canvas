@@ -210,10 +210,11 @@
     }
 
     rubricCounts = calcCourseRubricCounts(rubricReviewsData);
-    // for (let r in rubricReviewsData) {
-    //   let rubric = rubricReviewsData[r];
-    //   let rubricScore = calcRubricScore(rubric);
-    // }
+    for (let r in rubricReviewsData) {
+      let rubric = rubricReviewsData[r];
+      let rubricScore = calcRubricScore(rubric);
+      console.log(rubric);
+    }
 
     return true;
   }
