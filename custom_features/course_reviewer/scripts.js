@@ -151,10 +151,10 @@ function calcRubricScore(rubric) {
   if (rubric) {
     rubricScore = Math.floor(
       ((
-        (rubric.criteria - 1)
-        + (rubric.granularity - 1)
-        + (rubric.grading_levels - 1)
-        + (rubric.writing_quality - 1)
+        (rubric.criteria)
+        + (rubric.granularity)
+        + (rubric.grading_levels)
+        + (rubric.writing_quality)
       ) / 4) 
     );
     if (rubricScore > 2) rubricScore = 2;
