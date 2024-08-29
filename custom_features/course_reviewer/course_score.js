@@ -322,15 +322,15 @@
 
   await refreshData();
   $(document).ready(async function() {
-    let progressCounts = await checkReviewProgress(pageCounts, quizCounts, assignmentCounts);
+    let progressCounts = await checkReviewProgress(pageCounts, quizCounts, assignmentCounts, rubricCounts);
     addButton(detailedReportButton);
     if (progressCounts.remaining == 0) {
-      let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts);
+      let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts, rubricCounts);
       let emoji = calcEmoji(courseScore);
       detailedReportButton.html(emoji);
     } else {
       updateReviewProgress(progressCounts);
     }
-    initReviewProgressInterval(pageCounts, quizCounts, assignmentCounts);
+    initReviewProgressInterval(pageCounts, quizCounts, assignmentCounts, rubricCounts);
   })
 })();

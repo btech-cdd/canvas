@@ -72,7 +72,7 @@ function updateReviewProgress(data) {
   return svg;
 }
 
-async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts) {
+async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts, rubricCounts) {
   let reviewerProgressData = { processed: 0, remaining: 0};
   try {
     let course = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
@@ -93,10 +93,10 @@ async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts) {
   }
   return reviewerProgressData;
 }
-async function initReviewProgressInterval(pageCounts, quizCounts, assignmentCounts) {
+async function initReviewProgressInterval(pageCounts, quizCounts, assignmentCounts, rubricCounts) {
   // Run the updateProgress function every 10 seconds
   let intervalId = setInterval(function () {
-    checkReviewProgress(pageCounts, quizCounts, assignmentCounts)
+    checkReviewProgress(pageCounts, quizCounts, assignmentCounts, rubricCounts)
   }, 10000);
 }
 
@@ -261,7 +261,7 @@ async function generateDetailedContent(
       
           updateReviewProgress({processed: 0, remaining: 1});
           await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/evaluate_content`, {course_code: courseCode, year: year}, 'POST');
-          checkReviewProgress();
+          checkReviewProgress(pageCounts, quizCounts, assignmentCounts, rubricCounts);
         }
       }
     });
