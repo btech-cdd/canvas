@@ -307,9 +307,10 @@ async function generateDetailedContent(
       mounted: async function () {
         let num = this.assignmentReviewsData.length + this.quizReviewsData.length;
         for (let o in this.objectivesData) {
-          let objective = objectivesData[o];
+          let objective = this.objectivesData[o];
           let usage = Math.round((this.objectivesCounts[objective.objective_id] / (num)) * 1000) / 10;
           this.objectivesData[o].usage = usage;
+          console.log(this.objectivesData[o]);
         }
       },
       data: function () {
