@@ -128,7 +128,7 @@
       data.ignore = !data.ignore;
       let el = $(this);
       el.html(data.ignore ? '🚫' : emoji?.[averageScore] ?? '');
-      ignoreItem(ENV.COURSE_ID, 'quizzes', data.id, data.ignore)
+      ignoreItem(ENV.COURSE_ID, 'quizzes', data.quiz_id, data.ignore)
       console.log(data.ignore);
     });
     console.log(scoreIcon);
