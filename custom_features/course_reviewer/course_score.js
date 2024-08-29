@@ -208,6 +208,7 @@
         $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html(
           `<div class="btech-course-reviewer-assignment-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[assignmentScore]}</div>`
         );
+        console.log(assignment.rubric);
       }
     }
 
