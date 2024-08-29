@@ -263,6 +263,10 @@ async function generateDetailedContent(
       </div>
       <div><span style="display: inline-block; width: 4rem; margin-top: 1rem;">{{Math.round((objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10}}</span><span><i>No Objectives</i></span></div>
     </div>
+    <div>
+      <h2>Contracted Courseware</h2>
+      <div>3rd Party Items: {{externalContentCounts}} Item(s) ({{Math.round((externalContentCounts / contentCounts) * 1000) / 10}%})</div>
+    </div>
   `);
   if (courseReviewData) {
     let APP = new Vue({
@@ -280,7 +284,9 @@ async function generateDetailedContent(
           objectivesData: objectivesData,
           objectivesCounts: objectivesCounts,
           assignmentReviewsData: assignmentReviewsData,
-          quizReviewsData: quizReviewsData
+          quizReviewsData: quizReviewsData,
+          externalContentCounts: externalContentCounts,
+          totalContentCounts: totalContentCounts
         }
       },
       methods: {
@@ -288,7 +294,7 @@ async function generateDetailedContent(
     });
     // containerEl.append(generateRelevantObjectivesEl());
     // containerEl.append(generateObjectivesEl(objectivesData, objectivesCounts, assignmentReviewsData.length + quizReviewsData.length));
-    containerEl.append(generateExternalContentEl(externalContentCounts, totalContentCounts));
+    // containerEl.append(generateExternalContentEl(externalContentCounts, totalContentCounts));
     containerEl.append(generateBloomsEl());
     genBloomsChart(bloomsCounts);
     containerEl.append(generateDetailedAssignmentReviewEl(assignmentCounts, assignmentReviewsData.length));
