@@ -203,6 +203,12 @@
       }
     }
 
+    rubricCounts = calcCourseRubricCounts(rubricReviewsData);
+    // for (let r in rubricReviewsData) {
+    //   let rubric = rubricReviewsData[r];
+    //   let rubricScore = calcRubricScore(rubric);
+    // }
+
     return true;
   }
 
