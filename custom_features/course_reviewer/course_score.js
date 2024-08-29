@@ -217,7 +217,7 @@
       let rubricScore = calcRubricScore(rubric);
       if ($(`.Assignment_${rubric.assignment_id} span.ig-btech-evaluation-score`).find('.btech-course-reviewer-assignment-score-left').length > 0) {
         $(`.Assignment_${rubric.assignment_id} span.ig-btech-evaluation-score`).append(
-          `<div class="btech-course-reviewer-assignment-score-left" style="position: absolute; clip-path: inset(0 0 0 50%);">
+          `<div class="btech-course-reviewer-assignment-score-left" style="clip-path: inset(0 0 0 50%);">
             ${emoji?.[rubricScore]}
           </div>`
         );
