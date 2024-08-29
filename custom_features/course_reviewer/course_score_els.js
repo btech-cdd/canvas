@@ -261,14 +261,14 @@ async function generateDetailedContent(
       <div v-for="objective in objectivesData">
         <span style="display: inline-block; width: 4rem;">{{isNaN(objective.usage) ? 0 : objective.usage}}%</span><span>{{objective.objective_text.trim()}}</span>
       </div>
-      <div><span style="display: inline-block; width: 4rem; margin-top: 1rem;">{{Math.round((objectivesCounts['n/a'] / num) * 1000) / 10}}</span><span><i>No Objectives</i></span></div>
+      <div><span style="display: inline-block; width: 4rem; margin-top: 1rem;">{{Math.round((objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10}}</span><span><i>No Objectives</i></span></div>
     </div>
   `);
   if (courseReviewData) {
     let APP = new Vue({
       el: '#btech-course-status-vue',
       mounted: async function () {
-
+        let num = this.assignmentReviewsData.length + this.quizReviewsData.length;
         for (let o in this.objectivesData) {
           let objective = objectivesData[o];
           let usage = Math.round((objectivesCounts[objective.objective_id] / (num)) * 1000) / 10;
@@ -279,7 +279,9 @@ async function generateDetailedContent(
       },
       data: function () {
         return {
-          objectivesData: objectivesData
+          objectivesData: objectivesData,
+          assignmentReviewsData: assignmentReviewsData,
+          quizReviewsData: quizReviewsData
         }
       },
       methods: {
