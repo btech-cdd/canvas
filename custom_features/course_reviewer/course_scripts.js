@@ -6,10 +6,11 @@ function calcCourseAssignmentCounts(assignmentReviews) {
     provides_feedback: 0,
     modeling: 0,
     clarity: 0,
-    num_reviews: assignmentReviews.length,
+    num_reviews: 0,
   };
   for (let a in assignmentReviews) {
     let assignment = assignmentReviews[a];
+    if (assignment.ignore) continue;
 
     // other scores
     if (assignment.includes_outcomes !== undefined) counts.includes_outcomes += assignment.includes_outcomes ? 1 : 0;
@@ -18,6 +19,7 @@ function calcCourseAssignmentCounts(assignmentReviews) {
     if (assignment.provides_feedback !== undefined) counts.provides_feedback += assignment.provides_feedback? 1 : 0;
     if (assignment.modeling !== undefined) counts.modeling += assignment.modeling ? 1 : 0;
     if (assignment.clarity !== undefined) counts.clarity += assignment.clarity;
+    counts.num_reviews += 1;
   }
   return counts;
 }
@@ -40,16 +42,18 @@ function calcCoursePageCounts(pageReviews) {
     career_relevance: 0,
     supporting_media: 0,
     clarity: 0,
-    num_reviews: pageReviews.length
+    num_reviews: 0 
   }
   for (let o in pageReviews) {
     let page = pageReviews[o];
+    if (page.ignore) continue;
     // other scores
     if (page.includes_outcomes !== undefined) counts.includes_outcomes += page.includes_outcomes ? 1 : 0;
     if (page.chunked_content !== undefined) counts.chunked_content += page.chunked_content ? 1 : 0;
     if (page.career_relevance !== undefined) counts.career_relevance += page.career_relevance? 1 : 0;
     if (page.supporting_media!== undefined) counts.supporting_media += page.supporting_media? 1 : 0;
     if (page.clarity !== undefined) counts.clarity += page.clarity;
+    counts.num_reviews += 1;
   }
   return counts;
 }
@@ -72,11 +76,11 @@ function calcCourseQuizCounts(quizReviews) {
     career_relevance: 0,
     instructions: 0,
     preparation: 0,
-    num_reviews: quizReviews.length,
+    num_reviews: 0,
   };
   for (let q in quizReviews) {
     let quiz = quizReviews[q];
-
+    if (quiz.ignore) continue;
 
     // // other scores
     if (quiz.includes_outcomes !== undefined) counts.includes_outcomes += quiz.includes_outcomes ? 1 : 0;
@@ -85,6 +89,7 @@ function calcCourseQuizCounts(quizReviews) {
     if (quiz.instructions !== undefined) counts.instructions += quiz.instructions ? 1 : 0;
     if (quiz.preparation !== undefined) counts.preparation += quiz.preparation ? 1 : 0;
     if (quiz.clarity !== undefined) counts.clarity += quiz.clarity;
+    counts.num_reviews += 1;
   }
   return counts;
 }

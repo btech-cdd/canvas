@@ -158,7 +158,9 @@
       let page = pageReviewsData[o];
 
       let pageScore = calcPageScore(page);
-      if (emoji?.[pageScore]) {
+      if (page.ignore) {
+        $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`).html('🚫');
+      } else if (emoji?.[pageScore]) {
         $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`).html(emoji?.[pageScore]);
       }
     }
@@ -175,6 +177,9 @@
 
       let quizScore = calcQuizScore(quiz);
 
+      if (quiz.ignore) {
+        $(`.Quiz_${quiz.quiz_id} span.ig-btech-evaluation-score`).html('🚫');
+      } else
       if (emoji?.[quizScore]) {
         $(`.Quiz_${quiz.quiz_id} span.ig-btech-evaluation-score`).html(emoji?.[quizScore]);
       }
@@ -191,7 +196,9 @@
       }
 
       let assignmentScore = calcAssignmentScore(assignment);
-      if (emoji?.[assignmentScore]) {
+      if (assignment.ignore) {
+        $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html(emoji?.[assignmentScore]);
+      } else if (emoji?.[assignmentScore]) {
         $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html(emoji?.[assignmentScore]);
       }
     }
