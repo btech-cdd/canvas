@@ -292,6 +292,14 @@ async function generateDetailedContent(
         <span style="width: 6rem; display: inline-block;">Media</span><span>{{ calcEmoji(counts.supporting_media / pageReviewsData.length) }}</span>
       </div>
     </div> 
+    <div>
+    </div>
+    <div>
+    </div>
+
+    <div v-if="!d3.select('.btech-reviewer-progress-circle').node()">
+      <button @click="reevaluate">Score All Items</button>
+    </div>
   `);
   if (courseReviewData) {
     let APP = new Vue({
@@ -316,6 +324,15 @@ async function generateDetailedContent(
         }
       },
       methods: {
+        async reevaluate() {
+          let modal = $('body .btech-modal');
+          modal.remove();
+          $("#btech-detailed-evaluation-button").empty();
+      
+          updateReviewProgress({processed: 0, remaining: 1});
+          await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/evaluate_content`, {course_code: courseCode, year: year}, 'POST');
+          checkReviewProgress();
+        }
       }
     });
     // containerEl.append(generateRelevantObjectivesEl());
@@ -330,25 +347,5 @@ async function generateDetailedContent(
     // containerEl.append(generateDetailedRubricReviewEl(rubricReviewsData, rubricCounts));
     // containerEl.append(generateTopicTagsEl(courseReviewData));
     // containerEl.append(generateRelatedAssignmentsEl());
-  }
-
-  if (!d3.select('.btech-reviewer-progress-circle').node()) {
-    let reevaluateButtonContainer= $("<div></div>");
-    let reevaluateButton = $("<button>Score All Items</button>");
-    reevaluateButtonContainer.append(reevaluateButton);
-    containerEl.append(reevaluateButtonContainer);
-    containerEl.append('<div>Put on the kettle and throw on a movie because this will take a while.</div>')
-
-    reevaluateButton.click(async function() {
-      let modal = $('body .btech-modal');
-      modal.remove();
-      $("#btech-detailed-evaluation-button").empty();
-   
-      updateReviewProgress({processed: 0, remaining: 1});
-      await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/evaluate_content`, {course_code: courseCode, year: year}, 'POST');
-      checkReviewProgress();
-
-      generateDetailedContent(containerEl);
-    });
   }
 }
