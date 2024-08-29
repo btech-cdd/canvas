@@ -122,7 +122,10 @@
         </div>
       </div> 
       `);
-    let scoreIcon = el.find('#btech-course-reviewer-item-score');
+    let scoreIcon = $(el.find('#btech-course-reviewer-item-score'));
+    scoreIcon.click(() => {
+      console.log(data.ignore);
+    });
     console.log(scoreIcon);
     return el;
   }
