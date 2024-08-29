@@ -266,7 +266,7 @@ async function generateDetailedContent(
   `);
   if (courseReviewData) {
     let APP = new Vue({
-      el: '#btech-course-status-vue',
+      el: '#btech-course-reviewer-detailed-report',
       mounted: async function () {
         let num = this.assignmentReviewsData.length + this.quizReviewsData.length;
         for (let o in this.objectivesData) {
