@@ -35,6 +35,43 @@ function calcCourseAssignmentScore(counts) {
   return total;
 }
 
+function calcCourseRubricCounts(assignmentReviews) {
+  let counts = {
+    includes_outcomes: 0,
+    chunked_content: 0,
+    career_relevance: 0,
+    provides_feedback: 0,
+    modeling: 0,
+    clarity: 0,
+    num_reviews: 0,
+  };
+  for (let a in assignmentReviews) {
+    let assignment = assignmentReviews[a];
+    if (assignment.ignore) continue;
+
+    // other scores
+    if (assignment.includes_outcomes !== undefined) counts.includes_outcomes += assignment.includes_outcomes ? 1 : 0;
+    if (assignment.chunked_content !== undefined) counts.chunked_content += assignment.chunked_content ? 1 : 0;
+    if (assignment.career_relevance !== undefined) counts.career_relevance += assignment.career_relevance? 1 : 0;
+    if (assignment.provides_feedback !== undefined) counts.provides_feedback += assignment.provides_feedback? 1 : 0;
+    if (assignment.modeling !== undefined) counts.modeling += assignment.modeling ? 1 : 0;
+    if (assignment.clarity !== undefined) counts.clarity += assignment.clarity;
+    counts.num_reviews += 1;
+  }
+  return counts;
+}
+
+function calcCourseRubricScore(counts) {
+  let total = counts.clarity 
+    + counts.chunked_content 
+    + counts.includes_outcomes 
+    + counts.career_relevance 
+    + counts.provides_feedback 
+    + counts.modeling;
+  total /= (7 * counts.num_reviews);
+  return total;
+}
+
 function calcCoursePageCounts(pageReviews) {
   let counts = {
     includes_outcomes: 0,

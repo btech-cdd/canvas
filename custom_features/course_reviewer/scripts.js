@@ -146,6 +146,22 @@ function calcAssignmentScore(assignment) {
     return assignmentScore;
 }
 
+function calcRubricScore(rubric) {
+  let rubricScore = 0;
+  if (rubric) {
+    rubricScore = Math.floor(
+      ((
+        (rubric.criteria - 1)
+        + (rubric.granularity - 1)
+        + (rubric.grading_levels - 1)
+        + (rubric.writing_quality - 1)
+      ) / 4) 
+    );
+    if (rubricScore > 2) rubricScore = 2;
+  }
+  return rubricScore;
+}
+
 function calcPageScore(page) {
     let pageScore = Math.floor(((
         (page.clarity) // 0-2

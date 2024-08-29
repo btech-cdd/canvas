@@ -234,18 +234,7 @@
     let data = assignmentReviewData;
     let averageScore = calcAssignmentScore(data);
 
-    let rubricScore = undefined;
-    if (rubricReviewData) {
-      rubricScore = Math.floor(
-        ((
-          (rubricReviewData.criteria - 1)
-          + (rubricReviewData.granularity - 1)
-          + (rubricReviewData.grading_levels - 1)
-          + (rubricReviewData.writing_quality - 1)
-        ) / 4) 
-      );
-      if (rubricScore > 2) rubricScore = 2;
-    }
+    let rubricScore = calcRubricScore(rubricReviewData);
     let el = $(`
       <div style="padding: 8px 0;">
         <div title="The bloom's taxonomy level of this assignment." style="margin-bottom: 0.5rem; text-align: center;">
