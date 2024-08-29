@@ -221,6 +221,7 @@
     for (let r in rubricReviewsData) {
       let rubric = rubricReviewsData[r];
       let rubricScore = calcRubricScore(rubric);
+      console.log($(`.Assignment_${rubric.assignment_id} span.ig-btech-evaluation-score .btech-course-reviewer-assignment-score-right`).html());
       if ($(`.Assignment_${rubric.assignment_id} span.ig-btech-evaluation-score .btech-course-reviewer-assignment-score-right`).html() != '🚫') {
         $(`.Assignment_${rubric.assignment_id} span.ig-btech-evaluation-score .btech-course-reviewer-assignment-score-right`).html(
             `${emoji?.[rubricScore]}`
