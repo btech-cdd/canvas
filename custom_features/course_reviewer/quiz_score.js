@@ -106,11 +106,11 @@
     let el = $(`
       <div style="padding: 8px 0;">
         <div title="The bloom's taxonomy level of this assignment." style="margin-bottom: 0.5rem; text-align: center;">
-          <span style="background-color: ${bloomsColors?.[quizReviewData?.blooms?.toLowerCase()]}; color: #000000; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${quizReviewData.blooms}</span>
+          <span style="background-color: ${bloomsColors?.[data?.blooms?.toLowerCase()]}; color: #000000; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${quizReviewData.blooms}</span>
         </div>
         <div title="Average score for Quiz review.">
           <h2>Quiz Quality</h2>
-          <div id="btech-course-reviewer-item-score" style="text-align: center;"><span style="font-size: 2rem;">${ emoji?.[averageScore] ?? ''}</span></div>
+          <div style="text-align: center;"><span id="btech-course-reviewer-item-score" style="font-size: 2rem;">${ data.ignore ? '🚫' : emoji?.[averageScore] ?? ''}</span></div>
         </div>
         <div title="Average score for Quiz Questions review.">
           <h2>Quiz Question Quality</h2>
@@ -124,6 +124,10 @@
       `);
     let scoreIcon = $(el.find('#btech-course-reviewer-item-score'));
     scoreIcon.click(() => {
+      data.ignore = !data.ignore;
+      let el = $(this);
+      el.html(data.ignore ? '🚫' : emoji?.[averageScore] ?? '');
+      ignoreItem(ENV.COURSE_ID, 'quizzes', data.id, data.ignore)
       console.log(data.ignore);
     });
     console.log(scoreIcon);
