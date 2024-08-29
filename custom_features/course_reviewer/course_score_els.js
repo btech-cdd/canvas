@@ -273,8 +273,6 @@ async function generateDetailedContent(
           let objective = objectivesData[o];
           let usage = Math.round((objectivesCounts[objective.objective_id] / (num)) * 1000) / 10;
           this.objectivesData.usage = usage;
-          let topicEl = $(`<div></div>`);
-          el.append(topicEl);
         }
       },
       data: function () {
