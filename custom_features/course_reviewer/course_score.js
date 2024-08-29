@@ -203,7 +203,9 @@
 
       let assignmentScore = calcAssignmentScore(assignment);
       if (assignment.ignore) {
-        $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html(emoji?.[assignmentScore]);
+        $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html(
+          `<div class="btech-course-reviewer-assignment-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[assignmentScore]}</div>`
+        );
       } else if (emoji?.[assignmentScore]) {
         $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html(emoji?.[assignmentScore]);
       }
@@ -213,6 +215,13 @@
     for (let r in rubricReviewsData) {
       let rubric = rubricReviewsData[r];
       let rubricScore = calcRubricScore(rubric);
+      if ($(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).find('.btech-course-reviewer-assignment-score-left')) {
+        $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).append(
+          `<div class="btech-course-reviewer-assignment-score-left" style="position: absolute; clip-path: inset(0 0 0 50%);">
+            ${emoji?.[rubricScore]}
+          </div>`
+        );
+      }
       console.log(rubric);
     }
 
