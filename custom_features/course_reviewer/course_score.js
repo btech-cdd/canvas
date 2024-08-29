@@ -208,13 +208,6 @@
         $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html(
           `<div class="btech-course-reviewer-assignment-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[assignmentScore]}</div><div class="btech-course-reviewer-assignment-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`
         );
-        console.log(assignment.name);
-        console.log(assignment);
-        if (!assignment.rubric) {
-          $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score .btech-course-reviewer-assignment-score-right`).html(
-           '🚫'
-          );
-        }
         console.log(assignment.rubric);
       }
     }
@@ -223,8 +216,16 @@
     for (let r in rubricReviewsData) {
       let rubric = rubricReviewsData[r];
       let rubricScore = calcRubricScore(rubric);
-      console.log($(`.Assignment_${rubric.assignment_id} span.ig-btech-evaluation-score .btech-course-reviewer-assignment-score-right`).html());
-      if ($(`.Assignment_${rubric.assignment_id} span.ig-btech-evaluation-score .btech-course-reviewer-assignment-score-right`).html() != '🚫') {
+      let hasRubric = false;
+      for (let a in assignmentsData) {
+        let assignment = assignmentsData[a];
+        if (assignment.id == rubric.assignment_id) {
+          console.log(assignment);
+          if (assignment.rubric) hasRubric = true;
+        }
+      }
+        
+      if (hasRubric) {
         $(`.Assignment_${rubric.assignment_id} span.ig-btech-evaluation-score .btech-course-reviewer-assignment-score-right`).html(
             `${emoji?.[rubricScore]}`
         );
