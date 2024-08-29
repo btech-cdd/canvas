@@ -215,8 +215,8 @@
     for (let r in rubricReviewsData) {
       let rubric = rubricReviewsData[r];
       let rubricScore = calcRubricScore(rubric);
-      if ($(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).find('.btech-course-reviewer-assignment-score-left').length > 0) {
-        $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).append(
+      if ($(`.Assignment_${rubric.assignment_id} span.ig-btech-evaluation-score`).find('.btech-course-reviewer-assignment-score-left').length > 0) {
+        $(`.Assignment_${rubric.assignment_id} span.ig-btech-evaluation-score`).append(
           `<div class="btech-course-reviewer-assignment-score-left" style="position: absolute; clip-path: inset(0 0 0 50%);">
             ${emoji?.[rubricScore]}
           </div>`
