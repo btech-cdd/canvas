@@ -263,12 +263,6 @@ async function generateDetailedContent(
       </div>
       <div><span style="display: inline-block; width: 4rem; margin-top: 1rem;">{{Math.round((objectivesCounts['n/a'] / num) * 1000) / 10}}</span><span><i>No Objectives</i></span></div>
     </div>
-
-  let noObjectives = Math.round((objectivesCounts['n/a'] / num) * 1000) / 10;
-  let noObjectivesEl = $(`
-  `);
-  el.append(noObjectivesEl)
-  return el 
   `);
   if (courseReviewData) {
     let APP = new Vue({
