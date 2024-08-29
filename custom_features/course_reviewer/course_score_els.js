@@ -255,9 +255,44 @@ async function generateDetailedContent(
     , bloomsCounts
   ) {
   containerEl.empty();
+  containerEl.html(`
+    <div>
+      <h2>Objectives</h2>
+      <div v-for="objective in objectivesData">
+        <span style="display: inline-block; width: 4rem;">${isNaN(objective.usage) ? 0 : objective.usage}%</span><span>${objective.objective_text.trim()}</span>
+      </div>
+      <div><span style="display: inline-block; width: 4rem; margin-top: 1rem;">${noObjectives}%</span><span><i>No Objectives</i></span></div>
+    </div>
+
+  let noObjectives = Math.round((objectivesCounts['n/a'] / num) * 1000) / 10;
+  let noObjectivesEl = $(`
+  `);
+  el.append(noObjectivesEl)
+  return el 
+  `);
   if (courseReviewData) {
+    let APP = new Vue({
+      el: '#btech-course-status-vue',
+      mounted: async function () {
+
+        for (let o in this.objectivesData) {
+          let objective = objectivesData[o];
+          let usage = Math.round((objectivesCounts[objective.objective_id] / (num)) * 1000) / 10;
+          this.objectivesData.usage = usage;
+          let topicEl = $(`<div></div>`);
+          el.append(topicEl);
+        }
+      },
+      data: function () {
+        return {
+          objectivesData: objectivesData
+        }
+      },
+      methods: {
+      }
+    });
     // containerEl.append(generateRelevantObjectivesEl());
-    containerEl.append(generateObjectivesEl(objectivesData, objectivesCounts, assignmentReviewsData.length + quizReviewsData.length));
+    // containerEl.append(generateObjectivesEl(objectivesData, objectivesCounts, assignmentReviewsData.length + quizReviewsData.length));
     containerEl.append(generateExternalContentEl(externalContentCounts, totalContentCounts));
     containerEl.append(generateBloomsEl());
     genBloomsChart(bloomsCounts);
