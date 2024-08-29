@@ -271,13 +271,14 @@ async function generateDetailedContent(
         let num = this.assignmentReviewsData.length + this.quizReviewsData.length;
         for (let o in this.objectivesData) {
           let objective = objectivesData[o];
-          let usage = Math.round((objectivesCounts[objective.objective_id] / (num)) * 1000) / 10;
+          let usage = Math.round((this.objectivesCounts[objective.objective_id] / (num)) * 1000) / 10;
           this.objectivesData.usage = usage;
         }
       },
       data: function () {
         return {
           objectivesData: objectivesData,
+          objectivesCounts: objectivesCounts,
           assignmentReviewsData: assignmentReviewsData,
           quizReviewsData: quizReviewsData
         }
