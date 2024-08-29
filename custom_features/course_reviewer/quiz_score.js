@@ -110,7 +110,7 @@
         </div>
         <div title="Average score for Quiz review.">
           <h2>Quiz Quality</h2>
-          <div style="text-align: center;"><span style="font-size: 2rem;">${ emoji?.[averageScore] ?? ''}</span></div>
+          <div id="btech-course-reviewer-item-score" style="text-align: center;"><span style="font-size: 2rem;">${ emoji?.[averageScore] ?? ''}</span></div>
         </div>
         <div title="Average score for Quiz Questions review.">
           <h2>Quiz Question Quality</h2>
@@ -122,6 +122,8 @@
         </div>
       </div> 
       `);
+    let scoreIcon = el.find('#btech-course-reviewer-item-score');
+    console.log(scoreIcon);
     return el;
   }
 
@@ -248,7 +250,6 @@
   let container = $('<div id="btech-course-reviewer-container"></div>');
   await refreshData();
   $('#sidebar_content').append(evaluateButton);
-  $('#sidebar_content').append(ignoreButton);
   $("#sidebar_content").append(container);
   $('#sidebar_content').append(detailedReportButton);
   if (quizReviewData?.quiz_id) await generateContent(container);
