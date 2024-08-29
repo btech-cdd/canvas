@@ -203,11 +203,11 @@
 
       let assignmentScore = calcAssignmentScore(assignment);
       if (assignment.ignore) {
+        $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html('🚫');
+      } else if (emoji?.[assignmentScore]) {
         $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html(
           `<div class="btech-course-reviewer-assignment-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[assignmentScore]}</div>`
         );
-      } else if (emoji?.[assignmentScore]) {
-        $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html(emoji?.[assignmentScore]);
       }
     }
 
