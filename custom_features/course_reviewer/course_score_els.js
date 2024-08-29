@@ -82,7 +82,7 @@ async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts) {
     reviewerProgressData.remaining = 100 - reviewerProgressData.processed; // Example decrement
 
     if (course.current_update_progress >= 1 || course.current_update_progress == undefined) {
-      let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts);
+      let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts, rubricCounts);
       let emoji = calcEmoji(courseScore);
       $('#btech-detailed-evaluation-button').html(emoji);
     } else {

@@ -208,7 +208,6 @@
         $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html(
           `<div class="btech-course-reviewer-assignment-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[assignmentScore]}</div><div class="btech-course-reviewer-assignment-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`
         );
-        console.log(assignment.rubric);
       }
     }
 
@@ -220,7 +219,6 @@
       for (let a in assignmentsData) {
         let assignment = assignmentsData[a];
         if (assignment.id == rubric.assignment_id) {
-          console.log(assignment);
           if (assignment.rubric) hasRubric = true;
         }
       }
@@ -230,7 +228,6 @@
             `${emoji?.[rubricScore]}`
         );
       }
-      console.log(rubric);
     }
 
     return true;
