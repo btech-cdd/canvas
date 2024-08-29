@@ -259,9 +259,9 @@ async function generateDetailedContent(
     <div>
       <h2>Objectives</h2>
       <div v-for="objective in objectivesData">
-        <span style="display: inline-block; width: 4rem;">${isNaN(objective.usage) ? 0 : objective.usage}%</span><span>${objective.objective_text.trim()}</span>
+        <span style="display: inline-block; width: 4rem;">{{isNaN(objective.usage) ? 0 : objective.usage}}%</span><span>{{objective.objective_text.trim()}}</span>
       </div>
-      <div><span style="display: inline-block; width: 4rem; margin-top: 1rem;">${noObjectives}%</span><span><i>No Objectives</i></span></div>
+      <div><span style="display: inline-block; width: 4rem; margin-top: 1rem;">{{noObjectives}}</span><span><i>No Objectives</i></span></div>
     </div>
 
   let noObjectives = Math.round((objectivesCounts['n/a'] / num) * 1000) / 10;
