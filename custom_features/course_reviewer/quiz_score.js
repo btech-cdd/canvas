@@ -123,7 +123,7 @@
       </div> 
       `);
     let scoreIcon = $(el.find('#btech-course-reviewer-item-score'));
-    scoreIcon.click(() => {
+    scoreIcon.click(function () {
       data.ignore = !data.ignore;
       let el = $(this);
       el.html(data.ignore ? '🚫' : emoji?.[averageScore] ?? '');
