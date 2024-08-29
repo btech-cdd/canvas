@@ -277,24 +277,65 @@ async function generateDetailedContent(
     <div style="padding: 8px 0;">
       <h2>Pages</h2>
       <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-        <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(counts.clarity / (pageReviewsData.length * 2)) }}</span>
+        <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(pageCounts.clarity / (pageReviewsData.length * 2)) }}</span>
       </div>
       <div title="Content is chunked with headers, call out boxes, lists, etc.">
-        <span style="width: 6rem; display: inline-block;">Chunking</span><span>{{ calcEmoji(counts.chunked_content / pageReviewsData.length) }}</span>
+        <span style="width: 6rem; display: inline-block;">Chunking</span><span>{{ calcEmoji(pageCounts.chunked_content / pageReviewsData.length) }}</span>
       </div>
       <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-        <span style="width: 6rem; display: inline-block;">Outcomes</span><span>{{ calcEmoji(counts.includes_outcomes / pageReviewsData.length) }}</span>
+        <span style="width: 6rem; display: inline-block;">Outcomes</span><span>{{ calcEmoji(pageCounts.includes_outcomes / pageReviewsData.length) }}</span>
       </div>
       <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-        <span style="width: 6rem; display: inline-block;">Industry</span><span>{{ calcEmoji(counts.career_relevance / pageReviewsData.length) }}</span>
+        <span style="width: 6rem; display: inline-block;">Industry</span><span>{{ calcEmoji(pageCounts.career_relevance / pageReviewsData.length) }}</span>
       </div>
       <div title="The assignment explicitly states how this students will receive documented feedback.">
-        <span style="width: 6rem; display: inline-block;">Media</span><span>{{ calcEmoji(counts.supporting_media / pageReviewsData.length) }}</span>
+        <span style="width: 6rem; display: inline-block;">Media</span><span>{{ calcEmoji(pageCounts.supporting_media / pageReviewsData.length) }}</span>
       </div>
     </div> 
-    <div>
+    <div style="padding: 8px 0;">
+      <h2>Assignments</h2>
+      <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
+        <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ calcEmoji(assignmentCounts.clarity / (assignmentReviewsData.length * 2)) }</span>
+      </div>
+      <div title="Content is chunked with headers, call out boxes, lists, etc.">
+        <span style="width: 6rem; display: inline-block;">Chunking</span><span>${ calcEmoji(assignmentCounts.chunked_content / assignmentReviewsData.length) }</span>
+      </div>
+      <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
+        <span style="width: 6rem; display: inline-block;">Outcomes</span><span>${ calcEmoji(assignmentCounts.includes_outcomes / assignmentReviewsData.length) }</span>
+      </div>
+      <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
+        <span style="width: 6rem; display: inline-block;">Industry</span><span>${ calcEmoji(assignmentCounts.career_relevance / assignmentReviewsData.length) }</span>
+      </div>
+      <div title="The assignment explicitly states how this students will receive documented feedback.">
+        <span style="width: 6rem; display: inline-block;">Feedback</span><span>${ calcEmoji(assignmentCounts.provides_feedback / assignmentReviewsData.length) }</span>
+      </div>
+      <div title="The assignment explicitly states how this students will receive documented feedback.">
+        <span style="width: 6rem; display: inline-block;">Modeling</span><span>${ calcEmoji(assignmentCounts.modeling / assignmentReviewsData.length) }</span>
+      </div>
     </div>
-    <div>
+    <div style="padding: 8px 0;">
+      <h2>Quizzes</h2>
+      <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
+        <span style="width: 6rem; display: inline-block;">Clarity</span><span>${ calcEmoji(quizCounts.clarity / (quizReviewsData.length * 2)) }</span>
+      </div>
+      <div title="Content is chunked with headers, call out boxes, lists, etc.">
+        <span style="width: 6rem; display: inline-block;">Chunking</span><span>${ calcEmoji(quizCounts.chunked_content / quizReviewsData.length) }</span>
+      </div>
+      <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
+        <span style="width: 6rem; display: inline-block;">Outcomes</span><span>${ calcEmoji(quizCounts.includes_outcomes / quizReviewsData.length) }</span>
+      </div>
+      <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
+        <span style="width: 6rem; display: inline-block;">Industry</span><span>${ calcEmoji(quizCounts.career_relevance / quizReviewsData.length) }</span>
+      </div>
+      <div title="The assignment explicitly states how this students will receive documented feedback.">
+        <span style="width: 6rem; display: inline-block;">Feedback</span><span>${ calcEmoji(quizCounts.provides_feedback / quizReviewsData.length) }</span>
+      </div>
+      <div title="The assignment explicitly states how this students will receive documented feedback.">
+        <span style="width: 6rem; display: inline-block;">Instructions</span><span>${ calcEmoji(quizCounts.instructions / quizReviewsData.length) }</span>
+      </div>
+      <div title="The assignment explicitly states how this students will receive documented feedback.">
+        <span style="width: 6rem; display: inline-block;">Preparation</span><span>${ calcEmoji(quizCounts.preparation / quizReviewsData.length) }</span>
+      </div>
     </div>
 
     <div v-if="!d3.select('.btech-reviewer-progress-circle').node()">
@@ -318,8 +359,11 @@ async function generateDetailedContent(
           objectivesData: objectivesData,
           objectivesCounts: objectivesCounts,
           pageReviewsData: pageReviewsData,
+          pageCounts: pageCounts,
           assignmentReviewsData: assignmentReviewsData,
+          assignmentCounts: assignmentCounts,
           quizReviewsData: quizReviewsData,
+          quizCounts: quizCounts,
           externalContentCounts: externalContentCounts,
           totalContentCounts: totalContentCounts
         }
@@ -341,7 +385,7 @@ async function generateDetailedContent(
     // containerEl.append(generateExternalContentEl(externalContentCounts, totalContentCounts));
     // containerEl.append(generateBloomsEl());
     genBloomsChart(bloomsCounts);
-    containerEl.append(generateDetailedAssignmentReviewEl(assignmentCounts, assignmentReviewsData.length));
+    // containerEl.append(generateDetailedAssignmentReviewEl(assignmentCounts, assignmentReviewsData.length));
     containerEl.append(generateDetailedQuizReviewEl(quizCounts, quizReviewsData.length));
     // containerEl.append(generateDetailedQuizReviewEl(quizReviewsData, quizQuestionCounts));
     // containerEl.append(generateDetailedPageReviewEl(pageCounts, pageReviewsData.length));
