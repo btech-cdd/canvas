@@ -124,6 +124,7 @@
       `);
     let scoreIcon = $(el.find('#btech-course-reviewer-item-score'));
     scoreIcon.click(function () {
+      console.log(data);
       data.ignore = !data.ignore;
       let el = $(this);
       el.html(data.ignore ? '🚫' : emoji?.[averageScore] ?? '');
