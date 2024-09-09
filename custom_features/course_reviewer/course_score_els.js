@@ -112,7 +112,7 @@ async function generateDetailedContent(
         <h2>Objectives</h2>
         <div v-for="(objective, o) in objectivesData" :key="o">
           <span 
-            style="display: inline-block; width: 1.5rem;"><div style="position: relative; width: 1rem; height: 1rem; border-radius: 50%;" 
+            style="display: inline-block; width: 1.5rem; height: 1.5rem;"><div style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" 
             :style="{
               'background': 'conic-gradient(green 0% ' + (isNaN(objective.usage) ? 0 : objective.usage) + '%, lightgray ' + (isNaN(objective.usage) ? 0 : objective.usage) + '% 100%)'
             }"
