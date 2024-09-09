@@ -23,7 +23,7 @@ function updateReviewProgress(data) {
       .attr('width', size)
       .attr('height', size)
       .style('margin-left', `-${ paddingSize + barSize }px`) // -4 to cover padding of parent, -
-      .style('margin-top', '-12px')
+      .style('margin-top', `-${ paddingSize + barSize }px`) // -4 to cover padding of parent, -
       .append('g')
       .attr('transform', `translate(${size / 2},${size / 2}) rotate(0)`); // Center and rotate to start from the top
 
