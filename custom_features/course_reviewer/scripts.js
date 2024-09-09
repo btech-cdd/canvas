@@ -195,12 +195,14 @@ function addTopics(counts, dataList) {
 }
 
 function addObjectives(counts, dataList) {
-  console.log(dataList);
   for (let i in dataList) {
       let data = dataList[i];
+      console.log(data);
+      let objectives = data?.objectives ?? [];
+      console.log(objectives.length)
       // objectives 
       if (counts['n/a/'] == undefined) counts['n/a'] = 0;
-      if ((data?.objectives ?? []).length > 0) {
+      if (objectives.length > 0) {
           for (let o in data?.objectives?? []) {
               let objective = data.objectives[o];
               if (counts?.[objective] === undefined) counts[objective] = 0;
