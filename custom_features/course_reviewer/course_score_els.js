@@ -125,7 +125,7 @@ async function generateDetailedContent(
           <span style="margin-left: 0.5rem;">{{objective.objective_text.trim()}}</span>
         </div>
        
-        <div @click="view = 'unaligned'" style="display: flex; align-items: center;">
+        <div @click="view = 'unaligned'" style="display: flex; align-items: center; margin-top: 1rem;">
           <span 
             :title="(Math.round((objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10) + '% of content is NOT aligned to an objective.'"
             style="display: inline-block;"
