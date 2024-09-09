@@ -279,7 +279,7 @@
 
   detailedReportButton.click(async function () {
     $("body").append(`
-      <div class='btech-modal' style='display: inline-block;'>
+      <div class='btech-modal' style='display: inline-block; border-radius: 0.25rem;'>
         <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
         <div class='btech-modal-content' style='max-width: 800px;'>
           <div id="btech-course-reviewer-detailed-report" class='btech-modal-content-inner'></div>
