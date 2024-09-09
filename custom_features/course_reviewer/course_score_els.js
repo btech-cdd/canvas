@@ -17,6 +17,8 @@ function updateReviewProgress(data) {
       .html('') // Clear any existing content
       .append('svg')
       .attr('class', 'btech-reviewer-progress-circle') // Set the class here
+      .attr('top', '-0.25rem')
+      .attr('left', '-0.25rem')
       .attr('width', size)
       .attr('height', size)
       .append('g')
