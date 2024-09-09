@@ -227,7 +227,7 @@ async function generateDetailedContent(
       </div>
     </div>
     <div v-if="view == 'unaligned'">
-      <div v-for="(page, p) in pageReviewsData.filter(page => (page?.objectives ?? []).length == 0)" :key="p">{{ page }}</div>
+      <div v-for="(page, p) in pageReviewsData.filter(page => (page?.objectives ?? []).length == 0)" :key="p"><a :href="'https://btech.instructure.com/courses/' + page.course_id + '/pages/' + page.page_id">{{page.name}}</a></div>
     </div>
   `);
   if (courseReviewData) {
