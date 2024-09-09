@@ -250,7 +250,6 @@ async function generateDetailedContent(
         async reevaluate() {
           let modal = $('body .btech-modal');
           modal.remove();
-          $("#btech-detailed-evaluation-button").empty();
       
           updateReviewProgress({processed: 0, remaining: 1});
           await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/evaluate_content`, {course_code: courseCode, year: year}, 'POST');
