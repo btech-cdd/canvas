@@ -281,8 +281,8 @@
     $("body").append(`
       <div class='btech-modal' style='display: inline-block;'>
         <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
-        <div class='btech-modal-content' style='max-width: 800px; border-radius: 0.25rem; background-color: #EEE;'>
-          <div id="btech-course-reviewer-detailed-report" class='btech-modal-content-inner'></div>
+        <div id="btech-course-reviewer-detailed-report" class='btech-modal-content' style='max-width: 800px; border-radius: 0.25rem; background-color: #EEE;'>
+          <div  class='btech-modal-content-inner'></div>
         </div>
       </div>
     `);

@@ -105,116 +105,119 @@ async function generateDetailedContent(
   ) {
   containerEl.empty();
   containerEl.html(`
-    <div v-if="view == 'main'">
-      <div>
-        <h2>Objectives</h2>
-        <div v-for="(objective, o) in objectivesData" :key="o">
-          <span style="display: inline-block; width: 4rem;">{{isNaN(objective.usage) ? 0 : objective.usage}}%</span><span>{{objective.objective_text.trim()}}</span>
+    <div style="background-color: white;"><h2>Course Evaluation</h2></div>
+    <div class='btech-modal-content-inner'>
+      <div v-if="view == 'main'">
+        <div>
+          <h2>Objectives</h2>
+          <div v-for="(objective, o) in objectivesData" :key="o">
+            <span style="display: inline-block; width: 4rem;">{{isNaN(objective.usage) ? 0 : objective.usage}}%</span><span>{{objective.objective_text.trim()}}</span>
+          </div>
+          <div @click="view = 'unaligned'"><span style="display: inline-block; width: 4rem; margin-top: 1rem;">{{Math.round((objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10}}%</span><span><i>No Objectives</i></span></div>
         </div>
-        <div @click="view = 'unaligned'"><span style="display: inline-block; width: 4rem; margin-top: 1rem;">{{Math.round((objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10}}%</span><span><i>No Objectives</i></span></div>
-      </div>
-      <div>
-        <h2>Contracted Courseware</h2>
-        <div>3rd Party Items: {{externalContentCounts}} Item(s) ({{Math.round((externalContentCounts / totalContentCounts) * 1000) / 10}}%)</div>
-      </div>
-      <div>
-        <h2>Blooms</h2>
-        <div style="display: flex; align-items: center;" class="blooms-chart-container">
-        <svg style="width: 150px; height: 150px; margin-right: 20px;" class="blooms-chart"></svg>
-        <div style="display: flex; flex-direction: column; justify-content: center;" class="blooms-chart-key"></div>
+        <div>
+          <h2>Contracted Courseware</h2>
+          <div>3rd Party Items: {{externalContentCounts}} Item(s) ({{Math.round((externalContentCounts / totalContentCounts) * 1000) / 10}}%)</div>
         </div>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-        <div style="padding: 8px 0;">
-          <h2>Assignments</h2>
-          <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-            <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(assignmentCounts.clarity / (assignmentReviewsData.length * 2)) }}</span>
-          </div>
-          <div title="Content is chunked with headers, call out boxes, lists, etc.">
-            <span style="width: 6rem; display: inline-block;">Chunking</span><span>{{ calcEmoji(assignmentCounts.chunked_content / assignmentReviewsData.length) }}</span>
-          </div>
-          <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-            <span style="width: 6rem; display: inline-block;">Outcomes</span><span>{{ calcEmoji(assignmentCounts.includes_outcomes / assignmentReviewsData.length) }}</span>
-          </div>
-          <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-            <span style="width: 6rem; display: inline-block;">Industry</span><span>{{ calcEmoji(assignmentCounts.career_relevance / assignmentReviewsData.length) }}</span>
-          </div>
-          <div title="The assignment explicitly states how students will receive documented feedback.">
-            <span style="width: 6rem; display: inline-block;">Feedback</span><span>{{ calcEmoji(assignmentCounts.provides_feedback / assignmentReviewsData.length) }}</span>
-          </div>
-          <div title="The assignment models for students what a well done completed product looks like. This may be done through video, graphics, uploaded files, etc.">
-            <span style="width: 6rem; display: inline-block;">Modeling</span><span>{{ calcEmoji(assignmentCounts.modeling / assignmentReviewsData.length) }}</span>
+        <div>
+          <h2>Blooms</h2>
+          <div style="display: flex; align-items: center;" class="blooms-chart-container">
+          <svg style="width: 150px; height: 150px; margin-right: 20px;" class="blooms-chart"></svg>
+          <div style="display: flex; flex-direction: column; justify-content: center;" class="blooms-chart-key"></div>
           </div>
         </div>
-        <div style="padding: 8px 0;">
-          <h2>Quizzes</h2>
-          <div title="Content is written clearly and without lots of extraneous information.">
-            <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(quizCounts.clarity / (quizReviewsData.length * 2)) }}</span>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+          <div style="padding: 8px 0;">
+            <h2>Assignments</h2>
+            <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
+              <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(assignmentCounts.clarity / (assignmentReviewsData.length * 2)) }}</span>
+            </div>
+            <div title="Content is chunked with headers, call out boxes, lists, etc.">
+              <span style="width: 6rem; display: inline-block;">Chunking</span><span>{{ calcEmoji(assignmentCounts.chunked_content / assignmentReviewsData.length) }}</span>
+            </div>
+            <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
+              <span style="width: 6rem; display: inline-block;">Outcomes</span><span>{{ calcEmoji(assignmentCounts.includes_outcomes / assignmentReviewsData.length) }}</span>
+            </div>
+            <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
+              <span style="width: 6rem; display: inline-block;">Industry</span><span>{{ calcEmoji(assignmentCounts.career_relevance / assignmentReviewsData.length) }}</span>
+            </div>
+            <div title="The assignment explicitly states how students will receive documented feedback.">
+              <span style="width: 6rem; display: inline-block;">Feedback</span><span>{{ calcEmoji(assignmentCounts.provides_feedback / assignmentReviewsData.length) }}</span>
+            </div>
+            <div title="The assignment models for students what a well done completed product looks like. This may be done through video, graphics, uploaded files, etc.">
+              <span style="width: 6rem; display: inline-block;">Modeling</span><span>{{ calcEmoji(assignmentCounts.modeling / assignmentReviewsData.length) }}</span>
+            </div>
           </div>
-          <div title="Content is chunked with headers, call out boxes, lists, etc.">
-            <span style="width: 6rem; display: inline-block;">Chunking</span><span>{{ calcEmoji(quizCounts.chunked_content / quizReviewsData.length) }}</span>
+          <div style="padding: 8px 0;">
+            <h2>Quizzes</h2>
+            <div title="Content is written clearly and without lots of extraneous information.">
+              <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(quizCounts.clarity / (quizReviewsData.length * 2)) }}</span>
+            </div>
+            <div title="Content is chunked with headers, call out boxes, lists, etc.">
+              <span style="width: 6rem; display: inline-block;">Chunking</span><span>{{ calcEmoji(quizCounts.chunked_content / quizReviewsData.length) }}</span>
+            </div>
+            <div title="The purpose of this quiz is clearly stated through its intended learning outcomes.">
+              <span style="width: 6rem; display: inline-block;">Outcomes</span><span>{{ calcEmoji(quizCounts.includes_outcomes / quizReviewsData.length) }}</span>
+            </div>
+            <div title="The quiz explicitly states how this quiz is relevant to what students will do in industry.">
+              <span style="width: 6rem; display: inline-block;">Industry</span><span>{{ calcEmoji(quizCounts.career_relevance / quizReviewsData.length) }}</span>
+            </div>
+            <div title="The quiz gives instructions on what to expect in the quiz (e.g. which chapters are covered, what types of questions, how long to set aside, where the test will be held).">
+              <span style="width: 6rem; display: inline-block;">Instructions</span><span>{{ calcEmoji(quizCounts.instructions / quizReviewsData.length) }}</span>
+            </div>
+            <div title="The quiz gives guidance on how students should prepare before taking the quiz.">
+              <span style="width: 6rem; display: inline-block;">Preparation</span><span>{{ calcEmoji(quizCounts.preparation / quizReviewsData.length) }}</span>
+            </div>
           </div>
-          <div title="The purpose of this quiz is clearly stated through its intended learning outcomes.">
-            <span style="width: 6rem; display: inline-block;">Outcomes</span><span>{{ calcEmoji(quizCounts.includes_outcomes / quizReviewsData.length) }}</span>
-          </div>
-          <div title="The quiz explicitly states how this quiz is relevant to what students will do in industry.">
-            <span style="width: 6rem; display: inline-block;">Industry</span><span>{{ calcEmoji(quizCounts.career_relevance / quizReviewsData.length) }}</span>
-          </div>
-          <div title="The quiz gives instructions on what to expect in the quiz (e.g. which chapters are covered, what types of questions, how long to set aside, where the test will be held).">
-            <span style="width: 6rem; display: inline-block;">Instructions</span><span>{{ calcEmoji(quizCounts.instructions / quizReviewsData.length) }}</span>
-          </div>
-          <div title="The quiz gives guidance on how students should prepare before taking the quiz.">
-            <span style="width: 6rem; display: inline-block;">Preparation</span><span>{{ calcEmoji(quizCounts.preparation / quizReviewsData.length) }}</span>
+          <div style="padding: 8px 0;">
+            <h2>Pages</h2>
+            <div title="Content is written clearly without lots of extraneous information.">
+              <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(pageCounts.clarity / (pageReviewsData.length * 2)) }}</span>
+            </div>
+            <div title="Content is chunked with headers, call out boxes, lists, etc.">
+              <span style="width: 6rem; display: inline-block;">Chunking</span><span>{{ calcEmoji(pageCounts.chunked_content / pageReviewsData.length) }}</span>
+            </div>
+            <div title="The purpose of this page is clearly stated through its intended learning outcomes.">
+              <span style="width: 6rem; display: inline-block;">Outcomes</span><span>{{ calcEmoji(pageCounts.includes_outcomes / pageReviewsData.length) }}</span>
+            </div>
+            <div title="The page explicitly states how this content is relevant to what students will do in industry.">
+              <span style="width: 6rem; display: inline-block;">Industry</span><span>{{ calcEmoji(pageCounts.career_relevance / pageReviewsData.length) }}</span>
+            </div>
+            <div title="The page includes supporting media such as graphics, videos, or uploaded documents.">
+              <span style="width: 6rem; display: inline-block;">Media</span><span>{{ calcEmoji(pageCounts.supporting_media / pageReviewsData.length) }}</span>
+            </div>
+          </div> 
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+          <div style="padding: 8px 0;">
+            <h2>Rubrics</h2>
+            <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
+              <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(rubricCounts.writing_quality / (rubricReviewsData.length * 2)) }}</span>
+            </div>
+            <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
+              <span style="width: 6rem; display: inline-block;">Criteria</span><span>{{ calcEmoji(rubricCounts.criteria / (rubricReviewsData.length * 2)) }}</span>
+            </div>
+            <div title="Content is chunked with headers, call out boxes, lists, etc.">
+              <span style="width: 6rem; display: inline-block;">Granularity</span><span>{{ calcEmoji(rubricCounts.granularity / (rubricReviewsData.length * 2)) }}</span>
+            </div>
+            <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
+              <span style="width: 6rem; display: inline-block;">Scoring</span><span>{{ calcEmoji(rubricCounts.grading_levels / (rubricReviewsData.length * 2)) }}</span>
+            </div>
           </div>
         </div>
-        <div style="padding: 8px 0;">
-          <h2>Pages</h2>
-          <div title="Content is written clearly without lots of extraneous information.">
-            <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(pageCounts.clarity / (pageReviewsData.length * 2)) }}</span>
-          </div>
-          <div title="Content is chunked with headers, call out boxes, lists, etc.">
-            <span style="width: 6rem; display: inline-block;">Chunking</span><span>{{ calcEmoji(pageCounts.chunked_content / pageReviewsData.length) }}</span>
-          </div>
-          <div title="The purpose of this page is clearly stated through its intended learning outcomes.">
-            <span style="width: 6rem; display: inline-block;">Outcomes</span><span>{{ calcEmoji(pageCounts.includes_outcomes / pageReviewsData.length) }}</span>
-          </div>
-          <div title="The page explicitly states how this content is relevant to what students will do in industry.">
-            <span style="width: 6rem; display: inline-block;">Industry</span><span>{{ calcEmoji(pageCounts.career_relevance / pageReviewsData.length) }}</span>
-          </div>
-          <div title="The page includes supporting media such as graphics, videos, or uploaded documents.">
-            <span style="width: 6rem; display: inline-block;">Media</span><span>{{ calcEmoji(pageCounts.supporting_media / pageReviewsData.length) }}</span>
-          </div>
-        </div> 
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-        <div style="padding: 8px 0;">
-          <h2>Rubrics</h2>
-          <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-            <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(rubricCounts.writing_quality / (rubricReviewsData.length * 2)) }}</span>
-          </div>
-          <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-            <span style="width: 6rem; display: inline-block;">Criteria</span><span>{{ calcEmoji(rubricCounts.criteria / (rubricReviewsData.length * 2)) }}</span>
-          </div>
-          <div title="Content is chunked with headers, call out boxes, lists, etc.">
-            <span style="width: 6rem; display: inline-block;">Granularity</span><span>{{ calcEmoji(rubricCounts.granularity / (rubricReviewsData.length * 2)) }}</span>
-          </div>
-          <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-            <span style="width: 6rem; display: inline-block;">Scoring</span><span>{{ calcEmoji(rubricCounts.grading_levels / (rubricReviewsData.length * 2)) }}</span>
-          </div>
-        </div>
-      </div>
 
-      <div v-if="!d3.select('.btech-reviewer-progress-circle').node()">
-        <button @click="reevaluate">Score All Items</button>
+        <div v-if="!d3.select('.btech-reviewer-progress-circle').node()">
+          <button @click="reevaluate">Score All Items</button>
+        </div>
       </div>
-    </div>
-    <div v-if="view == 'unaligned'">
-      <h2>Unaligned Assignments</h2>
-      <div v-for="(assignment, a) in assignmentReviewsData.filter(assignment => (assignment?.objectives ?? []).length == 0 && !assignment.ignore)" :key="a"><a :href="'https://btech.instructure.com/courses/' + assignment.course_id + '/assignments/' + assignment.assignment_id">{{assignment.name}}</a></div>
-      <h2>Unaligned Quizzes</h2>
-      <div v-for="(quiz, q) in quizReviewsData.filter(quiz => (quiz?.objectives ?? []).length == 0 && !quiz.ignore)" :key="q"><a :href="'https://btech.instructure.com/courses/' + quiz.course_id + '/quizzes/' + quiz.quiz_id">{{quiz.name}}</a></div>
-      <h2>Unaligned Pages</h2>
-      <div v-for="(page, p) in pageReviewsData.filter(page => (page?.objectives ?? []).length == 0 && !page.ignore)" :key="p"><a :href="'https://btech.instructure.com/courses/' + page.course_id + '/pages/' + page.page_id">{{page.name}}</a></div>
+      <div v-if="view == 'unaligned'">
+        <h2>Unaligned Assignments</h2>
+        <div v-for="(assignment, a) in assignmentReviewsData.filter(assignment => (assignment?.objectives ?? []).length == 0 && !assignment.ignore)" :key="a"><a :href="'https://btech.instructure.com/courses/' + assignment.course_id + '/assignments/' + assignment.assignment_id">{{assignment.name}}</a></div>
+        <h2>Unaligned Quizzes</h2>
+        <div v-for="(quiz, q) in quizReviewsData.filter(quiz => (quiz?.objectives ?? []).length == 0 && !quiz.ignore)" :key="q"><a :href="'https://btech.instructure.com/courses/' + quiz.course_id + '/quizzes/' + quiz.quiz_id">{{quiz.name}}</a></div>
+        <h2>Unaligned Pages</h2>
+        <div v-for="(page, p) in pageReviewsData.filter(page => (page?.objectives ?? []).length == 0 && !page.ignore)" :key="p"><a :href="'https://btech.instructure.com/courses/' + page.course_id + '/pages/' + page.page_id">{{page.name}}</a></div>
+      </div>
     </div>
   `);
   if (courseReviewData) {
