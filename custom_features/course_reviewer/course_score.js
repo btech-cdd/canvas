@@ -156,8 +156,7 @@
     pageCounts = calcCoursePageCounts(pageReviewsData);
     for (let o in pageReviewsData) {
       let page = pageReviewsData[o];
-      pageReviewsData[o].name = $(`.WikiPage_${page.page_id} span.item_name a.title`).text();
-      console.log(pageReviewsData[o].name);
+      pageReviewsData[o].name = $(`.WikiPage_${page.page_id} span.item_name a.title`).text().trim();
 
       let pageScore = calcPageScore(page);
       if (page.ignore) {
@@ -170,6 +169,7 @@
     quizCounts = calcCourseQuizCounts(quizReviewsData);
     for (let q in quizReviewsData) {
       let quiz = quizReviewsData[q];
+      quizReviewsData[q].name = $(`.Quiz_${quiz.quiz_id} span.item_name a.title`).text().trim();
 
       // blooms
       if (quiz.blooms) {
@@ -190,6 +190,7 @@
     assignmentCounts = calcCourseAssignmentCounts(assignmentReviewsData);
     for (let a in assignmentReviewsData) {
       let assignment = assignmentReviewsData[a];
+      assignmentReviewsData[a].name = $(`.Assignment_${assignment.assignment_id} span.item_name a.title`).text().trim();
 
       // blooms
       if (assignment.blooms) {
