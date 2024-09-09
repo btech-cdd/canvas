@@ -133,7 +133,7 @@ async function generateDetailedContent(
             <div 
               style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" 
               :style="{
-                'background': 'conic-gradient(green 0% ' + (objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) + '%, lightgray ' + (objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) + '% 100%)'
+                'background': 'conic-gradient(red 0% ' + (objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 100 + '%, lightgray ' + (objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 100 + '% 100%)'
               }"
             ></div>
           </span>
