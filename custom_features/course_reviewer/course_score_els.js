@@ -64,7 +64,7 @@ async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts, ru
 
 
     $('#btech-detailed-evaluation-button').html('');
-    if (course.current_update_progress <= 1) {
+    if (course.current_update_progress <= 1 && course.current_update_progress > 0) {
       updateReviewProgress(reviewerProgressData);
     }
     let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts, rubricCounts);
