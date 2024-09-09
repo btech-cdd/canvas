@@ -22,6 +22,8 @@ function updateReviewProgress(data) {
       .attr('width', size)
       .attr('height', size)
       .append('g')
+      .attr('top', '-8px')
+      .attr('left', '-8px')
       .attr('transform', `translate(${size / 2},${size / 2}) rotate(0)`); // Center and rotate to start from the top
 
   // Create an arc generator
