@@ -128,7 +128,7 @@ async function generateDetailedContent(
         <div @click="view = 'unaligned'" style="display: flex; align-items: center;">
           <span 
             :title="(Math.round((objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10) + '% of content is NOT aligned to an objective.'"
-            style="display: inline-block; width: 4rem; margin-top: 1rem;"
+            style="display: inline-block;"
           >
             <div 
               style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" 
