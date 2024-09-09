@@ -291,7 +291,7 @@
           modal.remove();
       }
     });
-    let modalContent = $('body .btech-modal-content-inner');
+    let modalContent = $('body #btech-course-reviewer-detailed-report');
     generateDetailedContent(
       modalContent
       , courseReviewData
