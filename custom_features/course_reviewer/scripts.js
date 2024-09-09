@@ -136,8 +136,8 @@ function calcAssignmentScore(assignment) {
         + (assignment.chunked_content ? 1 : 0)
         + (assignment.includes_outcomes ? 1 : 0)
         + (assignment.career_relevance ? 1 : 0)
-        + (assignment.objectives > 0 ? 1 : 0)
-        + (assignment.modeling > 0 ? 1 : 0)
+        + (assignment.provides_feedback ? 1 : 0)
+        + (assignment.modeling ? 1 : 0)
         + (assignment.objectives > 0 ? 1 : 0)
         ) / 8) // divide by total points
     * 2); // multiply by 2 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
@@ -195,21 +195,22 @@ function addTopics(counts, dataList) {
 }
 
 function addObjectives(counts, dataList) {
-    for (let i in dataList) {
-        let data = dataList[i];
-        // objectives 
-        if (counts['n/a/'] == undefined) counts['n/a'] = 0;
-        if ((data?.objectives ?? []).length > 0) {
-            for (let o in data?.objectives?? []) {
-                let objective = data.objectives[o];
-                if (counts?.[objective] === undefined) counts[objective] = 0;
-                counts[objective]  += 1;
-            }
-        } else {
-            counts['n/a/'] += 1;
-        }
-    }
-    return counts;
+  console.log(dataList);
+  for (let i in dataList) {
+      let data = dataList[i];
+      // objectives 
+      if (counts['n/a/'] == undefined) counts['n/a'] = 0;
+      if ((data?.objectives ?? []).length > 0) {
+          for (let o in data?.objectives?? []) {
+              let objective = data.objectives[o];
+              if (counts?.[objective] === undefined) counts[objective] = 0;
+              counts[objective]  += 1;
+          }
+      } else {
+          counts['n/a/'] += 1;
+      }
+  }
+  return counts;
 }
 
 function getCourseCodeYear(courseData) {
