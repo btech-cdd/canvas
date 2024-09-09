@@ -111,7 +111,7 @@ async function generateDetailedContent(
       <div class="btech-course-evaluator-content-box">
         <h2>Objectives</h2>
         <div v-for="(objective, o) in objectivesData" :key="o">
-          <span style="display: inline-block; width: 4rem;">{{isNaN(objective.usage) ? 0 : objective.usage}}%</span><span>{{objective.objective_text.trim()}}</span>
+          <span style="display: inline-block; width: 4rem;"><div style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" :style="{'background': 'conic-gradient(green 0% ' + (isNaN(objective.usage) ? 0 : objective.usage) + '%, lightgray ' + (isNaN(objective.usage) ? 0 : objective.usage) + '% 100%);"></div></span><span>{{objective.objective_text.trim()}}</span>
         </div>
         <div @click="view = 'unaligned'"><span style="display: inline-block; width: 4rem; margin-top: 1rem;">{{Math.round((objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10}}%</span><span><i>No Objectives</i></span></div>
       </div>
