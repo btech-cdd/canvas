@@ -128,7 +128,7 @@ async function generateDetailedContent(
       <div v-for="(objective, o) in objectivesData" :key="o">
         <span style="display: inline-block; width: 4rem;">{{isNaN(objective.usage) ? 0 : objective.usage}}%</span><span>{{objective.objective_text.trim()}}</span>
       </div>
-      <div><span style="display: inline-block; width: 4rem; margin-top: 1rem;">{{Math.round((objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10}}</span><span><i>No Objectives</i></span></div>
+      <div><span style="display: inline-block; width: 4rem; margin-top: 1rem;">{{Math.round((objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10}}%</span><span><i>No Objectives</i></span></div>
     </div>
     <div>
       <h2>Contracted Courseware</h2>

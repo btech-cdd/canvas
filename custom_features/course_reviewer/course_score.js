@@ -129,12 +129,6 @@
     bloomsCounts = {};
     topicTagsCounts = {};
     objectivesCounts = {};
-    rubricCounts = {
-      criteria: 0,
-      granularity: 0,
-      grading_levels: 0,
-      writing_quality: 0,
-    }
     
     quizQuestionCounts = {
       promptQuality: 0,

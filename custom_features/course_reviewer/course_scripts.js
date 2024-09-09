@@ -6,6 +6,7 @@ function calcCourseAssignmentCounts(assignmentReviews) {
     provides_feedback: 0,
     modeling: 0,
     clarity: 0,
+    alligned_to_objectives: 0,
     num_reviews: 0,
   };
   for (let a in assignmentReviews) {
@@ -19,6 +20,7 @@ function calcCourseAssignmentCounts(assignmentReviews) {
     if (assignment.provides_feedback !== undefined) counts.provides_feedback += assignment.provides_feedback? 1 : 0;
     if (assignment.modeling !== undefined) counts.modeling += assignment.modeling ? 1 : 0;
     if (assignment.clarity !== undefined) counts.clarity += assignment.clarity;
+    if (assignment?.objectives ?? [] > 0) counts.alligned_to_objectives += 1;
     counts.num_reviews += 1;
   }
   return counts;
@@ -30,8 +32,10 @@ function calcCourseAssignmentScore(counts) {
     + counts.includes_outcomes 
     + counts.career_relevance 
     + counts.provides_feedback 
-    + counts.modeling;
-  total /= (7 * counts.num_reviews);
+    + counts.modeling
+    + counts.alligned_to_objectives
+  ;
+  total /= (8 * counts.num_reviews);
   return total;
 }
 
@@ -73,6 +77,7 @@ function calcCoursePageCounts(pageReviews) {
     career_relevance: 0,
     supporting_media: 0,
     clarity: 0,
+    alligned_to_objectives: 0,
     num_reviews: 0 
   }
   for (let o in pageReviews) {
@@ -82,8 +87,9 @@ function calcCoursePageCounts(pageReviews) {
     if (page.includes_outcomes !== undefined) counts.includes_outcomes += page.includes_outcomes ? 1 : 0;
     if (page.chunked_content !== undefined) counts.chunked_content += page.chunked_content ? 1 : 0;
     if (page.career_relevance !== undefined) counts.career_relevance += page.career_relevance? 1 : 0;
-    if (page.supporting_media!== undefined) counts.supporting_media += page.supporting_media? 1 : 0;
+    if (page.supporting_media !== undefined) counts.supporting_media += page.supporting_media? 1 : 0;
     if (page.clarity !== undefined) counts.clarity += page.clarity;
+    if (page?.objectives ?? [] > 0) counts.alligned_to_objectives += 1;
     counts.num_reviews += 1;
   }
   return counts;
@@ -95,7 +101,9 @@ function calcCoursePageScore(counts) {
     + counts.includes_outcomes 
     + counts.career_relevance 
     + counts.supporting_media
-  total /= (6 * counts.num_reviews);
+    + counts.alligned_to_objectives
+  ;
+  total /= (7 * counts.num_reviews);
   return total;
 }
 
@@ -107,6 +115,7 @@ function calcCourseQuizCounts(quizReviews) {
     career_relevance: 0,
     instructions: 0,
     preparation: 0,
+    alligned_to_objectives: 0,
     num_reviews: 0,
   };
   for (let q in quizReviews) {
@@ -120,6 +129,7 @@ function calcCourseQuizCounts(quizReviews) {
     if (quiz.instructions !== undefined) counts.instructions += quiz.instructions ? 1 : 0;
     if (quiz.preparation !== undefined) counts.preparation += quiz.preparation ? 1 : 0;
     if (quiz.clarity !== undefined) counts.clarity += quiz.clarity;
+    if (quiz?.objectives ?? [] > 0) counts.alligned_to_objectives += 1;
     counts.num_reviews += 1;
   }
   return counts;
@@ -131,8 +141,10 @@ function calcCourseQuizScore(counts) {
     + counts.includes_outcomes 
     + counts.career_relevance 
     + counts.instructions 
-    + counts.preparation;
-  total /= (7 * counts.num_reviews);
+    + counts.preparation
+    + counts.alligned_to_objectives
+  ;
+  total /= (8 * counts.num_reviews);
   return total;
 }
 
