@@ -113,7 +113,7 @@ async function generateDetailedContent(
         <div v-for="(objective, o) in objectivesData" :key="o" style="display: flex; align-items: center;">
           <span 
             style="display: inline-block;"
-            :title="(isNaN(objective.usage) ? 0 : objective.usage) + '%'"
+            :title="(isNaN(objective.usage) ? 0 : objective.usage) + '% of content aligns to this objective.'"
           >
             <div 
               style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" 
