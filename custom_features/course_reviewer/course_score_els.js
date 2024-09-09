@@ -106,7 +106,7 @@ async function generateDetailedContent(
     console.log(containerEl);
   containerEl.empty();
   containerEl.html(`
-    <div style="background-color: white;"><h2>Course Evaluation</h2></div>
+    <div style="background-color: white;">Course Evaluation</div>
     <div class='btech-modal-content-inner'>
       <div v-if="view == 'main'">
         <div>
