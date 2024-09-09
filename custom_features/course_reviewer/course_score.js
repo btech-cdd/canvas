@@ -156,13 +156,14 @@
     pageCounts = calcCoursePageCounts(pageReviewsData);
     for (let o in pageReviewsData) {
       let page = pageReviewsData[o];
+      pageReviewsData[o].name = $(`.WikiPage_${page.page_id} span.item_name a.title`).text();
+      console.log(pageReviewsData[o].name);
 
       let pageScore = calcPageScore(page);
       if (page.ignore) {
         $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`).html('🚫');
       } else if (emoji?.[pageScore]) {
         $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`).html(emoji?.[pageScore]);
-      }
     }
 
     quizCounts = calcCourseQuizCounts(quizReviewsData);
