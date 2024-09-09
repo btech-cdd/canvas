@@ -103,6 +103,7 @@ async function generateDetailedContent(
     , totalContentCounts
     , bloomsCounts
   ) {
+    console.log(containerEl);
   containerEl.empty();
   containerEl.html(`
     <div style="background-color: white;"><h2>Course Evaluation</h2></div>
