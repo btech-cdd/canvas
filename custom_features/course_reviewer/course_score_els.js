@@ -27,7 +27,7 @@ function updateReviewProgress(data) {
   // Create an arc generator
   const arc = d3.arc()
       .outerRadius(radius)
-      .innerRadius(radius - 16); // Adjust this value to control the size of the hole
+      .innerRadius(radius - 8); // Adjust this value to control the size of the hole
 
   // Create a label arc generator
   const labelArc = d3.arc()
