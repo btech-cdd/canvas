@@ -10,7 +10,7 @@ function updateReviewProgress(data) {
     'processed': '#1e65A7'
   };
   // Set dimensions and radius
-  const size = (3 * 16) + 8; // Convert rem to pixels (assuming 1rem = 16px)
+  const size = (3.25 * 16); // Convert rem to pixels (assuming 1rem = 16px)
   const radius = size / 2; // Adjust radius to fit within the container
 
   const svg = d3.select('#btech-detailed-evaluation-button')
