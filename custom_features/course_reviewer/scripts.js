@@ -203,7 +203,7 @@ function addObjectives(counts, dataList) {
       // objectives 
       if (counts['n/a/'] == undefined) counts['n/a'] = 0;
       if (objectives.length > 0) {
-          for (let o in data?.objectives?? []) {
+          for (let o in objectives) {
               let objective = data.objectives[o];
               if (counts?.[objective] === undefined) counts[objective] = 0;
               counts[objective]  += 1;
