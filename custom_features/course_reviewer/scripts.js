@@ -201,7 +201,7 @@ function addObjectives(counts, dataList) {
     let objectives = data?.objectives ?? [];
     console.log(objectives.length)
     // objectives 
-    if (counts['n/a/'] == undefined) counts['n/a'] = 0;
+    if (counts['n/a'] == undefined) counts['n/a'] = 0;
     if (objectives.length > 0) {
         for (let o in objectives) {
             let objective = data.objectives[o];
@@ -209,7 +209,7 @@ function addObjectives(counts, dataList) {
             counts[objective]  += 1;
         }
     } else {
-        counts['n/a/'] += 1;
+        counts['n/a'] += 1;
     }
   }
   console.log(counts);
