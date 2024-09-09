@@ -1,27 +1,3 @@
-
-function generateTopicTagsEl(courseReviewData) {
-  let el = $(`
-    <div>
-      <h2>Key Topics</h2>
-    </div>
-  `);
-  for (let i in courseReviewData.topic_tags) {
-    let topic = courseReviewData.topic_tags[i];
-    let topicEl = $(`<span style="padding: 0.25rem; background-color: black; color: white; border-radius: 0.25rem; margin: 0 0.25rem;">${topic}</span>`);
-    el.append(topicEl);
-  }
-  return el
-}
-function generateExternalContentEl(externalContentCounts, contentCounts) {
-  let el = $(`
-    <div>
-      <h2>Contracted Courseware</h2>
-      <div>3rd Party Items: ${externalContentCounts} Item(s) (${Math.round((externalContentCounts / contentCounts) * 1000) / 10}%)</div>
-    </div>
-  `);
-  return el
-}
-
 function updateReviewProgress(data) {
   let color = {
     'quizzes': '#1e65A7',
@@ -34,7 +10,7 @@ function updateReviewProgress(data) {
     'processed': '#1e65A7'
   };
   // Set dimensions and radius
-  const size = 2.75 * 16; // Convert rem to pixels (assuming 1rem = 16px)
+  const size = 3 * 16; // Convert rem to pixels (assuming 1rem = 16px)
   const radius = 0.9 * size / 2; // Adjust radius to fit within the container
 
   const svg = d3.select('#btech-detailed-evaluation-button')
