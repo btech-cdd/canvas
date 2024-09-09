@@ -164,6 +164,7 @@
         $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`).html('🚫');
       } else if (emoji?.[pageScore]) {
         $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`).html(emoji?.[pageScore]);
+      }
     }
 
     quizCounts = calcCourseQuizCounts(quizReviewsData);
