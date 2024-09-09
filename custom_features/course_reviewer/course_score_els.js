@@ -10,7 +10,10 @@ function updateReviewProgress(data) {
     'processed': '#1e65A7'
   };
   // Set dimensions and radius
-  const size = (3.25 * 16) + 8; // Convert rem to pixels (assuming 1rem = 16px)
+  let fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+  let paddingSize = fontSize * 0.25;
+  let barSize = 4;
+  const size = (2.75 * fontSize) + (paddingSize * 2) + (barSize * 2); // Convert rem to pixels (assuming 1rem = 16px)
   const radius = size / 2; // Adjust radius to fit within the container
 
   const svg = d3.select('#btech-detailed-evaluation-button')
@@ -19,7 +22,7 @@ function updateReviewProgress(data) {
       .attr('class', 'btech-reviewer-progress-circle') // Set the class here
       .attr('width', size)
       .attr('height', size)
-      .style('margin-left', '-12px')
+      .style('margin-left', `-${ paddingSize + barSize }px`) // -4 to cover padding of parent, -
       .style('margin-top', '-12px')
       .append('g')
       .attr('transform', `translate(${size / 2},${size / 2}) rotate(0)`); // Center and rotate to start from the top
@@ -27,7 +30,7 @@ function updateReviewProgress(data) {
   // Create an arc generator
   const arc = d3.arc()
       .outerRadius(radius)
-      .innerRadius(radius - 8); // Adjust this value to control the size of the hole
+      .innerRadius(radius - barSize); // Adjust this value to control the size of the hole
 
   // Create a label arc generator
   const labelArc = d3.arc()
