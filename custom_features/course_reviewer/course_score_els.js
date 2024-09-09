@@ -69,7 +69,7 @@ async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts, ru
     }
     let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts, rubricCounts);
     let emoji = calcEmoji(courseScore);
-    $('#btech-detailed-evaluation-button').append(  `<span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; z-index: 1001;">${emoji}</span>`);
+    $('#btech-detailed-evaluation-button').append(  `<span style="padding: 0.25rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; z-index: 1001;">${emoji}</span>`);
   } catch (error) {
     console.error('Error fetching course data:', error);
   }
