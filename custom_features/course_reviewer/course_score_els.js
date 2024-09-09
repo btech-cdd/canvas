@@ -115,18 +115,18 @@ async function generateDetailedContent(
         </div>
         <div @click="view = 'unaligned'"><span style="display: inline-block; width: 4rem; margin-top: 1rem;">{{Math.round((objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10}}%</span><span><i>No Objectives</i></span></div>
       </div>
-      <div>
+      <div class="btech-course-evaluator-content-box">
         <h2>Contracted Courseware</h2>
         <div>3rd Party Items: {{externalContentCounts}} Item(s) ({{Math.round((externalContentCounts / totalContentCounts) * 1000) / 10}}%)</div>
       </div>
-      <div>
+      <div class="btech-course-evaluator-content-box">
         <h2>Blooms</h2>
         <div style="display: flex; align-items: center;" class="blooms-chart-container">
         <svg style="width: 150px; height: 150px; margin-right: 20px;" class="blooms-chart"></svg>
         <div style="display: flex; flex-direction: column; justify-content: center;" class="blooms-chart-key"></div>
         </div>
       </div>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+      <div class="btech-course-evaluator-content-box" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
         <div style="padding: 8px 0;">
           <h2>Assignments</h2>
           <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
