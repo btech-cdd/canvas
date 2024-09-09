@@ -326,7 +326,7 @@
     }
     let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts, rubricCounts);
     let emoji = calcEmoji(courseScore);
-    detailedReportButton.append(emoji);
+    $('#btech-detailed-evaluation-button').append(  `<span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; z-index: 1001;">${emoji}</span>`);
     initReviewProgressInterval(pageCounts, quizCounts, assignmentCounts, rubricCounts);
   })
 })();
