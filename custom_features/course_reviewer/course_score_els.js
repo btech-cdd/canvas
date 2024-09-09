@@ -12,7 +12,7 @@ function updateReviewProgress(data) {
   // Set dimensions and radius
   let fontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
   let paddingSize = fontSize * 0.25;
-  let barSize = 4;
+  let barSize = 6;
   const size = (2.75 * fontSize) + (paddingSize * 2) + (barSize * 2); // Convert rem to pixels (assuming 1rem = 16px)
   const radius = size / 2; // Adjust radius to fit within the container
 
