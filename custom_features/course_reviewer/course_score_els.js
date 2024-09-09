@@ -106,9 +106,9 @@ async function generateDetailedContent(
     console.log(containerEl);
   containerEl.empty();
   containerEl.html(`
-    <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.25rem; border: 1px solid #AAA;">Course Evaluation</div>
+    <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.5rem; border: 1px solid #AAA;">Course Evaluation</div>
     <div v-if="view == 'main'">
-      <div style="background-color: white; border: 1px solid #AAA; border-radius: 0.25rem; margin: 0.25rem; padding: 0.25rem;">
+      <div style="background-color: white; border: 1px solid #AAA; border-radius: 0.25rem; margin: 0.5rem; padding: 0.5rem;">
         <h2>Objectives</h2>
         <div v-for="(objective, o) in objectivesData" :key="o">
           <span style="display: inline-block; width: 4rem;">{{isNaN(objective.usage) ? 0 : objective.usage}}%</span><span>{{objective.objective_text.trim()}}</span>
