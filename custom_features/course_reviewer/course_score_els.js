@@ -109,7 +109,7 @@ async function generateDetailedContent(
     <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.25rem;">Course Evaluation</div>
     <div class='btech-modal-content-inner'>
       <div v-if="view == 'main'">
-        <div>
+        <div style="background-color: white; border: 1px solid #AAA;">
           <h2>Objectives</h2>
           <div v-for="(objective, o) in objectivesData" :key="o">
             <span style="display: inline-block; width: 4rem;">{{isNaN(objective.usage) ? 0 : objective.usage}}%</span><span>{{objective.objective_text.trim()}}</span>
