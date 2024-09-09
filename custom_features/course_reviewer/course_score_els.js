@@ -10,7 +10,7 @@ function updateReviewProgress(data) {
     'processed': '#1e65A7'
   };
   // Set dimensions and radius
-  const size = (3 * 16) + 16; // Convert rem to pixels (assuming 1rem = 16px)
+  const size = (3 * 16) + 8; // Convert rem to pixels (assuming 1rem = 16px)
   const radius = size / 2; // Adjust radius to fit within the container
 
   const svg = d3.select('#btech-detailed-evaluation-button')
@@ -19,8 +19,8 @@ function updateReviewProgress(data) {
       .attr('class', 'btech-reviewer-progress-circle') // Set the class here
       .attr('width', size)
       .attr('height', size)
-      .style('margin-left', '-8px')
-      .style('margin-top', '-8px')
+      .style('margin-left', '-4px')
+      .style('margin-top', '-4px')
       .append('g')
       .attr('transform', `translate(${size / 2},${size / 2}) rotate(0)`); // Center and rotate to start from the top
 
