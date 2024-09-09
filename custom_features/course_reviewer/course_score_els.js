@@ -19,8 +19,8 @@ function updateReviewProgress(data) {
       .attr('class', 'btech-reviewer-progress-circle') // Set the class here
       .attr('width', size)
       .attr('height', size)
-      .style('margin-left', '-4px')
-      .style('margin-top', '-4px')
+      .style('margin-left', '-12px')
+      .style('margin-top', '-12px')
       .append('g')
       .attr('transform', `translate(${size / 2},${size / 2}) rotate(0)`); // Center and rotate to start from the top
 
