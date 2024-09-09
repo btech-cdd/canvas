@@ -319,14 +319,10 @@
 
   await refreshData();
   $(document).ready(async function() {
-    let progressCounts = await checkReviewProgress(pageCounts, quizCounts, assignmentCounts, rubricCounts);
     addButton(detailedReportButton);
-    if (progressCounts.remaining != 0) {
-      updateReviewProgress(progressCounts);
-    }
     let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts, rubricCounts);
     let emoji = calcEmoji(courseScore);
-    $('#btech-detailed-evaluation-button').append(  `<span style="padding: 0.25rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; z-index: 1001;">${emoji}</span>`);
+    detailedReportButton.append(emoji);
     initReviewProgressInterval(pageCounts, quizCounts, assignmentCounts, rubricCounts);
   })
 })();
