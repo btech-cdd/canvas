@@ -17,13 +17,12 @@ function updateReviewProgress(data) {
       .html('') // Clear any existing content
       .append('svg')
       .attr('class', 'btech-reviewer-progress-circle') // Set the class here
-      .attr('top', '-8px')
-      .attr('left', '-8px')
+      .attr('style',)
       .attr('width', size)
       .attr('height', size)
+      .style('margin-left', '-16px')
+      .style('margin-top', '-16px')
       .append('g')
-      .attr('top', '-8px')
-      .attr('left', '-8px')
       .attr('transform', `translate(${size / 2},${size / 2}) rotate(0)`); // Center and rotate to start from the top
 
   // Create an arc generator
