@@ -124,19 +124,7 @@ async function generateDetailedContent(
           </span>
           <span style="margin-left: 0.5rem;">{{objective.objective_text.trim()}}</span>
         </div>
-        <div >
-          <span 
-            style="display: inline-block;"
-            :title="(isNaN(objective.usage) ? 0 : objective.usage) + '% of content aligns to this objective.'"
-          >
-            <div 
-              style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" 
-              :style="{
-                'background': 'conic-gradient(green 0% ' + (isNaN(objective.usage) ? 0 : objective.usage) + '%, lightgray ' + (isNaN(objective.usage) ? 0 : objective.usage) + '% 100%)'
-              }"
-            ></div>
-          </span><span style="margin-left: 0.5rem;">{{objective.objective_text.trim()}}</span>
-        </div>
+       
         <div @click="view = 'unaligned'" style="display: flex; align-items: center;">
           <span 
             :title="(Math.round((objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10) + '% of content is NOT aligned to an objective.'"
