@@ -225,7 +225,7 @@
         let course = this.courses[i];
         this.loadingMessage = "Loading Submissions for Course " + course.course_id;
         console.log(course.additionalData);
-        this.submissionData[courseId] = this.courses.filter(course => course.additionalData.submissions);
+        this.submissionData[courseId] = course.additionalData.submissions;
         this.loadingProgress += (50 / this.courses.length) * 0.5;
         //get assignment group data
         this.loadingMessage = "Loading Assignment Groups for Course " + this.courses[i].course_id;
