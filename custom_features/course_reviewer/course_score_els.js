@@ -281,7 +281,10 @@ async function generateDetailedContent(
     </div>
     <div v-if="menuCurrent == 'query'">
       <div class="btech-course-evaluator-content-box">
-        <input style="width: 100%; height: 3rem; box-sizing: border-box;" type="text">
+        <input 
+          v-model="query"
+          @keyup.enter="submitQuery"
+          style="width: 100%; height: 3rem; box-sizing: border-box;" type="text">
       </div>
       <div class="btech-course-evaluator-content-box">
       </div>
@@ -322,7 +325,9 @@ async function generateDetailedContent(
           externalContentCounts: externalContentCounts,
           totalContentCounts: totalContentCounts,
           genBloomsChart: genBloomsChart,
-          bloomsCounts: bloomsCounts
+          bloomsCounts: bloomsCounts,
+          query: "",
+          queryResponse: []
         }
       },
       methods: {
@@ -337,6 +342,10 @@ async function generateDetailedContent(
         setMenu(menu) {
           this.menuCurrent = menu;
           this.genBloomsChart(this.bloomsCounts);
+        },
+        async submitQuery() {
+          let query = this.query;
+          await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/query`, {query: query}, 'POST');
         }
       }
     });
