@@ -280,7 +280,7 @@ async function generateDetailedContent(
       Coming Soon
     </div>
     <div v-if="menuCurrent == 'query'">
-      <input type="text"></input>
+      <input type="text">
     </div>
   `);
   if (courseReviewData) {
