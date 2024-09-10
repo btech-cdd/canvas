@@ -3,7 +3,7 @@ Vue.component('show-student-grades', {
     <div>
       <div style="margin-bottom: 1rem;">
         <span style="font-size: 2rem;">{{user.name}} ({{user.sis_id}})</span>
-        <span style="float: right;">{{dateToString(new Date())}}</span>
+        <span style="float: right;">Date Generated: <i>{{dateToString(new Date())}}</i></span>
       </div>
       <!--CONTRACTED HOURS-->
       <div 
