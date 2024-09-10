@@ -280,7 +280,11 @@ async function generateDetailedContent(
       Coming Soon
     </div>
     <div v-if="menuCurrent == 'query'">
-      <input type="text">
+      <div class="btech-course-evaluator-content-box">
+        <input style="width: 100%;" type="text">
+      </div>
+      <div class="btech-course-evaluator-content-box">
+      </div>
     </div>
   `);
   if (courseReviewData) {
