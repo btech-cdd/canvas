@@ -222,7 +222,8 @@
 
       for (let i = 0; i < this.courses.length; i++) {
         let courseId = this.courses[i].course_id;
-        this.loadingMessage = "Loading Submissions for Course " + this.courses[i].course_id;
+        let course = this.courses[i];
+        this.loadingMessage = "Loading Submissions for Course " + course.course_id;
         console.log(course.additionalData);
         this.submissionData[courseId] = this.courses.filter(course => course.additionalData.submissions);
         this.loadingProgress += (50 / this.courses.length) * 0.5;
