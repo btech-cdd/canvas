@@ -287,6 +287,12 @@
                 name
                 groupWeight
                 state
+
+                assignmentsConnection {
+                  nodes {
+                    id
+                  }
+                }
               }
             }
           }
@@ -295,7 +301,13 @@
         let res = await $.post(`/api/graphql`, {
           query: query
         });
+        let data = res.data.course;
         console.log(res);
+        return {
+          name: data.name,
+          assignment_groups: data.assignmentGroupsConnection.nodes.filter(group => group.state == 'available'),
+          submissions: data.submissionsConnection.nodes
+        }
       },
       async getCourseData() {
         console.log(this.user);
