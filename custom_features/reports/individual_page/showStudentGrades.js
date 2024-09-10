@@ -20,7 +20,7 @@ Vue.component('show-student-grades', {
           <span>Final Score</span>
         </div>
         <div v-for="enrollment in enrollments" style="display: contents;">
-          <span>{{ enrollment.course_name }}</span>
+          <span><span>{{ enrollment.course_name }}</span><br><span>{{enrollment.term.name}}</span></span>
           <span>{{ enrollment.computed_current_score }}% ({{ enrollment.computed_current_grade }})</span>
           <span>{{ enrollment.computed_final_score }}% ({{ enrollment.computed_final_grade }})</span>
         </div>
@@ -72,11 +72,12 @@ Vue.component('show-student-grades', {
     }
   },
   async mounted() {
-    let courses = await canvasGet(`/api/v1/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores`);
+    let courses = await canvasGet(`/api/v1/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term`);
     let enrollments = [];
     courses.forEach(course => {
       course.enrollments.forEach(enrollment => {
         enrollment.course_name = course.name;
+        enrollment.term = course.term;
         enrollments.push(enrollment)
       })
     });
