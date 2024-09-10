@@ -1,15 +1,9 @@
 Vue.component('show-student-grades', {
   template: ` 
     <div>
-      <!--HEADER-->
-      <ind-header-credits
-        :colors="colors"
-        :user="user"
-        :settings="settings"
-        :student-tree="studentTree"
-        ref="studentdataheader"
-      ></ind-header-credits>
-
+      <div>
+        {{user.name}}
+      </div>
       <!--CONTRACTED HOURS-->
       <div 
         style="margin-block-end: 2rem; display: grid; grid-template-columns: 18rem 7rem 7rem 7rem; gap: 1rem;" 
@@ -84,6 +78,7 @@ Vue.component('show-student-grades', {
       })
     });
     this.enrollments = enrollments;
+    console.log(this.user);
   },
   methods: {
     dateToString(date) {
