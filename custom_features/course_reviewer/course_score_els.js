@@ -110,6 +110,9 @@ async function generateDetailedContent(
     <div style="background-color: white; border: 1px solid #AAA;">
       <div 
         v-for="(menu, m) in menuOptions" :key="m"
+        :style="{
+          'background-color': menuCurrent == menu ? '#CCC' : ''
+        }"
         style="
           text-align: center;
           display: inline-block;
