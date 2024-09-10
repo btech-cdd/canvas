@@ -15,7 +15,7 @@ Vue.component('show-student-grades', {
         style="margin-block-end: 2rem;" 
       >
         <div v-for="enrollment in enrollments">
-          {{enrollment}}
+          {{enrollment.course_name}}
         </div>
       </div>
     </div>
