@@ -111,7 +111,8 @@ async function generateDetailedContent(
       <div 
         v-for="(menu, m) in menuOptions" :key="m"
         :style="{
-          'color': menuCurrent == menu ? '${bridgetools.colors.blue}' : ''
+          'color': menuCurrent == menu ? '${bridgetools.colors.blue}' : '',
+          'font-weight': menuCurrent == menu ? 'bold' : 'normal'
         }"
         style="
           text-align: center;
