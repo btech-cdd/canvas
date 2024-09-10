@@ -201,7 +201,6 @@
         loadingProgress: 0,
         loadingMessage: "Loading...",
         loadingAssignments: true,
-        submissionData: {},
         courseAssignmentGroups: {},
         courses: [],
         columns: [
@@ -221,10 +220,15 @@
       this.loadingMessage = "Loading Courses";
       this.courses = await this.getCourseData();
 
+      let submissions = await canvasGet(`/api/v1/users/${this.userId}/submissions`);
+      submissions = submissions.map(submission => {
+        submission.course_id = this.extractCourseId(submission.preview_url);
+        return submission;
+      })
       for (let i = 0; i < this.courses.length; i++) {
         let courseId = this.courses[i].course_id;
         this.loadingMessage = "Loading Submissions for Course " + this.courses[i].course_id;
-        this.submissionData[courseId] = await this.getSubmissionData(courseId);
+        this.submissionData[courseId] = submissions.filter(submission => submission.course_id = courseId);
         this.loadingProgress += (50 / this.courses.length) * 0.5;
         //get assignment group data
         this.loadingMessage = "Loading Assignment Groups for Course " + this.courses[i].course_id;
@@ -240,6 +244,11 @@
     },
 
     methods: {
+      extractCourseId(url) {
+        const courseIdMatch = url.match(/\/courses\/(\d+)\//);
+        return courseIdMatch ? courseIdMatch[1] : null;
+      },
+
       dateToString(date) {
         if (typeof date == 'string') {
           if (date == "" || date == "N/A") return "N/A";
@@ -280,43 +289,6 @@
           await this.getAssignmentData(course);
           this.loadingProgress += (50 / courses.length) * 0.5;
         });
-        return courses;
-        let courseList = await this.getCourses();
-        if (this.IS_TEACHER) {
-          for (let c = 0; c < courseList.length; c++) {
-            let courseData = courseList[c];
-            this.loadingMessage = "Loading Course Data for Course " + courseData.course_id;
-            let course = await this.newCourse(courseData.course_id, courseData.state, courseData.name, courseData.year);
-            let gradesData = await this.getCourseGrades(course.course_id);
-            this.loadingProgress += (50 / courseList.length) * 0.5;
-            course.grade_to_date = gradesData.grade;
-            course.final_grade = gradesData.final_grade;
-            course.points = gradesData.points;
-
-            this.loadingMessage = "Loading Assignment Data for Course " + courseData.course_id;
-            await this.getAssignmentData(course, gradesData.enrollment);
-            this.loadingProgress += (50 / courseList.length) * 0.5;
-            courses.push(course);
-          }
-        } else {
-          for (let c = 0; c < courseList.length; c++) {
-            let courseData = courseList[c];
-            this.loadingMessage = "Loading Course Data for Course " + courseData.course_id;
-            let course = await this.newCourse(courseData.course_id, courseData.state, courseData.name, courseData.year);
-            this.loadingProgress += (50 / courseList.length) * 0.5;
-            course.grade_to_date = courseData.enrollment.grades.current_score;
-            if (course.grade_to_date == null) course.grade_to_date = "N/A";
-            course.final_grade = courseData.enrollment.grades.final_score;
-            if (course.final_grade == null) course.final_grade = "N/A";
-            course.points = this.calcPointsProgress(course.grade_to_date, courseData.final_grade);
-            this.loadingMessage = "Loading Assignment Data for Course " + course.course_id;
-            await this.getAssignmentData(course, courseData.enrollment);
-            this.loadingProgress += (50 / courseList.length) * 0.5;
-            courses.push(course);
-          }
-
-
-        }
         return courses;
       },
       updateDatesToSelectedTerm() {
