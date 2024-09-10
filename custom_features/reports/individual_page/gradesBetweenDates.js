@@ -231,7 +231,6 @@
         this.loadingProgress += (50 / this.courses.length) * 0.5;
       }
       this.loadingAssignments = false;
-      console.log("USER ID" + this.userId);
     },
 
     methods: {
@@ -585,7 +584,6 @@
       },
 
       calcGradesFromIncludedAssignments() {
-        console.log(this.includedAssignments);
         let gradesBetweenDates = {};
         let progressBetweenDates = {};
         let startDate = this.parseDate(this.submissionDatesStart);
@@ -601,7 +599,6 @@
         for (let courseId in this.includedAssignments) {
           let course = this.includedAssignments[courseId];
           if (this.checkIncludeCourse(course) && course.include) {
-            console.log(course);
             let currentWeighted = 0;
             let totalWeights = 0; //sum of all weight values for assignment groups
             let totalWeightsSubmitted = 0; //sum of all weight values for assignment groups if at least one submitted assignment
@@ -617,12 +614,10 @@
                 sumGroupWeights += group.groupWeight;
               }
             }
-            console.log(sumGroupWeights);
 
             for (let groupId in course.groups) {
               let group = course.groups[groupId];
               if (this.checkIncludeGroup(group) && group.include) {
-                console.log(group);
                 if (group.groupWeight > 0 || sumGroupWeights === 0) {
                   let currentPoints = 0; //points earned
                   let possiblePoints = 0; //potential points earned
@@ -661,7 +656,6 @@
                 }
               }
             }
-            console.log(totalWeights);
             //if there are any points possible in this course, put out some summary grades data
             if (totalWeights > 0 || sumGroupWeights === 0) {
               let output;
