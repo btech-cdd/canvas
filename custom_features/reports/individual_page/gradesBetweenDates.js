@@ -114,7 +114,7 @@
                         <input @change="calcGradesFromIncludedAssignments" type="checkbox"
                           :id="course.id + '-' + group.id + '-checkbox'"
                           v-model="group.include" :disabled="!course.include">
-                        <b>{{group.name}} ({{group.group_weight}}%)</b></h4>
+                        <b>{{group.name}} ({{group.groupWeight}}%)</b></h4>
                       <div v-if='group.include'>
                         <div v-for='assignment in group.assignments' :key='assignment.id'>
                           <div v-if='checkIncludeAssignment(assignment)'>
@@ -286,7 +286,10 @@
 
                 assignmentsConnection {
                   nodes {
-                    id
+                    _id
+                    name
+                    published
+                    pointsPossible
                   }
                 }
               }
@@ -299,7 +302,10 @@
         let data = res.data.course;
         return {
           name: data.name,
-          assignment_groups: data.assignmentGroupsConnection.nodes.filter(group => group.state == 'available'),
+          assignment_groups: data.assignmentGroupsConnection.nodes.filter(group => group.state == 'available').map(group => {
+            group.assignments = group.assignmentsConnection.nodes;
+            return group;
+          }),
           submissions: data.submissionsConnection.nodes
         }
       },
@@ -332,18 +338,17 @@
         return courses;
       },
       updateDatesToSelectedTerm() {
-        let app = this;
         let term;
-        for (let i = 0; i < app.terms.length; i++) {
-          if (app.terms[i]._id === app.selectedTermId) {
-            term = app.terms[i];
+        for (let i = 0; i < this.terms.length; i++) {
+          if (this.terms[i]._id === this.selectedTermId) {
+            term = this.terms[i];
           }
         }
-        app.selectedTerm = term;
-        app.submissionDatesStart = app.dateToHTMLDate(term.startDate);
-        app.submissionDatesEnd = app.dateToHTMLDate(term.endDate);
-        app.estimatedHoursEnrolled = term.hours;
-        app.getIncludedAssignmentsBetweenDates();
+        this.selectedTerm = term;
+        this.submissionDatesStart = this.dateToHTMLDate(term.startDate);
+        this.submissionDatesEnd = this.dateToHTMLDate(term.endDate);
+        this.estimatedHoursEnrolled = term.hours;
+        this.getIncludedAssignmentsBetweenDates();
       },
       sumProgressBetweenDates() {
         let sum = 0;
@@ -498,16 +503,15 @@
       },
 
       async getIncludedAssignmentsBetweenDates() {
-        let app = this;
         let includedAssignments = {};
-        let startDate = app.parseDate(app.submissionDatesStart);
-        let endDate = app.parseDate(app.submissionDatesEnd);
+        let startDate = this.parseDate(this.submissionDatesStart);
+        let endDate = this.parseDate(this.submissionDatesEnd);
         //break if a date is undefined
         if (startDate === undefined || endDate === undefined) return;
 
         //otherwise fill in all the progress / grades data for those dates
-        for (let i = 0; i < app.courses.length; i++) {
-          let course = app.courses[i];
+        for (let i = 0; i < this.courses.length; i++) {
+          let course = this.courses[i];
           let courseId = course.course_id;
           includedAssignments[courseId] = {
             name: course.name,
@@ -535,7 +539,7 @@
             let sumWeights = 0;
             for (let g = 0; g < assignmentGroups.length; g++) {
               let group = assignmentGroups[g];
-              sumWeights += group.group_weight;
+              sumWeights += group.groupWeight;
             }
 
             //weight grades based on assignment group weighting and hours completed in the course
@@ -544,14 +548,15 @@
               includedAssignments[courseId].groups[g] = {
                 name: group.name,
                 id: group.id,
-                group_weight: group.group_weight,
+                groupWeight: group.groupWeight,
                 include: true,
                 assignments: {}
               };
-              if (group.group_weight > 0 || sumWeights === 0) {
+              if (group.groupWeight > 0 || sumWeights === 0) {
                 //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
                 for (let a = 0; a < group.assignments.length; a++) {
                   let assignment = group.assignments[a];
+                  assignment.id = assignment._id;
                   if (assignment.published) {
                     if (assignment.id in subData) {
                       let sub = subData[assignment.id];
@@ -562,7 +567,7 @@
                         id: assignment.id,
                         name: assignment.name,
                         score: sub.score,
-                        points_possible: assignment.points_possible,
+                        points_possible: assignment.pointsPossible,
                         sub: sub.id,
                         date: subDateString
                       };
@@ -577,12 +582,11 @@
             }
           }
         }
-        app.includedAssignments = JSON.parse(JSON.stringify(includedAssignments));
-        app.calcGradesFromIncludedAssignments();
+        this.includedAssignments = JSON.parse(JSON.stringify(includedAssignments));
+        this.calcGradesFromIncludedAssignments();
       },
 
       calcGradesFromIncludedAssignments() {
-        let app = this;
         let gradesBetweenDates = {};
         let progressBetweenDates = {};
         let startDate = this.parseDate(this.submissionDatesStart);
@@ -595,9 +599,9 @@
         //break if a date is undefined
         if (startDate === undefined || endDate === undefined) return;
 
-        for (let courseId in app.includedAssignments) {
-          let course = app.includedAssignments[courseId];
-          if (app.checkIncludeCourse(course) && course.include) {
+        for (let courseId in this.includedAssignments) {
+          let course = this.includedAssignments[courseId];
+          if (this.checkIncludeCourse(course) && course.include) {
             let currentWeighted = 0;
             let totalWeights = 0; //sum of all weight values for assignment groups
             let totalWeightsSubmitted = 0; //sum of all weight values for assignment groups if at least one submitted assignment
@@ -610,17 +614,17 @@
             for (let groupId in course.groups) {
               let group = course.groups[groupId];
               if (group.include) {
-                sumGroupWeights += group.group_weight;
+                sumGroupWeights += group.groupWeight;
               }
             }
 
             for (let groupId in course.groups) {
               let group = course.groups[groupId];
-              if (app.checkIncludeGroup(group) && group.include) {
-                if (group.group_weight > 0 || sumGroupWeights === 0) {
+              if (this.checkIncludeGroup(group) && group.include) {
+                if (group.groupWeight > 0 || sumGroupWeights === 0) {
                   let currentPoints = 0; //points earned
                   let possiblePoints = 0; //potential points earned
-                  let totalPoints = app.calcCourseGroupPointsPossible(courseId, groupId, sumGroupWeights); //all points in the course
+                  let totalPoints = this.calcCourseGroupPointsPossible(courseId, groupId, sumGroupWeights); //all points in the course
                   totalTotalPoints += totalPoints;
                   //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
                   for (let assignmentId in group.assignments) {
@@ -636,21 +640,21 @@
                   if (possiblePoints > 0) {
                     let groupScore = currentPoints / possiblePoints;
                     if (sumGroupWeights > 0) {
-                      currentWeighted += groupScore * group.group_weight;
+                      currentWeighted += groupScore * group.groupWeight;
                     } else {
                       currentWeighted += groupScore;
                     }
-                    totalWeightsSubmitted += group.group_weight;
+                    totalWeightsSubmitted += group.groupWeight;
                   }
                   //update info for total possible points values 
                   if (totalPoints > 0) {
                     let progress = possiblePoints / totalPoints;
                     if (sumGroupWeights > 0) {
-                      totalProgress += progress * group.group_weight;
+                      totalProgress += progress * group.groupWeight;
                     } else {
                       totalProgress += progress;
                     }
-                    totalWeights += group.group_weight;
+                    totalWeights += group.groupWeight;
                   }
                 }
               }
@@ -686,23 +690,22 @@
             }
           }
         }
-        app.gradesBetweenDates = JSON.parse(JSON.stringify(gradesBetweenDates));
-        app.progressBetweenDates = JSON.parse(JSON.stringify(progressBetweenDates));
+        this.gradesBetweenDates = JSON.parse(JSON.stringify(gradesBetweenDates));
+        this.progressBetweenDates = JSON.parse(JSON.stringify(progressBetweenDates));
         //estimate the hours enrolled from the hours between dates data collected
         //this value can be edited by the instructor
         let count = 0;
-        app.estimatedHoursEnrolled = app.selectedTerm.hours;
-        let estimatedHoursRequired = Math.floor(app.estimatedHoursEnrolled * midtermPercentCompleted);
+        this.estimatedHoursEnrolled = this.selectedTerm.hours;
+        let estimatedHoursRequired = Math.floor(this.estimatedHoursEnrolled * midtermPercentCompleted);
         if (isNaN(estimatedHoursRequired)) estimatedHoursRequired = 0;
         this.estimatedHoursRequired = estimatedHoursRequired;
       },
 
       calcCourseGroupPointsPossible(courseId, groupId, sumGroupWeights) {
-        let app = this;
-        let assignmentGroups = app.courseAssignmentGroups[courseId];
+        let assignmentGroups = this.courseAssignmentGroups[courseId];
         let group = assignmentGroups[groupId];
         let totalPoints = 0;
-        if (group.group_weight > 0 || sumGroupWeights === 0) {
+        if (group.groupWeight > 0 || sumGroupWeights === 0) {
           //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
           for (let a = 0; a < group.assignments.length; a++) {
             let assignment = group.assignments[a];
@@ -726,7 +729,6 @@
       },
 
       async newCourse(id, state, name, year, courseCode) {
-        let app = this;
         let course = {};
         course.course_id = id;
         let hours = "N/A";
@@ -752,7 +754,7 @@
         course.section = "";
         course.ungraded = 0;
         course.submissions = 0;
-        course.nameHTML = "<a target='_blank' href='" + window.location.origin + "/courses/" + id + "'>" + name + "</a> (<a target='_blank' href='https://btech.instructure.com/courses/" + id + "/grades/" + app.userId + "'>grades</a>)";
+        course.nameHTML = "<a target='_blank' href='" + window.location.origin + "/courses/" + id + "'>" + name + "</a> (<a target='_blank' href='https://btech.instructure.com/courses/" + id + "/grades/" + this.userId + "'>grades</a>)";
         return course;
       },
 
@@ -782,9 +784,8 @@
         return text;
       },
       async getAssignmentData(assignments) {
-        let app = this;
         let course_id = course.course_id;
-        let user_id = app.userId;
+        let user_id = this.userId;
         //I think this one works better, but it apparently doesn't work for all students??? Might be related to status. The one it didn't work on was inactive
         // let url = "/api/v1/courses/" + course_id + "/analytics/users/" + user_id + "/assignments";
         let url = "/api/v1/courses/" + course_id + "/students/submissions?student_ids[]=" + user_id + "&include=assignment";
@@ -866,10 +867,9 @@
       },
 
       checkIncludeCourse(course) {
-        let app = this;
         for (let g in course.groups) {
           let group = course.groups[g];
-          if (app.checkIncludeGroup(group)) {
+          if (this.checkIncludeGroup(group)) {
             return true;
           }
         }
@@ -877,7 +877,6 @@
       },
 
       checkIncludeGroup(group) {
-        let app = this;
         if (group.include) return true;
         /*
         for (let a in group.assignments) {
@@ -891,7 +890,6 @@
       },
 
       checkIncludeAssignment(assignment) {
-        let app = this;
         return true; //show every assignment for now so people can toggle them on and off
         if (assignment.include === true) {
           return true;
