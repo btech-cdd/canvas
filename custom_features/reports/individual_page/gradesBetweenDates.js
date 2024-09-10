@@ -657,7 +657,7 @@
         return new Date(dateString);
       },
 
-      async newCourse(id, state, name, year, courseCode) {
+      newCourse(id, state, name, year, courseCode) {
         let course = {};
         course.course_id = id;
         console.log(courseCode);
