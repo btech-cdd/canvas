@@ -221,20 +221,13 @@
       this.courses = await this.getCourseData();
 
       for (let i = 0; i < this.courses.length; i++) {
-        let courseId = this.courses[i].course_id;
         let course = this.courses[i];
-        console.log(course);
         this.loadingMessage = "Loading Submissions for Course " + course.course_id;
-        console.log(course.additionalData);
-        this.submissionData[courseId] = course.additionalData.submissions;
+        this.submissionData[course.id] = course.additionalData.submissions;
         this.loadingProgress += (50 / this.courses.length) * 0.5;
         //get assignment group data
-        this.loadingMessage = "Loading Assignment Groups for Course " + this.courses[i].course_id;
-        this.courseAssignmentGroups[this.courses[i].course_id] = await canvasGet("/api/v1/courses/" + this.courses[i].course_id + "/assignment_groups", {
-          'include': [
-            'assignments'
-          ]
-        });
+        this.loadingMessage = "Loading Assignment Groups for Course " + course.id;
+        this.courseAssignmentGroups[course.id] = course.additionalData.assignment_groups;
         this.loadingProgress += (50 / this.courses.length) * 0.5;
       }
       this.loadingAssignments = false;
@@ -332,6 +325,7 @@
           this.loadingMessage = "Loading Assignment Data for Course " + course.id;
           let additionalData = await this.getGraphQLData(course);
           course.additionalData = additionalData;
+          course.assignments = additionalData.submissions;
           // await this.getAssignmentData(course);
           this.loadingProgress += (50 / courses.length) * 0.5;
         }
@@ -728,14 +722,6 @@
         return date;
 
       },
-      async getSubmissionData(courseId) {
-        let app = this;
-        let subs = await canvasGet("/api/v1/courses/" + courseId + "/students/submissions", {
-          'student_ids': [app.userId],
-          'include': ['assignment']
-        })
-        return subs;
-      },
 
       async newCourse(id, state, name, year, courseCode) {
         let app = this;
@@ -793,7 +779,7 @@
         }
         return text;
       },
-      async getAssignmentData(course) {
+      async getAssignmentData(assignments) {
         let app = this;
         let course_id = course.course_id;
         let user_id = app.userId;
