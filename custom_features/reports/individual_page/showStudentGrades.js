@@ -15,6 +15,7 @@ Vue.component('show-student-grades', {
         style="margin-block-end: 2rem;" 
       >
         <div v-for="enrollment in enrollments">
+          {{enrollment}}
         </div>
       </div>
     </div>
@@ -63,7 +64,11 @@ Vue.component('show-student-grades', {
     }
   },
   async mounted() {
-    let enrollments = await $.get(`/api/v1/users/${ENV.current_user_id}/enrollments`);
+    let courses = await canvasGet(`/api/v1/courses`);
+    let courseRef = {};
+    courses.forEach(course => courseRef[course.id] = course)
+    let enrollments = await canvasGet(`/api/v1/users/${ENV.current_user_id}/enrollments`);
+    enrollments.map(enrollment => {enrollment.course_name = courseRef[enrollment.course_id].name; return enrollment}):
     this.enrollments = enrollments;
   },
   methods: {
