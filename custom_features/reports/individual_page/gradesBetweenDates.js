@@ -223,7 +223,8 @@
       for (let i = 0; i < this.courses.length; i++) {
         let courseId = this.courses[i].course_id;
         this.loadingMessage = "Loading Submissions for Course " + this.courses[i].course_id;
-        this.submissionData[courseId] = this.courses.filter(course => course.additionalData);
+        console.log(course.additionalData);
+        this.submissionData[courseId] = this.courses.filter(course => course.additionalData.submissions);
         this.loadingProgress += (50 / this.courses.length) * 0.5;
         //get assignment group data
         this.loadingMessage = "Loading Assignment Groups for Course " + this.courses[i].course_id;
@@ -301,7 +302,6 @@
           query: query
         });
         let data = res.data.course;
-        console.log(res);
         return {
           name: data.name,
           assignment_groups: data.assignmentGroupsConnection.nodes.filter(group => group.state == 'available'),
@@ -309,7 +309,6 @@
         }
       },
       async getCourseData() {
-        console.log(this.user);
         let courses = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term`)
         courses.forEach(async course => {
           course.course_id = course.id;
