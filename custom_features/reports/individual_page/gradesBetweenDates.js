@@ -329,6 +329,7 @@
 
           this.loadingMessage = "Loading Assignment Data for Course " + course.id;
           let additionalData = await this.getGraphQLData(course);
+          console.log(additionalData);
           course.additionalData = additionalData;
           // await this.getAssignmentData(course);
           this.loadingProgress += (50 / courses.length) * 0.5;
