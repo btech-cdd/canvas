@@ -277,7 +277,7 @@
 
           this.loadingMessage = "Loading Assignment Data for Course " + course.id;
           await this.getAssignmentData(course);
-          this.loadingProgress += (50 / courseList.length) * 0.5;
+          this.loadingProgress += (50 / courses.length) * 0.5;
         });
         return courses;
         let courseList = await this.getCourses();
