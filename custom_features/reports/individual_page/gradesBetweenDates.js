@@ -376,8 +376,8 @@
             }
           }
         }
-        if (isNaN(output)) return 0;
         let output = parseFloat(totalWeightedGrade.toFixed(2));
+        if (isNaN(output)) return 0;
         return output;
       },
 
