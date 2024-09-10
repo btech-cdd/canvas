@@ -292,7 +292,7 @@
           }
         }`;
         console.log(query);
-        let res = await $.get(`/api/v1/graphql`, {
+        let res = await $.post(`/api/v1/graphql`, {
           query: query
         });
         console.log(res);
