@@ -276,6 +276,9 @@ async function generateDetailedContent(
         <div v-for="(page, p) in pageReviewsData.filter(page => (page?.objectives ?? []).length == 0 && !page.ignore)" :key="p"><a :href="'https://btech.instructure.com/courses/' + page.course_id + '/pages/' + page.page_id">{{page.name}}</a></div>
       </div>
     </div>
+    <div v-if="menuCurrent == '3rd party'">
+      Coming Soon
+    </div>
   `);
   if (courseReviewData) {
     let APP = new Vue({
@@ -295,7 +298,8 @@ async function generateDetailedContent(
           menuCurrent: 'main',
           menuOptions: [
             'main',
-            'unaligned'
+            'unaligned',
+            '3rd party'
           ],
           objectivesData: objectivesData,
           objectivesCounts: objectivesCounts,
