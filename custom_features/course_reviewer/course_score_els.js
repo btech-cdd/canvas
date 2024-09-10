@@ -106,6 +106,7 @@ async function generateDetailedContent(
     console.log(containerEl);
   containerEl.empty();
   containerEl.html(`
+<div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.5rem; border: 1px solid #AAA;">Course Evaluation</div>
     <div v-if="view == 'main'">
   <div class="btech-course-evaluator-content-box">
     <h2>Objectives</h2>
