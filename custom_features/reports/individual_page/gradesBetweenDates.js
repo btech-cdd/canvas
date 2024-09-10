@@ -465,40 +465,20 @@
       sortColumn(header) {
         let app = this;
         let name = this.columnNameToCode(header);
-        let sortState = 1;
-        let sortType = '';
-        for (let c = 0; c < app.columns.length; c++) {
-          if (app.columns[c].name !== header) {
-            //reset everything else
-            app.columns[c].sort_state = 0;
-          } else {
-            //if it's the one being sorted, set it to 1 if not 1, or set it to -1 if is already 1
-            if (app.columns[c].sort_state !== 1) app.columns[c].sort_state = 1;
-            else app.columns[c].sort_state = -1;
-            sortState = app.columns[c].sort_state;
-            sortType = app.columns[c].sort_type;
-          }
-        }
-        app.courses.sort(function (a, b) {
-          let aVal = a[name];
-          let bVal = b[name];
-          //convert strings to upper case to ignore case when sorting
-          if (typeof (aVal) === 'string') aVal = aVal.toUpperCase();
-          if (typeof (bVal) === 'string') bVal = bVal.toUpperCase();
+        let column = app.columns.find(c => c.name === header);
+        column.sort_state = column.sort_state === 1 ? -1 : 1;
 
-          //see if not the same type and which one isn't the sort type
-          if (typeof (aVal) !== typeof (bVal)) {
-            if (typeof (aVal) !== sortType) return -1 * sortState;
-            if (typeof (bVal) !== sortType) return 1 * sortState;
-          }
-          //check if it's a string or int
-          let comp = 0;
-          if (aVal > bVal) comp = 1;
-          else if (aVal < bVal) comp = -1;
-          //flip it if reverse sorting;
-          comp *= sortState;
-          return comp
-        })
+        app.courses.sort((a, b) => {
+          let aVal = a[name] ?? '';
+          let bVal = b[name] ?? '';
+          
+          if (typeof aVal === 'string') aVal = aVal.toUpperCase();
+          if (typeof bVal === 'string') bVal = bVal.toUpperCase();
+
+          if (aVal < bVal) return column.sort_state * -1;
+          if (aVal > bVal) return column.sort_state * 1;
+          return 0;
+        });
       },
 
       async getIncludedAssignmentsBetweenDates() {
@@ -716,13 +696,7 @@
 
       parseDate(dateString) {
         if (dateString == undefined) return undefined;
-        let pieces = dateString.split("-");
-        let year = parseInt(pieces[0]);
-        let month = parseInt(pieces[1] - 1);
-        let day = parseInt(pieces[2]) + 1;
-        let date = new Date(year, month, day);
-        return date;
-
+        return new Date(dateString);
       },
 
       async newCourse(id, state, name, year, courseCode) {
@@ -909,21 +883,6 @@
 
         let htmlDate = date.getFullYear() + "-" + month + "-" + day;
         return htmlDate;
-      },
-      async bridgetoolsReq(url) {
-        let reqUrl = "/api/v1/users/" + ENV.current_user_id + "/custom_data/btech-reports?ns=dev.bridgetools.reports";
-        let authCode = '';
-        await $.get(reqUrl, data => {
-          authCode = data.data.auth_code;
-        });
-        //figure out if any params exist then add autho code depending on set up.
-        if (!url.includes("?")) url += "?auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
-        else url += "&auth_code=" + authCode + "&requester_id=" + ENV.current_user_id;
-        let output;
-        await $.get(url, function (data) {
-          output = data;
-        });
-        return output;
       },
     },
 
