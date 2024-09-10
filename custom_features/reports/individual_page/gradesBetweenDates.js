@@ -220,15 +220,10 @@
       this.loadingMessage = "Loading Courses";
       this.courses = await this.getCourseData();
 
-      let submissions = await canvasGet(`/api/v1/users/${this.userId}/graded_submissions`);
-      submissions = submissions.map(submission => {
-        submission.course_id = this.extractCourseId(submission.preview_url);
-        return submission;
-      })
       for (let i = 0; i < this.courses.length; i++) {
         let courseId = this.courses[i].course_id;
         this.loadingMessage = "Loading Submissions for Course " + this.courses[i].course_id;
-        this.submissionData[courseId] = submissions.filter(submission => submission.course_id = courseId);
+        this.submissionData[courseId] = courses.filter(course => course);
         this.loadingProgress += (50 / this.courses.length) * 0.5;
         //get assignment group data
         this.loadingMessage = "Loading Assignment Groups for Course " + this.courses[i].course_id;
@@ -322,6 +317,7 @@
 
           this.loadingMessage = "Loading Assignment Data for Course " + course.id;
           let additionalData = await this.getGraphQLData(course);
+          course.additionalData = additionalData;
           // await this.getAssignmentData(course);
           this.loadingProgress += (50 / courses.length) * 0.5;
         });
