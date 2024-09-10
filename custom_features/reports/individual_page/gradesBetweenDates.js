@@ -578,6 +578,7 @@
                     }
                   }
                 }
+                console.log(includedAssignments);
               }
             }
           }
