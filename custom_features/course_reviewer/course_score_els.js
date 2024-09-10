@@ -129,7 +129,7 @@ async function generateDetailedContent(
       >{{menu.toUpperCase()}}</div>
     </div>
     <div v-if="menuCurrent == 'main'">
-      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
         <div class="btech-course-evaluator-content-box">
           <h2>Objectives</h2>
           <div v-for="(objective, o) in objectivesData" :key="o" style="display: flex; align-items: center;">
