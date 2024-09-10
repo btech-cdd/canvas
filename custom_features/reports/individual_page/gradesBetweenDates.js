@@ -291,9 +291,10 @@
             }
           }
         }`;
+        console.log(query);
         let res = await $.get(`/api/v1/graphql`, {
           query: query
-        })
+        });
         console.log(res);
       },
       async getCourseData() {
