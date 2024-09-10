@@ -713,7 +713,7 @@
           for (let a = 0; a < group.assignments.length; a++) {
             let assignment = group.assignments[a];
             if (assignment.published) {
-              totalPoints += assignment.points_possible;
+              totalPoints += assignment.pointsPossible;
             }
           }
         }
