@@ -110,7 +110,7 @@ async function generateDetailedContent(
     <div style="background-color: white; border: 1px solid #AAA;">
       <div 
         v-for="(menu, m) in menuOptions" :key="m"
-        style="border: 1px solid #AAA; padding: 0.25rem; font-weight: bold; font-size: 1rem;"
+        style="display: inline-block; width: 8rem; border: 1px solid #AAA; padding: 0.25rem; font-weight: bold; font-size: 1rem;"
       >{{menu}}</div>
     </div>
     <div v-if="view == 'main'">
