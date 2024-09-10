@@ -65,7 +65,7 @@ Vue.component('show-student-grades', {
     }
   },
   async mounted() {
-    let courses = await canvasGet(`/api/v1/courses?enrollment_Type=student`);
+    let courses = await canvasGet(`/api/v1/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores`);
     let enrollments = [];
     courses.forEach(course => {
       course.enrollments.forEach(enrollment => {
