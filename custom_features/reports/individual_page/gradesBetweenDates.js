@@ -557,6 +557,7 @@
                 for (let a = 0; a < group.assignments.length; a++) {
                   let assignment = group.assignments[a];
                   assignment.id = assignment._id;
+                  console.log(assignment);
                   if (assignment.published) {
                     if (assignment.id in subData) {
                       let sub = subData[assignment.id];
