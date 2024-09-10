@@ -16,8 +16,8 @@ Vue.component('show-student-grades', {
       >
         <div style="display: contents;">
           <span></span>
-          <span>Current Score</span>
-          <span>Final Score</span>
+          <span><strong>Current Score</strong></span>
+          <span><strong>Final Score</strong></span>
         </div>
         <div v-for="enrollment in enrollments" style="display: contents;">
           <span><span><strong>{{ enrollment.course_name }}</strong></span><br><span style="font-size: 0.75rem;"><i>{{enrollment.term.name}}</i></span></span>
