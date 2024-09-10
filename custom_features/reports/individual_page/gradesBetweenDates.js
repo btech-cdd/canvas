@@ -541,6 +541,7 @@
               let group = assignmentGroups[g];
               sumWeights += group.groupWeight;
             }
+            console.log(subData);
 
             //weight grades based on assignment group weighting and hours completed in the course
             for (let g = 0; g < assignmentGroups.length; g++) {
