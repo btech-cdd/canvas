@@ -286,7 +286,10 @@ async function generateDetailedContent(
           @keyup.enter="submitQuery"
           style="width: 100%; height: 3rem; box-sizing: border-box;" type="text">
       </div>
-      <div class="btech-course-evaluator-content-box">
+      <div 
+        class="btech-course-evaluator-content-box"
+      >
+        {{queryResponse}}
       </div>
     </div>
   `);
@@ -327,7 +330,8 @@ async function generateDetailedContent(
           genBloomsChart: genBloomsChart,
           bloomsCounts: bloomsCounts,
           query: "",
-          queryResponse: []
+          queryResponse: "",
+          querySources: []
         }
       },
       methods: {
@@ -348,7 +352,8 @@ async function generateDetailedContent(
           console.log(query);
           let response = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/query`, {query: query}, 'POST');
           this.query = "";
-          console.log(response);
+          this.queryResponse = response.response;
+          this.querySources = response.sources;
         }
       }
     });
