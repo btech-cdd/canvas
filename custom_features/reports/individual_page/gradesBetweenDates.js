@@ -275,8 +275,8 @@
           }
           this.loadingProgress += (50 / courses.length) * 0.5;
 
-          this.loadingMessage = "Loading Assignment Data for Course " + courseData.course_id;
-          await this.getAssignmentData(course, gradesData.enrollment);
+          this.loadingMessage = "Loading Assignment Data for Course " + course.id;
+          await this.getAssignmentData(course);
           this.loadingProgress += (50 / courseList.length) * 0.5;
         });
         return courses;
@@ -807,7 +807,7 @@
         }
         return text;
       },
-      async getAssignmentData(course, enrollment) {
+      async getAssignmentData(course) {
         let app = this;
         let course_id = course.course_id;
         let user_id = app.userId;
@@ -824,7 +824,7 @@
           let submitted = 0;
           let max_submissions = 0;
           let progress_per_day = 0;
-          let start_date = Date.parse(enrollment.created_at);
+          let start_date = Date.parse(course.created_at);
           let now_date = Date.now();
           let diff_time = Math.abs(now_date - start_date);
           let diff_days = Math.ceil(diff_time / (1000 * 60 * 60 * 24));
