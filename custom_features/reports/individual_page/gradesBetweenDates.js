@@ -533,7 +533,6 @@
             }
 
             let assignmentGroups = this.courseAssignmentGroups[courseId];
-            console.log(assignmentGroups);
 
             //calc sum weights, if zero, then don't check weights to include
             let sumWeights = 0;
@@ -541,7 +540,6 @@
               let group = assignmentGroups[g];
               sumWeights += group.groupWeight;
             }
-            console.log(subData);
 
             //weight grades based on assignment group weighting and hours completed in the course
             for (let g = 0; g < assignmentGroups.length; g++) {
@@ -605,6 +603,7 @@
         for (let courseId in this.includedAssignments) {
           let course = this.includedAssignments[courseId];
           if (this.checkIncludeCourse(course) && course.include) {
+            console.log(course);
             let currentWeighted = 0;
             let totalWeights = 0; //sum of all weight values for assignment groups
             let totalWeightsSubmitted = 0; //sum of all weight values for assignment groups if at least one submitted assignment
