@@ -520,7 +520,6 @@
             groups: {}
           };
           let subs = this.submissionData[courseId];
-          console.log(subs);
           if (subs !== undefined) {
             //get the data for all submissions
             let subData = {};
@@ -578,7 +577,6 @@
                     }
                   }
                 }
-                console.log(includedAssignments);
               }
             }
           }
