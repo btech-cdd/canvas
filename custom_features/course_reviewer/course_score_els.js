@@ -129,8 +129,8 @@ async function generateDetailedContent(
       >{{menu.toUpperCase()}}</div>
     </div>
     <div v-if="menuCurrent == 'main'">
-      <div class="btech-course-evaluator-content-box">
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+        <div class="btech-course-evaluator-content-box">
           <h2>Objectives</h2>
           <div v-for="(objective, o) in objectivesData" :key="o" style="display: flex; align-items: center;">
             <span 
@@ -163,12 +163,12 @@ async function generateDetailedContent(
               <i>No Objectives</i>
             </span>
           </div>
-          <div class="btech-course-evaluator-content-box">
-            <h2>Blooms</h2>
-            <div style="display: flex; align-items: center;" class="blooms-chart-container">
-              <svg style="width: 150px; height: 150px; margin-right: 20px;" class="blooms-chart"></svg>
-              <div style="display: flex; flex-direction: column; justify-content: center;" class="blooms-chart-key"></div>
-            </div>
+        </div>
+        <div class="btech-course-evaluator-content-box">
+          <h2>Blooms</h2>
+          <div style="display: flex; align-items: center;" class="blooms-chart-container">
+            <svg style="width: 150px; height: 150px; margin-right: 20px;" class="blooms-chart"></svg>
+            <div style="display: flex; flex-direction: column; justify-content: center;" class="blooms-chart-key"></div>
           </div>
         </div>
       </div>
