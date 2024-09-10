@@ -279,7 +279,7 @@ async function generateDetailedContent(
     <div v-if="menuCurrent == '3rd party'">
       Coming Soon
     </div>
-    <div v-if="menuCurrent == 'Query'">
+    <div v-if="menuCurrent == 'query'">
       <input type="text"></input>
     </div>
   `);
