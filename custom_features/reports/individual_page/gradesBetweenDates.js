@@ -223,6 +223,7 @@
       for (let i = 0; i < this.courses.length; i++) {
         let courseId = this.courses[i].course_id;
         let course = this.courses[i];
+        console.log(course);
         this.loadingMessage = "Loading Submissions for Course " + course.course_id;
         console.log(course.additionalData);
         this.submissionData[courseId] = course.additionalData.submissions;
