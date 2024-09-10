@@ -291,6 +291,11 @@ async function generateDetailedContent(
       >
         {{queryResponse}}
       </div>
+      <div 
+        class="btech-course-evaluator-content-box"
+      >
+        <div v-for="source in querySources">{{ source.name }} {{source}}</div>
+      </div>
     </div>
   `);
   if (courseReviewData) {
