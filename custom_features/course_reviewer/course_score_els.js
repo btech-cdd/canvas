@@ -106,7 +106,7 @@ async function generateDetailedContent(
     console.log(containerEl);
   containerEl.empty();
   containerEl.html(`
-  <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.5rem; border: 1px solid #AAA;">Course Evaluation</div>
+    <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.5rem; border: 1px solid #AAA;">Course Evaluation</div>
     <div v-if="view == 'main'">
       <div class="btech-course-evaluator-content-box">
         <h2>Objectives</h2>
@@ -248,7 +248,6 @@ async function generateDetailedContent(
       <h2>Unaligned Pages</h2>
       <div v-for="(page, p) in pageReviewsData.filter(page => (page?.objectives ?? []).length == 0 && !page.ignore)" :key="p"><a :href="'https://btech.instructure.com/courses/' + page.course_id + '/pages/' + page.page_id">{{page.name}}</a></div>
     </div>
-  </div>
   `);
   if (courseReviewData) {
     let APP = new Vue({
