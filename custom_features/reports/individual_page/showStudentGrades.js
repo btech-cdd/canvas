@@ -24,7 +24,7 @@ Vue.component('show-student-grades', {
           <span><span><strong>{{ enrollment.course_name }}</strong></span><br><span style="font-size: 0.75rem;"><i>{{enrollment.term.name}}</i></span></span>
           <span>{{ enrollment.computed_current_score }}% ({{ enrollment.computed_current_grade }})</span>
           <span>{{ enrollment.computed_final_score }}% ({{ enrollment.computed_final_grade }})</span>
-          <span v-if="enrollment.computed_current_score > 0">{{ enrollment.computed_final_score / enrollment.computed_current_score }}%</span>
+          <span v-if="enrollment.computed_current_score > 0">{{ Math.round((enrollment.computed_final_score / enrollment.computed_current_score) * 1000) / 10 }}%</span>
         </div>
       </div>
 
