@@ -1,7 +1,7 @@
 Vue.component('show-student-grades', {
   template: ` 
     <div>
-      <div>
+      <div style="margin-bottom: 1rem;">
         <span style="font-size: 2rem;">{{user.name}} ({{user.sis_id}})</span>
         <span style="float: right;">{{dateToString(new Date())}}</span>
       </div>
