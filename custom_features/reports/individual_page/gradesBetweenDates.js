@@ -278,7 +278,8 @@
           this.loadingMessage = "Loading Assignment Data for Course " + courseData.course_id;
           await this.getAssignmentData(course, gradesData.enrollment);
           this.loadingProgress += (50 / courseList.length) * 0.5;
-        })
+        });
+        return courses;
         let courseList = await this.getCourses();
         if (this.IS_TEACHER) {
           for (let c = 0; c < courseList.length; c++) {
