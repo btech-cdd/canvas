@@ -12,17 +12,19 @@ Vue.component('show-student-grades', {
 
       <!--CONTRACTED HOURS-->
       <div 
-        style="margin-block-end: 2rem; display: grid; grid-template-columns: 15rem 7rem 7rem; gap: 1rem;" 
+        style="margin-block-end: 2rem; display: grid; grid-template-columns: 18rem 7rem 7rem 7rem; gap: 1rem;" 
       >
         <div style="display: contents;">
           <span></span>
           <span><strong>Current Score</strong></span>
           <span><strong>Final Score</strong></span>
+          <span><strong>Progress</strong></span>
         </div>
         <div v-for="enrollment in enrollments" style="display: contents;">
           <span><span><strong>{{ enrollment.course_name }}</strong></span><br><span style="font-size: 0.75rem;"><i>{{enrollment.term.name}}</i></span></span>
           <span>{{ enrollment.computed_current_score }}% ({{ enrollment.computed_current_grade }})</span>
           <span>{{ enrollment.computed_final_score }}% ({{ enrollment.computed_final_grade }})</span>
+          <span v-if="enrollment.computed_current_score > 0">{{ enrollment.computed_final_score / enrollment.computed_current_score }}%</span>
         </div>
       </div>
 
