@@ -239,18 +239,6 @@
         return courseIdMatch ? courseIdMatch[1] : null;
       },
 
-      dateToString(date) {
-        if (typeof date == 'string') {
-          if (date == "" || date == "N/A") return "N/A";
-          date = new Date(date);
-        }
-        if (date == null) return "N/A";
-        let year = date.getFullYear();
-        let month = (1 + date.getMonth()).toString().padStart(2, '0');
-        let day = date.getDate().toString().padStart(2, '0');
-
-        return month + '/' + day + '/' + year;
-      },
       extractYear(termName) {
         const yearMatch = termName.match(/\b(20\d{2})\b/);
         return yearMatch ? yearMatch[1] : null;
@@ -351,77 +339,46 @@
       },
       sumProgressBetweenDates() {
         let sum = 0;
-        for (let c in this.courses) {
-          let course = this.courses[c];
-          let progress = this.progressBetweenDates[course.course_id];
-          if (progress > 0) {
-            sum += progress;
-          }
-        }
-        let output = sum;
-        return output;
+        this.courses.forEach(course => sum += this.progressBetweenDates[course.id]);
+        return sum;
       },
       sumHoursCompleted() {
         let sum = 0;
-        for (let c in this.courses) {
-          let course = this.courses[c];
+        this.courses.forEach(course => {
           let progress = this.progressBetweenDates[course.course_id];
           let hours = course.hours;
           if (hours == "N/A") hours = 0;
           if (progress > 0 && hours > 0) {
             sum += Math.round(progress * hours) * .01;
           }
-        }
-        let output = parseFloat(sum.toFixed(2));
-        if (isNaN(output)) return 0;
-        return output;
+        })
+        return parseFloat(sum.toFixed(2)) ?? 0;
       },
 
-      weightedGradeForTermPercent() {
+      weightedGradeForTerm() {
         let totalWeightedGrade = 0;
+        let totalHoursCompleted = this.sumHoursCompleted();
         let totalProgress = this.sumProgressBetweenDates();
         for (let c in this.courses) {
           let course = this.courses[c];
           let progress = this.progressBetweenDates[course.course_id];
           let grade = this.gradesBetweenDates[course.course_id];
           if (progress !== undefined && grade !== undefined && grade != "N/A") {
-            let weightedGrade = grade * (progress / totalProgress);
-            totalWeightedGrade += weightedGrade;
+            if (totalHoursCompleted === 0) {
+              let weightedGrade = grade * (progress / totalProgress);
+              totalWeightedGrade += weightedGrade;
+            } else {
+              let hoursCompleted = this.getHoursCompleted(course);
+              let weightedGrade = grade;
+              //have some check to not = 0 if total hours completed is 0
+              weightedGrade *= (hoursCompleted / totalHoursCompleted);
+              totalWeightedGrade += weightedGrade;
+            }
           }
         }
-        let output = parseFloat(totalWeightedGrade.toFixed(2));
         if (isNaN(output)) return 0;
-        return output;
-      },
-
-      weightedGradeForTermHours() {
-        let totalWeightedGrade = 0;
-        let totalHoursCompleted = this.sumHoursCompleted();
-        for (let c in this.courses) {
-          let course = this.courses[c];
-          let progress = this.progressBetweenDates[course.course_id];
-          let grade = this.gradesBetweenDates[course.course_id];
-          if (progress !== undefined && grade !== undefined && grade != "N/A") {
-            let hoursCompleted = this.getHoursCompleted(course);
-            let weightedGrade = grade;
-            //have some check to not = 0 if total hours completed is 0
-            weightedGrade *= (hoursCompleted / totalHoursCompleted);
-            totalWeightedGrade += weightedGrade;
-          }
-        }
         let output = parseFloat(totalWeightedGrade.toFixed(2));
-        if (isNaN(output)) return 0;
         return output;
-      },
-
-      weightedGradeForTerm() {
-        let totalHoursCompleted = this.sumHoursCompleted();
-        //In some instances there will only be courses that have no hours, such as for HS. For this minority of cases, treat all courses as equal weight and weight score based on percent completed
-        if (totalHoursCompleted === 0) {
-          return this.weightedGradeForTermPercent();
-        } else {
-          return this.weightedGradeForTermHours();
-        }
       },
 
       getHoursEnrolled(courseId) {
@@ -671,7 +628,6 @@
         this.progressBetweenDates = JSON.parse(JSON.stringify(progressBetweenDates));
         //estimate the hours enrolled from the hours between dates data collected
         //this value can be edited by the instructor
-        let count = 0;
         this.estimatedHoursEnrolled = this.selectedTerm.hours;
         let estimatedHoursRequired = Math.floor(this.estimatedHoursEnrolled * midtermPercentCompleted);
         if (isNaN(estimatedHoursRequired)) estimatedHoursRequired = 0;
@@ -702,6 +658,7 @@
       async newCourse(id, state, name, year, courseCode) {
         let course = {};
         course.course_id = id;
+        console.log(courseCode);
         let hours = "N/A";
         //get course hours if there's a year
         if (year !== null) {
@@ -712,6 +669,7 @@
           }
           if (hours === undefined) hours = 0;
         }
+        console.log(hours);
         course.hours = hours;
         course.state = state;
         course.name = name;
@@ -884,8 +842,6 @@
         let htmlDate = date.getFullYear() + "-" + month + "-" + day;
         return htmlDate;
       },
-    },
-
-    destroyed: function () {}
+    }
   });
 })();
