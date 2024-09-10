@@ -110,8 +110,8 @@ async function generateDetailedContent(
     <div style="background-color: white; border: 1px solid #AAA;">
       <div 
         v-for="(menu, m) in menuOptions" :key="m"
-        style="display: inline-block; width: 8rem; border-right: 1px solid #AAA; padding: 0.25rem; font-weight: bold; font-size: 1rem;"
-      >{{menu}}</div>
+        style="text-align: center; display: inline-block; width: 8rem; border-right: 1px solid #AAA; padding: 0.25rem; font-weight: bold; font-size: 1rem;"
+      >{{menu.toUpperCase();}}</div>
     </div>
     <div v-if="view == 'main'">
       <div class="btech-course-evaluator-content-box">
