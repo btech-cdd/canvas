@@ -111,7 +111,7 @@ async function generateDetailedContent(
       <div 
         v-for="(menu, m) in menuOptions" :key="m"
         :style="{
-          'background-color': menuCurrent == menu ? '#CCC' : ''
+          'color': menuCurrent == menu ? '#2232D2' : ''
         }"
         style="
           text-align: center;
