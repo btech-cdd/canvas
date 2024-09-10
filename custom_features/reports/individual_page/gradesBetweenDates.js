@@ -266,6 +266,41 @@
         return yearMatch ? yearMatch[1] : null;
       },
 
+      async getGraphQLData(course) {
+        let query = `{
+          course(id: "${course.id}") {
+            id
+            submissionsConnection(studentIds: "${this.userId}") {
+              nodes {
+                id
+                assignmentId
+                assignment {
+                  name
+                  published
+                  pointsPossible
+                }
+                submittedAt
+                grade
+                gradedAt
+                score
+                userId
+              }
+            }
+            name
+            assignmentGroupsConnection {
+              nodes {
+                name
+                groupWeight
+                state
+              }
+            }
+          }
+        }`;
+        let res = await $.get(`/api/v1/graphql`, {
+          query: query
+        })
+        console.log(res);
+      },
       async getCourseData() {
         console.log(this.user);
         let courses = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term`)
@@ -286,7 +321,8 @@
           this.loadingProgress += (50 / courses.length) * 0.5;
 
           this.loadingMessage = "Loading Assignment Data for Course " + course.id;
-          await this.getAssignmentData(course);
+          let additionalData = await this.getGraphQLData(course);
+          // await this.getAssignmentData(course);
           this.loadingProgress += (50 / courses.length) * 0.5;
         });
         return courses;
@@ -731,39 +767,6 @@
           if (isNaN(points)) points = 0;
         }
         return points;
-      },
-      async getCourseGrades(course_id) {
-        let output = {
-          found: false
-        };
-        let app = this;
-        let user_id = app.userId;
-        let url = "/api/v1/courses/" + course_id + "/search_users?user_ids[]=" + user_id + "&include[]=enrollments";
-        await $.get(url, function (data) {
-          if (data.length > 0) {
-            output.found = true;
-            let enrollment = data[0].enrollments[0];
-            output.enrollment = enrollment;
-            let grades = enrollment.grades;
-            if (grades !== undefined) {
-              let grade = grades.current_score;
-              if (grade == null) {
-                grade = 0;
-              }
-              output.grade = grade;
-
-              let final_grade = enrollment.grades.final_score;
-              if (final_grade == null) final_grade = 0;
-              if (grade == "N/A" && final_grade == 0) final_grade = "N/A";
-              output.final_grade = final_grade;
-
-              let points = app.calcPointsProgress(grade, final_grade);
-
-              output.points = points;
-            }
-          }
-        });
-        return output;
       },
 
       columnNameToCode(name) {
