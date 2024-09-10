@@ -294,7 +294,7 @@ async function generateDetailedContent(
       <div 
         class="btech-course-evaluator-content-box"
       >
-        <div v-for="source in querySources">{{ source.name }} {{source}}</div>
+        <div v-for="source in querySources"><a :href="getQuerySourceURL(source)">{{ source.name }} ({{source.type}})</a></div>
       </div>
     </div>
   `);
@@ -359,6 +359,13 @@ async function generateDetailedContent(
           this.query = "";
           this.queryResponse = response.response;
           this.querySources = response.sources;
+        },
+        getQuerySourceURL(source) {
+          let type = source.type;
+          if (type == 'quiz') type = 'quizzes';
+          else type += 's';
+          let url = '/courses/' + ENV.COURSE_ID + '/' + type + '/' + source.id;
+          return url;
         }
       }
     });
