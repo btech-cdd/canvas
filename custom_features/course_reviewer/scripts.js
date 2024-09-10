@@ -195,7 +195,7 @@ function addTopics(counts, dataList) {
 }
 
 function addObjectives(counts, dataList) {
-  for (let i in dataList) {
+  for (let i in dataList.filter(data => !data.ignore)) {
     let data = dataList[i];
     let objectives = data?.objectives ?? [];
     // objectives 
