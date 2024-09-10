@@ -312,7 +312,8 @@
       },
       async getCourseData() {
         let courses = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term`)
-        courses.forEach(async course => {
+        for (let c in courses) {
+          let course = courses[c];
           course.course_id = course.id;
           this.loadingMessage = "Loading Course Data for Course " + course.course_id;
           let year = this.extractYear(course.term.name);
@@ -330,11 +331,10 @@
 
           this.loadingMessage = "Loading Assignment Data for Course " + course.id;
           let additionalData = await this.getGraphQLData(course);
-          console.log(additionalData);
           course.additionalData = additionalData;
           // await this.getAssignmentData(course);
           this.loadingProgress += (50 / courses.length) * 0.5;
-        });
+        }
         return courses;
       },
       updateDatesToSelectedTerm() {
