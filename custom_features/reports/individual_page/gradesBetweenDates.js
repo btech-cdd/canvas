@@ -556,10 +556,10 @@
                 //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
                 for (let a = 0; a < group.assignments.length; a++) {
                   let assignment = group.assignments[a];
-                  assignment.id = assignment._id;
-                  console.log(assignment);
+                  assignment.id = parseInt(assignment._id);
                   if (assignment.published) {
                     if (assignment.id in subData) {
+                      console.log(assignment);
                       let sub = subData[assignment.id];
                       let subDateString = sub.submitted_at;
                       if (subDateString === null) subDateString = sub.graded_at;
