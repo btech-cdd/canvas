@@ -207,7 +207,8 @@ function addObjectives(counts, dataList) {
             counts[objective]  += 1;
         }
     } else {
-        counts['n/a'] += 1;
+      console.log(data);
+      counts['n/a'] += 1;
     }
   }
   console.log(counts);
