@@ -220,7 +220,7 @@
       this.loadingMessage = "Loading Courses";
       this.courses = await this.getCourseData();
 
-      let submissions = await canvasGet(`/api/v1/users/${this.userId}/submissions`);
+      let submissions = await canvasGet(`/api/v1/users/${this.userId}/graded_submissions`);
       submissions = submissions.map(submission => {
         submission.course_id = this.extractCourseId(submission.preview_url);
         return submission;
