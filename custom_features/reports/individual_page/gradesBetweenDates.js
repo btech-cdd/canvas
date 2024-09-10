@@ -814,7 +814,6 @@
         //I think this one works better, but it apparently doesn't work for all students??? Might be related to status. The one it didn't work on was inactive
         // let url = "/api/v1/courses/" + course_id + "/analytics/users/" + user_id + "/assignments";
         let url = "/api/v1/courses/" + course_id + "/students/submissions?student_ids[]=" + user_id + "&include=assignment";
-        if (enrollment === undefined) return;
         try {
           let submissions = await canvasGet(url);
           course.assignments = submissions;
