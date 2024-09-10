@@ -293,6 +293,7 @@ async function generateDetailedContent(
       </div>
       <div 
         class="btech-course-evaluator-content-box"
+        v-if="querySources.length > 0"
       >
         <div v-for="source in querySources"><a :href="getQuerySourceURL(source)">{{ source.name }} ({{source.type}})</a></div>
       </div>
@@ -354,9 +355,10 @@ async function generateDetailedContent(
         },
         async submitQuery() {
           let query = this.query;
-          console.log(query);
-          let response = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/query`, {query: query}, 'POST');
           this.query = "";
+          this.queryResponse = "";
+          this.querySources = [];
+          let response = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/query`, {query: query}, 'POST');
           this.queryResponse = response.response;
           this.querySources = response.sources;
         },
