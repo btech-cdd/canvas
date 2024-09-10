@@ -107,7 +107,7 @@ async function generateDetailedContent(
   containerEl.empty();
   containerEl.html(`
     <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.5rem; border: 1px solid #AAA;">Course Evaluation</div>
-    <div style="background-color: white; border: 1px solid #AAA;">
+    <div style="background-color: white; border-bottom: 1px solid #AAA;">
       <div 
         v-for="(menu, m) in menuOptions" :key="m"
         :style="{
@@ -118,7 +118,6 @@ async function generateDetailedContent(
           text-align: center;
           display: inline-block;
           width: 8rem;
-          border-right: 1px solid #AAA;
           padding: 0.25rem;
           font-weight: bold;
           font-size: 1rem;
