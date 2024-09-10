@@ -261,6 +261,7 @@
         console.log(this.user);
         let courses = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term`)
         courses.forEach(async course => {
+          course.course_id = course.id;
           this.loadingMessage = "Loading Course Data for Course " + course.course_id;
           let year = this.extractYear(course.term.name);
           if (year) {
