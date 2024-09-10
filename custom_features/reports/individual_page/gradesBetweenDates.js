@@ -617,6 +617,7 @@
                 sumGroupWeights += group.groupWeight;
               }
             }
+            console.log(sumGroupWeights);
 
             for (let groupId in course.groups) {
               let group = course.groups[groupId];
