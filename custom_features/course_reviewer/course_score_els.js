@@ -345,7 +345,9 @@ async function generateDetailedContent(
         },
         async submitQuery() {
           let query = this.query;
-          await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/query`, {query: query}, 'POST');
+          let response = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/query`, {query: query}, 'POST');
+          this.query = "";
+          console.log(response);
         }
       }
     });
