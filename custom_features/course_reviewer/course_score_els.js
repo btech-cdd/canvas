@@ -279,6 +279,9 @@ async function generateDetailedContent(
     <div v-if="menuCurrent == '3rd party'">
       Coming Soon
     </div>
+    <div v-if="menuCurrent == 'Query'">
+      <input type="text"></input>
+    </div>
   `);
   if (courseReviewData) {
     let APP = new Vue({
@@ -299,7 +302,8 @@ async function generateDetailedContent(
           menuOptions: [
             'main',
             'unaligned',
-            '3rd party'
+            '3rd party',
+            'query'
           ],
           objectivesData: objectivesData,
           objectivesCounts: objectivesCounts,
