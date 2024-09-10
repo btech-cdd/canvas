@@ -528,7 +528,7 @@
               let sub = subs[s];
               //if (sub.posted_at != null) { //used to check if posted
               if (sub.score !== null) { //trying out including anything with a score
-                subData[sub.assignment_id] = sub;
+                subData[sub.assignmentId] = sub;
               }
             }
 
@@ -562,8 +562,8 @@
                     if (assignment.id in subData) {
                       console.log(assignment);
                       let sub = subData[assignment.id];
-                      let subDateString = sub.submitted_at;
-                      if (subDateString === null) subDateString = sub.graded_at;
+                      let subDateString = sub.submittedAt;
+                      if (subDateString === null) subDateString = sub.gradedAt;
                       includedAssignments[courseId].groups[g].assignments[assignment.id] = {
                         include: false,
                         id: assignment.id,
