@@ -141,6 +141,9 @@ function calcAssignmentScore(assignment) {
         + (assignment.objectives > 0 ? 1 : 0)
         ) / 8) // divide by total points
     * 2); // multiply by 2 so we can then round it and get a 0 = sad, 1 = mid, 2+ = happy
+    console.log("ASSIGNMENT SCORE");
+    console.log(assignment);
+    console.log(assignmentScore);
     if (assignmentScore > 2) assignmentScore = 2;
     if (assignmentScore < 0) assignmentScore = 0;
     return assignmentScore;
@@ -192,7 +195,7 @@ function addTopics(counts, dataList) {
 }
 
 function addObjectives(counts, dataList) {
-  for (let i in dataList.filter(data => !data.ignore)) {
+  for (let i in dataList) {
     let data = dataList[i];
     let objectives = data?.objectives ?? [];
     // objectives 
@@ -204,7 +207,7 @@ function addObjectives(counts, dataList) {
             counts[objective]  += 1;
         }
     } else {
-      counts['n/a'] += 1;
+        counts['n/a'] += 1;
     }
   }
   return counts;
@@ -217,11 +220,13 @@ function getCourseCodeYear(courseData) {
     courseCode = match[1];
     year = match[2];
   } else {
+    console.log("NO SIS ID FOUND");
     match = ((courseData.course_code ?? '') + ' 2024XX').match(regex);
     if (match) {
       courseCode = match[1];
       year = match[2];
     } else {
+      console.log("NO COURSE CODE FOUND");
       courseCode = '';
       year = '';
     }
