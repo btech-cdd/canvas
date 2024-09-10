@@ -428,9 +428,11 @@
                               $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentIndCredits.js").done(function () {
                                 $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentHours.js").done(function () {
                                   $.getScript("https://reports.bridgetools.dev/department_report/components/individual_report/showStudentEmploymentSkills.js").done(function () {
-                                    $.getScript("https://reports.bridgetools.dev/department_report/graphs.js").done(function () {
-                                      $.getScript(SOURCE_URL + '/custom_features/reports/individual_page/gradesBetweenDates.js').done(function () {
-                                        postLoad();
+                                    $.getScript("https://bridgetools.dev/custom_features/reports/individual_page/showStudentGrades.js").done(function () {
+                                      $.getScript("https://reports.bridgetools.dev/department_report/graphs.js").done(function () {
+                                        $.getScript(SOURCE_URL + '/custom_features/reports/individual_page/gradesBetweenDates.js').done(function () {
+                                          postLoad();
+                                        });
                                       });
                                     });
                                   });

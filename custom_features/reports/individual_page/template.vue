@@ -4,6 +4,7 @@
       <div class="btech-tabs">
         <ul>
           <li @click="menu='report'">Progress Report</li>
+          <li @click="menu='grades'">Grades Report</li>
           <li @click="menu='hours'">Hours Report</li>
           <li @click="menu='employment skills'">Employment Skills</li>
           <li @click="menu='period'">Grades Between Dates</li>
@@ -58,6 +59,21 @@
                   :student-tree="tree"
                   :manual-hours-perc="true"
                 ></show-student-hours>
+              </div>
+            </div>
+
+            <div v-show="menu == 'grades'">
+              <div class="btech-canvas-report" style="background-color: #ffffff;">
+                <show-student-grades
+                  v-if="user.name !== undefined && tree.name !== undefined"
+                  style="display: inline-block; background-color: #fff; padding: 0.5rem; box-sizing: border-box; width: 100%;"
+                  :colors="colors"
+                  :user="user"
+                  :settings="settings"
+                  :student-tree="tree"
+                  :manual-hours-perc="true"
+                ></show-student-grades>
+                
               </div>
             </div>
 
