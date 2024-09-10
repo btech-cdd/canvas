@@ -312,6 +312,7 @@
             });
             let state = active ? 'Active' : completed ? 'Completed' : 'N/A';
             let courseRow = this.newCourse(course.id, state, course.name, year, course.course_code);
+            console.log(courseRow);
             course.hours = courseRow.hours;
           }
           this.loadingProgress += (50 / courses.length) * 0.5;
