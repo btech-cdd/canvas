@@ -2,7 +2,7 @@ Vue.component('show-student-grades', {
   template: ` 
     <div>
       <div>
-        {{user.name}}
+        {{user.name}} ({{user.sis_id}})
       </div>
       <!--CONTRACTED HOURS-->
       <div 
