@@ -68,7 +68,7 @@ Vue.component('show-student-grades', {
     let courseRef = {};
     courses.forEach(course => courseRef[course.id] = course)
     let enrollments = await canvasGet(`/api/v1/users/${ENV.current_user_id}/enrollments`);
-    enrollments.map(enrollment => {enrollment.course_name = courseRef[enrollment.course_id].name; return enrollment}):
+    enrollments.map(enrollment => {enrollment.course_name = courseRef[enrollment.course_id].name; return enrollment});
     this.enrollments = enrollments;
   },
   methods: {
