@@ -281,7 +281,7 @@ async function generateDetailedContent(
     </div>
     <div v-if="menuCurrent == 'query'">
       <div class="btech-course-evaluator-content-box">
-        <input style="width: 100%;" type="text">
+        <input style="width: 100%; height: 3rem; box-sizing: border-box;" type="text">
       </div>
       <div class="btech-course-evaluator-content-box">
       </div>
