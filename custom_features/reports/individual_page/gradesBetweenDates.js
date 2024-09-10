@@ -529,6 +529,7 @@
             }
 
             let assignmentGroups = this.courseAssignmentGroups[courseId];
+            console.log(assignmentGroups);
 
             //calc sum weights, if zero, then don't check weights to include
             let sumWeights = 0;
