@@ -112,7 +112,7 @@ async function generateDetailedContent(
         v-for="(menu, m) in menuOptions" :key="m"
         :style="{
           'color': menuCurrent == menu ? '${bridgetools.colors.blue}' : '',
-          'background-color': menuCurrent == menu ? '#F8F8F8' : '',
+          'background-color': menuCurrent == menu ? '#F0F0F0' : '',
           'font-weight': menuCurrent == menu ? 'bold' : 'normal'
         }"
         style="
