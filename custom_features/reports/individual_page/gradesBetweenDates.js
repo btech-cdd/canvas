@@ -252,23 +252,46 @@
 
         return month + '/' + day + '/' + year;
       },
+      extractYear(termName) {
+        const yearMatch = termName.match(/\b(20\d{2})\b/);
+        return yearMatch ? yearMatch[1] : null;
+      },
+
       async getCourseData() {
-        let app = this;
-        let courses = [];
+        let courses = await canvasGet(`/api/v1/users/${this.user.canvas_id}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term`)
+        courses.forEach(async course => {
+          this.loadingMessage = "Loading Course Data for Course " + course.course_id;
+          let year = this.extractYear(course.term.name);
+          if (year) {
+            let active = false;
+            let completed = false;
+            course.enrollments.forEach(enrollment => {
+              if (enrollment.enrollment_state == 'active') active = true;
+              if (enrollment.enrollment_state == 'completed') completed = true;
+            });
+            let state = active ? 'Active' : completed ? 'Completed' : 'N/A';
+            this.newCourse(course.id, state, course.name, year, course.course_code);
+          }
+          this.loadingProgress += (50 / courses.length) * 0.5;
+
+          this.loadingMessage = "Loading Assignment Data for Course " + courseData.course_id;
+          await this.getAssignmentData(course, gradesData.enrollment);
+          this.loadingProgress += (50 / courseList.length) * 0.5;
+        })
         let courseList = await this.getCourses();
-        if (app.IS_TEACHER) {
+        if (this.IS_TEACHER) {
           for (let c = 0; c < courseList.length; c++) {
             let courseData = courseList[c];
             this.loadingMessage = "Loading Course Data for Course " + courseData.course_id;
-            let course = await app.newCourse(courseData.course_id, courseData.state, courseData.name, courseData.year);
-            let gradesData = await app.getCourseGrades(course.course_id);
+            let course = await this.newCourse(courseData.course_id, courseData.state, courseData.name, courseData.year);
+            let gradesData = await this.getCourseGrades(course.course_id);
             this.loadingProgress += (50 / courseList.length) * 0.5;
             course.grade_to_date = gradesData.grade;
             course.final_grade = gradesData.final_grade;
             course.points = gradesData.points;
 
             this.loadingMessage = "Loading Assignment Data for Course " + courseData.course_id;
-            await app.getAssignmentData(course, gradesData.enrollment);
+            await this.getAssignmentData(course, gradesData.enrollment);
             this.loadingProgress += (50 / courseList.length) * 0.5;
             courses.push(course);
           }
@@ -276,15 +299,15 @@
           for (let c = 0; c < courseList.length; c++) {
             let courseData = courseList[c];
             this.loadingMessage = "Loading Course Data for Course " + courseData.course_id;
-            let course = await app.newCourse(courseData.course_id, courseData.state, courseData.name, courseData.year);
+            let course = await this.newCourse(courseData.course_id, courseData.state, courseData.name, courseData.year);
             this.loadingProgress += (50 / courseList.length) * 0.5;
             course.grade_to_date = courseData.enrollment.grades.current_score;
             if (course.grade_to_date == null) course.grade_to_date = "N/A";
             course.final_grade = courseData.enrollment.grades.final_score;
             if (course.final_grade == null) course.final_grade = "N/A";
-            course.points = app.calcPointsProgress(course.grade_to_date, courseData.final_grade);
+            course.points = this.calcPointsProgress(course.grade_to_date, courseData.final_grade);
             this.loadingMessage = "Loading Assignment Data for Course " + course.course_id;
-            await app.getAssignmentData(course, courseData.enrollment);
+            await this.getAssignmentData(course, courseData.enrollment);
             this.loadingProgress += (50 / courseList.length) * 0.5;
             courses.push(course);
           }
@@ -293,56 +316,6 @@
         }
         return courses;
       },
-      async processCourses() {
-        let app = this;
-        let list = [];
-        let dates = {};
-        let enrollments = this.enrollments; 
-        let enrollment_data = {};
-        for (let e = 0; e < enrollments.length; e++) {
-          let enrollment = enrollments[e];
-          if (enrollment.role == "StudentEnrollment") {
-            let startDate = new Date(enrollment.updated_at);
-            let year = startDate.getFullYear();
-            let month = startDate.getMonth();
-            if (month < 6) year -= 1;
-            try {
-              let course = await $.get("/api/v1/courses/" + enrollment.course_id);
-              dates[enrollment.course_id] = year;
-              enrollment_data[enrollment.course_id] = enrollment;
-              list.push({
-                name: course.name,
-                course_id: enrollment.course_id,
-                state: enrollment.enrollment_state, //need to fix getting this info
-                year: year, //need to fix getting this info
-                enrollment: enrollment
-              });
-            } catch {
-              console.log("COULD NOT LOAD COURSE " + enrollment.course_id);
-            }
-          }
-        }
-        return list;
-      },
-      async getCourses() {
-        let app = this;
-        let list = [];
-        list = app.processCourses();
-        /*
-        if (IS_TEACHER) { //possible change this to just do a check for the .courses class
-          let url = window.location.origin + "/users/" + app.userId;
-          await $.get(url).done(function (data) {
-            list = app.processCoursePageTeacherView(data);
-          }).fail(function (e) {
-            app.accessDenied = true;
-          });
-        } else {
-          list = app.processCoursePageStudentView();
-        }
-        */
-        return list;
-      },
-
       updateDatesToSelectedTerm() {
         let app = this;
         let term;
@@ -743,23 +716,19 @@
         return subs;
       },
 
-      async newCourse(id, state, name, year) {
+      async newCourse(id, state, name, year, courseCode) {
         let app = this;
         let course = {};
         course.course_id = id;
-        let url = "/api/v1/courses/" + id;
         let hours = "N/A";
         //get course hours if there's a year
         if (year !== null) {
-          await $.get(url).done(function (data) {
-            let crsCode = data.course_code;
-            hours = COURSE_HOURS?.[crsCode]?.hours ?? 0;
-            //Check to see if a previous year can be found if current year doesn't work
-            for (let i = 1; i < 5; i++) {
-              if (hours == undefined) hours = COURSE_HOURS?.[crsCode].hours;
-            }
-            if (hours === undefined) hours = 0;
-          })
+          hours = COURSE_HOURS?.[courseCode]?.hours ?? 0;
+          //Check to see if a previous year can be found if current year doesn't work
+          for (let i = 1; i < 5; i++) {
+            if (hours == undefined) hours = COURSE_HOURS?.[courseCode].hours;
+          }
+          if (hours === undefined) hours = 0;
         }
         course.hours = hours;
         course.state = state;
