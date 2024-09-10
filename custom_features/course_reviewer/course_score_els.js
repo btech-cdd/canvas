@@ -288,8 +288,8 @@ async function generateDetailedContent(
       </div>
       <div 
         class="btech-course-evaluator-content-box"
+        v-html="queryResponse"
       >
-        {{queryResponse}}
       </div>
       <div 
         class="btech-course-evaluator-content-box"
