@@ -311,7 +311,8 @@
               if (enrollment.enrollment_state == 'completed') completed = true;
             });
             let state = active ? 'Active' : completed ? 'Completed' : 'N/A';
-            this.newCourse(course.id, state, course.name, year, course.course_code);
+            let courseRow = this.newCourse(course.id, state, course.name, year, course.course_code);
+            course.hours = courseRow.hours;
           }
           this.loadingProgress += (50 / courses.length) * 0.5;
 
@@ -669,7 +670,6 @@
           }
           if (hours === undefined) hours = 0;
         }
-        console.log(hours);
         course.hours = hours;
         course.state = state;
         course.name = name;
