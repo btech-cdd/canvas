@@ -130,49 +130,51 @@ async function generateDetailedContent(
     </div>
     <div v-if="menuCurrent == 'main'">
       <div class="btech-course-evaluator-content-box">
-        <h2>Objectives</h2>
-        <div v-for="(objective, o) in objectivesData" :key="o" style="display: flex; align-items: center;">
-          <span 
-            style="display: inline-block;"
-            :title="(isNaN(objective.usage) ? 0 : objective.usage) + '% of content aligns to this objective.'"
-          >
-            <div 
-              style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" 
-              :style="{
-                'background': 'conic-gradient(${bridgetools.colors.green} 0% ' + (isNaN(objective.usage) ? 0 : objective.usage) + '%, lightgray ' + (isNaN(objective.usage) ? 0 : objective.usage) + '% 100%)'
-              }"
-            ></div>
-          </span>
-          <span style="margin-left: 0.5rem;">{{objective.objective_text.trim()}}</span>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+          <h2>Objectives</h2>
+          <div v-for="(objective, o) in objectivesData" :key="o" style="display: flex; align-items: center;">
+            <span 
+              style="display: inline-block;"
+              :title="(isNaN(objective.usage) ? 0 : objective.usage) + '% of content aligns to this objective.'"
+            >
+              <div 
+                style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" 
+                :style="{
+                  'background': 'conic-gradient(${bridgetools.colors.green} 0% ' + (isNaN(objective.usage) ? 0 : objective.usage) + '%, lightgray ' + (isNaN(objective.usage) ? 0 : objective.usage) + '% 100%)'
+                }"
+              ></div>
+            </span>
+            <span style="margin-left: 0.5rem;">{{objective.objective_text.trim()}}</span>
+          </div>
+          
+          <div @click="menuCurrent = 'unaligned'" style="display: flex; align-items: center; margin-top: 1rem;">
+            <span 
+              :title="(Math.round((objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10) + '% of content is NOT aligned to an objective.'"
+              style="display: inline-block;"
+            >
+              <div 
+                style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" 
+                :style="{
+                  'background': 'conic-gradient(${bridgetools.colors.red} 0% ' + (objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 100 + '%, lightgray ' + (objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 100 + '% 100%)'
+                }"
+              ></div>
+            </span>
+            <span style="margin-left: 0.5rem;">
+              <i>No Objectives</i>
+            </span>
+          </div>
         </div>
-        
-        <div @click="menuCurrent = 'unaligned'" style="display: flex; align-items: center; margin-top: 1rem;">
-          <span 
-            :title="(Math.round((objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10) + '% of content is NOT aligned to an objective.'"
-            style="display: inline-block;"
-          >
-            <div 
-              style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" 
-              :style="{
-                'background': 'conic-gradient(${bridgetools.colors.red} 0% ' + (objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 100 + '%, lightgray ' + (objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 100 + '% 100%)'
-              }"
-            ></div>
-          </span>
-          <span style="margin-left: 0.5rem;">
-            <i>No Objectives</i>
-          </span>
+        <div class="btech-course-evaluator-content-box">
+          <h2>Blooms</h2>
+          <div style="display: flex; align-items: center;" class="blooms-chart-container">
+            <svg style="width: 150px; height: 150px; margin-right: 20px;" class="blooms-chart"></svg>
+            <div style="display: flex; flex-direction: column; justify-content: center;" class="blooms-chart-key"></div>
+          </div>
         </div>
       </div>
       <div class="btech-course-evaluator-content-box">
         <h2>Contracted Courseware</h2>
         <div>3rd Party Items: {{externalContentCounts}} Item(s) ({{Math.round((externalContentCounts / totalContentCounts) * 1000) / 10}}%)</div>
-      </div>
-      <div class="btech-course-evaluator-content-box">
-        <h2>Blooms</h2>
-        <div style="display: flex; align-items: center;" class="blooms-chart-container">
-          <svg style="width: 150px; height: 150px; margin-right: 20px;" class="blooms-chart"></svg>
-          <div style="display: flex; flex-direction: column; justify-content: center;" class="blooms-chart-key"></div>
-        </div>
       </div>
       <div class="btech-course-evaluator-content-box">
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
