@@ -586,6 +586,7 @@
       },
 
       calcGradesFromIncludedAssignments() {
+        console.log(this.includedAssignments);
         let gradesBetweenDates = {};
         let progressBetweenDates = {};
         let startDate = this.parseDate(this.submissionDatesStart);
