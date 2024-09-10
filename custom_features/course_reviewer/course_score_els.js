@@ -125,7 +125,7 @@ async function generateDetailedContent(
           cursor: pointer;
           user-select: none;
           "
-        @click="menuCurrent = menu"
+        @click="setMenu(menu)"
       >{{menu.toUpperCase()}}</div>
     </div>
     <div v-if="menuCurrent == 'main'">
@@ -286,6 +286,7 @@ async function generateDetailedContent(
           this.objectivesData[o].usage = usage;
         }
         console.log(this.rubricReviewsData);
+        this.setMenu('main');
       },
       data: function () {
         return {
@@ -305,7 +306,9 @@ async function generateDetailedContent(
           quizReviewsData: quizReviewsData,
           quizCounts: quizCounts,
           externalContentCounts: externalContentCounts,
-          totalContentCounts: totalContentCounts
+          totalContentCounts: totalContentCounts,
+          genBloomsChart: genBloomsChart,
+          bloomsCounts: bloomsCounts
         }
       },
       methods: {
@@ -316,9 +319,12 @@ async function generateDetailedContent(
           updateReviewProgress({processed: 0, remaining: 1});
           await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/evaluate_content`, {course_code: courseCode, year: year}, 'POST');
           checkReviewProgress(pageCounts, quizCounts, assignmentCounts, rubricCounts);
+        },
+        setMenu(menu) {
+          this.menuCurrent = menu;
+          this.genBloomsChart(this.bloomsCounts);
         }
       }
     });
-    genBloomsChart(bloomsCounts);
   }
 }
