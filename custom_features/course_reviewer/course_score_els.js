@@ -121,9 +121,10 @@ async function generateDetailedContent(
           cursor: pointer;
           user-select: none;
           "
+        @click="menuCurrent = menu"
       >{{menu.toUpperCase()}}</div>
     </div>
-    <div v-if="view == 'main'">
+    <div v-if="menuCurrent == 'main'">
       <div class="btech-course-evaluator-content-box">
         <h2>Objectives</h2>
         <div v-for="(objective, o) in objectivesData" :key="o" style="display: flex; align-items: center;">
@@ -141,7 +142,7 @@ async function generateDetailedContent(
           <span style="margin-left: 0.5rem;">{{objective.objective_text.trim()}}</span>
         </div>
         
-        <div @click="view = 'unaligned'" style="display: flex; align-items: center; margin-top: 1rem;">
+        <div @click="menuCurrent = 'unaligned'" style="display: flex; align-items: center; margin-top: 1rem;">
           <span 
             :title="(Math.round((objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10) + '% of content is NOT aligned to an objective.'"
             style="display: inline-block;"
@@ -255,7 +256,7 @@ async function generateDetailedContent(
         <button @click="reevaluate">Score All Items</button>
       </div>
     </div>
-    <div v-if="view == 'unaligned'">
+    <div v-if="menuCurrent == 'unaligned'">
       <div class="btech-course-evaluator-content-box">
         <h2>Unaligned Assignments</h2>
         <div v-for="(assignment, a) in assignmentReviewsData.filter(assignment => (assignment?.objectives ?? []).length == 0 && !assignment.ignore)" :key="a"><a :href="'https://btech.instructure.com/courses/' + assignment.course_id + '/assignments/' + assignment.assignment_id">{{assignment.name}}</a></div>
@@ -284,7 +285,7 @@ async function generateDetailedContent(
       },
       data: function () {
         return {
-          view: 'main',
+          menuCurrent: 'main',
           menuOptions: [
             'main',
             'unaligned'
