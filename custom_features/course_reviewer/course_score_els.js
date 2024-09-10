@@ -111,7 +111,7 @@ async function generateDetailedContent(
       <div 
         v-for="(menu, m) in menuOptions" :key="m"
         :style="{
-          'color': menuCurrent == menu ? '#2232D2' : ''
+          'color': menuCurrent == menu ? '${bridgetools.colors.blue}' : ''
         }"
         style="
           text-align: center;
@@ -138,7 +138,7 @@ async function generateDetailedContent(
             <div 
               style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" 
               :style="{
-                'background': 'conic-gradient(green 0% ' + (isNaN(objective.usage) ? 0 : objective.usage) + '%, lightgray ' + (isNaN(objective.usage) ? 0 : objective.usage) + '% 100%)'
+                'background': 'conic-gradient(${bridgetools.colors.green} 0% ' + (isNaN(objective.usage) ? 0 : objective.usage) + '%, lightgray ' + (isNaN(objective.usage) ? 0 : objective.usage) + '% 100%)'
               }"
             ></div>
           </span>
@@ -153,7 +153,7 @@ async function generateDetailedContent(
             <div 
               style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" 
               :style="{
-                'background': 'conic-gradient(red 0% ' + (objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 100 + '%, lightgray ' + (objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 100 + '% 100%)'
+                'background': 'conic-gradient(${bridgetools.colors.red} 0% ' + (objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 100 + '%, lightgray ' + (objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 100 + '% 100%)'
               }"
             ></div>
           </span>
