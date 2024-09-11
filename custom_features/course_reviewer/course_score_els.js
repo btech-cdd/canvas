@@ -262,11 +262,14 @@ async function generateDetailedContent(
         <button @click="reevaluate">Score All Items</button>
       </div>
     </div>
+    <!-- SURVEYS -->
     <div v-if="menuCurrent == 'surveys'">
       <div v-for="(question, q) in surveyRatingsList">
         {{surveyQuestions[question]}}
       </div>
     </div>
+
+    <!-- ASSIGNMENTS NOT ALIGNED TO OBJECTIVES -->
     <div v-if="menuCurrent == 'unaligned'">
       <div class="btech-course-evaluator-content-box">
         <h2>Unaligned Assignments</h2>
@@ -281,9 +284,13 @@ async function generateDetailedContent(
         <div v-for="(page, p) in pageReviewsData.filter(page => (page?.objectives ?? []).length == 0 && !page.ignore)" :key="p"><a :href="'https://btech.instructure.com/courses/' + page.course_id + '/pages/' + page.page_id">{{page.name}}</a></div>
       </div>
     </div>
+
+    <!-- WHAT ASSIGNMENTS COULD BE CONSIDERED CONTRACTED COURSEWARE -->
     <div v-if="menuCurrent == '3rd party'">
       Coming Soon
     </div>
+
+    <!-- ASK A QUESTION ABOUT THE CURRICULUM -->
     <div v-if="menuCurrent == 'query'">
       <div class="btech-course-evaluator-content-box">
         <input 
@@ -326,6 +333,7 @@ async function generateDetailedContent(
           menuCurrent: 'main',
           menuOptions: [
             'main',
+            'surveys',
             'unaligned',
             '3rd party',
             'query'
