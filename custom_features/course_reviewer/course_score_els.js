@@ -403,6 +403,14 @@ async function generateDetailedContent(
           let url = '/courses/' + ENV.COURSE_ID + '/' + type + '/' + source.id;
           return url;
         },
+
+        getSurveySummary: async function () {
+          for (let q in this.surveyQuestions) {
+            let question = this.surveyQuestions[q];
+            console.log(question);
+          }
+        },
+
         loadSurveys: async function () {
           // DON'T WANT TO KEEP LOADING SAME DATA
           if (this.surveysLoaded) return;
@@ -479,7 +487,6 @@ async function generateDetailedContent(
           }
 
           this.surveyQuestions = questions;
-          console.log(questions);
           this.surveysLoaded = true;
         }
       }
