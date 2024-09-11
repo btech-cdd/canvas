@@ -267,7 +267,7 @@ async function generateDetailedContent(
       <div class="btech-course-evaluator-content-box">
         <div v-for="(question, q) in surveyRatingsList">
           <div>
-            <span :title="surveyQuestions[question].agree_perc + '% of students agree with this statement.'">{{calcEmoji(surveyQuestions[question].average)}}</span>
+            <span :title="surveyQuestions[question]?.agree_perc + '% of students agree with this statement.'">{{calcEmoji(surveyQuestions[question].average)}}</span>
             <span>{{surveyQuestions[question].question}}</span>
           </div>
         </div>
