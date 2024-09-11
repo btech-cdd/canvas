@@ -266,8 +266,10 @@ async function generateDetailedContent(
     <div v-if="menuCurrent == 'surveys'">
       <div class="btech-course-evaluator-content-box">
         <div v-for="(question, q) in surveyRatingsList">
-          <div>{{surveyQuestions[question].question}}</div>
-          <div>{{calcEmoji(surveyQuestions[question].average)}}</div>
+          <div>
+            <span :title="surveyQuestions[question].agree_perc + '% of students agree with this statement.'">{{calcEmoji(surveyQuestions[question].average)}}</span>
+            <span>{{surveyQuestions[question].question}}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -400,7 +402,7 @@ async function generateDetailedContent(
           // LOOK UP FOR NUMBERIC RATINGS
           let ratingRef = {
             'Strongly Agree': 1,
-            'Agree': .75,
+            'Agree': 0.75,
             'Disagree': 0.25,
             'Strongly Disagree': 0
           }
@@ -421,6 +423,8 @@ async function generateDetailedContent(
               question.count = 0;
               question.sum = 0;
               question.average = 0;
+              question.agree = 0;
+              question.agree_perc = 0;
             }
             else if (question.type == 'Text') {
               // this.surveyTextList.push(question.question);
@@ -440,6 +444,7 @@ async function generateDetailedContent(
                 let val = ratingRef?.[questionResponse];
                 if (val !== undefined) {
                   questions[question].count += 1;
+                  questions[question].agree += val > 0.5 ? 1 : 0;
                   questions[question].sum += val;
                 }
               }
@@ -462,6 +467,7 @@ async function generateDetailedContent(
                 return b.length - a.length;
               })
             }
+            questions[question].agree_perc = Math.round((questions[question].agree / question[question].count) * 1000) / 10;
           }
 
           this.surveyQuestions = questions;
