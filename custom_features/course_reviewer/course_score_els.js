@@ -405,10 +405,20 @@ async function generateDetailedContent(
         },
 
         getSurveySummary: async function () {
+          let summary = ``;
           for (let q in this.surveyQuestions) {
             let question = this.surveyQuestions[q];
-            console.log(question);
+            if (question.type !== 'Rating' && question.type !== 'Text') continue;
+            summary += `<question>${question.question}</question>`;
+            if (question.type === 'Rating') {
+              summary += `<results>${question.agree_perc}% of users agree with this statement.</results>`
+            } else if (question.type === 'Text') {
+              let comments = ``;
+              question.comments.forEach(comment => comments += `<student_comment>${comment}</student_comment>`);
+              summary += `<comments>${comments}</comments>`
+            }
           }
+          console.log(summary);
         },
 
         loadSurveys: async function () {
