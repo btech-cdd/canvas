@@ -397,13 +397,13 @@ async function generateDetailedContent(
           for (let q in surveys.questions) {
             let question = surveys.questions[q];
             if (question.type == 'Rating') {
-              this.surveyRatingsList.push(question.question);
+              // this.surveyRatingsList.push(question.question);
               question.count = 0;
               question.sum = 0;
               question.average = 0;
             }
             else if (question.type == 'Text') {
-              this.surveyTextList.push(question.question);
+              // this.surveyTextList.push(question.question);
               question.page = 0;
               question.comments = [];
             }
