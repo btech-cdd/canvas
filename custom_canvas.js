@@ -20,6 +20,9 @@ var CDDIDS = [
   2159901, // Celine
   2158921, // Erin
   1547292, // Leann (Student Servies)
+  451607, // Sean (Testing Center)
+  451622, // Karen (Testing Center)
+  1842412, // Codi (Testing Center)
   2162497, // Spencer
   2162340, // Cooper
   2162496, // Brenna
