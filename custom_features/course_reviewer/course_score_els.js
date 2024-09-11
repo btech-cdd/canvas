@@ -297,7 +297,7 @@ async function generateDetailedContent(
       </div>
     </div>
 
-    <div v-if="menuCurrent == 'recommendations'">
+    <div v-if="menuCurrent == 'summary'">
       <div class="btech-course-evaluator-content-box">
         Coming Soon
       </div>
@@ -349,7 +349,7 @@ async function generateDetailedContent(
             'surveys',
             'unaligned',
             '3rd party',
-            'recommendations',
+            'summary',
             'query'
           ],
           objectivesData: objectivesData,
