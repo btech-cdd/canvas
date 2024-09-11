@@ -292,7 +292,15 @@ async function generateDetailedContent(
 
     <!-- WHAT ASSIGNMENTS COULD BE CONSIDERED CONTRACTED COURSEWARE -->
     <div v-if="menuCurrent == '3rd party'">
-      Coming Soon
+      <div class="btech-course-evaluator-content-box">
+        Coming Soon
+      </div>
+    </div>
+
+    <div v-if="menuCurrent == 'recommendations'">
+      <div class="btech-course-evaluator-content-box">
+        Coming Soon
+      </div>
     </div>
 
     <!-- ASK A QUESTION ABOUT THE CURRICULUM -->
@@ -341,6 +349,7 @@ async function generateDetailedContent(
             'surveys',
             'unaligned',
             '3rd party',
+            'recommendations',
             'query'
           ],
           objectivesData: objectivesData,
