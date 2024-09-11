@@ -267,7 +267,8 @@ async function generateDetailedContent(
       <div class="btech-course-evaluator-content-box">
         <div v-for="(question, q) in surveyRatingsList">
           <div>
-            {{surveyQuestions[question]}}
+            <span :title="surveyQuestions[question].agree_perc + '% of students agree with this statement.'">{{calcEmoji(surveyQuestions[question].average)}}</span>
+            <span>{{surveyQuestions[question].question}}</span>
           </div>
         </div>
       </div>
@@ -466,7 +467,7 @@ async function generateDetailedContent(
                 return b.length - a.length;
               })
             }
-            questions[question].agree_perc = Math.round((questions[question].agree / question[question].count) * 1000) / 10;
+            questions[question].agree_perc = Math.round((questions[question].agree / questions[question].count) * 1000) / 10;
           }
 
           this.surveyQuestions = questions;
