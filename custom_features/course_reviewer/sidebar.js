@@ -533,7 +533,7 @@
         raterNames: {
 
         },
-        surveyQuestions: [],
+        surveyQuestions: {},
         surveyResponses: [],
         surveyRatingsList: [],
         surveyTextList: [],

@@ -262,6 +262,11 @@ async function generateDetailedContent(
         <button @click="reevaluate">Score All Items</button>
       </div>
     </div>
+    <div v-if="menuCurrent == 'surveys'">
+      <div v-for="(question, q) in surveyRatingsList">
+        {{surveyQuestions[question]}}
+      </div>
+    </div>
     <div v-if="menuCurrent == 'unaligned'">
       <div class="btech-course-evaluator-content-box">
         <h2>Unaligned Assignments</h2>
@@ -341,7 +346,11 @@ async function generateDetailedContent(
           bloomsCounts: bloomsCounts,
           query: "",
           queryResponse: "",
-          querySources: []
+          querySources: [],
+          surveysLoaded: false,
+          surveyRatingsList: [],
+          surveyQuestions: {},
+
         }
       },
       methods: {
@@ -379,10 +388,10 @@ async function generateDetailedContent(
 
           // LOOK UP FOR NUMBERIC RATINGS
           let ratingRef = {
-            'Strongly Agree': 4,
-            'Agree': 3,
-            'Disagree': 2,
-            'Strongly Disagree': 1
+            'Strongly Agree': 2,
+            'Agree': 1.5,
+            'Disagree': 0.5,
+            'Strongly Disagree': 0
           }
 
           // LOAD THE SURVEYS
@@ -397,7 +406,7 @@ async function generateDetailedContent(
           for (let q in surveys.questions) {
             let question = surveys.questions[q];
             if (question.type == 'Rating') {
-              // this.surveyRatingsList.push(question.question);
+              this.surveyRatingsList.push(question.question);
               question.count = 0;
               question.sum = 0;
               question.average = 0;
