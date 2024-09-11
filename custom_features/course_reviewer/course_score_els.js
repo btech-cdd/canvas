@@ -264,8 +264,11 @@ async function generateDetailedContent(
     </div>
     <!-- SURVEYS -->
     <div v-if="menuCurrent == 'surveys'">
-      <div v-for="(question, q) in surveyRatingsList">
-        {{surveyQuestions[question]}}
+      <div class="btech-course-evaluator-content-box">
+        <div v-for="(question, q) in surveyRatingsList">
+          <div>{{surveyQuestions[question].question}}</div>
+          <div>{{calcEmoji(surveyQuestions[question].average)}}</div>
+        </div>
       </div>
     </div>
 
@@ -396,9 +399,9 @@ async function generateDetailedContent(
 
           // LOOK UP FOR NUMBERIC RATINGS
           let ratingRef = {
-            'Strongly Agree': 2,
-            'Agree': 1.5,
-            'Disagree': 0.5,
+            'Strongly Agree': 1,
+            'Agree': .75,
+            'Disagree': 0.25,
             'Strongly Disagree': 0
           }
 
