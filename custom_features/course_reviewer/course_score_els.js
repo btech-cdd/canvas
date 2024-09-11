@@ -488,6 +488,7 @@ async function generateDetailedContent(
 
           this.surveyQuestions = questions;
           this.surveysLoaded = true;
+          this.getSurveySummary();
         }
       }
     });
