@@ -118,7 +118,6 @@ async function generateDetailedContent(
         style="
           text-align: center;
           display: inline-block;
-          width: 8rem;
           padding: 0.25rem;
           font-weight: bold;
           font-size: 1rem;
