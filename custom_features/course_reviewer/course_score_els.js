@@ -402,8 +402,8 @@ async function generateDetailedContent(
           // LOOK UP FOR NUMBERIC RATINGS
           let ratingRef = {
             'Strongly Agree': 1,
-            'Agree': 0.75,
-            'Disagree': 0.25,
+            'Agree': 0.8,
+            'Disagree': 0.2,
             'Strongly Disagree': 0
           }
 
