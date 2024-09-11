@@ -311,9 +311,13 @@ async function generateDetailedContent(
         }
         console.log(this.rubricReviewsData);
         this.setMenu('main');
+        this.loadSurveys();
       },
       data: function () {
         return {
+          courseId: ENV.COURSE_ID,
+          courseCode: courseCode,
+          year: year,
           menuCurrent: 'main',
           menuOptions: [
             'main',
@@ -368,6 +372,81 @@ async function generateDetailedContent(
           else type += 's';
           let url = '/courses/' + ENV.COURSE_ID + '/' + type + '/' + source.id;
           return url;
+        },
+        loadSurveys: async function () {
+          // DON'T WANT TO KEEP LOADING SAME DATA
+          if (this.surveysLoaded) return;
+
+          // LOOK UP FOR NUMBERIC RATINGS
+          let ratingRef = {
+            'Strongly Agree': 4,
+            'Agree': 3,
+            'Disagree': 2,
+            'Strongly Disagree': 1
+          }
+
+          // LOAD THE SURVEYS
+          let surveys = await this.bridgetools.req('https://surveys.bridgetools.dev/api/survey_data', {
+              course_id: this.courseId
+          }, 'POST');
+
+          console.log(surveys);
+
+          // ITERATE OVER EACH QUESTION AND CREATE AN OBJECT FOR THE SUMMARY DATA OF EACH QUESTION (WHAT WILL BE USED IN REPORT)
+          let questions = {};
+          for (let q in surveys.questions) {
+            let question = surveys.questions[q];
+            if (question.type == 'Rating') {
+              this.surveyRatingsList.push(question.question);
+              question.count = 0;
+              question.sum = 0;
+              question.average = 0;
+            }
+            else if (question.type == 'Text') {
+              this.surveyTextList.push(question.question);
+              question.page = 0;
+              question.comments = [];
+            }
+            questions[question.question] = question;
+          }
+
+          // GO OVER EACH RESPONSE AND POPULATE SUMMARY DATA
+          for (let r in surveys.responses) {
+            let response = surveys.responses[r];
+            for (let question in response.questions) {
+              let questionResponse = response.questions[question];
+              let questionData = questions[question];
+              if (questionData.type == 'Rating') {
+                let val = ratingRef?.[questionResponse];
+                if (val !== undefined) {
+                  questions[question].count += 1;
+                  questions[question].sum += val;
+                }
+              }
+              else if (questionData.type == 'Text') {
+                questions[question].comments.push(questionResponse);
+              }
+            }
+          }
+
+          // SOME CLEAN UP ON QUESTIONS
+          for (let question in questions) {
+            let data = questions[question];
+            if (data.type == 'Rating') {
+              if (questions[question].count == 0) questions[question].average = "N/A";
+              else questions[question].average = questions[question].sum / questions[question].count
+            }
+            else if (data.type == 'Text') {
+              questions[question].max_pages = Math.ceil(questions[question].comments.length / this.surveyCommentsPerPage)
+              questions[question].comments.sort((a, b) => {
+                return b.length - a.length;
+              })
+            }
+          }
+
+          this.surveyQuestions = questions;
+          console.log(questions);
+          this.surveysLoaded = true;
         }
       }
     });
