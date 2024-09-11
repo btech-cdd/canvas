@@ -386,7 +386,7 @@ async function generateDetailedContent(
           }
 
           // LOAD THE SURVEYS
-          let surveys = await this.bridgetools.req('https://surveys.bridgetools.dev/api/survey_data', {
+          let surveys = await bridgetoolsReq('https://surveys.bridgetools.dev/api/survey_data', {
               course_id: this.courseId
           }, 'POST');
 
