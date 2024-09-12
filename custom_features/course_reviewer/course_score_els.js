@@ -335,7 +335,8 @@ async function generateDetailedContent(
         }
         console.log(this.rubricReviewsData);
         this.setMenu('main');
-        this.loadSurveys();
+        await this.loadSurveys();
+        this.getSummary();
       },
       data: function () {
         return {
@@ -404,20 +405,27 @@ async function generateDetailedContent(
           return url;
         },
 
-        getSurveySummary: async function () {
+        getSummary: async function () {
           let summary = ``;
+          let surveySummary = ``;
           for (let q in this.surveyQuestions) {
             let question = this.surveyQuestions[q];
             if (question.type !== 'Rating' && question.type !== 'Text') continue;
-            summary += `<question>${question.question}</question>`;
+            surveySummary += `<question>${question.question}</question>`;
             if (question.type === 'Rating') {
-              summary += `<results>${question.agree_perc}% of users agree with this statement.</results>`
+              surveySummary += `<results>${question.agree_perc}% of users agree with this statement.</results>`
             } else if (question.type === 'Text') {
               let comments = ``;
               question.comments.forEach(comment => comments += `<student_comment>${comment}</student_comment>`);
-              summary += `<comments>${comments}</comments>`
+              surveySummary += `<comments>${comments}</comments>`
             }
           }
+          summary += `<student_survey_results>${surveySummary}</student_survey_results>`
+
+          console.log(this.assignmentCounts);
+          console.log(this.rubricCounts);
+          console.log(this.quizCounts);
+          console.log(this.pageCounts);
           console.log(summary);
         },
 
@@ -498,7 +506,6 @@ async function generateDetailedContent(
 
           this.surveyQuestions = questions;
           this.surveysLoaded = true;
-          this.getSurveySummary();
         }
       }
     });
