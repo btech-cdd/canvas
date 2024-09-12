@@ -406,7 +406,29 @@ async function generateDetailedContent(
         },
 
         getSummary: async function () {
-          let summary = ``;
+          let assignmentSummary = ``;
+          for (let criterion in this.assignmentCounts) {
+            if (criterion != 'num_reviews') {
+              let score = this.assignmentCounts[criterion];
+              if (criterion == 'clarity') score /= 2;
+              let perc = Math.round((score / this.assignmentCounts.num_reviews) * 1000) / 10;
+              assignmentSummary += `<${criterion}>${perc}% of ${this.assignmentCounts.num_reviews} assignments met this criterion.<${criterion}/>`
+            }
+          }
+
+          let quizSummary = ``;
+          for (let criterion in this.quizCounts) {
+            if (criterion != 'num_reviews') {
+              let score = this.quizCounts[criterion];
+              if (criterion == 'clarity') score /= 2;
+              let perc = Math.round((score / this.quizCounts.num_reviews) * 1000) / 10;
+              quizSummary+= `<${criterion}>${perc}% of ${this.quizCounts.num_reviews} quizzes met this criterion.<${criterion}/>`
+            }
+          }
+          console.log(this.rubricCounts);
+          console.log(this.pageCounts);
+          console.log(summary);
+
           let surveySummary = ``;
           for (let q in this.surveyQuestions) {
             let question = this.surveyQuestions[q];
@@ -420,13 +442,11 @@ async function generateDetailedContent(
               surveySummary += `<comments>${comments}</comments>`
             }
           }
-          summary += `<student_survey_results>${surveySummary}</student_survey_results>`
-
-          console.log(this.assignmentCounts);
-          console.log(this.rubricCounts);
-          console.log(this.quizCounts);
-          console.log(this.pageCounts);
-          console.log(summary);
+          summary = `
+          <assignment_reviews>${assignmentSummary}</assignment_reviews>
+          <quiz_reviews>${quizSummary}</quiz_reviews>
+          <student_survey_results>${surveySummary}</student_survey_results>
+          `
         },
 
         loadSurveys: async function () {
