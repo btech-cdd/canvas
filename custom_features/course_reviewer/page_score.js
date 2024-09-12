@@ -18,6 +18,7 @@
     courseCode = courseCodeYear.courseCode;
     try {
       pageReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/pages/${ENV.WIKI_PAGE.page_id}`);
+      console.log(pageReviewData);
     } catch (err) {
       console.log(err);
       return false;
