@@ -427,7 +427,6 @@ async function generateDetailedContent(
           }
           console.log(this.rubricCounts);
           console.log(this.pageCounts);
-          console.log(summary);
 
           let surveySummary = ``;
           for (let q in this.surveyQuestions) {
@@ -442,11 +441,12 @@ async function generateDetailedContent(
               surveySummary += `<comments>${comments}</comments>`
             }
           }
-          summary = `
+          let summary = `
           <assignment_reviews>${assignmentSummary}</assignment_reviews>
           <quiz_reviews>${quizSummary}</quiz_reviews>
           <student_survey_results>${surveySummary}</student_survey_results>
           `
+          console.log(summary);
         },
 
         loadSurveys: async function () {
