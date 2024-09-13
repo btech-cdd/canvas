@@ -298,10 +298,10 @@
       },
       async getCourseData() {
         let courses = [];
-        let coursesActive = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=active`)
+        let coursesActive = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=active&state[]=available?state[]=completed`)
         console.log(coursesActive);
         courses.push(...coursesActive);
-        let coursesCompleted = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=completed`)
+        let coursesCompleted = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=completed&state[]=available?state[]=completed`)
         courses.push(...coursesCompleted);
         console.log(coursesCompleted);
         for (let c in courses) {
