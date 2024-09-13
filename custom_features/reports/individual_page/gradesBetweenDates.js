@@ -299,9 +299,11 @@
       async getCourseData() {
         let courses = [];
         let coursesActive = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=active`)
+        console.log(coursesActive);
         courses.push(...coursesActive);
         let coursesCompleted = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=completed`)
         courses.push(...coursesCompleted);
+        console.log(coursesCompleted);
         for (let c in courses) {
           let course = courses[c];
           course.course_id = course.id;
