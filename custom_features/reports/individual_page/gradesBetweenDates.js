@@ -297,7 +297,7 @@
         }
       },
       async getCourseData() {
-        let courses = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term`)
+        let courses = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state[]=active&enrollment_state[]=completed`)
         for (let c in courses) {
           let course = courses[c];
           course.course_id = course.id;
