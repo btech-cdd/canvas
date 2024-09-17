@@ -423,6 +423,11 @@ async function generateDetailedContent(
         }
       },
       methods: {
+        adjustHeight(event) {
+          const textarea = event.target;
+          textarea.style.height = 'auto'; // Reset height to auto
+          textarea.style.height = `${textarea.scrollHeight}px`; // Set height to scrollHeight
+        },
         async reevaluate() {
           let modal = $('body .btech-modal');
           modal.remove();
