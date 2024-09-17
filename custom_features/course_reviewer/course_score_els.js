@@ -355,9 +355,6 @@ async function generateDetailedContent(
               <span style="width: 6rem; display: inline-block;">Distinct</span><span>{{ response.distinct ? emojiTF[1] : emojiTF[0] }}</span>
             </div>
             <div title="">
-              <span style="width: 6rem; display: inline-block;">Strong Verb</span><span>{{ response.verb ? emojiTF[1] : emojiTF[0] }}</span>
-            </div>
-            <div title="">
               <span style="width: 6rem; display: inline-block;">Measurable</span><span>{{ response.measurability ? emojiTF[1] : emojiTF[0] }}</span>
             </div>
           </div>
