@@ -335,7 +335,7 @@ async function generateDetailedContent(
         v-if="objectivesEvaluatorResponse.length > 0"
         v-for="response in objectivesEvaluatorResponse"
       >
-        <div><b>Proposed Objective:</b> {{response.objective}}</div>
+        <div><b>Proposed:</b> {{response.objective}}</div>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
           <div style="padding: 8px 0;">
             <h2>Criteria</h2>
@@ -366,7 +366,7 @@ async function generateDetailedContent(
             <div>{{response.feedback}}</div>
           </div>
         </div>
-        <div><b>Recommendation:</b> {{response.recommendation}}</div>
+        <div><b>Recommended:</b> {{response.recommendation}}</div>
       </div>
     </div>
   `);
