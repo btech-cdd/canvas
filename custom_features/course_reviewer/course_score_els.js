@@ -340,6 +340,9 @@ async function generateDetailedContent(
           <div style="padding: 8px 0;">
             <h2>Criteria</h2>
             <div title="">
+              <span style="width: 6rem; display: inline-block;">Strong Verb</span><span>{{ response.verb_concision ? emojiTF[1] : emojiTF[0] }}</span>
+            </div>
+            <div title="">
               <span style="width: 6rem; display: inline-block;">Relevant</span><span>{{ response.course_relevance ? emojiTF[1] : emojiTF[0] }}</span>
             </div>
             <div title="">
