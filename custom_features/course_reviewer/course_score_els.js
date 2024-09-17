@@ -334,8 +334,36 @@ async function generateDetailedContent(
       <div 
         class="btech-course-evaluator-content-box"
         v-if="objectivesEvaluatorResponse.length > 0"
+        v-for="response in objectivesEvaluatorResponse"
       >
-        <div v-for="response in objectivesEvaluatorResponse">{{response}}</div>
+        <div><b>Proposed Objective:</b> {{response.objective}}</div>
+        <div><b>Feedback:</b> {{response.feedback}}</div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+          <div style="padding: 8px 0;">
+            <h2>Criteria</h2>
+            <div title="">
+              <span style="width: 6rem; display: inline-block;">Relevant</span><span>{{ response.course_relevance ? emojiTF[1] : emojiTF[0] }}</span>
+            </div>
+            <div title="">
+              <span style="width: 6rem; display: inline-block;">Valuable</span><span>{{ response.value ? emojiTF[1] : emojiTF[0] }}</span>
+            </div>
+            <div title="">
+              <span style="width: 6rem; display: inline-block;">Specific</span><span>{{ response.specificity ? emojiTF[1] : emojiTF[0] }}</span>
+            </div>
+            <div title="">
+              <span style="width: 6rem; display: inline-block;">Concise</span><span>{{ response.concision ? emojiTF[1] : emojiTF[0] }}</span>
+            </div>
+            <div title="">
+              <span style="width: 6rem; display: inline-block;">Distinct</span><span>{{ response.distinct ? emojiTF[1] : emojiTF[0] }}</span>
+            </div>
+            <div title="">
+              <span style="width: 6rem; display: inline-block;">Strong Verb</span><span>{{ response.verb ? emojiTF[1] : emojiTF[0] }}</span>
+            </div>
+            <div title="">
+              <span style="width: 6rem; display: inline-block;">Measurable</span><span>{{ response.measurability ? emojiTF[1] : emojiTF[0] }}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   `);
@@ -390,7 +418,8 @@ async function generateDetailedContent(
           surveyRatingsList: [],
           surveyQuestions: {},
           objectivesQuery: '',
-          objectivesEvaluatorResponse: []
+          objectivesEvaluatorResponse: [],
+          emojiTF: emojiTF
         }
       },
       methods: {
