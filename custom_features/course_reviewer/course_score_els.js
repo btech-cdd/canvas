@@ -411,8 +411,7 @@ async function generateDetailedContent(
           console.log(query);
           this.objectivesEvaluatorResponse = [];
           let response = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/objectives/evaluate`, {course_code: this.courseCode, text: query}, 'POST');
-          console.log(response);
-          this.objectivesEvaluatorResponse = response.response;
+          this.objectivesEvaluatorResponse = response;
         },
         async submitQuery() {
           let query = this.query;
