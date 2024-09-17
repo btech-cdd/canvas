@@ -325,11 +325,15 @@ async function generateDetailedContent(
     <!-- Evaluate proposed objectives -->
     <div v-if="menuCurrent == 'objectives'">
       <div class="btech-course-evaluator-content-box">
-        <input 
+        <textarea 
           v-model="objectivesQuery"
           @keyup.enter="submitObjectivesQuery"
-          style="width: 100%; height: 3rem; box-sizing: border-box;" type="text">
+          @input="adjustHeight($event)"
+          style="width: 100%; box-sizing: border-box; overflow: hidden; resize: none;"
+          rows="1"
+        ></textarea>
       </div>
+        
       <div 
         class="btech-course-evaluator-content-box"
         v-if="objectivesEvaluatorResponse.length > 0"
