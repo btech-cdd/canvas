@@ -327,11 +327,15 @@ async function generateDetailedContent(
       <div class="btech-course-evaluator-content-box">
         <textarea 
           v-model="objectivesQuery"
-          @keyup.enter="submitObjectivesQuery"
           @input="adjustHeight($event)"
           style="width: 100%; box-sizing: border-box; overflow: hidden; resize: none;"
           rows="1"
         ></textarea>
+        <div>
+          <button
+            @click="submitObjectivesQuery"
+          >Submit</button>
+        </div>
       </div>
         
       <div 
