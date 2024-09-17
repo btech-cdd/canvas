@@ -343,16 +343,10 @@ async function generateDetailedContent(
               <span style="width: 6rem; display: inline-block;">Relevant</span><span>{{ response.course_relevance ? emojiTF[1] : emojiTF[0] }}</span>
             </div>
             <div title="">
-              <span style="width: 6rem; display: inline-block;">Valuable</span><span>{{ response.value ? emojiTF[1] : emojiTF[0] }}</span>
-            </div>
-            <div title="">
               <span style="width: 6rem; display: inline-block;">Specific</span><span>{{ response.specificity ? emojiTF[1] : emojiTF[0] }}</span>
             </div>
             <div title="">
               <span style="width: 6rem; display: inline-block;">Concise</span><span>{{ response.concision ? emojiTF[1] : emojiTF[0] }}</span>
-            </div>
-            <div title="">
-              <span style="width: 6rem; display: inline-block;">Distinct</span><span>{{ response.distinct ? emojiTF[1] : emojiTF[0] }}</span>
             </div>
             <div title="">
               <span style="width: 6rem; display: inline-block;">Measurable</span><span>{{ response.measurability ? emojiTF[1] : emojiTF[0] }}</span>
