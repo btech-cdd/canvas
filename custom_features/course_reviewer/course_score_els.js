@@ -333,7 +333,7 @@ async function generateDetailedContent(
       </div>
       <div 
         class="btech-course-evaluator-content-box"
-        v-if="querySources.length > 0"
+        v-if="objectivesEvaluatorResponse.length > 0"
       >
         <div v-for="response in objectivesEvaluatorReponse">{{response}}</div>
       </div>
