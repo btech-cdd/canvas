@@ -364,6 +364,7 @@ async function generateDetailedContent(
             </div>
           </div>
         </div>
+        <div><b>Recommendation:</b> {{response.recommendation}}</div>
       </div>
     </div>
   `);
