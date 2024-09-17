@@ -103,7 +103,6 @@ async function generateDetailedContent(
     , totalContentCounts
     , bloomsCounts
   ) {
-    console.log(containerEl);
   containerEl.empty();
   containerEl.html(`
     <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.5rem; border: 1px solid #AAA;">Course Evaluation</div>
@@ -378,7 +377,6 @@ async function generateDetailedContent(
           let usage = Math.round((this.objectivesCounts[objective.objective_id] / (num)) * 1000) / 10;
           this.objectivesData[o].usage = usage;
         }
-        console.log(this.rubricReviewsData);
         this.setMenu('main');
         await this.loadSurveys();
         this.getSummary();
@@ -438,7 +436,6 @@ async function generateDetailedContent(
         },
         async submitObjectivesQuery() {
           let query = this.objectivesQuery;
-          console.log(query);
           this.objectivesEvaluatorResponse = [];
           let response = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/objectives/evaluate`, {course_code: this.courseCode, text: query}, 'POST');
           this.objectivesEvaluatorResponse = response;
@@ -480,8 +477,6 @@ async function generateDetailedContent(
               quizSummary+= `<${criterion}>${perc}% of ${this.quizCounts.num_reviews} quizzes met this criterion.<${criterion}/>`
             }
           }
-          console.log(this.rubricCounts);
-          console.log(this.pageCounts);
 
           let surveySummary = ``;
           for (let q in this.surveyQuestions) {
@@ -501,7 +496,6 @@ async function generateDetailedContent(
           <quiz_reviews>${quizSummary}</quiz_reviews>
           <student_survey_results>${surveySummary}</student_survey_results>
           `
-          console.log(summary);
         },
 
         loadSurveys: async function () {
@@ -521,7 +515,6 @@ async function generateDetailedContent(
               course_id: this.courseId
           }, 'POST');
 
-          console.log(surveys);
 
           // ITERATE OVER EACH QUESTION AND CREATE AN OBJECT FOR THE SUMMARY DATA OF EACH QUESTION (WHAT WILL BE USED IN REPORT)
           let questions = {};
