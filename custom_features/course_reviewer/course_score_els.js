@@ -336,7 +336,6 @@ async function generateDetailedContent(
         v-for="response in objectivesEvaluatorResponse"
       >
         <div><b>Proposed Objective:</b> {{response.objective}}</div>
-        <div><b>Feedback:</b> {{response.feedback}}</div>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
           <div style="padding: 8px 0;">
             <h2>Criteria</h2>
@@ -361,6 +360,10 @@ async function generateDetailedContent(
             <div title="">
               <span style="width: 6rem; display: inline-block;">Measurable</span><span>{{ response.measurability ? emojiTF[1] : emojiTF[0] }}</span>
             </div>
+          </div>
+          <div style="padding: 8px 0; grid-column: span 2;">
+            <h2>Feedback</h2>
+            <div>{{response.feedback}}</div>
           </div>
         </div>
         <div><b>Recommendation:</b> {{response.recommendation}}</div>
