@@ -322,6 +322,22 @@ async function generateDetailedContent(
         <div v-for="source in querySources"><a :href="getQuerySourceURL(source)">{{ source.name }} ({{source.type}})</a></div>
       </div>
     </div>
+
+    <!-- Evaluate proposed objectives -->
+    <div v-if="menuCurrent == 'objectives'">
+      <div class="btech-course-evaluator-content-box">
+        <input 
+          v-model="objectivesQuery"
+          @keyup.enter="submitObjectivesQuery"
+          style="width: 100%; height: 3rem; box-sizing: border-box;" type="text">
+      </div>
+      <div 
+        class="btech-course-evaluator-content-box"
+        v-if="querySources.length > 0"
+      >
+        <div v-for="response in objectivesEvaluatorReponse">{{response}}</div>
+      </div>
+    </div>
   `);
   if (courseReviewData) {
     let APP = new Vue({
@@ -350,7 +366,8 @@ async function generateDetailedContent(
             'unaligned',
             '3rd party',
             'summary',
-            'query'
+            // 'query',
+            'objectives'
           ],
           objectivesData: objectivesData,
           objectivesCounts: objectivesCounts,
@@ -372,7 +389,8 @@ async function generateDetailedContent(
           surveysLoaded: false,
           surveyRatingsList: [],
           surveyQuestions: {},
-
+          objectivesQuery: '',
+          objectivesEvaluatorResponse: []
         }
       },
       methods: {
@@ -387,6 +405,13 @@ async function generateDetailedContent(
         setMenu(menu) {
           this.menuCurrent = menu;
           this.genBloomsChart(this.bloomsCounts);
+        },
+        async submitObjectivesQuery() {
+          let query = this.objectivesQuery;
+          this.objectivesEvaluatorResponse = [];
+          let response = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/objectives/evaluate`, {course_code: this.courseCode, text: query}, 'POST');
+          console.log(response);
+          this.objectivesEvaluatorResponse = response.response;
         },
         async submitQuery() {
           let query = this.query;
