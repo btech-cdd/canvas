@@ -283,17 +283,26 @@
             }
           }
         }`;
-        let res = await $.post(`/api/graphql`, {
-          query: query
-        });
-        let data = res.data.course;
-        return {
-          name: data.name,
-          assignment_groups: data.assignmentGroupsConnection.nodes.filter(group => group.state == 'available').map(group => {
-            group.assignments = group.assignmentsConnection.nodes;
-            return group;
-          }),
-          submissions: data.submissionsConnection.nodes
+        try {
+          let res = await $.post(`/api/graphql`, {
+            query: query
+          });
+          let data = res.data.course;
+          return {
+            name: data.name,
+            assignment_groups: data.assignmentGroupsConnection.nodes.filter(group => group.state == 'available').map(group => {
+              group.assignments = group.assignmentsConnection.nodes;
+              return group;
+            }),
+            submissions: data.submissionsConnection.nodes
+          }
+        } catch (err) {
+          console.error(err);
+          return {
+            name: course.name,
+            assignment_groups: [],
+            submissions: []
+          }
         }
       },
       async getCourseData() {
