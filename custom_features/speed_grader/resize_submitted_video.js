@@ -33,6 +33,7 @@ function resizeVideo(frame) {
   resizeContent(frame, comment);
 }
 let left = $("#left_side")[0];
+console.log(left);
 let resizeObserver = new ResizeObserver(() => { 
     resizeVideo($("#speedgrader_iframe").contents());
     resizeVideo($("body"));
