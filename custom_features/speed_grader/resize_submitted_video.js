@@ -1,9 +1,9 @@
 //observes the side of the page where submission details are displayed and adjusts submission videos to fill the width of that space when the page resizes.
 //does not resize the video as soon as it appears. This could be the next step.
 //The final version should allow the instructor to just resize the video to whatever they want. Even better would be if it saved settings using Canvas's custom data to remember what size video the instructor prefers.
-function resizeContent(el) {
+function resizeContent(frame, el) {
 
-  container.width("100%");
+  el.width("100%");
   let videoDiv = frame.find(".mejs-video");
   videoDiv.width("100%");
   let width = videoDiv.width();
@@ -28,9 +28,9 @@ function resizeContent(el) {
 }
 function resizeVideo(frame) {
   let box = frame.find("#media_recording_box");
-  resizeContent(box);
+  resizeContent(frame, box);
   let comment = frame.find('.instructure_inline_media_comment').parent();
-  resizeContent(comment);
+  resizeContent(frame, comment);
 }
 let left = $("#left_side")[0];
 let resizeObserver = new ResizeObserver(() => { 
