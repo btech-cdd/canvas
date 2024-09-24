@@ -3,6 +3,7 @@
 //The final version should allow the instructor to just resize the video to whatever they want. Even better would be if it saved settings using Canvas's custom data to remember what size video the instructor prefers.
 function resizeVideo(frame) {
     let container = frame.find("#media_recording_box");
+    console.log(container);
     container.width("100%");
     let videoDiv = frame.find(".mejs-video");
     videoDiv.width("100%");

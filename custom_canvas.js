@@ -89,10 +89,6 @@ var IMPORTED_FEATURE = {};
 
 var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 (async function() {
-
-
-
-
   if (window.self === window.top) { //Make sure this is only run on main page, and not every single iframe on the page. For example, Kaltura videos all load in a Canvas iframe
     let currentUser = parseInt(ENV.current_user.id);
     IS_ME = (currentUser === 1893418);
@@ -158,7 +154,8 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         if (!IS_TEACHER) {
           feature("reports/individual_page/report", {}, [
             /^\/$/,
-            /^\/courses\/[0-9]+\/grades$/
+            /^\/courses\/[0-9]+\/grades$/,
+            /^\/courses\/[0-9]+\/grades\/[0-9]+$/
           ]);
         }
         if (IS_TEACHER) {
@@ -168,14 +165,13 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
             /^\/courses\/[0-9]+\/users\/[0-9]+$/,
             /^\/accounts\/[0-9]+\/users\/[0-9]+$/,
             /^\/users\/[0-9]+$/,
-            /^\/courses\/[0-9]+\/grades\/[0-9]+/
+            /^\/courses\/[0-9]+\/grades\/[0-9]+$/
           ]);
         }
         feature("password_reset", {}, [
           /^\/courses\/[0-9]+\/users\/[0-9]+$/,
           /^\/accounts\/[0-9]+\/users\/[0-9]+$/,
-          /^\/users\/[0-9]+$/,
-          /^\/courses\/[0-9]+\/grades\/[0-9]+/
+          /^\/users\/[0-9]+$/
         ]);
         let rCheckInDepartment = /^\/accounts\/([0-9]+)/;
         if (rCheckInDepartment.test(window.location.pathname)) {
@@ -207,7 +203,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
             if (IS_BLUEPRINT) feature("page_formatting/prep_parts_list_for_sharing", {}, /^\/courses\/[0-9]+\/pages\/parts-list-master/);
             if (IS_BLUEPRINT) feature('blueprint_association_links');
             feature('modules/convert_to_page');
-            if (IS_ME) feature('instructional/glossary');
+            // if (IS_ME) feature('instructional/glossary');
             feature("report_broken_content", /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             //COURSE SPECIFIC FEATURES
             //DEPARTMENT SPECIFIC IMPORTS
