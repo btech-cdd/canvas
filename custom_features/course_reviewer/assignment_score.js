@@ -154,6 +154,7 @@
       criteriaHTML += `<div title="${criterion.description}"><span style="width: 5rem; display: inline-block;">${criterion.name}</span>`;
       if (criterion.score_type == 'boolean') criteriaHTML += `<span>${val ? emojiTF[1] : emojiTF[0]}</span>`
       if (criterion.score_type == 'number') criteriaHTML += `<span>${emoji?.[val] ?? ''}</span>`
+      criteriaHTML += `</div>`
     }
     let el = $(`
       <div style="padding: 8px 0;">
