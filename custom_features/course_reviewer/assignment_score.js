@@ -162,24 +162,7 @@
         <div title="The bloom's taxonomy level of this assignment." style="margin-bottom: 0.5rem; display: inline-block;">
           <span style="background-color: ${bloomsColors?.[assignmentReviewData.blooms.toLowerCase()]}; color: #000000; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${assignmentReviewData.blooms}</span>
         </div>
-        <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-          <span style="width: 5rem; display: inline-block;">Clarity</span><span>${ emoji?.[assignmentReviewData.clarity] ?? ''}</span>
-        </div>
-        <div title="Content is chunked with headers, call out boxes, lists, etc.">
-          <span style="width: 5rem; display: inline-block;">Chunking</span><span>${ assignmentReviewData.chunked_content ? emojiTF[1] : emojiTF[0]}</span>
-        </div>
-        <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-          <span style="width: 5rem; display: inline-block;">Outcomes</span><span>${ assignmentReviewData.includes_outcomes ? emojiTF[1] : emojiTF[0]}</span>
-        </div>
-        <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-          <span style="width: 5rem; display: inline-block;">Industry</span><span>${ assignmentReviewData.career_relevance ? emojiTF[1] : emojiTF[0]}</span>
-        </div>
-        <div title="The assignment explicitly states how this students will receive documented feedback.">
-          <span style="width: 5rem; display: inline-block;">Feedback</span><span>${ assignmentReviewData.provides_feedback ? emojiTF[1] : emojiTF[0]}</span>
-        </div>
-        <div title="The assignment explicitly states how this students will receive documented feedback.">
-          <span style="width: 5rem; display: inline-block;">Modeling</span><span>${ assignmentReviewData.modeling ? emojiTF[1] : emojiTF[0]}</span>
-        </div>
+        ${criteriaHTML}
         <div title="The assignment is alligned to the course objectives.">
           <span style="width: 5rem; display: inline-block;">Allignment</span><span>${ (assignmentReviewData?.objectives ?? []) > 0 ? emojiTF[1] : emojiTF[0]}</span>
         </div>
