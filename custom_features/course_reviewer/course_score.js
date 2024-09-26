@@ -89,7 +89,7 @@
       quizReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes`);
       quizCriteria = await getCriteria('Quizzes');
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
 
     // get assignment data
@@ -104,14 +104,14 @@
         }
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
 
     try {
       rubricReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/rubrics`);
       rubricCriteria = await getCriteria('Rubrics');
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
 
     $("span.ig-btech-evaluation-score").each(function() {
@@ -124,14 +124,14 @@
       pageReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/pages`);
       pageCriteria = await getCriteria('Pages');
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
 
     try {
       objectivesData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseCode}/year/${year}/objectives`);
     } catch (err) {
       objectivesData = [];
-      console.log(err);
+      console.error(err);
     }
 
     bloomsCounts = {};
@@ -220,7 +220,6 @@
     for (let r in rubricReviewsData) {
       let rubric = rubricReviewsData[r];
       let rubricScore = calcCriteriaAverageScore(rubric, rubricCriteria);
-      console.log(rubricScore);
       let hasRubric = false;
       for (let a in assignmentsData) {
         let assignment = assignmentsData[a];
