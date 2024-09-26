@@ -195,6 +195,7 @@ function calcCriteriaAverageScore(content, criteria) {
       points += score ? 1 : 0;
     }
   }
+  console.log(points + ' / ' + maxPoints);
   
   let averageScore = Math.floor((points / maxPoints) * 2);
   if (averageScore > 2) averageScore = 2;
