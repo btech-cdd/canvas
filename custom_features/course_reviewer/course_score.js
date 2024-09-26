@@ -220,6 +220,7 @@
     for (let r in rubricReviewsData) {
       let rubric = rubricReviewsData[r];
       let rubricScore = calcCriteriaAverageScore(rubric, rubricCriteria);
+      console.log(rubricScore);
       let hasRubric = false;
       for (let a in assignmentsData) {
         let assignment = assignmentsData[a];
