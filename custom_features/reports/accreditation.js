@@ -188,6 +188,7 @@
         },
         data: function () {
           return {
+            anonymous: IS_ME,
             assignmentGroups: {},
             courseData: {},
             enrollments: [],
