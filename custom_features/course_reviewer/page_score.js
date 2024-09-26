@@ -119,7 +119,7 @@
 
   function generatePageReviewEl() {
     let data = pageReviewData;
-    let averageScore = calcCriteriaAverageScore(data);
+    let averageScore = calcCriteriaAverageScore(data, pageCriteria);
 
     let el = $(`
       <div style="padding: 8px 0;">
