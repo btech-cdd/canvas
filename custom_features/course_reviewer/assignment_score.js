@@ -22,13 +22,15 @@
     assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
     let assignmentCriteriaData = (await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/criteria/type/Assignments`));
     assignmentCriteria = {};
-    for (let criterion in assignmentCriteriaData) {
+    for (let c in assignmentCriteriaData) {
+      let criterion = assignmentCriteriaData[c];
       let name = criterionNameToVariable(criterion.name);
       assignmentCriteria[name] = criterion;
     }
     rubricCriteria = {};
     let rubricCriteriaData = (await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/criteria/type/Rubrics`));
-    for (let criterion in rubricCriteriaData) {
+    for (let c in rubricCriteriaData) {
+      let criterion = rubricCriteriaData[c];
       let name = criterionNameToVariable(criterion.name);
       rubricCriteria[name] = criterion;
     }
