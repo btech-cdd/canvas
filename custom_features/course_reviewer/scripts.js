@@ -14,6 +14,18 @@ function criterionNameToVariable(name) {
     .replace(/\s+/g, '_');                    // Replace spaces with underscores
 }
 
+function generateCriteriaHTML(criteria, data) {
+  let criteriaHTML = ``;
+  for (let name in criteria) {
+    let criterion = criteria[name];
+    let val = data.criteria[name];
+    criteriaHTML += `<div title="${criterion.description}"><span style="width: 5rem; display: inline-block;">${criterion.name}</span>`;
+    if (criterion.score_type == 'boolean') criteriaHTML += `<span>${val ? emojiTF[1] : emojiTF[0]}</span>`
+    if (criterion.score_type == 'number') criteriaHTML += `<span>${emoji?.[val] ?? ''}</span>`
+    criteriaHTML += `</div>`
+  }
+}
+
 function calcEmoji(perc) {
   if (isNaN(perc)) return '';
   if (perc < 0.5) return emoji[0]; // bronze
