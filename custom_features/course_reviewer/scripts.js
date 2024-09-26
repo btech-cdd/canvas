@@ -133,7 +133,7 @@ function calcCriteriaAverageScore(content, criteria) {
     }
   }
   
-  let averageScore = (points / maxPoints) * 2;
+  let averageScore = Math.floor((points / maxPoints) * 2);
   if (averageScore > 2) averageScore = 2;
   if (averageScore < 0) averageScore = 0;
   return averageScore;
