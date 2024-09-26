@@ -110,6 +110,7 @@
     
     //quiz questions
     // let averageQuestionScore = calcQuizQuestionScore(data);
+    let averageQuestionScore = 0;
 
     let el = $(`
       <div style="padding: 8px 0;">
@@ -143,24 +144,6 @@
     });
     return el;
   }
-
-  function generateRelevantObjectivesEl() {
-    let objectives = [];
-    for (let o in objectivesData) {
-      let objective = objectivesData[o];
-      objectives[objective.objective_id] = objective;
-    }
-
-    let relevantObjectivesString = ``;
-    for (let i = 1; i < objectives.length; i++) {
-      let objective = objectives[i];
-      let isRelevant = quizReviewData.objectives.includes(objective.objective_id);
-      relevantObjectivesString += `<div style="${isRelevant ? '' : 'color: #CCC;'}"><span style="width: 1rem; display: inline-block;">${isRelevant ? '&#10003;' : ''}</span>${objective.objective_text}</div>`;
-    }
-    let relevantObjectivesEl = $(`<div><h2>Relevant Objectives</h2>${relevantObjectivesString}</div>`);
-    return relevantObjectivesEl;
-  }
-
 
   async function generateDetailedContent(containerEl) {
     if (quizReviewData) {
