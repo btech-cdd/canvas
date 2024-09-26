@@ -24,6 +24,7 @@
     assignmentCriteria = await getCriteria('Assignments');
     rubricCriteria = await getCriteria('Rubrics');
 
+
     let courseCodeYear = getCourseCodeYear(courseData);
     year = courseCodeYear.year;
     courseCode = courseCodeYear.courseCode;
