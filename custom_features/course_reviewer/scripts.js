@@ -112,6 +112,15 @@ function genBloomsChart(data) {
     });
 }
 
+function calcCriteriaScore(content) {
+  let score = 0;
+  for (let criterion in content.criteria) {
+    let val = content.criteria[criterion];
+    console.log(val);
+  }
+  return score;
+}
+
 function calcQuizScore(quiz) {
     let quizScore = Math.floor(((
         (quiz.clarity) // 0-2

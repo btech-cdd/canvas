@@ -226,6 +226,8 @@
   function generateAssignmentReviewEl() {
     let data = assignmentReviewData;
     let averageScore = calcAssignmentScore(data);
+    let score= calcCriteriaScore(data);
+    console.log(score);
 
     let rubricScore = calcRubricScore(rubricReviewData);
     let el = $(`
