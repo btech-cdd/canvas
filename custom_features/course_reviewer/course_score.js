@@ -158,7 +158,7 @@
       let page = pageReviewsData[o];
       pageReviewsData[o].name = $(`.WikiPage_${page.page_id} span.item_name a.title`).text().trim();
 
-      let pageScore = calcPageScore(page);
+      let pageScore = calcCriteriaAverageScore(page);
       if (page.ignore) {
         $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`).html('🚫');
       } else if (emoji?.[pageScore]) {
@@ -177,7 +177,7 @@
         bloomsCounts[quiz.blooms] += 1;
       }
 
-      let quizScore = calcQuizScore(quiz);
+      let quizScore = calcCriteriaAverageScore(quiz);
 
       if (quiz.ignore) {
         $(`.Quiz_${quiz.quiz_id} span.ig-btech-evaluation-score`).html('🚫');
@@ -198,7 +198,7 @@
         bloomsCounts[assignment.blooms] += 1;
       }
 
-      let assignmentScore = calcAssignmentScore(assignment);
+      let assignmentScore = calcCriteriaAverageScore(assignment);
       if (assignment.ignore) {
         $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html('🚫');
       } else if (emoji?.[assignmentScore]) {
@@ -211,7 +211,7 @@
     rubricCounts = calcCourseRubricCounts(rubricReviewsData);
     for (let r in rubricReviewsData) {
       let rubric = rubricReviewsData[r];
-      let rubricScore = calcRubricScore(rubric);
+      let rubricScore = calcCriteriaAvergaeScore(rubric);
       let hasRubric = false;
       for (let a in assignmentsData) {
         let assignment = assignmentsData[a];
