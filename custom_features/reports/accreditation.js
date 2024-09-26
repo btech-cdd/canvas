@@ -435,7 +435,7 @@
           },
           async downloadComments(iframe, content, data) {
             let app = this;
-            let title = data.assignment.name + "-" + data.submission.user.name + " submission comments"
+            let title = data.assignment.name + "-" + (anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission comments"
             let commentEl = app.getComments(data.submission);
             let discussionEl = app.getDiscussionEntries(data.submission);
             /*
@@ -449,7 +449,7 @@
             //Prepend in reverse order of the order you want it to appear at the top5rp
             content.show();
             content.prepend("<div>Submitted:" + app.getSubmissionDate(data.submission) + "</div>");
-            content.prepend("<div>Student:" + data.submission.user.name + "</div>");
+            content.prepend("<div>Student:" + (anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + "</div>");
             if (this.campuses?.[data.submission.user.id] ?? '' != '') {
               content.prepend("<div>Campus:" + this.campuses[data.submission.user.id] + "</div>");
             }
@@ -473,7 +473,7 @@
           },
           async downloadRubric(iframe, content, data) {
             let app = this;
-            let title = data.assignment.name + "-" + data.submission.user.name + " submission rubric";
+            let title = data.assignment.name + "-" + (anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission rubric";
         
             // Wait for the iframe to load
             await new Promise(resolve => {
@@ -486,7 +486,7 @@
                   rubricHolder.show();
                   rubricHolder.prepend(`<div>${data.submission.body}</div>`);
                   rubricHolder.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
-                  rubricHolder.prepend("<div>Student:" + data.submission.user.name + "</div>");
+                  rubricHolder.prepend("<div>Student:" + (anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + "</div>");
                   if (this.campuses?.[data.submission.user.id] ?? '' != '') {
                     content.prepend("<div>Campus:" + this.campuses[data.submission.user.id] + "</div>");
                   }
@@ -524,11 +524,11 @@
             let app = this;
             let elId = iframe.attr('id');
             let id = elId.replace('btech-content-', '');
-            let title = data.assignment.name + "-" + data.submission.user.name + " submission"
+            let title = data.assignment.name + "-" + (anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission"
             let commentEl = app.getComments(data.submission);
             let url = '/courses/' + app.courseId + '/assignments/' + data.assignment.id + '/submissions/' + data.submission.user.id + '?preview=1';
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
-            content.prepend("<div>Student:" + data.submission.user.name + "</div>");
+            content.prepend("<div>Student:" + (anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + "</div>");
             if (this.campuses?.[data.submission.user.id] ?? '' != '') {
               content.prepend("<div>Campus:" + this.campuses[data.submission.user.id] + "</div>");
             }
@@ -560,10 +560,10 @@
             let app = this;
             let elId = iframe.attr('id');
             let id = elId.replace('btech-content-', '');
-            let title = data.assignment.name + "-" + data.submission.user.name + " submission"
+            let title = data.assignment.name + "-" + (anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission"
             let commentEl = app.getComments(data.submission);
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
-            content.prepend("<div>Student:" + data.submission.user.name + "</div>");
+            content.prepend("<div>Student:" + (anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + "</div>");
             if (this.campuses?.[data.submission.user.id] ?? '' != '') {
               content.prepend("<div>Campus:" + this.campuses[data.submission.user.id] + "</div>");
             }
