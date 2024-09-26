@@ -146,6 +146,15 @@
   }
 
   function generateDetailedAssignmentReviewEl() {
+    let criteriaHTML = ``;
+    for (let name in assignmentCriteria) {
+      console.log(name);
+      let criterion = assignmentCriteria[name];
+      let val = assignmentReview.criteria[name];
+      criteriaHTML += `<div title="${criterion.description}"><span style="width: 5rem; display: inline-block;">${criterion.name}</span>`;
+      if (criterion.score_type == 'boolean') criteriaHTML += `<span>${val ? emojiTF[1] : emojiTF[0]}</span>`
+      if (criterion.score_type == 'number') criteriaHTML += `<span>${emoji?.[val] ?? ''}</span>`
+    }
     let el = $(`
       <div style="padding: 8px 0;">
         <h2>Assignment Review</h2>
