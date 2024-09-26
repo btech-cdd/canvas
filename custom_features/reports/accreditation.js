@@ -112,7 +112,7 @@
                     </a>
                   </div>
                   <span>
-                    {{submission.user.name}}
+                    {{anonymous ? ('Anonymous User ' + submission.user.id) : submission.user.name}}
                   </span>
                   <span>
                     {{enrollmentTypes?.[submission.user.id] ?? ''}}
@@ -448,7 +448,7 @@
             //Prepend in reverse order of the order you want it to appear at the top5rp
             content.show();
             content.prepend("<div>Submitted:" + app.getSubmissionDate(data.submission) + "</div>");
-            content.prepend("<div>Student:" + anonymous ? 'ANONYMOUS STUDENT' : data.submission.user.name + "</div>");
+            content.prepend("<div>Student:" + data.submission.user.name + "</div>");
             if (this.campuses?.[data.submission.user.id] ?? '' != '') {
               content.prepend("<div>Campus:" + this.campuses[data.submission.user.id] + "</div>");
             }
