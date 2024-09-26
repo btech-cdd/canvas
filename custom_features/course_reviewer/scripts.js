@@ -115,6 +115,7 @@ function genBloomsChart(data) {
 function calcCriteriaAverageScore(content, criteria) {
   let points = 0;
   let maxPoints = 0;
+  console.log(content);
   console.log(criteria);
   // abort if nothing there
   if (criteria.length == 0) return 0;
