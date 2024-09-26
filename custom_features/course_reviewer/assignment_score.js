@@ -20,22 +20,10 @@
   async function refreshData() {
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
-    let assignmentCriteriaData = (await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/criteria/type/Assignments`));
-    assignmentCriteria = {};
-    for (let c in assignmentCriteriaData) {
-      let criterion = assignmentCriteriaData[c];
-      let name = criterionNameToVariable(criterion.name);
-      assignmentCriteria[name] = criterion;
-    }
-    rubricCriteria = {};
-    let rubricCriteriaData = (await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/criteria/type/Rubrics`));
-    for (let c in rubricCriteriaData) {
-      let criterion = rubricCriteriaData[c];
-      let name = criterionNameToVariable(criterion.name);
-      rubricCriteria[name] = criterion;
-    }
-    console.log(assignmentCriteria);
-    console.log(rubricCriteria);
+
+    assignmentCriteria = await getCriteria('Assignments');
+    rubricCriteria = await getCriteria('Rubrics');
+
     let courseCodeYear = getCourseCodeYear(courseData);
     year = courseCodeYear.year;
     courseCode = courseCodeYear.courseCode;

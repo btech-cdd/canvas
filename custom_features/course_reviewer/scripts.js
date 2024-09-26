@@ -14,6 +14,17 @@ function criterionNameToVariable(name) {
     .replace(/\s+/g, '_');                    // Replace spaces with underscores
 }
 
+async function getCriteria(type) {
+  let criteriaData = (await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/criteria/type/${type}`));
+  let criteria = {};
+  for (let c in criteriaData) {
+    let criterion = criteriaData[c];
+    let name = criterionNameToVariable(criterion.name);
+    criteria[name] = criterion;
+  }
+  return criteria;
+}
+
 function generateCriteriaHTML(criteria, data) {
   let criteriaHTML = ``;
   for (let name in criteria) {

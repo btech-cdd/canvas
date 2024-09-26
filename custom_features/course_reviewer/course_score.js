@@ -28,10 +28,14 @@
     , contentCount
     , assignmentsData
     , assignmentReviewsData
+    , assignmentCriteria
     , pageReviewsData
+    , pageCriteria
     , quizReviewsData
+    , quizCriteria
     , courseReviewData
     , rubricReviewsData
+    , rubricCriteria
     , objectivesData
     , courseCode
     , year
@@ -83,6 +87,7 @@
     // get quiz data
     try {
       quizReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes`);
+      quizCriteria = await getCriteria('Quizzes');
     } catch (err) {
       console.log(err);
     }
@@ -91,6 +96,7 @@
     try {
       assignmentReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments`);
       assignmentsData = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
+      assignmentCriteria = await getCriteria('Assignments');
       for (let a in assignmentsData) {
         let assignment = assignmentsData[a];
         if (assignment.submission_types.includes('external_tool')) {
@@ -103,6 +109,7 @@
 
     try {
       rubricReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/rubrics`);
+      rubricCriteria = await getCriteria('Rubrics');
     } catch (err) {
       console.log(err);
     }
@@ -115,6 +122,7 @@
     // get page data
     try {
       pageReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/pages`);
+      pageCriteria = await getCriteria('Pages');
     } catch (err) {
       console.log(err);
     }
@@ -158,7 +166,7 @@
       let page = pageReviewsData[o];
       pageReviewsData[o].name = $(`.WikiPage_${page.page_id} span.item_name a.title`).text().trim();
 
-      let pageScore = calcCriteriaAverageScore(page);
+      let pageScore = calcCriteriaAverageScore(page, pageCriteria);
       if (page.ignore) {
         $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`).html('🚫');
       } else if (emoji?.[pageScore]) {
@@ -177,7 +185,7 @@
         bloomsCounts[quiz.blooms] += 1;
       }
 
-      let quizScore = calcCriteriaAverageScore(quiz);
+      let quizScore = calcCriteriaAverageScore(quiz, quizCriteria);
 
       if (quiz.ignore) {
         $(`.Quiz_${quiz.quiz_id} span.ig-btech-evaluation-score`).html('🚫');
@@ -198,7 +206,7 @@
         bloomsCounts[assignment.blooms] += 1;
       }
 
-      let assignmentScore = calcCriteriaAverageScore(assignment);
+      let assignmentScore = calcCriteriaAverageScore(assignment, assignmentCriteria);
       if (assignment.ignore) {
         $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html('🚫');
       } else if (emoji?.[assignmentScore]) {
@@ -211,7 +219,7 @@
     rubricCounts = calcCourseRubricCounts(rubricReviewsData);
     for (let r in rubricReviewsData) {
       let rubric = rubricReviewsData[r];
-      let rubricScore = calcCriteriaAvergaeScore(rubric);
+      let rubricScore = calcCriteriaAvergaeScore(rubric, rubricCriteria);
       let hasRubric = false;
       for (let a in assignmentsData) {
         let assignment = assignmentsData[a];
