@@ -485,7 +485,7 @@
                 let rubricHolder = iframeContent.find("#rubric_holder");
                 if (rubricHolder.length > 0) {
                   rubricHolder.show();
-                  rubricHolder.prepend(`<div>${data.submission.body}</div>`);
+                  // rubricHolder.prepend(`<div>${data.submission.body}</div>`);
                   rubricHolder.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
                   rubricHolder.prepend("<div>Student:" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + "</div>");
                   if (this.campuses?.[data.submission.user.id] ?? '' != '') {
