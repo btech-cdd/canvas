@@ -219,7 +219,7 @@
     rubricCounts = calcCourseRubricCounts(rubricReviewsData);
     for (let r in rubricReviewsData) {
       let rubric = rubricReviewsData[r];
-      let rubricScore = calcCriteriaAvergaeScore(rubric, rubricCriteria);
+      let rubricScore = calcCriteriaAverageScore(rubric, rubricCriteria);
       let hasRubric = false;
       for (let a in assignmentsData) {
         let assignment = assignmentsData[a];
