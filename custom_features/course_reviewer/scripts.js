@@ -112,13 +112,26 @@ function genBloomsChart(data) {
     });
 }
 
-function calcCriteriaScore(content) {
-  let score = 0;
-  for (let criterion in content.criteria) {
-    let val = content.criteria[criterion];
-    console.log(val);
+function calcCriteriaAverageScore(content, criteria) {
+  let points = 0;
+  let maxPoints = 0;
+  for (let name in criteria) {
+    let criterion = criteria[name];
+    let score = content.criteria[name];
+    if (criterion.score_type == 'number') {
+      maxPoints += 2; // eventually allow for dynamic max scores with a rubric
+      points += score;
+    }
+    if (criterion.score_type == 'boolean') {
+      maxPoints += 1;
+      points += score ? 1 : 0;
+    }
   }
-  return score;
+  
+  let averageScore = (points / maxPoints) * 2;
+  if (averageScore > 2) averageScore = 2;
+  if (averageScore < 0) averageScore = 0;
+  return averageScore;
 }
 
 function calcQuizScore(quiz) {

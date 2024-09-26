@@ -225,11 +225,9 @@
 
   function generateAssignmentReviewEl() {
     let data = assignmentReviewData;
-    let averageScore = calcAssignmentScore(data);
-    let score= calcCriteriaScore(data);
-    console.log(score);
+    let averageScore = calcCriteriaAverageScore(data, assignmentCriteria);
 
-    let rubricScore = calcRubricScore(rubricReviewData);
+    let rubricScore = calcCriteriaAverageScore(rubricReviewData, rubricCriteria);
     let el = $(`
       <div style="padding: 8px 0;">
         <div title="The bloom's taxonomy level of this assignment." style="margin-bottom: 0.5rem; text-align: center;">
