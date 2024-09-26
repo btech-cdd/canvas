@@ -216,6 +216,7 @@
       }
     }
 
+    console.log(rubricCriteria);
     rubricCounts = calcCourseRubricCounts(rubricReviewsData);
     for (let r in rubricReviewsData) {
       let rubric = rubricReviewsData[r];
