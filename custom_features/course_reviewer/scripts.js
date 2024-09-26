@@ -24,6 +24,7 @@ function generateCriteriaHTML(criteria, data) {
     if (criterion.score_type == 'number') criteriaHTML += `<span>${emoji?.[val] ?? ''}</span>`
     criteriaHTML += `</div>`
   }
+  return criteriaHTML;
 }
 
 function calcEmoji(perc) {
