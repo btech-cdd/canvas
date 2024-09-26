@@ -15,7 +15,7 @@
         }
     });
     var anonymous = false;
-    if (IS_ME) anomyous = true;
+    if (IS_ME) anonymous = true;
 
     let rCheckInCourse = /^\/courses\/([0-9]+)/;
     if (rCheckInCourse.test(window.location.pathname)) {
