@@ -7,6 +7,13 @@ const emoji = [
     '🥇'
 ];
 
+function criterionNameToVariable(name) {
+  return name
+    .toLowerCase()                            // Convert to lowercase
+    .replace(/[^a-z0-9 ]/g, '')               // Remove non-alphanumeric characters except spaces
+    .replace(/\s+/g, '_');                    // Replace spaces with underscores
+}
+
 function calcEmoji(perc) {
   if (isNaN(perc)) return '';
   if (perc < 0.5) return emoji[0]; // bronze
