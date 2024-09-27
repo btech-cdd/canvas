@@ -19,7 +19,7 @@ function resizeContent(frame, el) {
         console.log(bodyEl.width());
 
         // Use mediaelement.js native functions to resize the player
-        videoEl[0].player.setPlayerSize('100%', 'auto');
+        videoEl[0].player.setPlayerSize(bodyEl, 'auto');
         videoEl[0].player.setControlsSize();
 
         // Ensure the video tag itself has 100% width
