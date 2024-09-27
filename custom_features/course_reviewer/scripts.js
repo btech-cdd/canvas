@@ -25,7 +25,7 @@ async function getCriteria(type) {
   return criteria;
 }
 
-function generateCriteriaHTML(criteria, data) {
+function generateCriteriaHTML(criteria, data, cssclass='') {
   let criteriaHTML = ``;
 
   // Convert the object into an array and sort by score_type and name
@@ -45,7 +45,7 @@ function generateCriteriaHTML(criteria, data) {
   for (let name of sortedCriteria) {
     let criterion = criteria[name];
     let val = data.criteria[name];
-    criteriaHTML += `<div title="${criterion.description}"><span style="width: 5rem; display: inline-block;">${criterion.name}</span>`;
+    criteriaHTML += `<div class="${cssclass}" title="${criterion.description}"><span style="font-size: 0.75rem; width: 8rem; display: inline-block;">${criterion.name}</span>`;
     
     if (criterion.score_type == 'boolean') {
       criteriaHTML += `<span>${val ? emojiTF[1] : emojiTF[0]}</span>`;
