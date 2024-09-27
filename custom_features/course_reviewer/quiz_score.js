@@ -96,6 +96,7 @@
 
     try {
       objectivesData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseCode}/year/${year}/objectives`);
+      console.log(objectivesData);
     } catch (err) {
       objectivesData = [];
       console.log(err);
@@ -147,7 +148,7 @@
 
   async function generateDetailedContent(containerEl) {
     if (quizReviewData) {
-      containerEl.append(generateRelevantObjectivesEl(objectivesData));
+      containerEl.append(generateRelevantObjectivesEl(quizReviewData, objectivesData));
       containerEl.append(generateDetailedContentReviewEl('Quiz', quizCriteria, quizReviewData));
       // containerEl.append(generateTopicTagsEl(quizReviewData));
       // containerEl.append(generateRelatedAssignmentsEl());
