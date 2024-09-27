@@ -308,14 +308,13 @@
       , objectivesData
       , objectivesCounts
       , assignmentReviewsData
-      , assignmentCounts
+      , assignmentCriteria
       , rubricReviewsData
-      , rubricCounts
+      , rubricCriteria
       , quizReviewsData
-      , quizCounts
-      , quizQuestionCounts
+      , quizCriteria
       , pageReviewsData
-      , pageCounts
+      , pageCriteria
       , externalContentCounts
       , totalContentCounts
       , bloomsCounts
@@ -327,9 +326,13 @@
   await refreshData();
   $(document).ready(async function() {
     addButton(detailedReportButton);
-    let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts, rubricCounts);
+    let courseScore = calcCourseScore(
+
+    );
     let emoji = calcEmoji(courseScore);
     detailedReportButton.append(emoji);
-    initReviewProgressInterval(pageCounts, quizCounts, assignmentCounts, rubricCounts);
+    initReviewProgressInterval(
+
+    );
   })
 })();

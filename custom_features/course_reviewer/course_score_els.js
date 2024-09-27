@@ -53,7 +53,12 @@ function updateReviewProgress(data) {
   return svg;
 }
 
-async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts, rubricCounts) {
+async function checkReviewProgress (
+  pageReviewsData, pageCriteria,
+  quizReviewsData, quizCriteria,
+  assignmentReviewsData, assignmentCriteria,
+  rubricReviewsData, rubricCriteria
+) {
   let reviewerProgressData = { processed: 0, remaining: 0};
   try {
     let course = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
@@ -67,7 +72,12 @@ async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts, ru
     if (course.current_update_progress <= 1 && reviewerProgressData.remaining > 0) {
       updateReviewProgress(reviewerProgressData);
     }
-    let courseScore = calcCourseScore(pageCounts, quizCounts, assignmentCounts, rubricCounts);
+    let courseScore = calcCourseScore(
+      pageReviewsData, pageCriteria,
+      quizReviewsData, quizCriteria,
+      assignmentReviewsData, assignmentCriteria,
+      rubricReviewsData, rubricCriteria
+    );
     let emoji = calcEmoji(courseScore);
     $('#btech-detailed-evaluation-button').append(  `<span style="padding: 0.25rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; z-index: 1001;">${emoji}</span>`);
   } catch (error) {
@@ -75,10 +85,20 @@ async function checkReviewProgress (pageCounts, quizCounts, assignmentCounts, ru
   }
   return reviewerProgressData;
 }
-async function initReviewProgressInterval(pageCounts, quizCounts, assignmentCounts, rubricCounts) {
+async function initReviewProgressInterval(
+  pageReviewsData, pageCriteria,
+  quizReviewsData, quizCriteria,
+  assignmentReviewsData, assignmentCriteria,
+  rubricReviewsData, rubricCriteria
+) {
   // Run the updateProgress function every 10 seconds
   let intervalId = setInterval(function () {
-    checkReviewProgress(pageCounts, quizCounts, assignmentCounts, rubricCounts)
+    checkReviewProgress(
+      pageReviewsData, pageCriteria,
+      quizReviewsData, quizCriteria,
+      assignmentReviewsData, assignmentCriteria,
+      rubricReviewsData, rubricCriteria
+    )
   }, 10000);
 }
 
@@ -438,7 +458,12 @@ async function generateDetailedContent(
       
           updateReviewProgress({processed: 0, remaining: 1});
           await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/evaluate_content`, {course_code: courseCode, year: year}, 'POST');
-          checkReviewProgress(pageCounts, quizCounts, assignmentCounts, rubricCounts);
+          checkReviewProgress(
+            pageReviewsData, pageCriteria,
+            quizReviewsData, quizCriteria,
+            assignmentReviewsData, assignmentCriteria,
+            rubricReviewsData, rubricCriteria
+          );
         },
         setMenu(menu) {
           this.menuCurrent = menu;

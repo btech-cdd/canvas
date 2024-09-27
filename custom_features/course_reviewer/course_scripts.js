@@ -149,16 +149,47 @@ function calcCourseQuizScore(counts) {
 }
 
 function calcCourseContentCounts(reviews, criteria) {
-
+  counts = {
+    alligned_to_objectives: 0,
+    num_reviews: 0
+  }
+  for (let r in reviews) {
+    let review = reviews[r];
+    if (review.ignore) continue;
+    for (let name in review.criteria) {
+      let criterion = criteria[name];
+      let score = review.criteria[name];
+      if (counts?.[name] === undefined) counts[name] = 0;
+      if (criterion.score_type === 'boolean') counts[name] += score ? 1 : 0;
+      if (criterion.score_type === 'number') counts[name] += score / 2; //get the actual value
+    }
+    if (review?.objectives ?? [] > 0) counts.alligned_to_objectives += 1;
+    counts.num_reviews += 1;
+  }
+  return counts;
 }
 
-function calcCourseContentScore() {
-
+function calcCourseContentScore(reviews, criteria) {
+  let counts = calcCourseContentCounts(reviews, criteria);
+  let numReviews = counts.num_reviews;
+  delete counts.num_reviews;
+  let total = 0;
+  for (let name in counts) {
+    let count = counts[name];
+    total += count;
+  }
+  total /= (counts.keys.length * numReviews);
+  return total;
 }
 
 
 
-function calcCourseScore(pageCounts, quizCounts, assignmentCounts, rubricCounts) {
+function calcCourseScore(
+  pageReviewsData, pageCriteria,
+  quizReviewsData, quizCriteria,
+  assignmentReviewsData, assignmentCriteria,
+  rubricReviewsData, rubricCriteria
+) {
   let score = 0;
   let pageScore = pageCounts.num_reviews > 0 ? (calcCoursePageScore(pageCounts) * pageCounts.num_reviews) : 0;
   let quizScore = quizCounts.num_reviews > 0 ? (calcCourseQuizScore(quizCounts) * quizCounts.num_reviews) : 0;
