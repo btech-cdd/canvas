@@ -111,14 +111,13 @@ async function generateDetailedContent(
     , objectivesData
     , objectivesCounts
     , assignmentReviewsData
-    , assignmentCounts
+    , assignmentCriteria
     , rubricReviewsData
-    , rubricCounts
+    , rubricCriteria
     , quizReviewsData
-    , quizCounts
-    , quizQuestionCounts
+    , quizCriteria
     , pageReviewsData
-    , pageCounts
+    , pageCriteria
     , externalContentCounts
     , totalContentCounts
     , bloomsCounts
