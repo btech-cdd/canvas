@@ -13,10 +13,6 @@
         type: String,
         default: '' 
       },
-      counts: {
-        type: Object,
-        default: () => ({})
-      },
       reviews: {
         type: Object,
         default: () => ({})
@@ -24,9 +20,17 @@
       criteria: {
         type: Object,
         default: () => ({})
+      },
+      calcCounts: {
+        type: Function,
+        required: true
       }
     },
-    computed: {},
+    computed: {
+      counts() {
+        return this.calcCounts(this.reviews, this.criteria)
+      }
+    },
     data() {
       return {
       }

@@ -197,9 +197,9 @@ async function generateDetailedContent(
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
           <course-content
             :type="'Quiz'"
-            :counts="quizCounts"
             :criteria="quizCriteria"
             :reviews="quizReviewsData"
+            :calc-counts="calcCoursContentCounts"
           ></course-content>
         </div>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
@@ -374,7 +374,8 @@ async function generateDetailedContent(
           surveyQuestions: {},
           objectivesQuery: '',
           objectivesEvaluatorResponse: [],
-          emojiTF: emojiTF
+          emojiTF: emojiTF,
+          calcCourseContentCounts: calcCourseContentCounts
         }
       },
       methods: {
