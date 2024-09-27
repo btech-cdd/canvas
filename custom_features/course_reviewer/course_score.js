@@ -138,7 +138,6 @@
     topicTagsCounts = {};
     objectivesCounts = {};
     
-    quizQuestionCounts = calcCriteriaCounts(quizReviewsData);
     quizQuestionCounts = {
       promptQuality: 0,
       prompt_clarity: 0,
@@ -328,12 +327,18 @@
   $(document).ready(async function() {
     addButton(detailedReportButton);
     let courseScore = calcCourseScore(
-
+      pageReviewsData, pageCriteria,
+      quizReviewsData, quizCriteria,
+      assignmentReviewsData, assignmentCriteria,
+      rubricReviewsData, rubricCriteria
     );
     let emoji = calcEmoji(courseScore);
     detailedReportButton.append(emoji);
     initReviewProgressInterval(
-
+      pageReviewsData, pageCriteria,
+      quizReviewsData, quizCriteria,
+      assignmentReviewsData, assignmentCriteria,
+      rubricReviewsData, rubricCriteria
     );
   })
 })();
