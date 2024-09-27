@@ -112,7 +112,7 @@
     if (pageReviewData) {
       containerEl.append(generateRelevantObjectivesEl(objectivesData));
       containerEl.append(generateDetailedContentReviewEl('Page', pageCriteria, pageReviewData));
-      containerEl.append(generateTopicTagsEl());
+      // containerEl.append(generateTopicTagsEl(pageReviewData));
       // containerEl.append(generateRelatedPagesEl());
     }
   }

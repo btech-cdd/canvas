@@ -136,40 +136,13 @@
     return $('<div></div>')
   }
 
-  function generateRelatedAssignmentsEl() {
-    let el = $(`
-      <div>
-        <h2>Related Assignments</h2>
-      </div>
-    `);
-    for (let i in relatedAssignments) {
-      let relatedAssignment = relatedAssignments[i];
-      let aTag = $(`<div><a href="/courses/${relatedAssignment.course_id}/assignments/${relatedAssignment.assignment_id}" target="_blank">${relatedAssignment.canvas_data.name}</a></div>`);
-      el.append(aTag);
-    }
-    return el
-  }
-  function generateTopicTagsEl() {
-    let el = $(`
-      <div>
-        <h2>Key Topics</h2>
-      </div>
-    `);
-    for (let i in assignmentReviewData.topic_tags) {
-      let topic = assignmentReviewData.topic_tags[i];
-      let topicEl = $(`<span style="padding: 0.25rem; background-color: black; color: white; border-radius: 0.25rem; margin: 0 0.25rem;">${topic}</span>`);
-      el.append(topicEl);
-    }
-    return el
-  }
-
   // do we have a review?
   async function generateDetailedContent(containerEl) {
     if (assignmentReviewData) {
       containerEl.append(generateRelevantObjectivesEl(objectivesData));
       containerEl.append(generateDetailedContentReviewEl('Assignment', assignmentCriteria, assignmentReviewData));
       containerEl.append(generateDetailedRubricReviewEl());
-      // containerEl.append(generateTopicTagsEl());
+      // containerEl.append(generateTopicTagsEl(assignmentReviewData));
     }
   }
 

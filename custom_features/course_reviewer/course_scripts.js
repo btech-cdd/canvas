@@ -160,6 +160,14 @@ function calcCourseQuizScore(counts) {
   return total;
 }
 
+function calcCourseContentCounts(reviews, criteria) {
+
+}
+
+function calcCourseContentScore() {
+
+}
+
 
 
 function calcCourseScore(pageCounts, quizCounts, assignmentCounts, rubricCounts) {
