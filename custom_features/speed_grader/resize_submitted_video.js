@@ -4,7 +4,6 @@
 function resizeContent(frame, el) {
     // Find the video element within the frame
     let videoEl = frame.find("video");
-    let bodyEl = frame.find("body");
 
     if (videoEl.length === 0) {
         console.log("No video element found in frame.");
@@ -16,19 +15,31 @@ function resizeContent(frame, el) {
     // Check if the mediaelement.js player has been initialized
     if (videoEl[0].player) {
         console.log("mediaelement.js player found, resizing...");
-        console.log(bodyEl.width());
 
         // Use mediaelement.js native functions to resize the player
-        videoEl[0].player.setPlayerSize(bodyEl.width() + 'px', 'auto');
+        videoEl[0].player.setPlayerSize('100%', 'auto');
         videoEl[0].player.setControlsSize();
 
-        // Ensure the video tag itself has 100% width
+        // Ensure the video itself is set to 100% width
         videoEl.css({
-            width: bodyEl.width() + 'px',
+            width: '100%',
             height: 'auto'
         });
 
-        console.log("Video resized using mediaelement.js.");
+        // Resize the mejs-layers (the overlay, controls, etc.)
+        let playerContainer = videoEl.closest('.mejs-container');
+        let overlayLayers = playerContainer.find('.mejs-layer');
+
+        // Ensure all the overlay layers resize correctly along with the video
+        overlayLayers.css({
+            width: '100%',
+            height: 'auto',
+            position: 'absolute', // Ensure it's positioned over the video
+            top: 0,                // Align it to the top of the video
+            left: 0,
+        });
+
+        console.log("Overlay layers resized.");
     } else {
         console.log("mediaelement.js player not found, initializing...");
 
@@ -41,13 +52,26 @@ function resizeContent(frame, el) {
                 mediaElement.setPlayerSize('100%', 'auto');
                 mediaElement.setControlsSize();
 
-                // // Ensure the video tag itself has 100% width
-                // $(mediaElement).css({
-                //     width: '100%',
-                //     height: 'auto'
-                // });
+                // Ensure the video tag itself has 100% width
+                $(mediaElement).css({
+                    width: '100%',
+                    height: 'auto'
+                });
 
-                console.log("Video resized after initialization.");
+                // Resize the layers (controls, overlays) inside the mediaelement.js container
+                let playerContainer = $(mediaElement).closest('.mejs-container');
+                let overlayLayers = playerContainer.find('.mejs-layer');
+
+                // Ensure all the overlay layers resize correctly along with the video
+                overlayLayers.css({
+                    width: '100%',
+                    height: 'auto',
+                    position: 'absolute',  // Ensure it's positioned over the video
+                    top: 0,                 // Align it to the top of the video
+                    left: 0,
+                });
+
+                console.log("Overlay layers resized after initialization.");
             },
             error: function() {
                 console.log("Failed to initialize mediaelement.js.");
