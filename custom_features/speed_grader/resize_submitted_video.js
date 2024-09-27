@@ -26,16 +26,20 @@ function resizeContent(frame, el) {
             height: 'auto'
         });
 
-        // Resize the mejs-layers (the overlay, controls, etc.)
+        // Force the container of the player to resize
         let playerContainer = videoEl.closest('.mejs-container');
-        let overlayLayers = playerContainer.find('.mejs-layer');
+        playerContainer.css({
+            width: '100%',
+            height: 'auto'
+        });
 
-        // Ensure all the overlay layers resize correctly along with the video
+        // Resize the overlay and control layers within the player container
+        let overlayLayers = playerContainer.find('.mejs-layer');
         overlayLayers.css({
             width: '100%',
-            height: 'auto',
-            position: 'absolute', // Ensure it's positioned over the video
-            top: 0,                // Align it to the top of the video
+            height: playerContainer.height(), // Make sure the overlay matches the container height
+            position: 'absolute',
+            top: 0,
             left: 0,
         });
 
@@ -58,16 +62,20 @@ function resizeContent(frame, el) {
                     height: 'auto'
                 });
 
-                // Resize the layers (controls, overlays) inside the mediaelement.js container
+                // Resize the container
                 let playerContainer = $(mediaElement).closest('.mejs-container');
-                let overlayLayers = playerContainer.find('.mejs-layer');
+                playerContainer.css({
+                    width: '100%',
+                    height: 'auto'
+                });
 
-                // Ensure all the overlay layers resize correctly along with the video
+                // Resize the layers (controls, overlays) inside the mediaelement.js container
+                let overlayLayers = playerContainer.find('.mejs-layer');
                 overlayLayers.css({
                     width: '100%',
-                    height: 'auto',
-                    position: 'absolute',  // Ensure it's positioned over the video
-                    top: 0,                 // Align it to the top of the video
+                    height: playerContainer.height(),
+                    position: 'absolute',
+                    top: 0,
                     left: 0,
                 });
 
