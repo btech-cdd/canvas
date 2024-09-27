@@ -110,7 +110,7 @@
   // do we have a review?
   async function generateDetailedContent(containerEl) {
     if (pageReviewData) {
-      containerEl.append(generateRelevantObjectivesEl(objectivesData));
+      containerEl.append(generateRelevantObjectivesEl(pageReviewData, objectivesData));
       containerEl.append(generateDetailedContentReviewEl('Page', pageCriteria, pageReviewData));
       // containerEl.append(generateTopicTagsEl(pageReviewData));
       // containerEl.append(generateRelatedPagesEl());

@@ -79,7 +79,7 @@ function generateTopicTagsEl(data) {
   return el
 }
 
-function generateRelevantObjectivesEl(objectivesData) {
+function generateRelevantObjectivesEl(data, objectivesData) {
   let objectives = [];
   for (let o in objectivesData) {
     let objective = objectivesData[o];
@@ -89,7 +89,7 @@ function generateRelevantObjectivesEl(objectivesData) {
   let relevantObjectivesString = ``;
   for (let i = 1; i < objectives.length; i++) {
     let objective = objectives[i];
-    let isRelevant = pageReviewData.objectives.includes(objective.objective_id);
+    let isRelevant = data.objectives.includes(objective.objective_id);
     relevantObjectivesString += `<div style="${isRelevant ? '' : 'color: #CCC;'}"><span style="width: 1rem; display: inline-block;">${isRelevant ? '&#10003;' : ''}</span>${objective.objective_text}</div>`;
   }
   let relevantObjectivesEl = $(`<div><h2>Relevant Objectives</h2>${relevantObjectivesString}</div>`);

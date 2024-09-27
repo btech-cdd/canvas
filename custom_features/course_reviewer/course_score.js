@@ -42,11 +42,6 @@
     , bloomsCounts
     , topicTagsCounts
     , objectivesCounts
-    , assignmentCounts
-    , quizCounts
-    , quizQuestionCounts
-    , pageCounts
-    , rubricCounts
     , runningReviewer
     ;
     runningReviewer = false;
@@ -161,7 +156,6 @@
     topicTagsCounts =  addTopics(topicTagsCounts, assignmentReviewsData);
     topicTagsCounts =  addTopics(topicTagsCounts, quizReviewsData);
 
-    pageCounts = calcCoursePageCounts(pageReviewsData);
     for (let o in pageReviewsData) {
       let page = pageReviewsData[o];
       pageReviewsData[o].name = $(`.WikiPage_${page.page_id} span.item_name a.title`).text().trim();
@@ -174,7 +168,6 @@
       }
     }
 
-    quizCounts = calcCourseQuizCounts(quizReviewsData);
     for (let q in quizReviewsData) {
       let quiz = quizReviewsData[q];
       quizReviewsData[q].name = $(`.Quiz_${quiz.quiz_id} span.item_name a.title`).text().trim();

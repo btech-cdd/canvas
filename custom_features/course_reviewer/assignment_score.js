@@ -139,7 +139,7 @@
   // do we have a review?
   async function generateDetailedContent(containerEl) {
     if (assignmentReviewData) {
-      containerEl.append(generateRelevantObjectivesEl(objectivesData));
+      containerEl.append(generateRelevantObjectivesEl(assignmentReviewData, objectivesData));
       containerEl.append(generateDetailedContentReviewEl('Assignment', assignmentCriteria, assignmentReviewData));
       containerEl.append(generateDetailedRubricReviewEl());
       // containerEl.append(generateTopicTagsEl(assignmentReviewData));
