@@ -39,11 +39,11 @@ function resizeContent(frame, el) {
                 mediaElement.setPlayerSize('100%', 'auto');
                 mediaElement.setControlsSize();
 
-                // Ensure the video tag itself has 100% width
-                $(mediaElement).css({
-                    width: '100%',
-                    height: 'auto'
-                });
+                // // Ensure the video tag itself has 100% width
+                // $(mediaElement).css({
+                //     width: '100%',
+                //     height: 'auto'
+                // });
 
                 console.log("Video resized after initialization.");
             },
