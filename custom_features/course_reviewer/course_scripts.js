@@ -202,6 +202,10 @@ function calcCourseScore(
   assignmentReviewsData, assignmentCriteria,
   rubricReviewsData, rubricCriteria
 ) {
+  let pageCounts = calcCourseContentCounts(pageReviewsData, pageCriteria);
+  let quizCounts = calcCourseContentCounts(quizReviewsData, quizCriteria);
+  let assignmentCounts = calcCourseContentCounts(assignmentReviewsData, assignmentCriteria);
+  let rubricCounts = calcCourseContentCounts(rubricReviewsData, rubricCriteria);
   let score = 0;
   let pageScore = pageCounts.num_reviews > 0 ? (calcCoursePageScore(pageCounts) * pageCounts.num_reviews) : 0;
   let quizScore = quizCounts.num_reviews > 0 ? (calcCourseQuizScore(quizCounts) * quizCounts.num_reviews) : 0;
