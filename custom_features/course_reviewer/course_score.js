@@ -138,6 +138,7 @@
     topicTagsCounts = {};
     objectivesCounts = {};
     
+    quizQuestionCounts = calcCriteriaCounts(quizReviewsData);
     quizQuestionCounts = {
       promptQuality: 0,
       prompt_clarity: 0,

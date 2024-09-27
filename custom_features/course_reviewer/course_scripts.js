@@ -107,6 +107,18 @@ function calcCoursePageScore(counts) {
   return total;
 }
 
+function calcCourseCriteriaCounts(data) {
+  let counts = {
+    num_reviews: 0,
+  };
+  for (let criterion in data.criteria) {
+    let val = data.criteria.criterion;
+    if (counts?.[criterion] == undefined) counts[criterion] = 0;
+    if (typeof val == 'boolean') counts[criterion] += val ? 1 : 0;
+    if (typeof val == 'number') counts[criterion] +=  val;
+  }
+}
+
 function calcCourseQuizCounts(quizReviews) {
   counts = {
     clarity: 0,
