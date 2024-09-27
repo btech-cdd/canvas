@@ -213,17 +213,10 @@ function calcCourseScore(
   let rubricCounts = calcCourseContentCounts(rubricReviewsData, rubricCriteria);
   let score = 0;
   let pageScore = pageCounts.num_reviews > 0 ? (calcCourseContentScore(pageReviewsData, pageCriteria) * pageCounts.num_reviews) : 0;
-  console.log(pageScore);
   let quizScore = quizCounts.num_reviews > 0 ? (calcCourseContentScore(quizReviewsData, quizCriteria) * quizCounts.num_reviews) : 0;
-  console.log('Quiz')
-  console.log(quizScore);
   let assignmentScore = assignmentCounts.num_reviews > 0 ? (calcCourseContentScore(assignmentReviewsData, assignmentCriteria) * assignmentCounts.num_reviews) : 0;
-  console.log(assignmentScore);
   let rubricScore = rubricCounts.num_reviews > 0 ? (calcCourseContentScore(rubricReviewsData, rubricCriteria) * rubricCounts.num_reviews) : 0;
-  console.log(rubricScore);
   let totalItems = quizCounts.num_reviews + assignmentCounts.num_reviews + pageCounts.num_reviews;
   score = totalItems > 0 ? (quizScore + ((assignmentScore + rubricScore) / 2) + pageScore) / totalItems : 0;
-  console.log('course score');
-  console.log(score);
   return score; 
 }
