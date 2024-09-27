@@ -196,10 +196,10 @@ async function generateDetailedContent(
       <div class="btech-course-evaluator-content-box">
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
           <course-content
-            :type='Quiz'
-            :counts='quizCounts'
-            :criteria='quizCriteria'
-            :reviews='quizReviewsData'
+            :type="'Quiz'"
+            :counts="quizCounts"
+            :criteria="quizCriteria"
+            :reviews="quizReviewsData"
           ></course-content>
         </div>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
