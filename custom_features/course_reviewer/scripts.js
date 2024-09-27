@@ -38,14 +38,14 @@ function generateCriteriaHTML(criteria, data) {
   return criteriaHTML;
 }
 
-function generateTopicTagsEl() {
+function generateTopicTagsEl(data) {
   let el = $(`
     <div>
       <h2>Key Topics</h2>
     </div>
   `);
-  for (let i in quizReviewData.topic_tags) {
-    let topic = quizReviewData.topic_tags[i];
+  for (let i in data.topic_tags) {
+    let topic = data.topic_tags[i];
     let topicEl = $(`<span style="padding: 0.25rem; background-color: black; color: white; border-radius: 0.25rem; margin: 0 0.25rem;">${topic}</span>`);
     el.append(topicEl);
   }
@@ -75,7 +75,7 @@ function generateDetailedContentReviewEl(type, criteria, data) {
     <div style="padding: 8px 0;">
       <h2>${type} Review</h2>
       <div title="The bloom's taxonomy level of this content." style="margin-bottom: 0.5rem; display: inline-block;">
-        <span style="background-color: ${bloomsColors?.[data.blooms.toLowerCase()]}; color: #000000; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${quizReviewData.blooms}</span>
+        <span style="background-color: ${bloomsColors?.[data.blooms.toLowerCase()]}; color: #000000; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${data.blooms}</span>
       </div>
       ${criteriaHTML}
       <div title="The content is alligned to the course objectives.">
