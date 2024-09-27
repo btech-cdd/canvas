@@ -196,13 +196,31 @@ async function generateDetailedContent(
       <div class="btech-course-evaluator-content-box">
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
           <course-content
-            :type="'Quiz'"
+            :type="'Assignments'"
+            :criteria="assignmentCriteria"
+            :reviews="assignmentReviewsData"
+            :calc-counts="calcCourseContentCounts"
+          ></course-content>
+          <course-content
+            :type="'Quizzes'"
             :criteria="quizCriteria"
             :reviews="quizReviewsData"
             :calc-counts="calcCourseContentCounts"
           ></course-content>
+          <course-content
+            :type="'Pages'"
+            :criteria="pageCriteria"
+            :reviews="pageReviewsData"
+            :calc-counts="calcCourseContentCounts"
+          ></course-content>
         </div>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+          <course-content
+            :type="'Rubrics'"
+            :criteria="rubricCriteria"
+            :reviews="rubricReviewsData"
+            :calc-counts="calcCourseContentCounts"
+          ></course-content>
         </div>
       </div>
 
