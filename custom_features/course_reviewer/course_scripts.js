@@ -195,7 +195,7 @@ function calcCourseContentScore(reviews, criteria) {
     let count = counts[name];
     total += count;
   }
-  total /= (counts.keys.length * numReviews);
+  total /= (Object.keys(counts).length * numReviews);
   return total;
 }
 
