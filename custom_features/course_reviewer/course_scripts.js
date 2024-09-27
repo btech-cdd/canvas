@@ -213,5 +213,7 @@ function calcCourseScore(
   let rubricScore = rubricCounts.num_reviews > 0 ? (calcCourseRubricScore(rubricCounts) * rubricCounts.num_reviews) : 0;
   let totalItems = quizCounts.num_reviews + assignmentCounts.num_reviews + pageCounts.num_reviews;
   score = totalItems > 0 ? (quizScore + ((assignmentScore + rubricScore) / 2) + pageScore) / totalItems : 0;
+  console.log('course score');
+  console.log(score);
   return score; 
 }
