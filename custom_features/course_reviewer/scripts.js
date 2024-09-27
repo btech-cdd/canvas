@@ -41,7 +41,7 @@ function generateCriteriaHTML(criteria, data, cssclass='') {
   // Generate HTML for the sorted criteria
   for (let name of sortedCriteria) {
     let criterion = criteria[name];
-    let val = data.criteria[name];
+    let val = data?.criteria?.[name] ?? 0;
     criteriaHTML += `<div title="${criterion.description}"><span style="font-size: 0.75rem; width: 8rem; display: inline-block;">${criterion.name}</span>`;
     
     if (criterion.score_type == 'boolean') {
