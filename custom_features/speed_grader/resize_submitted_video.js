@@ -5,14 +5,38 @@ function resizeContent(frame, el) {
     // Find the video element within the frame
     let videoEl = frame.find("video")[0];
 
-    // Ensure the video has been initialized by mediaelement.js
-    if (videoEl) {
+    if (!videoEl) {
+        console.log("No video element found.");
+        return; // If no video element is found, exit the function
+    }
+
+    console.log("Found video element: ", videoEl);
+
+    // Check if the mediaelement.js player has been initialized
+    if (videoEl.player) {
+        console.log("mediaelement.js player found, resizing...");
+
+        // Use mediaelement.js native functions to resize the player
+        videoEl.player.setPlayerSize('100%', 'auto');
+        videoEl.player.setControlsSize();
+
+        console.log("Video resized using mediaelement.js.");
+    } else {
+        console.log("mediaelement.js player not found, initializing...");
+
         // Initialize the player if not already initialized
         $(videoEl).mediaelementplayer({
             success: function(mediaElement, originalNode) {
+                console.log("mediaelement.js player initialized, resizing...");
+
                 // Once the player is ready, set the size
                 mediaElement.setPlayerSize('100%', 'auto');
                 mediaElement.setControlsSize();
+
+                console.log("Video resized after initialization.");
+            },
+            error: function() {
+                console.log("Failed to initialize mediaelement.js.");
             }
         });
     }
@@ -28,6 +52,7 @@ function resizeVideo(frame) {
 // Observe left-side resizing and adjust video accordingly
 let left = $("#left_side")[0];
 let resizeObserver = new ResizeObserver(() => {
+    console.log("Resize observed, adjusting video...");
     resizeVideo($("#speedgrader_iframe").contents());
     resizeVideo($("body"));
 });
