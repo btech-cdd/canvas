@@ -97,6 +97,7 @@ function generateRelevantObjectivesEl(data, objectivesData) {
 }
 
 function generateDetailedContentReviewEl(type, criteria, data) {
+  if (data.blooms === undefined) return `<div>Blooms Not Evaluated</div>`;
   let criteriaHTML = generateCriteriaHTML(criteria, data);
   let el = $(`
     <div style="padding: 8px 0;">
