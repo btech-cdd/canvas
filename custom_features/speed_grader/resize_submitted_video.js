@@ -4,14 +4,17 @@
 function resizeContent(frame, el) {
     // Find the video element within the frame
     let videoEl = frame.find("video")[0];
-    
-    // Check if the video player is initialized by mediaelement.js
-    if (videoEl && videoEl.player) {
-        // Set the player size to 100% width and maintain aspect ratio
-        videoEl.player.setPlayerSize('100%', 'auto'); 
-        
-        // Adjust the control size after resizing the player
-        videoEl.player.setControlsSize();
+
+    // Ensure the video has been initialized by mediaelement.js
+    if (videoEl) {
+        // Initialize the player if not already initialized
+        $(videoEl).mediaelementplayer({
+            success: function(mediaElement, originalNode) {
+                // Once the player is ready, set the size
+                mediaElement.setPlayerSize('100%', 'auto');
+                mediaElement.setControlsSize();
+            }
+        });
     }
 }
 
