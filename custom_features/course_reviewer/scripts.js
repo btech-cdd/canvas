@@ -242,13 +242,11 @@ function getCourseCodeYear(courseData) {
     courseCode = match[1];
     year = match[2];
   } else {
-    console.log("NO SIS ID FOUND");
     match = ((courseData.course_code ?? '') + ' 2024XX').match(regex);
     if (match) {
       courseCode = match[1];
       year = match[2];
     } else {
-      console.log("NO COURSE CODE FOUND");
       courseCode = '';
       year = '';
     }
@@ -316,7 +314,7 @@ async function getQuizBankQuestionData(courseId, quizId) {
       }
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
   // Regex to match the question bank IDs
   const regexGroupId = /groups\/(\d+)/g;
