@@ -193,6 +193,7 @@ function calcCourseContentScore(reviews, criteria) {
   for (let name in counts) {
     if (name == 'num_reviews') continue;
     let count = counts[name];
+    console.log(`${name}: ${count}`);
     total += count;
   }
   total /= (counts.keys.length * numReviews);
