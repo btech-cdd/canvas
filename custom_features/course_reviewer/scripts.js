@@ -80,6 +80,7 @@ function generateTopicTagsEl(data) {
 }
 
 function generateRelevantObjectivesEl(data, objectivesData) {
+  console.log(objectivesData)
   let objectives = [];
   for (let o in objectivesData) {
     let objective = objectivesData[o];
@@ -97,7 +98,7 @@ function generateRelevantObjectivesEl(data, objectivesData) {
 }
 
 function generateDetailedContentReviewEl(type, criteria, data) {
-  if (data.blooms === undefined) return `<div>Blooms Not Evaluated</div>`;
+  if (data.blooms === undefined) return `<div>Missing Evaluation</div>`;
   let criteriaHTML = generateCriteriaHTML(criteria, data);
   let el = $(`
     <div style="padding: 8px 0;">
