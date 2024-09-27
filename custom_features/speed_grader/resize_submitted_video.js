@@ -16,7 +16,7 @@ function resizeContent(frame, el) {
     // Check if the mediaelement.js player has been initialized
     if (videoEl[0].player) {
         console.log("mediaelement.js player found, resizing...");
-        console.log(body.width());
+        console.log(bodyEl.width());
 
         // Use mediaelement.js native functions to resize the player
         videoEl[0].player.setPlayerSize('100%', 'auto');
