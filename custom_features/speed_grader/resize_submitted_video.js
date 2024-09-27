@@ -20,6 +20,12 @@ function resizeContent(frame, el) {
         videoEl[0].player.setPlayerSize('100%', 'auto');
         videoEl[0].player.setControlsSize();
 
+        // Ensure the video tag itself has 100% width
+        videoEl.css({
+            width: '100%',
+            height: 'auto'
+        });
+
         console.log("Video resized using mediaelement.js.");
     } else {
         console.log("mediaelement.js player not found, initializing...");
@@ -32,6 +38,12 @@ function resizeContent(frame, el) {
                 // Once the player is ready, set the size
                 mediaElement.setPlayerSize('100%', 'auto');
                 mediaElement.setControlsSize();
+
+                // Ensure the video tag itself has 100% width
+                $(mediaElement).css({
+                    width: '100%',
+                    height: 'auto'
+                });
 
                 console.log("Video resized after initialization.");
             },
