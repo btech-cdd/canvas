@@ -32,12 +32,12 @@ function resizeVideo(frame) {
   let comment = frame.find('.instructure_inline_media_comment').parent();
   resizeContent(frame, comment);
 }
-let left = $("#left_side")[0];
-console.log(left);
-let resizeObserver = new ResizeObserver(() => { 
-    resizeVideo($("#speedgrader_iframe").contents());
-    resizeVideo($("body"));
-}); 
+// let left = $("#left_side")[0];
+// console.log(left);
+// let resizeObserver = new ResizeObserver(() => { 
+//     resizeVideo($("#speedgrader_iframe").contents());
+//     resizeVideo($("body"));
+// }); 
     
-resizeObserver.observe(left);
+// resizeObserver.observe(left);
 console.log("LOADED");
