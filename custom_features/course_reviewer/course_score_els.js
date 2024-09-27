@@ -123,7 +123,7 @@ async function generateDetailedContent(
     , bloomsCounts
   ) {
   containerEl.empty();
-  containerEl.html(`
+  let html = `
     <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.5rem; border: 1px solid #AAA;">Course Evaluation</div>
     <div style="background-color: white; border-bottom: 1px solid #AAA;">
       <div 
@@ -195,83 +195,14 @@ async function generateDetailedContent(
       </div>
       <div class="btech-course-evaluator-content-box">
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-          <div style="padding: 8px 0;">
-            <h2>Assignments</h2>
-            <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-              <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(assignmentCounts.clarity / (assignmentReviewsData.length * 2)) }}</span>
-            </div>
-            <div title="Content is chunked with headers, call out boxes, lists, etc.">
-              <span style="width: 6rem; display: inline-block;">Chunking</span><span>{{ calcEmoji(assignmentCounts.chunked_content / assignmentReviewsData.length) }}</span>
-            </div>
-            <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-              <span style="width: 6rem; display: inline-block;">Outcomes</span><span>{{ calcEmoji(assignmentCounts.includes_outcomes / assignmentReviewsData.length) }}</span>
-            </div>
-            <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-              <span style="width: 6rem; display: inline-block;">Industry</span><span>{{ calcEmoji(assignmentCounts.career_relevance / assignmentReviewsData.length) }}</span>
-            </div>
-            <div title="The assignment explicitly states how students will receive documented feedback.">
-              <span style="width: 6rem; display: inline-block;">Feedback</span><span>{{ calcEmoji(assignmentCounts.provides_feedback / assignmentReviewsData.length) }}</span>
-            </div>
-            <div title="The assignment models for students what a well done completed product looks like. This may be done through video, graphics, uploaded files, etc.">
-              <span style="width: 6rem; display: inline-block;">Modeling</span><span>{{ calcEmoji(assignmentCounts.modeling / assignmentReviewsData.length) }}</span>
-            </div>
-          </div>
-          <div style="padding: 8px 0;">
-            <h2>Quizzes</h2>
-            <div title="Content is written clearly and without lots of extraneous information.">
-              <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(quizCounts.clarity / (quizReviewsData.length * 2)) }}</span>
-            </div>
-            <div title="Content is chunked with headers, call out boxes, lists, etc.">
-              <span style="width: 6rem; display: inline-block;">Chunking</span><span>{{ calcEmoji(quizCounts.chunked_content / quizReviewsData.length) }}</span>
-            </div>
-            <div title="The purpose of this quiz is clearly stated through its intended learning outcomes.">
-              <span style="width: 6rem; display: inline-block;">Outcomes</span><span>{{ calcEmoji(quizCounts.includes_outcomes / quizReviewsData.length) }}</span>
-            </div>
-            <div title="The quiz explicitly states how this quiz is relevant to what students will do in industry.">
-              <span style="width: 6rem; display: inline-block;">Industry</span><span>{{ calcEmoji(quizCounts.career_relevance / quizReviewsData.length) }}</span>
-            </div>
-            <div title="The quiz gives instructions on what to expect in the quiz (e.g. which chapters are covered, what types of questions, how long to set aside, where the test will be held).">
-              <span style="width: 6rem; display: inline-block;">Instructions</span><span>{{ calcEmoji(quizCounts.instructions / quizReviewsData.length) }}</span>
-            </div>
-            <div title="The quiz gives guidance on how students should prepare before taking the quiz.">
-              <span style="width: 6rem; display: inline-block;">Preparation</span><span>{{ calcEmoji(quizCounts.preparation / quizReviewsData.length) }}</span>
-            </div>
-          </div>
-          <div style="padding: 8px 0;">
-            <h2>Pages</h2>
-            <div title="Content is written clearly without lots of extraneous information.">
-              <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(pageCounts.clarity / (pageReviewsData.length * 2)) }}</span>
-            </div>
-            <div title="Content is chunked with headers, call out boxes, lists, etc.">
-              <span style="width: 6rem; display: inline-block;">Chunking</span><span>{{ calcEmoji(pageCounts.chunked_content / pageReviewsData.length) }}</span>
-            </div>
-            <div title="The purpose of this page is clearly stated through its intended learning outcomes.">
-              <span style="width: 6rem; display: inline-block;">Outcomes</span><span>{{ calcEmoji(pageCounts.includes_outcomes / pageReviewsData.length) }}</span>
-            </div>
-            <div title="The page explicitly states how this content is relevant to what students will do in industry.">
-              <span style="width: 6rem; display: inline-block;">Industry</span><span>{{ calcEmoji(pageCounts.career_relevance / pageReviewsData.length) }}</span>
-            </div>
-            <div title="The page includes supporting media such as graphics, videos, or uploaded documents.">
-              <span style="width: 6rem; display: inline-block;">Media</span><span>{{ calcEmoji(pageCounts.supporting_media / pageReviewsData.length) }}</span>
-            </div>
-          </div> 
+          <course-content
+            :type='Quiz'
+            :counts='quizCounts'
+            :criteria='quizCriteria'
+            :reviews='quizReviewsData'
+          ></course-content>
         </div>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-          <div style="padding: 8px 0;">
-            <h2>Rubrics</h2>
-            <div title="The assignment explicitly states how this assignment is relevant to what students will do in industry.">
-              <span style="width: 6rem; display: inline-block;">Clarity</span><span>{{ calcEmoji(rubricCounts.writing_quality / (rubricReviewsData.length * 2)) }}</span>
-            </div>
-            <div title="Instructions are written clearly and sequentially without lots of extraneous information.">
-              <span style="width: 6rem; display: inline-block;">Criteria</span><span>{{ calcEmoji(rubricCounts.criteria / (rubricReviewsData.length * 2)) }}</span>
-            </div>
-            <div title="Content is chunked with headers, call out boxes, lists, etc.">
-              <span style="width: 6rem; display: inline-block;">Granularity</span><span>{{ calcEmoji(rubricCounts.granularity / (rubricReviewsData.length * 2)) }}</span>
-            </div>
-            <div title="The purpose of this assignment is clearly stated through its intended learning outcomes.">
-              <span style="width: 6rem; display: inline-block;">Scoring</span><span>{{ calcEmoji(rubricCounts.grading_levels / (rubricReviewsData.length * 2)) }}</span>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -390,7 +321,8 @@ async function generateDetailedContent(
         <div><b>Recommended:</b> {{response.recommendation}}</div>
       </div>
     </div>
-  `);
+  `;
+  containerEl.html(html);
   if (courseReviewData) {
     let APP = new Vue({
       el: '#btech-course-reviewer-detailed-report',
@@ -423,13 +355,13 @@ async function generateDetailedContent(
           objectivesData: objectivesData,
           objectivesCounts: objectivesCounts,
           pageReviewsData: pageReviewsData,
-          pageCounts: pageCounts,
+          pageCriteria: pageCriteria,
           assignmentReviewsData: assignmentReviewsData,
-          assignmentCounts: assignmentCounts,
+          assignmentCriteria: assignmentCriteria,
           rubricReviewsData: rubricReviewsData,
-          rubricCounts: rubricCounts,
+          rubricCriteria: rubricCriteria,
           quizReviewsData: quizReviewsData,
-          quizCounts: quizCounts,
+          quizCriteria: quizCriteria,
           externalContentCounts: externalContentCounts,
           totalContentCounts: totalContentCounts,
           genBloomsChart: genBloomsChart,
