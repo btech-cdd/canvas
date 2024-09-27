@@ -149,7 +149,7 @@
     if (quizReviewData) {
       containerEl.append(generateRelevantObjectivesEl(objectivesData));
       containerEl.append(generateDetailedContentReviewEl('Quiz', quizCriteria, quizReviewData));
-      // containerEl.append(generateTopicTagsEl());
+      // containerEl.append(generateTopicTagsEl(quizReviewData));
       // containerEl.append(generateRelatedAssignmentsEl());
     }
   }

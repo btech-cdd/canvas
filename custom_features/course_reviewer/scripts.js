@@ -27,16 +27,39 @@ async function getCriteria(type) {
 
 function generateCriteriaHTML(criteria, data) {
   let criteriaHTML = ``;
-  for (let name in criteria) {
+
+  // Convert the object into an array and sort by score_type and name
+  let sortedCriteria = Object.keys(criteria).sort((a, b) => {
+    let typeA = criteria[a].score_type;
+    let typeB = criteria[b].score_type;
+    
+    // Sort by score_type first (number before boolean)
+    if (typeA === 'number' && typeB !== 'number') return -1;
+    if (typeA !== 'number' && typeB === 'number') return 1;
+    
+    // If score_type is the same, sort alphabetically by name
+    return criteria[a].name.localeCompare(criteria[b].name);
+  });
+
+  // Generate HTML for the sorted criteria
+  for (let name of sortedCriteria) {
     let criterion = criteria[name];
     let val = data.criteria[name];
     criteriaHTML += `<div title="${criterion.description}"><span style="width: 5rem; display: inline-block;">${criterion.name}</span>`;
-    if (criterion.score_type == 'boolean') criteriaHTML += `<span>${val ? emojiTF[1] : emojiTF[0]}</span>`
-    if (criterion.score_type == 'number') criteriaHTML += `<span>${emoji?.[val] ?? ''}</span>`
-    criteriaHTML += `</div>`
+    
+    if (criterion.score_type == 'boolean') {
+      criteriaHTML += `<span>${val ? emojiTF[1] : emojiTF[0]}</span>`;
+    }
+    if (criterion.score_type == 'number') {
+      criteriaHTML += `<span>${emoji?.[val] ?? ''}</span>`;
+    }
+    
+    criteriaHTML += `</div>`;
   }
+
   return criteriaHTML;
 }
+
 
 function generateTopicTagsEl(data) {
   let el = $(`
