@@ -168,15 +168,20 @@ function calcCourseContentCounts(reviews, criteria) {
   for (let r in reviews) {
     let review = reviews[r];
     if (review.ignore) continue;
+    let hasScores = false;
     for (let name in review.criteria) {
       let criterion = criteria[name];
       let score = review.criteria[name];
+      if (score == undefined) continue;
+      hasScores = true;
       if (counts?.[name] === undefined) counts[name] = 0;
       if (criterion.score_type === 'boolean') counts[name] += score ? 1 : 0;
       if (criterion.score_type === 'number') counts[name] += score / 2; //get the actual value
     }
-    if (review?.objectives ?? [] > 0) counts.alligned_to_objectives += 1;
-    counts.num_reviews += 1;
+    if (hasScores) {
+      if (review?.objectives ?? [] > 0) counts.alligned_to_objectives += 1;
+      counts.num_reviews += 1;
+    }
   }
   return counts;
 }
