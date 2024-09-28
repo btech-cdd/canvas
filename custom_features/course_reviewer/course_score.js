@@ -267,7 +267,7 @@
       }
     );
     addContextMenu($detailedReportButton, [
-        { id: 'rerunReport', text: 'Reevaluate All Content', func: async function () {
+        { id: 'reevaluate', text: 'Reevaluate All', func: async function () {
           updateReviewProgress({processed: 0, remaining: 1});
           await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/evaluate_content`, {course_code: courseCode, year: year}, 'POST');
           checkReviewProgress(
