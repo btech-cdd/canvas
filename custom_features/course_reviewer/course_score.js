@@ -95,8 +95,7 @@
       assignmentCriteria = await getCriteria('Assignments');
       for (let a in assignmentsData) {
         let assignment = assignmentsData[a];
-        if (assignment.submission_types.includes('external_tool')) {
-          console.log(assignment);
+        if (assignment.submission_types.includes('external_tool') && !assignment.is_quiz_assignment) {
           $(`.Assignment_${assignment.id} span.ig-btech-evaluation-score`).html('🚫');
         }
       }
