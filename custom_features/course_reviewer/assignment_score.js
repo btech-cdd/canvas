@@ -1,55 +1,51 @@
 (async function () {
   await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/scripts.js");
-  const bloomsColors = {
-    'remember': '#F56E74',
-    'understand': '#FEB06E',
-    'apply': '#FEE06E',
-    'analyze': '#B1D983',
-    'evaluate': '#88C1E6',
-    'create': '#A380C4',
-    'n/a': '#C4C4C4'
-  }
-  const emoji = [
-    '🥉',
-    '🥈',
-    '🥇'
-  ];
 
-
-  var courseData, assignmentData, assignmentReviewData, assignmentCriteria, rubricCriteria, courseReviewData, rubricReviewData, objectivesData, relatedAssignments, courseCode, year;
+  var courseData, assignmentData, assignmentReviewData, assignmentCriteria, rubricCriteria, rubricReviewData, objectivesData, relatedAssignments, courseCode, year;
   async function refreshData() {
-    courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
-    assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
-
-    assignmentCriteria = await getCriteria('Assignments');
-    rubricCriteria = await getCriteria('Rubrics');
-
-
     let courseCodeYear = getCourseCodeYear(courseData);
     year = courseCodeYear.year;
     courseCode = courseCodeYear.courseCode;
-    try {
-      assignmentReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`);
-    } catch (err) {
-      console.log(err);
-      return false;
+    courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
+
+    //New Quizzes
+    if (ENV.ASSIGNMENT.is_quiz_lti_assignment) {
+      assignmentData = (await canvasGet(`/api/quiz/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.ASSIGNMENT_ID}`))[0];
+      console.log(assignmentData);
+      try {
+        assignmentReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes/${ENV.ASSIGNMENT_ID}`);
+      } catch (err) {
+        console.log(err);
+        return false;
+      }
+      assignmentCriteria = await getCriteria('Quizzes');
+    } 
+    // Regular Assignments
+    else {
+      assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
+      assignmentCriteria = await getCriteria('Assignments');
+      rubricCriteria = await getCriteria('Rubrics');
+      try {
+        assignmentReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`);
+      } catch (err) {
+        console.log(err);
+        return false;
+      }
+      try {
+        rubricReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}/rubric`);
+      } catch (err) {
+        rubricReviewData = undefined;
+        console.log(err);
+      }
     }
+
+
+
 
     let objectivesQueryString = '';
     for (let o in assignmentReviewData.objectives) {
       if (o > 0) objectivesQueryString += '&';
       objectivesQueryString += 'objectives[]=' + assignmentReviewData.objectives[o];
-    }
-    try {
-      relatedAssignments = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments?${objectivesQueryString}`);
-      for (let i in relatedAssignments) {
-        let relatedAssignment = relatedAssignments[i];
-        let relatedAssignmentData = (await canvasGet(`/api/v1/courses/${relatedAssignment.course_id}/assignments/${relatedAssignment.assignment_id}`))[0];
-        relatedAssignment.canvas_data = relatedAssignmentData;
-      }
-    } catch (err) {
-      relatedAssignments = [];
-      console.log(err);
     }
 
     try {
@@ -59,12 +55,6 @@
       console.log(err);
     }
 
-    try {
-      rubricReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}/rubric`);
-    } catch (err) {
-      rubricReviewData = undefined;
-      console.log(err);
-    }
     return true;
   }
 
@@ -82,8 +72,12 @@
 
     let assignmentId = assignmentData.id;
     let description = assignmentData.description;
-    let rubric = JSON.stringify(assignmentData.rubric);
-    await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignmentId, description, rubric);
+    if (ENV.ASSIGNMENT.is_quiz_lti_assignment) {
+      await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignmetnId, description);
+    } else {
+      let rubric = JSON.stringify(assignmentData.rubric);
+      await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignmentId, description, rubric);
+    }
     if (await refreshData()) await generateContent(container);
 
     detailedReportButton.show();
