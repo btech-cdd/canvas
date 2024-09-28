@@ -14,6 +14,7 @@
       console.log(assignmentData);
       try {
         assignmentReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes/${ENV.ASSIGNMENT.id}`);
+        console.log(assignmentReviewData);
       } catch (err) {
         console.log(err);
         return false;
