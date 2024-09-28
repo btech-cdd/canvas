@@ -10,10 +10,10 @@
 
     //New Quizzes
     if (ENV.ASSIGNMENT.is_quiz_lti_assignment) {
-      assignmentData = (await canvasGet(`/api/quiz/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.ASSIGNMENT_ID}`))[0];
+      assignmentData = (await canvasGet(`/api/quiz/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.ASSIGNMENT.id}`))[0];
       console.log(assignmentData);
       try {
-        assignmentReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes/${ENV.ASSIGNMENT_ID}`);
+        assignmentReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes/${ENV.ASSIGNMENT.id}`);
       } catch (err) {
         console.log(err);
         return false;
@@ -22,11 +22,11 @@
     } 
     // Regular Assignments
     else {
-      assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
+      assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT.id}`))[0];
       assignmentCriteria = await getCriteria('Assignments');
       rubricCriteria = await getCriteria('Rubrics');
       try {
-        assignmentReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`);
+        assignmentReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT.id}`);
       } catch (err) {
         console.log(err);
         return false;
