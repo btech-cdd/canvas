@@ -1,12 +1,7 @@
 function addContextMenu($el, menuItems = []) {
   // Add custom menu options
-  menuItems = [
-    { id: 'rerunReport', text: 'Rerun Report', func: () => {}},
-    { id: 'disableItem', text: 'Disable Item', func: () => {}},
-    { id: 'clearReview', text: 'Clear Review', func: () => {}}
-  ];
   // Disable default context menu and show custom menu on right-click
-  $detailedReportButton.on('contextmenu', function(e) {
+  $el.on('contextmenu', function(e) {
     e.preventDefault();
     
     // Dynamically create and show the custom menu
