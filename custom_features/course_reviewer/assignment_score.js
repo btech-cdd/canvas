@@ -185,8 +185,8 @@
   }
 
   await refreshData();
-  $('#sidebar_content').append(evaluateButton);
-  $("#sidebar_content").append(container);
-  $('#sidebar_content').append(detailedReportButton);
+  $('#right-side').append(evaluateButton);
+  $("#right-side").append(container);
+  $('#right-side').append(detailedReportButton);
   if (assignmentReviewData?.assignment_id) await generateContent(container);
 })();
