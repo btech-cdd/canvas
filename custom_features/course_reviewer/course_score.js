@@ -4,7 +4,8 @@
     $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/components/course_content.js"),
     $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/course_score_els.js"),
     $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/course_scripts.js"),
-    $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/context_menu.js")
+    $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/context_menu.js"),
+    $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/detailed_report_button.js")
   ]);
 
 
@@ -243,7 +244,7 @@
    // Function to create and position the custom context menu
    // Function to create and position the custom context menu
 
-    addDetailedReportButton(function ($modalContent) {
+    $detailedReportButton = addDetailedReportButton(function ($modalContent) {
         generateDetailedContent(
           $modalContent
           , courseReviewData
