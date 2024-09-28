@@ -278,6 +278,7 @@
           );
         }},
         { id: 'refreshScore', text: 'Refresh Score', func: async function () {
+          $detailedReportButton.html('');
           await refreshData();
           let courseScore = calcCourseScore(
             pageReviewsData, pageCriteria,
