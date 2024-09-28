@@ -277,7 +277,17 @@
             rubricReviewsData, rubricCriteria
           );
         }},
-        // { id: 'disableItem', text: 'Disable Item', func: () => {}},
+        { id: 'refreshScore', text: 'Refresh Score', func: async function () {
+          await refreshData();
+          let courseScore = calcCourseScore(
+            pageReviewsData, pageCriteria,
+            quizReviewsData, quizCriteria,
+            assignmentReviewsData, assignmentCriteria,
+            rubricReviewsData, rubricCriteria
+          );
+          let emoji = calcEmoji(courseScore);
+          $detailedReportButton.html(emoji);
+        }},
         // { id: 'clearReview', text: 'Clear Review', func: () => {}}
       ]);
     let courseScore = calcCourseScore(
