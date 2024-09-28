@@ -443,7 +443,7 @@ function generateQuizReviewEl(data, criteria) {
   let el = $(`
     <div style="padding: 8px 0;">
       <div title="The bloom's taxonomy level of this assignment." style="margin-bottom: 0.5rem; text-align: center;">
-        <span style="background-color: ${bloomsColors?.[data?.blooms?.toLowerCase()]}; color: #000000; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${quizReviewData.blooms}</span>
+        <span style="background-color: ${bloomsColors?.[data?.blooms?.toLowerCase()]}; color: #000000; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${data.blooms}</span>
       </div>
       <div title="Average score for Quiz review.">
         <h2>Quiz Quality</h2>
@@ -480,7 +480,7 @@ function generateAssignmentReviewEl(data, criteria, rubricCriteria) {
   let el = $(`
     <div style="padding: 8px 0;">
       <div title="The bloom's taxonomy level of this assignment." style="margin-bottom: 0.5rem; text-align: center;">
-        <span style="background-color: ${bloomsColors?.[data?.blooms?.toLowerCase()]}; color: #000000; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${assignmentReviewData.blooms}</span>
+        <span style="background-color: ${bloomsColors?.[data?.blooms?.toLowerCase()]}; color: #000000; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;">${data.blooms}</span>
       </div>
       <div title="Average score for assignment review.">
         <h2>Assignment Quality</h2>
