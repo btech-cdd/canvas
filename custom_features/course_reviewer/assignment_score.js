@@ -190,5 +190,5 @@
   $('#right-side').append(evaluateButton);
   $("#right-side").append(container);
   $('#right-side').append(detailedReportButton);
-  if (assignmentReviewData?.assignment_id) await generateContent(container);
+  if (assignmentReviewData?.assignment_id || assignmentReviewData?.quiz_id) await generateContent(container);
 })();
