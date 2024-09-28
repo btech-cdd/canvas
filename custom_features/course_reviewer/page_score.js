@@ -65,6 +65,7 @@
         { id: 'reevaluate', text: 'Reevaluate', func: async function () {
           await evaluatePage(ENV.COURSE_ID, courseCode, year, ENV.WIKI_PAGE.page_id, ENV.WIKI_PAGE.body);
           await refreshData();
+          let averageScore = calcCriteriaAverageScore(data, pageCriteria);
           let emoji = data.ignore ? '🚫' : calcEmoji(averageScore);
           $detailedReportButton.append(emoji);
         }},
