@@ -327,8 +327,9 @@
 
   await refreshData();
   $(document).ready(async function() {
+   // Function to create and position the custom context menu
     function createCustomMenu(x, y) {
-      // Remove any existing custom menu first
+      // Remove any existing custom menu
       $('#customMenu').remove();
 
       // Create a new context menu element
@@ -336,8 +337,6 @@
         id: 'customMenu',
         css: {
           position: 'absolute',
-          top: y + 'px',
-          left: x + 'px',
           backgroundColor: 'white',
           border: '1px solid #ccc',
           boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
@@ -349,14 +348,14 @@
         }
       });
 
-      // Create menu options
+      // Add custom menu options
       const menuItems = [
         { id: 'rerunReport', text: 'Rerun Report' },
         { id: 'disableItem', text: 'Disable Item' },
         { id: 'clearReview', text: 'Clear Review' }
       ];
 
-      // Append each menu item to the menu
+      // Append each menu item to the custom menu
       menuItems.forEach(item => {
         $('<li>', {
           id: item.id,
@@ -380,7 +379,35 @@
 
       // Append the custom menu to the body
       $('body').append($customMenu);
-    }
+
+      // Get the menu dimensions after it's added to the DOM
+      const menuWidth = $customMenu.outerWidth();
+      const menuHeight = $customMenu.outerHeight();
+
+      // Get the viewport (window) dimensions
+      const windowWidth = $(window).width();
+      const windowHeight = $(window).height();
+
+      // Calculate new position to prevent overflow
+      let posX = x;
+      let posY = y;
+
+      // Check if the menu goes beyond the right edge of the viewport
+      if (x + menuWidth > windowWidth) {
+        posX = windowWidth - menuWidth - 10; // Adjust X to keep it inside
+      }
+
+      // Check if the menu goes beyond the bottom edge of the viewport
+      if (y + menuHeight > windowHeight) {
+        posY = windowHeight - menuHeight - 10; // Adjust Y to keep it inside
+      }
+
+      // Apply the final position
+      $customMenu.css({
+        top: posY + 'px',
+        left: posX + 'px'
+      });
+  } 
 
     addButton($detailedReportButton);
     let courseScore = calcCourseScore(
