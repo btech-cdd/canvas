@@ -433,8 +433,7 @@ async function evaluatePage(courseId, courseCode, year, pageId, description) {
   }, type="POST");
 }
 
-function generateQuizReviewEl() {
-  let data = quizReviewData;
+function generateQuizReviewEl(data) {
   let averageScore = calcCriteriaAverageScore(data, quizCriteria); 
   
   //quiz questions
@@ -474,8 +473,7 @@ function generateQuizReviewEl() {
   return el;
 }
 
-function generateAssignmentReviewEl() {
-  let data = assignmentReviewData;
+function generateAssignmentReviewEl(data) {
   let averageScore = calcCriteriaAverageScore(data, assignmentCriteria);
 
   let rubricScore = calcCriteriaAverageScore(rubricReviewData, rubricCriteria);

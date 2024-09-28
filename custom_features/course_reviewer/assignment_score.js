@@ -146,9 +146,9 @@
   async function generateContent(containerEl) {
     containerEl.empty();
     if (ENV.ASSIGNMENT.is_quiz_lti_assignment) {
-      containerEl.append(generateQuizReviewEl());
+      containerEl.append(generateQuizReviewEl(assignmentReviewData));
     } else {
-      containerEl.append(generateAssignmentReviewEl());
+      containerEl.append(generateAssignmentReviewEl(assignmentReviewData));
     }
   }
 
