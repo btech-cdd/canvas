@@ -433,8 +433,8 @@ async function evaluatePage(courseId, courseCode, year, pageId, description) {
   }, type="POST");
 }
 
-function generateQuizReviewEl(data) {
-  let averageScore = calcCriteriaAverageScore(data, quizCriteria); 
+function generateQuizReviewEl(data, criteria) {
+  let averageScore = calcCriteriaAverageScore(data, criteria); 
   
   //quiz questions
   // let averageQuestionScore = calcQuizQuestionScore(data);
@@ -473,8 +473,8 @@ function generateQuizReviewEl(data) {
   return el;
 }
 
-function generateAssignmentReviewEl(data) {
-  let averageScore = calcCriteriaAverageScore(data, assignmentCriteria);
+function generateAssignmentReviewEl(data, criteria, rubricCriteria) {
+  let averageScore = calcCriteriaAverageScore(data, criteria);
 
   let rubricScore = calcCriteriaAverageScore(rubricReviewData, rubricCriteria);
   let el = $(`

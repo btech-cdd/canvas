@@ -117,7 +117,7 @@
 
   async function generateContent(containerEl) {
     containerEl.empty();
-    containerEl.append(generateQuizReviewEl(quizReviewData));
+    containerEl.append(generateQuizReviewEl(quizReviewData, quizCriteria));
   }
 
   let container = $('<div id="btech-course-reviewer-container"></div>');
