@@ -267,9 +267,18 @@
       }
     );
     addContextMenu($detailedReportButton, [
-        { id: 'rerunReport', text: 'Rerun Report', func: () => {}},
-        { id: 'disableItem', text: 'Disable Item', func: () => {}},
-        { id: 'clearReview', text: 'Clear Review', func: () => {}}
+        { id: 'rerunReport', text: 'Reevaluate All Content', func: async function () {
+          updateReviewProgress({processed: 0, remaining: 1});
+          await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/evaluate_content`, {course_code: courseCode, year: year}, 'POST');
+          checkReviewProgress(
+            pageReviewsData, pageCriteria,
+            quizReviewsData, quizCriteria,
+            assignmentReviewsData, assignmentCriteria,
+            rubricReviewsData, rubricCriteria
+          );
+        }},
+        // { id: 'disableItem', text: 'Disable Item', func: () => {}},
+        // { id: 'clearReview', text: 'Clear Review', func: () => {}}
       ]);
     let courseScore = calcCourseScore(
       pageReviewsData, pageCriteria,

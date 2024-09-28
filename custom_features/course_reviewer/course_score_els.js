@@ -223,10 +223,6 @@ async function generateDetailedContent(
           ></course-content>
         </div>
       </div>
-
-      <div v-if="!d3.select('.btech-reviewer-progress-circle').node()">
-        <button @click="reevaluate">Score All Items</button>
-      </div>
     </div>
     <!-- SURVEYS -->
     <div v-if="menuCurrent == 'surveys'">
@@ -401,19 +397,6 @@ async function generateDetailedContent(
           const textarea = event.target;
           textarea.style.height = 'auto'; // Reset height to auto
           textarea.style.height = `${textarea.scrollHeight}px`; // Set height to scrollHeight
-        },
-        async reevaluate() {
-          let modal = $('body .btech-modal');
-          modal.remove();
-      
-          updateReviewProgress({processed: 0, remaining: 1});
-          await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/evaluate_content`, {course_code: courseCode, year: year}, 'POST');
-          checkReviewProgress(
-            pageReviewsData, pageCriteria,
-            quizReviewsData, quizCriteria,
-            assignmentReviewsData, assignmentCriteria,
-            rubricReviewsData, rubricCriteria
-          );
         },
         setMenu(menu) {
           this.menuCurrent = menu;
