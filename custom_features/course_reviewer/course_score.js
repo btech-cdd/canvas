@@ -8,15 +8,6 @@
   ]);
 
 
-  // jQuery easing functions (if not included already)
-  $.easing.easeInOutQuad = function (x, t, b, c, d) {
-      if ((t /= d / 2) < 1) return c / 2 * t * t + b;
-      return -c / 2 * ((--t) * (t - 2) - 1) + b;
-  };
-
-  $.easing.easeOutQuad = function (x, t, b, c, d) {
-      return -c * (t /= d) * (t - 2) + b;
-  };
 
 
   // insert empty icons for unscored items
@@ -47,6 +38,7 @@
     , bloomsCounts
     , topicTagsCounts
     , objectivesCounts
+    , totalContentCounts
     , runningReviewer
     ;
     runningReviewer = false;
@@ -243,89 +235,6 @@
     return true;
   }
 
-  // add button
-  let $detailedReportButton = $('<div></div>').attr('id', 'btech-detailed-evaluation-button');
-  function addButton($detailedReportButton) {
-    // Create the icon element
-
-    // Apply inline styles
-    $detailedReportButton.css({
-      'position': 'fixed',
-      'cursor': 'pointer',
-      'bottom': '25px',
-      'right': '20px',
-      'width': '2.75rem',
-      'height': '2.75rem',
-      'padding': '0.25rem',
-      'font-size': '2rem',
-      'text-align': 'center',
-      'background-color': '#E8E8E8',
-      'border': '1px solid #888',
-      'border-radius': '50%',
-      'z-index': '1000', // Ensure it is above other elements
-    });
-
-    // Append the icon to the body
-    $('body').append($detailedReportButton);
-
-    // Smooth bounce animation using jQuery
-    $detailedReportButton.animate({bottom: '50px'}, 200, 'easeInOutQuad', function() {
-        $detailedReportButton.animate({bottom: '15px'}, 220, 'easeInOutQuad', function() {
-            $detailedReportButton.animate({bottom: '40px'}, 180, 'easeInOutQuad', function() {
-                $detailedReportButton.animate({bottom: '20px'}, 200, 'easeInOutQuad', function() {    
-                    $detailedReportButton.animate({bottom: '25px'}, 100, 'easeInOutQuad', function() {
-                    });
-                });
-            });
-        });
-    });
-
-    // Ensure the icon stays in the bottom right corner on scroll
-    $(window).scroll(function() {
-        $detailedReportButton.css({
-            'bottom': '25px',
-            'right': '20px'
-        });
-    });
-
-  }
-
-  $detailedReportButton.click(async function () {
-    $("body").append(`
-      <div class='btech-modal' style='display: inline-block;'>
-        <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
-        <div id="btech-course-reviewer-detailed-report" class='btech-modal-content' style='max-width: 800px; border-radius: 0.25rem; background-color: #EEE;'>
-        </div>
-      </div>
-    `);
-    let modal = $('body .btech-modal');
-    modal.on("click", function(event) {
-      if ($(event.target).is(modal)) {
-          modal.remove();
-      }
-    });
-
-    let modalContent = $('body #btech-course-reviewer-detailed-report');
-    generateDetailedContent(
-      modalContent
-      , courseReviewData
-      , courseCode
-      , year
-      , objectivesData
-      , objectivesCounts
-      , assignmentReviewsData
-      , assignmentCriteria
-      , rubricReviewsData
-      , rubricCriteria
-      , quizReviewsData
-      , quizCriteria
-      , pageReviewsData
-      , pageCriteria
-      , externalContentCounts
-      , totalContentCounts
-      , bloomsCounts
-    );
-  });
 
   
 
@@ -334,7 +243,28 @@
    // Function to create and position the custom context menu
    // Function to create and position the custom context menu
 
-    addButton($detailedReportButton);
+    addDetailedReportButton(function ($modalContent) {
+        generateDetailedContent(
+          $modalContent
+          , courseReviewData
+          , courseCode
+          , year
+          , objectivesData
+          , objectivesCounts
+          , assignmentReviewsData
+          , assignmentCriteria
+          , rubricReviewsData
+          , rubricCriteria
+          , quizReviewsData
+          , quizCriteria
+          , pageReviewsData
+          , pageCriteria
+          , externalContentCounts
+          , totalContentCounts
+          , bloomsCounts
+        );
+      }
+    );
     addContextMenu($detailedReportButton, [
         { id: 'rerunReport', text: 'Rerun Report', func: () => {}},
         { id: 'disableItem', text: 'Disable Item', func: () => {}},
