@@ -76,7 +76,8 @@
       ]);
     let data = pageReviewData;
     let averageScore = calcCriteriaAverageScore(data, pageCriteria);
+    console.log(averageScore);
     let emoji = data.ignore ? '🚫' : calcEmoji(averageScore);
-    $detailedReportButton.append(emoji);
+    // $detailedReportButton.append(emoji);
   })
 })();
