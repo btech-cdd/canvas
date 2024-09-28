@@ -53,15 +53,11 @@
   }
 
   await refreshData();
-  $("#right-side-wrapper").css("display", "block");
-  $('aside#right-side').append(evaluateButton);
-  $("aside#right-side").append(container);
-  $('aside#right-side').append(detailedReportButton);
-  if (pageReviewData?.page_id) await generateContent(container);
   $(document).ready(async function() {
    // Function to create and position the custom context menu
    // Function to create and position the custom context menu
 
+    if (pageReviewData?.page_id == undefined) return;
     let $detailedReportButton = addDetailedReportButton(function ($modalContent) {
       generateDetailedContent($modalContent);
       }
