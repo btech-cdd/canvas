@@ -73,7 +73,7 @@
     let assignmentId = assignmentData.id;
     if (ENV.ASSIGNMENT.is_quiz_lti_assignment) {
       let description = assignmentData.instructions;
-      await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignmetnId, description);
+      await evaluateQuiz(ENV.COURSE_ID, courseCode, year, assignmentId, description);
     } else {
       let description = assignmentData.description;
       let rubric = JSON.stringify(assignmentData.rubric);
