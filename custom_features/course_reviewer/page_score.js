@@ -66,8 +66,8 @@
           await evaluatePage(ENV.COURSE_ID, courseCode, year, ENV.WIKI_PAGE.page_id, ENV.WIKI_PAGE.body);
           await refreshData();
           let averageScore = calcCriteriaAverageScore(data, pageCriteria);
-          let emoji = data.ignore ? '🚫' : emoji[averageScore];
-          $detailedReportButton.append(emoji);
+          let scoreEmoji = data.ignore ? '🚫' : emoji[averageScore];
+          $detailedReportButton.append(scoreEmoji);
         }},
         { id: 'disable', text: 'Toggle Ignore', func: async function () {
           console.log('disable');
@@ -76,7 +76,7 @@
       ]);
     let data = pageReviewData;
     let averageScore = calcCriteriaAverageScore(data, pageCriteria);
-    let emoji = data.ignore ? '🚫' : emoji[averageScore];
-    $detailedReportButton.append(emoji);
+    let scoreEmoji = data.ignore ? '🚫' : emoji[averageScore];
+    $detailedReportButton.append(scoreEmoji);
   })
 })();
