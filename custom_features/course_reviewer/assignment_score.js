@@ -3,10 +3,10 @@
 
   var courseData, assignmentData, assignmentReviewData, assignmentCriteria, rubricCriteria, rubricReviewData, objectivesData, relatedAssignments, courseCode, year;
   async function refreshData() {
+    courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     let courseCodeYear = getCourseCodeYear(courseData);
     year = courseCodeYear.year;
     courseCode = courseCodeYear.courseCode;
-    courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
 
     //New Quizzes
     if (ENV.ASSIGNMENT.is_quiz_lti_assignment) {
