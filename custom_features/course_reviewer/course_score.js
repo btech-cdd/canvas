@@ -240,12 +240,12 @@
   }
 
   // add button
-  let detailedReportButton = $('<div></div>').attr('id', 'btech-detailed-evaluation-button');
-  function addButton(detailedReportButton) {
+  let $detailedReportButton = $('<div></div>').attr('id', 'btech-detailed-evaluation-button');
+  function addButton($detailedReportButton) {
     // Create the icon element
 
     // Apply inline styles
-    detailedReportButton.css({
+    $detailedReportButton.css({
       'position': 'fixed',
       'cursor': 'pointer',
       'bottom': '25px',
@@ -262,14 +262,14 @@
     });
 
     // Append the icon to the body
-    $('body').append(detailedReportButton);
+    $('body').append($detailedReportButton);
 
     // Smooth bounce animation using jQuery
-    detailedReportButton.animate({bottom: '50px'}, 200, 'easeInOutQuad', function() {
-        detailedReportButton.animate({bottom: '15px'}, 220, 'easeInOutQuad', function() {
-            detailedReportButton.animate({bottom: '40px'}, 180, 'easeInOutQuad', function() {
-                detailedReportButton.animate({bottom: '20px'}, 200, 'easeInOutQuad', function() {    
-                    detailedReportButton.animate({bottom: '25px'}, 100, 'easeInOutQuad', function() {
+    $detailedReportButton.animate({bottom: '50px'}, 200, 'easeInOutQuad', function() {
+        $detailedReportButton.animate({bottom: '15px'}, 220, 'easeInOutQuad', function() {
+            $detailedReportButton.animate({bottom: '40px'}, 180, 'easeInOutQuad', function() {
+                $detailedReportButton.animate({bottom: '20px'}, 200, 'easeInOutQuad', function() {    
+                    $detailedReportButton.animate({bottom: '25px'}, 100, 'easeInOutQuad', function() {
                     });
                 });
             });
@@ -278,7 +278,7 @@
 
     // Ensure the icon stays in the bottom right corner on scroll
     $(window).scroll(function() {
-        detailedReportButton.css({
+        $detailedReportButton.css({
             'bottom': '25px',
             'right': '20px'
         });
@@ -286,7 +286,7 @@
 
   }
 
-  detailedReportButton.click(async function () {
+  $detailedReportButton.click(async function () {
     $("body").append(`
       <div class='btech-modal' style='display: inline-block;'>
         <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
@@ -327,7 +327,62 @@
 
   await refreshData();
   $(document).ready(async function() {
-    addButton(detailedReportButton);
+    function createCustomMenu(x, y) {
+      // Remove any existing custom menu first
+      $('#customMenu').remove();
+
+      // Create a new context menu element
+      const $customMenu = $('<ul>', {
+        id: 'customMenu',
+        css: {
+          position: 'absolute',
+          top: y + 'px',
+          left: x + 'px',
+          backgroundColor: 'white',
+          border: '1px solid #ccc',
+          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+          zIndex: 1000,
+          width: '150px',
+          listStyle: 'none',
+          padding: '0',
+          margin: '0'
+        }
+      });
+
+      // Create menu options
+      const menuItems = [
+        { id: 'rerunReport', text: 'Rerun Report' },
+        { id: 'disableItem', text: 'Disable Item' },
+        { id: 'clearReview', text: 'Clear Review' }
+      ];
+
+      // Append each menu item to the menu
+      menuItems.forEach(item => {
+        $('<li>', {
+          id: item.id,
+          text: item.text,
+          css: {
+            padding: '10px',
+            cursor: 'pointer'
+          },
+          hover: function() {
+            $(this).css('background-color', '#f0f0f0');
+          },
+          mouseout: function() {
+            $(this).css('background-color', 'white');
+          },
+          click: function() {
+            alert(item.text + ' clicked!');
+            $customMenu.remove(); // Hide menu after clicking an option
+          }
+        }).appendTo($customMenu);
+      });
+
+      // Append the custom menu to the body
+      $('body').append($customMenu);
+    }
+
+    addButton($detailedReportButton);
     let courseScore = calcCourseScore(
       pageReviewsData, pageCriteria,
       quizReviewsData, quizCriteria,
@@ -335,12 +390,25 @@
       rubricReviewsData, rubricCriteria
     );
     let emoji = calcEmoji(courseScore);
-    detailedReportButton.append(emoji);
+    $detailedReportButton.append(emoji);
     initReviewProgressInterval(
       pageReviewsData, pageCriteria,
       quizReviewsData, quizCriteria,
       assignmentReviewsData, assignmentCriteria,
       rubricReviewsData, rubricCriteria
     );
+
+    // Disable default context menu and show custom menu on right-click
+    $detailedReportButton.on('contextmenu', function(e) {
+      e.preventDefault();
+      
+      // Dynamically create and show the custom menu
+      createCustomMenu(e.pageX, e.pageY);
+    });
+
+    // Hide the menu if clicking outside or pressing Esc
+    $(document).on('click', function() {
+      $('#customMenu').remove(); // Remove the custom menu if clicked elsewhere
+    });
   })
 })();
