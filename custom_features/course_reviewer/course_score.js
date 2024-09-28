@@ -328,15 +328,16 @@
   await refreshData();
   $(document).ready(async function() {
    // Function to create and position the custom context menu
+   // Function to create and position the custom context menu
     function createCustomMenu(x, y) {
       // Remove any existing custom menu
       $('#customMenu').remove();
 
-      // Create a new context menu element
+      // Create a new context menu element with `position: fixed`
       const $customMenu = $('<ul>', {
         id: 'customMenu',
         css: {
-          position: 'absolute',
+          position: 'fixed', // Make it fixed relative to the viewport
           backgroundColor: 'white',
           border: '1px solid #ccc',
           boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
@@ -388,21 +389,21 @@
       const windowWidth = $(window).width();
       const windowHeight = $(window).height();
 
-      // Calculate new position to prevent overflow
+      // Adjust X and Y coordinates to prevent the menu from going off-screen
       let posX = x;
       let posY = y;
 
       // Check if the menu goes beyond the right edge of the viewport
-      if (x + menuWidth > windowWidth) {
+      if (posX + menuWidth > windowWidth) {
         posX = windowWidth - menuWidth - 10; // Adjust X to keep it inside
       }
 
       // Check if the menu goes beyond the bottom edge of the viewport
-      if (y + menuHeight > windowHeight) {
+      if (posY + menuHeight > windowHeight) {
         posY = windowHeight - menuHeight - 10; // Adjust Y to keep it inside
       }
 
-      // Apply the final position
+      // Apply the final position using fixed coordinates relative to the viewport
       $customMenu.css({
         top: posY + 'px',
         left: posX + 'px'
