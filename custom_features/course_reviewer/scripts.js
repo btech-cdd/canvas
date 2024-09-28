@@ -395,14 +395,14 @@ async function genNewQuizzesQuestionsList(courseId, quizId) {
 }
 
 async function evaluateNewQuiz(courseId, courseCode, year, quizId, description) {
-  let questionsList = await genNewQuizzesQuestionsList(); 
-  let statistics = processQuestionStatistics(questionsList);
+  // let questionsList = await genNewQuizzesQuestionsList(); 
+  // let statistics = processQuestionStatistics(questionsList);
   await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/quizzes/${quizId}/evaluate`, reqdata={
       courseCode: courseCode,
       year: year,
       description: description,
       questions: '<div>Questions Unavailable for Review</div>',
-      statistics: statistics 
+      // statistics: statistics 
   }, type="POST");
 }
 
