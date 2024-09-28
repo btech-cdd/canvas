@@ -1,8 +1,12 @@
 (async function () {
-  await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/scripts.js");
-  await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/components/course_content.js");
-  await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/course_score_els.js");
-  await $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/course_scripts.js");
+  await Promise.all([
+    $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/scripts.js"),
+    $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/components/course_content.js"),
+    $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/course_score_els.js"),
+    $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/course_scripts.js"),
+    $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/context_menu.js")
+  ]);
+
 
   // jQuery easing functions (if not included already)
   $.easing.easeInOutQuad = function (x, t, b, c, d) {
