@@ -244,7 +244,7 @@
    // Function to create and position the custom context menu
    // Function to create and position the custom context menu
 
-    $detailedReportButton = addDetailedReportButton(function ($modalContent) {
+    let $detailedReportButton = addDetailedReportButton(function ($modalContent) {
         generateDetailedContent(
           $modalContent
           , courseReviewData
