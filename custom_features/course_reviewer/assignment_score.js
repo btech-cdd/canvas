@@ -185,6 +185,7 @@
   }
 
   await refreshData();
+  $('#right-side-wrapper').show();
   $('#right-side').append(evaluateButton);
   $("#right-side").append(container);
   $('#right-side').append(detailedReportButton);
