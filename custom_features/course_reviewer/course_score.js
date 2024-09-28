@@ -96,6 +96,7 @@
       for (let a in assignmentsData) {
         let assignment = assignmentsData[a];
         if (assignment.submission_types.includes('external_tool')) {
+          console.log(assignment);
           $(`.Assignment_${assignment.id} span.ig-btech-evaluation-score`).html('🚫');
         }
       }
