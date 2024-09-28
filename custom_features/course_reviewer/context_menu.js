@@ -49,11 +49,10 @@ function addContextMenu($el, menuItems = []) {
           $(this).css('background-color', 'white');
         },
         click: function() {
-          alert(item.text + ' clicked!');
+          item.func();
           $customMenu.remove(); // Hide menu after clicking an option
         }
       });
-      $li.on('click', item.func)
       $li.appendTo($customMenu);
     });
 
