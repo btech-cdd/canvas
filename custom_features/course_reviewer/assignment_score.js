@@ -13,7 +13,7 @@
     courseCode = courseCodeYear.courseCode;
 
     //New Quizzes
-    if (ENV.ASSIGNMENT.is_quiz_lti_assignment) {
+    if (ENV.ASSIGNMENT?.is_quiz_lti_assignment ?? false) {
       assignmentData = (await canvasGet(`/api/quiz/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.ASSIGNMENT.id}`))[0];
       console.log(assignmentData);
       try {
