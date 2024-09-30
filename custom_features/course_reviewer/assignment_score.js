@@ -96,7 +96,7 @@
    // Function to create and position the custom context menu
    // Function to create and position the custom context menu
 
-    if (assignmentReviewData?.page_id == undefined) return;
+    if (assignmentReviewData?.assignment_id == undefined) return;
     let $detailedReportButton = addDetailedReportButton(function ($modalContent) {
       generateDetailedContent($modalContent);
       }
@@ -122,7 +122,9 @@
 
 
     let data = assignmentReviewData;
+    console.log(data);
     let averageScore = calcCriteriaAverageScore(data, assignmentCriteria);
+    console.log(averageScore);
     let scoreEmoji = data.ignore ? '🚫' : emoji[averageScore];
     $detailedReportButton.append(scoreEmoji);
   });
