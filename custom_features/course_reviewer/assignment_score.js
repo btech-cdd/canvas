@@ -33,7 +33,7 @@
         assignmentCriteria = await getCriteria('Assignments');
         rubricCriteria = await getCriteria('Rubrics');
         try {
-          assignmentReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT.id}`);
+          assignmentReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`);
         } catch (err) {
           console.log(err);
           return false;
