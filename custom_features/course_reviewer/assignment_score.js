@@ -101,6 +101,7 @@
 
     let data = assignmentReviewData;
     let averageScore = calcCriteriaAverageScore(data, assignmentCriteria);
+    console.log(rubricReviewData);
     let averageRubricScore = calcCriteriaAverageScore(rubricReviewData, rubricCriteria);
     if (data.ignore) $detailedReportButton.html('🚫');
     else {
