@@ -225,16 +225,11 @@ async function generateDetailedContent(
       </div>
     </div>
     <!-- SURVEYS -->
-    <div v-if="menuCurrent == 'surveys'">
-      <div class="btech-course-evaluator-content-box">
-        <div v-for="(question, q) in surveyRatingsList">
-          <div>
-            <span :title="surveyQuestions[question].agree_perc + '% of ' + surveyQuestions[question].count + ' students agree with this statement.'">{{calcEmoji(surveyQuestions[question].average)}}</span>
-            <span>{{surveyQuestions[question].question}}</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <course-surveys 
+      v-if="menuCurrent == 'surveys'"
+      :questions='surveyQuestions'
+      :ratings='surveyRatingsList'
+      ></course-surveys>
 
     <!-- ASSIGNMENTS NOT ALIGNED TO OBJECTIVES -->
     <div v-if="menuCurrent == 'unaligned'">
