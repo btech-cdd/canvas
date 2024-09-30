@@ -24,9 +24,8 @@
 
       try {
         pageReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/pages/${ENV.WIKI_PAGE.page_id}`);
-        console.log(pageReviewData);
       } catch (err) {
-        console.log(err);
+        console.error(err);
         return false;
       }
 
@@ -41,7 +40,7 @@
         objectivesData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseCode}/year/${year}/objectives`);
       } catch (err) {
         objectivesData = [];
-        console.log(err);
+        console.error(err);
       }
       return true;
     }
@@ -74,7 +73,6 @@
           $detailedReportButton.append(scoreEmoji);
         }},
         { id: 'disable', text: 'Toggle Ignore', func: async function () {
-          console.log('disable');
         }},
         // { id: 'clearReview', text: 'Clear Review', func: () => {}}
       ]);

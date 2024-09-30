@@ -17,10 +17,8 @@
       //New Quizzes
       if (ENV.ASSIGNMENT?.is_quiz_lti_assignment ?? false) {
         assignmentData = (await canvasGet(`/api/quiz/v1/courses/${ENV.COURSE_ID}/quizzes/${ENV.ASSIGNMENT.id}`))[0];
-        console.log(assignmentData);
         try {
           assignmentReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes/${ENV.ASSIGNMENT.id}`);
-          console.log(assignmentReviewData);
         } catch (err) {
           console.log(err);
           return false;
@@ -96,7 +94,6 @@
         await refreshData();
       }},
       { id: 'disable', text: 'Toggle Ignore', func: async function () {
-        console.log('disable');
       }},
       // { id: 'clearReview', text: 'Clear Review', func: () => {}}
     ]);
@@ -105,7 +102,6 @@
     let data = assignmentReviewData;
     let averageScore = calcCriteriaAverageScore(data, assignmentCriteria);
     let averageRubricScore = calcCriteriaAverageScore(rubricReviewData, rubricCriteria);
-    console.log(averageScore);
     if (data.ignore) $detailedReportButton.html('🚫');
     else {
       $detailedReportButton.html(`<div class="btech-course-reviewer-assignment-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[averageScore]}</div><div class="btech-course-reviewer-assignment-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`);

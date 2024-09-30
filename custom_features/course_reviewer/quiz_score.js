@@ -30,7 +30,6 @@
       courseCode = courseCodeYear.courseCode;
       try {
         quizReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes/${ENV.QUIZ.id}`);
-        console.log(quizReviewData);
       } catch (err) {
         console.log(err);
         return false;
@@ -44,7 +43,6 @@
 
       try {
         objectivesData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseCode}/year/${year}/objectives`);
-        console.log(objectivesData);
       } catch (err) {
         objectivesData = [];
         console.log(err);
@@ -78,7 +76,6 @@
         await refreshData();
       }},
       { id: 'disable', text: 'Toggle Ignore', func: async function () {
-        console.log('disable');
         ignoreItem(ENV.COURSE_ID, 'quizzes', quizData.id, !quizData.ignore);
       }},
       // { id: 'clearReview', text: 'Clear Review', func: () => {}}
@@ -88,7 +85,6 @@
     let data = quizReviewData;
     let averageScore = calcCriteriaAverageScore(data, quizCriteria);
     // let averageRubricScore = calcCriteriaAverageScore(rubricReviewData, rubricCriteria);
-    console.log(averageScore);
     if (data.ignore) $detailedReportButton.html('🚫');
     else {
       if (false) { // check if it needs a rubric
