@@ -7,6 +7,13 @@
   $(document).ready(async function() {
     var courseData, pageReviewData, pageCriteria, objectivesData, courseCode, year;
     async function refreshData() {
+      // course level data
+      courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
+      let courseCodeYear = getCourseCodeYear(courseData);
+      year = courseCodeYear.year;
+      courseCode = courseCodeYear.courseCode;
+
+      // criteria
       let criteriaData = (await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/criteria/type/Pages`));
       pageCriteria = {};
       for (let c in criteriaData) {
@@ -15,10 +22,6 @@
         pageCriteria[name] = criterion;
       }
 
-      courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
-      let courseCodeYear = getCourseCodeYear(courseData);
-      year = courseCodeYear.year;
-      courseCode = courseCodeYear.courseCode;
       try {
         pageReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/pages/${ENV.WIKI_PAGE.page_id}`);
         console.log(pageReviewData);
@@ -27,6 +30,7 @@
         return false;
       }
 
+      // objectives
       let objectivesQueryString = '';
       for (let o in pageReviewData.objectives) {
         if (o > 0) objectivesQueryString += '&';
