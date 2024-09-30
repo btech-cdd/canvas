@@ -87,14 +87,18 @@
 
     let data = quizReviewData;
     let averageScore = calcCriteriaAverageScore(data, quizCriteria);
-    let averageRubricScore = calcCriteriaAverageScore(rubricReviewData, rubricCriteria);
+    // let averageRubricScore = calcCriteriaAverageScore(rubricReviewData, rubricCriteria);
     console.log(averageScore);
     if (data.ignore) $detailedReportButton.html('🚫');
     else {
-      $detailedReportButton.html(`<div class="btech-course-reviewer-quiz-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[averageScore]}</div><div class="btech-course-reviewer-quiz-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`);
-      $(`.btech-course-reviewer-quiz-score-right`).html(
-          `${emoji?.[averageRubricScore]}`
-      );
+      if (false) { // check if it needs a rubric
+        $detailedReportButton.html(`<div class="btech-course-reviewer-quiz-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[averageScore]}</div><div class="btech-course-reviewer-quiz-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`);
+        $(`.btech-course-reviewer-quiz-score-right`).html(
+            `${emoji?.[averageRubricScore]}`
+        );
+      } else {
+        $detailedReportButton.html(emoji?.[averageScore]);
+      }
     }
   });
 })();
