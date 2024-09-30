@@ -124,8 +124,14 @@
     let data = assignmentReviewData;
     console.log(data);
     let averageScore = calcCriteriaAverageScore(data, assignmentCriteria);
+    let averageRubricScore = calcCriteriaAverageScore(rubricReviewData, rubricCriteria);
     console.log(averageScore);
-    let scoreEmoji = data.ignore ? '🚫' : emoji[averageScore];
-    $detailedReportButton.append(scoreEmoji);
+    if (data.ignore) $detailedReportButton.html('🚫');
+    else {
+      $detailedReportButton.html(`<div class="btech-course-reviewer-assignment-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[averageScore]}</div><div class="btech-course-reviewer-assignment-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`);
+      $(`.btech-course-reviewer-assignment-score-right`).html(
+          `${emoji?.[rubricAverageScore]}`
+      );
+    }
   });
 })();
