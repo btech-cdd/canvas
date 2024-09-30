@@ -29,7 +29,7 @@
       } 
       // Regular Assignments
       else {
-        assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT.id}`))[0];
+        assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
         assignmentCriteria = await getCriteria('Assignments');
         rubricCriteria = await getCriteria('Rubrics');
         try {
