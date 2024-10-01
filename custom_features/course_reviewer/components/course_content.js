@@ -4,7 +4,7 @@
       <div style="padding: 8px 0;">
         <h2>{{ type }}</h2>
         <div v-for="criterion in criteria" :title="criterion.description">
-          <span style="width: 6rem; display: inline-block;">{{ criterion.name }}</span><span>{{ calcEmoji(counts[criterion.name.toLowerCase().replace(' ', '_')] / (counts.num_reviews * 2)) }}</span>
+          <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{ criterion.name }}</span><span>{{ calcEmoji(counts[criterion.name.toLowerCase().replace(' ', '_')] / (counts.num_reviews * 2)) }}</span>
         </div>
       </div>
     `,
