@@ -72,6 +72,7 @@
     // get course level data
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     courseReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
+    console.log(courseReviewData);
 
     let courseCodeYear = getCourseCodeYear(courseData);
     year = courseCodeYear.year;
