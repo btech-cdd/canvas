@@ -85,8 +85,6 @@ function generateRelevantObjectivesEl(data, objectivesData) {
     let objective = objectivesData[o];
     objectives[objective.objective_id] = objective;
   }
-  console.log(objectives);
-  console.log(data);
 
   let relevantObjectivesString = ``;
   for (let i = 1; i < objectives.length; i++) {
