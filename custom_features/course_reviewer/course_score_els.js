@@ -370,6 +370,8 @@ async function generateDetailedContent(
           ],
           objectivesData: objectivesData,
           objectivesCounts: objectivesCounts,
+          moduleReviewsData: moduleReviewsData,
+          moduleCriteria: moduleCriteria,
           pageReviewsData: pageReviewsData,
           pageCriteria: pageCriteria,
           assignmentReviewsData: assignmentReviewsData,
