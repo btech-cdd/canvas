@@ -80,12 +80,13 @@ function generateTopicTagsEl(data) {
 }
 
 function generateRelevantObjectivesEl(data, objectivesData) {
-  console.log(objectivesData)
   let objectives = [];
   for (let o in objectivesData) {
     let objective = objectivesData[o];
     objectives[objective.objective_id] = objective;
   }
+  console.log(objectives);
+  console.log(data);
 
   let relevantObjectivesString = ``;
   for (let i = 1; i < objectives.length; i++) {
