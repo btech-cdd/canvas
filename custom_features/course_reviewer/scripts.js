@@ -103,6 +103,16 @@ function generateRelevantObjectivesEl(data, objectivesData) {
 
 function generateDetailedContentReviewEl(type, criteria, data) {
   let html = ``;
+  if (data.minutes_to_complete !== undefined) {
+    html += `
+      <div class="btech-course-evaluator-content-box">
+        <h2>Minutes to Complete</h2>
+        <div>
+          <span>${data.minutes_to_complete}</span>
+        </div>
+      </div> 
+    `;
+  }
   if (data.blooms !== undefined) {
     html += `
       <div class="btech-course-evaluator-content-box">
