@@ -121,6 +121,7 @@ async function generateDetailedContent(
     , externalContentCounts
     , totalContentCounts
     , bloomsCounts
+    , surveys
   ) {
   containerEl.empty();
   let html = `
@@ -225,16 +226,10 @@ async function generateDetailedContent(
       </div>
     </div>
     <!-- SURVEYS -->
-    <div v-if="menuCurrent == 'surveys'">
-      <div class="btech-course-evaluator-content-box">
-        <div v-for="(question, q) in surveyRatingsList">
-          <div>
-            <span :title="surveyQuestions[question].agree_perc + '% of ' + surveyQuestions[question].count + ' students agree with this statement.'">{{calcEmoji(surveyQuestions[question].average)}}</span>
-            <span>{{surveyQuestions[question].question}}</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <course-surveys 
+      v-if="menuCurrent == 'surveys'"
+      :surveys='surveys'
+      ></course-surveys>
 
     <!-- ASSIGNMENTS NOT ALIGNED TO OBJECTIVES -->
     <div v-if="menuCurrent == 'unaligned'">
@@ -348,8 +343,7 @@ async function generateDetailedContent(
           this.objectivesData[o].usage = usage;
         }
         this.setMenu('main');
-        await this.loadSurveys();
-        this.getSummary();
+        // this.getSummary();
       },
       data: function () {
         return {
@@ -383,9 +377,7 @@ async function generateDetailedContent(
           query: "",
           queryResponse: "",
           querySources: [],
-          surveysLoaded: false,
-          surveyRatingsList: [],
-          surveyQuestions: {},
+          surveys: surveys,
           objectivesQuery: '',
           objectivesEvaluatorResponse: [],
           emojiTF: emojiTF,
@@ -447,6 +439,7 @@ async function generateDetailedContent(
           }
 
           let surveySummary = ``;
+          /*
           for (let q in this.surveyQuestions) {
             let question = this.surveyQuestions[q];
             if (question.type !== 'Rating' && question.type !== 'Text') continue;
@@ -459,6 +452,7 @@ async function generateDetailedContent(
               surveySummary += `<comments>${comments}</comments>`
             }
           }
+          */
           let summary = `
           <assignment_reviews>${assignmentSummary}</assignment_reviews>
           <quiz_reviews>${quizSummary}</quiz_reviews>
@@ -466,83 +460,6 @@ async function generateDetailedContent(
           `
         },
 
-        loadSurveys: async function () {
-          // DON'T WANT TO KEEP LOADING SAME DATA
-          if (this.surveysLoaded) return;
-
-          // LOOK UP FOR NUMBERIC RATINGS
-          let ratingRef = {
-            'Strongly Agree': 1,
-            'Agree': 0.8,
-            'Disagree': 0.2,
-            'Strongly Disagree': 0
-          }
-
-          // LOAD THE SURVEYS
-          let surveys = await bridgetoolsReq('https://surveys.bridgetools.dev/api/survey_data', {
-              course_id: this.courseId
-          }, 'POST');
-
-
-          // ITERATE OVER EACH QUESTION AND CREATE AN OBJECT FOR THE SUMMARY DATA OF EACH QUESTION (WHAT WILL BE USED IN REPORT)
-          let questions = {};
-          for (let q in surveys.questions) {
-            let question = surveys.questions[q];
-            if (question.type == 'Rating') {
-              this.surveyRatingsList.push(question.question);
-              question.count = 0;
-              question.sum = 0;
-              question.average = 0;
-              question.agree = 0;
-              question.agree_perc = 0;
-            }
-            else if (question.type == 'Text') {
-              // this.surveyTextList.push(question.question);
-              question.page = 0;
-              question.comments = [];
-            }
-            questions[question.question] = question;
-          }
-
-          // GO OVER EACH RESPONSE AND POPULATE SUMMARY DATA
-          for (let r in surveys.responses) {
-            let response = surveys.responses[r];
-            for (let question in response.questions) {
-              let questionResponse = response.questions[question];
-              let questionData = questions[question];
-              if (questionData.type == 'Rating') {
-                let val = ratingRef?.[questionResponse];
-                if (val !== undefined) {
-                  questions[question].count += 1;
-                  questions[question].agree += val > 0.5 ? 1 : 0;
-                  questions[question].sum += val;
-                }
-              }
-              else if (questionData.type == 'Text') {
-                questions[question].comments.push(questionResponse);
-              }
-            }
-          }
-
-          // SOME CLEAN UP ON QUESTIONS
-          for (let question in questions) {
-            let data = questions[question];
-            if (data.type == 'Rating') {
-              if (questions[question].count == 0) questions[question].average = "N/A";
-              else questions[question].average = questions[question].sum / questions[question].count
-            }
-            else if (data.type == 'Text') {
-              questions[question].max_pages = Math.ceil(questions[question].comments.length / this.surveyCommentsPerPage)
-              questions[question].comments.sort((a, b) => {
-                return b.length - a.length;
-              })
-            }
-            questions[question].agree_perc = Math.round((questions[question].agree / questions[question].count) * 1000) / 10;
-          }
-
-          this.surveyQuestions = questions;
-          this.surveysLoaded = true;
-        }
       }
     });
   }

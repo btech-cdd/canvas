@@ -2,6 +2,7 @@
   await Promise.all([
     $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/scripts.js"),
     $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/components/course_content.js"),
+    $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/components/surveys.js"),
     $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/course_score_els.js"),
     $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/course_scripts.js"),
     $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/context_menu.js"),
@@ -41,6 +42,7 @@
     , objectivesCounts
     , totalContentCounts
     , runningReviewer
+    , surveys
     ;
     runningReviewer = false;
 
@@ -73,6 +75,9 @@
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     courseReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
     console.log(courseReviewData);
+    surveys = await bridgetoolsReq('https://surveys.bridgetools.dev/api/survey_data', {
+        course_id: this.courseId
+    }, 'POST');
 
     let courseCodeYear = getCourseCodeYear(courseData);
     year = courseCodeYear.year;
@@ -264,6 +269,7 @@
           , externalContentCounts
           , totalContentCounts
           , bloomsCounts
+          , surveys
         );
       }
     );
