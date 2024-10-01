@@ -24,6 +24,8 @@
     courseData
     , externalContentCounts
     , contentCount
+    , moduleReviewsData
+    , moduleCriteria
     , assignmentsData
     , assignmentReviewsData
     , assignmentCriteria
@@ -74,7 +76,6 @@
     // get course level data
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     courseReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
-    console.log(courseReviewData);
     surveys = await bridgetoolsReq('https://surveys.bridgetools.dev/api/survey_data', {
         course_id: this.courseId
     }, 'POST');
@@ -82,6 +83,14 @@
     let courseCodeYear = getCourseCodeYear(courseData);
     year = courseCodeYear.year;
     courseCode = courseCodeYear.courseCode;
+
+    // get quiz data
+    try {
+      moduleReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/modules`);
+      moduleCriteria = await getCriteria('Modules');
+    } catch (err) {
+      console.error(err);
+    }
 
     // get quiz data
     try {
@@ -258,6 +267,8 @@
           , year
           , objectivesData
           , objectivesCounts
+          , moduleReviewsData
+          , moduleCriteria
           , assignmentReviewsData
           , assignmentCriteria
           , rubricReviewsData

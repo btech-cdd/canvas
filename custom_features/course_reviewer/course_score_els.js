@@ -110,6 +110,8 @@ async function generateDetailedContent(
     , year
     , objectivesData
     , objectivesCounts
+    , moduleReviewsData
+    , moduleCriteria
     , assignmentReviewsData
     , assignmentCriteria
     , rubricReviewsData
@@ -220,6 +222,12 @@ async function generateDetailedContent(
             :type="'Rubrics'"
             :criteria="rubricCriteria"
             :reviews="rubricReviewsData"
+            :calc-counts="calcCourseContentCounts"
+          ></course-content>
+          <course-content
+            :type="'Modules'"
+            :criteria="moduleCriteria"
+            :reviews="moduleReviewsData"
             :calc-counts="calcCourseContentCounts"
           ></course-content>
         </div>
