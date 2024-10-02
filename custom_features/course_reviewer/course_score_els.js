@@ -186,13 +186,13 @@ async function generateDetailedContent(
             ></course-content>
             <course-content
               :type="'Quizzes'"
-              :criteria="critera.Quizzes"
+              :criteria="criteria.Quizzes"
               :reviews="courseReviewData.quizzes"
               :calc-counts="calcCourseContentCounts"
             ></course-content>
             <course-content
               :type="'Pages'"
-              :criteria="critera.Pages"
+              :criteria="criteria.Pages"
               :reviews="courseReviewData.pages"
               :calc-counts="calcCourseContentCounts"
             ></course-content>
@@ -206,7 +206,7 @@ async function generateDetailedContent(
             ></course-content>
             <course-content
               :type="'Modules'"
-              :criteria="critera.Modules"
+              :criteria="criteria.Modules"
               :reviews="courseReivewData.modules"
               :calc-counts="calcCourseContentCounts"
             ></course-content>
