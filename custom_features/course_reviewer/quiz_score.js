@@ -52,24 +52,14 @@
 
     }
 
-    async function generateDetailedContent(containerEl) {
-      if (quizReviewData) {
-        containerEl.append(generateRelevantObjectivesEl(quizReviewData, objectivesData));
-        containerEl.append(generateDetailedContentReviewEl('Quiz', quizCriteria, quizReviewData));
-        // containerEl.append(generateTopicTagsEl(quizReviewData));
-        // containerEl.append(generateRelatedquizsEl());
-      }
-    }
-
     await refreshData();
    // Function to create and position the custom context menu
    // Function to create and position the custom context menu
 
     if (quizReviewData?.quiz_id == undefined) return;
-    let $detailedReportButton = addDetailedReportButton(function ($modalContent) {
-      generateDetailedContent($modalContent);
-      }
-    );
+    let $detailedReportButton = addDetailedReportButton()
+    generateDetailedContent('Quizzes', quizReviewData, null, quizCriteria, null, objectivesData);
+
     addContextMenu($detailedReportButton, [
       { id: 'reevaluate', text: 'Reevaluate', func: async function () {
         await evaluateQuiz(ENV.COURSE_ID, courseCode, year, quizData.id, quizData.description)

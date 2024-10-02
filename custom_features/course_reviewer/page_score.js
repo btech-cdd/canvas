@@ -45,25 +45,11 @@
       return true;
     }
 
-    // do we have a review?
-    async function generateDetailedContent(containerEl) {
-      if (pageReviewData) {
-        containerEl.append(generateRelevantObjectivesEl(pageReviewData, objectivesData));
-        containerEl.append(generateDetailedContentReviewEl('Page', pageCriteria, pageReviewData));
-        // containerEl.append(generateTopicTagsEl(pageReviewData));
-        // containerEl.append(generateRelatedPagesEl());
-      }
-    }
-
     await refreshData();
-   // Function to create and position the custom context menu
-   // Function to create and position the custom context menu
 
     if (pageReviewData?.page_id == undefined) return;
-    let $detailedReportButton = addDetailedReportButton(function ($modalContent) {
-      generateDetailedContent($modalContent);
-      }
-    );
+    let $detailedReportButton = addDetailedReportButton();
+    generateDetailedContent('Pages', pageReviewData, null, pageCriteria, null, objectivesData);
     addContextMenu($detailedReportButton, [
         { id: 'reevaluate', text: 'Reevaluate', func: async function () {
           await evaluatePage(ENV.COURSE_ID, courseCode, year, ENV.WIKI_PAGE.page_id, ENV.WIKI_PAGE.body);
