@@ -111,6 +111,7 @@
         el: '#btech-course-reviewer-detailed-report',
         created: async function () {
           this.contentCriteria = sortCriteria(this.contentCriteria);
+          console.log(this.contentCriteria);
           this.rubricCriteria = sortCriteria(this.rubricCriteria);
         },
         data: function () {
