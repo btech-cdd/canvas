@@ -86,16 +86,16 @@
         >{{menu.toUpperCase()}}</div>
       </div>
       <div v-if="menuCurrent == 'main'">
-        <div>
-            <div v-for="criterion in contentCriteria" :title="criterion.description">
-              <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{criterion.name}}</span>
-              <span>
-                {{calcEmoji(contentData, criterion)}}
-              </span>
-            </div>
-            <div v-if="contentData.objectives" title="The content is alligned to the course objectives.">
-              <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">Allignment</span><span>{{ ((contentData?.objectives ?? []) > 0 ? emojiTF[1] : emojiTF[0])}}</span>
-            </div>
+        <div class="btech-course-evaluator-content-box">
+          <div v-for="criterion in contentCriteria" :title="criterion.description">
+            <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{criterion.name}}</span>
+            <span>
+              {{calcEmoji(contentData, criterion)}}
+            </span>
+          </div>
+          <div v-if="contentData.objectives" title="The content is alligned to the course objectives.">
+            <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">Allignment</span><span>{{ ((contentData?.objectives ?? []) > 0 ? emojiTF[1] : emojiTF[0])}}</span>
+          </div>
         </div>
 
         <div class="btech-course-evaluator-content-box">
@@ -138,6 +138,8 @@
             this.genBloomsChart(this.bloomsCounts);
           },
           calcEmoji(data, criterion) {
+            console.log(data);
+            console.log(criterion);
             let val = data?.criteria?.[name] ?? 0;
             if (criterion.score_type == 'boolean') {
               return (val ? emojiTF[1] : emojiTF[0]);
