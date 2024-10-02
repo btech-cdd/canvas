@@ -29,7 +29,8 @@ async function getCriteria(reqType = null) {
 }
 
 function sortCriteria(criteria) {
-  let sortedCriteria = Object.keys(criteria).sort((a, b) => {
+  // Get the sorted keys based on the custom sorting logic
+  let sortedKeys = Object.keys(criteria).sort((a, b) => {
     let typeA = criteria[a].score_type;
     let typeB = criteria[b].score_type;
     
@@ -40,6 +41,13 @@ function sortCriteria(criteria) {
     // If score_type is the same, sort alphabetically by name
     return criteria[a].name.localeCompare(criteria[b].name);
   });
+
+  // Create a new object with the sorted keys
+  let sortedCriteria = {};
+  sortedKeys.forEach(key => {
+    sortedCriteria[key] = criteria[key];
+  });
+
   return sortedCriteria;
 }
 
