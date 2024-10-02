@@ -129,7 +129,7 @@
       let moduleData = courseReviewData.modules[m];
       let moduleEl = $(`#${moduleData.module_id}`);
       let moduleScore = calcCriteriaAverageScore(moduleData, criteria.Modules);
-      moduleEl.find('h2').before(emoji?.[moduleScore])
+      moduleEl.find('span.name').prepend(emoji?.[moduleScore])
     }
 
     for (let p in courseReviewData.pages) {
