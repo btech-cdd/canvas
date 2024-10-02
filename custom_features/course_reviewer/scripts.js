@@ -13,7 +13,7 @@ function criterionNameToVariable(name) {
 
 async function getCriteria(reqType = null) {
   let criteriaGrouped = {};
-  if (reqType = null) criteriaGrouped = (await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/criteria/grouped`))
+  if (reqType === null) criteriaGrouped = (await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/criteria/grouped`))
   else criteriaGrouped[reqType] = (await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/criteria/type/${reqType}`));
   let criteria = {};
   for (let groupType in criteriaGrouped) {
