@@ -73,6 +73,7 @@
     generateDetailedContent('Assignments', assignmentReviewData, rubricReviewData, assignmentCriteria, rubricCriteria, objectivesData);
     addContextMenu($detailedReportButton, [
       { id: 'reevaluate', text: 'Reevaluate', func: async function () {
+        $detailedReportButton.html('')
         let assignmentId = assignmentData.id;
         if (ENV.ASSIGNMENT?.is_quiz_lti_assignment ?? false) {
           let description = assignmentData.instructions;
