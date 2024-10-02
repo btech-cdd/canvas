@@ -76,10 +76,8 @@
    // Function to create and position the custom context menu
 
     if (assignmentReviewData?.assignment_id == undefined) return;
-    let $detailedReportButton = addDetailedReportButton(function ($modalContent) {
-      generateDetailedContent($modalContent);
-      }
-    );
+    let $detailedReportButton = addDetailedReportButton();
+    generateDetailedContent($("btech-course-reviewer-detailed-report"));
     addContextMenu($detailedReportButton, [
       { id: 'reevaluate', text: 'Reevaluate', func: async function () {
         let assignmentId = assignmentData.id;

@@ -210,6 +210,8 @@
 
   await refreshData();
   $(document).ready(async function() {
+    // button creates container, must run button first
+    let $detailedReportButton = addDetailedReportButton();
     let vueApp = generateDetailedContent(
       courseReviewData
       , courseCode
@@ -222,7 +224,6 @@
       , bloomsCounts
       , surveys
     );
-    let $detailedReportButton = addDetailedReportButton();
     addContextMenu($detailedReportButton, [
         { id: 'reevaluate', text: 'Reevaluate All', func: async function () {
           updateReviewProgress({processed: 0, remaining: 1});

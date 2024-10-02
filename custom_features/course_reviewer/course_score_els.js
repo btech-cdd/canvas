@@ -104,9 +104,6 @@ async function generateDetailedContent(
     , surveys
   ) {
   let html = `
-  <div class='btech-modal' style='display: inline-block;'>
-    <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
-    <div id="btech-course-reviewer-detailed-report" class='btech-modal-content' style='max-width: 800px; border-radius: 0.25rem; background-color: #EEE;'>
       <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.5rem; border: 1px solid #AAA;">Course Evaluation</div>
       <div style="background-color: white; border-bottom: 1px solid #AAA;">
         <div 
@@ -318,10 +315,8 @@ async function generateDetailedContent(
           <div><b>Recommended:</b> {{response.recommendation}}</div>
         </div>
       </div>
-    </div>
-  </div>
   `;
-  $("body").append(html);
+  $("btech-course-reviewer-detailed-report").append(html);
   let modal = $('body').find('.btech-modal');
     modal.on("click", function(event) {
       // Check if the clicked element is the modal, and not its content
