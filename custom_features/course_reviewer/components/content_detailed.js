@@ -33,7 +33,7 @@
             </div>
             <div v-if="contentData.objectives" title="The content is alligned to the course objectives.">
                 <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">Allignment</span>
-                <span>{{ ((contentData?.objectives ?? []) > 0 ? emojitf[1] : emojitf[0])}}</span>
+                <span>{{ ((contentData?.objectives ?? []) > 0 ? emojiTF[1] : emojiTF[0])}}</span>
             </div>
             </div>
             <div v-if="rubricData != null">
@@ -66,14 +66,6 @@
         type: String,
         default: '' 
       },
-      emoji: {
-        type: Object,
-        default: () => ({})
-      },
-      emojitf: {
-        type: Object,
-        default: () => ({})
-      },
       objectivesData: {
         type: Object,
         default: () => ({})
@@ -99,6 +91,8 @@
     },
     data() {
       return {
+        emoji: emoji,
+        emojiTF: emojiTF,
         bloomsColors: bloomsColors,
         sortCriteria: sortCriteria,
         courseId: ENV.COURSE_ID,
@@ -107,6 +101,7 @@
     created: async function () {
       this.contentCriteria = sortCriteria(this.contentCriteria);
       this.rubricCriteria = sortCriteria(this.rubricCriteria);
+      console.log(this.contentData)
     },
 
     methods: {
