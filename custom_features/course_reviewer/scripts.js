@@ -185,6 +185,7 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
       return {
         emoji: emoji,
         emojiTF: emojiTF,
+        bloomsColors: bloomsColors,
         sortCriteria: sortCriteria,
         courseId: ENV.COURSE_ID,
         objectivesData: objectivesData,
