@@ -214,22 +214,19 @@
    // Function to create and position the custom context menu
    let vueApp = generateReportVue();
 
-    let $detailedReportButton = addDetailedReportButton(function ($modalContent) {
-        generateDetailedContent(
-          $modalContent
-          , courseReviewData
-          , courseCode
-          , year
-          , criteria
-          , objectivesData
-          , objectivesCounts
-          , externalContentCounts
-          , totalContentCounts
-          , bloomsCounts
-          , surveys
-        );
-      }
+    generateDetailedContent(
+      courseReviewData
+      , courseCode
+      , year
+      , criteria
+      , objectivesData
+      , objectivesCounts
+      , externalContentCounts
+      , totalContentCounts
+      , bloomsCounts
+      , surveys
     );
+    let $detailedReportButton = addDetailedReportButton();
     addContextMenu($detailedReportButton, [
         { id: 'reevaluate', text: 'Reevaluate All', func: async function () {
           updateReviewProgress({processed: 0, remaining: 1});

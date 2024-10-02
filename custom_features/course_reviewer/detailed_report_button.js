@@ -10,7 +10,7 @@ $.easing.easeOutQuad = function (x, t, b, c, d) {
 };
 
 // add button
-function addDetailedReportButton(vueApp) {
+function addDetailedReportButton() {
   let $button = $('<div></div>').attr('id', 'btech-detailed-evaluation-button');
   // Create the icon element
 
@@ -56,23 +56,8 @@ function addDetailedReportButton(vueApp) {
 
 
   $button.click(async function () {
-    $("body").append(`
-      <div class='btech-modal' style='display: inline-block;'>
-        <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
-        <div id="btech-course-reviewer-detailed-report" class='btech-modal-content' style='max-width: 800px; border-radius: 0.25rem; background-color: #EEE;'>
-        </div>
-      </div>
-    `);
-    let modal = $('body .btech-modal');
-    modal.on("click", function(event) {
-      if ($(event.target).is(modal)) {
-          modal.remove();
-      }
-    });
-
     let $modalContent = $('body #btech-course-reviewer-detailed-report');
-    vueApp.visible = true;
-    genReportFunc($modalContent)
+    $modalContent.show();
   });
   return $button;
 }
