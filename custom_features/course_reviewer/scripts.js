@@ -28,10 +28,7 @@ async function getCriteria(reqType = null) {
   return criteria;
 }
 
-function generateCriteriaHTML(criteria, data, cssclass='') {
-  let criteriaHTML = ``;
-
-  // Convert the object into an array and sort by score_type and name
+function sortCriteria(criteria) {
   let sortedCriteria = Object.keys(criteria).sort((a, b) => {
     let typeA = criteria[a].score_type;
     let typeB = criteria[b].score_type;
@@ -43,6 +40,13 @@ function generateCriteriaHTML(criteria, data, cssclass='') {
     // If score_type is the same, sort alphabetically by name
     return criteria[a].name.localeCompare(criteria[b].name);
   });
+  return sortedCriteria;
+}
+
+function generateCriteriaHTML(criteria, data, cssclass='') {
+  let criteriaHTML = ``;
+
+  // Convert the object into an array and sort by score_type and name
 
   // Generate HTML for the sorted criteria
   for (let name of sortedCriteria) {
