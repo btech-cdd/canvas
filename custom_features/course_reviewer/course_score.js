@@ -130,6 +130,8 @@
       let page = courseReviewData.pages[p];
       page.name = $(`.WikiPage_${page.page_id} span.item_name a.title`).text().trim();
 
+      console.log(page);
+      console.log(criteria);
       let pageScore = calcCriteriaAverageScore(page, criteria.Pages);
       if (page.ignore) {
         $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`).html('🚫');
