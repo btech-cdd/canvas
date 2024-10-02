@@ -67,6 +67,7 @@
     // get course level data
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     courseReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
+    console.log(courseReviewData);
     criteria = await getCriteria();
     surveys = await bridgetoolsReq('https://surveys.bridgetools.dev/api/survey_data', {
         course_id: this.courseId
@@ -210,6 +211,7 @@
 
   await refreshData();
   $(document).ready(async function() {
+    console.log(courseReviewData);
     let vueApp = generateDetailedContent(
       courseReviewData
       , courseCode
