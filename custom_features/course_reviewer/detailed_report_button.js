@@ -65,10 +65,11 @@ function addDetailedReportButton() {
   let $modal = $modalContent.parent();
   $modal.on("click", function(event) {
     // Check if the clicked element is the modal, and not its content
-    if ($(event.target).is(modal)) {
+    if ($(event.target).is($modal)) {
       $modal.hide();  // hide the modal
     }
   });
+  $modal.hide();
 
   $button.click(async function () {
     $modal.show();
