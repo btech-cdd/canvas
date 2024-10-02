@@ -90,7 +90,7 @@
           <div v-for="(criterion, criterionName) in contentCriteria" :title="criterion.description">
             <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{criterion.name}}</span>
             <span>
-              {{calcEmoji(contentData, criteria, criterionName)}}
+              {{calcEmoji(contentData, contentCriteria, criterionName)}}
             </span>
           </div>
           <div v-if="contentData.objectives" title="The content is alligned to the course objectives.">
