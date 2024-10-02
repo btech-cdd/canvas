@@ -62,13 +62,59 @@
     }
 
     // do we have a review?
-    async function generateDetailedContent(containerEl) {
-      if (assignmentReviewData) {
-        containerEl.append(generateRelevantObjectivesEl(assignmentReviewData, objectivesData));
-        containerEl.append(generateDetailedContentReviewEl('Assignment', assignmentCriteria, assignmentReviewData));
-        containerEl.append(generateDetailedContentReviewEl('Rubric', rubricCriteria, rubricReviewData));
-        // containerEl.append(generateTopicTagsEl(assignmentReviewData));
-      }
+    async function generateDetailedContent(contentData, rubricData, criteria) {
+      let html = `
+      <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.5rem; border: 1px solid #AAA;">Course Evaluation</div>
+      <div style="background-color: white; border-bottom: 1px solid #AAA;">
+        <div 
+          v-for="(menu, m) in menuOptions" :key="m"
+          :style="{
+            'color': menuCurrent == menu ? '${bridgetools.colors.blue}' : '',
+            'background-color': menuCurrent == menu ? '#F0F0F0' : '',
+            'font-weight': menuCurrent == menu ? 'bold' : 'normal'
+          }"
+          style="
+            text-align: center;
+            display: inline-block;
+            padding: 0.25rem 1rem;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            user-select: none;
+            "
+          @click="setMenu(menu)"
+        >{{menu.toUpperCase()}}</div>
+      </div>
+      <div v-if="menuCurrent == 'main'">
+      </div>
+      `;
+      $("btech-course-reviewer-detailed-report").append(html);
+      let APP = new Vue({
+        el: '#btech-course-reviewer-detailed-report',
+        created: async function () {
+        },
+        data: function () {
+          return {
+            courseId: ENV.COURSE_ID,
+            criteria: criteria,
+            contentData: contentData,
+            rubricData: rubricData,
+            courseCode: courseCode,
+            year: year,
+            menuCurrent: 'main',
+            menuOptions: [
+              'main',
+            ],
+          }
+        },
+        methods: {
+          setMenu(menu) {
+            this.menuCurrent = menu;
+            this.genBloomsChart(this.bloomsCounts);
+          },
+        }
+      });
+      return APP;
     }
 
     await refreshData();
