@@ -130,7 +130,7 @@
       let page = courseReviewData.pages[p];
       page.name = $(`.WikiPage_${page.page_id} span.item_name a.title`).text().trim();
 
-      let pageScore = calcCriteriaAverageScore(page, pageCriteria);
+      let pageScore = calcCriteriaAverageScore(page, criteria.Pages);
       if (page.ignore) {
         $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`).html('🚫');
       } else if (emoji?.[pageScore]) {
@@ -148,7 +148,7 @@
         bloomsCounts[quiz.blooms] += 1;
       }
 
-      let quizScore = calcCriteriaAverageScore(quiz, quizCriteria);
+      let quizScore = calcCriteriaAverageScore(quiz, criteria.Quizzes);
 
       if (quiz.ignore) {
         $(`.Quiz_${quiz.quiz_id} span.ig-btech-evaluation-score`).html('🚫');
@@ -168,7 +168,7 @@
         bloomsCounts[assignment.blooms] += 1;
       }
 
-      let assignmentScore = calcCriteriaAverageScore(assignment, assignmentCriteria);
+      let assignmentScore = calcCriteriaAverageScore(assignment, criteria.Assignments);
       if (assignment.ignore) {
         $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html('🚫');
       } else if (emoji?.[assignmentScore]) {
@@ -187,7 +187,7 @@
 
     for (let r in courseReviewData.rubrics) {
       let rubric = courseReviewData.rubrics[r];
-      let rubricScore = calcCriteriaAverageScore(rubric, rubricCriteria);
+      let rubricScore = calcCriteriaAverageScore(rubric, criteria.Rubrics);
       let hasRubric = false;
       for (let a in assignmentsData) {
         let assignment = assignmentsData[a];
