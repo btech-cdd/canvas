@@ -128,6 +128,8 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
       :content-criteria="contentCriteria"
       :rubric-data="rubricData"
       :rubric-criteria="rubricCriteria"
+      :emoji="emoji"
+      :emojitf="emojiTF"
     ></content-detailed>
   </div>
   `;
@@ -136,7 +138,6 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
     el: '#btech-course-reviewer-detailed-report',
     created: async function () {
       this.contentCriteria = sortCriteria(this.contentCriteria);
-      console.log(this.contentCriteria);
       this.rubricCriteria = sortCriteria(this.rubricCriteria);
     },
     data: function () {
