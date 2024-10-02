@@ -23,7 +23,6 @@
   var 
     courseData
     , externalContentCounts
-    , contentCount
     , assignmentsData
     , courseReviewData
     , criteria
@@ -39,9 +38,8 @@
     ;
     runningReviewer = false;
 
-  async function refreshData() {
+  async function initIcons() {
     totalContentCounts = 0;
-    externalContentCounts = 0;
     $(".context_module_item span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
       el.html(`⚪`);
@@ -62,21 +60,13 @@
     $(".context_module_item.context_module_sub_header span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
       el.html(``);
-      contentCount -= 1;
+      totalContentCount -= 1;
     });
-    // get course level data
-    courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
-    courseReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
-    criteria = await getCriteria();
-    surveys = await bridgetoolsReq('https://surveys.bridgetools.dev/api/survey_data', {
-        course_id: this.courseId
-    }, 'POST');
 
-    let courseCodeYear = getCourseCodeYear(courseData);
-    year = courseCodeYear.year;
-    courseCode = courseCodeYear.courseCode;
+    await calcExternalContentCount();
+  }
 
-    // get assignment data
+  async function calcExternalContentCount() {
     try {
       assignmentsData = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
       for (let a in assignmentsData) {
@@ -89,41 +79,46 @@
       console.error(err);
     }
 
+    let externalContentCount = 0;
     $("span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
-      if (el.html() == `🚫`) externalContentCounts += 1;
+      if (el.html() == `🚫`) externalContentCount += 1;
     });
+    return externalContentCount;
+  }
 
-    try {
-      objectivesData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseCode}/year/${year}/objectives`);
-    } catch (err) {
-      objectivesData = [];
-      console.error(err);
+  function calcBloomsCounts(quizReviews, assignmentReviews) {
+    let bloomsCounts = {};
+    for (let q in quizReviews) {
+      let quiz = quizReviews[q];
+      // blooms
+      if (quiz.blooms) {
+        if (bloomsCounts?.[quiz.blooms] === undefined) bloomsCounts[quiz.blooms] = 0;
+        bloomsCounts[quiz.blooms] += 1;
+      }
     }
 
-    bloomsCounts = {};
-    topicTagsCounts = {};
-    objectivesCounts = {};
-    
-    quizQuestionCounts = {
-      promptQuality: 0,
-      prompt_clarity: 0,
-      prompt_positive: 0,
-      prompt_complete_sentence: 0,
-      options_quality: 0,
-      options_clarity: 0,
-      options_length: 0,
-      options_sentence_completion: 0,
-      options_incorrect_answer_quality: 0,
-      options_concise: 0,
-    };
+    for (let a in assignmentReviews) {
+      let assignment = assignmentReviews[a];
+      // blooms
+      if (assignment.blooms) {
+        if (bloomsCounts?.[assignment.blooms] === undefined) bloomsCounts[assignment.blooms] = 0;
+        bloomsCounts[assignment.blooms] += 1;
+      }
+    }
+    return bloomsCounts;
+  }
 
-    objectivesCounts = {};
-    // objectivesCounts =  addObjectives(objectivesCounts, courseReviewData.pages);
-    objectivesCounts =  addObjectives(objectivesCounts, courseReviewData.assignments);
-    objectivesCounts =  addObjectives(objectivesCounts, courseReviewData.quizzes);
+  function calcObjectivesCounts(quizReviews, assignmentReviews) {
+    let objectivesCounts = {};
+    objectivesCounts =  addObjectives(objectivesCounts, quizReviews);
+    objectivesCounts =  addObjectives(objectivesCounts, assignmentReviews);
 
-    topicTagsCounts = {};
+    return objectivesCounts;
+  }
+
+  async function refreshIcons() {
+    // get assignment data to locate external assignments
 
     for (let m in courseReviewData.modules) {
       let moduleData = courseReviewData.modules[m];
@@ -148,12 +143,6 @@
       let quiz = courseReviewData.quizzes[q];
       quiz.name = $(`.Quiz_${quiz.quiz_id} span.item_name a.title`).text().trim();
 
-      // blooms
-      if (quiz.blooms) {
-        if (bloomsCounts?.[quiz.blooms] === undefined) bloomsCounts[quiz.blooms] = 0;
-        bloomsCounts[quiz.blooms] += 1;
-      }
-
       let quizScore = calcCriteriaAverageScore(quiz, criteria.Quizzes);
 
       if (quiz.ignore) {
@@ -167,12 +156,6 @@
     for (let a in courseReviewData.assignments) {
       let assignment = courseReviewData.assignments[a];
       assignment.name = $(`.Assignment_${assignment.assignment_id} span.item_name a.title`).text().trim();
-
-      // blooms
-      if (assignment.blooms) {
-        if (bloomsCounts?.[assignment.blooms] === undefined) bloomsCounts[assignment.blooms] = 0;
-        bloomsCounts[assignment.blooms] += 1;
-      }
 
       let assignmentScore = calcCriteriaAverageScore(assignment, criteria.Assignments);
       if (assignment.ignore) {
@@ -208,17 +191,50 @@
         );
       }
     }
+  }
+  
+  async function refreshData() {
+    // get course level data
+    courseData = {};
+    courseReviewData = {};
+    objectivesData = [];
+    criteria = {};
+    surveys = {};
+    year = null;
+    courseCode = '';
+    topicTagsCounts = {};
+
+    courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
+    courseReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
+    criteria = await getCriteria();
+    surveys = await bridgetoolsReq('https://surveys.bridgetools.dev/api/survey_data', {
+        course_id: this.courseId
+    }, 'POST');
+
+    let courseCodeYear = getCourseCodeYear(courseData);
+    year = courseCodeYear.year;
+    courseCode = courseCodeYear.courseCode;
+
+
+
+    try {
+      objectivesData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseCode}/year/${year}/objectives`);
+    } catch (err) {
+      console.error(err);
+    }
+
+    objectivesCounts = calcObjectivesCounts(courseReviewData.quizzes, courseReviewData.assignments);
+    bloomsCounts = calcBloomsCounts(courseReviewData.quizzes, courseReviewData.assignments);
+    // objectivesCounts =  addObjectives(objectivesCounts, courseReviewData.pages);
 
     return true;
   }
 
 
-  
-
-  await refreshData();
   $(document).ready(async function() {
-    // button creates container, must run button first
-    let $detailedReportButton = addDetailedReportButton();
+    await initIcons();
+    initModal();
+    await refreshData();
     let vueApp = generateDetailedCourseContent(
       courseReviewData
       , courseCode
@@ -231,6 +247,9 @@
       , bloomsCounts
       , surveys
     );
+    await initIcons(vueApp);
+    // button creates container, must run button first
+    let $detailedReportButton = addDetailedReportButton();
     addContextMenu($detailedReportButton, [
         { id: 'reevaluate', text: 'Reevaluate All', func: async function () {
           updateReviewProgress({processed: 0, remaining: 1});

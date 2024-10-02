@@ -9,6 +9,26 @@ $.easing.easeOutQuad = function (x, t, b, c, d) {
     return -c * (t /= d) * (t - 2) + b;
 };
 
+function initModal() {
+  $("body").append(`
+    <div class='btech-modal' style='display: inline-block;'>
+      <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
+      <div id="btech-course-reviewer-detailed-report" class='btech-modal-content' style='max-width: 800px; border-radius: 0.25rem; background-color: #EEE;'></div>
+      </div>
+    </div>
+  `);
+  let $modalContent = $('body #btech-course-reviewer-detailed-report');
+  let $modal = $modalContent.parent();
+  $modal.on("click", function(event) {
+    // Check if the clicked element is the modal, and not its content
+    if ($(event.target).is($modal)) {
+      $modal.hide();  // hide the modal
+    }
+  });
+  $modal.hide();
+  return $modal;
+}
+
 // add button
 function addDetailedReportButton() {
   let $button = $('<div></div>').attr('id', 'btech-detailed-evaluation-button');
@@ -54,24 +74,10 @@ function addDetailedReportButton() {
       });
   });
 
-  $("body").append(`
-    <div class='btech-modal' style='display: inline-block;'>
-      <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
-      <div id="btech-course-reviewer-detailed-report" class='btech-modal-content' style='max-width: 800px; border-radius: 0.25rem; background-color: #EEE;'></div>
-      </div>
-    </div>
-  `);
-  let $modalContent = $('body #btech-course-reviewer-detailed-report');
-  let $modal = $modalContent.parent();
-  $modal.on("click", function(event) {
-    // Check if the clicked element is the modal, and not its content
-    if ($(event.target).is($modal)) {
-      $modal.hide();  // hide the modal
-    }
-  });
-  $modal.hide();
 
   $button.click(async function () {
+    let $modalContent = $('body #btech-course-reviewer-detailed-report');
+    let $modal = $modalContent.parent();
     $modal.show();
   });
   return $button;
