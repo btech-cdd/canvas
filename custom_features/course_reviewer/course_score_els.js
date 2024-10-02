@@ -54,10 +54,7 @@ function updateReviewProgress(data) {
 }
 
 async function checkReviewProgress (
-  pageReviewsData, pageCriteria,
-  quizReviewsData, quizCriteria,
-  assignmentReviewsData, assignmentCriteria,
-  rubricReviewsData, rubricCriteria
+  courseReviewData, criteria
 ) {
   let reviewerProgressData = { processed: 0, remaining: 0};
   try {
@@ -73,10 +70,7 @@ async function checkReviewProgress (
       updateReviewProgress(reviewerProgressData);
     }
     let courseScore = calcCourseScore(
-      pageReviewsData, pageCriteria,
-      quizReviewsData, quizCriteria,
-      assignmentReviewsData, assignmentCriteria,
-      rubricReviewsData, rubricCriteria
+      courseReviewData, criteria
     );
     let emoji = calcEmoji(courseScore);
     $('#btech-detailed-evaluation-button').append(  `<span style="padding: 0.25rem; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; z-index: 1001;">${emoji}</span>`);
@@ -86,18 +80,12 @@ async function checkReviewProgress (
   return reviewerProgressData;
 }
 async function initReviewProgressInterval(
-  pageReviewsData, pageCriteria,
-  quizReviewsData, quizCriteria,
-  assignmentReviewsData, assignmentCriteria,
-  rubricReviewsData, rubricCriteria
+  courseReviewData, criteria
 ) {
   // Run the updateProgress function every 10 seconds
   let intervalId = setInterval(function () {
     checkReviewProgress(
-      pageReviewsData, pageCriteria,
-      quizReviewsData, quizCriteria,
-      assignmentReviewsData, assignmentCriteria,
-      rubricReviewsData, rubricCriteria
+      courseReviewData, criteria
     )
   }, 10000);
 }
@@ -108,18 +96,9 @@ async function generateDetailedContent(
     , courseReviewData
     , courseCode
     , year
+    , criteria
     , objectivesData
     , objectivesCounts
-    , moduleReviewsData
-    , moduleCriteria
-    , assignmentReviewsData
-    , assignmentCriteria
-    , rubricReviewsData
-    , rubricCriteria
-    , quizReviewsData
-    , quizCriteria
-    , pageReviewsData
-    , pageCriteria
     , externalContentCounts
     , totalContentCounts
     , bloomsCounts
@@ -169,13 +148,13 @@ async function generateDetailedContent(
           
           <div @click="menuCurrent = 'unaligned'" style="display: flex; align-items: center; margin-top: 1rem;">
             <span 
-              :title="(Math.round((objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 1000) / 10) + '% of content is NOT aligned to an objective.'"
+              :title="(Math.round((objectivesCounts['n/a'] / (courseReviewData.assignments.length + courseReviewData.quizzes.length)) * 1000) / 10) + '% of content is NOT aligned to an objective.'"
               style="display: inline-block;"
             >
               <div 
                 style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" 
                 :style="{
-                  'background': 'conic-gradient(${bridgetools.colors.red} 0% ' + (objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 100 + '%, lightgray ' + (objectivesCounts['n/a'] / (assignmentReviewsData.length + quizReviewsData.length)) * 100 + '% 100%)'
+                  'background': 'conic-gradient(${bridgetools.colors.red} 0% ' + (objectivesCounts['n/a'] / (courseReviewData.assignments.length + courseReviewData.quizzes.length)) * 100 + '%, lightgray ' + (objectivesCounts['n/a'] / (courseReviewData.assignments.length + courseReviewData.quizzes.length)) * 100 + '% 100%)'
                 }"
               ></div>
             </span>
@@ -200,34 +179,34 @@ async function generateDetailedContent(
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
           <course-content
             :type="'Assignments'"
-            :criteria="assignmentCriteria"
-            :reviews="assignmentReviewsData"
+            :criteria="criteria.Assignments"
+            :reviews="courseReviewData.assignments"
             :calc-counts="calcCourseContentCounts"
           ></course-content>
           <course-content
             :type="'Quizzes'"
-            :criteria="quizCriteria"
-            :reviews="quizReviewsData"
+            :criteria="critera.Quizzes"
+            :reviews="courseReviewData.quizzes"
             :calc-counts="calcCourseContentCounts"
           ></course-content>
           <course-content
             :type="'Pages'"
-            :criteria="pageCriteria"
-            :reviews="pageReviewsData"
+            :criteria="critera.Pages"
+            :reviews="courseReviewData.pages"
             :calc-counts="calcCourseContentCounts"
           ></course-content>
         </div>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
           <course-content
             :type="'Rubrics'"
-            :criteria="rubricCriteria"
-            :reviews="rubricReviewsData"
+            :criteria="criteria.Rubrics"
+            :reviews="courseReviewData.rubrics"
             :calc-counts="calcCourseContentCounts"
           ></course-content>
           <course-content
             :type="'Modules'"
-            :criteria="moduleCriteria"
-            :reviews="moduleReviewsData"
+            :criteria="critera.Modules"
+            :reviews="courseReivewData.modules"
             :calc-counts="calcCourseContentCounts"
           ></course-content>
         </div>
@@ -243,15 +222,15 @@ async function generateDetailedContent(
     <div v-if="menuCurrent == 'unaligned'">
       <div class="btech-course-evaluator-content-box">
         <h2>Unaligned Assignments</h2>
-        <div v-for="(assignment, a) in assignmentReviewsData.filter(assignment => (assignment?.objectives ?? []).length == 0 && !assignment.ignore)" :key="a"><a :href="'https://btech.instructure.com/courses/' + assignment.course_id + '/assignments/' + assignment.assignment_id">{{assignment.name}}</a></div>
+        <div v-for="(assignment, a) in courseReviewData.assignments.filter(assignment => (assignment?.objectives ?? []).length == 0 && !assignment.ignore)" :key="a"><a :href="'https://btech.instructure.com/courses/' + assignment.course_id + '/assignments/' + assignment.assignment_id">{{assignment.name}}</a></div>
       </div>
       <div class="btech-course-evaluator-content-box">
         <h2>Unaligned Quizzes</h2>
-        <div v-for="(quiz, q) in quizReviewsData.filter(quiz => (quiz?.objectives ?? []).length == 0 && !quiz.ignore)" :key="q"><a :href="'https://btech.instructure.com/courses/' + quiz.course_id + '/quizzes/' + quiz.quiz_id">{{quiz.name}}</a></div>
+        <div v-for="(quiz, q) in courseReviewData.quizzes.filter(quiz => (quiz?.objectives ?? []).length == 0 && !quiz.ignore)" :key="q"><a :href="'https://btech.instructure.com/courses/' + quiz.course_id + '/quizzes/' + quiz.quiz_id">{{quiz.name}}</a></div>
       </div>
       <div class="btech-course-evaluator-content-box">
         <h2>Unaligned Pages</h2>
-        <div v-for="(page, p) in pageReviewsData.filter(page => (page?.objectives ?? []).length == 0 && !page.ignore)" :key="p"><a :href="'https://btech.instructure.com/courses/' + page.course_id + '/pages/' + page.page_id">{{page.name}}</a></div>
+        <div v-for="(page, p) in courseReviewData.pages.filter(page => (page?.objectives ?? []).length == 0 && !page.ignore)" :key="p"><a :href="'https://btech.instructure.com/courses/' + page.course_id + '/pages/' + page.page_id">{{page.name}}</a></div>
       </div>
     </div>
 
@@ -344,7 +323,7 @@ async function generateDetailedContent(
     let APP = new Vue({
       el: '#btech-course-reviewer-detailed-report',
       created: async function () {
-        let num = this.assignmentReviewsData.length + this.quizReviewsData.length;
+        let num = this.courseReviewData.assignments.length + this.courseReviewData.quizzes.length;
         for (let o in this.objectivesData) {
           let objective = this.objectivesData[o];
           let usage = Math.round((this.objectivesCounts[objective.objective_id] / (num)) * 1000) / 10;
@@ -368,18 +347,9 @@ async function generateDetailedContent(
             // 'query',
             'objectives'
           ],
+          criteria: criteria,
           objectivesData: objectivesData,
           objectivesCounts: objectivesCounts,
-          moduleReviewsData: moduleReviewsData,
-          moduleCriteria: moduleCriteria,
-          pageReviewsData: pageReviewsData,
-          pageCriteria: pageCriteria,
-          assignmentReviewsData: assignmentReviewsData,
-          assignmentCriteria: assignmentCriteria,
-          rubricReviewsData: rubricReviewsData,
-          rubricCriteria: rubricCriteria,
-          quizReviewsData: quizReviewsData,
-          quizCriteria: quizCriteria,
           externalContentCounts: externalContentCounts,
           totalContentCounts: totalContentCounts,
           genBloomsChart: genBloomsChart,

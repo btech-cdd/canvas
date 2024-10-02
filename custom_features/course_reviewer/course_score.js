@@ -24,18 +24,9 @@
     courseData
     , externalContentCounts
     , contentCount
-    , moduleReviewsData
-    , moduleCriteria
     , assignmentsData
-    , assignmentReviewsData
-    , assignmentCriteria
-    , pageReviewsData
-    , pageCriteria
-    , quizReviewsData
-    , quizCriteria
     , courseReviewData
-    , rubricReviewsData
-    , rubricCriteria
+    , criteria
     , objectivesData
     , courseCode
     , year
@@ -76,6 +67,7 @@
     // get course level data
     courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
     courseReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
+    criteria = await getCriteria();
     surveys = await bridgetoolsReq('https://surveys.bridgetools.dev/api/survey_data', {
         course_id: this.courseId
     }, 'POST');
@@ -84,27 +76,9 @@
     year = courseCodeYear.year;
     courseCode = courseCodeYear.courseCode;
 
-    // get quiz data
-    try {
-      moduleReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/modules`);
-      moduleCriteria = await getCriteria('Modules');
-    } catch (err) {
-      console.error(err);
-    }
-
-    // get quiz data
-    try {
-      quizReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/quizzes`);
-      quizCriteria = await getCriteria('Quizzes');
-    } catch (err) {
-      console.error(err);
-    }
-
     // get assignment data
     try {
-      assignmentReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments`);
       assignmentsData = await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments`);
-      assignmentCriteria = await getCriteria('Assignments');
       for (let a in assignmentsData) {
         let assignment = assignmentsData[a];
         if (assignment.submission_types.includes('external_tool') && !assignment.is_quiz_assignment) {
@@ -115,25 +89,10 @@
       console.error(err);
     }
 
-    try {
-      rubricReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/rubrics`);
-      rubricCriteria = await getCriteria('Rubrics');
-    } catch (err) {
-      console.error(err);
-    }
-
     $("span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
       if (el.html() == `🚫`) externalContentCounts += 1;
     });
-
-    // get page data
-    try {
-      pageReviewsData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/pages`);
-      pageCriteria = await getCriteria('Pages');
-    } catch (err) {
-      console.error(err);
-    }
 
     try {
       objectivesData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseCode}/year/${year}/objectives`);
@@ -160,18 +119,15 @@
     };
 
     objectivesCounts = {};
-    // objectivesCounts =  addObjectives(objectivesCounts, pageReviewsData);
-    objectivesCounts =  addObjectives(objectivesCounts, assignmentReviewsData);
-    objectivesCounts =  addObjectives(objectivesCounts, quizReviewsData);
+    // objectivesCounts =  addObjectives(objectivesCounts, courseReviewData.pages);
+    objectivesCounts =  addObjectives(objectivesCounts, courseReviewData.assignments);
+    objectivesCounts =  addObjectives(objectivesCounts, courseReviewData.quizzes);
 
     topicTagsCounts = {};
-    topicTagsCounts =  addTopics(topicTagsCounts, pageReviewsData);
-    topicTagsCounts =  addTopics(topicTagsCounts, assignmentReviewsData);
-    topicTagsCounts =  addTopics(topicTagsCounts, quizReviewsData);
 
-    for (let o in pageReviewsData) {
-      let page = pageReviewsData[o];
-      pageReviewsData[o].name = $(`.WikiPage_${page.page_id} span.item_name a.title`).text().trim();
+    for (let p in courseReviewData.pages) {
+      let page = courseReviewData.pages[p];
+      page.name = $(`.WikiPage_${page.page_id} span.item_name a.title`).text().trim();
 
       let pageScore = calcCriteriaAverageScore(page, pageCriteria);
       if (page.ignore) {
@@ -181,9 +137,9 @@
       }
     }
 
-    for (let q in quizReviewsData) {
-      let quiz = quizReviewsData[q];
-      quizReviewsData[q].name = $(`.Quiz_${quiz.quiz_id} span.item_name a.title`).text().trim();
+    for (let q in courseReviewData.quizzes) {
+      let quiz = courseReviewData.quizzes[q];
+      quiz.name = $(`.Quiz_${quiz.quiz_id} span.item_name a.title`).text().trim();
 
       // blooms
       if (quiz.blooms) {
@@ -201,10 +157,9 @@
       }
     }
 
-    assignmentCounts = calcCourseAssignmentCounts(assignmentReviewsData);
-    for (let a in assignmentReviewsData) {
-      let assignment = assignmentReviewsData[a];
-      assignmentReviewsData[a].name = $(`.Assignment_${assignment.assignment_id} span.item_name a.title`).text().trim();
+    for (let a in courseReviewData.assignments) {
+      let assignment = courseReviewData.assignments[a];
+      assignment.name = $(`.Assignment_${assignment.assignment_id} span.item_name a.title`).text().trim();
 
       // blooms
       if (assignment.blooms) {
@@ -229,9 +184,8 @@
       }
     }
 
-    rubricCounts = calcCourseRubricCounts(rubricReviewsData);
-    for (let r in rubricReviewsData) {
-      let rubric = rubricReviewsData[r];
+    for (let r in courseReviewData.rubrics) {
+      let rubric = courseReviewData.rubrics[r];
       let rubricScore = calcCriteriaAverageScore(rubric, rubricCriteria);
       let hasRubric = false;
       for (let a in assignmentsData) {
@@ -265,18 +219,9 @@
           , courseReviewData
           , courseCode
           , year
+          , criteria
           , objectivesData
           , objectivesCounts
-          , moduleReviewsData
-          , moduleCriteria
-          , assignmentReviewsData
-          , assignmentCriteria
-          , rubricReviewsData
-          , rubricCriteria
-          , quizReviewsData
-          , quizCriteria
-          , pageReviewsData
-          , pageCriteria
           , externalContentCounts
           , totalContentCounts
           , bloomsCounts
@@ -289,20 +234,14 @@
           updateReviewProgress({processed: 0, remaining: 1});
           await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/evaluate_content`, {course_code: courseCode, year: year}, 'POST');
           checkReviewProgress(
-            pageReviewsData, pageCriteria,
-            quizReviewsData, quizCriteria,
-            assignmentReviewsData, assignmentCriteria,
-            rubricReviewsData, rubricCriteria
+            courseReviewData, criteria
           );
         }},
         { id: 'refreshScore', text: 'Refresh Score', func: async function () {
           $detailedReportButton.html('');
           await refreshData();
           let courseScore = calcCourseScore(
-            pageReviewsData, pageCriteria,
-            quizReviewsData, quizCriteria,
-            assignmentReviewsData, assignmentCriteria,
-            rubricReviewsData, rubricCriteria
+            courseReviewData, criteria
           );
           let emoji = calcEmoji(courseScore);
           $detailedReportButton.html(emoji);
@@ -310,18 +249,12 @@
         // { id: 'clearReview', text: 'Clear Review', func: () => {}}
       ]);
     let courseScore = calcCourseScore(
-      pageReviewsData, pageCriteria,
-      quizReviewsData, quizCriteria,
-      assignmentReviewsData, assignmentCriteria,
-      rubricReviewsData, rubricCriteria
+      courseReviewData, criteria
     );
     let emoji = calcEmoji(courseScore);
     $detailedReportButton.append(emoji);
     initReviewProgressInterval(
-      pageReviewsData, pageCriteria,
-      quizReviewsData, quizCriteria,
-      assignmentReviewsData, assignmentCriteria,
-      rubricReviewsData, rubricCriteria
+      courseReviewData, criteria
     );
 
   })

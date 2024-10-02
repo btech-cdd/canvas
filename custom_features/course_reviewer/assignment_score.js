@@ -23,13 +23,13 @@
           console.log(err);
           return false;
         }
-        assignmentCriteria = await getCriteria('Quizzes');
+        assignmentCriteria = (await getCriteria('Quizzes'))['Quizzes'];
       } 
       // Regular Assignments
       else {
         assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
-        assignmentCriteria = await getCriteria('Assignments');
-        rubricCriteria = await getCriteria('Rubrics');
+        assignmentCriteria = (await getCriteria('Assignments'))['Assignments'];
+        rubricCriteria = (await getCriteria('Rubrics'))['Rubrics'];
         try {
           assignmentReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`);
         } catch (err) {

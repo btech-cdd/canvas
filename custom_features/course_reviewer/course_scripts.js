@@ -202,20 +202,17 @@ function calcCourseContentScore(reviews, criteria) {
 
 
 function calcCourseScore(
-  pageReviewsData, pageCriteria,
-  quizReviewsData, quizCriteria,
-  assignmentReviewsData, assignmentCriteria,
-  rubricReviewsData, rubricCriteria
+  courseReviewData, criteria
 ) {
-  let pageCounts = calcCourseContentCounts(pageReviewsData, pageCriteria);
-  let quizCounts = calcCourseContentCounts(quizReviewsData, quizCriteria);
-  let assignmentCounts = calcCourseContentCounts(assignmentReviewsData, assignmentCriteria);
-  let rubricCounts = calcCourseContentCounts(rubricReviewsData, rubricCriteria);
+  let pageCounts = calcCourseContentCounts(courseReviewData.pages, criteria.Pages);
+  let quizCounts = calcCourseContentCounts(courseReviewData.quizzes, criteria.Quizzes);
+  let assignmentCounts = calcCourseContentCounts(courseReviewData.assignments, criteria.Assignments);
+  let rubricCounts = calcCourseContentCounts(courseReviewData.rubrics, criteria.Rubrics);
   let score = 0;
-  let pageScore = pageCounts.num_reviews > 0 ? (calcCourseContentScore(pageReviewsData, pageCriteria) * pageCounts.num_reviews) : 0;
-  let quizScore = quizCounts.num_reviews > 0 ? (calcCourseContentScore(quizReviewsData, quizCriteria) * quizCounts.num_reviews) : 0;
-  let assignmentScore = assignmentCounts.num_reviews > 0 ? (calcCourseContentScore(assignmentReviewsData, assignmentCriteria) * assignmentCounts.num_reviews) : 0;
-  let rubricScore = rubricCounts.num_reviews > 0 ? (calcCourseContentScore(rubricReviewsData, rubricCriteria) * rubricCounts.num_reviews) : 0;
+  let pageScore = pageCounts.num_reviews > 0 ? (calcCourseContentScore(courseReviewData.pages, criteria.Pages) * pageCounts.num_reviews) : 0;
+  let quizScore = quizCounts.num_reviews > 0 ? (calcCourseContentScore(courseReviewData.quizzes, criteria.Quizzes) * quizCounts.num_reviews) : 0;
+  let assignmentScore = assignmentCounts.num_reviews > 0 ? (calcCourseContentScore(courseReviewData.assignments, criteria.Assignments) * assignmentCounts.num_reviews) : 0;
+  let rubricScore = rubricCounts.num_reviews > 0 ? (calcCourseContentScore(courseReviewData.rubrics, criteria.Rubrics) * rubricCounts.num_reviews) : 0;
   let totalItems = quizCounts.num_reviews + assignmentCounts.num_reviews + pageCounts.num_reviews;
   score = totalItems > 0 ? (quizScore + ((assignmentScore + rubricScore) / 2) + pageScore) / totalItems : 0;
   return score; 
