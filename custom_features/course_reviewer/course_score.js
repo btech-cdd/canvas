@@ -117,7 +117,7 @@
     return objectivesCounts;
   }
 
-  async function refreshIcons() {
+  async function refreshIcons(vueApp) {
     // get assignment data to locate external assignments
 
     for (let m in courseReviewData.modules) {
@@ -247,7 +247,7 @@
       , bloomsCounts
       , surveys
     );
-    await initIcons(vueApp);
+    await refreshIcons(vueApp);
     // button creates container, must run button first
     let $detailedReportButton = addDetailedReportButton();
     addContextMenu($detailedReportButton, [
