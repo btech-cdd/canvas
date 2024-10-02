@@ -87,10 +87,10 @@
       </div>
       <div v-if="menuCurrent == 'main'">
         <div class="btech-course-evaluator-content-box">
-          <div v-for="criterion in contentCriteria" :title="criterion.description">
+          <div v-for="(criterion, criterionName) in contentCriteria" :title="criterion.description">
             <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{criterion.name}}</span>
             <span>
-              {{calcEmoji(contentData, criterion)}}
+              {{calcEmoji(contentData, criteria, criterionName)}}
             </span>
           </div>
           <div v-if="contentData.objectives" title="The content is alligned to the course objectives.">
@@ -137,10 +137,9 @@
             this.menuCurrent = menu;
             this.genBloomsChart(this.bloomsCounts);
           },
-          calcEmoji(data, criterion) {
-            console.log(data);
-            console.log(criterion);
-            let val = data?.criteria?.[name] ?? 0;
+          calcEmoji(data, criteria, criterionName) {
+            let criterion = criteria[criterionName];
+            let val = data?.criteria?.[criterionName] ?? 0;
             if (criterion.score_type == 'boolean') {
               return (val ? emojiTF[1] : emojiTF[0]);
             }
