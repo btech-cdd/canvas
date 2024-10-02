@@ -68,7 +68,7 @@
   //   relevantObjectivesString += `<div style="${isRelevant ? '' : 'color: #CCC;'}"><span style="width: 1rem; display: inline-block;">${isRelevant ? '&#10003;' : ''}</span>${objective.objective_text}</div>`;
   // }
     // do we have a review?
-    async function generateDetailedContent(type, contentData, rubricData, contentCriteria, rubricCriteria) {
+    async function generateDetailedContent(type, contentData, rubricData, contentCriteria, rubricCriteria, objectivesData) {
       let html = `
       <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.5rem; border: 1px solid #AAA;">Course Evaluation</div>
       <div style="background-color: white; border-bottom: 1px solid #AAA;">
@@ -131,6 +131,7 @@
             emojiTF: emojiTF,
             sortCriteria: sortCriteria,
             courseId: ENV.COURSE_ID,
+            objectivesData: objectivesData,
             contentData: contentData,
             rubricData: rubricData,
             contentCriteria: contentCriteria,
@@ -170,7 +171,7 @@
 
     if (assignmentReviewData?.assignment_id == undefined) return;
     let $detailedReportButton = addDetailedReportButton();
-    generateDetailedContent('Assignments', assignmentReviewData, rubricReviewData, assignmentCriteria, rubricCriteria);
+    generateDetailedContent('Assignments', assignmentReviewData, rubricReviewData, assignmentCriteria, rubricCriteria, objectivesData);
     addContextMenu($detailedReportButton, [
       { id: 'reevaluate', text: 'Reevaluate', func: async function () {
         let assignmentId = assignmentData.id;
