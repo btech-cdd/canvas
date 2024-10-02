@@ -212,6 +212,7 @@
   $(document).ready(async function() {
    // Function to create and position the custom context menu
    // Function to create and position the custom context menu
+   let vueApp = generateReportVue();
 
     let $detailedReportButton = addDetailedReportButton(function ($modalContent) {
         generateDetailedContent(

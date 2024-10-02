@@ -92,8 +92,7 @@ async function initReviewProgressInterval(
 
 // do we have a review?
 async function generateDetailedContent(
-    containerEl
-    , courseReviewData
+    courseReviewData
     , courseCode
     , year
     , criteria
@@ -104,343 +103,356 @@ async function generateDetailedContent(
     , bloomsCounts
     , surveys
   ) {
-  containerEl.empty();
   let html = `
-    <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.5rem; border: 1px solid #AAA;">Course Evaluation</div>
-    <div style="background-color: white; border-bottom: 1px solid #AAA;">
-      <div 
-        v-for="(menu, m) in menuOptions" :key="m"
-        :style="{
-          'color': menuCurrent == menu ? '${bridgetools.colors.blue}' : '',
-          'background-color': menuCurrent == menu ? '#F0F0F0' : '',
-          'font-weight': menuCurrent == menu ? 'bold' : 'normal'
-        }"
-        style="
-          text-align: center;
-          display: inline-block;
-          padding: 0.25rem 1rem;
-          font-weight: bold;
-          font-size: 1rem;
-          cursor: pointer;
-          user-select: none;
-          "
-        @click="setMenu(menu)"
-      >{{menu.toUpperCase()}}</div>
-    </div>
-    <div v-if="menuCurrent == 'main'">
-      <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
-        <div class="btech-course-evaluator-content-box">
-          <h2>Objectives</h2>
-          <div v-for="(objective, o) in objectivesData" :key="o" style="display: flex; align-items: center;">
-            <span 
-              style="display: inline-block;"
-              :title="(isNaN(objective.usage) ? 0 : objective.usage) + '% of content aligns to this objective.'"
-            >
-              <div 
-                style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" 
-                :style="{
-                  'background': 'conic-gradient(${bridgetools.colors.green} 0% ' + (isNaN(objective.usage) ? 0 : objective.usage) + '%, lightgray ' + (isNaN(objective.usage) ? 0 : objective.usage) + '% 100%)'
-                }"
-              ></div>
-            </span>
-            <span style="margin-left: 0.5rem;">{{objective.objective_text.trim()}}</span>
+  <div class='btech-modal' style='display: inline-block;'>
+    <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
+    <div id="btech-course-reviewer-detailed-report" class='btech-modal-content' style='max-width: 800px; border-radius: 0.25rem; background-color: #EEE;'>
+      <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.5rem; border: 1px solid #AAA;">Course Evaluation</div>
+      <div style="background-color: white; border-bottom: 1px solid #AAA;">
+        <div 
+          v-for="(menu, m) in menuOptions" :key="m"
+          :style="{
+            'color': menuCurrent == menu ? '${bridgetools.colors.blue}' : '',
+            'background-color': menuCurrent == menu ? '#F0F0F0' : '',
+            'font-weight': menuCurrent == menu ? 'bold' : 'normal'
+          }"
+          style="
+            text-align: center;
+            display: inline-block;
+            padding: 0.25rem 1rem;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            user-select: none;
+            "
+          @click="setMenu(menu)"
+        >{{menu.toUpperCase()}}</div>
+      </div>
+      <div v-if="menuCurrent == 'main'">
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+          <div class="btech-course-evaluator-content-box">
+            <h2>Objectives</h2>
+            <div v-for="(objective, o) in objectivesData" :key="o" style="display: flex; align-items: center;">
+              <span 
+                style="display: inline-block;"
+                :title="(isNaN(objective.usage) ? 0 : objective.usage) + '% of content aligns to this objective.'"
+              >
+                <div 
+                  style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" 
+                  :style="{
+                    'background': 'conic-gradient(${bridgetools.colors.green} 0% ' + (isNaN(objective.usage) ? 0 : objective.usage) + '%, lightgray ' + (isNaN(objective.usage) ? 0 : objective.usage) + '% 100%)'
+                  }"
+                ></div>
+              </span>
+              <span style="margin-left: 0.5rem;">{{objective.objective_text.trim()}}</span>
+            </div>
+            
+            <div @click="menuCurrent = 'unaligned'" style="display: flex; align-items: center; margin-top: 1rem;">
+              <span 
+                :title="(Math.round((objectivesCounts['n/a'] / (courseReviewData.assignments.length + courseReviewData.quizzes.length)) * 1000) / 10) + '% of content is NOT aligned to an objective.'"
+                style="display: inline-block;"
+              >
+                <div 
+                  style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" 
+                  :style="{
+                    'background': 'conic-gradient(${bridgetools.colors.red} 0% ' + (objectivesCounts['n/a'] / (courseReviewData.assignments.length + courseReviewData.quizzes.length)) * 100 + '%, lightgray ' + (objectivesCounts['n/a'] / (courseReviewData.assignments.length + courseReviewData.quizzes.length)) * 100 + '% 100%)'
+                  }"
+                ></div>
+              </span>
+              <span style="margin-left: 0.5rem;">
+                <i>No Objectives</i>
+              </span>
+            </div>
           </div>
+          <div class="btech-course-evaluator-content-box">
+            <h2>Blooms</h2>
+            <div style="display: flex; align-items: center;" class="blooms-chart-container">
+              <svg style="width: 150px; height: 150px; margin-right: 20px;" class="blooms-chart"></svg>
+              <div style="display: flex; flex-direction: column; justify-content: center;" class="blooms-chart-key"></div>
+            </div>
+          </div>
+        </div>
+        <div class="btech-course-evaluator-content-box">
+          <h2>Contracted Courseware</h2>
+          <div>3rd Party Items: {{externalContentCounts}} Item(s) ({{Math.round((externalContentCounts / totalContentCounts) * 1000) / 10}}%)</div>
+        </div>
+        <div class="btech-course-evaluator-content-box">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+            <course-content
+              :type="'Assignments'"
+              :criteria="criteria.Assignments"
+              :reviews="courseReviewData.assignments"
+              :calc-counts="calcCourseContentCounts"
+            ></course-content>
+            <course-content
+              :type="'Quizzes'"
+              :criteria="critera.Quizzes"
+              :reviews="courseReviewData.quizzes"
+              :calc-counts="calcCourseContentCounts"
+            ></course-content>
+            <course-content
+              :type="'Pages'"
+              :criteria="critera.Pages"
+              :reviews="courseReviewData.pages"
+              :calc-counts="calcCourseContentCounts"
+            ></course-content>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+            <course-content
+              :type="'Rubrics'"
+              :criteria="criteria.Rubrics"
+              :reviews="courseReviewData.rubrics"
+              :calc-counts="calcCourseContentCounts"
+            ></course-content>
+            <course-content
+              :type="'Modules'"
+              :criteria="critera.Modules"
+              :reviews="courseReivewData.modules"
+              :calc-counts="calcCourseContentCounts"
+            ></course-content>
+          </div>
+        </div>
+      </div>
+      <!-- SURVEYS -->
+      <course-surveys 
+        v-if="menuCurrent == 'surveys'"
+        :surveys='surveys'
+        ></course-surveys>
+
+      <!-- ASSIGNMENTS NOT ALIGNED TO OBJECTIVES -->
+      <div v-if="menuCurrent == 'unaligned'">
+        <div class="btech-course-evaluator-content-box">
+          <h2>Unaligned Assignments</h2>
+          <div v-for="(assignment, a) in courseReviewData.assignments.filter(assignment => (assignment?.objectives ?? []).length == 0 && !assignment.ignore)" :key="a"><a :href="'https://btech.instructure.com/courses/' + assignment.course_id + '/assignments/' + assignment.assignment_id">{{assignment.name}}</a></div>
+        </div>
+        <div class="btech-course-evaluator-content-box">
+          <h2>Unaligned Quizzes</h2>
+          <div v-for="(quiz, q) in courseReviewData.quizzes.filter(quiz => (quiz?.objectives ?? []).length == 0 && !quiz.ignore)" :key="q"><a :href="'https://btech.instructure.com/courses/' + quiz.course_id + '/quizzes/' + quiz.quiz_id">{{quiz.name}}</a></div>
+        </div>
+        <div class="btech-course-evaluator-content-box">
+          <h2>Unaligned Pages</h2>
+          <div v-for="(page, p) in courseReviewData.pages.filter(page => (page?.objectives ?? []).length == 0 && !page.ignore)" :key="p"><a :href="'https://btech.instructure.com/courses/' + page.course_id + '/pages/' + page.page_id">{{page.name}}</a></div>
+        </div>
+      </div>
+
+      <!-- WHAT ASSIGNMENTS COULD BE CONSIDERED CONTRACTED COURSEWARE -->
+      <div v-if="menuCurrent == '3rd party'">
+        <div class="btech-course-evaluator-content-box">
+          Coming Soon
+        </div>
+      </div>
+
+      <div v-if="menuCurrent == 'summary'">
+        <div class="btech-course-evaluator-content-box">
+          Coming Soon
+        </div>
+      </div>
+
+      <!-- ASK A QUESTION ABOUT THE CURRICULUM -->
+      <div v-if="menuCurrent == 'query'">
+        <div class="btech-course-evaluator-content-box">
+          <input 
+            v-model="query"
+            @keyup.enter="submitQuery"
+            style="width: 100%; height: 3rem; box-sizing: border-box;" type="text">
+        </div>
+        <div 
+          class="btech-course-evaluator-content-box"
+          v-html="queryResponse"
+        >
+        </div>
+        <div 
+          class="btech-course-evaluator-content-box"
+          v-if="querySources.length > 0"
+        >
+          <div v-for="source in querySources"><a :href="getQuerySourceURL(source)">{{ source.name }} ({{source.type}})</a></div>
+        </div>
+      </div>
+
+      <!-- Evaluate proposed objectives -->
+      <div v-if="menuCurrent == 'objectives'">
+        <div class="btech-course-evaluator-content-box">
+          <textarea 
+            v-model="objectivesQuery"
+            @input="adjustHeight($event)"
+            style="width: 100%; box-sizing: border-box; overflow: hidden; resize: none;"
+            rows="1"
+          ></textarea>
+          <div>
+            <button
+              @click="submitObjectivesQuery"
+            >Submit</button>
+          </div>
+        </div>
           
-          <div @click="menuCurrent = 'unaligned'" style="display: flex; align-items: center; margin-top: 1rem;">
-            <span 
-              :title="(Math.round((objectivesCounts['n/a'] / (courseReviewData.assignments.length + courseReviewData.quizzes.length)) * 1000) / 10) + '% of content is NOT aligned to an objective.'"
-              style="display: inline-block;"
-            >
-              <div 
-                style="position: relative; width: 1.5rem; height: 1.5rem; border-radius: 50%;" 
-                :style="{
-                  'background': 'conic-gradient(${bridgetools.colors.red} 0% ' + (objectivesCounts['n/a'] / (courseReviewData.assignments.length + courseReviewData.quizzes.length)) * 100 + '%, lightgray ' + (objectivesCounts['n/a'] / (courseReviewData.assignments.length + courseReviewData.quizzes.length)) * 100 + '% 100%)'
-                }"
-              ></div>
-            </span>
-            <span style="margin-left: 0.5rem;">
-              <i>No Objectives</i>
-            </span>
-          </div>
-        </div>
-        <div class="btech-course-evaluator-content-box">
-          <h2>Blooms</h2>
-          <div style="display: flex; align-items: center;" class="blooms-chart-container">
-            <svg style="width: 150px; height: 150px; margin-right: 20px;" class="blooms-chart"></svg>
-            <div style="display: flex; flex-direction: column; justify-content: center;" class="blooms-chart-key"></div>
-          </div>
-        </div>
-      </div>
-      <div class="btech-course-evaluator-content-box">
-        <h2>Contracted Courseware</h2>
-        <div>3rd Party Items: {{externalContentCounts}} Item(s) ({{Math.round((externalContentCounts / totalContentCounts) * 1000) / 10}}%)</div>
-      </div>
-      <div class="btech-course-evaluator-content-box">
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-          <course-content
-            :type="'Assignments'"
-            :criteria="criteria.Assignments"
-            :reviews="courseReviewData.assignments"
-            :calc-counts="calcCourseContentCounts"
-          ></course-content>
-          <course-content
-            :type="'Quizzes'"
-            :criteria="critera.Quizzes"
-            :reviews="courseReviewData.quizzes"
-            :calc-counts="calcCourseContentCounts"
-          ></course-content>
-          <course-content
-            :type="'Pages'"
-            :criteria="critera.Pages"
-            :reviews="courseReviewData.pages"
-            :calc-counts="calcCourseContentCounts"
-          ></course-content>
-        </div>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-          <course-content
-            :type="'Rubrics'"
-            :criteria="criteria.Rubrics"
-            :reviews="courseReviewData.rubrics"
-            :calc-counts="calcCourseContentCounts"
-          ></course-content>
-          <course-content
-            :type="'Modules'"
-            :criteria="critera.Modules"
-            :reviews="courseReivewData.modules"
-            :calc-counts="calcCourseContentCounts"
-          ></course-content>
-        </div>
-      </div>
-    </div>
-    <!-- SURVEYS -->
-    <course-surveys 
-      v-if="menuCurrent == 'surveys'"
-      :surveys='surveys'
-      ></course-surveys>
-
-    <!-- ASSIGNMENTS NOT ALIGNED TO OBJECTIVES -->
-    <div v-if="menuCurrent == 'unaligned'">
-      <div class="btech-course-evaluator-content-box">
-        <h2>Unaligned Assignments</h2>
-        <div v-for="(assignment, a) in courseReviewData.assignments.filter(assignment => (assignment?.objectives ?? []).length == 0 && !assignment.ignore)" :key="a"><a :href="'https://btech.instructure.com/courses/' + assignment.course_id + '/assignments/' + assignment.assignment_id">{{assignment.name}}</a></div>
-      </div>
-      <div class="btech-course-evaluator-content-box">
-        <h2>Unaligned Quizzes</h2>
-        <div v-for="(quiz, q) in courseReviewData.quizzes.filter(quiz => (quiz?.objectives ?? []).length == 0 && !quiz.ignore)" :key="q"><a :href="'https://btech.instructure.com/courses/' + quiz.course_id + '/quizzes/' + quiz.quiz_id">{{quiz.name}}</a></div>
-      </div>
-      <div class="btech-course-evaluator-content-box">
-        <h2>Unaligned Pages</h2>
-        <div v-for="(page, p) in courseReviewData.pages.filter(page => (page?.objectives ?? []).length == 0 && !page.ignore)" :key="p"><a :href="'https://btech.instructure.com/courses/' + page.course_id + '/pages/' + page.page_id">{{page.name}}</a></div>
-      </div>
-    </div>
-
-    <!-- WHAT ASSIGNMENTS COULD BE CONSIDERED CONTRACTED COURSEWARE -->
-    <div v-if="menuCurrent == '3rd party'">
-      <div class="btech-course-evaluator-content-box">
-        Coming Soon
-      </div>
-    </div>
-
-    <div v-if="menuCurrent == 'summary'">
-      <div class="btech-course-evaluator-content-box">
-        Coming Soon
-      </div>
-    </div>
-
-    <!-- ASK A QUESTION ABOUT THE CURRICULUM -->
-    <div v-if="menuCurrent == 'query'">
-      <div class="btech-course-evaluator-content-box">
-        <input 
-          v-model="query"
-          @keyup.enter="submitQuery"
-          style="width: 100%; height: 3rem; box-sizing: border-box;" type="text">
-      </div>
-      <div 
-        class="btech-course-evaluator-content-box"
-        v-html="queryResponse"
-      >
-      </div>
-      <div 
-        class="btech-course-evaluator-content-box"
-        v-if="querySources.length > 0"
-      >
-        <div v-for="source in querySources"><a :href="getQuerySourceURL(source)">{{ source.name }} ({{source.type}})</a></div>
-      </div>
-    </div>
-
-    <!-- Evaluate proposed objectives -->
-    <div v-if="menuCurrent == 'objectives'">
-      <div class="btech-course-evaluator-content-box">
-        <textarea 
-          v-model="objectivesQuery"
-          @input="adjustHeight($event)"
-          style="width: 100%; box-sizing: border-box; overflow: hidden; resize: none;"
-          rows="1"
-        ></textarea>
-        <div>
-          <button
-            @click="submitObjectivesQuery"
-          >Submit</button>
-        </div>
-      </div>
-        
-      <div 
-        class="btech-course-evaluator-content-box"
-        v-if="objectivesEvaluatorResponse.length > 0"
-        v-for="response in objectivesEvaluatorResponse"
-      >
-        <div><b>Proposed:</b> {{response.objective}}</div>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-          <div style="padding: 8px 0;">
-            <h2>Criteria</h2>
-            <div title="">
-              <span style="width: 6rem; display: inline-block;">Strong Verb</span><span>{{ response.verb_concision ? emojiTF[1] : emojiTF[0] }}</span>
+        <div 
+          class="btech-course-evaluator-content-box"
+          v-if="objectivesEvaluatorResponse.length > 0"
+          v-for="response in objectivesEvaluatorResponse"
+        >
+          <div><b>Proposed:</b> {{response.objective}}</div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+            <div style="padding: 8px 0;">
+              <h2>Criteria</h2>
+              <div title="">
+                <span style="width: 6rem; display: inline-block;">Strong Verb</span><span>{{ response.verb_concision ? emojiTF[1] : emojiTF[0] }}</span>
+              </div>
+              <div title="">
+                <span style="width: 6rem; display: inline-block;">Relevant</span><span>{{ response.course_relevance ? emojiTF[1] : emojiTF[0] }}</span>
+              </div>
+              <div title="">
+                <span style="width: 6rem; display: inline-block;">Specific</span><span>{{ response.specificity ? emojiTF[1] : emojiTF[0] }}</span>
+              </div>
+              <div title="">
+                <span style="width: 6rem; display: inline-block;">Concise</span><span>{{ response.concision ? emojiTF[1] : emojiTF[0] }}</span>
+              </div>
+              <div title="">
+                <span style="width: 6rem; display: inline-block;">Measurable</span><span>{{ response.measurability ? emojiTF[1] : emojiTF[0] }}</span>
+              </div>
             </div>
-            <div title="">
-              <span style="width: 6rem; display: inline-block;">Relevant</span><span>{{ response.course_relevance ? emojiTF[1] : emojiTF[0] }}</span>
-            </div>
-            <div title="">
-              <span style="width: 6rem; display: inline-block;">Specific</span><span>{{ response.specificity ? emojiTF[1] : emojiTF[0] }}</span>
-            </div>
-            <div title="">
-              <span style="width: 6rem; display: inline-block;">Concise</span><span>{{ response.concision ? emojiTF[1] : emojiTF[0] }}</span>
-            </div>
-            <div title="">
-              <span style="width: 6rem; display: inline-block;">Measurable</span><span>{{ response.measurability ? emojiTF[1] : emojiTF[0] }}</span>
+            <div style="padding: 8px 0; grid-column: span 2;">
+              <h2>Feedback</h2>
+              <div>{{response.feedback}}</div>
             </div>
           </div>
-          <div style="padding: 8px 0; grid-column: span 2;">
-            <h2>Feedback</h2>
-            <div>{{response.feedback}}</div>
-          </div>
+          <div><b>Recommended:</b> {{response.recommendation}}</div>
         </div>
-        <div><b>Recommended:</b> {{response.recommendation}}</div>
       </div>
     </div>
+  </div>
   `;
-  containerEl.html(html);
-  if (courseReviewData) {
-    let APP = new Vue({
-      el: '#btech-course-reviewer-detailed-report',
-      created: async function () {
-        let num = this.courseReviewData.assignments.length + this.courseReviewData.quizzes.length;
-        for (let o in this.objectivesData) {
-          let objective = this.objectivesData[o];
-          let usage = Math.round((this.objectivesCounts[objective.objective_id] / (num)) * 1000) / 10;
-          this.objectivesData[o].usage = usage;
-        }
-        this.setMenu('main');
-        // this.getSummary();
-      },
-      data: function () {
-        return {
-          courseId: ENV.COURSE_ID,
-          courseCode: courseCode,
-          year: year,
-          menuCurrent: 'main',
-          menuOptions: [
-            'main',
-            'surveys',
-            'unaligned',
-            '3rd party',
-            'summary',
-            // 'query',
-            'objectives'
-          ],
-          criteria: criteria,
-          objectivesData: objectivesData,
-          objectivesCounts: objectivesCounts,
-          externalContentCounts: externalContentCounts,
-          totalContentCounts: totalContentCounts,
-          genBloomsChart: genBloomsChart,
-          bloomsCounts: bloomsCounts,
-          query: "",
-          queryResponse: "",
-          querySources: [],
-          surveys: surveys,
-          objectivesQuery: '',
-          objectivesEvaluatorResponse: [],
-          emojiTF: emojiTF,
-          calcCourseContentCounts: calcCourseContentCounts
-        }
-      },
-      methods: {
-        adjustHeight(event) {
-          const textarea = event.target;
-          textarea.style.height = 'auto'; // Reset height to auto
-          textarea.style.height = `${textarea.scrollHeight}px`; // Set height to scrollHeight
-        },
-        setMenu(menu) {
-          this.menuCurrent = menu;
-          this.genBloomsChart(this.bloomsCounts);
-        },
-        async submitObjectivesQuery() {
-          let query = this.objectivesQuery;
-          this.objectivesEvaluatorResponse = [];
-          let response = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/objectives/evaluate`, {course_code: this.courseCode, text: query}, 'POST');
-          this.objectivesEvaluatorResponse = response;
-        },
-        async submitQuery() {
-          let query = this.query;
-          this.query = "";
-          this.queryResponse = "";
-          this.querySources = [];
-          let response = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/query`, {query: query}, 'POST');
-          this.queryResponse = response.response;
-          this.querySources = response.sources;
-        },
-        getQuerySourceURL(source) {
-          let type = source.type;
-          if (type == 'quiz') type = 'quizzes';
-          else type += 's';
-          let url = '/courses/' + ENV.COURSE_ID + '/' + type + '/' + source.id;
-          return url;
-        },
-
-        getSummary: async function () {
-          let assignmentSummary = ``;
-          for (let criterion in this.assignmentCounts) {
-            if (criterion != 'num_reviews') {
-              let score = this.assignmentCounts[criterion];
-              if (criterion == 'clarity') score /= 2;
-              let perc = Math.round((score / this.assignmentCounts.num_reviews) * 1000) / 10;
-              assignmentSummary += `<${criterion}>${perc}% of ${this.assignmentCounts.num_reviews} assignments met this criterion.<${criterion}/>`
-            }
-          }
-
-          let quizSummary = ``;
-          for (let criterion in this.quizCounts) {
-            if (criterion != 'num_reviews') {
-              let score = this.quizCounts[criterion];
-              if (criterion == 'clarity') score /= 2;
-              let perc = Math.round((score / this.quizCounts.num_reviews) * 1000) / 10;
-              quizSummary+= `<${criterion}>${perc}% of ${this.quizCounts.num_reviews} quizzes met this criterion.<${criterion}/>`
-            }
-          }
-
-          let surveySummary = ``;
-          /*
-          for (let q in this.surveyQuestions) {
-            let question = this.surveyQuestions[q];
-            if (question.type !== 'Rating' && question.type !== 'Text') continue;
-            surveySummary += `<question>${question.question}</question>`;
-            if (question.type === 'Rating') {
-              surveySummary += `<results>${question.agree_perc}% of users agree with this statement.</results>`
-            } else if (question.type === 'Text') {
-              let comments = ``;
-              question.comments.forEach(comment => comments += `<student_comment>${comment}</student_comment>`);
-              surveySummary += `<comments>${comments}</comments>`
-            }
-          }
-          */
-          let summary = `
-          <assignment_reviews>${assignmentSummary}</assignment_reviews>
-          <quiz_reviews>${quizSummary}</quiz_reviews>
-          <student_survey_results>${surveySummary}</student_survey_results>
-          `
-        },
-
+  $("body").append(html);
+  let modal = $('body').find('.btech-modal');
+    modal.on("click", function(event) {
+      // Check if the clicked element is the modal, and not its content
+      if ($(event.target).is(modal)) {
+        modal.hide();  // hide the modal
       }
     });
-  }
+  modal.hide();
+
+  let APP = new Vue({
+    el: '#btech-course-reviewer-detailed-report',
+    created: async function () {
+      let num = this.courseReviewData.assignments.length + this.courseReviewData.quizzes.length;
+      for (let o in this.objectivesData) {
+        let objective = this.objectivesData[o];
+        let usage = Math.round((this.objectivesCounts[objective.objective_id] / (num)) * 1000) / 10;
+        this.objectivesData[o].usage = usage;
+      }
+      this.setMenu('main');
+      // this.getSummary();
+    },
+    data: function () {
+      return {
+        courseId: ENV.COURSE_ID,
+        courseCode: courseCode,
+        year: year,
+        menuCurrent: 'main',
+        menuOptions: [
+          'main',
+          'surveys',
+          'unaligned',
+          '3rd party',
+          'summary',
+          // 'query',
+          'objectives'
+        ],
+        courseReviewData: courseReviewData,
+        criteria: criteria,
+        objectivesData: objectivesData,
+        objectivesCounts: objectivesCounts,
+        externalContentCounts: externalContentCounts,
+        totalContentCounts: totalContentCounts,
+        genBloomsChart: genBloomsChart,
+        bloomsCounts: bloomsCounts,
+        query: "",
+        queryResponse: "",
+        querySources: [],
+        surveys: surveys,
+        objectivesQuery: '',
+        objectivesEvaluatorResponse: [],
+        emojiTF: emojiTF,
+        calcCourseContentCounts: calcCourseContentCounts
+      }
+    },
+    methods: {
+      adjustHeight(event) {
+        const textarea = event.target;
+        textarea.style.height = 'auto'; // Reset height to auto
+        textarea.style.height = `${textarea.scrollHeight}px`; // Set height to scrollHeight
+      },
+      setMenu(menu) {
+        this.menuCurrent = menu;
+        this.genBloomsChart(this.bloomsCounts);
+      },
+      async submitObjectivesQuery() {
+        let query = this.objectivesQuery;
+        this.objectivesEvaluatorResponse = [];
+        let response = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/objectives/evaluate`, {course_code: this.courseCode, text: query}, 'POST');
+        this.objectivesEvaluatorResponse = response;
+      },
+      async submitQuery() {
+        let query = this.query;
+        this.query = "";
+        this.queryResponse = "";
+        this.querySources = [];
+        let response = await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/query`, {query: query}, 'POST');
+        this.queryResponse = response.response;
+        this.querySources = response.sources;
+      },
+      getQuerySourceURL(source) {
+        let type = source.type;
+        if (type == 'quiz') type = 'quizzes';
+        else type += 's';
+        let url = '/courses/' + ENV.COURSE_ID + '/' + type + '/' + source.id;
+        return url;
+      },
+
+      getSummary: async function () {
+        let assignmentSummary = ``;
+        for (let criterion in this.assignmentCounts) {
+          if (criterion != 'num_reviews') {
+            let score = this.assignmentCounts[criterion];
+            if (criterion == 'clarity') score /= 2;
+            let perc = Math.round((score / this.assignmentCounts.num_reviews) * 1000) / 10;
+            assignmentSummary += `<${criterion}>${perc}% of ${this.assignmentCounts.num_reviews} assignments met this criterion.<${criterion}/>`
+          }
+        }
+
+        let quizSummary = ``;
+        for (let criterion in this.quizCounts) {
+          if (criterion != 'num_reviews') {
+            let score = this.quizCounts[criterion];
+            if (criterion == 'clarity') score /= 2;
+            let perc = Math.round((score / this.quizCounts.num_reviews) * 1000) / 10;
+            quizSummary+= `<${criterion}>${perc}% of ${this.quizCounts.num_reviews} quizzes met this criterion.<${criterion}/>`
+          }
+        }
+
+        let surveySummary = ``;
+        /*
+        for (let q in this.surveyQuestions) {
+          let question = this.surveyQuestions[q];
+          if (question.type !== 'Rating' && question.type !== 'Text') continue;
+          surveySummary += `<question>${question.question}</question>`;
+          if (question.type === 'Rating') {
+            surveySummary += `<results>${question.agree_perc}% of users agree with this statement.</results>`
+          } else if (question.type === 'Text') {
+            let comments = ``;
+            question.comments.forEach(comment => comments += `<student_comment>${comment}</student_comment>`);
+            surveySummary += `<comments>${comments}</comments>`
+          }
+        }
+        */
+        let summary = `
+        <assignment_reviews>${assignmentSummary}</assignment_reviews>
+        <quiz_reviews>${quizSummary}</quiz_reviews>
+        <student_survey_results>${surveySummary}</student_survey_results>
+        `
+      },
+
+    }
+  });
+  return modal;
 }

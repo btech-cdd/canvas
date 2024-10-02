@@ -10,7 +10,7 @@ $.easing.easeOutQuad = function (x, t, b, c, d) {
 };
 
 // add button
-function addDetailedReportButton(genReportFunc) {
+function addDetailedReportButton(vueApp) {
   let $button = $('<div></div>').attr('id', 'btech-detailed-evaluation-button');
   // Create the icon element
 
@@ -71,6 +71,7 @@ function addDetailedReportButton(genReportFunc) {
     });
 
     let $modalContent = $('body #btech-course-reviewer-detailed-report');
+    vueApp.visible = true;
     genReportFunc($modalContent)
   });
   return $button;
