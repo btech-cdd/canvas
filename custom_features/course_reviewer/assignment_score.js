@@ -111,10 +111,6 @@
     if (reviewData.ignore) $detailedReportButton.html('🚫');
     else {
       setButtonHTML($detailedReportButton, reviewData, criteria, rubricReviewData, rubricCriteria);
-      $detailedReportButton.html(`<div class="btech-course-reviewer-assignment-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[averageScore]}</div><div class="btech-course-reviewer-assignment-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`);
-      $(`.btech-course-reviewer-assignment-score-right`).html(
-          `${emoji?.[averageRubricScore]}`
-      );
     }
   });
 })();
