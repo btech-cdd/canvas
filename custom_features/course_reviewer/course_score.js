@@ -127,7 +127,7 @@
 
     for (let m in courseReviewData.modules) {
       let moduleData = courseReviewData.modules[m];
-      let moduleEl = $(`.ig-header header#${moduleData.module_id}`);
+      let moduleEl = $(`#${moduleData.module_id}`);
       let moduleScore = calcCriteriaAverageScore(moduleData, criteria.Modules);
       moduleEl.find('h2').before(emoji?.[moduleScore])
     }
