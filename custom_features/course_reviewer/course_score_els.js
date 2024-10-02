@@ -103,6 +103,7 @@ async function generateDetailedContent(
     , bloomsCounts
     , surveys
   ) {
+  console.log(courseReviewData);
   let html = `
   <div class='btech-modal' style='display: inline-block;'>
     <!-- ERASE THE DISPLAY PIECE BEFORE GOING LIVE -->
