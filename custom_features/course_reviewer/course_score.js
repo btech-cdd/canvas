@@ -210,11 +210,7 @@
 
   await refreshData();
   $(document).ready(async function() {
-   // Function to create and position the custom context menu
-   // Function to create and position the custom context menu
-   let vueApp = generateReportVue();
-
-    generateDetailedContent(
+    let vueApp = generateDetailedContent(
       courseReviewData
       , courseCode
       , year
