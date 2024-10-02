@@ -61,12 +61,6 @@
       return true;
     }
 
-  // let relevantObjectivesString = ``;
-  // for (let i = 1; i < objectives.length; i++) {
-  //   let objective = objectives[i];
-  //   let isRelevant = data.objectives.includes(objective.objective_id);
-  //   relevantObjectivesString += `<div style="${isRelevant ? '' : 'color: #CCC;'}"><span style="width: 1rem; display: inline-block;">${isRelevant ? '&#10003;' : ''}</span>${objective.objective_text}</div>`;
-  // }
     // do we have a review?
     async function generateDetailedContent(type, contentData, rubricData, contentCriteria, rubricCriteria, objectivesData) {
       let html = `
@@ -94,7 +88,12 @@
       <div v-if="menuCurrent == 'main'">
         <div class="btech-course-evaluator-content-box">
           <h2>Relevant Objectives</h2>
-          <div v-for="objective in objectivesData">{{objective}}</div>
+          <div :style="{
+            color: contentData.objectives.includes(objective.objective_id) ? '#000' : '#CCC' 
+          }" v-for="objective in objectivesData">
+          <span style="width: 1rem; display: inline-block;">{{contentData.objectives.includes(objective.objective_id) ? '&#10003;' : ''}}</span>
+          {{objective.objective_text}}
+          </div>
         </div>
         <div class="btech-course-evaluator-content-box">
           <h2>Content Review</h2>
