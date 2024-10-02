@@ -207,7 +207,7 @@ async function generateDetailedContent(
             <course-content
               :type="'Modules'"
               :criteria="criteria.Modules"
-              :reviews="courseReivewData.modules"
+              :reviews="courseReviewData.modules"
               :calc-counts="calcCourseContentCounts"
             ></course-content>
           </div>
