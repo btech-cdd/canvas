@@ -212,7 +212,7 @@
   $(document).ready(async function() {
     // button creates container, must run button first
     let $detailedReportButton = addDetailedReportButton();
-    let vueApp = generateDetailedContent(
+    let vueApp = generateDetailedCourseContent(
       courseReviewData
       , courseCode
       , year
