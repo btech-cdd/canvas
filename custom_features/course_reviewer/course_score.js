@@ -125,6 +125,13 @@
 
     topicTagsCounts = {};
 
+    for (let m in courseReviewData.modules) {
+      let moduleData = courseReviewData.modules[m];
+      let moduleEl = $(`.ig-header header#${moduleData.module_id}`);
+      let moduleScore = calcCriteriaAverageScore(moduleData, critera.Modules);
+      moduleEl.find('h2').before(emoji?.[moduleScore])
+    }
+
     for (let p in courseReviewData.pages) {
       let page = courseReviewData.pages[p];
       page.name = $(`.WikiPage_${page.page_id} span.item_name a.title`).text().trim();
