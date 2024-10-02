@@ -141,27 +141,28 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
       </div>
     </div> 
     <div class="btech-course-evaluator-content-box">
-      <h2>Content Review</h2>
-      <div v-for="(criterion, criterionName) in contentCriteria" :title="criterion.description">
-        <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{criterion.name}}</span>
-        <span>
-          {{calcEmoji(contentData, contentCriteria, criterionName)}}
-        </span>
-      </div>
-      <div v-if="contentData.objectives" title="The content is alligned to the course objectives.">
-        <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">Allignment</span><span>{{ ((contentData?.objectives ?? []) > 0 ? emojiTF[1] : emojiTF[0])}}</span>
-      </div>
-    </div>
-    <div v-if="rubricData != null" class="btech-course-evaluator-content-box">
-      <h2>Rubric Review</h2>
-      <div v-for="(criterion, criterionName) in rubricCriteria" :title="criterion.description">
-        <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{criterion.name}}</span>
-        <span>
-          {{calcEmoji(rubricData, rubricCriteria, criterionName)}}
-        </span>
-      </div>
-      <div v-if="contentData.objectives" title="The content is alligned to the course objectives.">
-        <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">Allignment</span><span>{{ ((contentData?.objectives ?? []) > 0 ? emojiTF[1] : emojiTF[0])}}</span>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+        <div>
+          <h2>Content Review</h2>
+          <div v-for="(criterion, criterionName) in contentCriteria" :title="criterion.description">
+            <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{criterion.name}}</span>
+            <span>
+              {{calcEmoji(contentData, contentCriteria, criterionName)}}
+            </span>
+          </div>
+          <div v-if="contentData.objectives" title="The content is alligned to the course objectives.">
+            <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">Allignment</span><span>{{ ((contentData?.objectives ?? []) > 0 ? emojiTF[1] : emojiTF[0])}}</span>
+          </div>
+        </div>
+        <div v-if="rubricData != null">
+          <h2>Rubric Review</h2>
+          <div v-for="(criterion, criterionName) in rubricCriteria" :title="criterion.description">
+            <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{criterion.name}}</span>
+            <span>
+              {{calcEmoji(rubricData, rubricCriteria, criterionName)}}
+            </span>
+          </div>
+        </div>
       </div>
     </div>
 
