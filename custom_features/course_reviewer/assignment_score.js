@@ -73,6 +73,8 @@
     generateDetailedContent('Assignments', assignmentReviewData, rubricReviewData, assignmentCriteria, rubricCriteria, objectivesData);
     addContextMenu($detailedReportButton, [
       { id: 'reevaluate', text: 'Reevaluate', func: async function () {
+        let reviewData = assignmentReviewData;
+        let criteria = assignmentCriteria;
         $detailedReportButton.html('')
         let assignmentId = assignmentData.id;
         if (ENV.ASSIGNMENT?.is_quiz_lti_assignment ?? false) {
@@ -84,19 +86,31 @@
           await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignmentId, description, rubric);
         }
         await refreshData();
+        setButtonHTML($detailedReportButton, reviewData, criteria, rubricReviewData, rubricCriteria);
       }},
       { id: 'disable', text: 'Toggle Ignore', func: async function () {
       }},
       // { id: 'clearReview', text: 'Clear Review', func: () => {}}
     ]);
 
+    function setButtonHTML($button, data, criteria, rubricData = null, rubricCriteria = null) {
+      let score = calcCriteriaAverageScore(data, criteria);
+      if (rubricData === null) {
+        $detailedReportButton.html(`<div class="btech-course-reviewer-score" style="position: absolute;">${emoji?.[score]}</div>`);
+      } else {
+        let rubricScore = calcCriteriaAverageScore(rubricData, rubricCriteria);
+        $button.html(`<div class="btech-course-reviewer-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[score]}</div><div class="btech-course-reviewer-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`);
+        $(`.btech-course-reviewer-score-right`).html(
+            `${emoji?.[rubricScore]}`
+        );
+      }
+    }
 
-    let data = assignmentReviewData;
-    let averageScore = calcCriteriaAverageScore(data, assignmentCriteria);
-    console.log(rubricReviewData);
-    let averageRubricScore = calcCriteriaAverageScore(rubricReviewData, rubricCriteria);
+    let reviewData = assignmentReviewData;
+    let criteria = assignmentCriteria;
     if (data.ignore) $detailedReportButton.html('🚫');
     else {
+      setButtonHTML($detailedReportButton, reviewData, criteria, rubricReviewData, rubricCriteria);
       $detailedReportButton.html(`<div class="btech-course-reviewer-assignment-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[averageScore]}</div><div class="btech-course-reviewer-assignment-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`);
       $(`.btech-course-reviewer-assignment-score-right`).html(
           `${emoji?.[averageRubricScore]}`
