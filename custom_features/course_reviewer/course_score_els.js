@@ -316,7 +316,7 @@ async function generateDetailedContent(
         </div>
       </div>
   `;
-  $("btech-course-reviewer-detailed-report").append(html);
+  $("#btech-course-reviewer-detailed-report").append(html);
 
   let APP = new Vue({
     el: '#btech-course-reviewer-detailed-report',

@@ -62,7 +62,7 @@
     }
 
     // do we have a review?
-    async function generateDetailedContent(contentData, rubricData, criteria) {
+    async function generateDetailedContent(type, contentData, rubricData, criteria) {
       let html = `
       <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.5rem; border: 1px solid #AAA;">Course Evaluation</div>
       <div style="background-color: white; border-bottom: 1px solid #AAA;">
@@ -88,7 +88,7 @@
       <div v-if="menuCurrent == 'main'">
       </div>
       `;
-      $("btech-course-reviewer-detailed-report").append(html);
+      $("#btech-course-reviewer-detailed-report").append(html);
       let APP = new Vue({
         el: '#btech-course-reviewer-detailed-report',
         created: async function () {
@@ -123,7 +123,10 @@
 
     if (assignmentReviewData?.assignment_id == undefined) return;
     let $detailedReportButton = addDetailedReportButton();
-    generateDetailedContent($("btech-course-reviewer-detailed-report"));
+    generateDetailedContent('Assignments', assignmentReviewData, rubricReviewData, {
+      'Assignments': assignmentCriteria,
+      'Rubrics': rubricCriteria
+    });
     addContextMenu($detailedReportButton, [
       { id: 'reevaluate', text: 'Reevaluate', func: async function () {
         let assignmentId = assignmentData.id;
