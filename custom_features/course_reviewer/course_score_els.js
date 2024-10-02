@@ -334,6 +334,7 @@ async function generateDetailedContent(
   let APP = new Vue({
     el: '#btech-course-reviewer-detailed-report',
     created: async function () {
+      console.log(this.courseReviewData);
       let num = this.courseReviewData.assignments.length + this.courseReviewData.quizzes.length;
       for (let o in this.objectivesData) {
         let objective = this.objectivesData[o];
