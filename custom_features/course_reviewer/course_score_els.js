@@ -317,15 +317,7 @@ async function generateDetailedContent(
       </div>
   `;
   $("btech-course-reviewer-detailed-report").append(html);
-  let modal = $('body').find('.btech-modal');
-    modal.on("click", function(event) {
-      // Check if the clicked element is the modal, and not its content
-      if ($(event.target).is(modal)) {
-        modal.hide();  // hide the modal
-      }
-    });
 
-  console.log(courseReviewData);
   let APP = new Vue({
     el: '#btech-course-reviewer-detailed-report',
     created: async function () {
@@ -450,6 +442,5 @@ async function generateDetailedContent(
 
     }
   });
-  modal.hide();
-  return modal;
+  return APP;
 }
