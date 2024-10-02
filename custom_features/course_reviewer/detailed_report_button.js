@@ -56,6 +56,7 @@ function addDetailedReportButton() {
 
 
   $button.click(async function () {
+    console.log('show');
     let $modalContent = $('body #btech-course-reviewer-detailed-report');
     $modalContent.show();
   });
