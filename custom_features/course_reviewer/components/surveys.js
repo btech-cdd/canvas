@@ -25,7 +25,7 @@
         surveyQuestions: {}
       }
     },
-    created: async function () {
+    mounted: async function () {
       this.processSurveys();
       console.log(this.surveyQuestions);
       console.log(this.surveys);
@@ -97,6 +97,7 @@
           }
           questions[question].agree_perc = Math.round((questions[question].agree / questions[question].count) * 1000) / 10;
         }
+        console.log(questions);
 
         this.surveyQuestions = questions;
         this.surveysLoaded = true;
