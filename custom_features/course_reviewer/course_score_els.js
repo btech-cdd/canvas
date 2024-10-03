@@ -91,7 +91,7 @@ async function initReviewProgressInterval(
 }
 
 // do we have a review?
-async function generateDetailedCourseContent(
+function generateDetailedCourseContent(
     courseReviewData
     , courseCode
     , year
