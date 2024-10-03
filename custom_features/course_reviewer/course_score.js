@@ -121,7 +121,7 @@
 
   }
 
-  async function refreshIcons(vueApp) {
+  async function refreshIcons($vueApp, $modal) {
     // get assignment data to locate external assignments
 
     for (let m in courseReviewData.modules) {
@@ -142,13 +142,16 @@
       } else if (emoji?.[pageScore]) {
         scoreEl.html(emoji?.[pageScore]);
         scoreEl.click(function () {
-          vueApp.individualContent = {
+          $vueApp.individualContent = {
             type: 'Page',
             contentData: page,
             contentCriteria: criteria.Pages,
             rubricData: null,
             rubricCriteria: null
           }
+          $vueApp.menuCurrent = 'individual';
+          $modal.show();
+
         });
       }
     }
@@ -247,9 +250,9 @@
 
   $(document).ready(async function() {
     await initIcons();
-    initModal();
+    let $modal = initModal();
     await refreshData();
-    let vueApp = generateDetailedCourseContent(
+    let $vueApp = generateDetailedCourseContent(
       courseReviewData
       , courseCode
       , year
@@ -261,7 +264,7 @@
       , bloomsCounts
       , surveys
     );
-    await refreshIcons(vueApp);
+    await refreshIcons($vueApp, $modal);
     // button creates container, must run button first
     let $detailedReportButton = addDetailedReportButton();
     addContextMenu($detailedReportButton, [
