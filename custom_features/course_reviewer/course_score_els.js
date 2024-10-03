@@ -334,7 +334,8 @@ function generateDetailedCourseContent(
     created: async function () {
       let surveys = await bridgetoolsReq('https://surveys.bridgetools.dev/api/survey_data', {
           course_id: this.courseId
-      }, 'POST')
+      }, 'POST');
+      console.log(surveys);
       this.surveys = surveys;
       let num = this.courseReviewData.assignments.length + this.courseReviewData.quizzes.length;
       for (let o in this.objectivesData) {
