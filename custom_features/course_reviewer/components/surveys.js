@@ -25,6 +25,7 @@
       }
     },
     created: async function () {
+      this.processSurveys();
     },
 
     methods: {
