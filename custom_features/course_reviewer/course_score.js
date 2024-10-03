@@ -41,7 +41,6 @@
     , objectivesCounts
     , totalContentCounts
     , runningReviewer
-    , surveys
     ;
     runningReviewer = false;
 
@@ -212,18 +211,14 @@
     courseReviewData = {};
     objectivesData = [];
     criteria = {};
-    surveys = {};
     year = null;
     courseCode = '';
     topicTagsCounts = {};
 
-    [courseData, courseReviewData, criteria, surveys] = await Promise.all([
+    [courseData, courseReviewData, criteria] = await Promise.all([
       (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0],
       await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`),
       await getCriteria(),
-      await bridgetoolsReq('https://surveys.bridgetools.dev/api/survey_data', {
-          course_id: this.courseId
-      }, 'POST')
     ]);
     console.log(((new Date()) - start) / 1000);
     start = new Date();
@@ -264,7 +259,6 @@
       , externalContentCounts
       , totalContentCounts
       , bloomsCounts
-      , surveys
     );
     refreshIcons($vueApp, $modal);
     // button creates container, must run button first
@@ -296,6 +290,5 @@
     initReviewProgressInterval(
       courseReviewData, criteria
     );
-    console.log((new Date()) - start);
   })
 })();

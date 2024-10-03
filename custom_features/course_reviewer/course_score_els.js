@@ -101,7 +101,6 @@ function generateDetailedCourseContent(
     , externalContentCounts
     , totalContentCounts
     , bloomsCounts
-    , surveys
   ) {
   let html = `
       <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.5rem; border: 1px solid #AAA;">Course Evaluation</div>
@@ -333,7 +332,10 @@ function generateDetailedCourseContent(
   let APP = new Vue({
     el: '#btech-course-reviewer-detailed-report',
     created: async function () {
-      console.log(this.courseReviewData);
+      let surveys = await bridgetoolsReq('https://surveys.bridgetools.dev/api/survey_data', {
+          course_id: this.courseId
+      }, 'POST')
+      this.surveys = surveys;
       let num = this.courseReviewData.assignments.length + this.courseReviewData.quizzes.length;
       for (let o in this.objectivesData) {
         let objective = this.objectivesData[o];
@@ -369,7 +371,7 @@ function generateDetailedCourseContent(
         query: "",
         queryResponse: "",
         querySources: [],
-        surveys: surveys,
+        surveys: {},
         objectivesQuery: '',
         objectivesEvaluatorResponse: [],
         emoji: emoji,
