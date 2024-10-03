@@ -314,6 +314,18 @@ async function generateDetailedCourseContent(
           </div>
           <div><b>Recommended:</b> {{response.recommendation}}</div>
         </div>
+        <div v-if="menuCurrent == 'individual'">
+          <content-detailed
+            :type="individualContent.type"
+            :objectives-data="objectivesData"
+            :content-data="individualContent.contentData"
+            :content-criteria="individualContent.contentCriteria"
+            :rubric-data="individualContent.rubricData"
+            :rubric-criteria="individualContent.rubricCriteria"
+            :emoji="emoji"
+            :emojitf="emojiTF"
+          ></content-detailed>
+        </div>
       </div>
   `;
   $("#btech-course-reviewer-detailed-report").append(html);
@@ -360,7 +372,9 @@ async function generateDetailedCourseContent(
         surveys: surveys,
         objectivesQuery: '',
         objectivesEvaluatorResponse: [],
+        emoji: emoji,
         emojiTF: emojiTF,
+        individualContent: {},
         calcCourseContentCounts: calcCourseContentCounts
       }
     },

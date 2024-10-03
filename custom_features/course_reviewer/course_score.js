@@ -16,7 +16,7 @@
   $(".context_module_item").each(function() {
     let el = $(this);
     let infoEl = el.find('div.ig-info')
-    infoEl.before(`<span class="ig-btech-evaluation-score" style="font-size: 1rem;"></span>`)
+    infoEl.before(`<span class="ig-btech-evaluation-score" style="font-size: 1rem; cursor: pointer; user-select: none;"></span>`)
   });
 
   // init vars
@@ -117,6 +117,10 @@
     return objectivesCounts;
   }
 
+  function setIcon() {
+
+  }
+
   async function refreshIcons(vueApp) {
     // get assignment data to locate external assignments
 
@@ -132,10 +136,20 @@
       page.name = $(`.WikiPage_${page.page_id} span.item_name a.title`).text().trim();
 
       let pageScore = calcCriteriaAverageScore(page, criteria.Pages);
+      let scoreEl = $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`);
       if (page.ignore) {
-        $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`).html('🚫');
+        scoreEl.html('🚫');
       } else if (emoji?.[pageScore]) {
-        $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`).html(emoji?.[pageScore]);
+        scoreEl.html(emoji?.[pageScore]);
+        scoreEl.click(function () {
+          vueApp.individualContent = {
+            type: 'Page',
+            contentData: page,
+            contentCriteria: criteria.Pages,
+            rubricData: null,
+            rubricCriteria: null
+          }
+        });
       }
     }
 
