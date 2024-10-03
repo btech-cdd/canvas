@@ -216,12 +216,14 @@
     courseCode = '';
     topicTagsCounts = {};
 
-    courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
-    courseReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`);
-    criteria = await getCriteria();
-    surveys = await bridgetoolsReq('https://surveys.bridgetools.dev/api/survey_data', {
-        course_id: this.courseId
-    }, 'POST');
+    [courseData, courseReviewData, criteria, surveys] = await Promise.all([
+      (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0],
+      await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`),
+      await getCriteria(),
+      await bridgetoolsReq('https://surveys.bridgetools.dev/api/survey_data', {
+          course_id: this.courseId
+      }, 'POST')
+    ]);
 
     let courseCodeYear = getCourseCodeYear(courseData);
     year = courseCodeYear.year;
