@@ -315,6 +315,7 @@ function generateDetailedCourseContent(
           <div><b>Recommended:</b> {{response.recommendation}}</div>
         </div>
         <div v-if="menuCurrent == 'individual'">
+          <div>TEST</div>
           <content-detailed
             :type="individualContent.type"
             :objectives-data="objectivesData"
