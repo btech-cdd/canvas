@@ -143,7 +143,8 @@
         $scoreEl.html(emoji?.[score]);
       }
 
-      $scoreEl.click(function () {
+      $scoreEl.click(function (e) {
+        e.stopPropogation();
         $vueApp.individualContent = {
           type: type,
           contentData: contentReview,
