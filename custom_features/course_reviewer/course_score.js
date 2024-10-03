@@ -170,7 +170,7 @@
 
     for (let m in courseReviewData.modules) {
       let moduleReview = courseReviewData.modules[m];
-      let $scoreEl = $(`#${moduleData.module_id} span.ig-btech-evaluation-score`);
+      let $scoreEl = $(`#${moduleReview.module_id} span.ig-btech-evaluation-score`);
       initContentIcon($scoreEl, $vueApp, $modal, 'Module', moduleReview, criteria.Modules);
     }
 
