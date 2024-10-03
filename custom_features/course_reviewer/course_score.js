@@ -20,6 +20,12 @@
     infoEl.before(`<span class="ig-btech-evaluation-score" style="font-size: 1rem; cursor: pointer; user-select: none;"></span>`)
   });
 
+  // insert empty icons for modules
+  $(".ig-header").each(function() {
+    let el = $(this);
+    el.find('span.name').prepend(`<span class="ig-btech-evaluation-score" style="font-size: 1rem; cursor: pointer; user-select: none;">⚪</span>`);
+  });
+
   // init vars
   var 
     courseData
@@ -138,7 +144,6 @@
       }
 
       $scoreEl.click(function () {
-        console.log($vueApp);
         $vueApp.individualContent = {
           type: type,
           contentData: contentReview,
@@ -164,10 +169,9 @@
     // get assignment data to locate external assignments
 
     for (let m in courseReviewData.modules) {
-      let moduleData = courseReviewData.modules[m];
-      let moduleEl = $(`#${moduleData.module_id}`);
-      let moduleScore = calcCriteriaAverageScore(moduleData, criteria.Modules);
-      moduleEl.find('span.name').prepend(emoji?.[moduleScore])
+      let moduleReview = courseReviewData.modules[m];
+      let $scoreEl = $(`#${moduleData.module_id} span.ig-btech-evaluation-score`);
+      initContentIcon($scoreEl, $vueApp, $modal, 'Module', moduleReview, criteria.Modules);
     }
 
     for (let p in courseReviewData.pages) {
