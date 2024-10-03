@@ -125,6 +125,7 @@
 
   function initContentIcon($scoreEl, $vueApp, $modal, type, contentReview, contentCriteria, rubricReview = null, rubricCriteria = null) {
     let score = calcCriteriaAverageScore(contentReview, contentCriteria);
+    $scoreEl.html('');
     if (contentReview.ignore) {
       $scoreEl.html('🚫');
     } else if (emoji?.[score]) {
@@ -155,6 +156,16 @@
         $modal.show();
 
       });
+
+      addContextMenu($scoreEl, [
+        { id: 'reevaluate', text: 'Reevaluate', func: async function () {
+          console.log(contentReview);
+        }},
+        { id: 'ignore', text: 'Toggle Ignore', func: async function () {
+         
+        }},
+        // { id: 'clearReview', text: 'Clear Review', func: () => {}}
+      ]);
     }
   }
 
@@ -264,24 +275,24 @@
     // button creates container, must run button first
     let $detailedReportButton = addDetailedReportButton();
     addContextMenu($detailedReportButton, [
-        { id: 'reevaluate', text: 'Reevaluate All', func: async function () {
-          updateReviewProgress({processed: 0, remaining: 1});
-          await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/evaluate_content`, {course_code: courseCode, year: year}, 'POST');
-          checkReviewProgress(
-            courseReviewData, criteria
-          );
-        }},
-        { id: 'refreshScore', text: 'Refresh Score', func: async function () {
-          $detailedReportButton.html('');
-          await refreshData();
-          let courseScore = calcCourseScore(
-            courseReviewData, criteria
-          );
-          let emoji = calcEmoji(courseScore);
-          $detailedReportButton.html(emoji);
-        }},
-        // { id: 'clearReview', text: 'Clear Review', func: () => {}}
-      ]);
+      { id: 'reevaluate', text: 'Reevaluate All', func: async function () {
+        updateReviewProgress({processed: 0, remaining: 1});
+        await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/evaluate_content`, {course_code: courseCode, year: year}, 'POST');
+        checkReviewProgress(
+          courseReviewData, criteria
+        );
+      }},
+      { id: 'refreshScore', text: 'Refresh Score', func: async function () {
+        $detailedReportButton.html('');
+        await refreshData();
+        let courseScore = calcCourseScore(
+          courseReviewData, criteria
+        );
+        let emoji = calcEmoji(courseScore);
+        $detailedReportButton.html(emoji);
+      }},
+      // { id: 'clearReview', text: 'Clear Review', func: () => {}}
+    ]);
     let courseScore = calcCourseScore(
       courseReviewData, criteria
     );
