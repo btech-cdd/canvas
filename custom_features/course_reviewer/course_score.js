@@ -118,7 +118,7 @@
     return objectivesCounts;
   }
 
-  function initContentIcon($scoreEl, $vueApp, type, contentReview, contentCriteria, rubricReview = null, rubricCriteria = null) {
+  function initContentIcon($scoreEl, $vueApp, $modal, type, contentReview, contentCriteria, rubricReview = null, rubricCriteria = null) {
     let score = calcCriteriaAverageScore(contentReview, contentCriteria);
     if (contentReview.ignore) {
       $scoreEl.html('🚫');
@@ -174,14 +174,14 @@
       let page = courseReviewData.pages[p];
       page.name = $(`.WikiPage_${page.page_id} span.item_name a.title`).text().trim();
       let $scoreEl = $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`);
-      initContentIcon($scoreEl, $vueApp, 'Page', page, criteria.Pages);
+      initContentIcon($scoreEl, $vueApp, $modal, 'Page', page, criteria.Pages);
     }
 
     for (let q in courseReviewData.quizzes) {
       let quiz = courseReviewData.quizzes[q];
       quiz.name = $(`.Quiz_${quiz.quiz_id} span.item_name a.title`).text().trim();
       let $scoreEl = $(`.Quiz_${quiz.quiz_id} span.ig-btech-evaluation-score`);
-      initContentIcon($scoreEl, $vueApp, 'Quiz', quiz, criteria.Quizzes);
+      initContentIcon($scoreEl, $vueApp, $modal, 'Quiz', quiz, criteria.Quizzes);
     }
 
     for (let a in courseReviewData.assignments) {
@@ -189,12 +189,12 @@
       assignment.name = $(`.Assignment_${assignment.assignment_id} span.item_name a.title`).text().trim();
       if (assignment.quiz_id) {
         let $scoreEl = $(`.Assignment_${assignment.quiz_id} span.ig-btech-evaluation-score`);
-        initContentIcon($scoreEl, $vueApp, 'Quiz', assignment, criteria.Quizzes);
+        initContentIcon($scoreEl, $vueApp, $modal, 'Quiz', assignment, criteria.Quizzes);
       }
       else if (assignment.assignment_id) {
         let rubric = getRubricReview(assignment.assignment_id, courseReviewData.rubrics);
         let $scoreEl = $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`);
-        initContentIcon($scoreEl, $vueApp, 'Assignment', assignment, criteria.Assignments, rubric, criteria.Rubrics);
+        initContentIcon($scoreEl, $vueApp, $modal, 'Assignment', assignment, criteria.Assignments, rubric, criteria.Rubrics);
       }
     }
 
