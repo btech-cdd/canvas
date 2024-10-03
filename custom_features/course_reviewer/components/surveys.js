@@ -88,6 +88,7 @@
           if (data.type == 'Rating') {
             if (questions[question].count == 0) questions[question].average = "N/A";
             else questions[question].average = questions[question].sum / questions[question].count
+            questions[question].agree_perc = Math.round((questions[question].agree / questions[question].count) * 1000) / 10;
             this.ratings.push(questions[question]);
           }
           else if (data.type == 'Text') {
@@ -96,7 +97,6 @@
               return b.length - a.length;
             })
           }
-          questions[question].agree_perc = Math.round((questions[question].agree / questions[question].count) * 1000) / 10;
         }
         console.log(questions);
 
