@@ -22,7 +22,8 @@
     },
     data() {
       return {
-        surveyQuestions: {}
+        surveyQuestions: {},
+        surveyRatingsList: [],
       }
     },
     mounted: async function () {
