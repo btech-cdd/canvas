@@ -118,7 +118,7 @@
     return objectivesCounts;
   }
 
-  function initContentIcon($scoreEl, type, contentReview, contentCriteria, rubricReview = null, rubricCriteria = null) {
+  function initContentIcon($scoreEl, $vueApp, type, contentReview, contentCriteria, rubricReview = null, rubricCriteria = null) {
     let score = calcCriteriaAverageScore(contentReview, contentCriteria);
     if (contentReview.ignore) {
       $scoreEl.html('🚫');
@@ -173,28 +173,28 @@
     for (let p in courseReviewData.pages) {
       let page = courseReviewData.pages[p];
       page.name = $(`.WikiPage_${page.page_id} span.item_name a.title`).text().trim();
-      let scoreEl = $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`);
-      initContentIcon(scoreEl, 'Page', page, criteria.Pages);
+      let $scoreEl = $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`);
+      initContentIcon($scoreEl, $vueApp, 'Page', page, criteria.Pages);
     }
 
     for (let q in courseReviewData.quizzes) {
       let quiz = courseReviewData.quizzes[q];
       quiz.name = $(`.Quiz_${quiz.quiz_id} span.item_name a.title`).text().trim();
-      let scoreEl = $(`.Quiz_${quiz.quiz_id} span.ig-btech-evaluation-score`);
-      initContentIcon(scoreEl, 'Quiz', quiz, criteria.Quizzes);
+      let $scoreEl = $(`.Quiz_${quiz.quiz_id} span.ig-btech-evaluation-score`);
+      initContentIcon($scoreEl, $vueApp, 'Quiz', quiz, criteria.Quizzes);
     }
 
     for (let a in courseReviewData.assignments) {
       let assignment = courseReviewData.assignments[a];
       assignment.name = $(`.Assignment_${assignment.assignment_id} span.item_name a.title`).text().trim();
       if (assignment.quiz_id) {
-        let scoreEl = $(`.Assignment_${assignment.quiz_id} span.ig-btech-evaluation-score`);
-        initContentIcon(scoreEl, 'Quiz', assignment, criteria.Quizzes);
+        let $scoreEl = $(`.Assignment_${assignment.quiz_id} span.ig-btech-evaluation-score`);
+        initContentIcon($scoreEl, $vueApp, 'Quiz', assignment, criteria.Quizzes);
       }
       else if (assignment.assignment_id) {
         let rubric = getRubricReview(assignment.assignment_id, courseReviewData.rubrics);
-        let scoreEl = $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`);
-        initContentIcon(scoreEl, 'Assignment', assignment, criteria.Assignments, rubric, criteria.Rubrics);
+        let $scoreEl = $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`);
+        initContentIcon($scoreEl, $vueApp, 'Assignment', assignment, criteria.Assignments, rubric, criteria.Rubrics);
       }
     }
 
