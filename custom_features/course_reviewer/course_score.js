@@ -118,8 +118,46 @@
     return objectivesCounts;
   }
 
-  function setIcon() {
+  function initContentIcon($scoreEl, type, contentReview, contentCriteria, rubricReview = null, rubricCriteria = null) {
+    let score = calcCriteriaAverageScore(contentReview, contentCriteria);
+    if (contentReview.ignore) {
+      $scoreEl.html('🚫');
+    } else if (emoji?.[score]) {
+      if (rubricReview !== null || type === 'Assignment') {
+        $scoreEl.html(
+          `<div class="btech-course-reviewer-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[score]}</div><div class="btech-course-reviewer-assignment-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`
+        );
+        if (rubricReview !== null) {
+          let rubricScore = calcCriteriaAverageScore(rubricReview, rubricCriteria);
+          $scoreEl.find(`.btech-course-reviewer-assignment-score-right`).html(
+              `${emoji?.[rubricScore]}`
+          );
+        }
+      } else {
+        $scoreEl.html(emoji?.[score]);
+      }
 
+      $scoreEl.click(function () {
+        console.log($vueApp);
+        $vueApp.individualContent = {
+          type: type,
+          contentData: contentReview,
+          contentCriteria: contentCriteria,
+          rubricData: rubricReview ?? {},
+          rubricCriteria: rubricCriteria ?? {} 
+        }
+        $vueApp.menuCurrent = 'individual';
+        $modal.show();
+
+      });
+    }
+  }
+
+  function getRubricReview(contentId, rubricReviews) {
+    for (let r in rubricReviews) {
+      let rubric = courseReviewData.rubrics[r];
+      if (rubric.assignment_id == contentId) return rubric;
+    }
   }
 
   async function refreshIcons($vueApp, $modal) {
@@ -135,81 +173,31 @@
     for (let p in courseReviewData.pages) {
       let page = courseReviewData.pages[p];
       page.name = $(`.WikiPage_${page.page_id} span.item_name a.title`).text().trim();
-
-      let pageScore = calcCriteriaAverageScore(page, criteria.Pages);
       let scoreEl = $(`.WikiPage_${page.page_id} span.ig-btech-evaluation-score`);
-      if (page.ignore) {
-        scoreEl.html('🚫');
-      } else if (emoji?.[pageScore]) {
-        scoreEl.html(emoji?.[pageScore]);
-        scoreEl.click(function () {
-          console.log($vueApp);
-          $vueApp.individualContent = {
-            type: 'Page',
-            contentData: page,
-            contentCriteria: criteria.Pages,
-            rubricData: {},
-            rubricCriteria: {} 
-          }
-          $vueApp.menuCurrent = 'individual';
-          $modal.show();
-
-        });
-      }
+      initContentIcon(scoreEl, 'Page', page, criteria.Pages);
     }
 
     for (let q in courseReviewData.quizzes) {
       let quiz = courseReviewData.quizzes[q];
       quiz.name = $(`.Quiz_${quiz.quiz_id} span.item_name a.title`).text().trim();
-
-      let quizScore = calcCriteriaAverageScore(quiz, criteria.Quizzes);
-
-      if (quiz.ignore) {
-        $(`.Quiz_${quiz.quiz_id} span.ig-btech-evaluation-score`).html('🚫');
-      } else
-      if (emoji?.[quizScore]) {
-        $(`.Quiz_${quiz.quiz_id} span.ig-btech-evaluation-score`).html(emoji?.[quizScore]);
-      }
+      let scoreEl = $(`.Quiz_${quiz.quiz_id} span.ig-btech-evaluation-score`);
+      initContentIcon(scoreEl, 'Quiz', quiz, criteria.Quizzes);
     }
 
     for (let a in courseReviewData.assignments) {
       let assignment = courseReviewData.assignments[a];
       assignment.name = $(`.Assignment_${assignment.assignment_id} span.item_name a.title`).text().trim();
-
-      let assignmentScore = calcCriteriaAverageScore(assignment, criteria.Assignments);
-      if (assignment.ignore) {
-        $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html('🚫');
-      } else if (emoji?.[assignmentScore]) {
-        if (assignment.quiz_id) {
-          $(`.Assignment_${assignment.quiz_id} span.ig-btech-evaluation-score`).html(
-            `<div class="btech-course-reviewer-assignment-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[assignmentScore]}</div><div class="btech-course-reviewer-assignment-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`
-          );
-        }
-        if (assignment.assignment_id) {
-          $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`).html(
-            `<div class="btech-course-reviewer-assignment-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[assignmentScore]}</div><div class="btech-course-reviewer-assignment-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`
-          );
-        }
+      if (assignment.quiz_id) {
+        let scoreEl = $(`.Assignment_${assignment.quiz_id} span.ig-btech-evaluation-score`);
+        initContentIcon(scoreEl, 'Quiz', assignment, criteria.Quizzes);
+      }
+      else if (assignment.assignment_id) {
+        let rubric = getRubricReview(assignment.assignment_id, courseReviewData.rubrics);
+        let scoreEl = $(`.Assignment_${assignment.assignment_id} span.ig-btech-evaluation-score`);
+        initContentIcon(scoreEl, 'Assignment', assignment, criteria.Assignments, rubric, criteria.Rubrics);
       }
     }
 
-    for (let r in courseReviewData.rubrics) {
-      let rubric = courseReviewData.rubrics[r];
-      let rubricScore = calcCriteriaAverageScore(rubric, criteria.Rubrics);
-      let hasRubric = false;
-      for (let a in assignmentsData) {
-        let assignment = assignmentsData[a];
-        if (assignment.id == rubric.assignment_id) {
-          if (assignment.rubric) hasRubric = true;
-        }
-      }
-        
-      if (hasRubric) {
-        $(`.Assignment_${rubric.assignment_id} span.ig-btech-evaluation-score .btech-course-reviewer-assignment-score-right`).html(
-            `${emoji?.[rubricScore]}`
-        );
-      }
-    }
   }
   
   async function refreshData() {
