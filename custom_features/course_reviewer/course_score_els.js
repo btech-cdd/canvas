@@ -108,7 +108,7 @@ function generateDetailedCourseContent(
         <div 
           v-for="(menu, m) in menuOptions" :key="m"
           :style="{
-            'color': menuCurrent == menu ? '${bridgetools.colors.blue}' : '',
+            'color': menuCurrent == menu ? '${bridgetools.colors.blue}' : (loadingMenus.includes(menu) ? '#AAA' : '#000'),
             'background-color': menuCurrent == menu ? '#F0F0F0' : '',
             'font-weight': menuCurrent == menu ? 'bold' : 'normal'
           }"
@@ -332,11 +332,7 @@ function generateDetailedCourseContent(
   let APP = new Vue({
     el: '#btech-course-reviewer-detailed-report',
     created: async function () {
-      let surveys = await bridgetoolsReq('https://surveys.bridgetools.dev/api/survey_data', {
-          course_id: this.courseId
-      }, 'POST');
-      console.log(surveys);
-      this.surveys = surveys;
+      this.loadSurveys();
       let num = this.courseReviewData.assignments.length + this.courseReviewData.quizzes.length;
       for (let o in this.objectivesData) {
         let objective = this.objectivesData[o];
@@ -361,6 +357,9 @@ function generateDetailedCourseContent(
           // 'query',
           'objectives'
         ],
+        loadingMenus: [
+          'surveys'
+        ],
         courseReviewData: courseReviewData,
         criteria: criteria,
         objectivesData: objectivesData,
@@ -373,6 +372,7 @@ function generateDetailedCourseContent(
         queryResponse: "",
         querySources: [],
         surveys: {},
+        surveysLoaded: false,
         objectivesQuery: '',
         objectivesEvaluatorResponse: [],
         emoji: emoji,
@@ -382,14 +382,27 @@ function generateDetailedCourseContent(
       }
     },
     methods: {
+      removeLoadingElement(menuName) {
+        let index = this.loadingMenus.indexOf(menuName);
+        this.loadingMenus.splice(index, 1);
+      },
+      async loadSurveys() {
+        let surveys = await bridgetoolsReq('https://surveys.bridgetools.dev/api/survey_data', {
+            course_id: this.courseId
+        }, 'POST');
+        this.surveys = surveys;
+        this.removeLoadingElement('surveys');
+      },
       adjustHeight(event) {
         const textarea = event.target;
         textarea.style.height = 'auto'; // Reset height to auto
         textarea.style.height = `${textarea.scrollHeight}px`; // Set height to scrollHeight
       },
       setMenu(menu) {
-        this.menuCurrent = menu;
-        this.genBloomsChart(this.bloomsCounts);
+        if (!this.loadingMenus.includes(menu)) {
+          this.menuCurrent = menu;
+          this.genBloomsChart(this.bloomsCounts);
+        }
       },
       async submitObjectivesQuery() {
         let query = this.objectivesQuery;
