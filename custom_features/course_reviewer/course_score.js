@@ -67,7 +67,7 @@
     $(".context_module_item.context_module_sub_header span.ig-btech-evaluation-score").each(function() {
       let el = $(this);
       el.html(``);
-      totalContentCount -= 1;
+      totalContentCounts -= 1;
     });
 
     await calcExternalContentCount();
