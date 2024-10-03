@@ -22,10 +22,13 @@
     },
     data() {
       return {
+        surveyQuestions: {}
       }
     },
     created: async function () {
       this.processSurveys();
+      console.log(this.surveyQuestions);
+      console.log(this.surveys);
     },
 
     methods: {
