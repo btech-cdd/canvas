@@ -166,7 +166,7 @@
     }
   }
 
-  async function refreshIcons($vueApp, $modal) {
+  function refreshIcons($vueApp, $modal) {
     // get assignment data to locate external assignments
 
     for (let m in courseReviewData.modules) {
@@ -246,9 +246,11 @@
 
 
   $(document).ready(async function() {
-    await initIcons();
+    initIcons();
     let $modal = initModal();
+    let start = new Date();
     await refreshData();
+    console.log((new Date()) - start);
     let $vueApp = generateDetailedCourseContent(
       courseReviewData
       , courseCode
@@ -261,7 +263,8 @@
       , bloomsCounts
       , surveys
     );
-    await refreshIcons($vueApp, $modal);
+    console.log((new Date()) - start);
+    refreshIcons($vueApp, $modal);
     // button creates container, must run button first
     let $detailedReportButton = addDetailedReportButton();
     addContextMenu($detailedReportButton, [
@@ -291,6 +294,6 @@
     initReviewProgressInterval(
       courseReviewData, criteria
     );
-
+    console.log((new Date()) - start);
   })
 })();
