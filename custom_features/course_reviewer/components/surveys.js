@@ -89,7 +89,7 @@
             if (questions[question].count == 0) questions[question].average = "N/A";
             else questions[question].average = questions[question].sum / questions[question].count
             questions[question].agree_perc = Math.round((questions[question].agree / questions[question].count) * 1000) / 10;
-            this.ratings.push(questions[question]);
+            this.ratings.push(question);
           }
           else if (data.type == 'Text') {
             questions[question].max_pages = Math.ceil(questions[question].comments.length / this.surveyCommentsPerPage)
