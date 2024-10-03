@@ -253,9 +253,7 @@
   $(document).ready(async function() {
     initIcons();
     let $modal = initModal();
-    let start = new Date();
     await refreshData();
-    console.log(((new Date()) - start) / 1000);
     let $vueApp = generateDetailedCourseContent(
       courseReviewData
       , courseCode
@@ -268,7 +266,6 @@
       , bloomsCounts
       , surveys
     );
-    console.log(((new Date()) - start) / 1000);
     refreshIcons($vueApp, $modal);
     // button creates container, must run button first
     let $detailedReportButton = addDetailedReportButton();
