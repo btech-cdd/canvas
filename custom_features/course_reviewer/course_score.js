@@ -148,8 +148,8 @@
             type: 'Page',
             contentData: page,
             contentCriteria: criteria.Pages,
-            rubricData: null,
-            rubricCriteria: null
+            rubricData: {},
+            rubricCriteria: {} 
           }
           $vueApp.menuCurrent = 'individual';
           $modal.show();
