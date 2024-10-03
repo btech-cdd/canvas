@@ -160,7 +160,7 @@
       addContextMenu($scoreEl, [
         { id: 'reevaluate', text: 'Reevaluate', func: async function () {
           if (contentReview?.module_id) {
-            await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/modules/${contentReview.module_id}`, {course_code: courseCode, year: year}, 'POST');
+            await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/modules/${contentReview.module_id}/evaluate`, {course_code: courseCode, year: year}, 'POST');
           }
         }},
         { id: 'ignore', text: 'Toggle Ignore', func: async function () {
