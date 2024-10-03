@@ -98,7 +98,7 @@
             })
           }
         }
-        console.log(questions);
+        console.log(this.ratings);
 
         this.questions = questions;
       }
