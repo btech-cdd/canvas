@@ -7,7 +7,7 @@
         <div :style="{
             color: (contentData?.objectives ?? []).includes(objective.objective_id) ? '#000' : '#CCC' 
         }" v-for="objective in objectivesData">
-        <span style="width: 1rem; display: inline-block;">{{contentData.objectives.includes(objective.objective_id) ? '&#10003;' : ''}}</span>
+        <span style="width: 1rem; display: inline-block;">{{(contentData?.objectives ?? []).includes(objective.objective_id) ? '&#10003;' : ''}}</span>
         {{objective.objective_text}}
         </div>
         </div>
