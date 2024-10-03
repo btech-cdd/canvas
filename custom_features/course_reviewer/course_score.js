@@ -142,6 +142,7 @@
       } else if (emoji?.[pageScore]) {
         scoreEl.html(emoji?.[pageScore]);
         scoreEl.click(function () {
+          console.log($vueApp);
           $vueApp.individualContent = {
             type: 'Page',
             contentData: page,
