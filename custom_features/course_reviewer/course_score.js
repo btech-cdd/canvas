@@ -206,6 +206,7 @@
   }
   
   async function refreshData() {
+    let start = new Date();
     // get course level data
     courseData = {};
     courseReviewData = {};
@@ -224,6 +225,8 @@
           course_id: this.courseId
       }, 'POST')
     ]);
+    console.log(((new Date()) - start) / 1000);
+    start = new Date();
 
     let courseCodeYear = getCourseCodeYear(courseData);
     year = courseCodeYear.year;
@@ -236,6 +239,8 @@
     } catch (err) {
       console.error(err);
     }
+    console.log(((new Date()) - start) / 1000);
+    start = new Date();
 
     objectivesCounts = calcObjectivesCounts(courseReviewData.quizzes, courseReviewData.assignments);
     bloomsCounts = calcBloomsCounts(courseReviewData.quizzes, courseReviewData.assignments);
@@ -250,7 +255,7 @@
     let $modal = initModal();
     let start = new Date();
     await refreshData();
-    console.log((new Date()) - start);
+    console.log(((new Date()) - start) / 1000);
     let $vueApp = generateDetailedCourseContent(
       courseReviewData
       , courseCode
@@ -263,7 +268,7 @@
       , bloomsCounts
       , surveys
     );
-    console.log((new Date()) - start);
+    console.log(((new Date()) - start) / 1000);
     refreshIcons($vueApp, $modal);
     // button creates container, must run button first
     let $detailedReportButton = addDetailedReportButton();
