@@ -22,15 +22,13 @@
     },
     data() {
       return {
-        surveyQuestions: {},
+        questions: {},
         surveyRatingsList: [],
         ratings: []
       }
     },
     mounted: async function () {
       this.processSurveys();
-      console.log(this.surveyQuestions);
-      console.log(this.surveys);
     },
 
     methods: {
@@ -102,8 +100,7 @@
         }
         console.log(questions);
 
-        this.surveyQuestions = questions;
-        this.surveysLoaded = true;
+        this.questions = questions;
       }
     }
   });
