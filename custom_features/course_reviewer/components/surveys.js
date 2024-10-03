@@ -24,6 +24,7 @@
       return {
         surveyQuestions: {},
         surveyRatingsList: [],
+        ratings: []
       }
     },
     mounted: async function () {
@@ -89,6 +90,7 @@
           if (data.type == 'Rating') {
             if (questions[question].count == 0) questions[question].average = "N/A";
             else questions[question].average = questions[question].sum / questions[question].count
+            this.ratings.push(questions[question]);
           }
           else if (data.type == 'Text') {
             questions[question].max_pages = Math.ceil(questions[question].comments.length / this.surveyCommentsPerPage)
