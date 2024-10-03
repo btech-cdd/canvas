@@ -125,6 +125,7 @@ function generateDetailedCourseContent(
           @click="setMenu(menu)"
         >{{menu.toUpperCase()}}</div>
       </div>
+      <div>{{menuCurrent}}</div>
       <div v-if="menuCurrent == 'main'">
         <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
           <div class="btech-course-evaluator-content-box">
