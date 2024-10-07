@@ -174,13 +174,14 @@
 
           let module;
           do {
+            await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for 5 seconds
             module = await bridgetools.req(
               `https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/modules/${contentReview.module_id}`
             );
           } while (new Date(module.updated_at) <= new Date(contentReview.updated_at));
 
           setIcon($scoreEl, type, module, contentCriteria, rubricReview, rubricCriteria);
-        } 
+        }
       }},
       { id: 'ignore', text: 'Toggle Ignore', func: async function () {
         
