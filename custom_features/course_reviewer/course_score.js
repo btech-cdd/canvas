@@ -145,6 +145,7 @@
 
       $scoreEl.click(function (e) {
         e.stopPropagation();
+        console.log(contentReview);
         $vueApp.individualContent = {
           type: type,
           contentData: contentReview,
