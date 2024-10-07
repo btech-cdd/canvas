@@ -174,13 +174,13 @@
 
           let module;
           do {
-            await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for 5 seconds
+            await new Promise(resolve => setTimeout(resolve, 2000)); // Wait for 2 seconds
             module = await bridgetools.req(
               `https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/modules/${contentReview.module_id}`
             );
             console.log(module);
             console.log(contentReview);
-          } while (new Date(module.updated_at) <= new Date(contentReview.updated_at));
+          } while (new Date(module.last_update) <= new Date(contentReview.last_update));
 
           setIcon($scoreEl, type, module, contentCriteria, rubricReview, rubricCriteria);
         }
