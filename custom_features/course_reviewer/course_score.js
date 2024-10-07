@@ -178,6 +178,8 @@
             module = await bridgetools.req(
               `https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/modules/${contentReview.module_id}`
             );
+            console.log(module);
+            console.log(contentReview);
           } while (new Date(module.updated_at) <= new Date(contentReview.updated_at));
 
           setIcon($scoreEl, type, module, contentCriteria, rubricReview, rubricCriteria);
