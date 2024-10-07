@@ -1,18 +1,18 @@
-function addContextMenu($el, menuItems = []) {
+function addContextMenu($el, menuItems = [], position='fixed') {
   // Add custom menu options
   // Disable default context menu and show custom menu on right-click
   $el.on('contextmenu', function(e) {
     e.preventDefault();
     
     // Dynamically create and show the custom menu
-    createCustomMenu(e.pageX, e.pageY);
+    createCustomMenu(e.pageX, e.pageY, position);
   });
 
   // Hide the menu if clicking outside or pressing Esc
   $(document).on('click', function() {
     $('#customMenu').remove(); // Remove the custom menu if clicked elsewhere
   });
-  function createCustomMenu(x, y) {
+  function createCustomMenu(x, y, position='fixed') {
     // Remove any existing custom menu
     $('#customMenu').remove();
 
@@ -20,7 +20,7 @@ function addContextMenu($el, menuItems = []) {
     const $customMenu = $('<ul>', {
       id: 'customMenu',
       css: {
-        position: 'fixed', // Make it fixed relative to the viewport
+        position: position, // Make it fixed relative to the viewport
         backgroundColor: 'white',
         border: '1px solid #ccc',
         boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',

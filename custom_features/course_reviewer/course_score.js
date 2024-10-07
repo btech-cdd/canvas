@@ -167,7 +167,7 @@
          
         }},
         // { id: 'clearReview', text: 'Clear Review', func: () => {}}
-      ]);
+      ], 'absolute');
     }
   }
 
@@ -294,7 +294,7 @@
         $detailedReportButton.html(emoji);
       }},
       // { id: 'clearReview', text: 'Clear Review', func: () => {}}
-    ]);
+    ], 'fixed');
     let courseScore = calcCourseScore(
       courseReviewData, criteria
     );
