@@ -165,7 +165,7 @@
     addContextMenu($scoreEl, [
       { id: 'reevaluate', text: 'Reevaluate', func: async function () {
         if (contentReview?.module_id) {
-          $scoreEl.html(''); // Clear the content while reevaluating
+          $scoreEl.html('⚪'); // Clear the content while reevaluating
           await bridgetools.req(
             `https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/modules/${contentReview.module_id}/evaluate`,
             { course_code: courseCode, year: year },
