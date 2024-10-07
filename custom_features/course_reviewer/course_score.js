@@ -123,7 +123,7 @@
     return objectivesCounts;
   }
 
-  function initContentIcon($scoreEl, $vueApp, $modal, type, contentReview, contentCriteria, rubricReview = null, rubricCriteria = null) {
+  function setIcon($scoreEl, type, contentReview, contentCriteria, rubricReview, rubricCriteria) {
     let score = calcCriteriaAverageScore(contentReview, contentCriteria);
     $scoreEl.html('');
     if (contentReview.ignore) {
@@ -142,34 +142,51 @@
       } else {
         $scoreEl.html(emoji?.[score]);
       }
-
-      $scoreEl.click(function (e) {
-        e.stopPropagation();
-        console.log(contentReview);
-        $vueApp.individualContent = {
-          type: type,
-          contentData: contentReview,
-          contentCriteria: contentCriteria,
-          rubricData: rubricReview ?? {},
-          rubricCriteria: rubricCriteria ?? {} 
-        }
-        $vueApp.menuCurrent = 'individual';
-        $modal.show();
-
-      });
-
-      addContextMenu($scoreEl, [
-        { id: 'reevaluate', text: 'Reevaluate', func: async function () {
-          if (contentReview?.module_id) {
-            await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/modules/${contentReview.module_id}/evaluate`, {course_code: courseCode, year: year}, 'POST');
-          }
-        }},
-        { id: 'ignore', text: 'Toggle Ignore', func: async function () {
-         
-        }},
-        // { id: 'clearReview', text: 'Clear Review', func: () => {}}
-      ], 'absolute');
     }
+  }
+
+  function initContentIcon($scoreEl, $vueApp, $modal, type, contentReview, contentCriteria, rubricReview = null, rubricCriteria = null) {
+    setIcon($scoreEl, type, contentReview, contentCriteria, rubricReview, rubricCriteria);
+    $scoreEl.click(function (e) {
+      e.stopPropagation();
+      console.log(contentReview);
+      $vueApp.individualContent = {
+        type: type,
+        contentData: contentReview,
+        contentCriteria: contentCriteria,
+        rubricData: rubricReview ?? {},
+        rubricCriteria: rubricCriteria ?? {} 
+      }
+      $vueApp.menuCurrent = 'individual';
+      $modal.show();
+
+    });
+
+    addContextMenu($scoreEl, [
+      { id: 'reevaluate', text: 'Reevaluate', func: async function () {
+        if (contentReview?.module_id) {
+          $scoreEl.html(''); // Clear the content while reevaluating
+          await bridgetools.req(
+            `https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/modules/${contentReview.module_id}/evaluate`,
+            { course_code: courseCode, year: year },
+            'POST'
+          );
+
+          let module;
+          do {
+            module = await bridgetools.req(
+              `https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/modules/${contentReview.module_id}`
+            );
+          } while (new Date(module.updated_at) <= new Date(contentReview.updated_at));
+
+          setIcon($scoreEl, type, module, contentCriteria, rubricReview, rubricCriteria);
+        } 
+      }},
+      { id: 'ignore', text: 'Toggle Ignore', func: async function () {
+        
+      }},
+      // { id: 'clearReview', text: 'Clear Review', func: () => {}}
+    ], 'absolute');
   }
 
   function getRubricReview(contentId, rubricReviews) {
