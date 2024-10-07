@@ -5,8 +5,7 @@ function addContextMenu($el, menuItems = [], position='fixed') {
     e.preventDefault();
     
     // Dynamically create and show the custom menu
-    if (position === 'absolute') createCustomMenu(e.pageX, e.pageY);
-    if (position === 'fixed') createCustomMenu(e.clientX, e.clientY);
+    createCustomMenu(e.clientX, e.clientY);
   });
 
   // Hide the menu if clicking outside or pressing Esc
