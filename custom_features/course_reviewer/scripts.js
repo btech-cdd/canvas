@@ -4,6 +4,11 @@ const emoji = [
     '🥇'
 ];
 
+const emojiTF = [
+  '❌',
+  '✔️'
+];
+
 function criterionNameToVariable(name) {
   return name
     .toLowerCase()                            // Convert to lowercase
@@ -165,17 +170,6 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
         this.menuCurrent = menu;
         this.genBloomsChart(this.bloomsCounts);
       },
-      calcEmoji(data, criteria, criterionName) {
-        let criterion = criteria[criterionName];
-        let val = data?.criteria?.[criterionName] ?? 0;
-        if (criterion.score_type == 'boolean') {
-          return (val ? emojiTF[1] : emojiTF[0]);
-        }
-        if (criterion.score_type == 'number') {
-          return (emoji?.[val] ?? '');
-        }
-        return '';
-      }
     }
   });
   return APP;
@@ -244,10 +238,6 @@ function calcEmoji(perc) {
   return emoji[2]; // bronze
 }
 
-const emojiTF = [
-  '❌',
-  '✔️'
-];
 
 const bloomsColors = {
     'remember': '#F56E74',
