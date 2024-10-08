@@ -165,7 +165,7 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
         this.menuCurrent = menu;
         this.genBloomsChart(this.bloomsCounts);
       },
-      calcEmoji(data, criteria, criterionName) {
+      calcEmojiFromData(data, criteria, criterionName) {
         let criterion = criteria[criterionName];
         let val = data?.criteria?.[criterionName] ?? 0;
         if (criterion.score_type == 'boolean') {
