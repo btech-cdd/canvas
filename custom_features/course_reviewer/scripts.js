@@ -170,6 +170,17 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
         this.menuCurrent = menu;
         this.genBloomsChart(this.bloomsCounts);
       },
+      calcEmojiFromData(data, criteria, criterionName) {
+        let criterion = criteria[criterionName];
+        let val = data?.criteria?.[criterionName] ?? 0;
+        if (criterion.score_type == 'boolean') {
+          return (val ? emojiTF[1] : emojiTF[0]);
+        }
+        if (criterion.score_type == 'number') {
+          return (emoji?.[val] ?? '');
+        }
+        return '';
+      }
     }
   });
   return APP;
@@ -329,6 +340,11 @@ function calcCriteriaAverageScore(content, criteria) {
       maxPoints += 1;
       points += score ? 1 : 0;
     }
+  }
+  for (let name in content.additional_criteria) {
+    let score = content.additional_criteria[name];
+    maxPoints += 1;
+    points += score;
   }
   if (isNaN(points)) points = 0;
   

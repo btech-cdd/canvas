@@ -23,12 +23,18 @@
         </div> 
         <div class="btech-course-evaluator-content-box">
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-            <div>
+          <div>
             <h2>Content Review</h2>
-            <div v-for="(criterion, criterionName) in contentCriteria" :title="criterion.description">
+            <div v-for="(criterion, criterionName) in contentCriteria.filter(crt => return crt.active)" :title="criterion.description">
                 <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{criterion.name}}</span>
                 <span>
-                {{calcEmoji(contentData, contentCriteria, criterionName)}}
+                {{calcEmojiFromData(contentData, contentCriteria, criterionName)}}
+                </span>
+            </div>
+            <div v-for="(score, criterionName) in contentData.additional_criteria" :title="criterionName">
+                <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{criterionName}}</span>
+                <span>
+                {{calcEmoji(score)}}
                 </span>
             </div>
             <div v-if="contentData.objectives" title="The content is alligned to the course objectives.">
@@ -41,11 +47,11 @@
             <div v-for="(criterion, criterionName) in rubricCriteria" :title="criterion.description">
                 <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{criterion.name}}</span>
                 <span>
-                {{calcEmoji(rubricData, rubricCriteria, criterionName)}}
+                {{calcEmojiFromData(rubricData, rubricCriteria, criterionName)}}
                 </span>
             </div>
             </div>
-        </div>
+          </div>
         </div>
 
         <div class="btech-course-evaluator-content-box">
@@ -104,7 +110,13 @@
     },
 
     methods: {
-      calcEmoji(data, criteria, criterionName) {
+      calcEmoji(perc) {
+        if (isNaN(perc)) return '';
+        if (perc < 0.5) return emoji[0]; // bronze
+        if (perc < 0.8) return emoji[1]; // bronze
+        return emoji[2]; // bronze
+      },
+      calcEmojiFromData(data, criteria, criterionName) {
         let criterion = criteria[criterionName];
         let val = data?.criteria?.[criterionName] ?? 0;
         if (criterion.score_type == 'boolean') {
