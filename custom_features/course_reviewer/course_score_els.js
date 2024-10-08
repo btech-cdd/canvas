@@ -1,4 +1,5 @@
 function updateReviewProgress(data) {
+  if (data.processed < 0) data.processed = 1;
   let color = {
     'quizzes': '#1e65A7',
     'new_quizzes': '#192E5B',
