@@ -340,6 +340,11 @@ function calcCriteriaAverageScore(content, criteria) {
       points += score ? 1 : 0;
     }
   }
+  for (let name in content.additional_criteria) {
+    let score = content.additional_criteria[name];
+    maxPoints += 1;
+    points += score;
+  }
   if (isNaN(points)) points = 0;
   
   let averageScore = Math.floor((points / maxPoints) * 2);
