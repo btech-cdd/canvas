@@ -33,6 +33,7 @@
               </div>
             </div>
             <div>
+              <h2>Additional Criteria</h2>
               <div v-for="(score, criterionName) in contentData.additional_criteria" :title="criterionName">
                 <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{criterionName}}</span>
                 <span>
