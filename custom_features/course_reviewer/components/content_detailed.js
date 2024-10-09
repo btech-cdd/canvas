@@ -112,6 +112,7 @@
     created: async function () {
       this.contentCriteria = sortCriteria(this.contentCriteria);
       this.rubricCriteria = sortCriteria(this.rubricCriteria);
+      console.log(this.contentCriteria);
     },
 
     methods: {
