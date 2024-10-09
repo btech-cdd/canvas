@@ -167,7 +167,7 @@ function calcCourseContentCounts(reviews, criteria) {
   }
   for (let r in reviews) {
     let review = reviews[r];
-    if (review.ignore) continue;
+    if (!review.active) continue;
     let hasScores = false;
     for (let name in review.criteria) {
       let criterion = criteria[name];
