@@ -49,7 +49,7 @@
     await refreshData();
 
     if (pageReviewData?.page_id == undefined) return;
-    let $detailedReportButton = addDetailedReportButton();
+    let $detailedReportButton = addDetailedReportButton($vueApp);
     generateDetailedContent('Pages', pageReviewData, null, pageCriteria, null, objectivesData);
     addContextMenu($detailedReportButton, [
         { id: 'reevaluate', text: 'Reevaluate', func: async function () {

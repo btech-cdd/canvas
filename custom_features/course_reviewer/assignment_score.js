@@ -70,7 +70,7 @@
    // Function to create and position the custom context menu
 
     if (assignmentReviewData?.assignment_id == undefined) return;
-    let $detailedReportButton = addDetailedReportButton();
+    let $detailedReportButton = addDetailedReportButton($vueApp);
     generateDetailedContent('Assignments', assignmentReviewData, rubricReviewData, assignmentCriteria, rubricCriteria, objectivesData);
     addContextMenu($detailedReportButton, [
       { id: 'reevaluate', text: 'Reevaluate', func: async function () {
