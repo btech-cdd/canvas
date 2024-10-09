@@ -58,6 +58,7 @@
    // Function to create and position the custom context menu
 
     if (quizReviewData?.quiz_id == undefined) return;
+    let $modal = initModal();
     let $vueApp = generateDetailedContent('Quizzes', quizReviewData, null, quizCriteria, null, objectivesData);
     let $detailedReportButton = addDetailedReportButton($vueApp)
 

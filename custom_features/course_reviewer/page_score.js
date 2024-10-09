@@ -49,6 +49,7 @@
     await refreshData();
 
     if (pageReviewData?.page_id == undefined) return;
+    let $modal = initModal();
     let $vueApp = generateDetailedContent('Pages', pageReviewData, null, pageCriteria, null, objectivesData);
     let $detailedReportButton = addDetailedReportButton($vueApp);
     addContextMenu($detailedReportButton, [
