@@ -11,6 +11,17 @@
             {{objective.objective_text}}
           </div>
         </div>
+        <div v-if="contentData.blooms" class="btech-course-evaluator-content-box">
+          <div title="The bloom's taxonomy level of this content." style="margin-bottom: 0.5rem; display: inline-block;">
+              <span 
+              :style="{
+                  'background-color': bloomsColors?.[contentData.blooms.toLowerCase()]
+              }" 
+              style="color: #000000; padding: 0.5rem; display: inline-block; border-radius: 0.5rem; display: inline-block;"
+              >{{contentData.blooms}}</span>
+          </div>
+        </div> 
+       
       </div> 
     `,
     props: {
