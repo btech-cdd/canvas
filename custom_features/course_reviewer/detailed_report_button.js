@@ -30,7 +30,7 @@ function initModal() {
 }
 
 // add button
-function addDetailedReportButton() {
+function addDetailedReportButton($vueApp) {
   let $button = $('<div></div>').attr('id', 'btech-detailed-evaluation-button');
   // Create the icon element
 
@@ -78,6 +78,7 @@ function addDetailedReportButton() {
   $button.click(async function () {
     let $modalContent = $('body #btech-course-reviewer-detailed-report');
     let $modal = $modalContent.parent();
+    $vueApp.menuCurrent = 'main';
     $modal.show();
   });
   return $button;
