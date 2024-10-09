@@ -142,6 +142,8 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
   let APP = new Vue({
     el: '#btech-course-reviewer-detailed-report',
     created: async function () {
+      console.log(this.contentCriteria);
+      console.log(this.rubricCriteria);
       this.contentCriteria = sortCriteria(this.contentCriteria);
       this.rubricCriteria = sortCriteria(this.rubricCriteria);
     },
