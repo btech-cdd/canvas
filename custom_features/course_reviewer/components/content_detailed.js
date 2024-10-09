@@ -99,6 +99,18 @@
       }
     },
     computed: {
+      computed: {
+        activeCriteria: function () {
+          let criteria = {};
+          for (const [criterionName, criterion] of Object.entries(this.contentCriteria)) {
+            if (criterion.active) {
+              criteria[criterionName] = criterion;
+            }
+          }
+          return criteria;
+        }
+      },
+
     },
     data() {
       return {
