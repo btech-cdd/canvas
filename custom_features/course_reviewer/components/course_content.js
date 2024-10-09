@@ -37,11 +37,7 @@
         return criteria;
       },
       counts() {
-        console.log(this.type);
-        console.log(this.criteria);
-        console.log(this.reviews);
         let counts = this.calcCounts(this.reviews, this.criteria);
-        console.log(counts);
         return counts;
       }
     },
