@@ -143,7 +143,6 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
     el: '#btech-course-reviewer-detailed-report',
     created: async function () {
       console.log(this.contentCriteria);
-      console.log(this.rubricCriteria);
       this.contentCriteria = sortCriteria(this.contentCriteria);
       this.rubricCriteria = sortCriteria(this.rubricCriteria);
     },
@@ -158,7 +157,7 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
         contentData: contentData,
         rubricData: rubricData,
         contentCriteria: contentCriteria,
-        rubricCriteria: rubricCriteria,
+        rubricCriteria: rubricCriteria ?? {},
         courseCode: courseCode,
         year: year,
         menuCurrent: 'main',
