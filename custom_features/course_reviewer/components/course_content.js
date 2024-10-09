@@ -30,6 +30,7 @@
       activeCriteria: function () {
         let criteria = {};
         for (const [criterionName, criterion] of Object.entries(this.criteria)) {
+          console.log(criterion);
           if (criterion.active) {
             criteria[criterionName] = criterion;
           }
