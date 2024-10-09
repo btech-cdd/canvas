@@ -38,7 +38,9 @@
         return criteria;
       },
       counts() {
-        return this.calcCounts(this.reviews, this.activeCriteria)
+        let counts = this.calcCounts(this.reviews, this.criteria);
+        console.log(counts);
+        return counts;
       }
     },
     data() {
