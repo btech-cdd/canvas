@@ -331,6 +331,7 @@ function calcCriteriaAverageScore(content, criteria) {
   if ((content?.criteria ?? []).length == 0) return 0;
   for (let name in criteria) {
     let criterion = criteria[name];
+    if (!criterion.active) continue
     let score = content.criteria[name];
     if (criterion.score_type == 'number') {
       maxPoints += 2; // eventually allow for dynamic max scores with a rubric
