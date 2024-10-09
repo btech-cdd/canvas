@@ -25,10 +25,10 @@
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
             <div>
               <h2>Content Review</h2>
-              <div v-for="(criterion, criterionName) in contentCriteria" :title="criterion.description">
+              <div v-for="(criterion, criterionName) in activeCriteria" :title="criterion.description">
                 <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{criterion.name}}</span>
                 <span>
-                {{calcEmojiFromData(contentData, contentCriteria, criterionName)}}
+                {{calcEmojiFromData(contentData, activeCriteria, criterionName)}}
                 </span>
               </div>
             </div>
