@@ -29,7 +29,7 @@
     computed: {
       activeCriteria: function () {
         let criteria = {};
-        for (const [criterionName, criterion] of Object.entries(this.contentCriteria)) {
+        for (const [criterionName, criterion] of Object.entries(this.criteria)) {
           if (criterion.active) {
             criteria[criterionName] = criterion;
           }
