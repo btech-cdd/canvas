@@ -4,7 +4,7 @@
       <div style="padding: 8px 0;">
         <h2>{{ type }}</h2>
         <div v-for="(count, name) in counts">
-          <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{ toTitleCase(name) }}</span><span>{{ count / counts.num_reviews }}</span>
+          <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{ toTitleCase(name) }}</span><span>{{ calcEmoji(count / counts.num_reviews) }}</span>
         </div>
       </div>
     `,
