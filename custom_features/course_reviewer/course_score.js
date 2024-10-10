@@ -125,6 +125,7 @@
 
   function setIcon($scoreEl, type, contentReview, contentCriteria, rubricReview, rubricCriteria) {
     let score = calcCriteriaAverageScore(contentReview, contentCriteria);
+    console.log(score);
     $scoreEl.html('');
     if (contentReview.ignore) {
       $scoreEl.html('🚫');
