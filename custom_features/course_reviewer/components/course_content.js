@@ -3,8 +3,9 @@
     template: ` 
       <div style="padding: 8px 0;">
         <h2>{{ type }}</h2>
-        <div v-for="(count, name) in counts">
-          <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{ toTitleCase(name) }}</span><span>{{ calcEmoji(count / counts.num_reviews) }}</span>
+        <div v-for="(count, name) in filteredCounts" :key="name">
+          <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{ toTitleCase(name) }}</span>
+          <span>{{ calcEmoji(count / counts.num_reviews) }}</span>
         </div>
       </div>
     `,
@@ -27,7 +28,7 @@
       }
     },
     computed: {
-      activeCriteria: function () {
+      activeCriteria() {
         let criteria = {};
         for (const [criterionName, criterion] of Object.entries(this.criteria)) {
           if (criterion.active) {
@@ -37,18 +38,14 @@
         return criteria;
       },
       counts() {
-        let counts = this.calcCounts(this.reviews, this.criteria);
-        return counts;
+        return this.calcCounts(this.reviews, this.criteria);
+      },
+      filteredCounts() {
+        // Create a filtered object that excludes 'num_reviews'
+        return Object.fromEntries(
+          Object.entries(this.counts).filter(([key]) => key !== 'num_reviews')
+        );
       }
-    },
-    data() {
-      return {
-      }
-    },
-    created: async function () {
-    },
-
-    methods: {
     }
   });
 })();
