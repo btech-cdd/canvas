@@ -41,9 +41,11 @@
         return this.calcCounts(this.reviews, this.criteria);
       },
       filteredCounts() {
-        // Create a filtered object that excludes 'num_reviews'
+        // Create a filtered and sorted object that excludes 'num_reviews'
         return Object.fromEntries(
-          Object.entries(this.counts).filter(([key]) => key !== 'num_reviews')
+          Object.entries(this.counts)
+            .filter(([key]) => key !== 'num_reviews')
+            .sort(([a], [b]) => a.localeCompare(b))
         );
       }
     }
