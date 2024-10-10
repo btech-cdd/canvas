@@ -125,11 +125,10 @@
 
   function setIcon($scoreEl, type, contentReview, contentCriteria, rubricReview, rubricCriteria) {
     let score = calcCriteriaAverageScore(contentReview, contentCriteria);
-    console.log(score);
     $scoreEl.html('');
     if (contentReview.ignore) {
       $scoreEl.html('🚫');
-    } else if (emoji?.[score]) {
+    } else {
       if (rubricReview !== null || type === 'Assignment') {
         $scoreEl.html(
           `<div class="btech-course-reviewer-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${calcEmoji(score)}</div><div class="btech-course-reviewer-assignment-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`
