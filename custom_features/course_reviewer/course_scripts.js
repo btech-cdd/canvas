@@ -217,6 +217,8 @@ function calcCourseScore(
   let moduleScore = moduleCounts.num_reviews > 0 ? (calcCourseContentScore(courseReviewData.modules, criteria.Modules) * moduleCounts.num_reviews) : 0;
   let totalItems = quizCounts.num_reviews + assignmentCounts.num_reviews + pageCounts.num_reviews;
   let contentScore = totalItems > 0 ? (quizScore + ((assignmentScore + rubricScore) / 2) + pageScore) / totalItems : 0;
+  console.log(contentScore);
+  console.log(moduleScore);
   score = (contentScore + moduleScore) / 2
   return score; 
 }
