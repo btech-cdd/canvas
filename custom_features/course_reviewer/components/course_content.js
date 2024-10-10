@@ -3,11 +3,8 @@
     template: ` 
       <div style="padding: 8px 0;">
         <h2>{{ type }}</h2>
-        <div v-for="criterion in activeCriteria" :title="criterion.description">
-          <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{ criterion.name }}</span><span>{{ calcEmoji(counts[criterion.name.toLowerCase().replace(' ', '_')] / (counts.num_reviews * 2)) }}</span>
-        </div>
-        <div v-for="criterion in activeCriteria" :title="criterion.description">
-          <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{ criterion.name }}</span><span>{{ calcEmoji(counts[criterion.name.toLowerCase().replace(' ', '_')] / (counts.num_reviews * 2)) }}</span>
+        <div v-for="(count, name) in counts">
+          <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{ toTitleCase(name) }}</span><span>{{ count }}</span>
         </div>
       </div>
     `,
