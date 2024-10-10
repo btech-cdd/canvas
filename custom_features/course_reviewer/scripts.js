@@ -563,7 +563,7 @@ async function evaluatePage(courseId, courseCode, year, pageId, description) {
 }
 
 function toTitleCase(str) {
-  str = str.replace(/\_/g, ' ');
+  str = str.replace(/_/g, ' ');
   return str.replace(
     /\w\S*/g,
     text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
