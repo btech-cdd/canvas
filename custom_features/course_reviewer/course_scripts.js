@@ -214,7 +214,7 @@ function calcCourseScore(
   let quizScore = quizCounts.num_reviews > 0 ? (calcCourseContentScore(courseReviewData.quizzes, criteria.Quizzes) * quizCounts.num_reviews) : 0;
   let assignmentScore = assignmentCounts.num_reviews > 0 ? (calcCourseContentScore(courseReviewData.assignments, criteria.Assignments) * assignmentCounts.num_reviews) : 0;
   let rubricScore = rubricCounts.num_reviews > 0 ? (calcCourseContentScore(courseReviewData.rubrics, criteria.Rubrics) * rubricCounts.num_reviews) : 0;
-  let moduleScore = moduleCounts.num_reviews > 0 ? (calcCourseContentScore(courseReviewData.modules, criteria.Modules) * moduleCounts.num_reviews) : 0;
+  let moduleScore = moduleCounts.num_reviews > 0 ? calcCourseContentScore(courseReviewData.modules, criteria.Modules) : 0;
   let totalItems = quizCounts.num_reviews + assignmentCounts.num_reviews + pageCounts.num_reviews;
   let contentScore = totalItems > 0 ? (quizScore + ((assignmentScore + rubricScore) / 2) + pageScore) / totalItems : 0;
   console.log(contentScore);
