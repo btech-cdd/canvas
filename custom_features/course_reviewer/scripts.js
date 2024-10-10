@@ -4,6 +4,11 @@ const emoji = [
     '🥇'
 ];
 
+const emojiTF = [
+  '❌',
+  '✔️'
+];
+
 function criterionNameToVariable(name) {
   return name
     .toLowerCase()                            // Convert to lowercase
@@ -137,6 +142,7 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
   let APP = new Vue({
     el: '#btech-course-reviewer-detailed-report',
     created: async function () {
+      console.log(this.contentCriteria);
       this.contentCriteria = sortCriteria(this.contentCriteria);
       this.rubricCriteria = sortCriteria(this.rubricCriteria);
     },
@@ -151,7 +157,7 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
         contentData: contentData,
         rubricData: rubricData,
         contentCriteria: contentCriteria,
-        rubricCriteria: rubricCriteria,
+        rubricCriteria: rubricCriteria ?? {},
         courseCode: courseCode,
         year: year,
         menuCurrent: 'main',
@@ -244,10 +250,6 @@ function calcEmoji(perc) {
   return emoji[2]; // bronze
 }
 
-const emojiTF = [
-  '❌',
-  '✔️'
-];
 
 const bloomsColors = {
     'remember': '#F56E74',
@@ -330,6 +332,7 @@ function calcCriteriaAverageScore(content, criteria) {
   if ((content?.criteria ?? []).length == 0) return 0;
   for (let name in criteria) {
     let criterion = criteria[name];
+    if (!criterion.active) continue
     let score = content.criteria[name];
     if (criterion.score_type == 'number') {
       maxPoints += 2; // eventually allow for dynamic max scores with a rubric

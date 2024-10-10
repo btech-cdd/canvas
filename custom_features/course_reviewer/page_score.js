@@ -49,8 +49,9 @@
     await refreshData();
 
     if (pageReviewData?.page_id == undefined) return;
-    let $detailedReportButton = addDetailedReportButton();
-    generateDetailedContent('Pages', pageReviewData, null, pageCriteria, null, objectivesData);
+    let $modal = initModal();
+    let $vueApp = generateDetailedContent('Pages', pageReviewData, null, pageCriteria, null, objectivesData);
+    let $detailedReportButton = addDetailedReportButton($vueApp);
     addContextMenu($detailedReportButton, [
         { id: 'reevaluate', text: 'Reevaluate', func: async function () {
           await evaluatePage(ENV.COURSE_ID, courseCode, year, ENV.WIKI_PAGE.page_id, ENV.WIKI_PAGE.body);
