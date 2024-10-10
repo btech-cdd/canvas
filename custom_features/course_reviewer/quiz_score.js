@@ -64,8 +64,12 @@
 
     addContextMenu($detailedReportButton, [
       { id: 'reevaluate', text: 'Reevaluate', func: async function () {
+        $detailedReportButton.html('');
         await evaluateQuiz(ENV.COURSE_ID, courseCode, year, quizData.id, quizData.description)
         await refreshData();
+        let reviewData = quizReviewData;
+        let criteria = quizCriteria;
+        setButtonHTML($detailedReportButton, reviewData, criteria, rubricReviewData, rubricCriteria);
       }},
       { id: 'disable', text: 'Toggle Ignore', func: async function () {
         ignoreItem(ENV.COURSE_ID, 'quizzes', quizData.id, !quizData.ignore);
@@ -73,20 +77,8 @@
       // { id: 'clearReview', text: 'Clear Review', func: () => {}}
     ]);
 
-
-    let data = quizReviewData;
-    let averageScore = calcCriteriaAverageScore(data, quizCriteria);
-    // let averageRubricScore = calcCriteriaAverageScore(rubricReviewData, rubricCriteria);
-    if (data.ignore) $detailedReportButton.html('🚫');
-    else {
-      if (false) { // check if it needs a rubric
-        $detailedReportButton.html(`<div class="btech-course-reviewer-quiz-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[averageScore]}</div><div class="btech-course-reviewer-quiz-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`);
-        $(`.btech-course-reviewer-quiz-score-right`).html(
-            `${emoji?.[averageRubricScore]}`
-        );
-      } else {
-        $detailedReportButton.html(emoji?.[averageScore]);
-      }
-    }
+    let reviewData = quizReviewData;
+    let criteria = quizCriteria;
+    setButtonHTML($detailedReportButton, reviewData, criteria, rubricReviewData, rubricCriteria);
   });
 })();

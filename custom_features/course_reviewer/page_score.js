@@ -53,20 +53,21 @@
     let $vueApp = generateDetailedContent('Pages', pageReviewData, null, pageCriteria, null, objectivesData);
     let $detailedReportButton = addDetailedReportButton($vueApp);
     addContextMenu($detailedReportButton, [
-        { id: 'reevaluate', text: 'Reevaluate', func: async function () {
-          await evaluatePage(ENV.COURSE_ID, courseCode, year, ENV.WIKI_PAGE.page_id, ENV.WIKI_PAGE.body);
-          await refreshData();
-          let averageScore = calcCriteriaAverageScore(data, pageCriteria);
-          let scoreEmoji = data.ignore ? '🚫' : emoji[averageScore];
-          $detailedReportButton.append(scoreEmoji);
-        }},
-        { id: 'disable', text: 'Toggle Ignore', func: async function () {
-        }},
-        // { id: 'clearReview', text: 'Clear Review', func: () => {}}
-      ]);
-    let data = pageReviewData;
-    let averageScore = calcCriteriaAverageScore(data, pageCriteria);
-    let scoreEmoji = data.ignore ? '🚫' : emoji[averageScore];
-    $detailedReportButton.append(scoreEmoji);
+      { id: 'reevaluate', text: 'Reevaluate', func: async function () {
+        $detailedReportButton.html('');
+        await evaluatePage(ENV.COURSE_ID, courseCode, year, ENV.WIKI_PAGE.page_id, ENV.WIKI_PAGE.body);
+        await refreshData();
+        let reviewData = pageReviewData;
+        let criteria = pageCriteria;
+        setButtonHTML($detailedReportButton, reviewData, criteria, {}, {});
+      }},
+      { id: 'disable', text: 'Toggle Ignore', func: async function () {
+      }},
+      // { id: 'clearReview', text: 'Clear Review', func: () => {}}
+    ]);
+
+    let reviewData = pageReviewData;
+    let criteria = pageCriteria;
+    setButtonHTML($detailedReportButton, reviewData, criteria, {}, {});
   })
 })();

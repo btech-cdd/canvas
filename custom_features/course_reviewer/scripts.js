@@ -350,10 +350,28 @@ function calcCriteriaAverageScore(content, criteria) {
   }
   if (isNaN(points)) points = 0;
   
-  let averageScore = Math.floor((points / maxPoints) * 2);
-  if (averageScore > 2) averageScore = 2;
+  let averageScore = (points / maxPoints);
+  if (averageScore > 1) averageScore = 1;
   if (averageScore < 0) averageScore = 0;
   return averageScore;
+}
+
+function setButtonHTML($button, data, criteria, rubricData = null, rubricCriteria = null) {
+  if (data.ignore) {
+    $button.html('🚫');
+    return
+  }
+
+  let score = calcCriteriaAverageScore(data, criteria);
+  if (rubricData === null) {
+    $detailedReportButton.html(`<div class="btech-course-reviewer-score" style="position: absolute;">${calcEmoji(score)}</div>`);
+  } else {
+    let rubricScore = calcCriteriaAverageScore(rubricData, rubricCriteria);
+    $button.html(`<div class="btech-course-reviewer-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${calcEmoji(score)}</div><div class="btech-course-reviewer-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`);
+    $(`.btech-course-reviewer-score-right`).html(
+        `${emoji?.[rubricScore]}`
+    );
+  }
 }
 
 function addTopics(counts, dataList) {
