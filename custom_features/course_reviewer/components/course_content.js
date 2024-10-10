@@ -6,6 +6,9 @@
         <div v-for="criterion in activeCriteria" :title="criterion.description">
           <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{ criterion.name }}</span><span>{{ calcEmoji(counts[criterion.name.toLowerCase().replace(' ', '_')] / (counts.num_reviews * 2)) }}</span>
         </div>
+        <div v-for="criterion in activeCriteria" :title="criterion.description">
+          <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{ criterion.name }}</span><span>{{ calcEmoji(counts[criterion.name.toLowerCase().replace(' ', '_')] / (counts.num_reviews * 2)) }}</span>
+        </div>
       </div>
     `,
     props: {

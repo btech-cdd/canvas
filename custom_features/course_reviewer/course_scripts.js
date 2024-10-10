@@ -178,6 +178,14 @@ function calcCourseContentCounts(reviews, criteria) {
       if (criterion.score_type === 'boolean') counts[name] += score ? 1 : 0;
       if (criterion.score_type === 'number') counts[name] += score / 2; //get the actual value
     }
+    for (let name in review.additional_criteria) {
+      let criterion = criteria[name];
+      let score = review.criteria[name];
+      if (score == undefined) continue;
+      hasScores = true;
+      if (counts?.[name] === undefined) counts[name] = 0;
+      counts[name] += score; //get the actual value
+    }
     if (hasScores) {
       if (review?.objectives ?? [] > 0) counts.alligned_to_objectives += 1;
       counts.num_reviews += 1;
