@@ -208,12 +208,15 @@ function calcCourseScore(
   let quizCounts = calcCourseContentCounts(courseReviewData.quizzes, criteria.Quizzes);
   let assignmentCounts = calcCourseContentCounts(courseReviewData.assignments, criteria.Assignments);
   let rubricCounts = calcCourseContentCounts(courseReviewData.rubrics, criteria.Rubrics);
+  let moduleCounts = calcCourseContentCounts(courseReviewData.modules, criteria.Modules);
   let score = 0;
   let pageScore = pageCounts.num_reviews > 0 ? (calcCourseContentScore(courseReviewData.pages, criteria.Pages) * pageCounts.num_reviews) : 0;
   let quizScore = quizCounts.num_reviews > 0 ? (calcCourseContentScore(courseReviewData.quizzes, criteria.Quizzes) * quizCounts.num_reviews) : 0;
   let assignmentScore = assignmentCounts.num_reviews > 0 ? (calcCourseContentScore(courseReviewData.assignments, criteria.Assignments) * assignmentCounts.num_reviews) : 0;
   let rubricScore = rubricCounts.num_reviews > 0 ? (calcCourseContentScore(courseReviewData.rubrics, criteria.Rubrics) * rubricCounts.num_reviews) : 0;
+  let moduleScore = moduleCounts.num_reviews > 0 ? (calcCourseContentScore(courseReviewData.modules, criteria.Modules) * moduleCounts.num_reviews) : 0;
   let totalItems = quizCounts.num_reviews + assignmentCounts.num_reviews + pageCounts.num_reviews;
-  score = totalItems > 0 ? (quizScore + ((assignmentScore + rubricScore) / 2) + pageScore) / totalItems : 0;
+  let contentScore = totalItems > 0 ? (quizScore + ((assignmentScore + rubricScore) / 2) + pageScore) / totalItems : 0;
+  score = (contentScore + moduleScore) / 2
   return score; 
 }
