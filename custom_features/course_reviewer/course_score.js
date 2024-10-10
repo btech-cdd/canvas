@@ -140,7 +140,7 @@
           );
         }
       } else {
-        $scoreEl.html(emoji?.[score]);
+        $scoreEl.html(calcEmoji(score));
       }
     }
   }
