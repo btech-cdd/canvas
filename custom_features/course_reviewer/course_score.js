@@ -131,12 +131,12 @@
     } else if (emoji?.[score]) {
       if (rubricReview !== null || type === 'Assignment') {
         $scoreEl.html(
-          `<div class="btech-course-reviewer-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${emoji?.[score]}</div><div class="btech-course-reviewer-assignment-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`
+          `<div class="btech-course-reviewer-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${calcEmoji(score)}</div><div class="btech-course-reviewer-assignment-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`
         );
         if (rubricReview !== null) {
           let rubricScore = calcCriteriaAverageScore(rubricReview, rubricCriteria);
           $scoreEl.find(`.btech-course-reviewer-assignment-score-right`).html(
-              `${emoji?.[rubricScore]}`
+              `${calcEmoji(rubricScore)}`
           );
         }
       } else {
