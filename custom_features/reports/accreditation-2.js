@@ -54,7 +54,10 @@
         <div v-if="loadingCourse">
           Loading submissions...
         </div>
-        <div v-else>
+        <div v-if="!loadingCourse && assignmetnGroups.length == 0">
+          Failed to load submissions
+        </div>
+        <div v-if="!loadingCourse && assignmentGroups.length > 0">
           <div v-for='group in assignmentGroups'>
             <h2>{{group.name}}</h2>
             <div 
