@@ -145,6 +145,8 @@
         el: "#accreditation",
         mounted: async function () {
           this.courseId = CURRENT_COURSE_ID;
+          let data = await getGraphQLData(this.courseId);
+          console.log(data);
           await $.get("/api/v1/courses/" + this.courseId).done((data) => {
             this.courseData = data;
           });
@@ -290,6 +292,7 @@
               course(id: "${courseId}") {
                id
     name
+    courseCode
     assignmentGroupsConnection {
       nodes {
         name
@@ -354,16 +357,17 @@
               let res = await $.post(`/api/graphql`, {
                   query: query
               });
-              console.log(res.data);
               let data = res.data.course;
-              console.log(data);
               return {
-                  name: data.name,
-                  assignment_groups: data.assignmentGroupsConnection.nodes.filter(group => group.state == 'available').map(group => {
-                  group.assignments = group.assignmentsConnection.nodes;
-                  return group;
-                  }),
-                  submissions: data.submissionsConnection.nodes
+                name: data.name,
+                course_code: data.courseCode,
+                assignment_groups: data.assignmentGroupsConnection.nodes.filter(group => group.state == 'available').map(group => {
+                group.assignments = group.assignmentsConnection.nodes.map( assignment => {
+                  assignment.submissions = assignment.submissionsConnection.nodes;
+                });
+                return group;
+                }),
+                submissions: data.submissionsConnection.nodes
               }
             } catch (err) {
               console.error(err);
@@ -378,19 +382,6 @@
           async getAllSubmissions(assignmentId = '') {
             let app = this;
             submissionsByAssignment = {};
-            //let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions", {
-            let packet = {
-              'student_ids': 'all',
-              'workflow_state': 'graded',
-              'include': [
-                'user',
-                'submission_comments',
-                'rubric_assessment'
-              ]
-            };
-            if (assignmentId !== '') {
-              packet['assignment_ids'] = [assignmentId];
-            }
             let graphqlData = await this.getGraphQLData(app.courseId);
             console.log(graphqlData);
             return [];
