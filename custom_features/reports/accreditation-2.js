@@ -284,6 +284,85 @@
             return submittedAssignments;
           },
 
+          async getGraphQLData(course) {
+            let query = `{
+              course(id: "${course.id}") {
+                id
+                name
+                assignmentGroupsConnection {
+                  nodes {
+                    name
+                    groupWeight
+                    state
+                    assignmentsConnection {
+                      nodes {
+                        _id
+                        name
+                        published
+                        pointsPossible
+                        submissionsConnection {
+                          nodes {
+                            commentsConnection
+                            user {
+                              id
+                              name
+                            }
+                            submissionType
+                            submissionStatus
+                            submittedAt
+                            gradedAt
+                            postedAt
+                            updatedAt
+                            url
+                            attachments {
+                              url
+                              updatedAt
+                              createdAt
+                              displayName
+                              contentType
+                            }
+                            score
+                            submissionCommentDownloadUrl
+                            attempt
+                            body
+                            createdAt
+                            deductedPoints
+                            enteredGrade
+                            excused
+                            extraAttempts
+                            grade
+                            late
+                            previewUrl
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }`;
+            try {
+              let res = await $.post(`/api/graphql`, {
+                  query: query
+              });
+              let data = res.data.course;
+              return {
+                  name: data.name,
+                  assignment_groups: data.assignmentGroupsConnection.nodes.filter(group => group.state == 'available').map(group => {
+                  group.assignments = group.assignmentsConnection.nodes;
+                  return group;
+                  }),
+                  submissions: data.submissionsConnection.nodes
+              }
+            } catch (err) {
+              console.error(err);
+              return {
+                  name: course.name,
+                  assignment_groups: [],
+                  submissions: []
+              }
+            }
+        },
           // api call to load submissions
           async getAllSubmissions(assignmentId = '') {
             let app = this;
@@ -301,7 +380,9 @@
             if (assignmentId !== '') {
               packet['assignment_ids'] = [assignmentId];
             }
-            let submissions = await canvasGet("/api/v1/courses/" + app.courseId + "/students/submissions", packet);
+            let graphqlData = await this.getGraphQLData(app.courseId);
+            console.log(graphqlData);
+            return [];
             for (let s = 0; s < submissions.length; s++) {
               let submission = submissions[s];
               if (submissionsByAssignment[submission.assignment_id] === undefined) {
