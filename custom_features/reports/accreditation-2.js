@@ -439,11 +439,6 @@ id
               app.needsToWait = true;
             }
 
-            //new quizzes :(
-            if (type === 'basic_lti_launch') {
-              app.needsToWait = true;
-            }
-
             //text entry for assignments
             //append comments here and pull them from rubrics. If no text entry, just grab the comments
 
@@ -482,12 +477,6 @@ id
               }
             }
 
-            //new quizzes :(
-            if (type === 'basic_lti_launch') {
-              let url = submission.previewUrl;
-              window.open(url, '_blank');
-            }
-
             //check if nothing has been gotten
             if (app.needsToWait === false) {
               app.preparingDocument = false;
@@ -511,6 +500,14 @@ id
               }
             }
             return returnString;
+          },
+          checkLTI(submission) {
+            let type = submission.submissionType;
+            //new quizzes :(
+            if (type === 'basic_lti_launch') {
+              let url = submission.previewUrl;
+              window.open(url, '_blank');
+            }
           },
           async downloadComments(iframe, content, data) {
             let app = this;
@@ -544,6 +541,7 @@ id
               afterPrint: function () {
                 $('title').text(ogTitle);
                 app.preparingDocument = false;
+                this.checkLTI(data.submission);
                 iframe.remove();
              ;
               }
@@ -585,6 +583,7 @@ id
                     afterPrint: function () {
                       $('title').text(ogTitle);
                       app.preparingDocument = false;
+                      this.checkLTI(data.submission);
                       iframe.remove();
                     }
                   });
