@@ -376,7 +376,7 @@
             } catch (err) {
               console.error(err);
               return {
-                  name: course.name,
+                  name: '',
                   assignment_groups: [],
                   submissions: []
               }
