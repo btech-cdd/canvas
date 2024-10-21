@@ -441,8 +441,6 @@ id
 
             //new quizzes :(
             if (type === 'basic_lti_launch') {
-              let url = submission.previewUrl;
-              window.open(url, '_blank');
               app.needsToWait = true;
             }
 
@@ -482,6 +480,12 @@ id
                 setTimeout(() => document.body.removeChild(iframe), 1000);
                 };
               }
+            }
+
+            //new quizzes :(
+            if (type === 'basic_lti_launch') {
+              let url = submission.previewUrl;
+              window.open(url, '_blank');
             }
 
             //check if nothing has been gotten
