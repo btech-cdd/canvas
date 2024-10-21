@@ -290,7 +290,7 @@
             console.log(courseId);
             let query = `{
               course(id: "${courseId}") {
-               id
+             id
     name
     courseCode
     assignmentGroupsConnection {
@@ -304,9 +304,7 @@
             name
             published
             pointsPossible
-            submissionsConnection(
-              filter: {includeDeactivated: true, includeUnsubmitted: true, includeConcluded: true}
-            )
+            submissionsConnection {
               nodes {
                 commentsConnection {
                   edges {
