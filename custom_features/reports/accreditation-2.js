@@ -155,8 +155,6 @@
           console.log(courseCode);
           this.assignmentGroups = data.assignment_groups;
 
-          this.getAllSubmissions();
-
           let sections = await canvasGet("/api/v1/courses/" + this.courseId + "/sections?include[]=students")
           this.sections = sections;
 
