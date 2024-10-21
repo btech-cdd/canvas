@@ -145,7 +145,7 @@
         el: "#accreditation",
         mounted: async function () {
           this.courseId = CURRENT_COURSE_ID;
-          let data = await getGraphQLData(this.courseId);
+          let data = await this.getGraphQLData(this.courseId);
           console.log(data);
           await $.get("/api/v1/courses/" + this.courseId).done((data) => {
             this.courseData = data;
