@@ -342,6 +342,7 @@
                 }
               }
             }`;
+            console.log(query);
             try {
               let res = await $.post(`/api/graphql`, {
                   query: query
