@@ -446,6 +446,7 @@ id
                 'submission': submission,
                 'assignment': assignment
               });
+              app.preparingDocument = false;
               return
             }
 
