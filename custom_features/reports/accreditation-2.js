@@ -541,7 +541,7 @@ id
               afterPrint: function () {
                 $('title').text(ogTitle);
                 app.preparingDocument = false;
-                this.checkLTI(data.submission);
+                app.checkLTI(data.submission);
                 iframe.remove();
              ;
               }
@@ -583,7 +583,7 @@ id
                     afterPrint: function () {
                       $('title').text(ogTitle);
                       app.preparingDocument = false;
-                      this.checkLTI(data.submission);
+                      app.checkLTI(data.submission);
                       iframe.remove();
                     }
                   });
