@@ -288,59 +288,66 @@
             console.log(courseId);
             let query = `{
               course(id: "${courseId}") {
-                id
-                name
-                assignmentGroupsConnection {
-                  nodes {
-                    name
-                    groupWeight
-                    state
-                    assignmentsConnection {
-                      nodes {
-                        _id
-                        name
-                        published
-                        pointsPossible
-                        submissionsConnection {
-                          nodes {
-                            commentsConnection
-                            user {
-                              id
-                              name
-                            }
-                            submissionType
-                            submissionStatus
-                            submittedAt
-                            gradedAt
-                            postedAt
-                            updatedAt
-                            url
-                            attachments {
-                              url
-                              updatedAt
-                              createdAt
-                              displayName
-                              contentType
-                            }
-                            score
-                            submissionCommentDownloadUrl
-                            attempt
-                            body
-                            createdAt
-                            deductedPoints
-                            enteredGrade
-                            excused
-                            extraAttempts
-                            grade
-                            late
-                            previewUrl
-                          }
-                        }
-                      }
+               id
+    name
+    assignmentGroupsConnection {
+      nodes {
+        name
+        groupWeight
+        state
+        assignmentsConnection {
+          nodes {
+            _id
+            name
+            published
+            pointsPossible
+            submissionsConnection {
+              nodes {
+                commentsConnection {
+                  edges {
+                    node {
+                      id
+                      comment
                     }
                   }
                 }
+                user {
+                  id
+                  name
+                }
+                submissionType
+                submissionStatus
+                submittedAt
+                gradedAt
+                postedAt
+                updatedAt
+                url
+                attachments {
+                  url
+                  updatedAt
+                  createdAt
+                  displayName
+                  contentType
+                }
+                score
+                submissionCommentDownloadUrl
+                attempt
+                body
+                createdAt
+                deductedPoints
+                enteredGrade
+                excused
+                extraAttempts
+                grade
+                late
+                previewUrl
               }
+            }
+          }
+        }
+      }
+    }
+  } 
             }`;
             console.log(query);
             try {
