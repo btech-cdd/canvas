@@ -361,6 +361,7 @@
               });
               let data = res.data.course;
               return {
+                id: courseId,
                 name: data.name,
                 course_code: data.courseCode,
                 assignment_groups: data.assignmentGroupsConnection.nodes.filter(group => group.state == 'available').map(group => {
