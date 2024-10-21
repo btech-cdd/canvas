@@ -54,12 +54,13 @@
         <div>
           <div v-for='group in assignmentGroups'>
             <h2>{{group.name}}</h2>
-            <div v-for='assignment in getSubmittedAssignments(group.assignments)'>
-              <div
-                :style="{
-                  'color': getFilteredSubmissions(assignment?.submissions ?? []).length > 0 ? '#000000' : '#888888'
-                }"
-              >
+            <div 
+              v-for='assignment in getSubmittedAssignments(group.assignments)'
+              :style="{
+                'color': getFilteredSubmissions(assignment?.submissions ?? []).length > 0 ? '#000000' : '#888888'
+              }"
+            >
+              <div>
                 <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a> (<span>{{getFilteredSubmissions(assignment.submissions).length}}</span><span v-else>...</span>)
               </div>
             </div>
