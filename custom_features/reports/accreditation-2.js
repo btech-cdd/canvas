@@ -129,7 +129,7 @@
                     {{enrollmentTypes?.[submission.user.id] ?? ''}}
                   </span>
                   <span>
-                    {{Math.round(submission.score / currentAssignment.points_possible * 1000) / 10}}%
+                    {{Math.round(submission.score / currentAssignment.pointsPossible * 1000) / 10}}%
                   </span>
                   <span>
                     <i v-if="submission?.rubric_assessment" class='icon-check'></i>
