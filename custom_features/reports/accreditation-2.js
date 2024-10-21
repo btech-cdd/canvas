@@ -399,7 +399,9 @@ id
           //THIS IS WHERE EVERYTHING GETS SORTED OUT AND ALL THE DOWNLOADS ARE INITIATED
           async downloadSubmission(assignment, submission) {
             let app = this;
-            let types = assignment.submission_types;
+            console.log(assignment);
+            console.log(submission);
+            let types = assignment.submissionTypes;
             app.preparingDocument = true;
 
             //this needs to be set or it will flip preparing Document to false at the end, IE if it will be pulling up a print screen, set this to true
