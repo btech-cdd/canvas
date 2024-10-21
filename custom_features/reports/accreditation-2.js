@@ -373,8 +373,7 @@
                     return assignment;
                   });
                   return group;
-                }),
-                submissions: data.submissionsConnection.nodes
+                })
               }
             } catch (err) {
               console.error(err);
