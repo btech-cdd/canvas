@@ -405,7 +405,7 @@
               for (let i = 0; i < assignmentsData.attachments.length; i++) {
                 let attachment = assignmentsData.attachments[i];
                 console.log(attachment);
-                let iframe = await app.createIframe(attachment.url, (iframe) => {iframe.remove(); console.log(iframe);}, {});
+                let iframe = await app.createIframe(attachment.url, (iframe) => {console.log(iframe);}, {});
                 iframe.remove();
               }
             }
