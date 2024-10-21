@@ -214,7 +214,6 @@
         },
         methods: {
           getSubmissionDate(submission) {
-            console.log(submission);
             let date = submission.submittedAt;
             if (date === null) {
               date = submission.gradedAt;
@@ -288,7 +287,6 @@
           },
 
           async getGraphQLData(courseId) {
-            console.log(courseId);
             let query = `{
               course(id: "${courseId}") {
             id
@@ -372,6 +370,7 @@
                     assignment.submissions = assignment.submissionsConnection.nodes.map( submission => {
                       submission.comments = submission.commentsConnection;
                       submission.user.id = submission.user._id;
+                      return submission;
                     });
                     return assignment;
                   });
