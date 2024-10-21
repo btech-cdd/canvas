@@ -345,6 +345,7 @@
               let res = await $.post(`/api/graphql`, {
                   query: query
               });
+              console.log(res.data);
               let data = res.data.course;
               console.log(data);
               return {
