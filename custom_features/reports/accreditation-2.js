@@ -363,10 +363,13 @@
                 name: data.name,
                 course_code: data.courseCode,
                 assignment_groups: data.assignmentGroupsConnection.nodes.filter(group => group.state == 'available').map(group => {
-                group.assignments = group.assignmentsConnection.nodes.map( assignment => {
-                  // assignment.submissions = assignment.submissionsConnection.nodes;
-                });
-                return group;
+                  console.log(group);
+                  group.assignments = group.assignmentsConnection.nodes.map( assignment => {
+                    console.log(assignment);
+                    assignment.submissions = assignment.submissionsConnection.nodes;
+                    return assignment;
+                  });
+                  return group;
                 }),
                 submissions: data.submissionsConnection.nodes
               }
