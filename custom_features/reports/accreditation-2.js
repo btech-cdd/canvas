@@ -214,6 +214,7 @@
         },
         methods: {
           getSubmissionDate(submission) {
+            console.log(submission);
             let date = submission.submittedAt;
             if (date === null) {
               date = submission.gradedAt;
