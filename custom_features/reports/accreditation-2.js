@@ -391,13 +391,14 @@ id
             let comments = submission.comments;
             let el = "";
             if (comments.length > 0) {
+              console.log(comments);
               el = $("<div style='page-break-before: always;' class='btech-accreditation-comments'></div>")
               el.append("<h2>Comments</h2>")
               for (let i = 0; i < comments.length; i++) {
                 let comment = comments[i];
                 let commentEl = $(`<div class='btech-accreditation-comment' style='border-bottom: 1px solid #000;'>
                   ${comment.htmlComment}
-                  <p style='text-align: right;'><i>-` + comment.author.name + `, ` + this.dateToString(comment.createdAt) + `</i></p>
+                  <p style='text-align: right;'><i>-${comment.author.name}, ${this.dateToString(comment.createdAt)}</i></p>
                 </div>`);
                 el.append(commentEl);
               }
