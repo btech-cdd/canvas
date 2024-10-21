@@ -106,6 +106,9 @@
                     <b>Has Rubric?</b>
                   </span>
                   <span>
+                    <b>Has Comments?</b>
+                  </span>
+                  <span>
                     <b>Date Submitted</b>
                   </span>
                   <span>
@@ -133,6 +136,9 @@
                   </span>
                   <span>
                     <i v-if="submission?.rubric_assessments?.length > 0" class='icon-check'></i>
+                  </span>
+                  <span>
+                    <i v-if="submission?.comments?.length > 0" class='icon-check'></i>
                   </span>
                   <span>
                     {{getSubmissionDate(submission)}}
