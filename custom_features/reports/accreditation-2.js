@@ -52,6 +52,7 @@
           </select>
         </div>
         <div v-if="loadingCourse">
+          Loading submissions...
         </div>
         <div v-else>
           <div v-for='group in assignmentGroups'>
