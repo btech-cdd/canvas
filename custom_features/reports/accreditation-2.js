@@ -516,7 +516,7 @@ id
           checkLTI(submission) {
             let type = submission.submissionType;
             //new quizzes :(
-            if (type === 'basic_lti_launch') {
+            if (type === 'basic_lti_launch' || type === 'external_tool') {
               let url = submission.previewUrl;
               if (url) {
                 window.open(url, '_blank');
