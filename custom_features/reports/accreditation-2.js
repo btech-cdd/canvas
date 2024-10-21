@@ -160,6 +160,13 @@
         el: "#accreditation",
         mounted: async function () {
           this.courseId = CURRENT_COURSE_ID;
+          let data = await this.getGraphQLData(this.courseId);
+          this.courseData = {
+            name: data.name,
+            course_code: data.course_code
+          }
+          let courseCode = this.courseData.course_code;
+          this.assignmentGroups = data.assignment_groups;
 
           let sections = await canvasGet("/api/v1/courses/" + this.courseId + "/sections?include[]=students")
           this.sections = sections;
@@ -184,14 +191,6 @@
               }
             }
           }
-
-          let data = await this.getGraphQLData(this.courseId);
-          this.courseData = {
-            name: data.name,
-            course_code: data.course_code
-          }
-          let courseCode = this.courseData.course_code;
-          this.assignmentGroups = data.assignment_groups;
         },
         data: function () {
           return {
