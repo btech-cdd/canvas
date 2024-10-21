@@ -269,8 +269,10 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         //Don't turn on flags unless figure out a way to not display the flag tool by default.
         ////Ran into issue where Vue wasn't loading properly so nobody could do anything.
         //if (IS_CDD) externalFeature('https://flags.bridgetools.dev/main.js');
-        if (IS_ME) feature('reports/accreditation-2', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
-        else feature('reports/accreditation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
+
+        //this should be working now
+        feature('reports/accreditation-2', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
+        // feature('reports/accreditation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
 
         // if (IS_ME) $.getScript("https://bridgetools.dev/collaborator/import.js");
         featureCDD("cleoducktra/main", {}, /^/);
