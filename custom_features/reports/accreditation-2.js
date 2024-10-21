@@ -291,11 +291,10 @@ id
             ) {
               nodes {
                 commentsConnection {
-                  edges {
-                    node {
-                      id
-                      comment
-                    }
+                  nodes {
+                    comment
+                    _id
+                    htmlComment
                   }
                 }
                 user {
@@ -467,19 +466,6 @@ id
               }
             }
 
-
-            // if (types.includes("online_upload")) {
-            //   let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
-            //   let assignmentsData = (await canvasGet(url))[0];
-            //   console.log(assignmentsData);
-            //   for (let i = 0; i < assignmentsData.attachments.length; i++) {
-            //     let attachment = assignmentsData.attachments[i];
-            //     console.log(attachment);
-            //     // the remove has to happen in the passed function otherwise it removes before the iframe has had a chance to download the submission.
-            //     let iframe = await app.createIframe(attachment.url, (iframe) => { iframe.remove();}, {});
-            //     console.log(iframe); 
-            //   }
-            // }
             //check if nothing has been gotten
             if (app.needsToWait === false) {
               app.preparingDocument = false;
