@@ -284,9 +284,9 @@
             return submittedAssignments;
           },
 
-          async getGraphQLData(course) {
+          async getGraphQLData(courseId) {
             let query = `{
-              course(id: "${course.id}") {
+              course(id: "${courseId}") {
                 id
                 name
                 assignmentGroupsConnection {
