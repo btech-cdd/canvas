@@ -405,8 +405,9 @@
               for (let i = 0; i < assignmentsData.attachments.length; i++) {
                 let attachment = assignmentsData.attachments[i];
                 console.log(attachment);
-                let iframe = await app.createIframe(attachment.url, (iframe) => { console.log(iframe); iframe.remove();}, {});
-                // iframe.remove();
+                // the remove has to happen in the passed function otherwise it removes before the iframe has had a chance to download the submission.
+                let iframe = await app.createIframe(attachment.url, (iframe) => { iframe.remove();}, {});
+                console.log(iframe); 
               }
             }
             //check if nothing has been gotten
