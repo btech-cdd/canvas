@@ -275,8 +275,11 @@
                 checkSection = includedStudents.includes(submission.user_id);
               }
 
+              let submitted = true;
+              if (submission.submissionStatus == 'unsubmitted') submitted = false;
+
               //check all filters
-              if (checkDate && checkSection) {
+              if (checkDate && checkSection && submitted) {
                 output.push(submission);
               }
             }
