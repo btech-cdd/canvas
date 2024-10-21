@@ -447,6 +447,7 @@ id
                 'assignment': assignment
               });
               app.needsToWait = true;
+              return
             }
 
             //text entry for assignments
@@ -454,6 +455,7 @@ id
 
             //rubrics
             if (submission.rubric_assessments.length > 0) {
+              console.log("has rubric")
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               await app.createIframe(url, app.downloadRubric, {
                 'submission': submission,
@@ -468,6 +470,7 @@ id
                 'assignment': assignment
               });
             }
+
             if (submission?.attachments?.length > 0) {
               for (let i = 0; i < submission.attachments.length; i++) {
                 let attachment = submission.attachments[i];
