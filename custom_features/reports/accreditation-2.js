@@ -132,7 +132,7 @@
                     {{Math.round(submission.score / currentAssignment.pointsPossible * 1000) / 10}}%
                   </span>
                   <span>
-                    <i v-if="submission?.rubric_assessment" class='icon-check'></i>
+                    <i v-if="submission?.rubric_assessments?.length > 0" class='icon-check'></i>
                   </span>
                   <span>
                     {{getSubmissionDate(submission)}}
@@ -358,6 +358,7 @@ id
                     assignment.id = assignment._id;
                     assignment.submissions = assignment.submissionsConnection.nodes.map( submission => {
                       submission.comments = submission.commentsConnection;
+                      submission.rubric_assessments = submission?.rubricAssessmentsConnection?.nodes ?? [];
                       submission.user.id = submission.user._id;
                       submission
                       return submission;
