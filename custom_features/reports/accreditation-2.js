@@ -516,13 +516,12 @@ id
           checkLTI(submission) {
             let type = submission.submissionType;
             //new quizzes :(
-            if (type === 'basic_lti_launch' || type === 'external_tool') {
+            if (type === 'basic_lti_launch') {
               let url = submission.previewUrl;
-              if (url && type === 'basic_lti_launch') {
-                window.open(url, '_blank');
-              } else {
-                alert(`This is an assignment handled by a third party tool. You will need to pull evidence from the tool directly.`)
-              }
+              window.open(url, '_blank');
+            }
+            if (type == 'external_tool') {
+              alert(`This is an assignment handled by a third party tool. You will need to pull evidence from the tool directly.`);
             }
           },
           async downloadComments(iframe, content, data) {
