@@ -248,6 +248,7 @@
               let submission = submissions[s];
               //date filter
               let checkDate = false;
+              console.log(submission);
               let date = app.getSubmissionDate(submission);
               if (date !== null) {
                 if ((date >= startDate || startDate === null) && (date <= endDate || endDate === null)) {
