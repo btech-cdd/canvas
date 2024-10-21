@@ -518,7 +518,7 @@ id
             //new quizzes :(
             if (type === 'basic_lti_launch' || type === 'external_tool') {
               let url = submission.previewUrl;
-              if (url) {
+              if (url && type === 'basic_lti_launch') {
                 window.open(url, '_blank');
               } else {
                 alert(`This is an assignment handled by a third party tool. You will need to pull evidence from the tool directly.`)
