@@ -399,6 +399,7 @@
               });
             }
             if (types.includes("online_upload")) {
+               if (types.includes("online_upload")) {
                 let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
                 let assignmentsData = (await canvasGet(url))[0];
                 console.log(assignmentsData);
@@ -407,28 +408,21 @@
                     let attachment = assignmentsData.attachments[i];
                     console.log(attachment);
 
-                    // Fetch the attachment as a blob
-                    const response = await fetch(attachment.url);
-                    const blob = await response.blob();
+                    // Create an iframe and set the src to the attachment URL
+                    let iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    iframe.src = attachment.url + "?download=true"; // Append a query param to indicate download if needed
 
-                    // Create a blob URL
-                    const blobUrl = window.URL.createObjectURL(blob);
+                    // Append the iframe to the DOM
+                    document.body.appendChild(iframe);
 
-                    // Create an anchor element
-                    let a = document.createElement('a');
-                    a.href = blobUrl;
-                    a.download = attachment.filename || 'download'; // Use the filename from the attachment
-
-                    // Append it to the DOM
-                    document.body.appendChild(a);
-
-                    // Trigger the download prompt
-                    a.click();
-
-                    // Clean up: Remove the anchor and revoke the blob URL
-                    document.body.removeChild(a);
-                    window.URL.revokeObjectURL(blobUrl);
+                    // Remove the iframe after the download starts
+                    iframe.onload = function() {
+                    setTimeout(() => document.body.removeChild(iframe), 1000);
+                    };
                 }
+                }
+                
             }
 
 
