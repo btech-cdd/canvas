@@ -393,7 +393,7 @@ id
                 let comment = comments[i];
                 let commentEl = $(`<div class='btech-accreditation-comment' style='border-bottom: 1px solid #000;'>
                   <p>` + comment.comment + `</p>
-                  <p style='text-align: right;'><i>-` + comment.author_name + `, ` + comment.created_at + `</i></p>
+                  <p style='text-align: right;'><i>-` + comment.author.name + `, ` + comment.createdAt + `</i></p>
                 </div>`);
                 el.append(commentEl);
               }
