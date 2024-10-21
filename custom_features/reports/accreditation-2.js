@@ -468,6 +468,7 @@ id
                 'submission': submission,
                 'assignment': assignment
               });
+              app.preparingDocument = false;
             }
 
             if (submission?.attachments?.length > 0) {
