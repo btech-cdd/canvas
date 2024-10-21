@@ -446,7 +446,6 @@ id
                 'submission': submission,
                 'assignment': assignment
               });
-              app.needsToWait = true;
               return
             }
 
