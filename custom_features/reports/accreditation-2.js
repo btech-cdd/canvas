@@ -396,7 +396,7 @@ id
               for (let i = 0; i < comments.length; i++) {
                 let comment = comments[i];
                 let commentEl = $(`<div class='btech-accreditation-comment' style='border-bottom: 1px solid #000;'>
-                  <p>` + comment.comment + `</p>
+                  ${comment.htmlComment}
                   <p style='text-align: right;'><i>-` + comment.author.name + `, ` + this.dateToString(comment.createdAt) + `</i></p>
                 </div>`);
                 el.append(commentEl);
