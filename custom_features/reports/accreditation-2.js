@@ -652,7 +652,7 @@ id
             window.onafterprint = (event) => {
               $('title').text(ogTitle);
               app.preparingDocument = false;
-              iframe.remove();
+              // iframe.remove();
             }
             window.focus();
             window.print();
