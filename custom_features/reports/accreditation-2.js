@@ -429,7 +429,7 @@ id
 
             //vanilla quizzes
             //need to append comments to this
-            if (assignment?.quiz_id) {
+            if (type == 'online_quiz') {
               let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
               await app.createIframe(url, app.downloadQuiz, {
                 'submission': submission,
@@ -472,7 +472,6 @@ id
             if (type == "online_upload") {
               for (let i = 0; i < submission.attachments.length; i++) {
                   let attachment = submission.attachments[i];
-                  console.log(attachment);
 
                   // Create an iframe and set the src to the attachment URL
                   let iframe = document.createElement('iframe');
