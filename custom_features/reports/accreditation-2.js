@@ -301,6 +301,10 @@ id
                     comment
                     _id
                     htmlComment
+                    createdAt
+                    author {
+                      name
+                    }
                   }
                 }
                 user {
