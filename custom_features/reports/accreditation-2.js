@@ -346,6 +346,7 @@
                   query: query
               });
               let data = res.data.course;
+              console.log(data);
               return {
                   name: data.name,
                   assignment_groups: data.assignmentGroupsConnection.nodes.filter(group => group.state == 'available').map(group => {
