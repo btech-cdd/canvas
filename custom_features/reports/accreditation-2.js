@@ -378,7 +378,7 @@ id
           },
           // api call to load comments for a submission
           getComments(submission) {
-            let comments = submission.submission_comments;
+            let comments = submission.comments;
             let el = "";
             if (comments.length > 0) {
               el = $("<div style='page-break-before: always;' class='btech-accreditation-comments'></div>")
