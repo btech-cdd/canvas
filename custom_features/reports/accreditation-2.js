@@ -51,7 +51,9 @@
             </option>
           </select>
         </div>
-        <div>
+        <div v-if="loadingCourse">
+        </div>
+        <div v-else>
           <div v-for='group in assignmentGroups'>
             <h2>{{group.name}}</h2>
             <div 
@@ -167,6 +169,7 @@
           }
           let courseCode = this.courseData.course_code;
           this.assignmentGroups = data.assignment_groups;
+          this.loadingCourse = false;
 
           let sections = await canvasGet("/api/v1/courses/" + this.courseId + "/sections?include[]=students")
           this.sections = sections;
@@ -211,7 +214,8 @@
             needsToWait: false,
             sortBy: "name",
             campuses: {},
-            enrollmentTypes: {}
+            enrollmentTypes: {},
+            loadingCourse: true
           }
         },
         methods: {
