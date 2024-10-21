@@ -598,6 +598,8 @@ id
         
           //Not currently working because of CORS
           async downloadNewQuiz(iframe, content, data) {
+            console.log(content);
+            console.log("NEW QUIZ");
             let app = this;
             let elId = iframe.attr('id');
             let id = elId.replace('btech-content-', '');
