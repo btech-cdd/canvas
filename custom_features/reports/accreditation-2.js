@@ -515,7 +515,11 @@ id
             //new quizzes :(
             if (type === 'basic_lti_launch') {
               let url = submission.previewUrl;
-              window.open(url, '_blank');
+              if (url) {
+                window.open(url, '_blank');
+              } else {
+                alert(`This is an assignment handled by a third party tool. You will need to pull evidence from the tool directly.`)
+              }
             }
           },
           async downloadComments(iframe, content, data) {
