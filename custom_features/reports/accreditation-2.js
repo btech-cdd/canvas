@@ -61,7 +61,11 @@
               }"
             >
               <div>
-                <a style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a> (<span>{{getFilteredSubmissions(assignment.submissions).length}}</span><span v-else>...</span>)
+                <a 
+                  :style="{
+                    'color': getFilteredSubmissions(assignment?.submissions ?? []).length > 0 ? '#000000' : '#888888'
+                  }"
+                  style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a> (<span>{{getFilteredSubmissions(assignment.submissions).length}}</span><span v-else>...</span>)
               </div>
             </div>
           </div>
