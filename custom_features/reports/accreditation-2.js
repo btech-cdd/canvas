@@ -302,6 +302,7 @@ id
             pointsPossible
             submissionsConnection(
               filter: {includeConcluded: true, includeDeactivated: true, includeUnsubmitted: false}
+              orderBy: {field: username}
             ) {
               nodes {
                 commentsConnection {
