@@ -65,7 +65,7 @@
                   :style="{
                     'color': getFilteredSubmissions(assignment?.submissions ?? []).length > 0 ? '#000000' : '#888888'
                   }"
-                  style='cursor: pointer;' @click='currentGroup = group; openModal(assignment)'>{{assignment.name}}</a> (<span>{{getFilteredSubmissions(assignment.submissions).length}}</span><span v-else>...</span>)
+                  style='cursor: pointer;' @click='currentGroup = group; console.log(assignment); openModal(assignment)'>{{assignment.name}}</a> (<span>{{getFilteredSubmissions(assignment.submissions).length}}</span><span v-else>...</span>)
               </div>
             </div>
           </div>
@@ -343,7 +343,6 @@ id
     }
   } 
             }`;
-            console.log(query);
             try {
               let res = await $.post(`/api/graphql`, {
                   query: query
@@ -360,6 +359,7 @@ id
                     assignment.submissions = assignment.submissionsConnection.nodes.map( submission => {
                       submission.comments = submission.commentsConnection;
                       submission.user.id = submission.user._id;
+                      submission
                       return submission;
                     });
                     return assignment;
