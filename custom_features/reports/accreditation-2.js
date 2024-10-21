@@ -442,12 +442,8 @@ id
             //new quizzes :(
             if (type === 'basic_lti_launch') {
               let url = submission.previewUrl;
-              await app.createIframe(url, app.downloadNewQuiz, {
-                'submission': submission,
-                'assignment': assignment
-              });
-              app.preparingDocument = false;
-              return
+              window.open(url, '_blank');
+              app.needsToWait = true;
             }
 
             //text entry for assignments
@@ -455,7 +451,6 @@ id
 
             //rubrics
             if (submission.rubric_assessments.length > 0) {
-              console.log("has rubric")
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               await app.createIframe(url, app.downloadRubric, {
                 'submission': submission,
@@ -469,9 +464,7 @@ id
                 'submission': submission,
                 'assignment': assignment
               });
-              app.preparingDocument = false;
             }
-
             if (submission?.attachments?.length > 0) {
               for (let i = 0; i < submission.attachments.length; i++) {
                 let attachment = submission.attachments[i];
@@ -654,50 +647,27 @@ id
             window.print();
             return;
           },
-          // async createIframe(url, func = null, data = {}) {
-          //   let id = genId();
-          //   let elId = 'btech-content-' + id
-          //   let iframe = $('<iframe id="' + elId + '" style="width: 1200px;" src="' + url + '"></iframe>');
-          //   // iframe.hide();
-
-          //   $("#content").append(iframe);
-          //   //This is unused. was for trying to convert an html element to a canvas then to a data url then to image then to pdf, but ran into cors issues.
-          //   // $("#content").append("<div id='btech-export-" + id + "'></div>");
-          //   let window = document.getElementById(elId).contentWindow;
-          //   console.log(url);
-          //   window.onload = function () {
-          //     let content = $(window.document.getElementsByTagName('body')[0]);
-          //     let imgs = content.find('img'); // I believe this was done just to make sure the images were fully loaded. Was running into issues with quizzes where images didn't have a chance to load all the way. 
-          //     console.log(imgs);
-          //     if (func !== null) {
-          //       func(iframe, content, data);
-          //     }
-          //   }
-          //   return iframe;
-          // },
           async createIframe(url, func = null, data = {}) {
             let id = genId();
-            let elId = 'btech-content-' + id;
+            let elId = 'btech-content-' + id
             let iframe = $('<iframe id="' + elId + '" style="width: 1200px;" src="' + url + '"></iframe>');
+            // iframe.hide();
 
             $("#content").append(iframe);
-
-            // Use the iframe element's onload event to detect when the content has loaded
-            iframe.on('load', function () {
-              let iframeWindow = document.getElementById(elId).contentWindow;
-              let content = $(iframeWindow.document.getElementsByTagName('body')[0]);
-              let imgs = content.find('img'); // To ensure images are loaded
+            //This is unused. was for trying to convert an html element to a canvas then to a data url then to image then to pdf, but ran into cors issues.
+            // $("#content").append("<div id='btech-export-" + id + "'></div>");
+            let window = document.getElementById(elId).contentWindow;
+            console.log(url);
+            window.onload = function () {
+              let content = $(window.document.getElementsByTagName('body')[0]);
+              let imgs = content.find('img'); // I believe this was done just to make sure the images were fully loaded. Was running into issues with quizzes where images didn't have a chance to load all the way. 
               console.log(imgs);
-
-              // If a function was passed, execute it with the iframe, content, and data
               if (func !== null) {
                 func(iframe, content, data);
               }
-            });
-
+            }
             return iframe;
           },
-
 
           async openModal(assignment) {
             let app = this;
