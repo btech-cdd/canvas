@@ -402,24 +402,32 @@
                 let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
                 let assignmentsData = (await canvasGet(url))[0];
                 console.log(assignmentsData);
-                
+
                 for (let i = 0; i < assignmentsData.attachments.length; i++) {
                     let attachment = assignmentsData.attachments[i];
                     console.log(attachment);
 
+                    // Fetch the attachment as a blob
+                    const response = await fetch(attachment.url);
+                    const blob = await response.blob();
+
+                    // Create a blob URL
+                    const blobUrl = window.URL.createObjectURL(blob);
+
                     // Create an anchor element
                     let a = document.createElement('a');
-                    a.href = attachment.url;
-                    a.download = attachment.filename || 'download'; // filename is optional, adjust as needed
+                    a.href = blobUrl;
+                    a.download = attachment.filename || 'download'; // Use the filename from the attachment
 
-                    // Append it to the DOM (required for Firefox)
+                    // Append it to the DOM
                     document.body.appendChild(a);
 
                     // Trigger the download prompt
                     a.click();
 
-                    // Remove the anchor after clicking
+                    // Clean up: Remove the anchor and revoke the blob URL
                     document.body.removeChild(a);
+                    window.URL.revokeObjectURL(blobUrl);
                 }
             }
 
