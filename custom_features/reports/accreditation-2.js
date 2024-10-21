@@ -369,8 +369,7 @@
                   group.assignments = group.assignmentsConnection.nodes.map( assignment => {
                     assignment.id = assignment._id;
                     assignment.submissions = assignment.submissionsConnection.nodes.map( submission => {
-                      submission.comments = submission.nodes.commentsConnection;
-                      submission.user = submission.nodes.user;
+                      submission.comments = submission.commentsConnection;
                       submission.user.id = submission.user._id;
                     });
                     return assignment;
