@@ -603,19 +603,12 @@ id
             let id = elId.replace('btech-content-', '');
             let title = data.assignment.name + "-" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission"
             let commentEl = app.getComments(data.submission);
-            let url = data.submission.previewUrl;
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + "</div>");
             if (this.campuses?.[data.submission.user.id] ?? '' != '') {
               content.prepend("<div>Campus:" + this.campuses[data.submission.user.id] + "</div>");
             }
             content.prepend("<div>Title:" + data.assignment.name + "</div>");
-            content.append(`<iframe src='`+url+`' 
-                              width='800px' 
-                              scrolling='no' 
-                              frameborder='0' 
-                              onload="let obj = this; setTimeout(function() {obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';}, 5000);"
-                            ></iframe>`);
             content.append(commentEl);
             let ogTitle = $('title').text();
             $('title').text(title);
@@ -626,11 +619,7 @@ id
               // iframe.remove();
             }
             window.focus();
-            // setTimeout(function() { window.print(); }, 5000);
-
-            //DELETE
-            app.preparingDocument = false;
-            iframe.show();
+            window.print();
             return;
           },
           async downloadQuiz(iframe, content, data) {
