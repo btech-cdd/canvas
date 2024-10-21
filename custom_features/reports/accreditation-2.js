@@ -285,6 +285,7 @@
           },
 
           async getGraphQLData(courseId) {
+            console.log(courseId);
             let query = `{
               course(id: "${courseId}") {
                 id
