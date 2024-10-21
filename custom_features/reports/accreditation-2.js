@@ -188,7 +188,7 @@
               }
             }
           }
-          console.log(sections);
+          console.log(this.campuses);
         },
         data: function () {
           return {
