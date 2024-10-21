@@ -1,4 +1,5 @@
 (async function () {
+    console.log("ACCREDITATION 2.0")
   //FILTER BY SECTION
   //NEW QUIZZES???
   //With assignments make sure to also grab if they did a text submission or other possible submission types
