@@ -311,13 +311,13 @@
                 commentsConnection {
                   edges {
                     node {
-                      id
+                      _id
                       comment
                     }
                   }
                 }
                 user {
-                  id
+                  _id
                   name
                 }
                 submissionType
@@ -364,8 +364,14 @@
                 name: data.name,
                 course_code: data.courseCode,
                 assignment_groups: data.assignmentGroupsConnection.nodes.filter(group => group.state == 'available').map(group => {
+                  group.id = group._id;
                   group.assignments = group.assignmentsConnection.nodes.map( assignment => {
-                    assignment.submissions = assignment.submissionsConnection.nodes;
+                    assignment.id = assignment._id;
+                    assignment.submissions = assignment.submissionsConnection.nodes.map( submission => {
+                      submission.comments = submission.nodes.commentsConnection;
+                      submission.user = submission.nodes.user;
+                      submission.user.id = submission.user._id;
+                    });
                     return assignment;
                   });
                   return group;
