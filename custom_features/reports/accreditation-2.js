@@ -386,6 +386,18 @@ id
               }
             }
           },
+          plainCommentToHTML(comment) {
+            // Split the comment by newlines
+            const paragraphs = comment.split('\n');
+            
+            // Filter out any empty paragraphs and wrap each in <p> tags
+            const htmlParagraphs = paragraphs
+              .filter(paragraph => paragraph.trim() !== "") // Remove any empty lines
+              .map(paragraph => `<p>${paragraph}</p>`);     // Wrap each in <p> tags
+            
+            // Join the array into a single string of HTML
+            return htmlParagraphs.join('');
+          },
           // api call to load comments for a submission
           getComments(submission) {
             let comments = submission.comments;
@@ -397,7 +409,7 @@ id
               for (let i = 0; i < comments.length; i++) {
                 let comment = comments[i];
                 let commentEl = $(`<div class='btech-accreditation-comment' style='border-bottom: 1px solid #000;'>
-                  ${comment.htmlComment}
+                  ${this.plainCommentToHTML(comment.comment)}
                   <p style='text-align: right;'><i>-${comment.author.name}, ${this.dateToString(comment.createdAt)}</i></p>
                 </div>`);
                 el.append(commentEl);
