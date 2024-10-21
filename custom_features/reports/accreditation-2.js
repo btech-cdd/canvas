@@ -5,7 +5,7 @@
   //get comments if nothing submitted. Might be easiest to instead of attaching comments to rubric, just grab whatever appears on assignment submission and attach them to that. Then attach comments to quizzes, so the content gets all comments and rubrics is just a side thing like uploads.
 
   //https://bridgetools.dev/accreditation/lti.xml
-  if (document.title === "BTECH Accreditation") {
+  if (document.title === "BTECH Accreditation 2.0") {
     //abort if this has already been run on the page
     //If you change id name, you'll have to update the css
     if ($('#accreditation').length > 0) return;
