@@ -439,16 +439,14 @@ id
             }
 
             //new quizzes :(
-            /* Thanks CORS!
-            if (assignment.is_quiz_lti_assignment) {
-              let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id;
-              await app.createIframe(url, app.downloadNewQuiz, {
+            if (type === 'basic_lti_launch') {
+              let url = submission.previewUrl;
+              await app.createIframe(url, app.downloadQuiz, {
                 'submission': submission,
                 'assignment': assignment
               });
               app.needsToWait = true;
             }
-            */
 
             //text entry for assignments
             //append comments here and pull them from rubrics. If no text entry, just grab the comments
@@ -469,22 +467,22 @@ id
                 'assignment': assignment
               });
             }
-            if (type == "online_upload") {
+            if (submission?.attachments?.length > 0) {
               for (let i = 0; i < submission.attachments.length; i++) {
-                  let attachment = submission.attachments[i];
+                let attachment = submission.attachments[i];
 
-                  // Create an iframe and set the src to the attachment URL
-                  let iframe = document.createElement('iframe');
-                  iframe.style.display = 'none';
-                  iframe.src = attachment.url + "?download=true"; // Append a query param to indicate download if needed
+                // Create an iframe and set the src to the attachment URL
+                let iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                iframe.src = attachment.url + "?download=true"; // Append a query param to indicate download if needed
 
-                  // Append the iframe to the DOM
-                  document.body.appendChild(iframe);
+                // Append the iframe to the DOM
+                document.body.appendChild(iframe);
 
-                  // Remove the iframe after the download starts
-                  iframe.onload = function() {
-                  setTimeout(() => document.body.removeChild(iframe), 1000);
-                  };
+                // Remove the iframe after the download starts
+                iframe.onload = function() {
+                setTimeout(() => document.body.removeChild(iframe), 1000);
+                };
               }
             }
 
