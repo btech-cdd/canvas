@@ -363,7 +363,7 @@
                 course_code: data.courseCode,
                 assignment_groups: data.assignmentGroupsConnection.nodes.filter(group => group.state == 'available').map(group => {
                 group.assignments = group.assignmentsConnection.nodes.map( assignment => {
-                  assignment.submissions = assignment.submissionsConnection.nodes;
+                  // assignment.submissions = assignment.submissionsConnection.nodes;
                 });
                 return group;
                 }),
