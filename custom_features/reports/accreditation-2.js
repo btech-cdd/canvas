@@ -304,7 +304,9 @@
             name
             published
             pointsPossible
-            submissionsConnection {
+            submissionsConnection(
+              filter: {includeDeactivated: true, includeUnsubmitted: true, includeConcluded: true}
+            )
               nodes {
                 commentsConnection {
                   edges {
