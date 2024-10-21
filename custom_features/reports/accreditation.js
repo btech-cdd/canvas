@@ -402,14 +402,13 @@
               console.log("INCLUDES UPLOAD");
               let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               console.log(url);
-              let assignmentsData = await canvasGet(url);
-              console.log(assignmentsData);
+              let assignmentsData = (await canvasGet(url))[0];
 
-              // for (let i = 0; i < assignmentsData.attachments.length; i++) {
-              //   let attachment = assignmentsData.attachments[i];
-              //   let iframe = await app.createIframe(attachment.url, (iframe) => {iframe.remove(); console.log(iframe);}, {});
-              //   iframe.remove();
-              // }
+              for (let i = 0; i < assignmentsData.attachments.length; i++) {
+                let attachment = assignmentsData.attachments[i];
+                let iframe = await app.createIframe(attachment.url, (iframe) => {iframe.remove(); console.log(iframe);}, {});
+                iframe.remove();
+              }
             }
             //check if nothing has been gotten
             if (app.needsToWait === false) {
