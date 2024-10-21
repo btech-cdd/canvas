@@ -441,6 +441,7 @@ id
 
             //new quizzes :(
             if (type === 'basic_lti_launch') {
+              console.log("BASIC LAUNCH!")
               let url = submission.previewUrl;
               await app.createIframe(url, app.downloadNewQuiz, {
                 'submission': submission,
