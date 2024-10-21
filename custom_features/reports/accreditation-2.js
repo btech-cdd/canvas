@@ -399,9 +399,7 @@ id
           //THIS IS WHERE EVERYTHING GETS SORTED OUT AND ALL THE DOWNLOADS ARE INITIATED
           async downloadSubmission(assignment, submission) {
             let app = this;
-            console.log(assignment);
-            console.log(submission);
-            let types = assignment.submissionTypes;
+            let type = submission.submissionType;
             app.preparingDocument = true;
 
             //this needs to be set or it will flip preparing Document to false at the end, IE if it will be pulling up a print screen, set this to true
@@ -434,7 +432,7 @@ id
             //append comments here and pull them from rubrics. If no text entry, just grab the comments
 
             //rubrics
-            if (assignment.rubric != undefined) {
+            if (submission.rubric_assessments.length > 0) {
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               await app.createIframe(url, app.downloadRubric, {
                 'submission': submission,
@@ -449,31 +447,24 @@ id
                 'assignment': assignment
               });
             }
-            if (types.includes("online_upload")) {
-               if (types.includes("online_upload")) {
-                let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
-                let assignmentsData = (await canvasGet(url))[0];
-                console.log(assignmentsData);
+            if (type == "online_upload") {
+              for (let i = 0; i < submission.attachments.length; i++) {
+                  let attachment = submission.attachments[i];
+                  console.log(attachment);
 
-                for (let i = 0; i < assignmentsData.attachments.length; i++) {
-                    let attachment = assignmentsData.attachments[i];
-                    console.log(attachment);
+                  // Create an iframe and set the src to the attachment URL
+                  let iframe = document.createElement('iframe');
+                  iframe.style.display = 'none';
+                  iframe.src = attachment.url + "?download=true"; // Append a query param to indicate download if needed
 
-                    // Create an iframe and set the src to the attachment URL
-                    let iframe = document.createElement('iframe');
-                    iframe.style.display = 'none';
-                    iframe.src = attachment.url + "?download=true"; // Append a query param to indicate download if needed
+                  // Append the iframe to the DOM
+                  document.body.appendChild(iframe);
 
-                    // Append the iframe to the DOM
-                    document.body.appendChild(iframe);
-
-                    // Remove the iframe after the download starts
-                    iframe.onload = function() {
-                    setTimeout(() => document.body.removeChild(iframe), 1000);
-                    };
-                }
-                }
-                
+                  // Remove the iframe after the download starts
+                  iframe.onload = function() {
+                  setTimeout(() => document.body.removeChild(iframe), 1000);
+                  };
+              }
             }
 
 
