@@ -213,9 +213,9 @@
         },
         methods: {
           getSubmissionDate(submission) {
-            let date = submission.submitted_at;
+            let date = submission.submittedAt;
             if (date === null) {
-              date = submission.graded_at;
+              date = submission.gradedAt;
 
             }
             return date;
