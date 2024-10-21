@@ -422,6 +422,7 @@ id
           async downloadSubmission(assignment, submission) {
             let app = this;
             let type = submission.submissionType;
+            console.log(submission);
             app.preparingDocument = true;
 
             //this needs to be set or it will flip preparing Document to false at the end, IE if it will be pulling up a print screen, set this to true
