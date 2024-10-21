@@ -399,13 +399,12 @@
             }
 
             if (types.includes("online_upload")) {
-              console.log("INCLUDES UPLOAD");
               let url = "/api/v1/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
-              console.log(url);
               let assignmentsData = (await canvasGet(url))[0];
-
+              console.log(assignmentsData);
               for (let i = 0; i < assignmentsData.attachments.length; i++) {
                 let attachment = assignmentsData.attachments[i];
+                console.log(attachment);
                 let iframe = await app.createIframe(attachment.url, (iframe) => {iframe.remove(); console.log(iframe);}, {});
                 iframe.remove();
               }
