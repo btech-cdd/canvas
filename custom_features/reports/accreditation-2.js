@@ -358,6 +358,7 @@
                   query: query
               });
               let data = res.data.course;
+              console.log(data);
               return {
                 name: data.name,
                 course_code: data.courseCode,
