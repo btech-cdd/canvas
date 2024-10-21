@@ -356,7 +356,7 @@ id
                   group.assignments = group.assignmentsConnection.nodes.map( assignment => {
                     assignment.id = assignment._id;
                     assignment.submissions = assignment.submissionsConnection.nodes.map( submission => {
-                      submission.comments = submission.commentsConnection;
+                      submission.comments = submission.commentsConnection.nodes;
                       submission.rubric_assessments = submission?.rubricAssessmentsConnection?.nodes ?? [];
                       submission.user.id = submission.user._id;
                       submission
