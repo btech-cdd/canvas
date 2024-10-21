@@ -660,9 +660,11 @@ id
             //This is unused. was for trying to convert an html element to a canvas then to a data url then to image then to pdf, but ran into cors issues.
             // $("#content").append("<div id='btech-export-" + id + "'></div>");
             let window = document.getElementById(elId).contentWindow;
+            console.log(url);
             window.onload = function () {
               let content = $(window.document.getElementsByTagName('body')[0]);
               let imgs = content.find('img'); // I believe this was done just to make sure the images were fully loaded. Was running into issues with quizzes where images didn't have a chance to load all the way. 
+              console.log(imgs);
               if (func !== null) {
                 func(iframe, content, data);
               }
