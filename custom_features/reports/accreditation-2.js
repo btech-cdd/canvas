@@ -301,7 +301,7 @@ id
             published
             pointsPossible
             submissionsConnection(
-              filter: {includeConcluded: true, includeDeactivated: true, includeUnsubmitted: true}
+              filter: {includeConcluded: true, includeDeactivated: true, includeUnsubmitted: false}
             ) {
               nodes {
                 commentsConnection {
