@@ -141,7 +141,7 @@
                     <i v-if="submission?.comments?.length > 0" class='icon-check'></i>
                   </span>
                   <span>
-                    {{getSubmissionDate(submission)}}
+                    {{dateToString(getSubmissionDate(submission))}}
                   </span>
                   <span>
                     {{campuses?.[submission.user.id] ?? 'Loading...'}}
@@ -397,7 +397,7 @@ id
                 let comment = comments[i];
                 let commentEl = $(`<div class='btech-accreditation-comment' style='border-bottom: 1px solid #000;'>
                   <p>` + comment.comment + `</p>
-                  <p style='text-align: right;'><i>-` + comment.author.name + `, ` + comment.createdAt + `</i></p>
+                  <p style='text-align: right;'><i>-` + comment.author.name + `, ` + this.dateToString(comment.createdAt) + `</i></p>
                 </div>`);
                 el.append(commentEl);
               }
@@ -687,6 +687,10 @@ id
               }
             }
             return output;
+          },
+          dateToString(date) {
+            date = new Date(Date.parse(date));
+            return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
           },
           close() {
             let app = this;
