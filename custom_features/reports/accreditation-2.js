@@ -55,7 +55,7 @@
           <div v-for='group in assignmentGroups'>
             <h2>{{group.name}}</h2>
             <div 
-              v-for='assignment in getSubmittedAssignments(group.assignments)'
+              v-for='assignment in group.assignments'
               :style="{
                 'color': getFilteredSubmissions(assignment?.submissions ?? []).length > 0 ? '#000000' : '#888888'
               }"
@@ -155,18 +155,15 @@
         mounted: async function () {
           this.courseId = CURRENT_COURSE_ID;
           let data = await this.getGraphQLData(this.courseId);
-          console.log(data);
           this.courseData = {
             name: data.name,
             course_code: data.course_code
           }
           let courseCode = this.courseData.course_code;
-          console.log(courseCode);
           this.assignmentGroups = data.assignment_groups;
 
           let sections = await canvasGet("/api/v1/courses/" + this.courseId + "/sections?include[]=students")
           this.sections = sections;
-          console.log(sections);
 
           // Load campus information
           for (let s in sections) {
@@ -188,7 +185,6 @@
               }
             }
           }
-          console.log(this.campuses);
         },
         data: function () {
           return {
@@ -273,23 +269,10 @@
             return output;
           },
 
-          // a filter to determine which assignments have a submission
-          // currently not doing anything because canvas's filter doesn't work
-          getSubmittedAssignments(assignments) {
-            let submittedAssignments = [];
-            for (let i = 0; i < assignments.length; i++) {
-              let assignment = assignments[i];
-              if (true || assignment.has_submitted_submissions ||  assignment.has_overrides) { //not working, assignments with submissions has_submitted_submissions is still false
-                submittedAssignments.push(assignment);
-              }
-            }
-            return submittedAssignments;
-          },
-
           async getGraphQLData(courseId) {
             let query = `{
               course(id: "${courseId}") {
-            id
+id
     name
     courseCode
     assignmentGroupsConnection {
@@ -310,14 +293,15 @@
                 commentsConnection {
                   edges {
                     node {
-                      _id
+                      id
                       comment
                     }
                   }
                 }
                 user {
-                  _id
+                  id
                   name
+                  _id
                 }
                 submissionType
                 submissionStatus
@@ -345,6 +329,12 @@
                 grade
                 late
                 previewUrl
+                rubricAssessmentsConnection {
+                  nodes {
+                    score
+                    assessmentType
+                  }
+                }
               }
             }
           }
