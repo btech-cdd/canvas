@@ -147,21 +147,13 @@
           this.courseId = CURRENT_COURSE_ID;
           let data = await this.getGraphQLData(this.courseId);
           console.log(data);
-          await $.get("/api/v1/courses/" + this.courseId).done((data) => {
-            this.courseData = data;
-          });
+          this.courseData = {
+            name: data.name,
+            course_code: data.course_code
+          }
           let courseCode = this.courseData.course_code;
           console.log(courseCode);
-          await $.get("/api/v1/courses/" + this.courseId + "/assignment_groups?include[]=assignments&per_page=100").done((data) => {
-            for (let i = 0; i < data.length; i++) {
-              let group = data[i];
-              for (let j = 0; j < group.assignments.length; j++) {
-                data[i].assignments[j].submissions = [];
-                data[i].assignments[j].loaded = false;
-              }
-            }
-            this.assignmentGroups = data;
-          });
+          this.assignmentGroups = data.assignment_groups;
 
           this.getAllSubmissions();
 
@@ -359,9 +351,7 @@
               let res = await $.post(`/api/graphql`, {
                   query: query
               });
-              console.log(res);
               let data = res.data.course;
-              console.log(data);
               return {
                 name: data.name,
                 course_code: data.courseCode,
@@ -375,46 +365,13 @@
               }
             } catch (err) {
               console.error(err);
+              console.log(res);
               return {
                   name: '',
                   assignment_groups: [],
-                  submissions: []
               }
             }
-        },
-          // api call to load submissions
-          async getAllSubmissions(assignmentId = '') {
-            let app = this;
-            submissionsByAssignment = {};
-            let graphqlData = await this.getGraphQLData(app.courseId);
-            console.log(graphqlData);
-            return [];
-            for (let s = 0; s < submissions.length; s++) {
-              let submission = submissions[s];
-              if (submissionsByAssignment[submission.assignment_id] === undefined) {
-                submissionsByAssignment[submission.assignment_id] = [];
-              }
-              submissionsByAssignment[submission.assignment_id].push(submission);
-            }
-            for (let g = 0; g < app.assignmentGroups.length; g++) {
-              let group = app.assignmentGroups[g];
-              let assignments = group.assignments;
-              let submittedAssignments = app.getSubmittedAssignments(assignments);
-              for (let a = 0; a < submittedAssignments.length; a++) {
-                let assignment = submittedAssignments[a];
-                if (assignment.id === assignmentId || assignmentId === '') {
-                  let assignmentSubmissions = submissionsByAssignment[assignment.id];
-                  assignment.loaded = true;
-                  if (assignmentSubmissions !== undefined && assignment.submissions.length === 0) {
-                    assignment.submissions = assignmentSubmissions;
-                  }
-                }
-              }
-
-            }
-            return submissions;
           },
-
           // api call to load comments for a submission
           getComments(submission) {
             let comments = submission.submission_comments;
