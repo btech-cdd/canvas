@@ -603,7 +603,7 @@ id
             let id = elId.replace('btech-content-', '');
             let title = data.assignment.name + "-" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission"
             let commentEl = app.getComments(data.submission);
-            let url = '/courses/' + app.courseId + '/assignments/' + data.assignment.id + '/submissions/' + data.submission.user.id + '?preview=1';
+            let url = data.submission.previewUrl;
             content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
             content.prepend("<div>Student:" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + "</div>");
             if (this.campuses?.[data.submission.user.id] ?? '' != '') {
