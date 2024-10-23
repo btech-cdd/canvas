@@ -571,7 +571,8 @@ id
             return;
           },
           addRequiredInformation(el, submission, assignment) {
-            el.prepend("<div>Submitted:" + this.getSubmissionDate(submission.submitted_at) + "</div>");
+            console.log(submission);
+            el.prepend("<div>Submitted:" + this.getSubmissionDate(submission) + "</div>");
             el.prepend("<div>Student:" + (this.anonymous ? ('Anonymous User ' + submission.user.id) : submission.user.name) + "</div>");
             if (this.campuses?.[submission.user.id] ?? '' != '') {
               content.prepend("<div>Campus:" + this.campuses[submission.user.id] + "</div>");
@@ -643,7 +644,6 @@ id
             return;
           },
           async downloadDiscussion(iframe, content, data) {
-            console.log(data);
             let app = this;
             let elId = iframe.attr('id');
             let id = elId.replace('btech-content-', '');
