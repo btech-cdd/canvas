@@ -649,8 +649,8 @@ id
             let id = elId.replace('btech-content-', '');
             let title = data.assignment.name + "-" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission"
             this.addRequiredInformation(content, data.submission, data.assignment);
-            let discussionEl = this.getDiscussionEntries(data.submission);
-            content.append(discussionEl);
+            // let discussionEl = this.getDiscussionEntries(data.submission);
+            // content.append(discussionEl);
             let commentEl = app.getComments(data.submission);
             content.append(commentEl);
             let ogTitle = $('title').text();
