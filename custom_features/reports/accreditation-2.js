@@ -475,19 +475,19 @@ id
               for (let i = 0; i < submission.attachments.length; i++) {
                 let attachment = submission.attachments[i];
                 console.log(attachment);
+                // Create an anchor element
+                let a = document.createElement('a');
+                a.href = attachment.url;
+                a.download = attachment.displayName || 'download'; // filename is optional, adjust as needed
 
-                // Create an iframe and set the src to the attachment URL
-                let iframe = document.createElement('iframe');
-                iframe.style.display = 'none';
-                iframe.src = attachment.url + "?download=true"; // Append a query param to indicate download if needed
+                // Append it to the DOM (required for Firefox)
+                document.body.appendChild(a);
 
-                // Append the iframe to the DOM
-                document.body.appendChild(iframe);
+                // Trigger the download prompt
+                a.click();
 
-                // Remove the iframe after the download starts
-                iframe.onload = function() {
-                setTimeout(() => document.body.removeChild(iframe), 1000);
-                };
+                // Remove the anchor after clicking
+                document.body.removeChild(a);
               }
             }
 
