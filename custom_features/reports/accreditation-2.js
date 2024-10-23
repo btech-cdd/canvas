@@ -471,10 +471,8 @@ id
               });
             }
             if (submission?.attachments?.length > 0) {
-              console.log(submission);
               for (let i = 0; i < submission.attachments.length; i++) {
                 let attachment = submission.attachments[i];
-                console.log(attachment);
                 // Create an anchor element
                 let a = document.createElement('a');
                 a.href = attachment.url;
