@@ -276,7 +276,10 @@
               }
 
               let submitted = true;
-              if (submission.submissionStatus == 'unsubmitted') submitted = false;
+              if (submission.submissionStatus == 'unsubmitted') {
+                submitted = false;
+                console.log(submission);
+              }
 
               //check all filters
               if (checkDate && checkSection && submitted) {
