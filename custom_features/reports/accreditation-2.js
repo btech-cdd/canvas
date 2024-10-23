@@ -224,13 +224,11 @@
         },
         methods: {
           getSubmissionDate(submission) {
-            console.log("SUBMISSION DATE");
-            console.log(submission);
             let date = submission.submittedAt;
             if (date === null) {
               date = submission.gradedAt;
             }
-            return this.dateToString(date);
+            return date;
           },
 
           // a filter to determine which submissions display and which don't
