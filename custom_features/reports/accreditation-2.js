@@ -591,7 +591,7 @@ id
                 let rubricHolder = iframeContent.find("#rubric_holder");
                 if (rubricHolder.length > 0) {
                   rubricHolder.show();
-                  this.addRequiredInformation(rubricHolder, data.submission, data.assignment);
+                  app.addRequiredInformation(rubricHolder, data.submission, data.assignment);
                   // rubricHolder.prepend(`<div>${data.submission.body}</div>`);
                   let commentEl = app.getComments(data.submission);
                   rubricHolder.append(commentEl);
