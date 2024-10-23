@@ -417,7 +417,6 @@ id
             let comments = submission.comments;
             let el = "";
             if (comments.length > 0) {
-              console.log(comments);
               el = $("<div style='page-break-before: always;' class='btech-accreditation-comments'></div>")
               el.append("<h2>Comments</h2>")
               for (let i = 0; i < comments.length; i++) {
@@ -447,6 +446,15 @@ id
             if (type == 'online_quiz') {
               let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
               await app.createIframe(url, app.downloadQuiz, {
+                'submission': submission,
+                'assignment': assignment
+              });
+              app.needsToWait = true;
+            }
+
+            if (type == 'discussion_topic') {
+              let url = '/courses/' + app.courseId + '/assignments/' + assignment.id + '/submissions/' + submission.user.id + '?preview=1';
+              await app.createIframe(url, app.downloadDiscussion, {
                 'submission': submission,
                 'assignment': assignment
               });
@@ -530,7 +538,6 @@ id
             let app = this;
             let title = data.assignment.name + "-" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission comments"
             let commentEl = app.getComments(data.submission);
-            let discussionEl = app.getDiscussionEntries(data.submission);
             /*
             if (commentEl == "") {
               app.preparingDocument = false;
@@ -550,7 +557,6 @@ id
             content.prepend("<div>Course:" + app.courseData.name + " (" + app.courseData.course_code + ")" + "</div>");
 
             //content.append(commentEl); //Comments already show up with this download method. Only need to be appended for rubrics
-            content.append(discussionEl);
             let ogTitle = $('title').text();
             $('title').text(title);
             content.printThis({
@@ -635,6 +641,33 @@ id
               $('title').text(ogTitle);
               app.preparingDocument = false;
               // iframe.remove();
+            }
+            window.focus();
+            window.print();
+            return;
+          },
+          async downloadDiscussion(iframe, content, data) {
+            let app = this;
+            let elId = iframe.attr('id');
+            let id = elId.replace('btech-content-', '');
+            let title = data.assignment.name + "-" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission"
+            let commentEl = app.getComments(data.submission);
+            content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
+            content.prepend("<div>Student:" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + "</div>");
+            if (this.campuses?.[data.submission.user.id] ?? '' != '') {
+              content.prepend("<div>Campus:" + this.campuses[data.submission.user.id] + "</div>");
+            }
+            content.prepend("<div>Title:" + data.assignment.name + "</div>");
+            let discussionEl = this.getDiscussionEntries(data.submission);
+            content.append(discussionEl);
+            content.append(commentEl);
+            let ogTitle = $('title').text();
+            $('title').text(title);
+            let window = document.getElementById(elId).contentWindow;
+            window.onafterprint = (event) => {
+              $('title').text(ogTitle);
+              app.preparingDocument = false;
+              iframe.remove();
             }
             window.focus();
             window.print();
