@@ -224,13 +224,10 @@
         },
         methods: {
           getSubmissionDate(submission) {
-            console.log("SUBMISSION DATE");
-            console.log(submission);
             let date = submission.submittedAt;
             if (date === null) {
               date = submission.gradedAt;
             }
-            console.log(date);
             return date;
           },
 
@@ -573,10 +570,17 @@ id
             });
             return;
           },
+          addRequiredInformation(el, submission, assignment) {
+            el.prepend("<div>Submitted:" + this.getSubmissionDate(submission.submitted_at) + "</div>");
+            el.prepend("<div>Student:" + (this.anonymous ? ('Anonymous User ' + submission.user.id) : submission.user.name) + "</div>");
+            if (this.campuses?.[submission.user.id] ?? '' != '') {
+              content.prepend("<div>Campus:" + this.campuses[submission.user.id] + "</div>");
+            }
+            rubricHolder.prepend("<div>Title:" + assignment.name + "</div>");
+          },
           async downloadRubric(iframe, content, data) {
             let app = this;
             let title = data.assignment.name + "-" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission rubric";
-        
             // Wait for the iframe to load
             await new Promise(resolve => {
               $(iframe).on('load', function() {
@@ -586,13 +590,8 @@ id
                 let rubricHolder = iframeContent.find("#rubric_holder");
                 if (rubricHolder.length > 0) {
                   rubricHolder.show();
+                  this.addRequiredInformation(rubricHolder, data.submission, data.assignment);
                   // rubricHolder.prepend(`<div>${data.submission.body}</div>`);
-                  rubricHolder.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
-                  rubricHolder.prepend("<div>Student:" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + "</div>");
-                  if (this.campuses?.[data.submission.user.id] ?? '' != '') {
-                    content.prepend("<div>Campus:" + this.campuses[data.submission.user.id] + "</div>");
-                  }
-                  rubricHolder.prepend("<div>Title:" + data.assignment.name + "</div>");
                   let commentEl = app.getComments(data.submission);
                   rubricHolder.append(commentEl);
                   rubricHolder.css({
@@ -628,13 +627,8 @@ id
             let elId = iframe.attr('id');
             let id = elId.replace('btech-content-', '');
             let title = data.assignment.name + "-" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission"
+            this.addRequiredInformation(content, data.submission, data.assignment);
             let commentEl = app.getComments(data.submission);
-            content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
-            content.prepend("<div>Student:" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + "</div>");
-            if (this.campuses?.[data.submission.user.id] ?? '' != '') {
-              content.prepend("<div>Campus:" + this.campuses[data.submission.user.id] + "</div>");
-            }
-            content.prepend("<div>Title:" + data.assignment.name + "</div>");
             content.append(commentEl);
             let ogTitle = $('title').text();
             $('title').text(title);
@@ -649,19 +643,15 @@ id
             return;
           },
           async downloadDiscussion(iframe, content, data) {
+            console.log(data);
             let app = this;
             let elId = iframe.attr('id');
             let id = elId.replace('btech-content-', '');
             let title = data.assignment.name + "-" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission"
-            let commentEl = app.getComments(data.submission);
-            content.prepend("<div>Submitted:" + data.submission.submitted_at + "</div>");
-            content.prepend("<div>Student:" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + "</div>");
-            if (this.campuses?.[data.submission.user.id] ?? '' != '') {
-              content.prepend("<div>Campus:" + this.campuses[data.submission.user.id] + "</div>");
-            }
-            content.prepend("<div>Title:" + data.assignment.name + "</div>");
+            this.addRequiredInformation(content, data.submission, data.assignment);
             let discussionEl = this.getDiscussionEntries(data.submission);
             content.append(discussionEl);
+            let commentEl = app.getComments(data.submission);
             content.append(commentEl);
             let ogTitle = $('title').text();
             $('title').text(title);
