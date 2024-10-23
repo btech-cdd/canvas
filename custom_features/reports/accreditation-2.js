@@ -503,25 +503,25 @@ id
               app.preparingDocument = false;
             }
           },
-          getDiscussionEntries(submission) {
-            let returnString = "";
-            if (submission.discussion_entries != undefined) {
-              returnString += "<div style='page-break-before: always;' class='btech-accreditation-comments'></div>"
-              returnString += "<h2>User Discussion Entries</h2>"
-              let entries = submission.discussion_entries;
-              for (let e in entries) {
-                let entry = entries[e];
-                if (entry.user_id == submission.user_id) {
-                  returnString += `
-                  ${entry.message}
-                  <p style="float: right;">Created: <i>${entry.created_at}</i></p>
-                  <p></p>
-                  `
-                }
-              }
-            }
-            return returnString;
-          },
+          // getDiscussionEntries(submission) {
+          //   let returnString = "";
+          //   if (submission.discussion_entries != undefined) {
+          //     returnString += "<div style='page-break-before: always;' class='btech-accreditation-comments'></div>"
+          //     returnString += "<h2>User Discussion Entries</h2>"
+          //     let entries = submission.discussion_entries;
+          //     for (let e in entries) {
+          //       let entry = entries[e];
+          //       if (entry.user_id == submission.user_id) {
+          //         returnString += `
+          //         ${entry.message}
+          //         <p style="float: right;">Created: <i>${entry.created_at}</i></p>
+          //         <p></p>
+          //         `
+          //       }
+          //     }
+          //   }
+          //   return returnString;
+          // },
           checkLTI(submission) {
             let type = submission.submissionType;
             //new quizzes :(
@@ -649,8 +649,6 @@ id
             let id = elId.replace('btech-content-', '');
             let title = data.assignment.name + "-" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission"
             this.addRequiredInformation(content, data.submission, data.assignment);
-            // let discussionEl = this.getDiscussionEntries(data.submission);
-            // content.append(discussionEl);
             let commentEl = app.getComments(data.submission);
             content.append(commentEl);
             let ogTitle = $('title').text();
