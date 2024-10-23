@@ -471,8 +471,10 @@ id
               });
             }
             if (submission?.attachments?.length > 0) {
+              console.log(submission);
               for (let i = 0; i < submission.attachments.length; i++) {
                 let attachment = submission.attachments[i];
+                console.log(attachment);
 
                 // Create an iframe and set the src to the attachment URL
                 let iframe = document.createElement('iframe');
@@ -614,8 +616,6 @@ id
         
           //Not currently working because of CORS
           async downloadNewQuiz(iframe, content, data) {
-            console.log(content);
-            console.log("NEW QUIZ");
             let app = this;
             let elId = iframe.attr('id');
             let id = elId.replace('btech-content-', '');
