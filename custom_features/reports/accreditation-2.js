@@ -229,9 +229,8 @@
             let date = submission.submittedAt;
             if (date === null) {
               date = submission.gradedAt;
-
             }
-            return date;
+            return this.dateToString(date);
           },
 
           // a filter to determine which submissions display and which don't
