@@ -276,9 +276,8 @@
               }
 
               let submitted = true;
-              if (submission.submissionStatus == 'unsubmitted') {
+              if (submission.submissionStatus == 'unsubmitted' && submission.rubric_assessments.length == 0) {
                 submitted = false;
-                console.log(submission);
               }
 
               //check all filters
