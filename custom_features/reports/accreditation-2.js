@@ -577,7 +577,7 @@ id
             if (this.campuses?.[submission.user.id] ?? '' != '') {
               content.prepend("<div>Campus:" + this.campuses[submission.user.id] + "</div>");
             }
-            rubricHolder.prepend("<div>Title:" + assignment.name + "</div>");
+            el.prepend("<div>Title:" + assignment.name + "</div>");
           },
           async downloadRubric(iframe, content, data) {
             let app = this;
