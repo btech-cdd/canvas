@@ -430,6 +430,27 @@ id
             return el;
           },
 
+          async downloadAttachments(attachments) {
+              for (let i = 0; i < attachments.length; i++) {
+                  const attachment = attachments[i];
+                  await downloadSingleAttachment(attachment);
+              }
+          },
+
+          downloadSingleAttachment(attachment) {
+              return new Promise((resolve) => {
+                  let a = document.createElement('a');
+                  a.href = attachment.url;
+                  a.download = attachment.displayName || 'download';
+
+                  document.body.appendChild(a);
+                  a.click();
+                  document.body.removeChild(a);
+
+                  setTimeout(resolve, 100); // slight delay to ensure download trigger completes
+              });
+          },
+
           //THIS IS WHERE EVERYTHING GETS SORTED OUT AND ALL THE DOWNLOADS ARE INITIATED
           async downloadSubmission(assignment, submission) {
             let app = this;
@@ -480,21 +501,22 @@ id
               });
             }
             if (submission?.attachments?.length > 0) {
-              console.log(submission);
-              console.log(submission.attachments.length);
-              for (let i = 0; i < submission.attachments.length; i++) {
-                let attachment = submission.attachments[i];
-                setTimeout(() => {
-                  let a = document.createElement('a');
-                  a.href = attachment.url;
-                  a.download = (attachment.displayName || 'download') + ` (part ${i})`;
-                  document.body.appendChild(a);
-                  a.click();
-                  document.body.removeChild(a);
-                  console.log(i);
-                  console.log(a.download);
-                }, i * 100); // delay of 100ms between each attachment
-              }
+              await downloadAttachments(submission.attachments);
+              // console.log(submission);
+              // console.log(submission.attachments.length);
+              // for (let i = 0; i < submission.attachments.length; i++) {
+              //   let attachment = submission.attachments[i];
+              //   setTimeout(() => {
+              //     let a = document.createElement('a');
+              //     a.href = attachment.url;
+              //     a.download = (attachment.displayName || 'download');
+              //     document.body.appendChild(a);
+              //     a.click();
+              //     document.body.removeChild(a);
+              //     console.log(i);
+              //     console.log(a.download);
+              //   }, i * 100); // delay of 100ms between each attachment
+              // }
             }
 
             //check if nothing has been gotten
