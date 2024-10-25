@@ -480,6 +480,8 @@ id
               });
             }
             if (submission?.attachments?.length > 0) {
+              console.log(submission);
+              console.log(submission.attachments.length);
               for (let i = 0; i < submission.attachments.length; i++) {
                 let attachment = submission.attachments[i];
                 // Create an anchor element
