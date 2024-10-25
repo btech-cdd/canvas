@@ -487,7 +487,7 @@ id
                 setTimeout(() => {
                   let a = document.createElement('a');
                   a.href = attachment.url;
-                  a.download = attachment.displayName || 'download';
+                  a.download = (attachment.displayName || 'download') + ` (part ${i})`;
                   document.body.appendChild(a);
                   a.click();
                   document.body.removeChild(a);
