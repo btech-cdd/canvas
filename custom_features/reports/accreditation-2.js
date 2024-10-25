@@ -441,6 +441,7 @@ id
               return new Promise((resolve) => {
                   let a = document.createElement('a');
                   a.href = attachment.url;
+                  a.target = '_blank'; // Open in a new tab
                   a.download = attachment.displayName || 'download';
                   console.log(a.download);
                   console.log(a.href);
