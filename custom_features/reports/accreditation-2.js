@@ -433,7 +433,6 @@ id
           async downloadAttachments(attachments) {
               for (let i = 0; i < attachments.length; i++) {
                   const attachment = attachments[i];
-                  console.log(attachment);
                   await this.downloadSingleAttachment(attachment);
               }
           },
@@ -443,6 +442,8 @@ id
                   let a = document.createElement('a');
                   a.href = attachment.url;
                   a.download = attachment.displayName || 'download';
+                  console.log(a.download);
+                  console.log(a.href);
 
                   document.body.appendChild(a);
                   a.click();
