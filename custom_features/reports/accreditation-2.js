@@ -438,20 +438,10 @@ id
           },
 
           downloadSingleAttachment(attachment) {
-              return new Promise((resolve) => {
-                  let a = document.createElement('a');
-                  a.href = attachment.url;
-                  a.target = '_blank'; // Open in a new tab
-                  a.download = attachment.displayName || 'download';
-                  console.log(a.download);
-                  console.log(a.href);
-
-                  document.body.appendChild(a);
-                  a.click();
-                  document.body.removeChild(a);
-
-                  setTimeout(resolve, 200); // slight delay to ensure download trigger completes
-              });
+            return new Promise((resolve) => {
+              window.open(attachment.url, '_blank'); // Opens each URL in a new tab
+              setTimeout(resolve, 500); // Slight delay to ensure each attachment has time to open
+            });
           },
 
           //THIS IS WHERE EVERYTHING GETS SORTED OUT AND ALL THE DOWNLOADS ARE INITIATED
