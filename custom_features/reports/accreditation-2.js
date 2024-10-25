@@ -491,6 +491,8 @@ id
                   document.body.appendChild(a);
                   a.click();
                   document.body.removeChild(a);
+                  console.log(i);
+                  console.log(a.download);
                 }, i * 100); // delay of 100ms between each attachment
               }
             }
