@@ -450,7 +450,7 @@ id
                   a.click();
                   document.body.removeChild(a);
 
-                  setTimeout(resolve, 100); // slight delay to ensure download trigger completes
+                  setTimeout(resolve, 200); // slight delay to ensure download trigger completes
               });
           },
 
