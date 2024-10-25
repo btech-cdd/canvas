@@ -433,6 +433,7 @@ id
           async downloadAttachments(attachments) {
               for (let i = 0; i < attachments.length; i++) {
                   const attachment = attachments[i];
+                  console.log(attachment);
                   await this.downloadSingleAttachment(attachment);
               }
           },
