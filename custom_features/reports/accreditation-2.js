@@ -484,19 +484,14 @@ id
               console.log(submission.attachments.length);
               for (let i = 0; i < submission.attachments.length; i++) {
                 let attachment = submission.attachments[i];
-                // Create an anchor element
-                let a = document.createElement('a');
-                a.href = attachment.url;
-                a.download = attachment.displayName || 'download'; // filename is optional, adjust as needed
-
-                // Append it to the DOM (required for Firefox)
-                document.body.appendChild(a);
-
-                // Trigger the download prompt
-                a.click();
-
-                // Remove the anchor after clicking
-                document.body.removeChild(a);
+                setTimeout(() => {
+                  let a = document.createElement('a');
+                  a.href = attachment.url;
+                  a.download = attachment.displayName || 'download';
+                  document.body.appendChild(a);
+                  a.click();
+                  document.body.removeChild(a);
+                }, i * 100); // delay of 100ms between each attachment
               }
             }
 
