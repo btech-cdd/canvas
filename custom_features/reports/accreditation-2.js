@@ -439,7 +439,7 @@ id
 
           downloadSingleAttachment(attachment) {
             return new Promise((resolve) => {
-              window.open(attachment.url, '_blank'); // Opens each URL in a new tab
+              window.open(attachment.url, '_blank', 'noopener,noreferrer'); // Opens each URL in a new tab
               setTimeout(resolve, 500); // Slight delay to ensure each attachment has time to open
             });
           },
