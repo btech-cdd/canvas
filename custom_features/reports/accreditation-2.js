@@ -433,7 +433,7 @@ id
           async downloadAttachments(attachments) {
               for (let i = 0; i < attachments.length; i++) {
                   const attachment = attachments[i];
-                  await downloadSingleAttachment(attachment);
+                  await this.downloadSingleAttachment(attachment);
               }
           },
 
@@ -501,7 +501,7 @@ id
               });
             }
             if (submission?.attachments?.length > 0) {
-              await downloadAttachments(submission.attachments);
+              await this.downloadAttachments(submission.attachments);
               // console.log(submission);
               // console.log(submission.attachments.length);
               // for (let i = 0; i < submission.attachments.length; i++) {
