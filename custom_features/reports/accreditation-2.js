@@ -422,7 +422,7 @@ id
                 let comment = comments[i];
                 let commentEl = $(`<div class='btech-accreditation-comment' style='border-bottom: 1px solid #000;'>
                   ${this.plainCommentToHTML(comment.comment)}
-                  <p style='text-align: right;'><i>-${comment.author.name}, ${this.dateToString(comment.createdAt)}</i></p>
+                  <p style='text-align: right;'><i>-${comment?.author?.name ?? 'automated comment'}, ${this.dateToString(comment.createdAt)}</i></p>
                 </div>`);
                 el.append(commentEl);
               }
@@ -559,15 +559,8 @@ id
             */
 
 
-            //Prepend in reverse order of the order you want it to appear at the top5rp
             content.show();
-            content.prepend("<div>Submitted:" + app.getSubmissionDate(data.submission) + "</div>");
-            content.prepend("<div>Student:" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + "</div>");
-            if (this.campuses?.[data.submission.user.id] ?? '' != '') {
-              content.prepend("<div>Campus:" + this.campuses[data.submission.user.id] + "</div>");
-            }
-            content.prepend("<div>Title:" + data.assignment.name + "</div>");
-            content.prepend("<div>Course:" + app.courseData.name + " (" + app.courseData.course_code + ")" + "</div>");
+            this.addRequiredInformation(content, data.submission, data.assignment)
 
             //content.append(commentEl); //Comments already show up with this download method. Only need to be appended for rubrics
             let ogTitle = $('title').text();
@@ -586,12 +579,14 @@ id
           },
           addRequiredInformation(el, submission, assignment) {
             console.log(submission);
+            //Prepend in reverse order of the order you want it to appear at the top
             el.prepend("<div>Submitted:" + this.getSubmissionDate(submission) + "</div>");
             el.prepend("<div>Student:" + (this.anonymous ? ('Anonymous User ' + submission.user.id) : submission.user.name) + "</div>");
             if (this.campuses?.[submission.user.id] ?? '' != '') {
               content.prepend("<div>Campus:" + this.campuses[submission.user.id] + "</div>");
             }
             el.prepend("<div>Title:" + assignment.name + "</div>");
+            el.prepend("<div>Course:" + this.courseData.name + " (" + this.courseData.course_code + ")" + "</div>");
           },
           async downloadRubric(iframe, content, data) {
             let app = this;
