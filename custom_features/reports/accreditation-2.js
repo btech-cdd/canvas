@@ -572,7 +572,6 @@ id
                 app.preparingDocument = false;
                 app.checkLTI(data.submission);
                 iframe.remove();
-             ;
               }
             });
             return;

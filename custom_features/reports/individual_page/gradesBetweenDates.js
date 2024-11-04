@@ -311,8 +311,12 @@
         console.log(coursesActive);
         courses.push(...coursesActive);
         let coursesCompleted = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=completed&state[]=available?state[]=completed`)
-        courses.push(...coursesCompleted);
-        console.log(coursesCompleted);
+        // Filter completed courses to only add those not already in `courses`
+        coursesCompleted.forEach(course => {
+            if (!courses.some(existingCourse => existingCourse.id === course.id)) {
+                courses.push(course);
+            }
+        });
         for (let c in courses) {
           let course = courses[c];
           course.course_id = course.id;
