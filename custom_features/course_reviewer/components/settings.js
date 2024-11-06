@@ -27,6 +27,7 @@
       updateSettings() {
         // Toggle the hide setting and update the global courseReviewerSettings
         courseReviewerSettings = this.settings.hide;
+        updateCourseReviewerSettings(courseReviewerSettings);
       },
       removeLoadingElement(menuName) {
         let index = this.loadingMenus.indexOf(menuName);
