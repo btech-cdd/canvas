@@ -280,8 +280,6 @@
 
 
   $(document).ready(async function() {
-    courseReviewerSettings = await getCourseReviewerSettings();
-    console.log(courseReviewerSettings);
     initIcons();
     let $modal = initModal();
     await refreshData();

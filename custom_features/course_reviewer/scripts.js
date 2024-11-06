@@ -35,6 +35,8 @@ async function updateCourseReviewerSettings(settings) {
   });
 }
 
+var courseReviewerSettings = await getCourseReviewerSettings();
+
 function criterionNameToVariable(name) {
   return name
     .toLowerCase()                            // Convert to lowercase
