@@ -395,6 +395,7 @@ function generateDetailedCourseContent(
         let surveys = await bridgetoolsReq('https://surveys.bridgetools.dev/api/survey_data', {
             course_id: this.courseId
         }, 'POST');
+        console.log(surveys);
         this.surveys = surveys;
         this.removeLoadingElement('surveys');
       },
