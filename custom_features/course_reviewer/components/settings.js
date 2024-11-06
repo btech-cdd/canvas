@@ -5,7 +5,7 @@
         <h2>Settings</h2>
         <div>
           <label>
-            <input type="checkbox" v-model="settings.hide" @change="toggleHide" />
+            <input type="checkbox" v-model="settings.hide" @change="updateSettings" />
             Hide
           </label>
         </div>
@@ -26,8 +26,7 @@
     methods: {
       toggleHide() {
         // Toggle the hide setting and update the global courseReviewerSettings
-        this.settings.hide = !this.settings.hide;
-        courseReviewerSettings.hide = this.settings.hide;
+        courseReviewerSettings = this.settings.hide;
       },
       removeLoadingElement(menuName) {
         let index = this.loadingMenus.indexOf(menuName);
