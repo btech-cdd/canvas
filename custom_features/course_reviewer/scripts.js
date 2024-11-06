@@ -202,7 +202,7 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
     methods: {
       setMenu(menu) {
         this.menuCurrent = menu;
-        this.genBloomsChart(this.bloomsCounts);
+        if (menu === 'main') this.genBloomsChart(this.bloomsCounts);
       },
       calcEmojiFromData(data, criteria, criterionName) {
         let criterion = criteria[criterionName];
