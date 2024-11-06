@@ -9,6 +9,31 @@ const emojiTF = [
   '✔️'
 ];
 
+async function getCourseReviewerSettings() {
+  let userId = ENV.current_user_id;
+  let settings = {};
+  try {
+    await $.get(`/api/v1/users/${userId}/custom_data/course_reviewer?ns=edu.btech.cdd`, (data) => {
+      console.log(data.data);
+      settings.hide = data.data.hide;
+    });
+  } catch (err) {
+    settings = {
+      hide: false
+    }
+    await $.put(`/api/v1/users/${userId}/custom_data/course_reviewer?ns=edu.btech.cdd`, {
+      data: settings
+    });
+  }
+  return settings;
+}
+
+async function updateCourseReviewerSettings(settings) {
+  await $.put(`/api/v1/users/${userId}/custom_data/course_reviewer?ns=edu.btech.cdd`, {
+    data: settings
+  });
+}
+
 function criterionNameToVariable(name) {
   return name
     .toLowerCase()                            // Convert to lowercase
@@ -244,7 +269,7 @@ function generateDetailedContentReviewEl(type, criteria, data) {
 }
 
 function calcEmoji(perc) {
-  if (isNaN(perc)) return '';
+  if (isNaN(perc) || courseReviewerSettings.hide) return '';
   if (perc < 0.5) return emoji[0]; // bronze
   if (perc < 0.8) return emoji[1]; // bronze
   return emoji[2]; // bronze
