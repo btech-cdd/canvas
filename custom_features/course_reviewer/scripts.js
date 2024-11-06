@@ -276,7 +276,7 @@ function generateDetailedContentReviewEl(type, criteria, data) {
 }
 
 function calcEmoji(perc) {
-  if (isNaN(perc) || courseReviewerSettings.hide) return '';
+  if (isNaN(perc) || courseReviewerSettings.hide) return '⚪';
   if (perc < 0.5) return emoji[0]; // bronze
   if (perc < 0.8) return emoji[1]; // bronze
   return emoji[2]; // bronze
@@ -402,7 +402,7 @@ function setButtonHTML($button, data, criteria, rubricData = null, rubricCriteri
     let rubricScore = calcCriteriaAverageScore(rubricData, rubricCriteria);
     $button.html(`<div class="btech-course-reviewer-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${calcEmoji(score)}</div><div class="btech-course-reviewer-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`);
     $(`.btech-course-reviewer-score-right`).html(
-        `${emoji?.[rubricScore]}`
+        `${calcEmoji(rubricScore)}`
     );
   }
 }
