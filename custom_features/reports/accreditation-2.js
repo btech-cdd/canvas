@@ -478,7 +478,7 @@ id
             //append comments here and pull them from rubrics. If no text entry, just grab the comments
 
             //rubrics
-            if (submission.rubric_assessments.length > 0) {
+            if (submission.rubric_assessments.length > 0 || true) {
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               await app.createIframe(url, app.downloadRubric, {
                 'submission': submission,
