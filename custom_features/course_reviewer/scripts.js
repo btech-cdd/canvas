@@ -165,7 +165,7 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
       :emojitf="emojiTF"
     ></content-detailed>
   </div>
-  <div v-if="menuCurrent == 'settings'>
+  <div v-if="menuCurrent == 'settings'">
     <settings></settings>
   </div>
   `;
