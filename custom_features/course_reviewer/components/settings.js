@@ -6,15 +6,14 @@
         class="btech-course-evaluator-content-box"
     >
         <div>
-            <h2>Settings</h2>
             <div>
-            <label>
-                <input type="checkbox" v-model="settings.hide" @change="updateSettings" />
-                Hide
-            </label>
+                <label>
+                    <input type="checkbox" v-model="settings.hide" @change="updateSettings" />
+                    Hide
+                </label>
             </div>
             <div>
-            {{ settings }}
+                {{ settings }}
             </div>
         </div>
       </div>
