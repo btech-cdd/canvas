@@ -103,6 +103,7 @@ function generateDetailedCourseContent(
     , totalContentCounts
     , bloomsCounts
   ) {
+    console.log(courseReviewData);
   let html = `
       <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.5rem; border: 1px solid #AAA;">Course Evaluation</div>
       <div style="background-color: white; border-bottom: 1px solid #AAA;">

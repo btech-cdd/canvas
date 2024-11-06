@@ -16,6 +16,10 @@
     </div>
     `,
     props: {
+      course: {
+        type: Object,
+        default: {}
+      },
       surveys: {
         type: Array,
         default: []
