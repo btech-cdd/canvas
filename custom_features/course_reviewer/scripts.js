@@ -16,11 +16,11 @@ async function getCourseReviewerSettings() {
   let settings = {};
   try {
     await $.get(`/api/v1/users/${userId}/custom_data/course_reviewer?ns=edu.btech.cdd`, (data) => {
-      settings.showScores = data.data.showScores == 'true';
+      settings.show_scores = data.data.show_scores == 'true';
     });
   } catch (err) {
     settings = {
-      showScores: false
+      show_scores: false
     }
     await $.put(`/api/v1/users/${userId}/custom_data/course_reviewer?ns=edu.btech.cdd`, {
       data: settings
@@ -276,7 +276,7 @@ function generateDetailedContentReviewEl(type, criteria, data) {
 }
 
 function calcEmoji(perc) {
-  if (isNaN(perc) || courseReviewerSettings.hide) return '⚪';
+  if (isNaN(perc) || !courseReviewerSettings.show_scores) return '⚪';
   if (perc < 0.5) return emoji[0]; // bronze
   if (perc < 0.8) return emoji[1]; // bronze
   return emoji[2]; // bronze
