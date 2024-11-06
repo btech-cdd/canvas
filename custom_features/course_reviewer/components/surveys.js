@@ -13,7 +13,7 @@
       <div
         class="btech-course-evaluator-content-box"
       >
-        <div><span @click="generateSummary()">Generate Summary</span><span style="float: right;">Last Summary Generated: {{course.summary.last_update}}</span></div>
+        <div><span @click="generateSummary()">Generate Summary</span><span style="float: right;">Last Summary Generated: {{course.surveys.last_update}}</span></div>
         <div
           v-if="!loadingSummary"
           v-html="course?.surveys?.summary ?? 'No Summary Found'" >
