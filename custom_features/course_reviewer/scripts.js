@@ -182,7 +182,7 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
         emoji: emoji,
         emojiTF: emojiTF,
         bloomsColors: bloomsColors,
-        genBloomsChart: genBloomsChart,
+        // genBloomsChart: genBloomsChart,
         sortCriteria: sortCriteria,
         courseId: ENV.COURSE_ID,
         objectivesData: objectivesData,
@@ -202,8 +202,6 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
     methods: {
       setMenu(menu) {
         this.menuCurrent = menu;
-        if (menu === 'main') this.genBloomsChart(this.bloomsCounts);
-        console.log(menu);
       },
       calcEmojiFromData(data, criteria, criterionName) {
         let criterion = criteria[criterionName];
