@@ -129,7 +129,7 @@
           }
         }
         prompt = `<survey_data>${prompt}</survey_data>`;
-        let summary = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${this.courseId}/summarize`, {
+        let summary = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${this.courseId}/summarize_surveys`, {
             prompt: prompt 
         }, 'POST');
         this.summary = summary;
