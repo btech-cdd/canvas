@@ -69,6 +69,6 @@
 
     let reviewData = pageReviewData;
     let criteria = pageCriteria;
-    setButtonHTML($detailedReportButton, reviewData, criteria, {}, {});
+    setButtonHTML($detailedReportButton, reviewData, criteria, null, null);
   })
 })();
