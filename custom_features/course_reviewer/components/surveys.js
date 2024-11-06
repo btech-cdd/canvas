@@ -105,8 +105,8 @@
       },
       async generateSummary() {
         let prompt = ``;
-        for (let prompt in this.questions) {
-          let question = this.questions[prompt];
+        for (let text in this.questions) {
+          let question = this.questions[text];
           if (question.type == 'Text') {
             console.log(question);
             let responses = ``;
@@ -115,11 +115,10 @@
             }
             prompt += `
               <survey_question>
-                <prompt>${prompt}</prompt>
+                <prompt>${text}</prompt>
                 <responses>${responses}</responses>
               </survey_question>
             `
-            console.log(prompt);
           }
         }
         prompt = `<survey_data>${prompt}</survey_data>`;
