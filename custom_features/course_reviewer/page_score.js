@@ -60,7 +60,7 @@
         await refreshData();
         let reviewData = pageReviewData;
         let criteria = pageCriteria;
-        setButtonHTML($detailedReportButton, reviewData, criteria, {}, {});
+        setButtonHTML($detailedReportButton, reviewData, criteria, null, null);
       }},
       { id: 'disable', text: 'Toggle Ignore', func: async function () {
       }},
