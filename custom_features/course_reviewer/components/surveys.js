@@ -10,6 +10,9 @@
           </div>
         </div>
       </div>
+      <div class="btech-course-evaluator-content-box">
+        {{summary}}
+      </div>
     </div>
     `,
     props: {
@@ -25,6 +28,7 @@
         courseId: ENV.COURSE_ID,
         questions: {},
         surveyRatingsList: [],
+        summary: `Loading Summary...`,
         ratings: []
       }
     },
@@ -126,7 +130,7 @@
         let summary = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${this.courseId}/summarize`, {
             prompt: prompt 
         }, 'POST');
-        console.log(summary);
+        this.summary = summary;
       }
     }
   });
