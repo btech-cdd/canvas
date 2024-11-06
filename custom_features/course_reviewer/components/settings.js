@@ -10,8 +10,9 @@
     `,
     data: function () {
         return {
+            settings: courseReviewerSettings
         }
     },
-    
+
   });
 })();
