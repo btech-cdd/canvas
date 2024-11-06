@@ -182,6 +182,7 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
         emoji: emoji,
         emojiTF: emojiTF,
         bloomsColors: bloomsColors,
+        genBloomsChart: genBloomsChart,
         sortCriteria: sortCriteria,
         courseId: ENV.COURSE_ID,
         objectivesData: objectivesData,
