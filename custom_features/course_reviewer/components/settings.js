@@ -4,17 +4,18 @@
     template: ` 
       <div 
         class="btech-course-evaluator-content-box"
-        style="padding: 8px 0;"
     >
-        <h2>Settings</h2>
         <div>
-          <label>
-            <input type="checkbox" v-model="settings.hide" @change="updateSettings" />
-            Hide
-          </label>
-        </div>
-        <div>
-          {{ settings }}
+            <h2>Settings</h2>
+            <div>
+            <label>
+                <input type="checkbox" v-model="settings.hide" @change="updateSettings" />
+                Hide
+            </label>
+            </div>
+            <div>
+            {{ settings }}
+            </div>
         </div>
       </div>
     `,
