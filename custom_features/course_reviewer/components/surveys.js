@@ -10,7 +10,19 @@
           </div>
         </div>
       </div>
-      <div v-html="course?.surveys?.summary ?? 'No Summary Found'" class="btech-course-evaluator-content-box">
+      <div
+        class="btech-course-evaluator-content-box"
+      >
+        <div><span>Last Summary Generated: {{course.summary.last_update}}
+        <div
+          v-if="!loadingSummary"
+          v-html="course?.surveys?.summary ?? 'No Summary Found'" >
+        </div>
+        <div
+          v-if="loadingSummary"
+        >
+          Loading Summary...
+        </div>
       </div>
     </div>
     `,
@@ -31,13 +43,12 @@
         courseId: ENV.COURSE_ID,
         questions: {},
         surveyRatingsList: [],
-        summary: `Loading Summary...`,
+        loadingSummary: false,
         ratings: []
       }
     },
     mounted: async function () {
       this.processSurveys();
-      this.generateSummary();
     },
 
     methods: {
@@ -111,6 +122,7 @@
         this.questions = questions;
       },
       async generateSummary() {
+        this.loadingSummary = true;
         let prompt = ``;
         for (let text in this.questions) {
           let question = this.questions[text];
@@ -131,7 +143,9 @@
         let summary = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${this.courseId}/summarize_surveys`, {
             prompt: prompt 
         }, 'POST');
-        this.summary = summary;
+        this.course.surveys.summary = summary;
+        this.course.surveys.last_update = new Date();
+        this.loadingSummary = false;
       }
     }
   });

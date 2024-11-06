@@ -254,6 +254,8 @@
       await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}`),
       await getCriteria(),
     ]);
+    if (courseReviewData.surveys == undefined) courseReviewData.surveys = {last_update: new Date()};
+    else courseReviewData.surveys.last_update = new Date(courseReviewData.surveys.last_update);
     console.log(((new Date()) - start) / 1000);
     start = new Date();
 
