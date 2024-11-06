@@ -572,7 +572,7 @@ id
                 console.log(ogTitle);
                 $('title').text(ogTitle);
                 app.preparingDocument = false;
-                app.checkLTI(data.submission);
+                // app.checkLTI(data.submission);
                 iframe.remove();
               }
             });
@@ -618,7 +618,7 @@ id
                     afterPrint: function () {
                       $('title').text(ogTitle);
                       app.preparingDocument = false;
-                      app.checkLTI(data.submission);
+                      // app.checkLTI(data.submission);
                       iframe.remove();
                     }
                   });
