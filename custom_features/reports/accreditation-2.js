@@ -478,7 +478,7 @@ id
             //append comments here and pull them from rubrics. If no text entry, just grab the comments
 
             //rubrics
-            if (submission.rubric_assessments.length > 0 || true) {
+            if (submission.rubric_assessments.length > 0) {
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               await app.createIframe(url, app.downloadRubric, {
                 'submission': submission,
@@ -487,12 +487,12 @@ id
               app.needsToWait = true;
             } else {
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
-              app.needsToWait = true;
               console.log("DOWNLOAD COMMENTS");
               await app.createIframe(url, app.downloadComments, {
                 'submission': submission,
                 'assignment': assignment
               });
+              app.needsToWait = true;
             }
             if (submission?.attachments?.length > 0) {
               await this.downloadAttachments(submission.attachments);
@@ -573,7 +573,7 @@ id
                 $('title').text(ogTitle);
                 app.preparingDocument = false;
                 app.checkLTI(data.submission);
-                iframe.remove();
+                // iframe.remove();
               }
             });
             return;
@@ -697,7 +697,7 @@ id
             let id = genId();
             let elId = 'btech-content-' + id
             let iframe = $('<iframe id="' + elId + '" style="width: 1200px;" src="' + url + '"></iframe>');
-            iframe.hide();
+            // iframe.hide();
 
             $("#content").append(iframe);
             //This is unused. was for trying to convert an html element to a canvas then to a data url then to image then to pdf, but ran into cors issues.
