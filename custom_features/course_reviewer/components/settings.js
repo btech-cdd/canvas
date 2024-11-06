@@ -2,7 +2,10 @@
     console.log("SETTINGS")
   Vue.component('settings', {
     template: ` 
-      <div style="padding: 8px 0;">
+      <div 
+        class="btech-course-evaluator-content-box"
+        style="padding: 8px 0;"
+    >
         <h2>Settings</h2>
         <div>
           <label>
