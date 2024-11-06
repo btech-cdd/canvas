@@ -488,6 +488,7 @@ id
             } else {
               let url = "/courses/" + app.courseId + "/assignments/" + assignment.id + "/submissions/" + submission.user.id;
               app.needsToWait = true;
+              console.log("DOWNLOAD COMMENTS");
               await app.createIframe(url, app.downloadComments, {
                 'submission': submission,
                 'assignment': assignment
@@ -568,11 +569,10 @@ id
             content.printThis({
               pageTitle: title,
               afterPrint: function () {
-                console.log(iframe);
                 console.log(ogTitle);
                 $('title').text(ogTitle);
                 app.preparingDocument = false;
-                // app.checkLTI(data.submission);
+                app.checkLTI(data.submission);
                 iframe.remove();
               }
             });
@@ -618,7 +618,7 @@ id
                     afterPrint: function () {
                       $('title').text(ogTitle);
                       app.preparingDocument = false;
-                      // app.checkLTI(data.submission);
+                      app.checkLTI(data.submission);
                       iframe.remove();
                     }
                   });
