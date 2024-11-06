@@ -163,6 +163,9 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
       :emojitf="emojiTF"
     ></content-detailed>
   </div>
+  <div v-if="menuCurrent == 'settings'>
+    <settings></settings>
+  </div>
   `;
   $("#btech-course-reviewer-detailed-report").append(html);
   let APP = new Vue({
@@ -189,6 +192,7 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
         menuCurrent: 'main',
         menuOptions: [
           'main',
+          'settings'
         ],
       }
     },
