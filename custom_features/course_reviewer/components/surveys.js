@@ -13,7 +13,12 @@
       <div
         class="btech-course-evaluator-content-box"
       >
-        <div><span @click="generateSummary()">Generate Summary</span><span style="float: right;">Last Summary Generated: {{dateToString(course.surveys.last_update)}}</span></div>
+        <div>
+          <button
+              @click="generateSummary();"
+            >Generate Summary</button>
+          <span style="float: right;">Last Summary Generated: {{dateToString(course.surveys.last_update)}}</span>
+        </div>
         <div
           v-if="!loadingSummary"
           v-html="course?.surveys?.summary ?? 'No Summary Found'" >
