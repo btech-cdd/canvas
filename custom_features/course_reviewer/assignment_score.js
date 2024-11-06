@@ -3,6 +3,7 @@
     $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/scripts.js"),
     $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/context_menu.js"),
     $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/components/content_detailed.js"),
+    $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/components/settings.js"),
     $.getScript("https://bridgetools.dev/canvas/custom_features/course_reviewer/detailed_report_button.js")
   ]);
 
