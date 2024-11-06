@@ -112,7 +112,6 @@
         for (let text in this.questions) {
           let question = this.questions[text];
           if (question.type == 'Text') {
-            console.log(question);
             let responses = ``;
             for (let i in question.comments) {
               responses += `<response_${i + 1}>${question.comments[i]}</response_${i + 1}>`;
@@ -126,7 +125,6 @@
           }
         }
         prompt = `<survey_data>${prompt}</survey_data>`;
-        console.log(prompt);
         let summary = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${this.courseId}/summarize`, {
             prompt: prompt 
         }, 'POST');
