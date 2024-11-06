@@ -26,7 +26,7 @@
     methods: {
       updateSettings() {
         // Toggle the hide setting and update the global courseReviewerSettings
-        courseReviewerSettings = this.settings.hide;
+        courseReviewerSettings = this.settings;
         updateCourseReviewerSettings(courseReviewerSettings);
       },
       removeLoadingElement(menuName) {
