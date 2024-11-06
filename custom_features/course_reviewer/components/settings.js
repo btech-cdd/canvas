@@ -8,8 +8,8 @@
         <div>
             <div>
                 <label>
-                    <input type="checkbox" v-model="settings.hide" @change="updateSettings" />
-                    Hide
+                    <input type="checkbox" v-model="settings.show_scores" @change="updateSettings" />
+                    Show Scores 
                 </label>
             </div>
             <div>
