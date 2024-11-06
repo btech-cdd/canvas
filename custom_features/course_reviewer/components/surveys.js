@@ -105,11 +105,10 @@
       },
       async generateSummary() {
         let prompt = ``;
-        console.log(this.questions);
         for (let prompt in this.questions) {
           let question = this.questions[prompt];
-          console.log(question);
           if (question.type == 'Text') {
+            console.log(question);
             let responses = ``;
             for (let i in question.comments) {
               responses += `<response_${i + 1}>${question.comments[i]}</response_${i + 1}>`;
