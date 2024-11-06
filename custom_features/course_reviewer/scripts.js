@@ -9,6 +9,8 @@ const emojiTF = [
   '✔️'
 ];
 
+var courseReviewerSettings = {};
+
 async function getCourseReviewerSettings() {
   let userId = ENV.current_user_id;
   let settings = {};
@@ -619,5 +621,5 @@ function toTitleCase(str) {
   );
 }
 (async function () {
-  var courseReviewerSettings = await getCourseReviewerSettings();
+  courseReviewerSettings = await getCourseReviewerSettings();
 })();
