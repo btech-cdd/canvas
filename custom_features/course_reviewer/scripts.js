@@ -29,6 +29,7 @@ async function getCourseReviewerSettings() {
 }
 
 async function updateCourseReviewerSettings(settings) {
+  let userId = ENV.current_user_id;
   await $.put(`/api/v1/users/${userId}/custom_data/course_reviewer?ns=edu.btech.cdd`, {
     data: settings
   });
