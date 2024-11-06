@@ -568,6 +568,8 @@ id
             content.printThis({
               pageTitle: title,
               afterPrint: function () {
+                console.log(iframe);
+                console.log(ogTitle);
                 $('title').text(ogTitle);
                 app.preparingDocument = false;
                 app.checkLTI(data.submission);
