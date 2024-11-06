@@ -24,7 +24,7 @@
       this.settings = { ...courseReviewerSettings };
     },
     methods: {
-      toggleHide() {
+      updateSettings() {
         // Toggle the hide setting and update the global courseReviewerSettings
         courseReviewerSettings = this.settings.hide;
       },
