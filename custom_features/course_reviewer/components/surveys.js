@@ -10,8 +10,7 @@
           </div>
         </div>
       </div>
-      <div class="btech-course-evaluator-content-box">
-        {{course?.surveys?.summary ?? 'No Summary Found'}}
+      <div v-html="course?.surveys?.summary ?? 'No Summary Found'" class="btech-course-evaluator-content-box">
       </div>
     </div>
     `,
