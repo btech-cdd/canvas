@@ -15,7 +15,6 @@
     let settings = {};
     try {
       await $.get(`/api/v1/users/${userId}/custom_data/course_reviewer?ns=edu.btech.cdd`, (data) => {
-        console.log(data.data);
         settings.hide = data.data.hide == 'true';
       });
     } catch (err) {
@@ -26,6 +25,7 @@
         data: settings
       });
     }
+    console.log(settings);
     return settings;
   }
 
