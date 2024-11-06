@@ -550,6 +550,7 @@ id
           },
           async downloadComments(iframe, content, data) {
             let app = this;
+            let elId = iframe.attr('id');
             let title = data.assignment.name + "-" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission comments"
             let commentEl = app.getComments(data.submission);
             /*
@@ -559,11 +560,19 @@ id
             }
             */
 
-
-            content.show();
+            // content.show();
             this.addRequiredInformation(content, data.submission, data.assignment)
 
-            //content.append(commentEl); //Comments already show up with this download method. Only need to be appended for rubrics
+            content.append(commentEl); //Comments already show up with this download method. Only need to be appended for rubrics
+            let window = document.getElementById(elId).contentWindow;
+            window.onafterprint = (event) => {
+              $('title').text(ogTitle);
+              app.preparingDocument = false;
+              iframe.remove();
+            }
+            window.focus();
+            window.print();
+            return;
             let ogTitle = $('title').text();
             $('title').text(title);
             content.printThis({
@@ -573,7 +582,7 @@ id
                 $('title').text(ogTitle);
                 app.preparingDocument = false;
                 app.checkLTI(data.submission);
-                // iframe.remove();
+                iframe.remove();
               }
             });
             return;
@@ -674,8 +683,7 @@ id
             return;
           },
           async downloadQuiz(iframe, content, data) {
-            let app = this;
-            let elId = iframe.attr('id');
+            let app = this; let elId = iframe.attr('id');
             let id = elId.replace('btech-content-', '');
             let title = data.assignment.name + "-" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission"
             this.addRequiredInformation(content, data.submission, data.assignment);
@@ -697,7 +705,7 @@ id
             let id = genId();
             let elId = 'btech-content-' + id
             let iframe = $('<iframe id="' + elId + '" style="width: 1200px;" src="' + url + '"></iframe>');
-            // iframe.hide();
+            iframe.hide();
 
             $("#content").append(iframe);
             //This is unused. was for trying to convert an html element to a canvas then to a data url then to image then to pdf, but ran into cors issues.
