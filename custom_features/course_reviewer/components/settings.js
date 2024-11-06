@@ -11,7 +11,7 @@
     data: function () {
         return {
         }
-    }
-
+    },
+    
   });
 })();

@@ -359,7 +359,8 @@ function generateDetailedCourseContent(
           '3rd party',
           'summary',
           // 'query',
-          'objectives'
+          'objectives',
+          'settings'
         ],
         loadingMenus: [
           'surveys'
