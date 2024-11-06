@@ -4,15 +4,35 @@
       <div style="padding: 8px 0;">
         <h2>Settings</h2>
         <div>
-            {{settings}}
+          <label>
+            <input type="checkbox" v-model="settings.hide" @change="toggleHide" />
+            Hide
+          </label>
+        </div>
+        <div>
+          {{ settings }}
         </div>
       </div>
     `,
-    data: function () {
-        return {
-            settings: courseReviewerSettings
-        }
+    data: function() {
+      return {
+        settings: {}
+      };
     },
-
+    mounted() {
+      // Initialize settings with the global courseReviewerSettings
+      this.settings = { ...courseReviewerSettings };
+    },
+    methods: {
+      toggleHide() {
+        // Toggle the hide setting and update the global courseReviewerSettings
+        this.settings.hide = !this.settings.hide;
+        courseReviewerSettings.hide = this.settings.hide;
+      },
+      removeLoadingElement(menuName) {
+        let index = this.loadingMenus.indexOf(menuName);
+        this.loadingMenus.splice(index, 1);
+      }
+    }
   });
 })();
