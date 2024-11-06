@@ -99,6 +99,7 @@
           }
         }
 
+        console.log(questions);
         this.questions = questions;
       }
     }
