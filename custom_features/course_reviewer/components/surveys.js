@@ -22,6 +22,7 @@
     },
     data() {
       return {
+        courseId: ENV.COURSE_ID,
         questions: {},
         surveyRatingsList: [],
         ratings: []
@@ -29,6 +30,7 @@
     },
     mounted: async function () {
       this.processSurveys();
+      this.generateSummary();
     },
 
     methods: {
@@ -101,6 +103,29 @@
 
         console.log(questions);
         this.questions = questions;
+      },
+      async generateSummary() {
+        let prompt = ``;
+        for (let prompt in this.questions) {
+          let question = this.questions[prompt];
+          if (question.type == 'Text') {
+            let responses = ``;
+            for (let i in question.comments) {
+              responses += `<response_${i + 1}>${question.comments[i]}</response_${i + 1}>`;
+            }
+            prompt += `
+              <survey_question>
+                <prompt>${prompt}</prompt>
+                <responses>${responses}</responses>
+              </survey_question>
+            `
+          }
+        }
+        prompt = `<survey_data>${prompt}</survey_data>`;
+        let summary = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${this.courseId}/summarize`, {
+            prompt: prompt 
+        }, 'POST');
+        console.log(summary);
       }
     }
   });
