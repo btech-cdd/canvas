@@ -16,11 +16,11 @@ async function getCourseReviewerSettings() {
   let settings = {};
   try {
     await $.get(`/api/v1/users/${userId}/custom_data/course_reviewer?ns=edu.btech.cdd`, (data) => {
-      settings.hide = data.data.hide == 'true';
+      settings.showScores = data.data.showScores == 'true';
     });
   } catch (err) {
     settings = {
-      hide: false
+      showScores: false
     }
     await $.put(`/api/v1/users/${userId}/custom_data/course_reviewer?ns=edu.btech.cdd`, {
       data: settings
