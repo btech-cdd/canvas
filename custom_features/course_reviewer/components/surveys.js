@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="btech-course-evaluator-content-box">
-        {{summary}}
+        {{course?.surveys?.summary ?? 'No Summary Found'}}
       </div>
     </div>
     `,
