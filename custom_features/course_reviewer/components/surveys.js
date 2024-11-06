@@ -119,6 +119,7 @@
                 <responses>${responses}</responses>
               </survey_question>
             `
+            console.log(prompt);
           }
         }
         prompt = `<survey_data>${prompt}</survey_data>`;
