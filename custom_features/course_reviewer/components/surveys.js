@@ -101,13 +101,14 @@
           }
         }
 
-        console.log(questions);
         this.questions = questions;
       },
       async generateSummary() {
         let prompt = ``;
+        console.log(this.questions);
         for (let prompt in this.questions) {
           let question = this.questions[prompt];
+          console.log(question);
           if (question.type == 'Text') {
             let responses = ``;
             for (let i in question.comments) {
