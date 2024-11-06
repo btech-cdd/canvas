@@ -315,6 +315,9 @@ function generateDetailedCourseContent(
           <div><b>Recommended:</b> {{response.recommendation}}</div>
         </div>
       </div>
+      <div v-if="menuCurrent == 'settings'">
+        <settings></settings>
+      </div>
       <div v-if="menuCurrent == 'individual'">
         <content-detailed
           :type="individualContent.type"
