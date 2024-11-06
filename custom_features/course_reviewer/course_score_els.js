@@ -215,6 +215,7 @@ function generateDetailedCourseContent(
       <course-surveys 
         v-if="menuCurrent == 'surveys'"
         :surveys='surveys'
+        :course='course'
         ></course-surveys>
 
       <!-- ASSIGNMENTS NOT ALIGNED TO OBJECTIVES -->
@@ -350,6 +351,7 @@ function generateDetailedCourseContent(
     data: function () {
       return {
         courseId: ENV.COURSE_ID,
+        course: courseReviewData,
         courseCode: courseCode,
         year: year,
         menuCurrent: 'main',
