@@ -2,8 +2,8 @@
 ////Student has not accepted their invite to the course
 ////The section names do not match exactly
 
-//Need to add a button to run this on the allignment page
-function allignAssignments(reg="") {
+//Need to add a button to run this on the alignment page
+function alignAssignments(reg="") {
   let noMatchList = [];
   $(".assignment_section table tr").each(function() {
     let titleOriginal = $(this).find("th.title").text()
@@ -26,4 +26,4 @@ function allignAssignments(reg="") {
     }
   });
 }
-allignAssignments(/Module [0-9]+\.[0-9]+:\s*/);
+alignAssignments(/Module [0-9]+\.[0-9]+:\s*/);
