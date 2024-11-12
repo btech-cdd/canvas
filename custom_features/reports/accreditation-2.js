@@ -589,6 +589,7 @@ id
             el.prepend("<div>Course:" + this.courseData.name + " (" + this.courseData.course_code + ")" + "</div>");
           },
           getTitle(data) {
+            console.log(data);
             let title = this.courseData.name + ' - ' + data.assignment.name + ' - ' + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name);
             return title;
           },
