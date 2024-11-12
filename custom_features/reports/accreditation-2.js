@@ -596,7 +596,6 @@ id
           async downloadRubric(iframe, content, data) {
             let app = this;
             let title = this.getTitle(data) + " submission rubric";
-            el.prepend("<div>Course:" + this.courseData.name + " (" + this.courseData.course_code + ")" + "</div>");
             // Wait for the iframe to load
             await new Promise(resolve => {
               $(iframe).on('load', function() {
