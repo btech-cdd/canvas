@@ -551,7 +551,7 @@ id
           async downloadComments(iframe, content, data) {
             let app = this;
             let elId = iframe.attr('id');
-            let title = this.getTitle() + " submission comments"
+            let title = this.getTitle(data) + " submission comments"
             let commentEl = app.getComments(data.submission);
             /*
             if (commentEl == "") {
