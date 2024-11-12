@@ -551,7 +551,7 @@ id
           async downloadComments(iframe, content, data) {
             let app = this;
             let elId = iframe.attr('id');
-            let title = data.assignment.name + "-" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission comments"
+            let title = this.getTitle() + " submission comments"
             let commentEl = app.getComments(data.submission);
             /*
             if (commentEl == "") {
@@ -565,26 +565,16 @@ id
 
             content.append(commentEl); //Comments already show up with this download method. Only need to be appended for rubrics
             let window = document.getElementById(elId).contentWindow;
+            let ogTitle = $('title').text();
+            $('title').text(title);
             window.onafterprint = (event) => {
               $('title').text(ogTitle);
               app.preparingDocument = false;
+              app.checkLTI(data.submission);
               iframe.remove();
             }
             window.focus();
             window.print();
-            return;
-            let ogTitle = $('title').text();
-            $('title').text(title);
-            content.printThis({
-              pageTitle: title,
-              afterPrint: function () {
-                console.log(ogTitle);
-                $('title').text(ogTitle);
-                app.preparingDocument = false;
-                app.checkLTI(data.submission);
-                iframe.remove();
-              }
-            });
             return;
           },
           addRequiredInformation(el, submission, assignment) {
@@ -598,9 +588,14 @@ id
             el.prepend("<div>Title:" + assignment.name + "</div>");
             el.prepend("<div>Course:" + this.courseData.name + " (" + this.courseData.course_code + ")" + "</div>");
           },
+          getTitle(data) {
+            let title = this.courseData.name + ' - ' + data.assignment.name + ' - ' + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name);
+            return title;
+          },
           async downloadRubric(iframe, content, data) {
             let app = this;
-            let title = data.assignment.name + "-" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission rubric";
+            let title = this.getTitle(data) + " submission rubric";
+            el.prepend("<div>Course:" + this.courseData.name + " (" + this.courseData.course_code + ")" + "</div>");
             // Wait for the iframe to load
             await new Promise(resolve => {
               $(iframe).on('load', function() {
@@ -646,7 +641,7 @@ id
             let app = this;
             let elId = iframe.attr('id');
             let id = elId.replace('btech-content-', '');
-            let title = data.assignment.name + "-" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission"
+            let title = this.getTitle(data) + " submission"
             this.addRequiredInformation(content, data.submission, data.assignment);
             let commentEl = app.getComments(data.submission);
             content.append(commentEl);
@@ -666,7 +661,7 @@ id
             let app = this;
             let elId = iframe.attr('id');
             let id = elId.replace('btech-content-', '');
-            let title = data.assignment.name + "-" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission"
+            let title = this.getTitle(data) + " submission"
             this.addRequiredInformation(content, data.submission, data.assignment);
             let commentEl = app.getComments(data.submission);
             content.append(commentEl);
@@ -685,7 +680,7 @@ id
           async downloadQuiz(iframe, content, data) {
             let app = this; let elId = iframe.attr('id');
             let id = elId.replace('btech-content-', '');
-            let title = data.assignment.name + "-" + (this.anonymous ? ('Anonymous User ' + data.submission.user.id) : data.submission.user.name) + " submission"
+            let title = this.getTitle(data) + " submission"
             this.addRequiredInformation(content, data.submission, data.assignment);
             let commentEl = app.getComments(data.submission);
             content.append(commentEl);
