@@ -110,8 +110,8 @@ function generateCriteriaHTML(criteria, data, cssclass='') {
   }
   if (data?.objectives) {
     criteriaHTML += `
-      <div title="The content is alligned to the course objectives.">
-        <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">Allignment</span><span>${ (data?.objectives ?? []) > 0 ? emojiTF[1] : emojiTF[0]}</span>
+      <div title="The content is aligned to the course objectives.">
+        <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">Alignment</span><span>${ (data?.objectives ?? []) > 0 ? emojiTF[1] : emojiTF[0]}</span>
       </div>
     `
   }
