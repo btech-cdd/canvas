@@ -150,7 +150,6 @@
     setIcon($scoreEl, type, contentReview, contentCriteria, rubricReview, rubricCriteria);
     $scoreEl.click(function (e) {
       e.stopPropagation();
-      console.log(contentReview);
       $vueApp.individualContent = {
         type: type,
         contentData: contentReview,
@@ -180,7 +179,6 @@
               `https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/modules/${contentReview.module_id}`
             );
           } while (new Date(module.last_update) <= new Date(contentReview.last_update));
-          console.log(module);
 
           setIcon($scoreEl, type, module, contentCriteria, rubricReview, rubricCriteria);
         }
@@ -256,7 +254,6 @@
     ]);
     if (courseReviewData.surveys == undefined) courseReviewData.surveys = {last_update: new Date()};
     else courseReviewData.surveys.last_update = new Date(courseReviewData.surveys.last_update);
-    console.log(((new Date()) - start) / 1000);
     start = new Date();
 
     let courseCodeYear = getCourseCodeYear(courseData);
@@ -270,7 +267,6 @@
     } catch (err) {
       console.error(err);
     }
-    console.log(((new Date()) - start) / 1000);
     start = new Date();
 
     objectivesCounts = calcObjectivesCounts(courseReviewData.quizzes, courseReviewData.assignments);
