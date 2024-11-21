@@ -30,7 +30,6 @@ async function getCourseReviewerSettings() {
       data: settings
     });
   }
-  console.log(settings);
   return settings;
 }
 
@@ -177,7 +176,6 @@ async function generateDetailedContent(type, contentData, rubricData, contentCri
   let APP = new Vue({
     el: '#btech-course-reviewer-detailed-report',
     created: async function () {
-      console.log(this.contentCriteria);
       this.contentCriteria = sortCriteria(this.contentCriteria);
       this.rubricCriteria = sortCriteria(this.rubricCriteria);
     },
@@ -399,7 +397,6 @@ function setButtonHTML($button, data, criteria, rubricData = null, rubricCriteri
   }
 
   let score = calcCriteriaAverageScore(data, criteria);
-  console.log(score);
   if (rubricData === null) {
     $button.html(`<div class="btech-course-reviewer-score" style="position: absolute;">${calcEmoji(score)}</div>`);
   } else {
