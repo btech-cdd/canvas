@@ -401,7 +401,7 @@ function setButtonHTML($button, data, criteria, rubricData = null, rubricCriteri
   let score = calcCriteriaAverageScore(data, criteria);
   console.log(score);
   if (rubricData === null) {
-    $detailedReportButton.html(`<div class="btech-course-reviewer-score" style="position: absolute;">${calcEmoji(score)}</div>`);
+    $button.html(`<div class="btech-course-reviewer-score" style="position: absolute;">${calcEmoji(score)}</div>`);
   } else {
     let rubricScore = calcCriteriaAverageScore(rubricData, rubricCriteria);
     $button.html(`<div class="btech-course-reviewer-score-left" style="position: absolute; clip-path: inset(0 50% 0 0);">${calcEmoji(score)}</div><div class="btech-course-reviewer-score-right" style="clip-path: inset(0 0 0 50%);">⚪</div>`);

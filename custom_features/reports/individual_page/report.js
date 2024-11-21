@@ -159,7 +159,8 @@
               'Green Canyon',
               'Logan High',
               'Ridgeline',
-              'Fast Forward'
+              'Fast Forward',
+              'InTech'
             ],
             saveTerm: {},
             studentIdInput: '',
