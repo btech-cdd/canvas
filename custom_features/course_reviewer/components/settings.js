@@ -1,5 +1,4 @@
 (async function() {
-    console.log("SETTINGS")
   Vue.component('settings', {
     template: ` 
       <div 
