@@ -60,6 +60,8 @@
    // Function to create and position the custom context menu
 
     if (quizReviewData?.quiz_id == undefined) return;
+    let rubricReviewData = null;
+    let rubricCriteria = null;
     let $modal = initModal();
     let $vueApp = generateDetailedContent('Quizzes', quizReviewData, null, quizCriteria, null, objectivesData);
     let $detailedReportButton = addDetailedReportButton($vueApp)
@@ -71,7 +73,6 @@
         await refreshData();
         let reviewData = quizReviewData;
         let criteria = quizCriteria;
-        console.log(rubricReviewData);
         setButtonHTML($detailedReportButton, reviewData, criteria, rubricReviewData, rubricCriteria);
       }},
       { id: 'disable', text: 'Toggle Ignore', func: async function () {
