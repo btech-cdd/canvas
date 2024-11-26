@@ -11,7 +11,7 @@
     for (let a in attempts) {
         let attempt = attempts[a];
         console.log(attempt);
-        div.append(`<div><a href="${attempt.preview_url}" target="_blank">Attempt ${parseInt(a) + 1}</a>: <span style="width: 2rem; display: inline-block;">${attempt.grade ? attempt.grade + '%' : 'N/A'}</span> Submitted: ${attempt.submitted_at ?? attempt.posted_at ?? attempt.graded_at}</div>`);
+        div.append(`<div><a href="${attempt.preview_url}" target="_blank">Attempt ${parseInt(a) + 1}</a>: <span style="width: 3rem; display: inline-block;">${attempt.grade ? attempt.grade + '%' : 'N/A'}</span> Submitted: ${attempt.submitted_at ?? attempt.posted_at ?? attempt.graded_at}</div>`);
     }
     $(`.ic-Action-header`).after(div);;
 })();
