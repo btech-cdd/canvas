@@ -26,7 +26,7 @@
             <div>
               <h2>Content Review</h2>
               <div v-for="(criterion, criterionName) in activeCriteria" :title="criterion.description">
-                <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{criterion.name}}</span>
+                <span style="font-size: 0.75rem; width: 8rem; display: inline-block; cursor: pointer; user-select: none;" @click="updateCriterion(criterion, criterionName)">{{criterion.name}}</span>
                 <span>
                 {{calcEmojiFromData(contentData, activeCriteria, criterionName)}}
                 </span>
@@ -126,6 +126,12 @@
     },
 
     methods: {
+      updateCriterion(criterion, criterionName) {
+        console.log(this.contentCriteria);
+        console.log(criterion);
+        console.log(criterionName);
+        console.log(this.contentData);
+      },
       calcEmoji(perc) {
         if (isNaN(perc)) return '';
         if (perc < 0.5) return emoji[0]; // bronze
