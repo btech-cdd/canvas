@@ -26,8 +26,8 @@
             <div>
               <h2>Content Review</h2>
               <div v-for="(criterion, criterionName) in activeCriteria" :title="criterion.description">
-                <span style="font-size: 0.75rem; width: 8rem; display: inline-block; cursor: pointer; user-select: none;" @click="updateCriterion(criterion, criterionName)">{{criterion.name}}</span>
-                <span>
+                <span style="font-size: 0.75rem; width: 8rem; display: inline-block; cursor: pointer; user-select: none;">{{criterion.name}}</span>
+                <span @click="updateCriterion(criterion, criterionName)">
                 {{calcEmojiFromData(contentData, activeCriteria, criterionName)}}
                 </span>
               </div>
@@ -126,11 +126,25 @@
     },
 
     methods: {
-      updateCriterion(criterion, criterionName) {
+      async updateCriterion(criterion, criterionName) {
         console.log(this.contentCriteria);
         console.log(criterion);
         console.log(criterionName);
         console.log(this.contentData);
+        let val = this.contentData.criteria[criterionName];
+        if (typeof val == 'boolean') val = !val;
+        else if (typeof val == 'number') {
+          val += 1;
+          if (val > 2) val = 0;
+        }
+          
+        this.contentData.criteria[criterionName] = val;
+        console.log(this.contentData);
+        // if (this.contentData.content_type == 'Page') {
+        //   await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${this.contentData.course_id}/pages/${this.conentData.page_id}`, {
+        //     criteria: this.contentData.criteria
+        //   }, 'POST');
+        // }
       },
       calcEmoji(perc) {
         if (isNaN(perc)) return '';
