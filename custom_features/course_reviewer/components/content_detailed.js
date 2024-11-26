@@ -26,8 +26,8 @@
             <div>
               <h2>Content Review</h2>
               <div v-for="(criterion, criterionName) in activeCriteria" :title="criterion.description">
-                <span style="font-size: 0.75rem; width: 8rem; display: inline-block; cursor: pointer; user-select: none;">{{criterion.name}}</span>
-                <span @click="updateCriterion(criterion, criterionName)">
+                <span style="font-size: 0.75rem; width: 8rem; display: inline-block;">{{criterion.name}}</span>
+                <span style="cursor: pointer; user-select: none;" @click="updateCriterion(criterion, criterionName)">
                 {{calcEmojiFromData(contentData, activeCriteria, criterionName)}}
                 </span>
               </div>
@@ -137,11 +137,28 @@
           
         this.contentData.criteria[criterionName] = val;
         console.log(this.contentData.criteria);
-        // if (this.contentData.content_type == 'Page') {
-        //   await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${this.contentData.course_id}/pages/${this.conentData.page_id}`, {
-        //     criteria: this.contentData.criteria
-        //   }, 'POST');
-        // }
+        let contentType = this.contentData.content_type;
+        let contentURL = '';
+        let contentId = '';
+        
+        if (contentType == 'Page') {
+          contentURL = 'pages'
+          contentId = this.contentData.page_id;
+        } else if (contentType == 'Assignment') {
+          contentURL = 'assignments';
+          contentId = this.contentData.assignment_id;
+        } else if (contentType == 'Quiz') {
+          contentURL = 'quizzes';
+          contentId = this.contentData.quiz_id;
+        } else if (contentType == 'Module') {
+          contentURL = 'modules';
+          contentId = this.contentData.module_id;
+        } else {
+          return;
+        }
+        await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${this.contentData.course_id}/${contentURL}/${contentId}`, {
+          criteria: this.contentData.criteria
+        }, 'POST');
       },
       calcEmoji(perc) {
         if (isNaN(perc)) return '';
