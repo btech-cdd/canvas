@@ -3,7 +3,7 @@ if (IS_TEACHER) {
     let speed_grader_link = '<div style="text-align: right;"><a class="assess_submission_link Button Button--small Button--link" href="/courses/' + pieces[1] + '/gradebook/speed_grader?assignment_id=' + pieces[2] + '&student_id=' + pieces[3] + '"><i class="icon-rubric" aria-hidden="true"></i> Speed Grader</a></div>';
     $($(".submission-details-header div")[0]).after(speed_grader_link);
 }
-let attempts = (await canvasGet(`/api/v1/courses/${ENV.current_context.id}/students/submissions?assignment_ids[]=${ENV.SUBMISSION.assignment_id}&student_ids[]=${ENV.SUBMISSION.user_id}&include[]=submission_history`))[0].submission_history;
+let attempts = (await $.get(`/api/v1/courses/${ENV.current_context.id}/students/submissions?assignment_ids[]=${ENV.SUBMISSION.assignment_id}&student_ids[]=${ENV.SUBMISSION.user_id}&include[]=submission_history`))[0].submission_history;
 console.log(attempts);
 let div = $(`<div></div>`);
 for (let a in attempts) {
