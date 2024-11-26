@@ -127,10 +127,7 @@
 
     methods: {
       async updateCriterion(criterion, criterionName) {
-        console.log(this.contentCriteria);
-        console.log(criterion);
-        console.log(criterionName);
-        console.log(this.contentData);
+        console.log(this.contentData.criteria);
         let val = this.contentData.criteria[criterionName];
         if (typeof val == 'boolean') val = !val;
         else if (typeof val == 'number') {
@@ -139,7 +136,7 @@
         }
           
         this.contentData.criteria[criterionName] = val;
-        console.log(this.contentData);
+        console.log(this.contentData.criteria);
         // if (this.contentData.content_type == 'Page') {
         //   await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${this.contentData.course_id}/pages/${this.conentData.page_id}`, {
         //     criteria: this.contentData.criteria
