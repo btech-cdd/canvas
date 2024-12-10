@@ -135,7 +135,10 @@ function generateTopicTagsEl(data) {
 // do we have a review?
 async function generateDetailedContent(type, contentData, rubricData, contentCriteria, rubricCriteria, objectivesData) {
   let html = `
-  <div style="background-color: white; font-weight: bold; font-size: 1.5rem; padding: 0.5rem; border: 1px solid #AAA;">Course Evaluation</div>
+  <div style="background-color: white; font-weight: bold; padding: 0.5rem; border: 1px solid #AAA;">
+    <span style="display: inline-block; font-size: 1.5rem;">Course Evaluation</span>
+    <span stlye="display: inline-block; color: #AAA; font-size: 1rem;">{{contentData.last_update.toLocaleDateString()}}</span></div>
+  <div style="background-color: white; border-bottom: 1px solid #AAA;">
   <div style="background-color: white; border-bottom: 1px solid #AAA;">
     <div 
       v-for="(menu, m) in menuOptions" :key="m"

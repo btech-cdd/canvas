@@ -106,7 +106,7 @@ function generateDetailedCourseContent(
     let html = `
       <div style="background-color: white; font-weight: bold; padding: 0.5rem; border: 1px solid #AAA;">
         <span style="display: inline-block; font-size: 1.5rem;">Course Evaluation</span>
-        <span stlye="display: inline-block; color:  #AAA; font-size: 1rem;">{{courseReviewData.last_update}}</span></div>
+        <span stlye="display: inline-block; color: #AAA; font-size: 1rem;">{{courseReviewData.last_update.toLocaleDateString()}}</span></div>
       <div style="background-color: white; border-bottom: 1px solid #AAA;">
         <div 
           v-for="(menu, m) in menuOptions" :key="m"
