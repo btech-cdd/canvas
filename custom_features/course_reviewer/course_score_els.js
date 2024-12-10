@@ -349,6 +349,9 @@ function generateDetailedCourseContent(
         this.objectivesData[o].usage = usage;
       }
       this.setMenu('main');
+      if (this.year !== this.courseReviewData.year) {
+        await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/courses/${this.courseId}`, {course_code: this.courseCode, year: this.year}, 'POST');
+      }
       // this.getSummary();
     },
     data: function () {
