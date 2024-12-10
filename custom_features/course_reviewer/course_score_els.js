@@ -126,6 +126,10 @@ function generateDetailedCourseContent(
         >{{menu.toUpperCase()}}</div>
       </div>
       <div v-if="menuCurrent == 'main'">
+        <div class="btech-course-evaluator-content-box">
+          {{year}}
+          {{courseReviewData}}
+        </div>
         <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
           <div class="btech-course-evaluator-content-box">
             <h2>Objectives</h2>

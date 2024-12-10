@@ -9,12 +9,9 @@ var CDDIDS = [
   1893418, // Josh 
   1638854, // Mason
   1869288, // Alan
-  2000557, // Charlotte
   2048150, // Tiffany
   2074560, // Ryan
   2116084, // Mikaela
-  1894248, // Zoe
-  2135443, // Joseph
   2118711, // Colton
   2147128, // Katie
   2159901, // Celine
@@ -25,7 +22,8 @@ var CDDIDS = [
   1842412, // Codi (Testing Center)
   2162497, // Spencer
   2162340, // Cooper
-  2162496, // Brenna
+  2188338, // Lindsey 
+
 ];
 
 function getCSSVar(cssvar) {
