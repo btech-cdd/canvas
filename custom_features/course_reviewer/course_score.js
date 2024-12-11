@@ -232,6 +232,7 @@
 
     for (let d in courseReviewData.discussion) {
       let discussion = courseReviewData.discussions[d];
+      console.log(discussion);
       discussion.name = $(`.DiscussionTopic_${discussion.discussion_id} span.item_name a.title`).text().trim();
       let $scoreEl = $(`.DiscussionTopic_${discussion.discussion_id} span.ig-btech-evaluation-score`);
       initContentIcon($scoreEl, $vueApp, $modal, 'Discussion', discussion, criteria.Discussions);
