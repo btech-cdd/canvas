@@ -32,7 +32,7 @@
       year = courseCodeYear.year;
       courseCode = courseCodeYear.courseCode;
       try {
-        discussionReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.course_id}/discussions/${ENV.discussion_topic_id}`);
+        discussionReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.course_id}/discussion_topics/${ENV.discussion_topic_id}`);
       } catch (err) {
         console.log(err);
         return false;
