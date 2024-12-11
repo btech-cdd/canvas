@@ -208,6 +208,7 @@
   }
 
   function refreshIcons($vueApp, $modal) {
+    console.log(courseReviewData);
     // get assignment data to locate external assignments
 
     for (let m in courseReviewData.modules) {
