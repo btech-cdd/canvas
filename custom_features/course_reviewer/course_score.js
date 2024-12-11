@@ -94,7 +94,7 @@
     return externalContentCount;
   }
 
-  function calcBloomsCounts(quizReviews, assignmentReviews) {
+  function calcBloomsCounts(quizReviews, assignmentReviews, discussionReviews) {
     let bloomsCounts = {};
     for (let q in quizReviews) {
       let quiz = quizReviews[q];
@@ -102,6 +102,15 @@
       if (quiz.blooms) {
         if (bloomsCounts?.[quiz.blooms] === undefined) bloomsCounts[quiz.blooms] = 0;
         bloomsCounts[quiz.blooms] += 1;
+      }
+    }
+
+    for (let d in discussionReviews) {
+      let discussion = discussionReviews[q];
+      // blooms
+      if (discussion.blooms) {
+        if (bloomsCounts?.[discussion.blooms] === undefined) bloomsCounts[discussion.blooms] = 0;
+        bloomsCounts[discussion.blooms] += 1;
       }
     }
 
@@ -116,9 +125,10 @@
     return bloomsCounts;
   }
 
-  function calcObjectivesCounts(quizReviews, assignmentReviews) {
+  function calcObjectivesCounts(quizReviews, assignmentReviews, discussionReviews) {
     let objectivesCounts = {};
     objectivesCounts =  addObjectives(objectivesCounts, quizReviews);
+    objectivesCounts =  addObjectives(objectivesCounts, discussionReviews);
     objectivesCounts =  addObjectives(objectivesCounts, assignmentReviews);
 
     return objectivesCounts;
@@ -220,6 +230,13 @@
       initContentIcon($scoreEl, $vueApp, $modal, 'Quiz', quiz, criteria.Quizzes);
     }
 
+    for (let d in courseReviewData.discussion) {
+      let discussion = courseReviewData.discussions[d];
+      discussion.name = $(`.DiscussionTopic_${discussion.discussion_id} span.item_name a.title`).text().trim();
+      let $scoreEl = $(`.DiscussionTopic_${discussion.discussion_id} span.ig-btech-evaluation-score`);
+      initContentIcon($scoreEl, $vueApp, $modal, 'Discussion', discussion, criteria.Discussions);
+    }
+
     for (let a in courseReviewData.assignments) {
       let assignment = courseReviewData.assignments[a];
       assignment.name = $(`.Assignment_${assignment.assignment_id} span.item_name a.title`).text().trim();
@@ -269,8 +286,8 @@
     }
     start = new Date();
 
-    objectivesCounts = calcObjectivesCounts(courseReviewData.quizzes, courseReviewData.assignments);
-    bloomsCounts = calcBloomsCounts(courseReviewData.quizzes, courseReviewData.assignments);
+    objectivesCounts = calcObjectivesCounts(courseReviewData.quizzes, courseReviewData.assignments, courseReviewData.discussions);
+    bloomsCounts = calcBloomsCounts(courseReviewData.quizzes, courseReviewData.assignments, courseReviewData.discussions);
     // objectivesCounts =  addObjectives(objectivesCounts, courseReviewData.pages);
 
     return true;
