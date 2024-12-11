@@ -579,6 +579,7 @@ async function genNewQuizzesQuestionsList(courseId, quizId) {
 }
 
 async function evaluateDiscussion(courseId, courseCode, year, discussionId, description, rubric={}) {
+  console.log(description)
   await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/discussions/${discussionId}/evaluate`, reqdata = {
       courseCode: courseCode,
       year: year,
