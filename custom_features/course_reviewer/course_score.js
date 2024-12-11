@@ -106,7 +106,7 @@
     }
 
     for (let d in discussionReviews) {
-      let discussion = discussionReviews[q];
+      let discussion = discussionReviews[d];
       // blooms
       if (discussion.blooms) {
         if (bloomsCounts?.[discussion.blooms] === undefined) bloomsCounts[discussion.blooms] = 0;
