@@ -28,6 +28,7 @@
 
       courseData  = (await canvasGet(`/api/v1/courses/${ENV.course_id}`))[0];
       discussionData = (await canvasGet(`/api/v1/courses/${ENV.course_id}/discussion_topics/${ENV.discussion_topic_id}`))[0];
+      console.log(discussionData);
       let courseCodeYear = getCourseCodeYear(courseData);
       year = courseCodeYear.year;
       courseCode = courseCodeYear.courseCode;
