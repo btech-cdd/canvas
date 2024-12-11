@@ -145,6 +145,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
       // featureCDD("course_reviewer/sidebar", {}, /^\/courses\/[0-9]+/);
       featureCDD("course_reviewer/assignment_score", {}, /^\/courses\/[0-9]+\/assignments\/[0-9]+/);
       featureCDD("course_reviewer/quiz_score", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+/);
+      featureCDD("course_reviewer/discussion_score", {}, /^\/courses\/[0-9]+\/discussion_topics\/[0-9]+/);
       featureCDD("course_reviewer/page_score", {}, /^\/courses\/[0-9]+\/pages\/.+/);
       $.getScript(SOURCE_URL + "/course_data/course_hours.js").done(() => {
         //GENERAL FEATURES
