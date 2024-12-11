@@ -26,13 +26,13 @@
         discussionCriteria[name] = criterion;
       }
 
-      courseData  = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}`))[0];
-      discussionData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/discussions/${ENV.discussion_topic_id}`))[0];
+      courseData  = (await canvasGet(`/api/v1/courses/${ENV.course_id}`))[0];
+      discussionData = (await canvasGet(`/api/v1/courses/${ENV.course_id}/discussions/${ENV.discussion_topic_id}`))[0];
       let courseCodeYear = getCourseCodeYear(courseData);
       year = courseCodeYear.year;
       courseCode = courseCodeYear.courseCode;
       try {
-        discussionReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/discussions/${ENV.discussion_topic_id}`);
+        discussionReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.course_id}/discussions/${ENV.discussion_topic_id}`);
       } catch (err) {
         console.log(err);
         return false;
@@ -69,14 +69,14 @@
     addContextMenu($detailedReportButton, [
       { id: 'reevaluate', text: 'Reevaluate', func: async function () {
         $detailedReportButton.html('');
-        await evaluateDiscussion(ENV.COURSE_ID, courseCode, year, discussionData.id, discussionData.description)
+        await evaluateDiscussion(ENV.course_id, courseCode, year, discussionData.id, discussionData.description)
         await refreshData();
         let reviewData = discussionReviewData;
         let criteria = discussionCriteria;
         setButtonHTML($detailedReportButton, reviewData, criteria, rubricReviewData, rubricCriteria);
       }},
       { id: 'disable', text: 'Toggle Ignore', func: async function () {
-        ignoreItem(ENV.COURSE_ID, 'discussions', discussionData.id, !discussionData.ignore);
+        ignoreItem(ENV.course_id, 'discussions', discussionData.id, !discussionData.ignore);
       }},
       // { id: 'clearReview', text: 'Clear Review', func: () => {}}
     ]);
