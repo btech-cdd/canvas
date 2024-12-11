@@ -28,7 +28,6 @@
 
       courseData  = (await canvasGet(`/api/v1/courses/${ENV.course_id}`))[0];
       discussionData = (await canvasGet(`/api/v1/courses/${ENV.course_id}/discussion_topics/${ENV.discussion_topic_id}`))[0];
-      console.log(discussionData);
       let courseCodeYear = getCourseCodeYear(courseData);
       year = courseCodeYear.year;
       courseCode = courseCodeYear.courseCode;
@@ -70,7 +69,7 @@
     addContextMenu($detailedReportButton, [
       { id: 'reevaluate', text: 'Reevaluate', func: async function () {
         $detailedReportButton.html('');
-        await evaluateDiscussion(ENV.course_id, courseCode, year, discussionData.id, discussionData.description, {});
+        await evaluateDiscussion(ENV.course_id, courseCode, year, discussionData.id, discussionData.message, {});
         await refreshData();
         let reviewData = discussionReviewData;
         let criteria = discussionCriteria;
