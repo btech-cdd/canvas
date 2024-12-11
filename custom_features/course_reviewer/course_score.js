@@ -208,7 +208,6 @@
   }
 
   function refreshIcons($vueApp, $modal) {
-    console.log(courseReviewData);
     // get assignment data to locate external assignments
 
     for (let m in courseReviewData.modules) {
@@ -231,7 +230,7 @@
       initContentIcon($scoreEl, $vueApp, $modal, 'Quiz', quiz, criteria.Quizzes);
     }
 
-    for (let d in courseReviewData.discussion) {
+    for (let d in courseReviewData.discussions) {
       let discussion = courseReviewData.discussions[d];
       console.log(discussion);
       discussion.name = $(`.DiscussionTopic_${discussion.discussion_id} span.item_name a.title`).text().trim();
