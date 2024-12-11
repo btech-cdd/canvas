@@ -578,6 +578,15 @@ async function genNewQuizzesQuestionsList(courseId, quizId) {
   return [];
 }
 
+async function evaluateDiscussion(courseId, courseCode, year, discussionId, description, rubric={}) {
+  await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/discussions/${discussionId}/evaluate`, reqdata = {
+      courseCode: courseCode,
+      year: year,
+      description: description,
+      rubric: rubric
+  }, type="POST");
+}
+
 async function evaluateNewQuiz(courseId, courseCode, year, quizId, description) {
   // let questionsList = await genNewQuizzesQuestionsList(); 
   // let statistics = processQuestionStatistics(questionsList);

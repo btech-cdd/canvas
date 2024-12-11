@@ -69,7 +69,7 @@
     addContextMenu($detailedReportButton, [
       { id: 'reevaluate', text: 'Reevaluate', func: async function () {
         $detailedReportButton.html('');
-        await evaluateDiscussion(ENV.course_id, courseCode, year, discussionData.id, discussionData.description)
+        await evaluateDiscussion(ENV.course_id, courseCode, year, discussionData.id, discussionData.description, {});
         await refreshData();
         let reviewData = discussionReviewData;
         let criteria = discussionCriteria;
