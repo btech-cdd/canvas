@@ -8,6 +8,20 @@
   ]);
 
   $(document).ready(async function() {
+    function extractAssignmentId() {
+      // Get the current URL from the browser
+      const url = window.location.href;
+
+      // Create a regular expression to match the assignment ID
+      const regex = /assignments\/(\d+)/;
+
+      // Use the regex to search for the assignment ID in the URL
+      const match = url.match(regex);
+
+      // If a match is found, return the assignment ID; otherwise, return null
+      return match ? match[1] : null;
+    }
+
     var courseData, assignmentData, assignmentReviewData, assignmentCriteria, rubricCriteria, rubricReviewData, objectivesData, relatedAssignments, courseCode, year;
     async function refreshData() {
       // course level data
@@ -29,6 +43,7 @@
       } 
       // Regular Assignments
       else {
+        if (ENV.ASSIGNMENT_ID == undefined) ENV.ASSIGNMENT_ID = extractAssignmentId(); 
         assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
         assignmentCriteria = (await getCriteria('Assignments'))['Assignments'];
         rubricCriteria = (await getCriteria('Rubrics'))['Rubrics'];
