@@ -467,12 +467,13 @@ function getCourseCodeYear(courseData) {
   }
 }
 
-async function evaluateAssignment(courseId, courseCode, year, assignmentId, description, rubric) {
+async function evaluateAssignment(courseId, courseCode, year, assignmentId, description, rubric, isLTI = false) {
   await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/assignments/${assignmentId}/evaluate`, reqdata = {
       courseCode: courseCode,
       year: year,
       description: description,
-      rubric: rubric
+      rubric: rubric,
+      isLTI: isLTI
   }, type="POST");
 }
 

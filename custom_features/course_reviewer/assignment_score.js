@@ -43,7 +43,10 @@
       } 
       // Regular Assignments
       else {
-        if (ENV.ASSIGNMENT_ID == undefined) ENV.ASSIGNMENT_ID = extractAssignmentId(); 
+        if (ENV.ASSIGNMENT_ID == undefined) {
+          ENV.ASSIGNMENT_ID = extractAssignmentId(); 
+          ENV.IS_LTI = true;
+        }
         assignmentData = (await canvasGet(`/api/v1/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}`))[0];
         assignmentCriteria = (await getCriteria('Assignments'))['Assignments'];
         rubricCriteria = (await getCriteria('Rubrics'))['Rubrics'];
@@ -99,7 +102,7 @@
         } else {
           let description = assignmentData.description;
           let rubric = JSON.stringify(assignmentData.rubric);
-          await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignmentId, description, rubric);
+          await evaluateAssignment(ENV.COURSE_ID, courseCode, year, assignmentId, description, rubric, ENV.IS_LTI);
         }
         await refreshData();
         let reviewData = assignmentReviewData;
