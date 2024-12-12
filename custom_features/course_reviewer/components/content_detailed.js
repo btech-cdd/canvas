@@ -131,7 +131,6 @@
 
     methods: {
       async updateCriterion(criterion, criterionName) {
-        if (!IS_CDD) return;
         console.log(this.contentData.criteria);
         let val = this.contentData.criteria[criterionName];
         if (typeof val == 'boolean') val = !val;
