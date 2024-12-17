@@ -58,19 +58,19 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       this.bank_ids = await this.getBankIds();
     },
 
-    filterQuestionList: function() {
-      // Select all li elements with class 'bank'
+   filterQuestionList: function() {
+      let bank_ids = this.bank_ids; // Assuming `this.bank_ids` is defined and is an array of IDs
       let lis = $("#find_question_dialog table.side_tabs_table td.left ul.bank_list li.bank");
-
-      // Iterate through each selected element using .each()
+      
       lis.each(function() {
-        let li = $(this);               // Convert the current element to a jQuery object
-        let id = li.find('.id').text(); // Get the text of the .id element inside this li
-        console.log(id);                // Log the ID to the console
+        let li = $(this);
+        let id = li.find('.id').text().trim(); // get the id text and trim whitespace
+        if (bank_ids.includes(id)) {
+          li.hide();
+        }
       });
     },
-
-
+    
     sortList: function() {
       //let table = $("#btech-banks-table");
       let courseList = $("#btech-bank-courses");
