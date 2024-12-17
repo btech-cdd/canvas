@@ -27,17 +27,21 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
     },
 
     addFilterButton: function() {
-      let filterButton = $("<span>This Course</span>");
-      let showButton = $("<span>All Courses</span>");
+      let filterButton = $(`<a href="#">This Course</a>`);
+      let showButton = $(`<a href="#">All Courses</a>`);
       let filterButtonContainer = $('<div style="display: inline-block; float: left; padding-right: 5px; line-height: 2.5em;"></div>')
       filterButtonContainer.append(filterButton);
       filterButtonContainer.append(showButton);
       showButton.hide();
       filterButton.click(() => {
         this.filterQuestionList();
+        filterButton.hide();
+        showButton.show();
       });
       showButton.click(() => {
         this.showAllQuestionsList();
+        filterButton.show();
+        showButton.hide();
       });
       $("#find_question_dialog").prepend(filterButtonContainer);
     },
