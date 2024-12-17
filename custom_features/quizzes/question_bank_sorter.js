@@ -31,7 +31,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       filterButton.click(() => {
         this.filterQuestionList();
       });
-      $("#find_question_dialog").prepend();
+      $("#find_question_dialog").prepend(filterButton);
     },
 
     getBanks: async function() {
