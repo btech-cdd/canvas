@@ -4,7 +4,6 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
     initiated: false,
     bank_ids: [],
     _init: async function() {
-      let feature = this; //allows to call the feature's methods from within functions
       feature.initBankIds();
       let bankQuestionList = $("#find_question_dialog ul.bank_list");
       var questionObserver = new MutationObserver(function() {
@@ -49,13 +48,13 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
     },
 
     getBankIds: async function() {
-      let banks = await feature.getBanks();
+      let banks = await this.getBanks();
       let bankIds = banks.map(item => item.assessment_question_bank.id);
       return bankIds;
     },
     
     initBankIds: async function() {
-      feature.bank_ids = await feature.getBankIds();
+      this.bank_ids = await this.getBankIds();
     },
 
     filterQuestionList: function() {
