@@ -64,7 +64,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       
       lis.each(function() {
         let li = $(this);
-        let id = li.find('.id').text().trim(); // get the id text and trim whitespace
+        let id = parseInt(li.find('.id').text().trim()); // get the id text and trim whitespace
         if (bank_ids.includes(id)) {
           li.hide();
         }
