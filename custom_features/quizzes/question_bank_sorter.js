@@ -61,7 +61,11 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
     filterQuestionList: function() {
       let bankQuestionList = $("#find_question_dialog ul.bank_list");
       let lis = bankQuestionList.find('li');
-      console.log(lis);
+      for(i in lis) {
+        let li = lis[i];
+        let id = li.find('.id').text();
+        console.log(id);
+      }
     },
 
     sortList: function() {
