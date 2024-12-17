@@ -59,13 +59,17 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
     },
 
     filterQuestionList: function() {
+      // Select all li elements with class 'bank'
       let lis = $("#find_question_dialog table.side_tabs_table td.left ul.bank_list li.bank");
-      for(let i in lis) {
-        let li = $(lis[i]);
-        let id = li.find('.id').text();
-        // console.log(id);
-      }
+
+      // Iterate through each selected element using .each()
+      lis.each(function() {
+        let li = $(this);               // Convert the current element to a jQuery object
+        let id = li.find('.id').text(); // Get the text of the .id element inside this li
+        console.log(id);                // Log the ID to the console
+      });
     },
+
 
     sortList: function() {
       //let table = $("#btech-banks-table");
