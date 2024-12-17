@@ -10,7 +10,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       var questionObserver = new MutationObserver(function() {
         if (bankQuestionList.find("li").length > 1) {
           bankObserver.disconnect();
-          feature.filterQuestionList();
+          feature.addFilterButton();
         }
       });
       questionObserver.observe(bankQuestionList[0], {'childList': true});
@@ -24,6 +24,14 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
         }
       });
       bankObserver.observe(bankList[0], {'childList': true});
+    },
+
+    addFilterButton: function() {
+      let filterButton = $('<div style="display: inline-block; float: left; padding-right: 5px; line-height: 2.5em;">Test</div>')
+      filterButton.click(() => {
+        this.filterQuestionList();
+      });
+      $("#find_question_dialog").prepend();
     },
 
     getBanks: async function() {
