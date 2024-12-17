@@ -2,17 +2,66 @@ IMPORTED_FEATURE = {};
 if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) {
   IMPORTED_FEATURE = {
     initiated: false,
+    bank_ids: [],
     _init: async function() {
       let feature = this; //allows to call the feature's methods from within functions
+      feature.initBankIds();
+      let bankQuestionList = $("#find_question_dialog ul.bank_list");
+      var questionObserver = new MutationObserver(function() {
+        if (bankQuestionList.find("li").length > 1) {
+          bankObserver.disconnect();
+          feature.filterQuestionList();
+        }
+      });
+      questionObserver.observe(bankQuestionList[0], {'childList': true});
+
       let bankList = $("#find_bank_dialog ul.bank_list");
       bankList.before("<table><tbody><tr id='btech-banks-table'><td style='vertical-align: top;'><ul style='position: -webkit-sticky; position:sticky; top: 0;' class='btech-question-banks-sorter' id='btech-bank-courses'></ul></td><td id='btech-bank-display'></td></tr></tbody></table>");
-      var observer = new MutationObserver(function() {
+      var bankObserver = new MutationObserver(function() {
         if (bankList.find("li").length > 1) {
-          observer.disconnect();
+          bankObserver.disconnect();
           feature.sortList();
         }
       });
-      observer.observe(bankList[0], {'childList': true});
+      bankObserver.observe(bankList[0], {'childList': true});
+    },
+
+    getBanks: async function() {
+      return new Promise((resolve, reject) => {
+        $.ajax({
+          url: `https://btech.instructure.com/courses/${ENV.COURSE_ID}/question_banks?inherited=1&page=1`,
+          method: "GET",
+          headers: {
+            "accept": "application/json, text/javascript, application/json+canvas-string-ids, */*; q=0.01",
+          },
+          xhrFields: {
+            withCredentials: true // Includes cookies in the request
+          },
+          referrerPolicy: "no-referrer-when-downgrade",
+          success: function(response) {
+            resolve(response);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            reject(`AJAX Request Failed: ${textStatus}, ${errorThrown}`);
+          }
+        });
+      });
+    },
+
+    getBankIds: async function() {
+      let banks = await feature.getBanks();
+      let bankIds = banks.map(item => item.assessment_question_bank.id);
+      return bankIds;
+    },
+    
+    initBankIds: async function() {
+      feature.bank_ids = await getBankIds();
+    },
+
+    filterQuestionList: function() {
+      let bankQuestionList = $("#find_question_dialog ul.bank_list");
+      let lis = bankQuestionList.find('li');
+      console.log(lis);
     },
 
     sortList: function() {
