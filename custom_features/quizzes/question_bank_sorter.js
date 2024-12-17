@@ -64,7 +64,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       for(i in lis) {
         let li = $(lis[i]);
         let id = li.find('.id').text();
-        console.log(id);
+        // console.log(id);
       }
     },
 
