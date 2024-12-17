@@ -55,7 +55,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
     },
     
     initBankIds: async function() {
-      feature.bank_ids = await getBankIds();
+      feature.bank_ids = await feature.getBankIds();
     },
 
     filterQuestionList: function() {
