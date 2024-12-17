@@ -59,13 +59,15 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
     },
 
    filterQuestionList: function() {
-      let bank_ids = this.bank_ids; // Assuming `this.bank_ids` is defined and is an array of IDs
+      let bankIds = this.bank_ids; // Assuming `this.bank_ids` is defined and is an array of IDs
       let lis = $("#find_question_dialog table.side_tabs_table td.left ul.bank_list li.bank");
       
       lis.each(function() {
+        console.log(bankIds);
         let li = $(this);
         let id = parseInt(li.find('.id').text().trim()); // get the id text and trim whitespace
-        if (bank_ids.includes(id)) {
+        console.log(id);
+        if (bankIds.includes(id)) {
           li.hide();
         }
       });
