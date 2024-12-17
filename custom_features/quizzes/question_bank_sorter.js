@@ -15,7 +15,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       });
       questionObserver.observe(bankQuestionList[0], {'childList': true});
 
-      let bankList = $("#find_bank_dialog ul.bank_list");
+      let bankList = $("#find_bank_dialog table.side_tabs_table td.left ul.bank_list");
       bankList.before("<table><tbody><tr id='btech-banks-table'><td style='vertical-align: top;'><ul style='position: -webkit-sticky; position:sticky; top: 0;' class='btech-question-banks-sorter' id='btech-bank-courses'></ul></td><td id='btech-bank-display'></td></tr></tbody></table>");
       var bankObserver = new MutationObserver(function() {
         if (bankList.find("li").length > 1) {
