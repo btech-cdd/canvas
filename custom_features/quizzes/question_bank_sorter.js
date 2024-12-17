@@ -27,11 +27,19 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
     },
 
     addFilterButton: function() {
-      let filterButton = $('<div style="display: inline-block; float: left; padding-right: 5px; line-height: 2.5em;">Test</div>')
+      let filterButton = $("<span>This Course</span>");
+      let showButton = $("<span>All Courses</span>");
+      let filterButtonContainer = $('<div style="display: inline-block; float: left; padding-right: 5px; line-height: 2.5em;"></div>')
+      filterButtonContainer.append(filterButton);
+      filterButtonContainer.append(showButton);
+      showButton.hide();
       filterButton.click(() => {
         this.filterQuestionList();
       });
-      $("#find_question_dialog").prepend(filterButton);
+      showButton.click(() => {
+        this.showAllQuestionsList();
+      });
+      $("#find_question_dialog").prepend(filterButtonContainer);
     },
 
     getBanks: async function() {
@@ -64,6 +72,15 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
     
     initBankIds: async function() {
       this.bank_ids = await this.getBankIds();
+    },
+
+    showAllQuestionsList: function() {
+      let lis = $("#find_question_dialog table.side_tabs_table td.left ul.bank_list li.bank");
+      lis.each(function() {
+        let li = $(this);
+        let id = li.find('.id').text().trim(); // get the id text and trim whitespace
+        if (id != '') li.show();
+      });
     },
 
    filterQuestionList: function() {
