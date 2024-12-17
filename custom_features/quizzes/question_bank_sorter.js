@@ -4,6 +4,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
     initiated: false,
     bank_ids: [],
     _init: async function() {
+      let feature = this;
       feature.initBankIds();
       let bankQuestionList = $("#find_question_dialog ul.bank_list");
       var questionObserver = new MutationObserver(function() {
