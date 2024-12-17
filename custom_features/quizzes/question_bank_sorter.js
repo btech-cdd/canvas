@@ -60,7 +60,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
 
     filterQuestionList: function() {
       let bankQuestionList = $("#find_question_dialog ul.bank_list");
-      let lis = bankQuestionList.find('li');
+      let lis = bankQuestionList.find('li.bank');
       for(i in lis) {
         let li = $(lis[i]);
         let id = li.find('.id').text();
