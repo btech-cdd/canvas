@@ -257,6 +257,22 @@
     });
   }
 
+  function sidebarCallout() {
+    console.log("COMMENT");
+    let editor = tinymce.activeEditor;
+    let node = $(editor.selection.getNode());
+    // need to add in a check to see if there is an existing comment here and delete if there. If no comment exists, then create a comment. 
+    // get classes, if btech-sidebar-content exists
+    //// then delete that class, get the btech-sidebar-content-<id> and delete that class and use the id to delete the comment div
+    // if btech-sidebar-comment is the class, then do nothing, because don't want comments on comments
+    // if neither exists, then create the comment
+    let commentId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    node.addClass(`btech-sidebar-content-${commentId}`);
+    node.addClass('btech-sidebar-content');
+    let comment = $(`<div class="btech-sidebar-comment btech-sidebar-comment-${commentId}" style="border: 1px solid ${this.color}; padding: 5px;">comment</div>`);
+    node.after(comment);
+  }
+
   // EDITOR SOMETIMES TAKES A MINUTE TO LOAD, THIS WAITS UNTIL IT'S ALL READY
   await TOOLBAR.checkReady(0);
 
@@ -282,4 +298,5 @@
   TOOLBAR.addButtonIcon("icon-student-view", "Insert text which is shown on mouse hover.", hoverDefinition);
   //TOOLBAR.addButtonIcon("far fa-swatchbook", "Create a theme for the page. The template will be inserted at the top of the page. Edit the template to apply changes throughout the page.", addCustomThemeParent);
   TOOLBAR.addButtonIcon("icon-materials-required", "Auto format the page to break the page into sections. Sections are determined by the top level heading.", formatPage);
+  TOOLBAR.addButtonIcon("icon-discussion", "add a callout that goes to the right margin", sidebarCallout)
 })();
