@@ -29,7 +29,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
     addFilterButton: function() {
       let filterButton = $(`<a href="javascript:void(0)">This Course</a>`);
       let showButton = $(`<a href="javascript:void(0)">All Courses</a>`);
-      let filterButtonContainer = $('<div style="display: inline-block; float: left; padding-right: 5px; line-height: 2.5em;"></div>')
+      let filterButtonContainer = $('<div style="display: inline-block; float: left; padding-right: 5px; line-height: 2.5em;"></div>');
       filterButtonContainer.append(filterButton);
       filterButtonContainer.append(showButton);
       showButton.hide();
@@ -149,7 +149,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
         let courseBankSelector = $("#"+courseBankSelectorId);
         if (courseName === currentCourseName) {
           courseList.prepend(courseBankSelector);
-          courseBankSelector.after("<li></li>")
+          courseBankSelector.after("<li></li>");
         } else {
           courseList.append(courseBankSelector);
         }

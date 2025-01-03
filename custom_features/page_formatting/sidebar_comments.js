@@ -39,10 +39,14 @@
 
               // Calculate the top position relative to the container
               let contentTop = content.offset().top - container.offset().top;
+              console.log(comment);
               let border = comment.css('border');
               console.log(border);
               let borderColorRegex = /rgb\((\d+),\s*(\d+),\s*(\d+)\)/;;
-              let match = border.match(borderColorRegex);
+              let match = undefined;
+              if (border) {
+                match = border.match(borderColorRegex);
+              }
               let highlightColor = "rgba(0, 0, 0, 0.2)";
               if (match) {
                 [ , r, g, b]= match.map(Number);
