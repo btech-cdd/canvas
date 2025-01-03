@@ -261,6 +261,7 @@
     console.log("COMMENT");
     let editor = tinymce.activeEditor;
     let node = $(editor.selection.getNode());
+    let customColor = $("#btech-custom-editor-buttons-color").val();
     // need to add in a check to see if there is an existing comment here and delete if there. If no comment exists, then create a comment. 
     // get classes, if btech-sidebar-content exists
     //// then delete that class, get the btech-sidebar-content-<id> and delete that class and use the id to delete the comment div
@@ -269,7 +270,7 @@
     let commentId = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     node.addClass(`btech-sidebar-content-${commentId}`);
     node.addClass('btech-sidebar-content');
-    let comment = $(`<div class="btech-sidebar-comment btech-sidebar-comment-${commentId}" style="border: 1px solid ${this.color}; padding: 5px;">comment</div>`);
+    let comment = $(`<div class="btech-sidebar-comment btech-sidebar-comment-${commentId}" style="border: 1px solid ${customColor}; padding: 5px;">comment</div>`);
     node.after(comment);
   }
 
