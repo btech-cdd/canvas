@@ -13,6 +13,7 @@
   const MARGIN_SIZE = 180;
   // if we actually have something here, then reformat the page
   var container = $('.user_content'); // Get the container
+  container = $('.userMessage'); // Get the container
   console.log(container);
 
   // Function to align the callout box with the paragraph
