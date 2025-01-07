@@ -8,6 +8,7 @@
     DOESN'T HANDLE MULTIPLE COMMENTS
 */
 (async function() {
+  console.log("SIDEBAR COMMENTS")
 
   const MARGIN_SIZE = 180;
   // if we actually have something here, then reformat the page

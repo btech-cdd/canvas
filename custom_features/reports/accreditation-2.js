@@ -580,13 +580,13 @@ id
           addRequiredInformation(el, submission, assignment) {
             console.log(submission);
             //Prepend in reverse order of the order you want it to appear at the top
-            el.prepend("<div>Submitted:" + this.getSubmissionDate(submission) + "</div>");
-            el.prepend("<div>Student:" + (this.anonymous ? ('Anonymous User ' + submission.user.id) : submission.user.name) + "</div>");
+            el.prepend("<p>Submitted: <span style='background-color: #FF0;'>" + this.getSubmissionDate(submission) + "</span></p>");
+            el.prepend("<p>Student: <span style='background-color: #FF0;'>" + (this.anonymous ? ('Anonymous User ' + submission.user.id) : submission.user.name) + "</span></p>");
             if (this.campuses?.[submission.user.id] ?? '' != '') {
-              content.prepend("<div>Campus:" + this.campuses[submission.user.id] + "</div>");
+              content.prepend("<p>Campus: <span style='background-color: #FF0;'>" + this.campuses[submission.user.id] + "</span></p>");
             }
-            el.prepend("<div>Title:" + assignment.name + "</div>");
-            el.prepend("<div>Course:" + this.courseData.name + " (" + this.courseData.course_code + ")" + "</div>");
+            el.prepend("<p>Title: <span style='background-color: #FF0;'>" + assignment.name + "</span></p>");
+            el.prepend("<p>Course: <span style='background-color: #FF0;'>" + this.courseData.name + " (" + this.courseData.course_code + ")" + "</span></p>");
           },
           getTitle(data) {
             console.log(data);
