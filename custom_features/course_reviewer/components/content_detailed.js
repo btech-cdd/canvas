@@ -151,6 +151,9 @@
         } else if (contentType == 'Assignment') {
           contentURL = 'assignments';
           contentId = this.contentData.assignment_id;
+        } else if (contentType == 'Discussion') {
+          contentURL = 'discussions';
+          contentId = this.contentData.quiz_id;
         } else if (contentType == 'Quiz') {
           contentURL = 'quizzes';
           contentId = this.contentData.quiz_id;
