@@ -153,7 +153,7 @@
           contentId = this.contentData.assignment_id;
         } else if (contentType == 'Discussion') {
           contentURL = 'discussions';
-          contentId = this.contentData.quiz_id;
+          contentId = this.contentData.discussions_id;
         } else if (contentType == 'Quiz') {
           contentURL = 'quizzes';
           contentId = this.contentData.quiz_id;
@@ -170,8 +170,8 @@
       calcEmoji(perc) {
         if (isNaN(perc)) return '';
         if (perc < 0.5) return emoji[0]; // bronze
-        if (perc < 0.8) return emoji[1]; // bronze
-        return emoji[2]; // bronze
+        if (perc < 0.8) return emoji[1]; // silver 
+        return emoji[2]; // gold 
       },
       calcEmojiFromData(data, criteria, criterionName) {
         let criterion = criteria[criterionName];
