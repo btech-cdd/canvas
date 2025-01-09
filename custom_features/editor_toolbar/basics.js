@@ -22,9 +22,11 @@
     let selection = editor.selection;
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#FFFFFF";
+    let content = selection.getContent();
+    if (content == '') content = '<h3>INSERT HEADER</h3><p>INSERT TEXT</p>'
     editor.execCommand("mceReplaceContent", false, `
       <div class="btech-callout-box flat">
-      ${selection.getContent()}
+      ${content}
       </div>
       `);
   }
