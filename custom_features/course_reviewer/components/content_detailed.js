@@ -153,7 +153,7 @@
           contentId = this.contentData.assignment_id;
         } else if (contentType == 'Discussion') {
           contentURL = 'discussions';
-          contentId = this.contentData.discussions_id;
+          contentId = this.contentData.discussion_id;
         } else if (contentType == 'Quiz') {
           contentURL = 'quizzes';
           contentId = this.contentData.quiz_id;
