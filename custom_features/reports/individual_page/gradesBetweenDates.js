@@ -255,9 +255,10 @@
       }
 
       // Order submissions by submittedAt, oldest to newest
+      submissions.map(sub => sub.submittedAt = new Date(sub.submittedAt));
       this.submissionDates = submissions
         .filter(submission => submission.submittedAt) // Ensure submittedAt exists
-        .sort((a, b) => new Date(a.submittedAt) - new Date(b.submittedAt));
+        .sort((a, b) => a.submittedAt - b.submittedAt);
 
       console.log(this.submissionDates);
       // Final updates
