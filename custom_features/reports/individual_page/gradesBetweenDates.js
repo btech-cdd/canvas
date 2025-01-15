@@ -480,7 +480,7 @@
         this.submissionDatesEnd = this.dateToHTMLDate(term.endDate);
         this.estimatedHoursEnrolled = term.hours;
         this.getIncludedAssignmentsBetweenDates();
-        this.drawSubmissionsGraph(term.startDate, term.endDate);
+        this.drawSubmissionsGraph(new Date(term.startDate), new Date(term.endDate));
       },
       sumProgressBetweenDates() {
         let sum = 0;
