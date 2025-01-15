@@ -281,7 +281,7 @@
         const formatDate = d3.timeFormat("%Y-%m-%d");
         let submissions = this.submissionDates.filter(submission => {
           const submittedDate = submission.submittedAt;
-          return submittedDate >= new Date(startDate) && submittedDate <= new Date(endDate);
+          return submittedDate >= startDate && submittedDate <= endDate;
         });
         console.log(submissions);
         
