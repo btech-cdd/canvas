@@ -286,7 +286,7 @@
             return submittedDate >= new Date(startDate) && submittedDate <= new Date(endDate);
           }),
           v => v.length,
-          d => formatDate(new Date(d.submittedAt))
+          d => formatDate(d.submittedAt)
         );
         console.log(submissionsGrouped);
 
