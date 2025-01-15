@@ -141,9 +141,10 @@ let VUE_APP = new Vue({
                 points_possible: 1,
                 question_text: `<p>${question.prompt}</p>`,
                 answers: answers,
-                correct_comments: question.comment,
-                incorrect_comments: question.comment,
-                neutral_comments: question.comment
+                // correct_comments: question.comment,
+                // incorrect_comments: question.comment,
+                neutral_comments: question.comment,
+                neutral_comments_html: question.comment
               }
             }); 
             console.log(q);
