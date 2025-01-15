@@ -341,14 +341,14 @@
           .attr("fill", "steelblue");
 
         // Step 6: Add labels (optional)
-        svg.selectAll(".label")
-          .data(submissionCounts)
-          .enter()
-          .append("text")
-          .attr("x", d => xScale(new Date(d.date)) + (width / submissionCounts.length - 1) / 2)
-          .attr("y", d => yScale(d.count) - 5)
-          .attr("text-anchor", "middle")
-          .text(d => (d.count > 0 ? d.count : ""));
+        // svg.selectAll(".label")
+        //   .data(submissionCounts)
+        //   .enter()
+        //   .append("text")
+        //   .attr("x", d => xScale(new Date(d.date)) + (width / submissionCounts.length - 1) / 2)
+        //   .attr("y", d => yScale(d.count) - 5)
+        //   .attr("text-anchor", "middle")
+        //   .text(d => (d.count > 0 ? d.count : ""));
       },
 
       extractCourseId(url) {
