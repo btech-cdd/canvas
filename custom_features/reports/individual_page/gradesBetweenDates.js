@@ -279,12 +279,14 @@
         // Step 1: Filter and group submissions
         const parseDate = d3.timeParse("%Y-%m-%d");
         const formatDate = d3.timeFormat("%Y-%m-%d");
+        let submissions = this.submissionDates.filter(submission => {
+          const submittedDate = submission.submittedAt;
+          return submittedDate >= new Date(startDate) && submittedDate <= new Date(endDate);
+        });
+        console.log(submissions);
         
         const submissionsGrouped = d3.rollup(
-          this.submissionDates.filter(submission => {
-            const submittedDate = submission.submittedAt;
-            return submittedDate >= new Date(startDate) && submittedDate <= new Date(endDate);
-          }),
+          submissions,
           v => v.length,
           d => formatDate(d.submittedAt)
         );
