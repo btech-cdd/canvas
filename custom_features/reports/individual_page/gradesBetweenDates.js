@@ -262,8 +262,7 @@
         .filter(submission => submission.submittedAt) // Ensure submittedAt exists
         .sort((a, b) => a.submittedAt - b.submittedAt);
 
-      
-
+      this.submissionDates = submissions;
       console.log(this.submissionDates);
       // Final updates
       this.loadingProgress = 100;
@@ -282,6 +281,7 @@
         console.log(startDate);
         console.log(endDate);
         console.log('-----')
+        console.log(this.submissionsDates);
         let submissions = this.submissionDates.filter(submission => {
           const submittedDate = submission.submittedAt;
           console.log(submittedDate);
