@@ -297,9 +297,9 @@
         }));
 
         // Step 2: Set up D3 environment
-        const margin = { top: 10, right: 20, bottom: 10, left: 20 };
+        const margin = { top: 20, right: 30, bottom: 40, left: 50 };
         const width = 800 - margin.left - margin.right;
-        const height = 100 - margin.top - margin.bottom;
+        const height = 200 - margin.top - margin.bottom;
 
         d3.select("#submissionGraph").html("");
 
