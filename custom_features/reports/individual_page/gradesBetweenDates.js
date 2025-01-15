@@ -328,7 +328,19 @@
 
         svg.append("g").call(yAxis);
 
-        // Step 5: Draw bars
+         // Create a tooltip element
+        const tooltip = d3.select("#submissionGraph")
+          .append("div")
+          .style("position", "absolute")
+          .style("visibility", "hidden")
+          .style("background", "rgba(0, 0, 0, 0.8)")
+          .style("color", "white")
+          .style("padding", "5px 10px")
+          .style("border-radius", "5px")
+          .style("font-size", "12px")
+          .text("");
+
+        // Draw bars with hover events
         svg.selectAll(".bar")
           .data(submissionCounts)
           .enter()
@@ -338,17 +350,20 @@
           .attr("y", d => yScale(d.count))
           .attr("width", width / submissionCounts.length - 1) // Dynamic width
           .attr("height", d => height - yScale(d.count))
-          .attr("fill", "steelblue");
-
-        // Step 6: Add labels (optional)
-        // svg.selectAll(".label")
-        //   .data(submissionCounts)
-        //   .enter()
-        //   .append("text")
-        //   .attr("x", d => xScale(new Date(d.date)) + (width / submissionCounts.length - 1) / 2)
-        //   .attr("y", d => yScale(d.count) - 5)
-        //   .attr("text-anchor", "middle")
-        //   .text(d => (d.count > 0 ? d.count : ""));
+          .attr("fill", "steelblue")
+          .on("mouseover", (event, d) => {
+            tooltip
+              .style("visibility", "visible")
+              .text(`Date: ${d.date}, Count: ${d.count}`);
+          })
+          .on("mousemove", event => {
+            tooltip
+              .style("top", `${event.pageY - 10}px`)
+              .style("left", `${event.pageX + 10}px`);
+          })
+          .on("mouseout", () => {
+            tooltip.style("visibility", "hidden");
+          });
       },
 
       extractCourseId(url) {
