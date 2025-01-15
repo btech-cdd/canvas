@@ -202,6 +202,7 @@
         loadingMessage: "Loading...",
         loadingAssignments: true,
         courseAssignmentGroups: {},
+        submissionDates: [],
         courses: [],
         columns: [
           new Column('Name', '', false, 'string', false, false),
@@ -216,22 +217,55 @@
       }
     },
     created: async function () {
+      // Initialize state variables
       this.loadingProgress = 0;
       this.loadingMessage = "Loading Courses";
       this.courses = await this.getCourseData();
 
-      for (let i = 0; i < this.courses.length; i++) {
-        let course = this.courses[i];
-        this.loadingMessage = "Loading Submissions for Course " + course.course_id;
-        this.submissionData[course.id] = course.additionalData.submissions;
-        this.loadingProgress += (50 / this.courses.length) * 0.5;
-        //get assignment group data
-        this.loadingMessage = "Loading Assignment Groups for Course " + course.id;
-        this.courseAssignmentGroups[course.id] = course.additionalData.assignment_groups;
-        this.loadingProgress += (50 / this.courses.length) * 0.5;
+      if (!this.courses || this.courses.length === 0) {
+        this.loadingMessage = "No courses available.";
+        this.loadingProgress = 100;
+        return;
       }
+
+      this.submissionData = {};
+      this.courseAssignmentGroups = {};
+      let submissions = [];
+
+      for (let i = 0; i < this.courses.length; i++) {
+        const course = this.courses[i];
+        
+        // Update progress and message
+        this.loadingMessage = `Loading Submissions for Course ${course.course_id}`;
+        this.loadingProgress += (50 / this.courses.length) * 0.5;
+
+        // Collect submission data
+        if (course.additionalData?.submissions) {
+          this.submissionData[course.id] = course.additionalData.submissions;
+          submissions.push(...course.additionalData.submissions);
+        }
+
+        // Update assignment group data
+        this.loadingMessage = `Loading Assignment Groups for Course ${course.id}`;
+        this.loadingProgress += (50 / this.courses.length) * 0.5;
+
+        if (course.additionalData?.assignment_groups) {
+          this.courseAssignmentGroups[course.id] = course.additionalData.assignment_groups;
+        }
+      }
+
+      // Order submissions by submittedAt, oldest to newest
+      this.submissionDates = submissions
+        .filter(submission => submission.submittedAt) // Ensure submittedAt exists
+        .sort((a, b) => new Date(a.submittedAt) - new Date(b.submittedAt));
+
+      console.log(this.submissionDates);
+      // Final updates
+      this.loadingProgress = 100;
+      this.loadingMessage = "Data loading complete.";
       this.loadingAssignments = false;
     },
+
 
     methods: {
       extractCourseId(url) {
