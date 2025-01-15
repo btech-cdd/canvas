@@ -288,6 +288,7 @@
           v => v.length,
           d => formatDate(new Date(d.submittedAt))
         );
+        console.log(submissionsGrouped);
 
         // Fill missing dates with zero counts
         const dateRange = d3.timeDays(new Date(startDate), new Date(endDate));
