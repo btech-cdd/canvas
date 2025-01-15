@@ -34,8 +34,6 @@
             <span>End Date:</span>
             <input type="date" v-model="submissionDatesEnd" @change='getIncludedAssignmentsBetweenDates()'>
           </div>
-          <div id = "submissionGraph">
-          </div>
           <table class='btech-report-table' border='1'>
             <thead border='1'>
               <tr>
@@ -100,6 +98,7 @@
               </tr>
             </tfoot>
           </table>
+          <div id = "submissionGraph"></div>
           <div v-if='showGradeDetails'>
             <!--include a reset button to go back to the default. Probably just rerun the code from on change of date-->
             <div v-for='course in includedAssignments' :key='course.name'>
