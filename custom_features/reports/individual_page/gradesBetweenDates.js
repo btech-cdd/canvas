@@ -282,7 +282,7 @@
         
         const submissionsGrouped = d3.rollup(
           this.submissionDates.filter(submission => {
-            const submittedDate = new Date(submission.submittedAt);
+            const submittedDate = submission.submittedAt;
             return submittedDate >= new Date(startDate) && submittedDate <= new Date(endDate);
           }),
           v => v.length,
@@ -473,7 +473,7 @@
         this.submissionDatesEnd = this.dateToHTMLDate(term.endDate);
         this.estimatedHoursEnrolled = term.hours;
         this.getIncludedAssignmentsBetweenDates();
-        this.drawSubmissionsGraph(this.submissionDatesStart, this.submissionDatesEnd);
+        this.drawSubmissionsGraph(term.startDate, term.endDate);
       },
       sumProgressBetweenDates() {
         let sum = 0;
