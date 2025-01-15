@@ -11,9 +11,6 @@
                     Show Scores 
                 </label>
             </div>
-            <div>
-                {{ settings }}
-            </div>
         </div>
       </div>
     `,
