@@ -279,8 +279,12 @@
         // Step 1: Filter and group submissions
         const parseDate = d3.timeParse("%Y-%m-%d");
         const formatDate = d3.timeFormat("%Y-%m-%d");
+        console.log(startDate);
+        console.log(endDate);
+        console.log('-----')
         let submissions = this.submissionDates.filter(submission => {
           const submittedDate = submission.submittedAt;
+          console.log(submittedDate);
           return submittedDate >= startDate && submittedDate <= endDate;
         });
         console.log(submissions);
