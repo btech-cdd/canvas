@@ -34,6 +34,8 @@
             <span>End Date:</span>
             <input type="date" v-model="submissionDatesEnd" @change='getIncludedAssignmentsBetweenDates()'>
           </div>
+          <div id = "submissionGraph">
+          </div>
           <table class='btech-report-table' border='1'>
             <thead border='1'>
               <tr>
@@ -256,9 +258,11 @@
 
       // Order submissions by submittedAt, oldest to newest
       submissions.map(sub => sub.submittedAt = new Date(sub.submittedAt));
-      this.submissionDates = submissions
+      submissions = submissions
         .filter(submission => submission.submittedAt) // Ensure submittedAt exists
         .sort((a, b) => a.submittedAt - b.submittedAt);
+
+      
 
       console.log(this.submissionDates);
       // Final updates
@@ -269,6 +273,83 @@
 
 
     methods: {
+      // Example: Drawing a Bar Chart for Submissions
+
+      drawSubmissionsGraph: function (startDate, endDate) {
+        // Step 1: Filter and group submissions
+        const parseDate = d3.timeParse("%Y-%m-%d");
+        const formatDate = d3.timeFormat("%Y-%m-%d");
+        
+        const submissionsGrouped = d3.rollup(
+          this.submissionDates.filter(submission => {
+            const submittedDate = new Date(submission.submittedAt);
+            return submittedDate >= new Date(startDate) && submittedDate <= new Date(endDate);
+          }),
+          v => v.length,
+          d => formatDate(new Date(d.submittedAt))
+        );
+
+        // Fill missing dates with zero counts
+        const dateRange = d3.timeDays(new Date(startDate), new Date(endDate));
+        const submissionCounts = dateRange.map(date => ({
+          date: formatDate(date),
+          count: submissionsGrouped.get(formatDate(date)) || 0
+        }));
+
+        // Step 2: Set up D3 environment
+        const margin = { top: 20, right: 30, bottom: 40, left: 50 };
+        const width = 800 - margin.left - margin.right;
+        const height = 400 - margin.top - margin.bottom;
+
+        const svg = d3.select("#submissionGraph")
+          .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        // Step 3: Define scales
+        const xScale = d3.scaleTime()
+          .domain([new Date(startDate), new Date(endDate)])
+          .range([0, width]);
+
+        const yScale = d3.scaleLinear()
+          .domain([0, d3.max(submissionCounts, d => d.count)])
+          .range([height, 0]);
+
+        // Step 4: Add axes
+        const xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%b %d"));
+        const yAxis = d3.axisLeft(yScale);
+
+        svg.append("g")
+          .attr("transform", `translate(0,${height})`)
+          .call(xAxis);
+
+        svg.append("g").call(yAxis);
+
+        // Step 5: Draw bars
+        svg.selectAll(".bar")
+          .data(submissionCounts)
+          .enter()
+          .append("rect")
+          .attr("class", "bar")
+          .attr("x", d => xScale(new Date(d.date)))
+          .attr("y", d => yScale(d.count))
+          .attr("width", width / submissionCounts.length - 1) // Dynamic width
+          .attr("height", d => height - yScale(d.count))
+          .attr("fill", "steelblue");
+
+        // Step 6: Add labels (optional)
+        svg.selectAll(".label")
+          .data(submissionCounts)
+          .enter()
+          .append("text")
+          .attr("x", d => xScale(new Date(d.date)) + (width / submissionCounts.length - 1) / 2)
+          .attr("y", d => yScale(d.count) - 5)
+          .attr("text-anchor", "middle")
+          .text(d => (d.count > 0 ? d.count : ""));
+      },
+
       extractCourseId(url) {
         const courseIdMatch = url.match(/\/courses\/(\d+)\//);
         return courseIdMatch ? courseIdMatch[1] : null;
