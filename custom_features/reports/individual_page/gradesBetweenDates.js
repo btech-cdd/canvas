@@ -276,18 +276,11 @@
 
       drawSubmissionsGraph: function (startDate, endDate) {
         // Step 1: Filter and group submissions
-        const parseDate = d3.timeParse("%Y-%m-%d");
         const formatDate = d3.timeFormat("%Y-%m-%d");
-        console.log(startDate);
-        console.log(endDate);
-        console.log('-----')
-        console.log(this.submissionsDates);
         let submissions = this.submissionDates.filter(submission => {
           const submittedDate = submission.submittedAt;
-          console.log(submittedDate);
           return submittedDate >= startDate && submittedDate <= endDate;
         });
-        console.log(submissions);
         
         const submissionsGrouped = d3.rollup(
           submissions,
@@ -307,6 +300,8 @@
         const margin = { top: 20, right: 30, bottom: 40, left: 50 };
         const width = 800 - margin.left - margin.right;
         const height = 400 - margin.top - margin.bottom;
+
+        d3.select("#submissionGraph").html("");
 
         const svg = d3.select("#submissionGraph")
           .append("svg")
