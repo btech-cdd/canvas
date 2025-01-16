@@ -613,6 +613,8 @@ id
                     'max-height': '',
                     'overflow': 'visible'
                   });
+                  let comments = rubricHolder.find('[data-selenium="criterion_comments_text"]');
+                  console.log(comments);
   
                   // Continue with the rest of your function
                   let ogTitle = $('title').text();
