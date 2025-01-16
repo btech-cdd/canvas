@@ -617,8 +617,10 @@ id
                   for (let c = 0; c < comments.length; c++) {
                       let comment = comments[c];
                       console.log(comment);
-                      $(comment).show();
-                      $(comment).css('height', '100%');
+                      $(comment).css({
+                        'height': '10rem',
+                        'width': '50rem'
+                      });
                   }
   
                   // Continue with the rest of your function
