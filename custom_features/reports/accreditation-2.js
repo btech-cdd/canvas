@@ -619,7 +619,7 @@ id
                       console.log(comment);
                       $(comment).css({
                         'height': '10rem',
-                        'width': '200%'
+                        'width': '30rem'
                       });
                   }
   
