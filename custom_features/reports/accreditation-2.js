@@ -614,7 +614,12 @@ id
                     'overflow': 'visible'
                   });
                   let comments = rubricHolder.find('[data-selenium="criterion_comments_text"]');
-                  console.log(comments);
+                  for (let c = 0; c < comments.length; c++) {
+                      let comment = comments[c];
+                      console.log(comment);
+                      $(comment).show();
+                      $(comment).css('height', '100%');
+                  }
   
                   // Continue with the rest of your function
                   let ogTitle = $('title').text();
