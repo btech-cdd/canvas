@@ -138,6 +138,7 @@
         console.log(val);
         if (criterion.score_type === 'boolean') {
           if (typeof val !== 'boolean') val = false;
+          val = !val;
         }
         else if (criterion.score_type === 'number') {
           if (typeof val !== 'number') val = 0;
