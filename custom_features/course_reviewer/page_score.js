@@ -64,7 +64,7 @@
       }},
       { id: 'disable', text: 'Toggle Ignore', func: async function () {
         console.log(reviewData);
-        ignoreItem(ENV.course_id, 'pages', reviewData.page_id, !reviewData.ignore);
+        ignoreItem(reviewData.course_id, 'pages', reviewData.page_id, !reviewData.ignore);
       }},
       // { id: 'clearReview', text: 'Clear Review', func: () => {}}
     ]);

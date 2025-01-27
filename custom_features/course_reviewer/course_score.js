@@ -193,16 +193,16 @@
       }},
       { id: 'ignore', text: 'Toggle Ignore', func: async function () {
         if (contentReview?.type == 'Page') {
-          ignoreItem(ENV.course_id, 'pages', contentReview.page_id, !contentReview.ignore);
+          ignoreItem(contentReview.course_id, 'pages', contentReview.page_id, !contentReview.ignore);
         }
         if (contentReview?.type == 'Assignment') {
-          ignoreItem(ENV.course_id, 'assignments', contentReview.assignment_id, !contentReview.ignore);
+          ignoreItem(contentReview.course_id, 'assignments', contentReview.assignment_id, !contentReview.ignore);
         }
         if (contentReview?.type == 'Quiz') {
-          ignoreItem(ENV.course_id, 'quizzes', contentReview.quiz_id, !contentReview.ignore);
+          ignoreItem(contentReview.course_id, 'quizzes', contentReview.quiz_id, !contentReview.ignore);
         }
         if (contentReview?.type == 'Discussions') {
-          ignoreItem(ENV.course_id, 'discussions', contentReview.discussion_id, !contentReview.ignore);
+          ignoreItem(contentReview.course_id, 'discussions', contentReview.discussion_id, !contentReview.ignore);
         }
         console.log(contentReview);
       }},
