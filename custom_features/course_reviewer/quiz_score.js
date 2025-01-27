@@ -77,7 +77,8 @@
       }},
       { id: 'disable', text: 'Toggle Ignore', func: async function () {
         console.log(quizData);
-        ignoreItem(quizData.course_id, 'quizzes', quizData.quiz_id, !quizData.ignore);
+        quizData.ignore = !quizData.ignore
+        ignoreItem(quizData.course_id, 'quizzes', quizData.quiz_id, quizData.ignore);
       }},
       // { id: 'clearReview', text: 'Clear Review', func: () => {}}
     ]);
