@@ -192,7 +192,7 @@
         }
       }},
       { id: 'ignore', text: 'Toggle Ignore', func: async function () {
-        console.log('test') ;
+        console.log(contentReview);
       }},
       // { id: 'clearReview', text: 'Clear Review', func: () => {}}
     ], 'absolute');
