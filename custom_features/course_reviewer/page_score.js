@@ -60,7 +60,7 @@
         await refreshData();
         let reviewData = pageReviewData;
         let criteria = pageCriteria;
-        console.log($vueApp.contentData);
+        console.log($vueApp);
         console.log(reviewData);
         $vueApp.contentData = reviewData;
         setButtonHTML($detailedReportButton, reviewData, criteria, null, null);
