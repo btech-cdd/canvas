@@ -63,7 +63,7 @@
         setButtonHTML($detailedReportButton, reviewData, criteria, null, null);
       }},
       { id: 'disable', text: 'Toggle Ignore', func: async function () {
-        ignoreItem(ENV.course_id, 'pages', pageData.page_id, !pageData.ignore);
+        ignoreItem(ENV.course_id, 'pages', reviewData.page_id, !reviewData.ignore);
       }},
       // { id: 'clearReview', text: 'Clear Review', func: () => {}}
     ]);
