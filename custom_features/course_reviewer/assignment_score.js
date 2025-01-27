@@ -107,6 +107,7 @@
         await refreshData();
         let reviewData = assignmentReviewData;
         let criteria = assignmentCriteria;
+        $vueApp.contentData = reviewData;
         setButtonHTML($detailedReportButton, reviewData, criteria, rubricReviewData, rubricCriteria);
       }},
       { id: 'disable', text: 'Toggle Ignore', func: async function () {

@@ -73,10 +73,12 @@
         await refreshData();
         let reviewData = discussionReviewData;
         let criteria = discussionCriteria;
+        $vueApp.contentData = reviewData;
         setButtonHTML($detailedReportButton, reviewData, criteria, rubricReviewData, rubricCriteria);
       }},
       { id: 'disable', text: 'Toggle Ignore', func: async function () {
-        reviewData = !reviewData.ignore;
+        reviewData.ignore = !reviewData.ignore;
+        setButtonHTML($detailedReportButton, reviewData, criteria, null, null);
         ignoreItem(reviewData.course_id, 'discussions', reviewData.discussion_id, reviewData.ignore);
       }},
       // { id: 'clearReview', text: 'Clear Review', func: () => {}}
