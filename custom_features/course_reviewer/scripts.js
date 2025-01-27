@@ -615,6 +615,8 @@ async function evaluateQuiz(courseId, courseCode, year, quizId, description) {
 }
 
 async function ignoreItem(courseId, itemType, itemId, ignore=true) {
+  console.log(courseId);
+  console.log(ignore);
   let resp = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/${itemType}/${itemId}`, reqdata={
     ignore: ignore
   }, type="POST");
