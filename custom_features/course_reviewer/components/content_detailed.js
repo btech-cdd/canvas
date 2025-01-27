@@ -178,6 +178,7 @@
       calcEmojiFromData(data, criteria, criterionName) {
         let criterion = criteria[criterionName];
         let val = data?.criteria?.[criterionName] ?? 0;
+        if (val == undefined) return `🚫`;
         if (criterion.score_type == 'boolean') {
           return (val ? emojiTF[1] : emojiTF[0]);
         }
