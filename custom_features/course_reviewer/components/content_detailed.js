@@ -132,6 +132,7 @@
     methods: {
       async updateCriterion(criterion, criterionName) {
         console.log(this.contentData.criteria);
+        console.log(criterion);
         let val = this.contentData.criteria[criterionName];
         console.log(criterionName);
         console.log(val);
