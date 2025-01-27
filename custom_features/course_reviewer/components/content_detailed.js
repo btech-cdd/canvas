@@ -190,7 +190,7 @@
         if (criterion.score_type == 'number') {
           return (emoji?.[val] ?? '');
         }
-        return '';
+        return `🚫`;
       }
     }
   });
