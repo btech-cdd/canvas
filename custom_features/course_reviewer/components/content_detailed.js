@@ -188,7 +188,7 @@
           return (val ? emojiTF[1] : emojiTF[0]);
         }
         if (criterion.score_type == 'number') {
-          return (emoji?.[val] ?? '');
+          return (emoji?.[val] ?? '🚫');
         }
         return `🚫`;
       }
