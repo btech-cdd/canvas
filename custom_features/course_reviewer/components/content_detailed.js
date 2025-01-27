@@ -133,8 +133,12 @@
       async updateCriterion(criterion, criterionName) {
         console.log(this.contentData.criteria);
         let val = this.contentData.criteria[criterionName];
-        if (typeof val == 'boolean') val = !val;
+        if (typeof val == 'boolean') {
+          if (val === undefined) val = false;
+          val = !val;
+        }
         else if (typeof val == 'number') {
+          if (val === undefined) val = 0;
           val += 1;
           if (val > 2) val = 0;
         }

@@ -12,8 +12,6 @@
   ]);
 
 
-
-
   // insert empty icons for unscored items
   $(".context_module_item").each(function() {
     let el = $(this);
