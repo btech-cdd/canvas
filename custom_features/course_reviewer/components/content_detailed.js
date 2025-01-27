@@ -136,17 +136,13 @@
         let val = this.contentData.criteria[criterionName];
         console.log(criterionName);
         console.log(val);
-        if (typeof val == 'boolean') {
-          if (val === undefined) val = false;
-          val = !val;
+        if (criterion.score_type === 'boolean') {
+          if (typeof val !== 'boolean') val = false;
         }
-        else if (typeof val == 'number') {
-          if (val === undefined) val = 0;
+        else if (criterion.score_type === 'number') {
+          if (typeof val !== 'number') val = 0;
           val += 1;
           if (val > 2) val = 0;
-        }
-        else if (val == undefined) {
-          val = 0;
         }
         console.log(val);
           
