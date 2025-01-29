@@ -69,6 +69,7 @@ let VUE_APP = new Vue({
         reader.readAsText(file);
         reader.onload = async () => {
           let lines = reader.result.split("\n");
+          console.log(lines);
           let name = undefined; 
           lines.push(''); // kept having an issue where the last question wasn't being loaded if there's no empty line at the end, so just adding a blank line
           let quiz = [];
