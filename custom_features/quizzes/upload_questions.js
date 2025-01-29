@@ -132,6 +132,7 @@ let VUE_APP = new Vue({
             let answers = [];
             for (let a in question.answers) {
               let answer = question.answers[a];
+              console.log(answer);
               answers.push({
                 answer_weight: answer.correct ? (100 / question.num_correct) : 0,
                 numerical_answer_type: "exact_answer",
