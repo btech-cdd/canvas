@@ -69,7 +69,6 @@ let VUE_APP = new Vue({
         reader.readAsText(file);
         reader.onload = async () => {
           let lines = reader.result.split("\n");
-          console.log(lines);
           let name = undefined; 
           lines.push(''); // kept having an issue where the last question wasn't being loaded if there's no empty line at the end, so just adding a blank line
           let quiz = [];
@@ -79,11 +78,9 @@ let VUE_APP = new Vue({
           let comment = '';
           let numCorrect = 0;
           for (l in lines) {
+            l = parseInt(l); //need this to be a number for the nextLine 
             let line = lines[l].trim();
             let nextLine = (lines?.[l + 1] ?? '').trim();
-            console.log(l + ' - ' + line);
-            console.log((parseInt(l) + 1) + ' - ' + lines[parseInt(l) + 1]);
-            console.log('');
 
             let mName = line.match(/^Title\:(.*)/);
             if (mName) name = mName[1];
@@ -97,7 +94,11 @@ let VUE_APP = new Vue({
             if (mAnswer) {
               let mAnswerComment = nextLine.match(/^\?\?\.(.*)/);
               let answerComment = '';
-              if (mAnswerComment) answerComment = mAnswerComment[1];
+              if (mAnswerComment) {
+                answerComment = mAnswerComment[1];
+                console.log(mAnswer[2]);
+                console.log(answerComment);
+              }
               answers.push({
                   option: mAnswer[2],
                   correct: line.charAt(0) == '*',
