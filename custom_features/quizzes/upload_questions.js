@@ -79,6 +79,7 @@ let VUE_APP = new Vue({
           let numCorrect = 0;
           for (l in lines) {
             let line = lines[l].trim();
+
             let mName = line.match(/^Title\:(.*)/);
             if (mName) name = mName[1];
 
@@ -89,11 +90,16 @@ let VUE_APP = new Vue({
             }
             let mAnswer = line.match(/^\*{0,1}[A-Za-z](\.|\))(.*)/);
             if (mAnswer) {
-                answers.push({
-                    option: mAnswer[2],
-                    correct: line.charAt(0) == '*'
-                });
-                if (line.charAt(0) == '*') numCorrect += 1;
+              let nextLine = (lines?.[l] ?? '').trim();
+              let mAnswerComment = nextLine.match(/^\?\?\.(.*)/);
+              let answerComment = '';
+              if (mAnswerComment) answerComment = mAnswerComment[1];
+              answers.push({
+                  option: mAnswer[2],
+                  correct: line.charAt(0) == '*',
+                  comments_html: mAnswerComment
+              });
+              if (line.charAt(0) == '*') numCorrect += 1;
             }
 
             let mComment = line.match(/^\?\.(.*)/);
@@ -129,7 +135,8 @@ let VUE_APP = new Vue({
               answers.push({
                 answer_weight: answer.correct ? (100 / question.num_correct) : 0,
                 numerical_answer_type: "exact_answer",
-                answer_text: answer.option
+                answer_text: answer.option,
+                comments_html: answer.comments_html
               })
             }
             let questionType = 'multiple_choice_question';
