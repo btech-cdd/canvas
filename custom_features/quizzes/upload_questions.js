@@ -97,7 +97,7 @@ let VUE_APP = new Vue({
               answers.push({
                   option: mAnswer[2],
                   correct: line.charAt(0) == '*',
-                  comments_html: mAnswerComment
+                  comments_html: answerComment
               });
               if (line.charAt(0) == '*') numCorrect += 1;
             }
