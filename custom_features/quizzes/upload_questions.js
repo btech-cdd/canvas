@@ -81,6 +81,7 @@ let VUE_APP = new Vue({
           for (l in lines) {
             let line = lines[l].trim();
             let nextLine = (lines?.[l + 1] ?? '').trim();
+            console.log(l);
             console.log(line);
             console.log(nextLine);
             console.log('');
