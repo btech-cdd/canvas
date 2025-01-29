@@ -82,7 +82,7 @@ let VUE_APP = new Vue({
             let line = lines[l].trim();
             let nextLine = (lines?.[l + 1] ?? '').trim();
             console.log(l + ' - ' + line);
-            console.log((praseInt(l) + 1) + ' - ' + lines[parseInt(l) + 1]);
+            console.log((parseInt(l) + 1) + ' - ' + lines[parseInt(l) + 1]);
             console.log('');
 
             let mName = line.match(/^Title\:(.*)/);
