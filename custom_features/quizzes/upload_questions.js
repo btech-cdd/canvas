@@ -105,7 +105,6 @@ let VUE_APP = new Vue({
             let mComment = line.match(/^\?\.(.*)/);
             if (mComment) {
                 comment = mComment[1];
-                console.log(comment);
             }
 
             if (answers.length > 1 && line == '') {
@@ -129,10 +128,10 @@ let VUE_APP = new Vue({
           let bank = await this.createBank(file.name.replace(".txt", ""));
           for (let q in quiz) {
             let question = quiz[q];
+            console.log(question);
             let answers = [];
             for (let a in question.answers) {
               let answer = question.answers[a];
-              console.log(answer);
               answers.push({
                 answer_weight: answer.correct ? (100 / question.num_correct) : 0,
                 numerical_answer_type: "exact_answer",
@@ -155,10 +154,7 @@ let VUE_APP = new Vue({
                 neutral_comments_html: question.comment
               }
             }); 
-            console.log(q);
-            console.log(quiz.length);
             this.uploadProgress[file.name] = (+q + 1) / quiz.length;
-            console.log(this.uploadProgress[file.name]);
             //trick vue into showing the change
             this.uploadProgress = JSON.parse(JSON.stringify(this.uploadProgress));
           }
