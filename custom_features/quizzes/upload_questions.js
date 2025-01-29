@@ -80,6 +80,9 @@ let VUE_APP = new Vue({
           let numCorrect = 0;
           for (l in lines) {
             let line = lines[l].trim();
+            let nextLine = (lines?.[l + 1] ?? '').trim();
+            console.log(line);
+            console.log(nextLine);
 
             let mName = line.match(/^Title\:(.*)/);
             if (mName) name = mName[1];
@@ -91,9 +94,6 @@ let VUE_APP = new Vue({
             }
             let mAnswer = line.match(/^\*{0,1}[A-Za-z](\.|\))(.*)/);
             if (mAnswer) {
-              let nextLine = (lines?.[l + 1] ?? '').trim();
-              console.log(line);
-              console.log(nextLine);
               let mAnswerComment = nextLine.match(/^\?\?\.(.*)/);
               let answerComment = '';
               if (mAnswerComment) answerComment = mAnswerComment[1];
