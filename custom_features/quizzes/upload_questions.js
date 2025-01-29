@@ -90,7 +90,7 @@ let VUE_APP = new Vue({
             }
             let mAnswer = line.match(/^\*{0,1}[A-Za-z](\.|\))(.*)/);
             if (mAnswer) {
-              let nextLine = (lines?.[l] ?? '').trim();
+              let nextLine = (lines?.[l + 1] ?? '').trim();
               let mAnswerComment = nextLine.match(/^\?\?\.(.*)/);
               let answerComment = '';
               if (mAnswerComment) answerComment = mAnswerComment[1];
