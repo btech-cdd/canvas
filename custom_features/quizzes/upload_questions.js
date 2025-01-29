@@ -96,8 +96,6 @@ let VUE_APP = new Vue({
               let answerComment = '';
               if (mAnswerComment) {
                 answerComment = mAnswerComment[1];
-                console.log(mAnswer[2]);
-                console.log(answerComment);
               }
               answers.push({
                   option: mAnswer[2],
@@ -133,7 +131,6 @@ let VUE_APP = new Vue({
           let bank = await this.createBank(file.name.replace(".txt", ""));
           for (let q in quiz) {
             let question = quiz[q];
-            console.log(question);
             let answers = [];
             for (let a in question.answers) {
               let answer = question.answers[a];
