@@ -111,7 +111,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
       // feature("external_assignments_fullscreen", {}, /^\/courses\/[0-9]+\/(assignments)/);
       if (IS_TEACHER) {
         feature('quizzes/show_analytics', {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+/);
-        feature('quizzes/printing_accessibility', {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+/);
+        feature('quizzes/printing_accessibility', {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/take/);
         feature("modules/show_undelete", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
         feature("kaltura/showInfo", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
         feature("sections/conclude_all", {}, /^\/courses\/[0-9]+\/sections\/[0-9]+/);
