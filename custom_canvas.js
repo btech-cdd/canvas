@@ -17,8 +17,8 @@ var CDDIDS = [
   2159901, // Celine
   2158921, // Erin
   1547292, // Leann (Student Servies)
-  451607, // Sean (Testing Center)
-  451622, // Karen (Testing Center)
+  451607,  // Sean (Testing Center)
+  451622,  // Karen (Testing Center)
   1842412, // Codi (Testing Center)
   2162497, // Spencer
   2162340, // Cooper
@@ -120,6 +120,8 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         // feature("check_linked_item_completed", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
       }
     }
+
+    featureCDD('files/usage', {}, /^\/courses\/[0-9]+\/files/);
 
     //TOOLBAR FEATURES
     await $.getScript("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js");
