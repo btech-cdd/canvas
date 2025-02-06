@@ -28,9 +28,8 @@ iframes.each(function () {
       <p><strong>Player ID: </strong><span id="kalturaPlayerId_${entryId}">${playerId}</span></p>
       <p><strong>Video ID: </strong><span id="kalturaEntryId_${entryId}">${entryId}</span></p>
       <p><strong>Owner ID: </strong><span id="kalturaOwnerId_${entryId}"></span></p>
+      <div id="#kalturaCaptionsId_${entryId}>Captions loading...</div>
     `);
-    let captions = $(`<div id="#kalturaCaptionsId_${entryId}>Captions loading...</div>`);
-    kalturaInfoEl.append(captions);
 
     if (IS_TEACHER) {
       let addToMyMediaButton = $(`<a class="btn">Add to Media Gallery</a>`)
