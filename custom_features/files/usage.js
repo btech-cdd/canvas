@@ -84,7 +84,7 @@ async function updateUsageColumns() {
                 modalContent.empty(); // Clear any existing content.
                 
                 // Add a header element with the text from ef-name-col.
-                let headerElement = $('<h3>').text(headerText);
+                let headerElement = $('<h4>').text(headerText);
                 modalContent.append(headerElement);
                 
                 // Create an unordered list to hold the usage links.
