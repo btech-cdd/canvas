@@ -52,7 +52,6 @@ iframes.each(function () {
     });
     kalturaInfoIconEl.click(function () {
       $.get(`https://kaltura.bridgetools.dev/api/mymedia/${entryId}`, function(data) {
-        console.log(data);
     
         // Show user ID
         $(`#kalturaOwnerId_${entryId}`).html(`
