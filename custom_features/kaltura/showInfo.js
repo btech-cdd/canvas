@@ -29,7 +29,7 @@ iframes.each(function () {
       <p><strong>Video ID: </strong><span id="kalturaEntryId_${entryId}">${entryId}</span></p>
       <p><strong>Owner ID: </strong><span id="kalturaOwnerId_${entryId}"></span></p>
     `);
-    let captions = $(`<div id="#kalturaCaptionsId_${entryId}></div>`);
+    let captions = $(`<div id="#kalturaCaptionsId_${entryId}>Captions loading...</div>`);
     kalturaInfoEl.append(captions);
 
     if (IS_TEACHER) {
