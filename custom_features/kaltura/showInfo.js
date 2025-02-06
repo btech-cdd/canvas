@@ -62,13 +62,13 @@ iframes.each(function () {
     
         // Prepare the container for captions
         let captions = $(`#kalturaCaptionsId_${entryId}`);
-        captions.html('');  // Clear old content
+        captions.html('<div><h4><b>Captions</b></h4></div>');  // Clear old content
     
         // For each caption track, create a clickable link to download
         for (let caption of data.captions) {
-          let button = $(`<a style="margin-right: 10px; cursor: pointer;">
+          let button = $(`<div><a style="margin-right: 10px; cursor: pointer;">
             Download ${caption.languageCode}
-          </a>`);
+          </a></div>`);
     
           button.click(() => {
             // 1) Convert text into a blob
