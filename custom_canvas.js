@@ -109,11 +109,11 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
       //I'm putting concluding students in here as well vvv
       feature('modules/enrollment_dates_teacher', {}, /^\/courses\/[0-9]+\/users\/[0-9]+$/);
       // feature("external_assignments_fullscreen", {}, /^\/courses\/[0-9]+\/(assignments)/);
+      feature("kaltura/showInfo", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
       if (IS_TEACHER) {
         feature('quizzes/show_analytics', {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+/);
         feature('quizzes/printing_accessibility', {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/take/);
         feature("modules/show_undelete", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
-        feature("kaltura/showInfo", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
         feature("sections/conclude_all", {}, /^\/courses\/[0-9]+\/sections\/[0-9]+/);
         featureCDD('transfer_navigation', {}, /^\/courses\/[0-9]+\/settings/);
       } else {
