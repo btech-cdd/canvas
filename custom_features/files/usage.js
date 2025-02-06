@@ -75,10 +75,17 @@ async function updateUsageColumns() {
               locationDiv.on('click', function(e) {
                 e.preventDefault();
                 
+                // Get the header text from .ef-name-col for the current row.
+                let headerText = row.find('.ef-name-col').text().trim();
+                
                 // Create the modal.
                 let modal = createModal();
                 let modalContent = modal.find('.btech-modal-content-inner');
                 modalContent.empty(); // Clear any existing content.
+                
+                // Add a header element with the text from ef-name-col.
+                let headerElement = $('<h2>').text(headerText);
+                modalContent.append(headerElement);
                 
                 // Create an unordered list to hold the usage links.
                 let ul = $('<div>');
