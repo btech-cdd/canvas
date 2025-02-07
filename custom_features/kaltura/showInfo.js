@@ -211,16 +211,10 @@ iframes.each(function () {
           // e.g., a POST call to your caption request endpoint
           alert("Requested new caption translation for: " + selectedValue);
           
-          /*
-          $.post("https://your-kaltura-endpoint/api/request-caption", {
-            entryId: entryId,
-            language: selectedValue
-          }).done(() => {
-            alert("Request submitted!");
-          }).fail(() => {
-            alert("Something went wrong submitting the request.");
+          $.put(`https://kaltura.bridgetools.dev/api/mymedia/${entryId}/captions/${selectedValue}`, {
+            canvasUserId: ENV.current_user_id
           });
-          */
+          // create an alert letting the user know they'll get a message when the transcript is created
         });
 
         // 5. Put it all together
