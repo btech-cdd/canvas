@@ -78,6 +78,7 @@ const kalturaLanguages = [
   // { label: "Slovak, Slovakia",          value: "Slovak" },
   // { label: "Slovene, Slovenia",         value: "Slovenian" },
   // { label: "Slovenian, Slovenia",       value: "Slovenian" },
+  { label: "Spanish", value: "Spanish"},
   { label: "Ukrainian, Ukraine",        value: "Ukrainian" },
   { label: "Urdu, Pakistan",            value: "Urdu" },
   // { label: "Uzbek, Uzbekistan",         value: "Uzbek" },
