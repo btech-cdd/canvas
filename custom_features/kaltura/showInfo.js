@@ -138,7 +138,10 @@ iframes.each(function () {
       hide: "blind",
       title: "Kaltura Info"
     });
+    // Prepare the container for captions
     kalturaInfoIconEl.click(function () {
+      let captions = $(`#kalturaCaptionsId_${entryId}`);
+      captions.html('<div><h4><b>Captions</b></h4></div>');  // Clear old content
       $.get(`https://kaltura.bridgetools.dev/api/mymedia/${entryId}`, function(data) {
     
         // Show user ID
@@ -149,9 +152,6 @@ iframes.each(function () {
           </a>
         `);
     
-        // Prepare the container for captions
-        let captions = $(`#kalturaCaptionsId_${entryId}`);
-        captions.html('<div><h4><b>Captions</b></h4></div>');  // Clear old content
     
         // For each caption track, create a clickable link to download
         for (let caption of data.captions) {
@@ -181,53 +181,53 @@ iframes.each(function () {
     
           captions.append(button);
         }
-      });
 
-      // === ADD THIS BLOCK AFTER THE for-loop ===
-      // 1. Create a container for "Request new translation"
-      let requestDiv = $(`
-        <div style="margin-top: 1em;">
-          <label for="newCaptionSelect_${entryId}">
-            Request a new translation:
-          </label>
-        </div>
-      `);
+        // === ADD THIS BLOCK AFTER THE for-loop ===
+        // 1. Create a container for "Request new translation"
+        let requestDiv = $(`
+          <div style="margin-top: 1em;">
+            <label for="newCaptionSelect_${entryId}">
+              Request a new translation:
+            </label>
+          </div>
+        `);
 
-      // 2. Create <select> with the possible languages
-      let languageSelect = $(`<select id="newCaptionSelect_${entryId}"></select>`);
-      kalturaLanguages.forEach(lang => {
-        // lang.label is visible to the user, lang.value is the actual Kaltura enum
-        languageSelect.append(
-          `<option value="${lang.value}">${lang.label}</option>`
-        );
-      });
-
-      // 3. Create a "Submit Request" button
-      let requestButton = $(`<button style="margin-left: 6px;">Request</button>`);
-
-      // 4. Handle the click (show an alert or do an AJAX POST, etc.)
-      requestButton.click(() => {
-        let selectedValue = languageSelect.val();
-        // Do whatever you need:
-        // e.g., a POST call to your caption request endpoint
-        alert("Requested new caption translation for: " + selectedValue);
-        
-        /*
-        $.post("https://your-kaltura-endpoint/api/request-caption", {
-          entryId: entryId,
-          language: selectedValue
-        }).done(() => {
-          alert("Request submitted!");
-        }).fail(() => {
-          alert("Something went wrong submitting the request.");
+        // 2. Create <select> with the possible languages
+        let languageSelect = $(`<select id="newCaptionSelect_${entryId}"></select>`);
+        kalturaLanguages.forEach(lang => {
+          // lang.label is visible to the user, lang.value is the actual Kaltura enum
+          languageSelect.append(
+            `<option value="${lang.value}">${lang.label}</option>`
+          );
         });
-        */
-      });
 
-      // 5. Put it all together
-      requestDiv.append(languageSelect);
-      requestDiv.append(requestButton);
-      captions.append(requestDiv);
+        // 3. Create a "Submit Request" button
+        let requestButton = $(`<button style="margin-left: 6px;">Request</button>`);
+
+        // 4. Handle the click (show an alert or do an AJAX POST, etc.)
+        requestButton.click(() => {
+          let selectedValue = languageSelect.val();
+          // Do whatever you need:
+          // e.g., a POST call to your caption request endpoint
+          alert("Requested new caption translation for: " + selectedValue);
+          
+          /*
+          $.post("https://your-kaltura-endpoint/api/request-caption", {
+            entryId: entryId,
+            language: selectedValue
+          }).done(() => {
+            alert("Request submitted!");
+          }).fail(() => {
+            alert("Something went wrong submitting the request.");
+          });
+          */
+        });
+
+        // 5. Put it all together
+        requestDiv.append(languageSelect);
+        requestDiv.append(requestButton);
+        captions.append(requestDiv);
+      });
     
       // Open the modal
       kalturaInfoEl.dialog("open");
