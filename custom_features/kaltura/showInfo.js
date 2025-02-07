@@ -212,7 +212,7 @@ iframes.each(function () {
           alert(`Requested new caption translation for: ${selectedValue}. You will be notified in your Canvas inbox when the translation is complete.`);
           
           $.put(`https://kaltura.bridgetools.dev/api/mymedia/${entryId}/captions/${selectedValue}`, {
-            canvasUserId: ENV.current_user_id
+            canvas_user_id: ENV.current_user_id
           });
           // create an alert letting the user know they'll get a message when the transcript is created
         });
