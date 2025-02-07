@@ -1,3 +1,92 @@
+// Feel free to omit or fix any languages that aren’t in Kaltura’s enum list.
+const kalturaLanguages = [
+  // { label: "Albanian, Albania",           value: "Albanian" },
+  { label: "Arabic, Arab World",          value: "Arabic" },
+  // { label: "Armenian, Armenia",           value: "Armenian" },
+  // { label: "Awadhi, India",               value: "Awadhi" },
+  // { label: "Azerbaijani, Azerbaijan",     value: "Azerbaijani" },
+  // { label: "Bashkir, Russia",             value: "Bashkir" },
+  // { label: "Basque, Spain",               value: "Basque" },
+  // { label: "Belarusian, Belarus",         value: "Byelorussian (Belarusian)" },
+  // { label: "Bengali, Bangladesh",         value: "Bengali (Bangla)" },
+  // { label: "Bhojpuri, India",             value: "Bhojpuri" },
+  // { label: "Bosnian, Bosnia and Herzegovina", value: "Bosnian" }, // if Kaltura supports "Bosnian" or a fallback
+  { label: "Brazilian Portuguese, Brazil",value: "Portuguese (Brazil)" },
+  // { label: "Bulgarian, Bulgaria",         value: "Bulgarian" },
+  { label: "Cantonese (Yue), China",      value: "Cantonese" },
+  // { label: "Catalan, Spain",             value: "Catalan" },
+  // { label: "Chhattisgarhi, India",        value: "Chhattisgarhi" }, // if supported
+  { label: "Chinese, China",             value: "Chinese" },
+  // { label: "Croatian, Croatia",          value: "Croatian" },
+  // { label: "Czech, Czech Republic",       value: "Czech" },
+  { label: "Danish, Denmark",            value: "Danish" },
+  // { label: "Dogri, India",               value: "Dogri (generic)" },
+  { label: "Dutch, Netherlands",         value: "Dutch" },
+  { label: "English, United Kingdom",     value: "English (British)" },
+  // { label: "Estonian, Estonia",          value: "Estonian" },
+  // { label: "Faroese, Faroe Islands",      value: "Faeroese" },
+  { label: "Finnish, Finland",           value: "Finnish" },
+  { label: "French, France",             value: "French" },
+  // { label: "Galician, Spain",            value: "Galician" }, // if supported
+  // { label: "Georgian, Georgia",          value: "Georgian" },
+  { label: "German, Germany",            value: "German" },
+  { label: "Greek, Greece",              value: "Greek" },
+  // { label: "Gujarati, India",            value: "Gujarati" },
+  // { label: "Haryanvi, India",            value: "Haryanvi" }, // if supported
+  { label: "Hindi, India",               value: "Hindi" },
+  { label: "Hungarian, Hungary",         value: "Hungarian" },
+  // { label: "Indonesian, Indonesia",      value: "Indonesian" },
+  // { label: "Irish, Ireland",             value: "Irish" },
+  { label: "Italian, Italy",             value: "Italian" },
+  { label: "Japanese, Japan",            value: "Japanese" },
+  // { label: "Javanese, Indonesia",        value: "Javanese" },
+  // { label: "Kannada, India",             value: "Kannada" },
+  // { label: "Kashmiri, India",            value: "Kashmiri" },
+  // { label: "Kazakh, Kazakhstan",         value: "Kazakh" },
+  // { label: "Konkani, India",             value: "Konkani (generic)" },
+  { label: "Korean, South Korea",        value: "Korean" },
+  // { label: "Kyrgyz, Kyrgyzstan",         value: "Kirghiz" },
+  // { label: "Latvian, Latvia",            value: "Latvian (Lettish)" },
+  // { label: "Lithuanian, Lithuania",      value: "Lithuanian" },
+  // { label: "Macedonian, North Macedonia",value: "Macedonian" },
+  // { label: "Maithili, India",            value: "Maithili" },
+  { label: "Malay, Malaysia",            value: "Malay" },
+  // { label: "Maltese, Malta",             value: "Maltese" },
+  { label: "Mandarin, China",            value: "Mandarin Chinese" },
+  // { label: "Marathi, India",             value: "Marathi" },
+  // { label: "Marwari, India",             value: "Marwari" },
+  // { label: "Min Nan, China",             value: "Min Nan" },
+  // { label: "Moldovan, Moldova",          value: "Moldavian" },
+  { label: "Mongolian, Mongolia",        value: "Mongolian" },
+  // { label: "Montenegrin, Montenegro",    value: "Montenegrin" }, // if Kaltura has it
+  // { label: "Nepali, Nepal",             value: "Nepali" },
+  { label: "Norwegian, Norway",         value: "Norwegian" },
+  // { label: "Oriya, India",              value: "Oriya" },
+  { label: "Pashto, Afghanistan",       value: "Pashto (Pushto)" },
+  { label: "Persian (Farsi), Iran",      value: "Persian" }, // or "Farsi"
+  { label: "Polish, Poland",            value: "Polish" },
+  { label: "Portuguese, Portugal",       value: "Portuguese" },
+  { label: "Punjabi, India",            value: "Punjabi" },
+  // { label: "Rajasthani, India",         value: "Rajasthani" }, // if supported
+  { label: "Romanian, Romania",         value: "Romanian" },
+  { label: "Russian, Russia",           value: "Russian" },
+  // { label: "Sanskrit, India",           value: "Sanskrit" },
+  // { label: "Santali, India",            value: "Santali" },
+  // { label: "Serbian, Serbia",           value: "Serbian" },
+  // { label: "Sindhi, Pakistan",          value: "Sindhi" },
+  // { label: "Sinhala, Sri Lanka",         value: "Sinhalese" },
+  // { label: "Slovak, Slovakia",          value: "Slovak" },
+  // { label: "Slovene, Slovenia",         value: "Slovenian" },
+  // { label: "Slovenian, Slovenia",       value: "Slovenian" },
+  { label: "Ukrainian, Ukraine",        value: "Ukrainian" },
+  { label: "Urdu, Pakistan",            value: "Urdu" },
+  // { label: "Uzbek, Uzbekistan",         value: "Uzbek" },
+  { label: "Vietnamese, Vietnam",       value: "Vietnamese" },
+  // { label: "Welsh, Wales",              value: "Welsh" },
+  // { label: "Wu, China",                 value: "Wu Chinese" }
+];
+
+
 let iframes = $("iframe");
 iframes.each(function () {
   let iframe = $(this);
@@ -93,6 +182,52 @@ iframes.each(function () {
           captions.append(button);
         }
       });
+
+      // === ADD THIS BLOCK AFTER THE for-loop ===
+      // 1. Create a container for "Request new translation"
+      let requestDiv = $(`
+        <div style="margin-top: 1em;">
+          <label for="newCaptionSelect_${entryId}">
+            Request a new translation:
+          </label>
+        </div>
+      `);
+
+      // 2. Create <select> with the possible languages
+      let languageSelect = $(`<select id="newCaptionSelect_${entryId}"></select>`);
+      kalturaLanguages.forEach(lang => {
+        // lang.label is visible to the user, lang.value is the actual Kaltura enum
+        languageSelect.append(
+          `<option value="${lang.value}">${lang.label}</option>`
+        );
+      });
+
+      // 3. Create a "Submit Request" button
+      let requestButton = $(`<button style="margin-left: 6px;">Request</button>`);
+
+      // 4. Handle the click (show an alert or do an AJAX POST, etc.)
+      requestButton.click(() => {
+        let selectedValue = languageSelect.val();
+        // Do whatever you need:
+        // e.g., a POST call to your caption request endpoint
+        alert("Requested new caption translation for: " + selectedValue);
+        
+        /*
+        $.post("https://your-kaltura-endpoint/api/request-caption", {
+          entryId: entryId,
+          language: selectedValue
+        }).done(() => {
+          alert("Request submitted!");
+        }).fail(() => {
+          alert("Something went wrong submitting the request.");
+        });
+        */
+      });
+
+      // 5. Put it all together
+      requestDiv.append(languageSelect);
+      requestDiv.append(requestButton);
+      captions.append(requestDiv);
     
       // Open the modal
       kalturaInfoEl.dialog("open");
