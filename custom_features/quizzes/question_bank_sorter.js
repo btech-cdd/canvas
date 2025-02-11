@@ -125,7 +125,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
         console.log($(this));
         let courseName = $(this).find("div.sub_content span.cached_context_short_name").text().trim();
         if (courseName !== "") {
-          console.log(this.courseNameToId(courseName));
+          console.log(courseNameToId(courseName));
           let courseBankSelectorId = "btech-bank-course-"+courseNameToId(courseName);
           let courseBankListId = "btech-bank-list-"+courseNameToId(courseName);
           if (!courseNames.includes(courseName)) {
