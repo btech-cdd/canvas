@@ -120,13 +120,14 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       bankList.hide();
       let courseNames = [];
       let bankItems = bankList.find("li.bank");
-      bankItems.each(() => {
+      let courseNameToId = this.courseNameToId;
+      bankItems.each(function () {
         console.log($(this));
         let courseName = $(this).find("div.sub_content span.cached_context_short_name").text().trim();
         if (courseName !== "") {
           console.log(this.courseNameToId(courseName));
-          let courseBankSelectorId = "btech-bank-course-"+this.courseNameToId(courseName);
-          let courseBankListId = "btech-bank-list-"+this.courseNameToId(courseName);
+          let courseBankSelectorId = "btech-bank-course-"+courseNameToId(courseName);
+          let courseBankListId = "btech-bank-list-"+courseNameToId(courseName);
           if (!courseNames.includes(courseName)) {
             courseNames.push(courseName);
             courseList.append("<li class='btech-bank-course' id='"+courseBankSelectorId+"'>"+courseName+"</li>");
