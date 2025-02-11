@@ -156,7 +156,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       let currentCourseName = $($("#breadcrumbs li")[1]).find(".ellipsible").text().trim();
       for (let i = 0; i < courseNames.length; i++) {
         let courseName = courseNames[i];
-        let courseBankSelectorId = "btech-bank-course-"+this.courseNameToId(courseName);
+        let courseBankSelectorId = "btech-bank-course-"+courseNameToId(courseName);
         let courseBankSelector = $("#"+courseBankSelectorId);
         if (courseName === currentCourseName) {
           courseList.prepend(courseBankSelector);
