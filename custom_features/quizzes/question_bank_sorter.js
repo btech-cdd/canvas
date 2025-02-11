@@ -5,7 +5,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
     bank_ids: [],
     _init: async function() {
       let feature = this;
-      feature.initBankIds();
+      await feature.initBankIds();
       let bankQuestionList = $("#find_question_dialog table.side_tabs_table td.left ul.bank_list");
       var questionObserver = new MutationObserver(function() {
         if (bankQuestionList.find("li").length > 1) {
