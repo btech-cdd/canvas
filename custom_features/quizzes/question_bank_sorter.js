@@ -122,7 +122,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       let bankItems = bankList.find("li.bank");
       let courseNameToId = this.courseNameToId;
       bankItems.each(function () {
-        console.log($(this));
+        console.log($(this).data());
         let courseName = $(this).find("div.sub_content span.cached_context_short_name").text().trim();
         if (courseName !== "") {
           console.log(courseNameToId(courseName));
