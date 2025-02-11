@@ -7,7 +7,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       let feature = this;
       // load the bank data
       await feature.initBankIds();
-      console.log(bank_ids);
+      console.log(this.bank_ids);
 
       // wait for the questions to load in the modal
       let bankQuestionList = $("#find_question_dialog table.side_tabs_table td.left ul.bank_list");
