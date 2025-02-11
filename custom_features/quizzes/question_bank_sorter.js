@@ -102,7 +102,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       });
     },
 
-    courseNameToId: function(coursename) {
+    courseNameToId: function(courseName) {
       return courseName.replaceAll(" ", "-").replaceAll('&', '+');
     },
     
@@ -115,7 +115,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       bankList.hide();
       let courseNames = [];
       let bankItems = bankList.find("li.bank");
-      bankItems.each(function() {
+      bankItems.each(() => {
         let courseName = $(this).find("div.sub_content span.cached_context_short_name").text().trim();
         if (courseName !== "") {
           console.log(courseName.replaceAll(" ", "-"));
