@@ -5,7 +5,10 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
     bank_ids: [],
     _init: async function() {
       let feature = this;
+      // load the bank data
       await feature.initBankIds();
+
+      // wait for the questions to load in the modal
       let bankQuestionList = $("#find_question_dialog table.side_tabs_table td.left ul.bank_list");
       var questionObserver = new MutationObserver(function() {
         if (bankQuestionList.find("li").length > 1) {
@@ -15,6 +18,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       });
       questionObserver.observe(bankQuestionList[0], {'childList': true});
 
+      // attach list of courses to which banks are categorized
       let bankList = $("#find_bank_dialog ul.bank_list");
       bankList.before("<table><tbody><tr id='btech-banks-table'><td style='vertical-align: top;'><ul style='position: -webkit-sticky; position:sticky; top: 0;' class='btech-question-banks-sorter' id='btech-bank-courses'></ul></td><td id='btech-bank-display'></td></tr></tbody></table>");
       var bankObserver = new MutationObserver(function() {
@@ -27,6 +31,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
     },
 
     addFilterButton: function() {
+      console.log('add button')
       let filterButton = $(`<a href="javascript:void(0)">This Course</a>`);
       let showButton = $(`<a href="javascript:void(0)">All Courses</a>`);
       let filterButtonContainer = $('<div style="display: inline-block; float: left; padding-right: 5px; line-height: 2.5em;"></div>');
