@@ -198,7 +198,7 @@ iframes.each(function () {
         kalturaLanguages.forEach(lang => {
           // lang.label is visible to the user, lang.value is the actual Kaltura enum
           languageSelect.append(
-            `<option value="${lang.value}">${lang.label}</option>`
+            `<option value="${lang.value}">${lang.value}</option>`
           );
         });
 
