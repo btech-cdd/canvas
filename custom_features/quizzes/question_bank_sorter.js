@@ -24,6 +24,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       let bankList = $("#find_bank_dialog ul.bank_list");
       bankList.before("<table><tbody><tr id='btech-banks-table'><td style='vertical-align: top;'><ul style='position: -webkit-sticky; position:sticky; top: 0;' class='btech-question-banks-sorter' id='btech-bank-courses'></ul></td><td id='btech-bank-display'></td></tr></tbody></table>");
       var bankObserver = new MutationObserver(function() {
+        console.log('bank list changed')
         if (bankList.find("li").length > 1) {
           bankObserver.disconnect();
           feature.sortList();
