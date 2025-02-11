@@ -7,12 +7,10 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       let feature = this;
       // load the bank data
       await feature.initBankIds();
-      console.log(this.bank_ids);
 
-      // wait for the questions to load in the modal
+      // init question searcher filter 
       let bankQuestionList = $("#find_question_dialog table.side_tabs_table td.left ul.bank_list");
       var questionObserver = new MutationObserver(function() {
-        console.log('question list changed...')
         if (bankQuestionList.find("li").length > 1) {
           bankObserver.disconnect();
           feature.addFilterButton();
@@ -20,11 +18,10 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       });
       questionObserver.observe(bankQuestionList[0], {'childList': true});
 
-      // attach list of courses to which banks are categorized
+      // init bank searcher filter 
       let bankList = $("#find_bank_dialog ul.bank_list");
       bankList.before("<table><tbody><tr id='btech-banks-table'><td style='vertical-align: top;'><ul style='position: -webkit-sticky; position:sticky; top: 0;' class='btech-question-banks-sorter' id='btech-bank-courses'></ul></td><td id='btech-bank-display'></td></tr></tbody></table>");
       var bankObserver = new MutationObserver(function() {
-        console.log('bank list changed')
         if (bankList.find("li").length > 1) {
           bankObserver.disconnect();
           feature.sortList();
@@ -115,7 +112,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
     },
     
     sortList: function() {
-      //let table = $("#btech-banks-table");
+      console.log('bank finder');
       let courseList = $("#btech-bank-courses");
       let displayLists = $("#btech-bank-display");
       let bankList = $("#find_bank_dialog ul.bank_list");
@@ -124,6 +121,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       let courseNames = [];
       let bankItems = bankList.find("li.bank");
       bankItems.each(() => {
+        console.log($(this));
         let courseName = $(this).find("div.sub_content span.cached_context_short_name").text().trim();
         if (courseName !== "") {
           console.log(this.courseNameToId(courseName));
