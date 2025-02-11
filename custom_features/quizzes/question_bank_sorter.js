@@ -101,6 +101,10 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
         }
       });
     },
+
+    courseNameToId: function(coursename) {
+      return courseName.replaceAll(" ", "-").replaceAll('&', '+');
+    },
     
     sortList: function() {
       //let table = $("#btech-banks-table");
@@ -115,8 +119,8 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
         let courseName = $(this).find("div.sub_content span.cached_context_short_name").text().trim();
         if (courseName !== "") {
           console.log(courseName.replaceAll(" ", "-"));
-          let courseBankSelectorId = "btech-bank-course-"+courseName.replaceAll(" ", "-");
-          let courseBankListId = "btech-bank-list-"+courseName.replaceAll(" ", "-");
+          let courseBankSelectorId = "btech-bank-course-"+this.courseNameToId(courseName);
+          let courseBankListId = "btech-bank-list-"+this.courseNameToId(courseName);
           if (!courseNames.includes(courseName)) {
             courseNames.push(courseName);
             courseList.append("<li class='btech-bank-course' id='"+courseBankSelectorId+"'>"+courseName+"</li>");
@@ -145,7 +149,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       let currentCourseName = $($("#breadcrumbs li")[1]).find(".ellipsible").text().trim();
       for (let i = 0; i < courseNames.length; i++) {
         let courseName = courseNames[i];
-        let courseBankSelectorId = "btech-bank-course-"+courseName.replace(" ", "-").replace('&', '+');
+        let courseBankSelectorId = "btech-bank-course-"+this.courseNameToId(courseName);
         let courseBankSelector = $("#"+courseBankSelectorId);
         if (courseName === currentCourseName) {
           courseList.prepend(courseBankSelector);
