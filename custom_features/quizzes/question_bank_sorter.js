@@ -107,29 +107,24 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       });
     },
 
-    courseNameToId: function(courseName) {
-      return courseName.replaceAll(" ", "-").replaceAll('&', '+');
-    },
-    
     sortList: function() {
-      console.log('bank finder');
       let courseList = $("#btech-bank-courses");
       let displayLists = $("#btech-bank-display");
       let bankList = $("#find_bank_dialog ul.bank_list");
       bankList.attr('id', 'btech-banks-original');
       bankList.hide();
       let courseNames = [];
+      let courseNamesToId = {};
       let bankItems = bankList.find("li.bank");
-      let courseNameToId = this.courseNameToId;
       bankItems.each(function () {
-        console.log($(this).data());
         let courseName = $(this).find("div.sub_content span.cached_context_short_name").text().trim();
         if (courseName !== "") {
-          console.log(courseNameToId(courseName));
-          let courseBankSelectorId = "btech-bank-course-"+courseNameToId(courseName);
-          let courseBankListId = "btech-bank-list-"+courseNameToId(courseName);
+          let courseId = $(this).data().context_id;
+          let courseBankSelectorId = "btech-bank-course-" + courseId;
+          let courseBankListId = "btech-bank-list-" + courseId;
           if (!courseNames.includes(courseName)) {
             courseNames.push(courseName);
+            courseNamesToId[courseName] = coruseId
             courseList.append("<li class='btech-bank-course' id='"+courseBankSelectorId+"'>"+courseName+"</li>");
             let courseBankSelector = $("#"+courseBankSelectorId);
 
@@ -156,7 +151,8 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       let currentCourseName = $($("#breadcrumbs li")[1]).find(".ellipsible").text().trim();
       for (let i = 0; i < courseNames.length; i++) {
         let courseName = courseNames[i];
-        let courseBankSelectorId = "btech-bank-course-"+courseNameToId(courseName);
+        let courseId = courseNamesToId[courseName];
+        let courseBankSelectorId = "btech-bank-course-"+ courseId;
         let courseBankSelector = $("#"+courseBankSelectorId);
         if (courseName === currentCourseName) {
           courseList.prepend(courseBankSelector);
