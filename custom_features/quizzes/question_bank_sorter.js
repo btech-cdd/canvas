@@ -12,6 +12,7 @@ if (/^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/.test(window.location.pathname)) 
       // wait for the questions to load in the modal
       let bankQuestionList = $("#find_question_dialog table.side_tabs_table td.left ul.bank_list");
       var questionObserver = new MutationObserver(function() {
+        console.log('question list changed...')
         if (bankQuestionList.find("li").length > 1) {
           bankObserver.disconnect();
           feature.addFilterButton();
