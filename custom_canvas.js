@@ -121,7 +121,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
       }
     }
 
-    featureCDD('files/usage', {}, /^\/courses\/[0-9]+\/files/);
+    feature('files/usage', {}, /^\/courses\/[0-9]+\/files/);
 
     //TOOLBAR FEATURES
     await $.getScript("https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js");
