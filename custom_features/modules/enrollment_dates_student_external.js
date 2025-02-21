@@ -94,8 +94,8 @@
       let checkValidDates = (this.enrollment.start_at != undefined && this.enrollment.end_at != undefined);
 
       console.log(`VALID DATE? ${checkValidDates}`);
-      if (!checkValidDates) return;
       this.initProgress();
+      if (!checkValidDates) return;
       this.initCountdown();
 
       // Animate countdown to the end 
