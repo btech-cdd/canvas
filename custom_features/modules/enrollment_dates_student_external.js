@@ -82,7 +82,7 @@
 
       // get the enrollment data using the api
       this.enrollment = (await $.get(`/api/v1/courses/${ENV.COURSE_ID}/enrollments?user_id=self&type[]=StudentEnrollment`))[0];
-      console.log(enrollment); 
+      console.log(this.enrollment); 
       // sometimes there's a created_at date but not a start_at date. But if both exist
       //// start_at takes priority because sometimes enrollments are created before the student has the chance to do anything in the course
       if (this.enrollment.start_at == undefined) this.enrollment.start_at = this.enrollment.created_at;
