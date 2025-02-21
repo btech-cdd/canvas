@@ -33,6 +33,161 @@
   await $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js");
   console.log("LIBRARY LOADED");
 
+  // add in style
+  function loadStyle() {
+
+    $('#btech-countdown').css({
+      width: '100%',
+      margin: '0 auto',
+      textAlign: 'center'
+    });
+
+    $('#btech-countdown .bloc-time').css({
+      margin: '0 0.5rem',
+      minWidth: '5rem',
+      textAlign: 'center',
+      display: 'inline-block'
+    });
+
+    $('#btech-countdown .bloc-time:last-child').css({
+      marginRight: '0'
+    });
+
+    $('#btech-countdown .count-title').css({
+      display: 'block',
+      marginBottom: '1rem',
+      font: "normal 1rem 'Lato'",
+      color: '#1a1a1a',
+      textTransform: 'uppercase'
+    });
+
+    $('#btech-countdown .figure').css({
+      position: 'relative',
+      display: 'inline-block',
+      height: '2rem',
+      width: '1.5rem',
+      backgroundColor: 'var(--btech-countdown-back)',
+      borderRadius: '0.5rem',
+      boxShadow: '0 3px 4px 0 rgba(0, 0, 0, .2), inset 2px 4px 0 0 rgba(255, 255, 255, .08)'
+    });
+
+    $('#btech-countdown .figure:last-child').css({
+      marginRight: '0'
+    });
+
+    $('#btech-countdown .figure > span').css({
+      position: 'absolute',
+      left: '0',
+      right: '0',
+      margin: 'auto',
+      font: "normal 1.75rem 'Lato'",
+      fontWeight: '700',
+      color: 'var(--btech-countdown-font)'
+    });
+
+    $('#btech-countdown .figure .top:after, #btech-countdown .figure .bottom-back:after').css({
+      content: '""',
+      position: 'absolute',
+      zIndex: '-1',
+      left: '0',
+      bottom: '0',
+      width: '100%',
+      height: '100%',
+      borderBottom: '1px solid rgba(0, 0, 0, .1)'
+    });
+
+    $('#btech-countdown .figure .top').css({
+      zIndex: '3',
+      backgroundColor: 'var(--btech-countdown-back)',
+      transformOrigin: '50% 100%',
+      borderTopLeftRadius: '10px',
+      borderTopRightRadius: '10px',
+      transform: 'perspective(200px)'
+    });
+
+    $('#btech-countdown .figure .bottom').css({
+      zIndex: '1'
+    });
+
+    $('#btech-countdown .figure .bottom:before').css({
+      content: '""',
+      position: 'absolute',
+      display: 'block',
+      top: '0',
+      left: '0',
+      width: '100%',
+      height: '50%',
+      backgroundColor: 'rgba(0, 0, 0, .02)'
+    });
+
+    $('#btech-countdown .figure .bottom-back').css({
+      zIndex: '2',
+      top: '0',
+      height: '50%',
+      overflow: 'hidden',
+      backgroundColor: 'var(--btech-countdown-back)',
+      borderTopLeftRadius: '10px',
+      borderTopRightRadius: '10px'
+    });
+
+    $('#btech-countdown .figure .bottom-back span').css({
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      right: '0',
+      margin: 'auto'
+    });
+
+    $('#btech-countdown .figure .top, #btech-countdown .figure .top-back').css({
+      height: '50%',
+      overflow: 'hidden',
+      backfaceVisibility: 'hidden'
+    });
+
+    $('#btech-countdown .figure .top-back').css({
+      zIndex: '4',
+      bottom: '0',
+      backgroundColor: 'var(--btech-countdown-back)',
+      transformOrigin: '50% 0',
+      transform: 'perspective(200px) rotateX(180deg)',
+      borderBottomLeftRadius: '10px',
+      borderBottomRightRadius: '10px'
+    });
+
+    $('#btech-countdown .figure .top-back span').css({
+      position: 'absolute',
+      top: '-100%',
+      left: '0',
+      right: '0',
+      margin: 'auto'
+    });
+
+    $('#btech-student-progress-bar').css({
+      textAlign: 'center'
+    });
+
+    $('#btech-student-progress-bar .background').css({
+      color: '#000',
+      maxWidth: '500px',
+      width: '100%',
+      height: '1rem',
+      display: 'inline-block',
+      position: 'relative'
+    });
+
+    $('#btech-student-progress-bar .fill').css({
+      color: '#fff',
+      maxWidth: '500px',
+      minWidth: '2rem',
+      position: 'absolute',
+      userSelect: 'none',
+      cursor: 'help',
+      textAlign: 'left',
+      paddingLeft: '1rem'
+    });
+  }
+
+
 
   // Create object to manage progress bar and countdown timer
   var Countdown = {
@@ -95,11 +250,13 @@
 
       console.log(`VALID DATE? ${checkValidDates}`);
       this.initProgress();
+      loadStyle();
       if (!checkValidDates) return;
       this.initCountdown();
 
       // Animate countdown to the end 
       this.count();    
+      loadStyle();
     },
     
     /*
