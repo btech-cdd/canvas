@@ -86,7 +86,6 @@ var FEATURES = {};
 var IMPORTED_FEATURE = {};
 
 var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
-feature('modules/enrollment_dates_student_external', {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
 (async function() {
   if (window.self === window.top) { //Make sure this is only run on main page, and not every single iframe on the page. For example, Kaltura videos all load in a Canvas iframe
     let currentUser = parseInt(ENV.current_user.id);
@@ -96,6 +95,7 @@ feature('modules/enrollment_dates_student_external', {}, /^\/courses\/[0-9]+(\/m
 
     await $.getScript("https://bridgetools.dev/canvas/scripts.js");
     await $.getScript("https://reports.bridgetools.dev/scripts.js");
+    feature('modules/enrollment_dates_student_external', {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
     feature("login_page", {}, /^\/login/);
     feature("editor_toolbar/manage-settings", {}, /^\/btech-toolbar/);
     if (IS_ME) feature("editor_toolbar/main", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
