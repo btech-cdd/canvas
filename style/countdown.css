@@ -1,3 +1,8 @@
+body {
+  background-color: #FF00FF;
+  color: #FFFF00;
+}
+
 :root {
   --btech-countdown-font: #B30B0F;
   --btech-countdown-back: #fff;
