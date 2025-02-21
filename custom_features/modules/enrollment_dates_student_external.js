@@ -31,6 +31,7 @@
 (async function() {
   // load tweenmax, used for the countdown timer
   await $.getScript("https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js");
+  console.log("LIBRARY LOADED");
 
 
   // Create object to manage progress bar and countdown timer
@@ -313,8 +314,9 @@
 
   // Only run on the course modules page or home  page
   if (/^\/courses\/[0-9]+(\/modules){0,1}$/.test(window.location.pathname)) {
+    console.log("LOADED IN CORRECT PATH");
     // Add containers for the different elements to the modules header bar
-    $(".header-bar").after("<div id='btech-countdown'></div>");
+    $(".header-bar").after("<div id='btech-countdown'>TEST</div>");
     $(".header-bar").after("<div id='btech-student-progress-bar'></div>");
     $(".header-bar-right").css("width", "100%");
     // start it off
