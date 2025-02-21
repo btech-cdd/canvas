@@ -51,6 +51,7 @@ async function feature(f, data = {}, regex = "") {
   } else {
     if (!Array.isArray(regex)) regex = [regex];
     for (var i = 0; i < regex.length; i++) {
+
       let reg = regex[i];
       if (reg.test(window.location.pathname)) {
         check = true;
