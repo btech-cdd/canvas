@@ -257,8 +257,8 @@
 
       // Order submissions by submittedAt, oldest to newest
       submissions.map(sub => {
-        console.log(sub.submittedAt);
-        sub.submittedAt = sub.submittedAt ? new Date(sub.submittedAt) : undefined;
+        console.log(sub);
+        sub.submittedAt = sub.submittedAt ? new Date(sub.submittedAt) : new Date(sub.gradedAt);
       });
       submissions = submissions
         .filter(submission => submission.submittedAt) // Ensure submittedAt exists
