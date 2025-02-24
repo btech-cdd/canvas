@@ -654,6 +654,9 @@
                   assignment.id = parseInt(assignment._id);
                   if (assignment.published) {
                     if (assignment.id in subData) {
+                      if (assignment.id == 6337224) {
+                        console.log(sub);
+                      }
                       let sub = subData[assignment.id];
                       let subDateString = sub.submittedAt;
                       if (subDateString === null) subDateString = sub.gradedAt;
