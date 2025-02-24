@@ -256,7 +256,10 @@
       }
 
       // Order submissions by submittedAt, oldest to newest
-      submissions.map(sub => sub.submittedAt = new Date(sub.submittedAt));
+      submissions.map(sub => {
+        console.log(sub.submittedAt);
+        sub.submittedAt = new Date(sub.submittedAt);
+      });
       submissions = submissions
         .filter(submission => submission.submittedAt) // Ensure submittedAt exists
         .sort((a, b) => a.submittedAt - b.submittedAt);
