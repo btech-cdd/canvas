@@ -724,7 +724,7 @@
                   //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
                   for (let assignmentId in group.assignments) {
                     let assignment = group.assignments[assignmentId];
-                    if (assignmentId == 6337284) console.log(assignment);
+                    if (assignmentId == 6337224) console.log(assignment);
                     if (assignment.include) {
                       currentPoints += assignment.score;
                       totalCurrentPoints += assignment.score;
