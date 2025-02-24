@@ -58,7 +58,6 @@
         }
         try {
           rubricReviewData = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/assignments/${ENV.ASSIGNMENT_ID}/rubric`);
-          console.log(rubricReviewData);
         } catch (err) {
           rubricReviewData = undefined;
           console.log(err);

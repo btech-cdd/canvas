@@ -257,7 +257,6 @@
 
       // Order submissions by submittedAt, oldest to newest
       submissions.map(sub => {
-        console.log(sub);
         sub.submittedAt = sub.submittedAt ? new Date(sub.submittedAt) : new Date(sub.gradedAt);
       });
       submissions = submissions
@@ -265,7 +264,6 @@
         .sort((a, b) => a.submittedAt - b.submittedAt);
 
       this.submissionDates = submissions;
-      console.log(this.submissionDates);
       // Final updates
       this.loadingProgress = 100;
       this.loadingMessage = "Data loading complete.";
@@ -289,7 +287,6 @@
           v => v.length,
           d => formatDate(d.submittedAt)
         );
-        console.log(submissionsGrouped);
 
         // Fill missing dates with zero counts
         const dateRange = d3.timeDays(new Date(startDate), new Date(endDate));
@@ -473,7 +470,6 @@
             });
             let state = active ? 'Active' : completed ? 'Completed' : 'N/A';
             let courseRow = this.newCourse(course.id, state, course.name, year, course.course_code);
-            console.log(courseRow);
             course.hours = courseRow.hours;
           }
           this.loadingProgress += (50 / courses.length) * 0.5;
@@ -658,9 +654,6 @@
                   if (assignment.published) {
                     if (assignment.id in subData) {
                       let sub = subData[assignment.id];
-                      if (assignment.id == 6337224) {
-                        console.log(sub);
-                      }
                       let subDateString = sub.submittedAt;
                       if (subDateString === null) subDateString = sub.gradedAt;
                       includedAssignments[courseId].groups[g].assignments[assignment.id] = {
@@ -730,7 +723,6 @@
                   //check each assignment to see if it was submitted within the date range and get the points earned as well as points possible
                   for (let assignmentId in group.assignments) {
                     let assignment = group.assignments[assignmentId];
-                    if (assignmentId == 6337224) console.log(assignment);
                     if (assignment.include) {
                       currentPoints += assignment.score;
                       totalCurrentPoints += assignment.score;
@@ -826,7 +818,6 @@
       newCourse(id, state, name, year, courseCode) {
         let course = {};
         course.course_id = id;
-        console.log(courseCode);
         let hours = "N/A";
         //get course hours if there's a year
         if (year !== null) {
@@ -936,8 +927,8 @@
             course.days_since_last_submission = "N/A";
             course.points = "N/A";
           }
-        } catch (e) {
-          console.log(e);
+        } catch (err) {
+          console.log(err);
         }
       },
 
