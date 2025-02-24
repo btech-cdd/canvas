@@ -456,6 +456,7 @@
                 courses.push(course);
             }
         });
+        console.log(courses);
         let coursesInactive = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=inactive&state[]=available&state[]=completed`)
         // Filter completed courses to only add those not already in `courses`
         coursesInactive.forEach(course => {
