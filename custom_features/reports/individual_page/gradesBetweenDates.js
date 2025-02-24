@@ -442,14 +442,14 @@
         let coursesActive = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=active&state[]=available&state[]=completed`)
         courses.push(...coursesActive);
         let coursesCompleted;
-        coursesCompleted = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=completed&state[]=available`)
+        coursesCompleted = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=completed&state[]=active`);
         // Filter completed courses to only add those not already in `courses`
         coursesCompleted.forEach(course => {
             if (!courses.some(existingCourse => existingCourse.id === course.id)) {
                 courses.push(course);
             }
         });
-        coursesCompleted = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=completed&state[]=completed`)
+        coursesCompleted = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=completed&state[]=available&state[]=completed`);
         // Filter completed courses to only add those not already in `courses`
         coursesCompleted.forEach(course => {
             if (!courses.some(existingCourse => existingCourse.id === course.id)) {
