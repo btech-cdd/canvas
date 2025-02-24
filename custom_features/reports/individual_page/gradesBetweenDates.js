@@ -440,9 +440,16 @@
       async getCourseData() {
         let courses = [];
         let coursesActive = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=active&state[]=available&state[]=completed`)
-        console.log(coursesActive);
         courses.push(...coursesActive);
-        let coursesCompleted = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=completed&state[]=available&state[]=completed`)
+        let coursesCompleted;
+        coursesCompleted = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=completed&state[]=available`)
+        // Filter completed courses to only add those not already in `courses`
+        coursesCompleted.forEach(course => {
+            if (!courses.some(existingCourse => existingCourse.id === course.id)) {
+                courses.push(course);
+            }
+        });
+        coursesCompleted = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=completed&state[]=completed`)
         // Filter completed courses to only add those not already in `courses`
         coursesCompleted.forEach(course => {
             if (!courses.some(existingCourse => existingCourse.id === course.id)) {
