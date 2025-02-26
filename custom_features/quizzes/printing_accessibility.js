@@ -5,7 +5,7 @@ $(document).ready(function () {
         .answer_input { display: none !important; } 
         div.answer_label::before { content: "⚪ "; } 
         div.move { display: none !important; }
-        .display_question { page-break-inside: avoid; }
+        .display_question { page-break-inside: avoid; border: 1px solid AAA; padding: 0.25rem; margin: 0.25rem; }
       }
 
     </style>`).appendTo('head');
