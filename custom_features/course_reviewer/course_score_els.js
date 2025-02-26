@@ -1,3 +1,4 @@
+$("<style>@media print { #btech-detailed-evaluation-button { display: none !important; } }</style>").appendTo("head");
 function updateReviewProgress(data) {
   if (data.processed < 0) data.processed = 1;
   let color = {
