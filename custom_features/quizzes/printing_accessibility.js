@@ -6,9 +6,6 @@ $(document).ready(function () {
         div.answer_label::before { content: "⚪ "; } 
         div.move { display: none !important; }
         .display_question { page-break-inside: avoid; }
-        .question .header {
-          background-color: #AAA !important;
-        }
       }
 
     </style>`).appendTo('head');
