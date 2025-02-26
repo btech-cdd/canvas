@@ -3,7 +3,7 @@ $(`<style>
   @media print { 
       .answer_input { display: none !important; } 
       div.answer_label::before { content: "⚪ "; } 
-      .move { display: none !imporatnt; }
+      div.move { display: none !important; }
       .display_question { page-break-inside: avoid; }
     }
 
