@@ -8,34 +8,3 @@ $(`<style>
     }
 
   </style>`).appendTo('head');
-$(document).ready(function () {
-  function getComputedStyles(selector) {
-    let styles = "";
-    $(selector).each(function () {
-      let computed = window.getComputedStyle(this);
-      let cssText = "";
-      
-      for (let i = 0; i < computed.length; i++) {
-        let prop = computed[i];
-        cssText += `${prop}: ${computed.getPropertyValue(prop)}; `;
-      }
-
-      styles += `${selector} { ${cssText} } `;
-    });
-    return styles;
-  }
-
-  let questionStyles = getComputedStyles(".question");
-  let headerStyles = getComputedStyles(".header");
-
-  let printStyles = `
-    <style>
-      @media print {
-        ${questionStyles}
-        ${headerStyles}
-      }
-    </style>
-  `;
-
-  $("head").append(printStyles);
-});
