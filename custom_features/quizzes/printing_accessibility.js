@@ -9,33 +9,4 @@ $(document).ready(function () {
       }
 
     </style>`).appendTo('head');
-
-  function getComputedStyles(selector) {
-    let styles = "";
-    $(selector).each(function () {
-      let computed = window.getComputedStyle(this);
-      let cssText = "";
-      
-      for (let i = 0; i < computed.length; i++) {
-        let prop = computed[i];
-        cssText += `${prop}: ${computed.getPropertyValue(prop)}; `;
-      }
-
-      styles += `${selector} { ${cssText} } `;
-    });
-    return styles;
-  }
-
-  let headerStyles = getComputedStyles(".question .header");
-
-  let printStyles = `
-    <style>
-      @media print {
-        ${headerStyles}
-      }
-    </style>
-  `;
-    console.log(printStyles);
-
-  $("head").append(printStyles);
-});
+  });
