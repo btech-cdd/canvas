@@ -118,8 +118,8 @@ $(document).ready(async function () {
             <div 
                 class="progress-bar-container ig-subheader"
                 id="sub-${mid}"
-                style="position: relative; width: 100%; height: 28px; background-color: #E2E2E2
-                ;">
+                style="position: relative; width: 100%; height: 28px; background-color: #E2E2E2;"
+            >
                 
                 
                 <!-- totalcoursePercentage -->
