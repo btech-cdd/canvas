@@ -1,5 +1,4 @@
-(async function () {
-
+$(document).ready(async function () {
     function extractYear(termName) {
         const yearMatch = termName.match(/\b(20\d{2})\b/);
         return yearMatch ? yearMatch[1] : null;
