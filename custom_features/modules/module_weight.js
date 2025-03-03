@@ -118,18 +118,19 @@ $(document).ready(async function () {
             <div 
                 class="progress-bar-container ig-subheader"
                 id="sub-${mid}"
-                style="position: relative; width: 100%; height: 24px; background-color: #a2a2a2;">
+                style="position: relative; width: 100%; height: 24px; background-color: #F2F2F2
+                ;">
                 
                 
                 <!-- totalcoursePercentage -->
                 <div 
                     class="total-progress" 
-                    style="position: absolute; top: 0; left: 0; height: 100%; width: ${totalcoursePercentage * 100}%; background-color: #57dd51;">
+                    style="position: absolute; top: 0; left: 0; height: 100%; width: ${totalcoursePercentage * 100}%; background-color: #55CFCB;">
                 </div>
                 <!-- coursePercentage -->
                 <div 
                 class="course-progress" 
-                style="position: absolute; top: 0; left: 0; height: 100%; width: ${(totalcoursePercentage - coursePercentage) * 100}%; background-color: #c7edd1;">
+                style="position: absolute; top: 0; left: 0; height: 100%; width: ${(totalcoursePercentage - coursePercentage) * 100}%; background-color: #05989D;">
                 </div>
                 
                 
