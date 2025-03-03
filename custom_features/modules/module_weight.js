@@ -138,7 +138,7 @@ $(document).ready(async function () {
                 <div 
                 class="progress-text" 
                 style="position: relative; z-index: 2; text-align: center; line-height: 28px;">
-                    <span style="background-color: rgba(255, 255, 255, 0.8); padding: 0px 8px; border-radius: 8px;">${Math.round(coursePercentage * 100)}% (${Math.ceil(credits * 10) / 10} Crdt) Total: ${Math.round(totalcoursePercentage * 100)}% (${Math.ceil(totalCredits * 10) / 10} Crdt)</span>
+                    <span style="background-color: rgba(255, 255, 255, 0.8); padding: 0px 8px; border-radius: 8px;">${Math.round(coursePercentage * 100)}% (${Math.ceil(credits * 10) / 10} Crdt)&emsp;&emsp;Total: ${Math.round(totalcoursePercentage * 100)}% (${Math.ceil(totalCredits * 10) / 10} Crdt)</span>
                 </div>
             </div>
             `);
