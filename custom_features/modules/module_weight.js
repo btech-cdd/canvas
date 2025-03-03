@@ -137,7 +137,7 @@ $(document).ready(async function () {
                 <!-- Text overlay -->
                 <div 
                 class="progress-text" 
-                style="position: relative; z-index: 2; text-align: center; line-height: 24px; text-shadow: -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px 1px 0 #FFF, 1px 1px 0 #FFF;">
+                style="position: relative; z-index: 2; text-align: center; line-height: 24px;">
                     <span style="background-color: rgba(255, 255, 255, 0.75); padding: 0px 8px; border-radius: 8px;">${Math.round(coursePercentage * 100)}% (${Math.ceil(credits * 10) / 10} Crdt) Total: ${Math.round(totalcoursePercentage * 100)}% (${Math.ceil(totalCredits * 10) / 10} Crdt)</span>
                 </div>
             </div>
