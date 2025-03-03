@@ -124,12 +124,12 @@ $(document).ready(async function () {
                 <!-- totalcoursePercentage -->
                 <div 
                     class="total-progress" 
-                    style="position: absolute; top: 0; left: 0; height: 100%; width: ${totalcoursePercentage * 100}%; background-color: #c7edd1;">
+                    style="position: absolute; top: 0; left: 0; height: 100%; width: ${totalcoursePercentage * 100}%; background-color: #57dd51;">
                 </div>
                 <!-- coursePercentage -->
                 <div 
                 class="course-progress" 
-                style="position: absolute; top: 0; left: 0; height: 100%; width: ${(totalcoursePercentage - coursePercentage) * 100}%; background-color: #57dd51;">
+                style="position: absolute; top: 0; left: 0; height: 100%; width: ${(totalcoursePercentage - coursePercentage) * 100}%; background-color: #c7edd1;">
                 </div>
                 
                 
