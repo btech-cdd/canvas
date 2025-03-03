@@ -580,7 +580,6 @@ async function genNewQuizzesQuestionsList(courseId, quizId) {
 }
 
 async function evaluateDiscussion(courseId, courseCode, year, discussionId, description, rubric={}) {
-  console.log(description)
   await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/discussions/${discussionId}/evaluate`, reqdata = {
       courseCode: courseCode,
       year: year,
@@ -615,12 +614,9 @@ async function evaluateQuiz(courseId, courseCode, year, quizId, description) {
 }
 
 async function ignoreItem(courseId, itemType, itemId, ignore=true) {
-  console.log(courseId);
-  console.log(ignore);
   let resp = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${courseId}/${itemType}/${itemId}`, reqdata={
     ignore: ignore
   }, type="POST");
-  console.log(resp);
 }
 
 async function evaluatePage(courseId, courseCode, year, pageId, description) {

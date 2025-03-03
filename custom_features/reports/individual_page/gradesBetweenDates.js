@@ -256,13 +256,14 @@
       }
 
       // Order submissions by submittedAt, oldest to newest
-      submissions.map(sub => sub.submittedAt = new Date(sub.submittedAt));
+      submissions.map(sub => {
+        sub.submittedAt = sub.submittedAt ? new Date(sub.submittedAt) : new Date(sub.gradedAt);
+      });
       submissions = submissions
         .filter(submission => submission.submittedAt) // Ensure submittedAt exists
         .sort((a, b) => a.submittedAt - b.submittedAt);
 
       this.submissionDates = submissions;
-      console.log(this.submissionDates);
       // Final updates
       this.loadingProgress = 100;
       this.loadingMessage = "Data loading complete.";
@@ -286,7 +287,6 @@
           v => v.length,
           d => formatDate(d.submittedAt)
         );
-        console.log(submissionsGrouped);
 
         // Fill missing dates with zero counts
         const dateRange = d3.timeDays(new Date(startDate), new Date(endDate));
@@ -440,18 +440,18 @@
       async getCourseData() {
         let courses = [];
         let coursesActive = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=active&state[]=available&state[]=completed`)
-        console.log(coursesActive);
         courses.push(...coursesActive);
-        let coursesCompleted = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=completed&state[]=available&state[]=completed`)
+        let coursesCompleted;
+        coursesCompleted = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=completed&state[]=active`);
         // Filter completed courses to only add those not already in `courses`
         coursesCompleted.forEach(course => {
             if (!courses.some(existingCourse => existingCourse.id === course.id)) {
                 courses.push(course);
             }
         });
-        let coursesInactive = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=inactive&state[]=available&state[]=completed`)
+        coursesCompleted = await canvasGet(`/api/v1/users/${this.userId}/courses?enrollment_Type=student&include[]=total_scores&include[]=current_grading_period_scores&include[]=term&enrollment_state=completed&state[]=available&state[]=completed`);
         // Filter completed courses to only add those not already in `courses`
-        coursesInactive.forEach(course => {
+        coursesCompleted.forEach(course => {
             if (!courses.some(existingCourse => existingCourse.id === course.id)) {
                 courses.push(course);
             }
@@ -470,7 +470,6 @@
             });
             let state = active ? 'Active' : completed ? 'Completed' : 'N/A';
             let courseRow = this.newCourse(course.id, state, course.name, year, course.course_code);
-            console.log(courseRow);
             course.hours = courseRow.hours;
           }
           this.loadingProgress += (50 / courses.length) * 0.5;
@@ -819,7 +818,6 @@
       newCourse(id, state, name, year, courseCode) {
         let course = {};
         course.course_id = id;
-        console.log(courseCode);
         let hours = "N/A";
         //get course hours if there's a year
         if (year !== null) {
@@ -929,8 +927,8 @@
             course.days_since_last_submission = "N/A";
             course.points = "N/A";
           }
-        } catch (e) {
-          console.log(e);
+        } catch (err) {
+          console.log(err);
         }
       },
 

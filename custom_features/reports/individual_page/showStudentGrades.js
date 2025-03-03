@@ -79,7 +79,6 @@ Vue.component('show-student-grades', {
       })
     });
     this.enrollments = enrollments;
-    console.log(this.user);
   },
   methods: {
     dateToString(date) {

@@ -1,3 +1,4 @@
+$("<style>@media print { #btech-detailed-evaluation-button { display: none !important; } }</style>").appendTo("head");
 
 // jQuery easing functions (if not included already)
 $.easing.easeInOutQuad = function (x, t, b, c, d) {
