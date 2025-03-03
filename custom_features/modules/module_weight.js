@@ -98,7 +98,11 @@ $(document).ready(async function () {
 
     if (data.course_credits > 0) {
         let totalCredits = 0;
-        for (let mid in data.modules) {
+        let sortedModuleKeys = Object.keys(data.modules).sort((a, b) => 
+            data.modules[a].position - data.modules[b].position
+        );
+
+        for (let mid of sortedModuleKeys) {
             let module = data.modules[mid];
             $(`.ig-subheader#sub-${mid}`).remove();
             let credits = 0;
