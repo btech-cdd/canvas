@@ -48,6 +48,7 @@ $(document).ready(async function () {
             query: query
         });
         let data = res.data.course;
+        let courseCode = data.courseCode;
             let year = extractYear(data.term.name);
             let hours = 0;
             if (year !== null) {
