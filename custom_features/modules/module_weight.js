@@ -96,45 +96,47 @@ $(document).ready(async function () {
     }
     let data = await getAssignmentsData(ENV.COURSE_ID);
 
-    let totalCredits = 0;
-    for (let mid in data.modules) {
-        let module = data.modules[mid];
-        $(`.ig-subheader#sub-${mid}`).remove();
-        let credits = 0;
-        for (let aid of module.assignments) {
-            let assignment = data.assignments[aid];
-            credits += assignment.credits;
-            totalCredits += assignment.credits;
-            // console.log(assignment);
+    if (data.course_credits > 0) {
+        let totalCredits = 0;
+        for (let mid in data.modules) {
+            let module = data.modules[mid];
+            $(`.ig-subheader#sub-${mid}`).remove();
+            let credits = 0;
+            for (let aid of module.assignments) {
+                let assignment = data.assignments[aid];
+                credits += assignment.credits;
+                totalCredits += assignment.credits;
+                // console.log(assignment);
+            }
+            let coursePercentage = credits / data.course_credits;
+            let totalcoursePercentage = totalCredits / data.course_credits;
+            $(`.ig-header#${mid}`).after(`
+            <div 
+                class="progress-bar-container ig-subheader"
+                id="sub-${mid}"
+                style="position: relative; width: 100%; height: 24px; background-color: #d7dde1;">
+                
+                
+                <!-- totalcoursePercentage -->
+                <div 
+                    class="total-progress" 
+                    style="position: absolute; top: 0; left: 0; height: 100%; width: ${totalcoursePercentage * 100}%; background-color: #c7edd1;">
+                </div>
+                <!-- coursePercentage -->
+                <div 
+                class="course-progress" 
+                style="position: absolute; top: 0; left: 0; height: 100%; width: ${coursePercentage * 100}%; background-color: #57dd51;">
+                </div>
+                
+                
+                <!-- Text overlay -->
+                <div 
+                class="progress-text" 
+                style="position: relative; z-index: 2; text-align: center; line-height: 24px;">
+                ${Math.round(coursePercentage * 100)}% (${Math.ceil(credits * 10) / 10} Crdt) Total: ${Math.round(totalcoursePercentage * 100)}% (${Math.ceil(totalCredits * 10) / 10} Crdt)
+                </div>
+            </div>
+            `);
         }
-        let coursePercentage = credits / data.course_credits;
-        let totalcoursePercentage = totalCredits / data.course_credits;
-        $(`.ig-header#${mid}`).after(`
-    <div 
-        class="progress-bar-container ig-subheader"
-        id="sub-${mid}"
-        style="position: relative; width: 100%; height: 24px; background-color: #d7dde1;">
-        
-        
-        <!-- totalcoursePercentage -->
-        <div 
-            class="total-progress" 
-            style="position: absolute; top: 0; left: 0; height: 100%; width: ${totalcoursePercentage * 100}%; background-color: #c7edd1;">
-        </div>
-        <!-- coursePercentage -->
-        <div 
-        class="course-progress" 
-        style="position: absolute; top: 0; left: 0; height: 100%; width: ${coursePercentage * 100}%; background-color: #57dd51;">
-        </div>
-        
-        
-        <!-- Text overlay -->
-        <div 
-        class="progress-text" 
-        style="position: relative; z-index: 2; text-align: center; line-height: 24px;">
-        ${Math.round(coursePercentage * 100)}% (${Math.ceil(credits * 10) / 10} Crdt) Total: ${Math.round(totalcoursePercentage * 100)}% (${Math.ceil(totalCredits * 10) / 10} Crdt)
-        </div>
-    </div>
-    `);
     }
 })();
