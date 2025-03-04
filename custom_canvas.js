@@ -40,26 +40,6 @@ function setCSSVar(cssvar, val) {
     getCSSVar(cssvar);
 }
 
-const DEFAULT_MAX_WIDTH = "50rem";
-function updateMaxWidth() {
-  try {
-      $.get(`/api/v1/users/self/custom_data/page_width?ns=com.btech`, function(data) {
-        if (data.data == "readable") {
-          setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
-        } else if (data.data == "auto") {
-          setCSSVar("--btech-max-width", "auto")
-        } else { //some kind of error?
-          setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
-          $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=auto`);
-        }
-      });
-  } catch(err) {
-      setCSSVar("--btech-max-width", DEFAULT_MAX_WIDTH);
-      $.put(`/api/v1/users/self/custom_data?ns=com.btech&data[page_width]=auto`);
-  }
-}
-updateMaxWidth();
-
 
 let CURRENT_COURSE_ID = null;
 var rCheckInCourse = /^\/courses\/([0-9]+)/;
@@ -202,7 +182,6 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
             feature('speed_grader/assignment_page_link', {}, /^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/)
             feature("rubrics/sortable", {}, [/\/rubrics/, /\/assignments\//]);
             feature("calendar/signup", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-            feature("toggle-max-width", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
             feature("highlight_comments_same_date", {}, [/^\/courses\/[0-9]+\/assignments\/[0-9]+\/submissions\/[0-9]+/, /^\/courses\/[0-9]+\/gradebook\/speed_grader/]);
             if (IS_BLUEPRINT) feature("page_formatting/prep_parts_list_for_sharing", {}, /^\/courses\/[0-9]+\/pages\/parts-list-master/);
             if (IS_BLUEPRINT) feature('blueprint_association_links');
