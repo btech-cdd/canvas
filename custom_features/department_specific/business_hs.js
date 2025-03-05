@@ -1,4 +1,3 @@
-//https://btech.beta.instructure.com/courses/470598
 (async function () {
   IMPORTED_FEATURE = {};
   //IF the editor, add the ability to add services

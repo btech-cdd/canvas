@@ -1,10 +1,8 @@
-var BETA = false;
-if (window.location.href.includes("btech.beta.instructure.com")) {
-  BETA = true;
-} else {
-  BETA = false;
-}
-// BETA = false;
+/*
+  FOR TESTING: url param for disabling custom js and css
+  ?global_includes=0
+*/
+
 var CDDIDS = [
   1893418, // Josh 
   1638854, // Mason
@@ -52,12 +50,9 @@ var IS_TEACHER = null;
 var IS_ME = false;
 var IS_CDD = false;
 var COURSE_HOURS;
-//Now, if testing in beta, will pull from beta instance of all these tools
+
 //Should start experimenting with branching in github
 var SOURCE_URL = 'https://bridgetools.dev/canvas'
-if (BETA) {
-  // SOURCE_URL = 'https://bridgetools.dev/canvas-beta'
-}
 if (ENV.current_user_roles !== null) {
   IS_TEACHER = (ENV.current_user_roles.includes("teacher") || ENV.current_user_roles.includes("admin"));
 }
