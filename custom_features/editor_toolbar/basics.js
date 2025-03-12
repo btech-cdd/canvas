@@ -273,7 +273,6 @@
   TOOLBAR.toolbar.prepend(`<input type="color" id="btech-custom-editor-buttons-color" value="#d22232" style="width: 48px; padding: 4px; padding-right: 0px;" list="default-colors"/>
     <datalist id="default-colors">
       <option>#B20B0F</option>
-      <option>#0B0FB2</option>
       <option>#0f79B2</option>
       <option>#0BB20F</option>
       <option>#B2590f</option>
