@@ -49,28 +49,12 @@
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#FFFFFF";
     editor.execCommand("mceReplaceContent", false, `
-      <div style="background-color: #ffffff; color: #000000; border: 2px solid #B20B0F; border-radius: 5px; margin: 15px auto; width: 90%;" role="note" aria-labelledby="callout-title">
-        <div id="callout-title" style="background-color: #b20b0f; color: #ffffff; font-size: 1.2em; padding: 4px; text-align: left;"><strong>Title</strong></div>
+      <div style="background-color: #ffffff; color: #000000; border: 2px solid ${color}; border-radius: 5px; margin: 15px auto; width: 90%;" role="note" aria-labelledby="callout-title">
+        <div id="callout-title" style="background-color: ${color}; color: #ffffff; font-size: 1.2em; padding: 4px; text-align: left;"><strong>Title</strong></div>
         <div style="padding: 5px;">
-        <p>test content</p>
+        <p>${selection.getContent()}</p>
         </div>
       </div>
-      <table class="btech-example-table" style="width: 90%; border-collapse: collapse; border-color: gray; margin-left: auto; margin-right: auto; height: 62px;" border="0" cellpadding="10">
-        <tbody>
-        <tr style="background-color: ` + color + `;">
-        <td style="width: 1%; height: 32px;"><span style="font-size: 14pt;"><strong><span style="color: #ffffff;">&nbsp;</span></strong></span></td>
-        <td style="width: 98%; height: 32px;"><span style="font-size: 14pt;"><strong><span style="color: #ffffff;">&nbsp;Title</span></strong></span></td>
-        <td style="width: 1%; height: 32px;"><span style="font-size: 14pt;"><strong><span style="color: #ffffff;">&nbsp;</span></strong></span></td>
-        </tr>
-        <tr style="height: 30px; background-color: #fff; color: #000;">
-        <td style="height: 30px;"><span>&nbsp;</span></td>
-        <td style="height: 30px;">
-        ${selection.getContent()}
-        </td>
-        <td style="height: 30px;"><span>&nbsp;</span></td>
-        </tr>
-        </tbody>
-      </table>
       `);
   }
   
