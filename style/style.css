@@ -257,37 +257,6 @@
   margin: 4px 0px 4px 0px;
 }
 
-.btech-callout {
-  background-color: #ffffff; /* White background */
-  color: #000000; /* Ensures text visibility */
-  border: 2px solid #005a9c; /* Colored border for emphasis */
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  margin: 15px auto;
-  width: 90%;
-}
-
-.btech-callout-header {
-  background-color: #005a9c; /* Adjust color as needed */
-  color: #ffffff; /* Ensure high contrast */
-  font-size: 1.2em;
-  font-weight: bold;
-  padding: 10px;
-  text-align: center;
-}
-
-.btech-callout-content {
-  font-size: 1em;
-  line-height: 1.5;
-  padding: 15px;
-}
-
-/* Ensure content inside callout is accessible */
-.btech-callout-content p {
-  margin: 4px 0;
-}
-
-
 
 #content code {
   color: darkblue;

@@ -49,6 +49,12 @@
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#FFFFFF";
     editor.execCommand("mceReplaceContent", false, `
+      <div style="background-color: #ffffff; color: #000000; border: 2px solid #B20B0F; border-radius: 5px; margin: 15px auto; width: 90%;" role="note" aria-labelledby="callout-title">
+        <div id="callout-title" style="background-color: #b20b0f; color: #ffffff; font-size: 1.2em; padding: 4px; text-align: left;"><strong>Title</strong></div>
+        <div style="padding: 5px;">
+        <p>test content</p>
+        </div>
+      </div>
       <table class="btech-example-table" style="width: 90%; border-collapse: collapse; border-color: gray; margin-left: auto; margin-right: auto; height: 62px;" border="0" cellpadding="10">
         <tbody>
         <tr style="background-color: ` + color + `;">
@@ -282,9 +288,9 @@
   //Add in option to change color of exampleBox. IE, you click in it, it figures out the color selected, if you change the color, it changes the box
   TOOLBAR.toolbar.prepend(`<input type="color" id="btech-custom-editor-buttons-color" value="#d22232" style="width: 48px; padding: 4px; padding-right: 0px;" list="default-colors"/>
     <datalist id="default-colors">
-      <option>#d22232</option>
-      <option>#2232d2</option>
-      <option>#1f89e5</option>
+      <option>#B20B0F</option>
+      <option>#0B0FB2</option>
+      <option>#0f79B2</option>
       <option>#32A852</option>
       <option>#E2A208</option>
       <option>#000000</option>
