@@ -17,6 +17,23 @@
   }
 
   // GRAY CALLOUT BOX BUT WITHOUT A BOX SHADOW
+  async function calloutBoxGrayonGray() {
+    let editor = tinymce.activeEditor;
+    let selection = editor.selection;
+    let color = $("#btech-custom-editor-buttons-color").val();
+    let fontColor = "#FFFFFF";
+    let content = selection.getContent();
+    if (content.trim() == '') content = '<h3>INSERT HEADER</h3><p>INSERT TEXT</p>'
+    editor.execCommand("mceReplaceContent", false, `
+      <div style="position: relative; width: 70%; margin: 0 auto; border: 3px solid #AAA; border-radius: 4px;">
+        <div style="background-color: #ededed; position: relative; z-index: 2; overflow: hidden; padding: 0.5rem 1.5rem;">
+          <p>${content}</p>
+        </div>
+      </div>
+      `);
+  }
+
+  // GRAY CALLOUT BOX FOR EMBEDDING NTO AN ALREADY GRAY BACKGROUND 
   async function calloutBoxFlat() {
     let editor = tinymce.activeEditor;
     let selection = editor.selection;
@@ -26,7 +43,7 @@
     if (content.trim() == '') content = '<h3>INSERT HEADER</h3><p>INSERT TEXT</p>'
     editor.execCommand("mceReplaceContent", false, `
       <div class="btech-callout-box flat">
-      ${content}
+      <p>${content}</p>
       </div>
       `);
   }
