@@ -257,6 +257,34 @@
   margin: 4px 0px 4px 0px;
 }
 
+.btech-callout-header {
+  background-color: #005a9c; /* Ensure WCAG contrast */
+  color: #ffffff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  margin: 15px auto;
+  width: 90%;
+}
+
+.btech-callout-header-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.btech-callout-header-content {
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+/* Ensure content inside callout is accessible */
+.btech-callout-header-content p {
+  margin: 4px 0;
+}
+
+
 #content code {
   color: darkblue;
   font-size: .9rem;

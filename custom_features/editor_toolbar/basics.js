@@ -68,27 +68,27 @@
       `);
   }
   
-  // SLIGHTLY MORE CONDENSE CALLOUT BOX THAT ALSO USES COLOR
-  async function exampleBoxSmall() {
-    let editor = tinymce.activeEditor;
-    let selection = editor.selection;
-    let color = $("#btech-custom-editor-buttons-color").val();
-    let fontColor = "#FFFFFF";
-    editor.execCommand("mceReplaceContent", false, `
-    <table style="margin-bottom: 0.5rem; width: 90%; border-collapse: collapse; border-color: gray; margin-left: auto; margin-right: auto;" border="0" cellpadding="10">
-      <tbody>
-      <tr>
-      <td style="background-color: `+color+`; color: #ffffff; text-align: center; width: 1%; white-space: nowrap;">Note</td>
-      <td style="width: 1rem; background: linear-gradient(to bottom right, `+color+` 49.5%, #f0f0f0 50.5%);"></td>
-      <td style="background-color: #f0f0f0; color: #000000;">
-        ${selection.getContent()}
-      </td>
-      <td style="width: 1rem; background: linear-gradient(to bottom right, #f0f0f0 49.5%, `+color+` 50.5%);"></td>
-      </tr>
-      </tbody>
-    </table>
-      `);
-  }
+  // // SLIGHTLY MORE CONDENSE CALLOUT BOX THAT ALSO USES COLOR
+  // async function exampleBoxSmall() {
+  //   let editor = tinymce.activeEditor;
+  //   let selection = editor.selection;
+  //   let color = $("#btech-custom-editor-buttons-color").val();
+  //   let fontColor = "#FFFFFF";
+  //   editor.execCommand("mceReplaceContent", false, `
+  //   <table style="margin-bottom: 0.5rem; width: 90%; border-collapse: collapse; border-color: gray; margin-left: auto; margin-right: auto;" border="0" cellpadding="10">
+  //     <tbody>
+  //     <tr>
+  //     <td style="background-color: `+color+`; color: #ffffff; text-align: center; width: 1%; white-space: nowrap;">Note</td>
+  //     <td style="width: 1rem; background: linear-gradient(to bottom right, `+color+` 49.5%, #f0f0f0 50.5%);"></td>
+  //     <td style="background-color: #f0f0f0; color: #000000;">
+  //       ${selection.getContent()}
+  //     </td>
+  //     <td style="width: 1rem; background: linear-gradient(to bottom right, #f0f0f0 49.5%, `+color+` 50.5%);"></td>
+  //     </tr>
+  //     </tbody>
+  //   </table>
+  //     `);
+  // }
 
   // FORMATS A CITATION
   function citationInsert(bg) {
@@ -293,7 +293,7 @@
     `);
 
   TOOLBAR.addButtonIcon("icon-unmuted", "Insert an information box. Can be used for warnings, examples, etc.", exampleBox);
-  TOOLBAR.addButtonIcon("icon-flag", "Insert an information box. Can be used for warnings, examples, etc.", exampleBoxSmall);
+  // TOOLBAR.addButtonIcon("icon-flag", "Insert an information box. Can be used for warnings, examples, etc.", exampleBoxSmall);
   // TOOLBAR.addButtonIcon("icon-note-light", "Insert a gray callout box", calloutBox);
   TOOLBAR.addButtonIcon("icon-note-light", "Insert a gray callout box without a box shadow", calloutBoxFlat);
   TOOLBAR.addButtonIcon("icon-compose", "Insert a citation.", citation);
