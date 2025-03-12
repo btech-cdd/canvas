@@ -276,7 +276,7 @@
       <option>#0B0FB2</option>
       <option>#0f79B2</option>
       <option>#0BB20F</option>
-      <option>#B2790f</option>
+      <option>#B2590f</option>
       <option>#000000</option>
       <option>#FFFFFF</option>
     </datalist>
