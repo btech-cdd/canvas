@@ -44,7 +44,7 @@
     if (content.trim() == '') content = 'INSERT CONTENT'
     editor.execCommand("mceReplaceContent", false, `
       <div style="background-color: #ffffff; color: #000000; border: 3px solid ${color}; border-radius: 5px; margin: 1rem auto; width: 70%;" role="note" aria-label="callout-box">
-        <div aria-label="callout-title" style="background-color: ${color}; color: #ffffff; font-size: 1.2em; padding: 0.25rem 1.5rem; text-align: left;"><strong>INSERT TITLE</strong></div>
+        <div aria-label="callout-title" style="background-color: ${color}; color: #ffffff; font-size: 1.2em; padding: 0.25rem 1.5rem; text-align: left; font-weight: bold;"><strong>INSERT TITLE</strong></div>
         <div style="padding: 0.5rem 1.5rem;">
         <p>${content}</p>
         </div>
