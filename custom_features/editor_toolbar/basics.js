@@ -34,6 +34,7 @@
   async function exampleBox() {
     let editor = tinymce.activeEditor;
     let selection = editor.selection;
+    let content = selection.getContent();
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#FFFFFF";
     if (content.trim() == '') content = 'INSERT CONTENT'
@@ -41,7 +42,7 @@
       <div style="background-color: #ffffff; color: #000000; border: 3px solid ${color}; border-radius: 5px; margin: 1rem auto; width: 70%;" role="note" aria-label="callout-box">
         <div aria-label="callout-title" style="background-color: ${color}; color: #ffffff; font-size: 1.2em; padding: 4px; text-align: left;"><strong>INSERT TITLE</strong></div>
         <div style="padding: 5px;">
-        <p>${selection.getContent()}</p>
+        <p>${content}</p>
         </div>
       </div>
       `);
