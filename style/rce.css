@@ -35,14 +35,9 @@ img[style*="float: right"] {
 .btech-callout-box {
   background-color: #F1F1F1;
   border-radius: 5px;
-  box-shadow: 5px 5px 10px #888;
   padding: 0.5rem;
   border: 1px solid #E1E1E1;
   margin: 0.5rem 5% 1rem 5%;
-}
-
-.btech-callout-box.flat {
-  box-shadow: none;
 }
 
 /*the basic header*/
