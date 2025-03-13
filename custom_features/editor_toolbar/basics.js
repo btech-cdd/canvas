@@ -9,7 +9,7 @@
     let content = selection.getContent();
     if (content.trim() == '') content = '<div aria-label="callout-title">INSERT HEADER</div><div><p>INSERT TEXT</p></div>'
     editor.execCommand("mceReplaceContent", false, `
-      <div style="position: relative; width: 70%; margin: 1rem; auto; border: 3px solid #AAA; border-radius: 4px;" role="note" aria-labelledby="callout-box">
+      <div style="position: relative; width: 70%; margin: 1rem auto; border: 3px solid #AAA; border-radius: 4px;" role="note" aria-labelledby="callout-box">
         <div style="background-color: #ededed; position: relative; z-index: 2; overflow: hidden; padding: 0.5rem 1.5rem;">
           <p>${content}</p>
         </div>
@@ -18,7 +18,7 @@
   }
 
   // GRAY CALLOUT BOX FOR EMBEDDING NTO AN ALREADY GRAY BACKGROUND 
-  async function calloutBoxFlat() {
+  async function calloutBox() {
     let editor = tinymce.activeEditor;
     let selection = editor.selection;
     let content = selection.getContent();
@@ -271,7 +271,7 @@
   TOOLBAR.addButtonIcon("icon-unmuted", "Callout Box with Colored Title", "Insert an information box. Can be used for warnings, examples, etc.", exampleBox);
   // TOOLBAR.addButtonIcon("icon-flag", "Insert an information box. Can be used for warnings, examples, etc.", exampleBoxSmall);
   // TOOLBAR.addButtonIcon("icon-note-light", "Insert a gray callout box", calloutBox);
-  TOOLBAR.addButtonIcon("icon-note-light", "Callout Box Gray", "Insert a gray callout box", calloutBoxFlat);
+  TOOLBAR.addButtonIcon("icon-note-light", "Callout Box Gray", "Insert a gray callout box", calloutBox);
   TOOLBAR.addButtonIcon("icon-note-light icon-Solid", "Callout Box Gray for on Gray", "Insert a gray callout box. Designed to be inserted into an area with a gray background.", calloutBoxGrayonGray);
   TOOLBAR.addButtonIcon("icon-compose", "Citation", "Insert a citation.", citation);
   // TOOLBAR.addButtonIcon("icon-off", "Hide text. Reveal on mouse hover.", hideOnHover);
