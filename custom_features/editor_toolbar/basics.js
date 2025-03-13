@@ -268,15 +268,9 @@
     </datalist>
     `);
 
-  TOOLBAR.addButtonIcon("icon-unmuted", "Callout Box with Colored Title", "Insert an information box. Can be used for warnings, examples, etc.", exampleBox);
-  // TOOLBAR.addButtonIcon("icon-flag", "Insert an information box. Can be used for warnings, examples, etc.", exampleBoxSmall);
-  // TOOLBAR.addButtonIcon("icon-note-light", "Insert a gray callout box", calloutBox);
-  TOOLBAR.addButtonIcon("icon-note-light", "Callout Box Gray", "Insert a gray callout box", calloutBox);
-  TOOLBAR.addButtonIcon("icon-note-light icon-Solid", "Callout Box Gray for on Gray", "Insert a gray callout box. Designed to be inserted into an area with a gray background.", calloutBoxGrayonGray);
+  TOOLBAR.addButtonIcon("icon-unmuted", "Callout Box with Colored Title", "Insert a callout box with a colored header.", exampleBox);
+  TOOLBAR.addButtonIcon("icon-note-light", "Callout Box Gray. Light Border.", "Insert a gray callout box with light border. Designed for on white backgrounds.", calloutBox);
+  TOOLBAR.addButtonIcon("icon-note-light icon-Solid", "Callout Box Gray. Dark Border.", "Insert a gray callout box with dark border. Designed for on gray backgrounds.", calloutBoxGrayonGray);
   TOOLBAR.addButtonIcon("icon-compose", "Citation", "Insert a citation.", citation);
-  // TOOLBAR.addButtonIcon("icon-off", "Hide text. Reveal on mouse hover.", hideOnHover);
-  // TOOLBAR.addButtonIcon("icon-student-view", "Insert text which is shown on mouse hover.", hoverDefinition);
-  //TOOLBAR.addButtonIcon("far fa-swatchbook", "Create a theme for the page. The template will be inserted at the top of the page. Edit the template to apply changes throughout the page.", addCustomThemeParent);
   TOOLBAR.addButtonIcon("icon-materials-required", "Auto Format", "Auto format the page to break the page into sections. Sections are determined by the top level heading.", formatPage);
-  // TOOLBAR.addButtonIcon("icon-discussion", "add a callout that goes to the right margin", sidebarCallout)
 })();
