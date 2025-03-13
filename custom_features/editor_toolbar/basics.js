@@ -302,8 +302,8 @@
   // TOOLBAR.addButtonIcon("icon-note-light", "Insert a gray callout box", calloutBox);
   TOOLBAR.addButtonIcon("icon-note-light", "Insert a gray callout box without a box shadow", calloutBoxFlat);
   TOOLBAR.addButtonIcon("icon-compose", "Insert a citation.", citation);
-  TOOLBAR.addButtonIcon("icon-off", "Hide text. Reveal on mouse hover.", hideOnHover);
-  TOOLBAR.addButtonIcon("icon-student-view", "Insert text which is shown on mouse hover.", hoverDefinition);
+  // TOOLBAR.addButtonIcon("icon-off", "Hide text. Reveal on mouse hover.", hideOnHover);
+  // TOOLBAR.addButtonIcon("icon-student-view", "Insert text which is shown on mouse hover.", hoverDefinition);
   //TOOLBAR.addButtonIcon("far fa-swatchbook", "Create a theme for the page. The template will be inserted at the top of the page. Edit the template to apply changes throughout the page.", addCustomThemeParent);
   TOOLBAR.addButtonIcon("icon-materials-required", "Auto format the page to break the page into sections. Sections are determined by the top level heading.", formatPage);
   TOOLBAR.addButtonIcon("icon-discussion", "add a callout that goes to the right margin", sidebarCallout)
