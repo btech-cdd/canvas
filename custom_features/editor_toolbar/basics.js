@@ -37,7 +37,7 @@
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#FFFFFF";
     editor.execCommand("mceReplaceContent", false, `
-      <div style="background-color: #ffffff; color: #000000; border: 2px solid ${color}; border-radius: 5px; margin: 15px auto; width: 90%;" role="note" aria-label="callout-box-with-title">
+      <div style="background-color: #ffffff; color: #000000; border: 2px solid ${color}; border-radius: 5px; margin: 15px auto; min-width="100px;" max-width: 70%;" role="note" aria-label="callout-box-with-title">
         <div aria-label="callout-title" style="background-color: ${color}; color: #ffffff; font-size: 1.2em; padding: 4px; text-align: left;"><strong>Title</strong></div>
         <div style="padding: 5px;">
         <p>${selection.getContent()}</p>
