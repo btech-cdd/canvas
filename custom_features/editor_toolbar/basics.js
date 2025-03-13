@@ -274,7 +274,7 @@
     </datalist>
     `);
 
-  TOOLBAR.addButtonIcon("icon-not-light icon-Solid", "Callout Box with Colored Title", "Insert a callout box with a colored header.", exampleBox);
+  TOOLBAR.addButtonIcon("icon-note-light icon-Solid", "Callout Box with Colored Title", "Insert a callout box with a colored header.", exampleBox);
   $('[aria-label="Callout Box with Colored Title"]').css('color', '#B20B0F');
 
   TOOLBAR.addButtonIcon("icon-note-light", "Callout Box Gray. Light Border.", "Insert a gray callout box with light border. Designed for on white backgrounds.", calloutBox);
