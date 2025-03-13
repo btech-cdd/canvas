@@ -32,14 +32,6 @@ img[style*="float: right"] {
   margin: 5px 0px 0px 15px;
 }
 
-.btech-callout-box {
-  background-color: #F1F1F1;
-  border-radius: 5px;
-  padding: 0.5rem;
-  border: 1px solid #E1E1E1;
-  margin: 0.5rem 5% 1rem 5%;
-}
-
 /*the basic header*/
 h2.icon-header {
   position: relative;
