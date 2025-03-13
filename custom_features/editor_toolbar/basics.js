@@ -7,7 +7,7 @@
     let editor = tinymce.activeEditor;
     let selection = editor.selection;
     let content = selection.getContent();
-    if (content.trim() == '') content = '<div aria-label="callout-title" style="font-size: 1.2rem; font-weight: bold;"><strong>INSERT HEADER<strong></div><div><p>INSERT TEXT</p></div>'
+    if (content.trim() == '') content = '<div aria-label="callout-title" style="font-size: 1.2rem; font-weight: bold;"><strong>INSERT TITLE<strong></div><div><p>INSERT TEXT</p></div>'
     editor.execCommand("mceReplaceContent", false, `
       <div style="position: relative; width: 70%; margin: 1rem auto; border: 3px solid #AAA; border-radius: 4px;" role="note" aria-label="callout-box">
         <div style="background-color: #ededed; position: relative; z-index: 2; overflow: hidden; padding: 0.5rem 1.5rem;">
@@ -22,7 +22,7 @@
     let editor = tinymce.activeEditor;
     let selection = editor.selection;
     let content = selection.getContent();
-    if (content.trim() == '') content = '<div aria-label="callout-title" style="font-size: 1.2rem; font-weight: bold;"><strong>INSERT HEADER<strong></div><div><p>INSERT TEXT</p></div>'
+    if (content.trim() == '') content = '<div aria-label="callout-title" style="font-size: 1.2rem; font-weight: bold;"><strong>INSERT TITLE<strong></div><div><p>INSERT TEXT</p></div>'
     editor.execCommand("mceReplaceContent", false, `
       <div class="btech-callout-box flat" style="background-color: #F1F1F1; border-radius: 5px; padding: 0.5rem; border: 3px solid #E1E1E1; margin: 1rem auto; width: 70%;" role="note" aria-label="callout-box">
       <p>${content}</p>
@@ -36,9 +36,10 @@
     let selection = editor.selection;
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#FFFFFF";
+    if (content.trim() == '') content = 'INSERT CONTENT'
     editor.execCommand("mceReplaceContent", false, `
       <div style="background-color: #ffffff; color: #000000; border: 3px solid ${color}; border-radius: 5px; margin: 1rem auto; width: 70%;" role="note" aria-label="callout-box">
-        <div aria-label="callout-title" style="background-color: ${color}; color: #ffffff; font-size: 1.2em; padding: 4px; text-align: left;"><strong>Title</strong></div>
+        <div aria-label="callout-title" style="background-color: ${color}; color: #ffffff; font-size: 1.2em; padding: 4px; text-align: left;"><strong>INSERT TITLE</strong></div>
         <div style="padding: 5px;">
         <p>${selection.getContent()}</p>
         </div>
