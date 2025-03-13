@@ -28,7 +28,7 @@
           });
         }
       }
-      let btn = await TOOLBAR.addButtonIcon("far fa-concierge-bell", "Convert this assignment to a Services assignment", async function () {
+      // let btn = await TOOLBAR.addButtonIcon("far fa-concierge-bell", "Convert this assignment to a Services assignment", async function () {
         let body = tinyMCE.activeEditor.getBody();
         let services = $(body).find("#btech-services");
         if (services.length === 0) {

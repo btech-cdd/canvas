@@ -2,30 +2,14 @@
   //escape if not on the editor page
   if (!TOOLBAR.checkEditorPage()) return;
 
-  // BLACK BOX COVERS WORD UNTIL YOU HOVER OVER IT
-  async function hideOnHover() {
-    let editor = tinymce.activeEditor;
-    let selection = editor.selection;
-    editor.execCommand("mceReplaceContent", false, "<span class='btech-hover-show'><i>{$selection}</i></span>");
-  }
-
-  // HOVER OVER A WORD AND SHOW THE DEFINITION
-  async function hoverDefinition() {
-    let editor = tinymce.activeEditor;
-    let selection = editor.selection;
-    editor.execCommand("mceReplaceContent", false, "<strong class='tooltip'>{$selection}<span class='tooltiptext'>-DEFINITION-</span></strong>");
-  }
-
   // GRAY CALLOUT BOX BUT WITHOUT A BOX SHADOW
   async function calloutBoxGrayonGray() {
     let editor = tinymce.activeEditor;
     let selection = editor.selection;
-    let color = $("#btech-custom-editor-buttons-color").val();
-    let fontColor = "#FFFFFF";
     let content = selection.getContent();
-    if (content.trim() == '') content = '<h3>INSERT HEADER</h3><p>INSERT TEXT</p>'
+    if (content.trim() == '') content = '<div aria-label="callout-title">INSERT HEADER</div><div><p>INSERT TEXT</p></div>'
     editor.execCommand("mceReplaceContent", false, `
-      <div style="position: relative; width: 70%; margin: 0 auto; border: 3px solid #AAA; border-radius: 4px;">
+      <div style="position: relative; width: 70%; margin: 0 auto; border: 3px solid #AAA; border-radius: 4px;" role="note" aria-labelledby="callout-box">
         <div style="background-color: #ededed; position: relative; z-index: 2; overflow: hidden; padding: 0.5rem 1.5rem;">
           <p>${content}</p>
         </div>
@@ -37,26 +21,13 @@
   async function calloutBoxFlat() {
     let editor = tinymce.activeEditor;
     let selection = editor.selection;
-    let color = $("#btech-custom-editor-buttons-color").val();
-    let fontColor = "#FFFFFF";
     let content = selection.getContent();
-    if (content.trim() == '') content = '<h3>INSERT HEADER</h3><p>INSERT TEXT</p>'
+    if (content.trim() == '') content = '<div aria-label="callout-title">INSERT HEADER</div><div><p>INSERT TEXT</p></div>'
     editor.execCommand("mceReplaceContent", false, `
-      <div class="btech-callout-box flat">
+      <div class="btech-callout-box flat" role="note" aria-label="callout-box-gray">
       <p>${content}</p>
       </div>
       `);
-  }
-
-  // ORIGINAL GRAY CALLOUT, HAS A BOXSHADOW - HAVE RECEIVED COMPLAINTS THAT IT FEELS A BIT POPUP AD LIKE
-  async function calloutBox() {
-    let editor = tinymce.activeEditor;
-    let selection = editor.selection;
-    editor.execCommand("mceReplaceContent", false, `
-      <div class="btech-callout-box">
-      ${selection.getContent()}
-      </div>
-    `);
   }
 
   // ANOTHER CALLOUT, THIS ONE USES THE SET COLOR
@@ -66,8 +37,8 @@
     let color = $("#btech-custom-editor-buttons-color").val();
     let fontColor = "#FFFFFF";
     editor.execCommand("mceReplaceContent", false, `
-      <div style="background-color: #ffffff; color: #000000; border: 2px solid ${color}; border-radius: 5px; margin: 15px auto; width: 90%;" role="note" aria-labelledby="callout-title">
-        <div id="callout-title" style="background-color: ${color}; color: #ffffff; font-size: 1.2em; padding: 4px; text-align: left;"><strong>Title</strong></div>
+      <div style="background-color: #ffffff; color: #000000; border: 2px solid ${color}; border-radius: 5px; margin: 15px auto; width: 90%;" role="note" aria-label="callout-box-with-title">
+        <div aria-label="callout-title" style="background-color: ${color}; color: #ffffff; font-size: 1.2em; padding: 4px; text-align: left;"><strong>Title</strong></div>
         <div style="padding: 5px;">
         <p>${selection.getContent()}</p>
         </div>
@@ -297,14 +268,15 @@
     </datalist>
     `);
 
-  TOOLBAR.addButtonIcon("icon-unmuted", "Insert an information box. Can be used for warnings, examples, etc.", exampleBox);
+  TOOLBAR.addButtonIcon("icon-unmuted", "Callout Box with Colored Title", "Insert an information box. Can be used for warnings, examples, etc.", exampleBox);
   // TOOLBAR.addButtonIcon("icon-flag", "Insert an information box. Can be used for warnings, examples, etc.", exampleBoxSmall);
   // TOOLBAR.addButtonIcon("icon-note-light", "Insert a gray callout box", calloutBox);
-  TOOLBAR.addButtonIcon("icon-note-light", "Insert a gray callout box without a box shadow", calloutBoxFlat);
-  TOOLBAR.addButtonIcon("icon-compose", "Insert a citation.", citation);
+  TOOLBAR.addButtonIcon("icon-note-light", "Callout Box Gray", "Insert a gray callout box", calloutBoxFlat);
+  TOOLBAR.addButtonIcon("icon-note-light icon-Solid", "Callout Box Gray for on Gray", "Insert a gray callout box. Designed to be inserted into an area with a gray background.", calloutBoxGrayonGray);
+  TOOLBAR.addButtonIcon("icon-compose", "Citation", "Insert a citation.", citation);
   // TOOLBAR.addButtonIcon("icon-off", "Hide text. Reveal on mouse hover.", hideOnHover);
   // TOOLBAR.addButtonIcon("icon-student-view", "Insert text which is shown on mouse hover.", hoverDefinition);
   //TOOLBAR.addButtonIcon("far fa-swatchbook", "Create a theme for the page. The template will be inserted at the top of the page. Edit the template to apply changes throughout the page.", addCustomThemeParent);
-  TOOLBAR.addButtonIcon("icon-materials-required", "Auto format the page to break the page into sections. Sections are determined by the top level heading.", formatPage);
+  TOOLBAR.addButtonIcon("icon-materials-required", "Auto Format", "Auto format the page to break the page into sections. Sections are determined by the top level heading.", formatPage);
   // TOOLBAR.addButtonIcon("icon-discussion", "add a callout that goes to the right margin", sidebarCallout)
 })();
