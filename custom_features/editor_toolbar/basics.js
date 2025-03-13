@@ -10,7 +10,7 @@
     if (content.trim() == '') content = '<div aria-label="callout-title" style="font-size: 1.2rem; font-weight: bold;"><strong>INSERT TITLE<strong></div><div><p>INSERT TEXT</p></div>'
     editor.execCommand("mceReplaceContent", false, `
       <div 
-        class="btech-callout-box flat" 
+        class="btech-callout-box" 
         style="background-color: #EDEDED; border-radius: 5px; padding: 0.5rem; border: 3px solid #AAA; margin: 1rem auto; width: 70%;"
         role="note" aria-label="callout-box">
           <p>${content}</p>
@@ -26,7 +26,7 @@
     if (content.trim() == '') content = '<div aria-label="callout-title" style="font-size: 1.2rem; font-weight: bold;"><strong>INSERT TITLE<strong></div><div><p>INSERT TEXT</p></div>'
     editor.execCommand("mceReplaceContent", false, `
       <div 
-        class="btech-callout-box flat" 
+        class="btech-callout-box" 
         style="background-color: #F1F1F1; border-radius: 5px; padding: 0.5rem; border: 3px solid #E1E1E1; margin: 1rem auto; width: 70%;"
         role="note" aria-label="callout-box">
       <p>${content}</p>
