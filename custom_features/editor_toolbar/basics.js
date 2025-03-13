@@ -274,7 +274,9 @@
     </datalist>
     `);
 
-  TOOLBAR.addButtonIcon("icon-unmuted", "Callout Box with Colored Title", "Insert a callout box with a colored header.", exampleBox);
+  TOOLBAR.addButtonIcon("icon-not-light icon-Solid", "Callout Box with Colored Title", "Insert a callout box with a colored header.", exampleBox);
+  $('[aria-label="Callout Box with Colored Title"]').css('color', '#B20B0F');
+
   TOOLBAR.addButtonIcon("icon-note-light", "Callout Box Gray. Light Border.", "Insert a gray callout box with light border. Designed for on white backgrounds.", calloutBox);
   TOOLBAR.addButtonIcon("icon-note-light icon-Solid", "Callout Box Gray. Dark Border.", "Insert a gray callout box with dark border. Designed for on gray backgrounds.", calloutBoxGrayonGray);
   TOOLBAR.addButtonIcon("icon-compose", "Citation", "Insert a citation.", citation);
