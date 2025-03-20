@@ -59,6 +59,7 @@
 
               //default to not approved
               let color = contentNotApprovedColor;
+              // made it black to be more obvious
               if (approved) color = "rgb(0, 0, 0)";
               if (IS_CDD && approved) color = contentApprovedColor;
               let distanceApprovedButton = $(`<span class="ig-distance-approved" style="cursor: pointer; float: right;"></span>`);
