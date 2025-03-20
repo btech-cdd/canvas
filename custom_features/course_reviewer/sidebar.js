@@ -117,10 +117,10 @@
         >
           <input 
             type="checkbox" 
-            :value="activeReview.cdd_improvement"
-            v-model="activeReview.cdd_improvement" 
-            @change="setCDDImprovement(activeReview._id, activeReview.cdd_improvement)" 
-          /> CDD Project Evaluation 
+            :value="activeReview.isd_improvement"
+            v-model="activeReview.isd_improvement" 
+            @change="setISDImprovement(activeReview._id, activeReview.isd_improvement)" 
+          /> ISD Project Evaluation 
         </div>
 
         <!-- RUBRIC -->
@@ -665,12 +665,12 @@
         }, "PUT");
         this.updating = false;
       },
-      setCDDImprovement: async function (reviewId, isCDDImprovement) {
+      setISDImprovement: async function (reviewId, isISDImprovement) {
         console.log(reviewId);
         console.log(this.activeReview);
         this.updating = true;
         await bridgetools.req(`https://reports.bridgetools.dev/api/reviews/review/${reviewId}`, {
-          cdd_improvement: isCDDImprovement 
+          isd_improvement: isISDImprovement 
         }, "PUT");
         this.updating = false;
 

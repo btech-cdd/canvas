@@ -19,14 +19,14 @@ async function getCourseReviewerSettings() {
   let userId = ENV.current_user_id;
   let settings = {};
   try {
-    await $.get(`/api/v1/users/${userId}/custom_data/course_reviewer?ns=edu.btech.cdd`, (data) => {
+    await $.get(`/api/v1/users/${userId}/custom_data/course_reviewer?ns=edu.btech.canvas`, (data) => {
       settings.show_scores = data.data.show_scores == 'true';
     });
   } catch (err) {
     settings = {
       show_scores: false
     }
-    await $.put(`/api/v1/users/${userId}/custom_data/course_reviewer?ns=edu.btech.cdd`, {
+    await $.put(`/api/v1/users/${userId}/custom_data/course_reviewer?ns=edu.btech.canvas`, {
       data: settings
     });
   }
@@ -35,7 +35,7 @@ async function getCourseReviewerSettings() {
 
 async function updateCourseReviewerSettings(settings) {
   let userId = ENV.current_user_id;
-  await $.put(`/api/v1/users/${userId}/custom_data/course_reviewer?ns=edu.btech.cdd`, {
+  await $.put(`/api/v1/users/${userId}/custom_data/course_reviewer?ns=edu.btech.canvas`, {
     data: settings
   });
 }
