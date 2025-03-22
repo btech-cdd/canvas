@@ -1,5 +1,6 @@
 // Add CSS to hide .answer_input on print
 $(document).ready(function () {
+  return
    $(`<style>
     @media print { 
         .answer_input { display: none !important; } 
