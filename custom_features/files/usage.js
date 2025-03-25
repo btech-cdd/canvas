@@ -66,7 +66,8 @@ async function updateUsageColumns() {
         if (match) {
           let fileId = match[1];
           let file = fileDict[fileId];
-          if (file && file.locations) {
+          if (file) {
+            locations = file?.locations ?? [];
             // Update the displayed number of uses.
             locationDiv.text(file.locations.length);
             
