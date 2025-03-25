@@ -55,7 +55,7 @@
     } catch (err) {
       console.log(err);
     }
-    await $.put(`/api/v1/users/${userId}/custom_data/temp_password?ns=edu.btech.cdd`, {
+    await $.put(`/api/v1/users/${userId}/custom_data/temp_password?ns=edu.btech.canvas`, {
       data: {
         password: password,
         reset_date: new Date()

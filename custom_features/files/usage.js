@@ -49,7 +49,7 @@ async function updateUsageColumns() {
     // Only add the usage column if it doesn't already exist in this row.
     if (row.find('.ef-usage-col').length === 0) {
       // Create the usage div (default value "0") with a pointer cursor.
-      let locationDiv = $('<div class="ef-usage-col">0</div>').css({
+      let locationDiv = $('<div class="ef-usage-col"> </div>').css({
         'width': '2rem',
         'text-align': 'center',
         'display': 'inline-block',
