@@ -72,7 +72,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         moduleModal.after(moduleHeader);
         moduleHeader.html(`
           <div style="height:100px; width:100%; display:flex; align-items:center; position:relative; overflow:hidden;">
-            <div style="flex-shrink:0; padding:0 30px; background:white; height:100%; display:flex; align-items:center; z-index:2;">
+            <div style="flex-shrink:0; min-width: 50%; padding:0 30px; background:white; height:100%; display:flex; align-items:center; z-index:2;">
               <div style="margin:0; font-size:32px; font-family:sans-serif;"><strong>${ENV.current_context.name}</strong></div>
             </div>
             <div style="flex-grow:1; position:relative; height:100%;">
@@ -80,7 +80,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
                 position:absolute;
                 left:-50px;
                 top:0;
-                width: 50%;
+                width: 100px;
                 height:100%;
                 background:white;
                 transform:skewX(-20deg);
@@ -89,8 +89,8 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
               <img src="https://bridgetools.dev/canvas/media/course-banners/${ENV.ACCOUNT_ID}.png" style="
                 position:absolute;
                 top:0;
-                left: 25%;
-                width: calc(75%);
+                left: 0;
+                width: 100%;
                 height:100%;
                 object-fit:cover;
                 z-index:0;
