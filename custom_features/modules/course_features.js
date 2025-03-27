@@ -62,6 +62,38 @@
             window.location.replace("/courses/" + feature.courseId);
           }
         }
+        if (ENV.ACCOUNT_ID == '3819') {
+          moduleHeader.html = `
+            <div style="height:100px; width:100%; display:flex; align-items:center; position:relative; overflow:hidden;">
+              <div style="flex-shrink:0; padding:0 30px; background:white; height:100%; display:flex; align-items:center; z-index:2;">
+                <h2 style="margin:0; font-size:24px; font-family:sans-serif;">${ENV.current_context.name}</h2>
+              </div>
+              <div style="flex-grow:1; position:relative; height:100%;">
+                <div style="
+                  position:absolute;
+                  left:-50px;
+                  top:0;
+                  width:100px;
+                  height:100%;
+                  background:white;
+                  transform:skewX(-20deg);
+                  z-index:1;
+                "></div>
+                <img src="https://bridgetools.dev/canvas/media/coruse_banners/${ENV.ACCOUNT_ID}.png" style="
+                  position:absolute;
+                  top:0;
+                  left:0;
+                  width:100%;
+                  height:100%;
+                  object-fit:cover;
+                  z-index:0;
+                ">
+              </div>
+            </div>
+
+          `
+          return;
+        }
 
         await this.getSettings();
         //get header on modules page and add an empty div
