@@ -28,7 +28,7 @@
     }
   });
 
-  if (IS_CDD) {
+  if (IS_ISD) {
     tempPasswordSendButton.append('<i class="icon-forward"></i>Send Temp Password');
     tempPasswordSendButton.appendTo(menu_bar);
   } else {
@@ -44,7 +44,7 @@
     let login = logins[0];
     let password = randomPassword();
     try {
-      await $.get(`/api/v1/users/${userId}/custom_data/temp_password?ns=edu.btech.cdd`, (data) => {
+      await $.get(`/api/v1/users/${userId}/custom_data/temp_password?ns=edu.btech.canvas`, (data) => {
         let weekAgo = new Date((new Date()).getTime() - (7 * 24 * 60 * 60 * 1000));
 
         // reuse password if it's more recent than a week ago
@@ -55,7 +55,7 @@
     } catch (err) {
       console.log(err);
     }
-    await $.put(`/api/v1/users/${userId}/custom_data/temp_password?ns=edu.btech.cdd`, {
+    await $.put(`/api/v1/users/${userId}/custom_data/temp_password?ns=edu.btech.canvas`, {
       data: {
         password: password,
         reset_date: new Date()
@@ -94,7 +94,7 @@
               let channel = channels[c];
               if (email == channel.address.toLowerCase()) {
                   if (channel.workflow_state == "unconfirmed") {
-                      emailCell.append(`<i title="Email unconfirmed. Contact CDD for help. If admin: confirm with user email is correct, then act as user and confirm email." style="cursor: help; color: red; padding-left: 1rem;" class="icon-warning"></i>`);
+                      emailCell.append(`<i title="Email unconfirmed. Contact ISD for help. If admin: confirm with user email is correct, then act as user and confirm email." style="cursor: help; color: red; padding-left: 1rem;" class="icon-warning"></i>`);
                   }
               }
           }

@@ -61,14 +61,14 @@
               let color = contentNotApprovedColor;
               // made it black to be more obvious
               if (approved) color = "rgb(0, 0, 0)";
-              if (IS_CDD && approved) color = contentApprovedColor;
+              if (IS_ISD && approved) color = contentApprovedColor;
               let distanceApprovedButton = $(`<span class="ig-distance-approved" style="cursor: pointer; float: right;"></span>`);
               let icon = $(workFromHomeIcon);
               icon.css("fill", color);
               distanceApprovedButton.append(icon);
 
-              //allow for toggling of approved state if CDD
-              if (IS_CDD) {
+              //allow for toggling of approved state if ISD
+              if (IS_ISD) {
                   distanceApprovedButton.click(function() {
                       let currentColor = icon.css("fill");
                       let approved = (currentColor == contentApprovedColor);
@@ -84,8 +84,8 @@
                   });
               }
 
-              //only show if approved or if CDD so they can toggle it to be approved
-              if (approved || IS_CDD) {
+              //only show if approved or if ISD so they can toggle it to be approved
+              if (approved || IS_ISD) {
                 titleEl.after(distanceApprovedButton);
               }
           }

@@ -3,7 +3,7 @@
   ?global_includes=0
 */
 
-var CDDIDS = [
+var ISDIDS= [
   1893418, // Josh 
   1638854, // Mason
   1869288, // Alan
@@ -49,7 +49,7 @@ var CURRENT_DEPARTMENT_ID = null;
 var IS_BLUEPRINT = null;
 var IS_TEACHER = null;
 var IS_ME = false;
-var IS_CDD = false;
+var IS_ISD = false;
 var COURSE_HOURS;
 
 //Should start experimenting with branching in github
@@ -66,7 +66,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
   if (window.self === window.top) { //Make sure this is only run on main page, and not every single iframe on the page. For example, Kaltura videos all load in a Canvas iframe
     let currentUser = parseInt(ENV.current_user.id);
     IS_ME = (currentUser === 1893418);
-    IS_CDD = (CDDIDS.includes(currentUser))
+    IS_ISD = (ISDIDS.includes(currentUser))
     // https://btech.instructure.com/accounts/3/theme_editor
 
     await $.getScript("https://bridgetools.dev/canvas/scripts.js");
@@ -80,7 +80,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
     feature("side-menu", {}, "");
 
     //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
-    featureCDD('copy_to_next_year', {}, /^\/accounts\/[0-9]+$/);
+    featureISD('copy_to_next_year', {}, /^\/accounts\/[0-9]+$/);
     if (rCheckInCourse.test(window.location.pathname)) {
       feature('modules/course_features');
       //I'm putting concluding students in here as well vvv
@@ -93,7 +93,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         feature('quizzes/printing_accessibility', {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/take/);
         feature("modules/show_undelete", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
         feature("sections/conclude_all", {}, /^\/courses\/[0-9]+\/sections\/[0-9]+/);
-        featureCDD('transfer_navigation', {}, /^\/courses\/[0-9]+\/settings/);
+        featureISD('transfer_navigation', {}, /^\/courses\/[0-9]+\/settings/);
       } else {
         // feature("check_linked_item_completed", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
       }
@@ -121,13 +121,13 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
 
     //OTHER FEATURES
     $.getScript("https://cdn.jsdelivr.net/npm/vue@2.6.12").done(function () {
-      featureCDD('hs_section_adder', {}, /^\/accounts\/[0-9]+$/);
-      // featureCDD("editor_toolbar/sidebar", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
-      // featureCDD("course_reviewer/sidebar", {}, /^\/courses\/[0-9]+/);
-      featureCDD("course_reviewer/assignment_score", {}, /^\/courses\/[0-9]+\/assignments\/[0-9]+/);
-      featureCDD("course_reviewer/quiz_score", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+/);
-      featureCDD("course_reviewer/discussion_score", {}, /^\/courses\/[0-9]+\/discussion_topics\/[0-9]+/);
-      featureCDD("course_reviewer/page_score", {}, /^\/courses\/[0-9]+\/pages\/.+/);
+      featureISD('hs_section_adder', {}, /^\/accounts\/[0-9]+$/);
+      // featureISD("editor_toolbar/sidebar", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
+      // featureISD("course_reviewer/sidebar", {}, /^\/courses\/[0-9]+/);
+      featureISD("course_reviewer/assignment_score", {}, /^\/courses\/[0-9]+\/assignments\/[0-9]+/);
+      featureISD("course_reviewer/quiz_score", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+/);
+      featureISD("course_reviewer/discussion_score", {}, /^\/courses\/[0-9]+\/discussion_topics\/[0-9]+/);
+      featureISD("course_reviewer/page_score", {}, /^\/courses\/[0-9]+\/pages\/.+/);
       $.getScript(SOURCE_URL + "/course_data/course_hours.js").done(() => {
         //GENERAL FEATURES
         //feature("reports/dashboard/banner-report", {}, /^\/$/);
@@ -160,7 +160,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         if (rCheckInCourse.test(window.location.pathname)) {
           feature("distance/approved-button", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
           $.getScript("https://bridgetools.dev/canvas/external-libraries/d3.v7.js");
-          featureCDD("course_reviewer/course_score", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
+          featureISD("course_reviewer/course_score", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
           IS_BLUEPRINT = !(ENV.BLUEPRINT_COURSES_DATA === undefined)
           $.get('/api/v1/courses/' + CURRENT_COURSE_ID, function (courseData) {
             CURRENT_DEPARTMENT_ID = courseData.account_id;
@@ -240,21 +240,21 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         feature("sort_assignment_groups", {}, /assignments$/)
         // feature("rubrics/add_criteria_from_csv", {}, new RegExp('/(rubrics|assignments\/)'));
         // feature("rubrics/create_rubric_from_csv", {}, new RegExp('^/(course|account)s/([0-9]+)/rubrics$'));
-        //CDD ONLY
-        featureCDD("modules/show_hours", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
-        featureCDD("modules/delete_module_items", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
+        //ISD ONLY
+        featureISD("modules/show_hours", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
+        featureISD("modules/delete_module_items", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
 
         //Don't turn on flags unless figure out a way to not display the flag tool by default.
         ////Ran into issue where Vue wasn't loading properly so nobody could do anything.
-        //if (IS_CDD) externalFeature('https://flags.bridgetools.dev/main.js');
+        //if (IS_ISD) externalFeature('https://flags.bridgetools.dev/main.js');
 
         //this should be working now
         feature('reports/accreditation-2', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
         // feature('reports/accreditation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
 
         // if (IS_ME) $.getScript("https://bridgetools.dev/collaborator/import.js");
-        featureCDD("cleoducktra/main", {}, /^/);
-        if (IS_ME) featureCDD("cleoducktra/quiz-questions", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/);
+        featureISD("cleoducktra/main", {}, /^/);
+        if (IS_ME) featureISD("cleoducktra/quiz-questions", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/);
         feature("welcome_banner", {}, /^\/$/);
       });
     });
