@@ -67,9 +67,9 @@
           let moduleHeader = $("<div></div>");
           moduleModal.after(moduleHeader);
           moduleHeader.html = `
-            <div style="height:100px; width:100%; display:flex; align-items:center; position:relative; overflow:hidden;">
-              <div style="flex-shrink:0; padding:0 30px; background:white; height:100%; display:flex; align-items:center; z-index:2;">
-                <h2 style="margin:0; font-size:32px; font-family:roboto;"><strong>${ENV.current_context.name}</strong></h2>
+            <div aria-label="Banner image for course ${ENV.current_context.name}" style="height:100px; width:100%; display:flex; align-items:center; position:relative; overflow:hidden;">
+              <div aria-labelstyle="flex-shrink:0; padding:0 30px; background:white; height:100%; display:flex; align-items:center; z-index:2;">
+                <div style="margin:0; font-size:32px; font-family:roboto;"><strong>${ENV.current_context.name}</strong></div>
               </div>
               <div style="flex-grow:1; position:relative; height:100%;">
                 <div style="
