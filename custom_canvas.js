@@ -90,7 +90,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
                 position:absolute;
                 top:0;
                 left: calc(100% - 300px);
-                width:250px;
+                width:300px;
                 height:100%;
                 object-fit:cover;
                 z-index:0;
