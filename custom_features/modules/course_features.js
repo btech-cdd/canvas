@@ -76,7 +76,7 @@
                   position:absolute;
                   left:-50px;
                   top:0;
-                  width:100px;
+                  width: calc(100% - 200px);
                   height:100%;
                   background:white;
                   transform:skewX(-20deg);
@@ -86,7 +86,7 @@
                   position:absolute;
                   top:0;
                   left:0;
-                  width:100%;
+                  width:200px;
                   height:100px;
                   object-fit:cover;
                   z-index:0;
