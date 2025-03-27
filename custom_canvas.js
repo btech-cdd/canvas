@@ -63,63 +63,63 @@ var IMPORTED_FEATURE = {};
 
 var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 (async function() {
-
-  if (/^\/courses\/[0-9]+(\/modules){0,1}$/.test(window.location.pathname)) {
-    if (ENV.ACCOUNT_ID == '3819') {
-      let moduleModal = $(".header-bar");
-      let moduleHeader = $("<div></div>");
-      moduleModal.after(moduleHeader);
-      moduleHeader.html = `
-        <div style="height:100px; width:100%; display:flex; align-items:center; position:relative; overflow:hidden;">
-          <div style="flex-shrink:0; padding:0 30px; background:white; height:100%; display:flex; align-items:center; z-index:2;">
-            <h2 style="margin:0; font-size:24px; font-family:sans-serif;">${ENV.current_context.name}</h2>
-          </div>
-          <div style="flex-grow:1; position:relative; height:100%;">
-            <div style="
-              position:absolute;
-              left:-50px;
-              top:0;
-              width:100px;
-              height:100%;
-              background:white;
-              transform:skewX(-20deg);
-              z-index:1;
-            "></div>
-            <img src="https://bridgetools.dev/canvas/media/coruse_banners/${ENV.ACCOUNT_ID}.png" style="
-              position:absolute;
-              top:0;
-              left:0;
-              width:100%;
-              height:100%;
-              object-fit:cover;
-              z-index:0;
-            ">
-          </div>
-        </div>
-
-      `
-      }
-  }
   if (window.self === window.top) { //Make sure this is only run on main page, and not every single iframe on the page. For example, Kaltura videos all load in a Canvas iframe
+    if (/^\/courses\/[0-9]+(\/modules){0,1}$/.test(window.location.pathname)) {
+      if (ENV.ACCOUNT_ID == '3819') {
+        let moduleModal = $(".header-bar");
+        let moduleHeader = $("<div></div>");
+        moduleModal.after(moduleHeader);
+        moduleHeader.html = `
+          <div style="height:100px; width:100%; display:flex; align-items:center; position:relative; overflow:hidden;">
+            <div style="flex-shrink:0; padding:0 30px; background:white; height:100%; display:flex; align-items:center; z-index:2;">
+              <h2 style="margin:0; font-size:24px; font-family:sans-serif;">${ENV.current_context.name}</h2>
+            </div>
+            <div style="flex-grow:1; position:relative; height:100%;">
+              <div style="
+                position:absolute;
+                left:-50px;
+                top:0;
+                width:100px;
+                height:100%;
+                background:white;
+                transform:skewX(-20deg);
+                z-index:1;
+              "></div>
+              <img src="https://bridgetools.dev/canvas/media/coruse_banners/${ENV.ACCOUNT_ID}.png" style="
+                position:absolute;
+                top:0;
+                left:0;
+                width:100%;
+                height:100%;
+                object-fit:cover;
+                z-index:0;
+              ">
+            </div>
+          </div>
+
+        `
+      }
+    }
     let currentUser = parseInt(ENV.current_user.id);
     IS_ME = (currentUser === 1893418);
-    IS_ISD = (ISDIDS.includes(currentUser))
+    IS_ISD = (ISDIDS.includes(currentUser));
     // https://btech.instructure.com/accounts/3/theme_editor
 
     await $.getScript("https://bridgetools.dev/canvas/scripts.js");
     await $.getScript("https://reports.bridgetools.dev/scripts.js");
     feature('modules/enrollment_dates_student_external', {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
     feature("login_page", {}, /^\/login/);
-    feature("editor_toolbar/manage-settings", {}, /^\/btech-toolbar/);
-    if (IS_ME) feature("editor_toolbar/main", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
+    // feature("editor_toolbar/manage-settings", {}, /^\/btech-toolbar/);
+    // if (IS_ME) feature("editor_toolbar/main", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(.+?)\/edit/);
     feature("page_formatting/content_image_zoom", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)\/(?!.+?\/edit$)(.+?)/);
     feature("img-zoom", {}, /users/);
-    feature("side-menu", {}, "");
 
     //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
     featureISD('copy_to_next_year', {}, /^\/accounts\/[0-9]+$/);
     if (rCheckInCourse.test(window.location.pathname)) {
-      feature('modules/course_features');
+      if (ENV.ACCOUNT_ID != '3819') {
+        feature('modules/course_features');
+      }
       //I'm putting concluding students in here as well vvv
       feature('modules/enrollment_dates_teacher', {}, /^\/courses\/[0-9]+\/users\/[0-9]+$/);
       // feature("external_assignments_fullscreen", {}, /^\/courses\/[0-9]+\/(assignments)/);
