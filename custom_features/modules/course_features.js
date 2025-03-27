@@ -63,6 +63,9 @@
           }
         }
         if (ENV.ACCOUNT_ID == '3819') {
+          let moduleModal = $(".header-bar");
+          let moduleHeader = $("<div></div>");
+          moduleModal.after(moduleHeader);
           moduleHeader.html = `
             <div style="height:100px; width:100%; display:flex; align-items:center; position:relative; overflow:hidden;">
               <div style="flex-shrink:0; padding:0 30px; background:white; height:100%; display:flex; align-items:center; z-index:2;">
