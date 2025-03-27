@@ -290,8 +290,8 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         // feature('reports/accreditation', {}, /^\/courses\/([0-9]+)\/external_tools\/([0-9]+)/);
 
         // if (IS_ME) $.getScript("https://bridgetools.dev/collaborator/import.js");
-        featureISD("cleoducktra/main", {}, /^/);
-        if (IS_ME) featureISD("cleoducktra/quiz-questions", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/);
+        // featureISD("cleoducktra/main", {}, /^/);
+        // if (IS_ME) featureISD("cleoducktra/quiz-questions", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/);
         feature("welcome_banner", {}, /^\/$/);
       });
     });
