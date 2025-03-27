@@ -278,7 +278,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         // feature("rubrics/add_criteria_from_csv", {}, new RegExp('/(rubrics|assignments\/)'));
         // feature("rubrics/create_rubric_from_csv", {}, new RegExp('^/(course|account)s/([0-9]+)/rubrics$'));
         //ISD ONLY
-        featureISD("modules/show_hours", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
+        // featureISD("modules/show_hours", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
         featureISD("modules/delete_module_items", {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
 
         //Don't turn on flags unless figure out a way to not display the flag tool by default.
