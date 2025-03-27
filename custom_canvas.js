@@ -80,7 +80,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
                 position:absolute;
                 left:-50px;
                 top:0;
-                width: calc(100% - 200px);
+                width: 50%;
                 height:100%;
                 background:white;
                 transform:skewX(-20deg);
@@ -89,8 +89,8 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
               <img src="https://bridgetools.dev/canvas/media/course-banners/${ENV.ACCOUNT_ID}.png" style="
                 position:absolute;
                 top:0;
-                left: calc(100% - 300px);
-                width:300px;
+                left: 25%;
+                width: 75%;
                 height:100%;
                 object-fit:cover;
                 z-index:0;
