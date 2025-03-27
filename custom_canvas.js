@@ -66,10 +66,11 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
   if (window.self === window.top) { //Make sure this is only run on main page, and not every single iframe on the page. For example, Kaltura videos all load in a Canvas iframe
     if (/^\/courses\/[0-9]+(\/modules){0,1}$/.test(window.location.pathname)) {
       if (ENV.ACCOUNT_ID == '3819') {
+        console.log('module');
         let moduleModal = $(".header-bar");
         let moduleHeader = $("<div></div>");
         moduleModal.after(moduleHeader);
-        moduleHeader.html = `
+        moduleHeader.html(`
           <div style="height:100px; width:100%; display:flex; align-items:center; position:relative; overflow:hidden;">
             <div style="flex-shrink:0; padding:0 30px; background:white; height:100%; display:flex; align-items:center; z-index:2;">
               <h2 style="margin:0; font-size:24px; font-family:sans-serif;">${ENV.current_context.name}</h2>
@@ -85,7 +86,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
                 transform:skewX(-20deg);
                 z-index:1;
               "></div>
-              <img src="https://bridgetools.dev/canvas/media/coruse_banners/${ENV.ACCOUNT_ID}.png" style="
+              <img src="https://bridgetools.dev/canvas/media/course_banners/${ENV.ACCOUNT_ID}.png" style="
                 position:absolute;
                 top:0;
                 left:0;
@@ -96,8 +97,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
               ">
             </div>
           </div>
-
-        `
+        `)
       }
     }
     let currentUser = parseInt(ENV.current_user.id);
