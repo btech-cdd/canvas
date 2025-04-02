@@ -65,7 +65,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
 (async function() {
   if (window.self === window.top) { //Make sure this is only run on main page, and not every single iframe on the page. For example, Kaltura videos all load in a Canvas iframe
     if (/^\/courses\/[0-9]+(\/modules){0,1}$/.test(window.location.pathname)) {
-      if (ENV.ACCOUNT_ID == '3819') {
+      if (ENV.ACCOUNT_ID == '3819-unused') {
         console.log('module');
         let moduleModal = $(".header-bar");
         let moduleHeader = $("<div></div>");
@@ -117,7 +117,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
     //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
     featureISD('copy_to_next_year', {}, /^\/accounts\/[0-9]+$/);
     if (rCheckInCourse.test(window.location.pathname)) {
-      if (ENV.ACCOUNT_ID != '3819') {
+      if (ENV.ACCOUNT_ID != '3819-unused') {
         feature('modules/course_features');
       }
       //I'm putting concluding students in here as well vvv
