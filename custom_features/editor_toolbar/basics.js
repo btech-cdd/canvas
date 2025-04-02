@@ -2,7 +2,7 @@
   //escape if not on the editor page
   if (!TOOLBAR.checkEditorPage()) return;
 
-async function toggleListItemWithImage() {
+  async function toggleListItemWithImage() {
   const editor = tinymce.activeEditor;
   const selectedContent = editor.selection.getContent({ format: 'html' });
   const selectedNodes = editor.selection.getRng().cloneContents().querySelectorAll('li');
@@ -39,9 +39,8 @@ function processListItem(listItem, editor) {
 
   if (hasClass) {
     // 🔄 Remove image layout and convert to plain li (but don't delete image, just unwrap it)
-    const divs = listItem.querySelectorAll('div');
-    const textDiv = divs[0]; // Assumes text is in first div
-    const imageDiv = divs[1]; // Assumes image is in second div
+    const textDiv = listItem.querySelector('div[style*="min-width: 250px"]:first-child');
+    const imageDiv = listItem.querySelector('div[style*="min-width: 250px"]:nth-child(2)');
 
     listItem.innerHTML = '';
     if (textDiv) {
@@ -68,7 +67,15 @@ function processListItem(listItem, editor) {
       existingImage.remove(); // Remove from text content
     }
 
-    const textContent = tempContainer.innerHTML.trim();
+    // Strip any existing outer flex wrapper if it exists
+    let textContent = tempContainer.innerHTML.trim();
+    const possibleFlexWrapper = tempContainer.querySelector('div[style*="display: flex"]');
+    if (possibleFlexWrapper) {
+      const innerTextDiv = possibleFlexWrapper.querySelector('div');
+      if (innerTextDiv) {
+        textContent = innerTextDiv.innerHTML.trim();
+      }
+    }
 
     listItem.innerHTML = `
       <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
