@@ -3,86 +3,87 @@
   if (!TOOLBAR.checkEditorPage()) return;
 
   async function toggleListItemWithImage() {
-    const editor = tinymce.activeEditor;
-    const selectedContent = editor.selection.getContent({ format: 'html' });
-    const selectedNodes = editor.selection.getRng().cloneContents().querySelectorAll('li');
+  const editor = tinymce.activeEditor;
+  const selectedContent = editor.selection.getContent({ format: 'html' });
+  const selectedNodes = editor.selection.getRng().cloneContents().querySelectorAll('li');
 
-    // If multiple <li>s are selected, loop through them
-    if (selectedNodes.length > 1) {
-      const allListItems = Array.from(editor.selection.getNode().closest('ul,ol').querySelectorAll('li'));
-      const range = editor.selection.getRng();
+  // If multiple <li>s are selected, loop through them
+  if (selectedNodes.length > 1) {
+    const allListItems = Array.from(editor.selection.getNode().closest('ul,ol').querySelectorAll('li'));
+    const range = editor.selection.getRng();
 
-      allListItems.forEach(li => {
-        const liRange = document.createRange();
-        liRange.selectNodeContents(li);
+    allListItems.forEach(li => {
+      const liRange = document.createRange();
+      liRange.selectNodeContents(li);
 
-        if (range.compareBoundaryPoints(Range.END_TO_START, liRange) < 0 ||
-            range.compareBoundaryPoints(Range.START_TO_END, liRange) > 0) {
-          return; // Skip items outside the selection
-        }
-
-        processListItem(li, editor);
-      });
-    } else {
-      const node = editor.selection.getNode();
-      const listItem = editor.dom.getParent(node, 'li');
-      if (!listItem) {
-        alert('Please place your cursor inside a list item.');
-        return;
+      if (range.compareBoundaryPoints(Range.END_TO_START, liRange) < 0 ||
+          range.compareBoundaryPoints(Range.START_TO_END, liRange) > 0) {
+        return; // Skip items outside the selection
       }
-      processListItem(listItem, editor);
+
+      processListItem(li, editor);
+    });
+  } else {
+    const node = editor.selection.getNode();
+    const listItem = editor.dom.getParent(node, 'li');
+    if (!listItem) {
+      alert('Please place your cursor inside a list item.');
+      return;
     }
+    processListItem(listItem, editor);
   }
+}
 
-  function processListItem(listItem, editor) {
-    const hasClass = editor.dom.hasClass(listItem, 'list-item-image');
+function processListItem(listItem, editor) {
+  const hasClass = editor.dom.hasClass(listItem, 'list-item-image');
 
-    if (hasClass) {
-      // 🔄 Remove image layout and convert to plain li (but don't delete image, just unwrap it)
-      const divs = listItem.querySelectorAll('div');
-      const textDiv = divs[0]; // Assumes text is in first div
-      const imageDiv = divs[1]; // Assumes image is in second div
+  if (hasClass) {
+    // 🔄 Remove image layout and convert to plain li (but don't delete image, just unwrap it)
+    const divs = listItem.querySelectorAll('div');
+    const textDiv = divs[0]; // Assumes text is in first div
+    const imageDiv = divs[1]; // Assumes image is in second div
 
-      listItem.innerHTML = '';
-      if (textDiv) {
-        listItem.innerHTML += textDiv.innerHTML;
-      }
-      if (imageDiv) {
-        listItem.innerHTML += imageDiv.outerHTML; // Keep the image wrapped in a div
-      }
+    listItem.innerHTML = '';
+    if (textDiv) {
+      listItem.innerHTML += textDiv.innerHTML;
+    }
+    if (imageDiv) {
+      listItem.innerHTML += imageDiv.outerHTML; // Keep the image wrapped in a div
+    }
 
-      // Remove the class
-      editor.dom.removeClass(listItem, 'list-item-image');
-    } else {
-      // ➕ Add the flexbox layout and image
-      const tempContainer = document.createElement('div');
-      tempContainer.innerHTML = listItem.innerHTML;
+    // Remove the class and any inline style applied to the list item
+    editor.dom.removeClass(listItem, 'list-item-image');
+    editor.dom.setAttrib(listItem, 'style', null);
+  } else {
+    // ➕ Add the flexbox layout and image
+    const tempContainer = document.createElement('div');
+    tempContainer.innerHTML = listItem.innerHTML;
 
-      const existingImage = tempContainer.querySelector('img');
-      let imageHTML = '<img src="IMAGE" alt="Paste Image Here" style="max-width: 100%; max-width: 33%; height: auto;">';
+    const existingImage = tempContainer.querySelector('img');
+    let imageHTML = '<img src="IMAGE" alt="Paste Image Here" style="max-width: 100%; max-width: 33%; height: auto;">';
 
-      if (existingImage) {
-        imageHTML = existingImage.outerHTML;
-        existingImage.remove(); // Remove from text content
-      }
+    if (existingImage) {
+      imageHTML = existingImage.outerHTML;
+      existingImage.remove(); // Remove from text content
+    }
 
-      const textContent = tempContainer.innerHTML;
+    const textContent = tempContainer.innerHTML;
 
-      listItem.innerHTML = `
-        <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
-          <div style="flex: 1; min-width: 250px;">
-            ${textContent}
-          </div>
-          <div style="flex: 1; min-width: 250px;">
-            ${imageHTML}
-          </div>
+    listItem.innerHTML = `
+      <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 250px;">
+          ${textContent}
         </div>
-      `;
+        <div style="flex: 1; min-width: 250px;">
+          ${imageHTML}
+        </div>
+      </div>
+    `;
 
-      editor.dom.addClass(listItem, 'list-item-image');
-    }
+    editor.dom.addClass(listItem, 'list-item-image');
+    editor.dom.setAttrib(listItem, 'style', null); // Ensure no leftover inline styles on li
   }
-
+}
 
 
   // GRAY CALLOUT BOX BUT WITHOUT A BOX SHADOW
