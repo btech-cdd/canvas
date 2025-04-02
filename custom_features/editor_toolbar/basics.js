@@ -4,14 +4,37 @@
 
   async function toggleListItemWithImage() {
     const editor = tinymce.activeEditor;
-    const node = editor.selection.getNode();
-    const listItem = editor.dom.getParent(node, 'li');
+    const selectedContent = editor.selection.getContent({ format: 'html' });
+    const selectedNodes = editor.selection.getRng().cloneContents().querySelectorAll('li');
 
-    if (!listItem) {
-      alert('Please place your cursor inside a list item.');
-      return;
+    // If multiple <li>s are selected, loop through them
+    if (selectedNodes.length > 1) {
+      const allListItems = Array.from(editor.selection.getNode().closest('ul,ol').querySelectorAll('li'));
+      const range = editor.selection.getRng();
+
+      allListItems.forEach(li => {
+        const liRange = document.createRange();
+        liRange.selectNodeContents(li);
+
+        if (range.compareBoundaryPoints(Range.END_TO_START, liRange) < 0 ||
+            range.compareBoundaryPoints(Range.START_TO_END, liRange) > 0) {
+          return; // Skip items outside the selection
+        }
+
+        processListItem(li, editor);
+      });
+    } else {
+      const node = editor.selection.getNode();
+      const listItem = editor.dom.getParent(node, 'li');
+      if (!listItem) {
+        alert('Please place your cursor inside a list item.');
+        return;
+      }
+      processListItem(listItem, editor);
     }
+  }
 
+  function processListItem(listItem, editor) {
     const hasClass = editor.dom.hasClass(listItem, 'list-item-image');
 
     if (hasClass) {
@@ -36,7 +59,7 @@
       tempContainer.innerHTML = listItem.innerHTML;
 
       const existingImage = tempContainer.querySelector('img');
-      let imageHTML = '<img src="IMAGE" alt="Paste Image Here" style="max-width: 100%; height: auto;">';
+      let imageHTML = '<img src="IMAGE" alt="Paste Image Here" style="max-width: 100%; max-width: 33%; height: auto;">';
 
       if (existingImage) {
         imageHTML = existingImage.outerHTML;
@@ -60,38 +83,6 @@
     }
   }
 
-
-  async function insertFlexListItemTemplate() {
-    const editor = tinymce.activeEditor;
-    const node = editor.selection.getNode();
-    const listItem = editor.dom.getParent(node, 'li');
-    const list = editor.dom.getParent(node, 'ul,ol');
-
-    if (!list || !listItem) {
-      alert('Please place your cursor inside a list to insert the template.');
-      return;
-    }
-
-    // Define the template to insert
-    const template = `
-      <li>
-        <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
-          <div style="flex: 1; min-width: 250px;">
-            INSERT LIST ITEM
-          </div>
-          <div style="flex: 1; min-width: 250px; max-width: 25%;">
-            <img src="IMAGE" alt="Paste Image Here" style="max-width: 100%; height: auto;">
-          </div>
-        </div>
-      </li>`;
-
-    // Move caret after the current <li> and insert the new <li>
-    editor.selection.select(listItem);
-    editor.selection.collapse(false); // Move cursor after selected node
-
-    // Insert the template at the cursor location
-    editor.execCommand('mceInsertContent', false, template);
-  }
 
 
   // GRAY CALLOUT BOX BUT WITHOUT A BOX SHADOW
