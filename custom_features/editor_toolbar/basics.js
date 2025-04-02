@@ -2,7 +2,7 @@
   //escape if not on the editor page
   if (!TOOLBAR.checkEditorPage()) return;
 
-  async function toggleListItemWithImage() {
+async function toggleListItemWithImage() {
   const editor = tinymce.activeEditor;
   const selectedContent = editor.selection.getContent({ format: 'html' });
   const selectedNodes = editor.selection.getRng().cloneContents().querySelectorAll('li');
@@ -45,10 +45,11 @@ function processListItem(listItem, editor) {
 
     listItem.innerHTML = '';
     if (textDiv) {
-      listItem.innerHTML += textDiv.innerHTML;
+      listItem.innerHTML += textDiv.innerHTML.trim();
     }
     if (imageDiv) {
-      listItem.innerHTML += imageDiv.innerHTML; // Keep the image only
+      const img = imageDiv.querySelector('img');
+      if (img) listItem.appendChild(img); // Append only the <img>, not its parent div
     }
 
     // Remove the class and any inline style applied to the list item
@@ -67,7 +68,7 @@ function processListItem(listItem, editor) {
       existingImage.remove(); // Remove from text content
     }
 
-    const textContent = tempContainer.innerHTML;
+    const textContent = tempContainer.innerHTML.trim();
 
     listItem.innerHTML = `
       <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
@@ -81,7 +82,7 @@ function processListItem(listItem, editor) {
     `;
 
     editor.dom.addClass(listItem, 'list-item-image');
-    listItem.removeAttribute('style'); // Truly remove any inline style left on the <li>
+    listItem.removeAttribute('style');
   }
 }
 
