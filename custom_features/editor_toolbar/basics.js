@@ -48,12 +48,12 @@ function processListItem(listItem, editor) {
       listItem.innerHTML += textDiv.innerHTML;
     }
     if (imageDiv) {
-      listItem.innerHTML += imageDiv.outerHTML; // Keep the image wrapped in a div
+      listItem.innerHTML += imageDiv.innerHTML; // Keep the image only
     }
 
     // Remove the class and any inline style applied to the list item
     editor.dom.removeClass(listItem, 'list-item-image');
-    editor.dom.setAttrib(listItem, 'style', null);
+    listItem.removeAttribute('style');
   } else {
     // ➕ Add the flexbox layout and image
     const tempContainer = document.createElement('div');
@@ -81,10 +81,9 @@ function processListItem(listItem, editor) {
     `;
 
     editor.dom.addClass(listItem, 'list-item-image');
-    editor.dom.setAttrib(listItem, 'style', null); // Ensure no leftover inline styles on li
+    listItem.removeAttribute('style'); // Truly remove any inline style left on the <li>
   }
 }
-
 
   // GRAY CALLOUT BOX BUT WITHOUT A BOX SHADOW
   async function calloutBoxGrayonGray() {
