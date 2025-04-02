@@ -2,6 +2,54 @@
   //escape if not on the editor page
   if (!TOOLBAR.checkEditorPage()) return;
 
+  async function toggleListItemWithImage() {
+    const editor = tinymce.activeEditor;
+    const node = editor.selection.getNode();
+    const listItem = editor.dom.getParent(node, 'li');
+
+    if (!listItem) {
+      alert('Please place your cursor inside a list item.');
+      return;
+    }
+
+    const hasClass = editor.dom.hasClass(listItem, 'list-item-image');
+
+    if (hasClass) {
+      // 🔄 Remove image layout and convert to plain li
+      const divs = listItem.querySelectorAll('div');
+      const textDiv = divs[0]; // Assumes text is in first div
+      const imageDiv = divs[1]; // Assumes image is in second div
+
+      if (imageDiv) {
+        imageDiv.remove();
+      }
+
+      if (textDiv) {
+        // Replace the li's content with just the inner HTML of the text div
+        listItem.innerHTML = textDiv.innerHTML;
+      }
+
+      // Remove the class
+      editor.dom.removeClass(listItem, 'list-item-image');
+    } else {
+      // ➕ Add the flexbox layout and image
+      const currentContent = listItem.innerHTML;
+
+      listItem.innerHTML = `
+        <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 250px;">
+            ${currentContent}
+          </div>
+          <div style="flex: 1; min-width: 250px;">
+            <img src="IMAGE" alt="Paste Image Here" style="max-width: 100%; height: auto;">
+          </div>
+        </div>
+      `;
+
+      editor.dom.addClass(listItem, 'list-item-image');
+    }
+  }
+
   async function insertFlexListItemTemplate() {
     const editor = tinymce.activeEditor;
     const node = editor.selection.getNode();
@@ -312,7 +360,7 @@
 
   TOOLBAR.addButtonIcon("icon-note-light", "Callout Box Gray. Light Border.", "Insert a gray callout box with light border. Designed for on white backgrounds.", calloutBox);
   TOOLBAR.addButtonIcon("icon-note-light icon-Solid", "Callout Box Gray. Dark Border.", "Insert a gray callout box with dark border. Designed for on gray backgrounds.", calloutBoxGrayonGray);
-  TOOLBAR.addButtonIcon("icon-rubric", "List With Image", "Add a list item with a right aligned image.", insertFlexListItemTemplate);
+  TOOLBAR.addButtonIcon("icon-rubric", "List With Image", "Toggle list item to contain a right aligned image.", toggleListItemWithImage);
   TOOLBAR.addButtonIcon("icon-compose", "Citation", "Insert a citation.", citation);
   TOOLBAR.addButtonIcon("icon-materials-required", "Auto Format", "Auto format the page to break the page into sections. Sections are determined by the top level heading.", formatPage);
 })();
