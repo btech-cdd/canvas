@@ -20,7 +20,7 @@
           <div style="flex: 1; min-width: 250px;">
             INSERT LIST ITEM
           </div>
-          <div style="flex: 1; min-width: 250px;">
+          <div style="flex: 1; min-width: 250px; max-width: 25%;">
             <img src="IMAGE" alt="Paste Image Here" style="max-width: 100%; height: auto;">
           </div>
         </div>
