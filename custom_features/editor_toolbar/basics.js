@@ -9,19 +9,19 @@
 
   // If multiple <li>s are selected, loop through them
   if (selectedNodes.length > 1) {
-    const allListItems = Array.from(editor.selection.getNode().closest('ul,ol').querySelectorAll('li'));
+    const allListItems = Array.from(editor.getBody().querySelectorAll('li'));
     const range = editor.selection.getRng();
 
     allListItems.forEach(li => {
       const liRange = document.createRange();
       liRange.selectNodeContents(li);
 
-      if (range.compareBoundaryPoints(Range.END_TO_START, liRange) < 0 ||
-          range.compareBoundaryPoints(Range.START_TO_END, liRange) > 0) {
-        return; // Skip items outside the selection
+      if (
+        range.compareBoundaryPoints(Range.START_TO_END, liRange) >= 0 &&
+        range.compareBoundaryPoints(Range.END_TO_START, liRange) <= 0
+      ) {
+        processListItem(li, editor);
       }
-
-      processListItem(li, editor);
     });
   } else {
     const node = editor.selection.getNode();
