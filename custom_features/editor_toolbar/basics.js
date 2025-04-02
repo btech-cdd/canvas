@@ -92,36 +92,7 @@ function processListItem(listItem, editor) {
   }
 }
 
-// Automatically add menu option to RCE Tools menu
-function waitForEditorAndRegister() {
-  const interval = setInterval(() => {
-    const editor = tinymce?.activeEditor;
-    if (editor && editor.initialized) {
-      clearInterval(interval);
-      registerToggleListItemImageTool(editor);
-    }
-  }, 300);
-}
 
-function registerToggleListItemImageTool(editor) {
-  editor.ui.registry.addMenuItem('togglelistitemimage', {
-    text: 'Toggle Image Layout in List Item',
-    onAction: () => toggleListItemWithImage(),
-  });
-
-  // Add to Tools menu using addContextToolbar or similar fallback
-  if (editor.ui.registry && editor.ui.registry.addContextToolbar) {
-    editor.ui.registry.addContextToolbar('togglelistitemimage_toolbar', {
-      predicate: (node) => node.nodeName.toLowerCase() === 'li',
-      items: 'togglelistitemimage',
-      position: 'node',
-      scope: 'node'
-    });
-  }
-}
-
-// Kick it off
-waitForEditorAndRegister();
 
   // GRAY CALLOUT BOX BUT WITHOUT A BOX SHADOW
   async function calloutBoxGrayonGray() {
