@@ -15,33 +15,43 @@
     const hasClass = editor.dom.hasClass(listItem, 'list-item-image');
 
     if (hasClass) {
-      // 🔄 Remove image layout and convert to plain li
+      // 🔄 Remove image layout and convert to plain li (but don't delete image, just unwrap it)
       const divs = listItem.querySelectorAll('div');
       const textDiv = divs[0]; // Assumes text is in first div
       const imageDiv = divs[1]; // Assumes image is in second div
 
-      if (imageDiv) {
-        imageDiv.remove();
-      }
-
+      listItem.innerHTML = '';
       if (textDiv) {
-        // Replace the li's content with just the inner HTML of the text div
-        listItem.innerHTML = textDiv.innerHTML;
+        listItem.innerHTML += textDiv.innerHTML;
+      }
+      if (imageDiv) {
+        listItem.innerHTML += imageDiv.outerHTML; // Keep the image wrapped in a div
       }
 
       // Remove the class
       editor.dom.removeClass(listItem, 'list-item-image');
     } else {
       // ➕ Add the flexbox layout and image
-      const currentContent = listItem.innerHTML;
+      const tempContainer = document.createElement('div');
+      tempContainer.innerHTML = listItem.innerHTML;
+
+      const existingImage = tempContainer.querySelector('img');
+      let imageHTML = '<img src="IMAGE" alt="Paste Image Here" style="max-width: 100%; height: auto;">';
+
+      if (existingImage) {
+        imageHTML = existingImage.outerHTML;
+        existingImage.remove(); // Remove from text content
+      }
+
+      const textContent = tempContainer.innerHTML;
 
       listItem.innerHTML = `
         <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
           <div style="flex: 1; min-width: 250px;">
-            ${currentContent}
+            ${textContent}
           </div>
-          <div style="flex: 1; min-width: 250px; max-width: 33%;">
-            <img src="IMAGE" alt="Paste Image Here" style="max-width: 100%; height: auto;">
+          <div style="flex: 1; min-width: 250px;">
+            ${imageHTML}
           </div>
         </div>
       `;
@@ -49,6 +59,7 @@
       editor.dom.addClass(listItem, 'list-item-image');
     }
   }
+
 
   async function insertFlexListItemTemplate() {
     const editor = tinymce.activeEditor;
