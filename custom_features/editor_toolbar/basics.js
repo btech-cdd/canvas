@@ -77,6 +77,9 @@ function processListItem(listItem, editor) {
       }
     }
 
+    // Build the layout with optional <hr> if it doesn't exist
+    const hrExists = listItem.querySelector('hr') !== null;
+
     listItem.innerHTML = `
       <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
         <div style="flex: 1; min-width: 250px;">
@@ -86,6 +89,7 @@ function processListItem(listItem, editor) {
           ${imageHTML}
         </div>
       </div>
+      ${hrExists ? '' : '<hr style="margin-top: 16px; border: none; border-top: 1px solid #ddd;">'}
     `;
 
     editor.dom.addClass(listItem, 'list-item-image');
