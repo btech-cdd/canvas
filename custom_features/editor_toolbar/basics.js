@@ -40,7 +40,7 @@
           <div style="flex: 1; min-width: 250px;">
             ${currentContent}
           </div>
-          <div style="flex: 1; min-width: 250px;">
+          <div style="flex: 1; min-width: 250px; max-width: 33%;">
             <img src="IMAGE" alt="Paste Image Here" style="max-width: 100%; height: auto;">
           </div>
         </div>
