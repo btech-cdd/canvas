@@ -312,7 +312,6 @@
 
   TOOLBAR.addButtonIcon("icon-note-light", "Callout Box Gray. Light Border.", "Insert a gray callout box with light border. Designed for on white backgrounds.", calloutBox);
   TOOLBAR.addButtonIcon("icon-note-light icon-Solid", "Callout Box Gray. Dark Border.", "Insert a gray callout box with dark border. Designed for on gray backgrounds.", calloutBoxGrayonGray);
-  TOOLBAR.addButtonIcon("icon-note-light icon-Solid", "Callout Box Gray. Dark Border.", "Insert a gray callout box with dark border. Designed for on gray backgrounds.", calloutBoxGrayonGray);
   TOOLBAR.addButtonIcon("icon-rubric", "List With Image", "Add a list item with a right aligned image.", insertFlexListItemTemplate);
   TOOLBAR.addButtonIcon("icon-compose", "Citation", "Insert a citation.", citation);
   TOOLBAR.addButtonIcon("icon-materials-required", "Auto Format", "Auto format the page to break the page into sections. Sections are determined by the top level heading.", formatPage);
