@@ -2,6 +2,39 @@
   //escape if not on the editor page
   if (!TOOLBAR.checkEditorPage()) return;
 
+  async function insertFlexListItemTemplate() {
+    const editor = tinymce.activeEditor;
+    const node = editor.selection.getNode();
+    const listItem = editor.dom.getParent(node, 'li');
+    const list = editor.dom.getParent(node, 'ul,ol');
+
+    if (!list || !listItem) {
+      alert('Please place your cursor inside a list to insert the template.');
+      return;
+    }
+
+    // Define the template to insert
+    const template = `
+      <li>
+        <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 250px;">
+            INSERT LIST ITEM
+          </div>
+          <div style="flex: 1; min-width: 250px;">
+            <img src="IMAGE" alt="Paste Image Here" style="max-width: 100%; height: auto;">
+          </div>
+        </div>
+      </li>`;
+
+    // Move caret after the current <li> and insert the new <li>
+    editor.selection.select(listItem);
+    editor.selection.collapse(false); // Move cursor after selected node
+
+    // Insert the template at the cursor location
+    editor.execCommand('mceInsertContent', false, template);
+  }
+
+
   // GRAY CALLOUT BOX BUT WITHOUT A BOX SHADOW
   async function calloutBoxGrayonGray() {
     let editor = tinymce.activeEditor;
@@ -279,6 +312,8 @@
 
   TOOLBAR.addButtonIcon("icon-note-light", "Callout Box Gray. Light Border.", "Insert a gray callout box with light border. Designed for on white backgrounds.", calloutBox);
   TOOLBAR.addButtonIcon("icon-note-light icon-Solid", "Callout Box Gray. Dark Border.", "Insert a gray callout box with dark border. Designed for on gray backgrounds.", calloutBoxGrayonGray);
+  TOOLBAR.addButtonIcon("icon-note-light icon-Solid", "Callout Box Gray. Dark Border.", "Insert a gray callout box with dark border. Designed for on gray backgrounds.", calloutBoxGrayonGray);
+  TOOLBAR.addButtonIcon("icon-rubric", "List With Image", "Add a list item with a right aligned image.", insertFlexListItemTemplate);
   TOOLBAR.addButtonIcon("icon-compose", "Citation", "Insert a citation.", citation);
   TOOLBAR.addButtonIcon("icon-materials-required", "Auto Format", "Auto format the page to break the page into sections. Sections are determined by the top level heading.", formatPage);
 })();
