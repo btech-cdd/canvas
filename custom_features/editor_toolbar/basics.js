@@ -2,7 +2,7 @@
   //escape if not on the editor page
   if (!TOOLBAR.checkEditorPage()) return;
 
-  async function toggleListItemWithImage() {
+async function toggleListItemWithImage() {
   const editor = tinymce.activeEditor;
   const selectedContent = editor.selection.getContent({ format: 'html' });
   const selectedNodes = editor.selection.getRng().cloneContents().querySelectorAll('li');
@@ -38,7 +38,6 @@ function processListItem(listItem, editor) {
   const hasClass = editor.dom.hasClass(listItem, 'list-item-image');
 
   if (hasClass) {
-    // 🔄 Remove image layout and convert to plain li (but don't delete image, just unwrap it)
     const textDiv = listItem.querySelector('div[style*="min-width: 250px"]:first-child');
     const imageDiv = listItem.querySelector('div[style*="min-width: 250px"]:nth-child(2)');
 
@@ -48,14 +47,12 @@ function processListItem(listItem, editor) {
     }
     if (imageDiv) {
       const img = imageDiv.querySelector('img');
-      if (img) listItem.appendChild(img); // Append only the <img>, not its parent div
+      if (img) listItem.appendChild(img);
     }
 
-    // Remove the class and any inline style applied to the list item
     editor.dom.removeClass(listItem, 'list-item-image');
     listItem.removeAttribute('style');
   } else {
-    // ➕ Add the flexbox layout and image
     const tempContainer = document.createElement('div');
     tempContainer.innerHTML = listItem.innerHTML;
 
@@ -64,10 +61,9 @@ function processListItem(listItem, editor) {
 
     if (existingImage) {
       imageHTML = existingImage.outerHTML;
-      existingImage.remove(); // Remove from text content
+      existingImage.remove();
     }
 
-    // Strip any existing outer flex wrapper if it exists
     let textContent = tempContainer.innerHTML.trim();
     const possibleFlexWrapper = tempContainer.querySelector('div[style*="display: flex"]');
     if (possibleFlexWrapper) {
@@ -77,7 +73,6 @@ function processListItem(listItem, editor) {
       }
     }
 
-    // Build the layout with optional <hr> if it doesn't exist
     const hrExists = listItem.querySelector('hr') !== null;
 
     listItem.innerHTML = `
@@ -96,6 +91,37 @@ function processListItem(listItem, editor) {
     listItem.removeAttribute('style');
   }
 }
+
+// Automatically add menu option to RCE Tools menu
+function waitForEditorAndRegister() {
+  const interval = setInterval(() => {
+    const editor = tinymce?.activeEditor;
+    if (editor && editor.initialized) {
+      clearInterval(interval);
+      registerToggleListItemImageTool(editor);
+    }
+  }, 300);
+}
+
+function registerToggleListItemImageTool(editor) {
+  editor.ui.registry.addMenuItem('togglelistitemimage', {
+    text: 'Toggle Image Layout in List Item',
+    onAction: () => toggleListItemWithImage(),
+  });
+
+  // Add to Tools menu using addContextToolbar or similar fallback
+  if (editor.ui.registry && editor.ui.registry.addContextToolbar) {
+    editor.ui.registry.addContextToolbar('togglelistitemimage_toolbar', {
+      predicate: (node) => node.nodeName.toLowerCase() === 'li',
+      items: 'togglelistitemimage',
+      position: 'node',
+      scope: 'node'
+    });
+  }
+}
+
+// Kick it off
+waitForEditorAndRegister();
 
   // GRAY CALLOUT BOX BUT WITHOUT A BOX SHADOW
   async function calloutBoxGrayonGray() {
