@@ -170,11 +170,12 @@ function calcCourseContentCounts(reviews, criteria) {
     if (review.active) continue;
     let hasScores = false;
     for (let name in review.criteria) {
-      let criterion = criteria[name];
+      let criterion = criteria?.[name];
       let score = review.criteria[name];
       if (score == undefined) continue;
       hasScores = true;
       if (counts?.[name] === undefined) counts[name] = 0;
+      if (criterion === undefined) continue;
       if (criterion?.score_type === 'boolean') counts[name] += score ? 1 : 0;
       if (criterion?.score_type === 'number') counts[name] += score / 2; //get the actual value
     }
