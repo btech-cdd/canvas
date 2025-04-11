@@ -2,6 +2,64 @@
   //escape if not on the editor page
   if (!TOOLBAR.checkEditorPage()) return;
 
+  function convertTablesInTinyMCE() {
+    let editor = tinymce.activeEditor;
+    let content = editor.getContent();
+
+    // Create a temporary container to work with DOM elements
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = content;
+
+    const tables = tempDiv.querySelectorAll('table');
+
+    tables.forEach(table => {
+        const ol = document.createElement('ol');
+        ol.style.listStyleType = 'decimal';
+
+        const rows = table.querySelectorAll('tr');
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            if (cells.length < 2) return;
+
+            const li = document.createElement('li');
+            li.className = 'list-item-image';
+
+            const wrapperDiv = document.createElement('div');
+            wrapperDiv.style.display = 'flex';
+            wrapperDiv.style.gap = '16px';
+            wrapperDiv.style.alignItems = 'flex-start';
+            wrapperDiv.style.flexWrap = 'wrap';
+
+            const textDiv = document.createElement('div');
+            textDiv.style.flex = '1';
+            textDiv.style.minWidth = '250px';
+            textDiv.innerHTML = cells[0].innerHTML;
+
+            const imageDiv = document.createElement('div');
+            imageDiv.style.flex = '1';
+            imageDiv.style.minWidth = '250px';
+            imageDiv.innerHTML = cells[1].innerHTML;
+
+            wrapperDiv.appendChild(textDiv);
+            wrapperDiv.appendChild(imageDiv);
+            li.appendChild(wrapperDiv);
+
+            const hr = document.createElement('hr');
+            hr.style.marginTop = '16px';
+            hr.style.border = 'none';
+            hr.style.borderTop = '1px solid #ddd';
+            li.appendChild(hr);
+
+            ol.appendChild(li);
+        });
+
+        table.replaceWith(ol);
+    });
+
+    // Set the transformed content back into the TinyMCE editor
+    editor.setContent(tempDiv.innerHTML);
+}
+
 async function toggleListItemWithImage() {
   const editor = tinymce.activeEditor;
   const selectedContent = editor.selection.getContent({ format: 'html' });
@@ -374,4 +432,5 @@ function processListItem(listItem, editor) {
   TOOLBAR.addButtonIcon("icon-rubric", "List With Image", "Toggle list item to contain a right aligned image.", toggleListItemWithImage);
   TOOLBAR.addButtonIcon("icon-compose", "Citation", "Insert a citation.", citation);
   TOOLBAR.addButtonIcon("icon-materials-required", "Auto Format", "Auto format the page to break the page into sections. Sections are determined by the top level heading.", formatPage);
+  TOOLBAR.addButtonIcon("icon-calendar-month", "Auto Format Table into List", "Auto format a table used for isntructions into an ordered list.", convertTablesInTinyMCE);
 })();
