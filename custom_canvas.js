@@ -58,6 +58,23 @@ if (ENV.current_user_roles !== null) {
   IS_TEACHER = (ENV.current_user_roles.includes("teacher") || ENV.current_user_roles.includes("admin"));
 }
 
+function getCourseCodeFromEnv() {
+  let longName = ENV?.COURSE?.long_name ?? '';
+  // Regular expression breakdown:
+  // - /-\s*   : Matches a dash followed by any whitespace
+  // - ([A-Za-z]{4}\s\d{4}) : Captures exactly 4 letters, a space, and 4 digits (the course code)
+  // - $ : Ensures the match happens at the end of the string
+  var courseCodeRegex = /-\s*([A-Za-z]{4}\s\d{4})$/;
+
+  var match = longName.match(courseCodeRegex);
+  if(match) {
+    var courseCode = match[1]; // Captured course code, e.g., "ATTE 1010"
+    return courseCode;
+  } else {
+    return undefined;
+  }
+}
+
 var FEATURES = {};
 var IMPORTED_FEATURE = {};
 
@@ -65,8 +82,18 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
 (async function() {
   if (window.self === window.top) { //Make sure this is only run on main page, and not every single iframe on the page. For example, Kaltura videos all load in a Canvas iframe
     if (/^\/courses\/[0-9]+(\/modules){0,1}$/.test(window.location.pathname)) {
-      if (ENV.ACCOUNT_ID == '3819-unused') {
-        console.log('module');
+      let COURSE_CODE = getCourseCodeFromEnv();
+      let DEPT_CODE = COURSE_CODE.substring(0, 4); // "ATTE"
+    
+      // Construct the image URL using the department code
+      var imageUrl = `https://bridgetools.dev/canvas/media/course-banners/${DEPT_CODE}.png`;
+      
+      // Create an Image object to check if the image exists
+      var img = new Image();
+      
+      // Image loaded successfully, so it exists
+      img.onload = function() {
+        console.log("Image exists:", imageUrl);
         let moduleModal = $(".header-bar");
         let moduleHeader = $("<div></div>");
         moduleModal.after(moduleHeader);
@@ -86,7 +113,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
                 transform:skewX(-20deg);
                 z-index:1;
               "></div>
-              <img src="https://bridgetools.dev/canvas/media/course-banners/${ENV.ACCOUNT_ID}.png" style="
+              <img src="https://bridgetools.dev/canvas/media/course-banners/${DEPT_CODE}.png" style="
                 position:absolute;
                 top:0;
                 left: 0;
