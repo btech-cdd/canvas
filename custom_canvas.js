@@ -51,6 +51,7 @@ var IS_TEACHER = null;
 var IS_ME = false;
 var IS_ISD = false;
 var COURSE_HOURS;
+var LOAD_COURSE_SETTINGS = true;
 
 //Should start experimenting with branching in github
 var SOURCE_URL = 'https://bridgetools.dev/canvas'
@@ -94,6 +95,8 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
       
       // Image loaded successfully, so it exists
       img.onload = function() {
+        if (ENV.ACCOUNT_ID == 3833) return;
+        LOAD_COURSE_SETTINGS = false;
         console.log("Image exists:", imageUrl);
         let moduleModal = $(".header-bar");
         let moduleHeader = $("<div></div>");
@@ -146,7 +149,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
     //FEATURES THAT DON'T NEED ALL THE EXTRA STUFF LIKE HOURS AND DEPT DATA AND VUE
     featureISD('copy_to_next_year', {}, /^\/accounts\/[0-9]+$/);
     if (rCheckInCourse.test(window.location.pathname)) {
-      if (ENV.ACCOUNT_ID != '3819-unused') {
+      if (LOAD_COURSE_SETTINGS) {
         feature('modules/course_features');
       }
       //I'm putting concluding students in here as well vvv
