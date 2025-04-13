@@ -84,6 +84,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
     if (/^\/courses\/[0-9]+(\/modules){0,1}$/.test(window.location.pathname)) {
       let COURSE_CODE = getCourseCodeFromEnv();
       let DEPT_CODE = COURSE_CODE.substring(0, 4); // "ATTE"
+      console.log(DEPT_CODE);
     
       // Construct the image URL using the department code
       var imageUrl = `https://bridgetools.dev/canvas/media/course-banners/${DEPT_CODE}.png`;
@@ -127,6 +128,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         `)
       }
     }
+    img.src = imageUrl;
     let currentUser = parseInt(ENV.current_user.id);
     IS_ME = (currentUser === 1893418);
     IS_ISD = (ISDIDS.includes(currentUser));
