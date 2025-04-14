@@ -130,8 +130,8 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
           </div>
         `)
       }
+      img.src = imageUrl;
     }
-    img.src = imageUrl;
     let currentUser = parseInt(ENV.current_user.id);
     IS_ME = (currentUser === 1893418);
     IS_ISD = (ISDIDS.includes(currentUser));
