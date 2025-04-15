@@ -1,7 +1,6 @@
 (function () {
   let originalTables = $(".btech-tabs-table");
   originalTables.each(function () {
-    console.log("TABS");
     let originalTable = $(this);
     let newTable = $("<div class='btech-tabs-container'></div>");
     let newTableTabsContainer = $("<div class='btech-tabs'></div>");
@@ -12,7 +11,6 @@
     let optionHeader = "";
     let valueHeader = "";
     let caption = originalTable.find("caption").html();
-    console.log(caption);
     if (caption !== null && caption !== undefined) {
       newTable.prepend("<div style='width: 100%; text-align: center;'>" + caption + "</div><br>");
     }
