@@ -150,7 +150,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
     featureISD('copy_to_next_year', {}, /^\/accounts\/[0-9]+$/);
     if (rCheckInCourse.test(window.location.pathname)) {
       if (LOAD_COURSE_SETTINGS) {
-        feature('modules/course_features');
+        feature('modules/course_features', {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
       }
       //I'm putting concluding students in here as well vvv
       feature('modules/enrollment_dates_teacher', {}, /^\/courses\/[0-9]+\/users\/[0-9]+$/);
@@ -185,7 +185,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
     feature("editor_toolbar/images", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
     feature("editor_toolbar/tables", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
     feature("editor_toolbar/headers", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
-    feature("page_formatting/sidebar_comments", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
+    // feature("page_formatting/sidebar_comments", {}, /^\/courses\/[0-9]+\/(pages|assignments|quizzes|discussion_topics)/);
     feature("page_formatting/print_rubric", {}, /^\/courses\/[0-9]+\/(assignments)/);
 
     //OTHER FEATURES
