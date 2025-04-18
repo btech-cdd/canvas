@@ -4,6 +4,7 @@
   ////style="width: 1.5rem; height: auto; vertical-align: middle;"
   let workFromHomeIcon = `
     <svg 
+      aria-label="work from home icon"
       style="width: 1.5rem; height: auto; vertical-align: middle;"
       id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1060.44 1004.85" enable-background="new 0 0 1060.44 1004.85" >
       <g id="Layer_1-2" data-name="Layer 1">
