@@ -186,7 +186,6 @@
             module = await bridgetools.req(
               `https://reports.bridgetools.dev/api/reviews/courses/${ENV.COURSE_ID}/modules/${contentReview.module_id}`
             );
-            console.log(module);
           } while (new Date(module.last_update) <= new Date(contentReview.last_update));
 
           setIcon($scoreEl, type, module, contentCriteria, rubricReview, rubricCriteria);
@@ -223,6 +222,7 @@
 
     for (let m in courseReviewData.modules) {
       let moduleReview = courseReviewData.modules[m];
+      console.log(moduleReview);
       let $scoreEl = $(`#${moduleReview.module_id} span.ig-btech-evaluation-score`);
       initContentIcon($scoreEl, $vueApp, $modal, 'Module', moduleReview, criteria.Modules);
     }
