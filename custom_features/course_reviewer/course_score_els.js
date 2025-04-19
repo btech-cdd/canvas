@@ -179,7 +179,7 @@ function generateDetailedCourseContent(
         </div>
         <div class="btech-course-evaluator-content-box">
           <h2>Suggestions Summary</h2>
-          <div>{{courseReviewData.suggestions}}</div>
+          <div v-html="courseReviewData.suggestions"></div>
           <button
               @click="generateSummary();"
             >Generate Summary</button>
