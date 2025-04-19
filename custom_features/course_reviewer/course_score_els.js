@@ -178,6 +178,13 @@ function generateDetailedCourseContent(
           <div>3rd Party Items: {{externalContentCounts}} Item(s) ({{Math.round((externalContentCounts / totalContentCounts) * 1000) / 10}}%)</div>
         </div>
         <div class="btech-course-evaluator-content-box">
+          <h2>Suggestions Summary</h2>
+          <div>{{courseReviewData.suggestions}}</div>
+          <button
+              @click="generateSummary();"
+            >Generate Summary</button>
+        </div>
+        <div class="btech-course-evaluator-content-box">
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
             <course-content
               :type="'Assignments'"
@@ -403,6 +410,12 @@ function generateDetailedCourseContent(
       }
     },
     methods: {
+      async generateSummary() {
+        this.loadingSummary = true;
+        let summary = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${this.courseId}/summarize_surveys`, {}, 'POST');
+        this.course.suggestions = summary;
+        this.loadingSummary = false;
+      },
       removeLoadingElement(menuName) {
         let index = this.loadingMenus.indexOf(menuName);
         this.loadingMenus.splice(index, 1);
