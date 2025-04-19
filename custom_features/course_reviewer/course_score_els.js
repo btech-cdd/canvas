@@ -314,12 +314,12 @@ function generateDetailedCourseContent(
             </div>
             <div style="padding: 8px 0; grid-column: span 2;">
               <h2>Feedback</h2>
-              <div v-if="response?.feedback_list?.length > 0">
+              <div>
                 <ul>
                   <li v-for="suggestion in response.feedback_list">{{suggestion}}</li>
                 </ul>
               </div>
-              <div v-else>
+              <div>
                 {{response?.feedback ?? ""}}
               </div>
             </div>
