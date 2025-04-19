@@ -179,7 +179,9 @@ function generateDetailedCourseContent(
         </div>
         <div class="btech-course-evaluator-content-box">
           <h2>Suggestions Summary</h2>
-          <div v-html="courseReviewData.suggestions"></div>
+          <div 
+          v-if="!loadingSummary"
+          v-html="courseReviewData.suggestions"></div>
           <button
               @click="generateSummary();"
             >Generate Summary</button>
@@ -388,6 +390,7 @@ function generateDetailedCourseContent(
         loadingMenus: [
           'surveys'
         ],
+        loadingSummary: false,
         courseReviewData: courseReviewData,
         criteria: criteria,
         objectivesData: objectivesData,
