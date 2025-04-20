@@ -415,7 +415,7 @@ function generateDetailedCourseContent(
     methods: {
       async generateSummary() {
         this.loadingSummary = true;
-        let summary = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${this.courseId}/summarize_surveys`, {}, 'POST');
+        let summary = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${this.courseId}/summarize_suggestions`, {}, 'POST');
         this.course.suggestions = summary;
         this.loadingSummary = false;
       },
