@@ -129,26 +129,7 @@
       },
       async generateSummary() {
         this.loadingSummary = true;
-        let prompt = ``;
-        for (let text in this.questions) {
-          let question = this.questions[text];
-          if (question.type == 'Text') {
-            let responses = ``;
-            for (let i in question.comments) {
-              responses += `<response_${i + 1}>${question.comments[i]}</response_${i + 1}>`;
-            }
-            prompt += `
-              <survey_question>
-                <prompt>${text}</prompt>
-                <responses>${responses}</responses>
-              </survey_question>
-            `
-          }
-        }
-        prompt = `<survey_data>${prompt}</survey_data>`;
-        let summary = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${this.courseId}/summarize_surveys`, {
-            prompt: prompt 
-        }, 'POST');
+        let summary = await bridgetoolsReq(`https://reports.bridgetools.dev/api/reviews/courses/${this.courseId}/summarize_surveys`, {}, 'POST');
         this.course.surveys.summary = summary;
         this.course.surveys.last_update = new Date();
         this.loadingSummary = false;
