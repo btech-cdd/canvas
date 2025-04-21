@@ -248,8 +248,10 @@ function generateDetailedCourseContent(
         <div class="btech-course-evaluator-content-box">
           <h2>Suggestions Summary</h2>
           <div 
-          v-if="!loadingSummary"
-          v-html="courseReviewData.suggestions"></div>
+            v-if="!loadingSummary"
+            v-html="courseReviewData?.suggestions?.summary ?? ''"></div>
+          <div
+            v-else>Loading...</div>
           <button
               @click="generateSummary();"
             >Generate Summary</button>
