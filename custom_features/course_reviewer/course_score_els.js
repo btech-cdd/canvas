@@ -178,15 +178,6 @@ function generateDetailedCourseContent(
           <div>3rd Party Items: {{externalContentCounts}} Item(s) ({{Math.round((externalContentCounts / totalContentCounts) * 1000) / 10}}%)</div>
         </div>
         <div class="btech-course-evaluator-content-box">
-          <h2>Suggestions Summary</h2>
-          <div 
-          v-if="!loadingSummary"
-          v-html="courseReviewData.suggestions"></div>
-          <button
-              @click="generateSummary();"
-            >Generate Summary</button>
-        </div>
-        <div class="btech-course-evaluator-content-box">
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
             <course-content
               :type="'Assignments'"
@@ -221,6 +212,15 @@ function generateDetailedCourseContent(
               :calc-counts="calcCourseContentCounts"
             ></course-content>
           </div>
+        </div>
+        <div class="btech-course-evaluator-content-box">
+          <h2>Suggestions Summary</h2>
+          <div 
+          v-if="!loadingSummary"
+          v-html="courseReviewData.suggestions"></div>
+          <button
+              @click="generateSummary();"
+            >Generate Summary</button>
         </div>
       </div>
       <!-- SURVEYS -->
