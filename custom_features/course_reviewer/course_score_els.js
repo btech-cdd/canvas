@@ -213,15 +213,6 @@ function generateDetailedCourseContent(
             ></course-content>
           </div>
         </div>
-        <div class="btech-course-evaluator-content-box">
-          <h2>Suggestions Summary</h2>
-          <div 
-          v-if="!loadingSummary"
-          v-html="courseReviewData.suggestions"></div>
-          <button
-              @click="generateSummary();"
-            >Generate Summary</button>
-        </div>
       </div>
       <!-- SURVEYS -->
       <course-surveys 
@@ -255,7 +246,13 @@ function generateDetailedCourseContent(
 
       <div v-if="menuCurrent == 'summary'">
         <div class="btech-course-evaluator-content-box">
-          Coming Soon
+          <h2>Suggestions Summary</h2>
+          <div 
+          v-if="!loadingSummary"
+          v-html="courseReviewData.suggestions"></div>
+          <button
+              @click="generateSummary();"
+            >Generate Summary</button>
         </div>
       </div>
 
@@ -379,10 +376,10 @@ function generateDetailedCourseContent(
         menuCurrent: 'main',
         menuOptions: [
           'main',
+          'summary',
           'surveys',
           'unaligned',
           '3rd party',
-          'summary',
           // 'query',
           'objectives',
           'settings'
