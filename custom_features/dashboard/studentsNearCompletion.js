@@ -141,7 +141,7 @@ async function createModal() {
 $(function() {
   const button = $(`
     <a href="javascript:;" class="Button button-sidebar-wide">
-      View Students Near Completion
+      View Students Near Course Completion
     </a>
   `);
 
