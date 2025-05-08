@@ -1,5 +1,4 @@
 (async function() {
-    console.log("NEAR COMPLETIOn")
    // 1. Your async function that returns the array
 async function getCompletedEnrollments() {
   let completedEnrollments = [];
