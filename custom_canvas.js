@@ -325,9 +325,7 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         // featureISD("cleoducktra/main", {}, /^/);
         // if (IS_ME) featureISD("cleoducktra/quiz-questions", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/);
         feature("welcome_banner", {}, /^\/$/);
-        if (IS_TEACHER) {
-          feature("dashboard/studentsNearCompletion", {}, /^\/$/);
-        }
+        feature("dashboard/studentsNearCompletion", {}, /^\/$/);
       });
     });
   }
