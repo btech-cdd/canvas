@@ -139,6 +139,9 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
 
     await $.getScript("https://bridgetools.dev/canvas/scripts.js");
     await $.getScript("https://reports.bridgetools.dev/scripts.js");
+    if (IS_TEACHER) feature("dashboard/studentsNearCompletion", {}, /^\/$/);
+    feature("welcome_banner", {}, /^\/$/);
+
     feature('modules/enrollment_dates_student_external', {}, /^\/courses\/[0-9]+(\/modules){0,1}$/);
     feature("login_page", {}, /^\/login/);
     // feature("editor_toolbar/manage-settings", {}, /^\/btech-toolbar/);
@@ -324,8 +327,6 @@ var MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug
         // if (IS_ME) $.getScript("https://bridgetools.dev/collaborator/import.js");
         // featureISD("cleoducktra/main", {}, /^/);
         // if (IS_ME) featureISD("cleoducktra/quiz-questions", {}, /^\/courses\/[0-9]+\/quizzes\/[0-9]+\/edit/);
-        feature("welcome_banner", {}, /^\/$/);
-        feature("dashboard/studentsNearCompletion", {}, /^\/$/);
       });
     });
   }
