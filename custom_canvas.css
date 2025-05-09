@@ -204,6 +204,7 @@ ul.btech-question-banks-sorter li.btech-bank-course.selected {
 #btech-custom-editor-buttons-container {
   display: flex;
   flex-wrap: wrap;
+  background-color: #FFFFFF;
 }
 
 #btech-services {
